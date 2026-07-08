@@ -50,7 +50,7 @@ Download the `.zip` — we place it into the demo project during the session.
 
 The project we will fix — also downloaded during the session. It's in this repo:
 
-[`materials/demo-package.zip`](./materials/demo-package.zip)
+[`materials/demo-package.zip`]([./materials/demo-package.zip](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip))
 
 Unzip it somewhere easy to find (e.g. `/Users/name/Github`; `C:/wb6849591f/Github`;) and leave the files as they are — the mess is the point.
 
