@@ -1,0 +1,19 @@
+title: "DECDI AI Roadmap — Training Materials"
+description: "Session materials for the DECDI AI for Research training series."
+remote_theme: pages-themes/cayman@v0.2.0
+theme: jekyll-theme-cayman
+
+# URL settings — update the org/repo if this lives elsewhere
+url: "https://worldbank.github.io"
+baseurl: "/ai-research-training"
+
+plugins:
+  - jekyll-remote-theme
+
+# Files Jekyll should not copy into the built site
+exclude:
+  - README.md
+  - "*.zip"
+  - vendor
+  - Gemfile
+  - Gemfile.lock
