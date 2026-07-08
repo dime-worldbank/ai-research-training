@@ -58,11 +58,12 @@ Lead with the pain point: most verification failures aren't about bad code, they
 
 Before we begin make sure we have everything we need: 
 
-- Demo project, available [here]()
 - **Visual Studio Code** installed (available in the Software Center — note: *VS Code*, not Visual Studio)
 - One of the two, signed in within VS Code:
   - **GitHub Copilot** (Copilot Chat extension, with a Claude model available), or
   - the **Claude Code extension**, linked to a personal Claude account
+- Demo project, available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
+- Our AI skill, available [here](https://github.com/worldbank/wb-reproducible-research-repository/releases/latest)  
 
 
 ## What is an AI skill?
@@ -239,6 +240,8 @@ Where the agent can’t execute (e.g., Stata): you get the **exact clean-run pro
 
 ## Meet the demo project
 
+Available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
+
 :::: {.columns}
 
 ::: {.column width="62%"}
@@ -296,7 +299,7 @@ Walk through a few rows — F1 and F2 mean the code can't run at all on any othe
 ## Let's set it up
 
 1. **Open** the demo project folder in VS Code (*File → Open Folder*)
-2. Drag the `.agents/skills/reproducibility-skill/` to the demo project folder. 
+2. Drag the `.agents/skills/reproducibility-skill/` to the demo project folder (skill [here](https://github.com/worldbank/wb-reproducible-research-repository/releases/latest)). 
 3. **Open the Claude Code/GitHub Copilot chat panel** and type:
 
 . . .
