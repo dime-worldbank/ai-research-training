@@ -65,6 +65,11 @@
 # Markdown
 !/**/*.md
 
+# Quarto
+!/**/*.qmd
+
+!/**/*.zip
+
 # Julia
 !/**/*.jl
 
