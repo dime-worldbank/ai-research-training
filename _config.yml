@@ -4,7 +4,7 @@ remote_theme: pages-themes/cayman@v0.2.0
 theme: jekyll-theme-cayman
 
 # URL settings — update the org/repo if this lives elsewhere
-url: "https://worldbank.github.io"
+url: "https://dime-worldbank.github.io"
 baseurl: "/ai-research-training"
 
 plugins:

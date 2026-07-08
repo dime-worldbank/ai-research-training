@@ -1,99 +1,270 @@
 /* DECDI AI Roadmap — brand palette over Cayman theme
-   Primary navy  #002A4F   |  Analytics accent #800280
-   Impact-lab colors used as category/status accents. */
+   Fonts: Montserrat (headings) + Inter (body)
+   Colors: navy #002A4F | teal #1C618C | analytics #800280 | gold #FFC20D */
 
 :root {
-  --decdi-navy:    #002A4F;
-  --decdi-teal:    #1C618C;
-  --decdi-blue:    #2599CD;
-  --decdi-sky:     #2AACE2;
-  --decdi-analytics: #800280;
-  --decdi-prosperity: #FFC20D;
-  --decdi-people:  #991D38;
-  --decdi-infra:   #047D70;
-  --decdi-embed:   #F78D28;
-  --decdi-ink:     #1a1a1a;
-  --decdi-muted:   #5b6b7b;
-  --decdi-line:    #e3e8ee;
+  --decdi-navy:        #002A4F;
+  --decdi-teal:        #1C618C;
+  --decdi-blue:        #2599CD;
+  --decdi-sky:         #2AACE2;
+  --decdi-analytics:   #800280;
+  --decdi-prosperity:  #FFC20D;
+  --decdi-people:      #991D38;
+  --decdi-infra:       #047D70;
+  --decdi-embed:       #F78D28;
+  --decdi-ink:         #1a1a1a;
+  --decdi-muted:       #5b6b7b;
+  --decdi-line:        #e3e8ee;
+  --decdi-surface:     #f7f9fc;
 }
 
-/* ---- Header: navy → analytics gradient ---- */
+/* ---- Global typography ---- */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.main-content {
+  font-size: 1rem;
+  line-height: 1.78;
+  color: var(--decdi-ink);
+  max-width: 860px;
+}
+
+/* ---- Page header ---- */
 .page-header {
   background-color: var(--decdi-navy);
-  background-image: linear-gradient(120deg, #002A4F 0%, #1C618C 55%, #800280 140%);
+  background-image:
+    radial-gradient(ellipse at 85% 40%, rgba(128,2,128,0.35) 0%, transparent 55%),
+    linear-gradient(140deg, #001829 0%, #002A4F 40%, #1C618C 100%);
+  padding: 4.5rem 3rem 3.5rem;
 }
-.page-header .project-name { font-weight: 800; letter-spacing: -0.01em; }
-.page-header .project-tagline { opacity: 0.95; }
 
-/* ---- Links & headings ---- */
-.main-content a { color: var(--decdi-analytics); }
-.main-content a:hover { color: var(--decdi-navy); }
+.page-header .project-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-size: 2rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+
+.page-header .project-tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  opacity: 0.88;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  margin-top: 0.5rem;
+}
+
+/* ---- Headings ---- */
 .main-content h1,
-.main-content h2 { color: var(--decdi-navy); }
-.main-content h2 {
-  border-bottom: 2px solid var(--decdi-line);
-  padding-bottom: 0.3rem;
+.main-content h2,
+.main-content h3,
+.main-content h4 {
+  font-family: 'Montserrat', sans-serif;
 }
 
-/* ---- Tables (session schedule) ---- */
+.main-content h1,
+.main-content h2 {
+  color: var(--decdi-navy);
+}
+
+.main-content h2 {
+  font-weight: 700;
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--decdi-line);
+  padding-bottom: 0.45rem;
+  margin-top: 2.8rem;
+  letter-spacing: -0.01em;
+}
+
+.main-content h3 {
+  font-weight: 600;
+  color: var(--decdi-teal);
+  font-size: 1rem;
+  margin-top: 2rem;
+  letter-spacing: 0;
+}
+
+/* ---- Links ---- */
+.main-content a {
+  color: var(--decdi-analytics);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(128,2,128,0.25);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.main-content a:hover {
+  color: var(--decdi-navy);
+  border-bottom-color: var(--decdi-navy);
+}
+
+/* ---- Tables ---- */
+.main-content table {
+  font-size: 0.88rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  border: 1px solid var(--decdi-line);
+  width: 100%;
+}
+
 .main-content table th {
   background: var(--decdi-navy);
   color: #fff;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 11px 16px;
+  border: none;
 }
-.main-content table tr:nth-child(even) { background: #f6f8fa; }
-.main-content table td, .main-content table th { border-color: var(--decdi-line); }
+
+.main-content table td {
+  padding: 10px 16px;
+  vertical-align: middle;
+  border-color: var(--decdi-line);
+}
+
+.main-content table tr:nth-child(even) td { background: #f3f6fa; }
+.main-content table tr:hover td { background: #eaf0f8; transition: background 0.12s; }
 
 /* ---- Session cards ---- */
 .card-container {
-  display: flex; flex-wrap: wrap; gap: 20px;
-  margin: 32px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 28px 0 36px;
 }
-.card {
-  flex: 1 1 260px;
-  border: 1px solid var(--decdi-line);
-  border-top: 5px solid var(--decdi-analytics);
-  border-radius: 8px;
-  padding: 20px 22px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-  transition: transform 0.15s, box-shadow 0.15s;
-  background: #fff;
-}
-.card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
-.card h3 { margin: 0 0 6px; color: var(--decdi-navy); font-size: 1.05rem; }
-.card .card-meta { color: var(--decdi-muted); font-size: 0.85rem; margin-bottom: 10px; }
-.card a { text-decoration: none; }
-.card.upcoming { border-top-color: var(--decdi-line); opacity: 0.85; }
 
-/* When an entire card is wrapped in a link, the link itself must carry no
-   underline or color; only the title inside reads as the link. */
-.card-container > a,
-.card-container > a:hover {
+.card {
+  border: 1px solid var(--decdi-line);
+  border-top: 4px solid var(--decdi-analytics);
+  border-radius: 12px;
+  padding: 22px 24px 20px;
+  box-shadow: 0 2px 8px rgba(0,42,79,0.07);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 28px rgba(0,42,79,0.14);
+}
+
+.card h3 {
+  margin: 4px 0 0;
+  color: var(--decdi-navy);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.card .card-meta {
+  color: var(--decdi-muted);
+  font-size: 0.8rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.card p:not(.card-meta) {
+  color: #4a5568;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 4px 0 0;
+}
+
+.card.upcoming {
+  border-top-color: #c9d4e0;
+  background: #fafbfc;
+  opacity: 0.87;
+}
+
+/* Card as full-block link */
+.card-container > a {
   text-decoration: none !important;
+  border-bottom: none !important;
   color: inherit !important;
   display: block;
 }
-.card-container > a .card h3 { color: var(--decdi-navy); }
-.card-container > a .card .card-meta { color: var(--decdi-muted); }
-.card-container > a .card p:not(.card-meta) { color: var(--decdi-ink); }
-.card-container > a:hover .card h3 { color: var(--decdi-analytics); }
 
-/* status pills */
-.pill {
-  display: inline-block; font-size: 0.72rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.04em;
-  padding: 2px 9px; border-radius: 999px;
+.card-container > a:hover {
+  color: inherit !important;
+  border-bottom: none !important;
 }
-.pill-available { background: var(--decdi-infra); color: #fff; }
-.pill-delivered { background: var(--decdi-teal); color: #fff; }
-.pill-upcoming  { background: #eef1f5; color: var(--decdi-muted); }
 
-/* ---- Callout / note box ---- */
+.card-container > a .card h3        { color: var(--decdi-navy); }
+.card-container > a .card .card-meta { color: var(--decdi-muted); }
+.card-container > a .card p:not(.card-meta) { color: #4a5568; }
+.card-container > a:hover .card h3  { color: var(--decdi-analytics); }
+
+/* ---- Status pills ---- */
+.pill {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.pill-available {
+  background: linear-gradient(135deg, #047D70 0%, #06a090 100%);
+  color: #fff;
+  box-shadow: 0 1px 5px rgba(4,125,112,0.28);
+}
+
+.pill-delivered {
+  background: var(--decdi-teal);
+  color: #fff;
+}
+
+.pill-upcoming {
+  background: #edf0f5;
+  color: var(--decdi-muted);
+}
+
+/* ---- Note / callout box ---- */
 .note {
   border-left: 4px solid var(--decdi-prosperity);
-  background: #fffaf0;
-  padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 20px 0;
+  background: linear-gradient(to right, #fffcf0, #fff9e6);
+  padding: 14px 20px;
+  border-radius: 0 10px 10px 0;
+  margin: 24px 0;
+  box-shadow: 0 1px 6px rgba(255,194,13,0.12);
+  font-size: 0.94rem;
 }
 
-/* footer accent */
-.site-footer { border-top: 2px solid var(--decdi-analytics); }
+/* ---- Site footer ---- */
+.site-footer {
+  border-top: 2px solid var(--decdi-analytics);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.83rem;
+  color: var(--decdi-muted);
+}
+
+/* ---- Smooth scroll & code blocks ---- */
+html { scroll-behavior: smooth; }
+
+.main-content pre,
+.main-content code {
+  font-size: 0.85rem;
+  border-radius: 6px;
+}
+
+.main-content pre {
+  border: 1px solid var(--decdi-line);
+  background: var(--decdi-surface);
+}

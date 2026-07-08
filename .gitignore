@@ -71,6 +71,9 @@
 # Markdown
 !/**/*.md
 
+# HTML (rendered slides and session pages)
+!/**/*.html
+
 # Quarto
 !/**/*.qmd
 
