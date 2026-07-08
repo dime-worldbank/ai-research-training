@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "AI Skills in Action: From Messy Project to Reproducibility Package"
+permalink: /sessions/ai-skills-reproducibility/
 ---
 
 [← Back to the AI Roadmap series](../../)
@@ -17,8 +18,8 @@ This is a **hands-on** session: we take a research project that was *not* built 
 
 ## In this folder
 
-- `materials/demo-package.zip` — the (deliberately messy) project we will fix during the session
-- `slides/` — the session slides
+- [`slides/`](./slides/) — **[view the slide deck](./slides/)**
+- [`materials/demo-project.zip`](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip) — the (deliberately messy) project we will fix during the session
 - this README — session overview and setup
 
 ## Before the session
@@ -50,7 +51,7 @@ Download the `.zip` — we place it into the demo project during the session.
 
 The project we will fix — also downloaded during the session. It's in this repo:
 
-[`materials/demo-package.zip`](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
+[`materials/demo-project.zip`](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
 
 Unzip it somewhere easy to find (e.g. `/Users/name/Github`; `C:/wb6849591f/Github`;) and leave the files as they are — the mess is the point.
 

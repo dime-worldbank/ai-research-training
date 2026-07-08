@@ -21,6 +21,7 @@ Materials for each session — slides, demo packages, setup instructions — are
     <h3>1 &middot; AI Skills to Facilitate Reproducible Research</h3>
     <p class="card-meta">Jul 16 &middot; led by Impact Analytics</p>
     <p>Turn a project never built for reproducibility into a package that passes verification on the first submission.</p>
+    <p class="card-meta"><a href="./sessions/ai-skills-reproducibility/slides/" onclick="event.stopPropagation()">View slides &rarr;</a></p>
   </div>
 </a>
 
