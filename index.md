@@ -21,7 +21,6 @@ Materials for each session — slides, demo packages, setup instructions — are
     <h3>1 &middot; AI Skills to Facilitate Reproducible Research</h3>
     <p class="card-meta">Jul 16 &middot; led by Impact Analytics</p>
     <p>Turn a project never built for reproducibility into a package that passes verification on the first submission.</p>
-    <p class="card-meta"><a href="./sessions/ai-skills-reproducibility/slides/" onclick="event.stopPropagation()">View slides &rarr;</a></p>
   </div>
 </a>
 
@@ -62,7 +61,7 @@ Materials for each session — slides, demo packages, setup instructions — are
 
 | # | Session | Date | Status |
 |---|---------|------|--------|
-| 1 | [AI Skills to Facilitate Reproducible Research](./sessions/ai-skills-reproducibility/) | Jul 16 | **Available** |
+| 1 | [AI Skills to Facilitate Reproducible Research](./sessions/ai-skills-reproducibility/) | Jul 16 | **Available** &middot; [Slides →](./sessions/ai-skills-reproducibility/slides/) |
 | 2 | Using AI to Automate Research Outputs | Jul 30 | Upcoming |
 | 3 | Using AI to Review Code and Verify Research Reproducibility | Sep 8 | Upcoming |
 | 4 | AI Ethics, Governance, and Safe Use at the World Bank | Sep 17 | Upcoming |

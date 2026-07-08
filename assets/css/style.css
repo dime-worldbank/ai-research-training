@@ -37,6 +37,7 @@ body {
     radial-gradient(ellipse at 85% 40%, rgba(128,2,128,0.35) 0%, transparent 55%),
     linear-gradient(140deg, #001829 0%, #002A4F 40%, #1C618C 100%);
   padding: 4.5rem 3rem 3.5rem;
+  color: #fff;
 }
 
 .page-header .project-name {
@@ -45,17 +46,20 @@ body {
   letter-spacing: -0.025em;
   font-size: 2rem;
   line-height: 1.2;
+  color: #fff;
   text-shadow: 0 2px 16px rgba(0,0,0,0.25);
 }
 
 .page-header .project-tagline {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  opacity: 0.88;
+  color: rgba(255,255,255,0.88);
   font-size: 1rem;
   letter-spacing: 0.01em;
   margin-top: 0.5rem;
 }
+
+.page-header a { color: #fff; }
 
 /* ---- Headings ---- */
 .main-content h1,
