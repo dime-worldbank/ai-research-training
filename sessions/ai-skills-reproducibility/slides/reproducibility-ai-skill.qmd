@@ -20,12 +20,12 @@ format:
 
 Take a research project whose code was **never written to be a reproducibility package**…
 
-…and produce a package that **passes World Bank verification on the first submission**.
+…and produce a **complete** reproducibility package that **passes first run and completeness check**.
 
 . . .
 
 > The skill embeds the *exact checks the reproducibility team applies as reviewers.*
-> Passing its audit means passing verification, and skipping the round-trips where most calendar time is lost.
+> Passing its audit means passing completeness check, and skipping the round-trips where most calendar time is lost.
 
 ::: {.notes}
 Lead with the pain point: most verification failures aren't about bad code, they're about things the author forgot to check. The skill makes forgetting impossible.
@@ -63,7 +63,7 @@ Before we begin make sure we have everything we need:
   - **GitHub Copilot** (Copilot Chat extension, with a Claude model available), or
   - the **Claude Code extension**, linked to a personal Claude account
 - Demo project, available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
-- Our AI skill, available [here](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip)  
+- Our AI skill, available in [our repo](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill); [direct download](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip)  
 
 
 ## What is an AI skill?
@@ -115,7 +115,7 @@ The reproducibility standard is too long to paste into a chat reliably: full che
 | **1 · Audit** | Checks everything against checklist + flags F1–F14; classifies every data file | Read-only |
 | **2 · Outline** | Proposes target structure, gap table — the build plan | Proposes only |
 | **3 · Build** | Drafts README, DAS, main script; applies approved fixes | After your approval |
-| **4 · Run check** | Sets outputs aside, reruns from scratch, verifies every exhibit regenerates | With protocol |
+| **4 · Run check** | Sets outputs aside, reruns from scratch, verifies every exhibit regenerates | After your approval (you might need to run licensed code) |
 
 ::: {.notes}
 Emphasize: the agent stops between every phase and waits for approval. It will not write a single file until you've seen and approved the outline. This is the author's control point.
@@ -172,7 +172,7 @@ Detection runs actual patterns — hardcoded paths, seeds, install commands, wri
 **Documentation**
 
 - F7 · Manuscript–code version mismatch
-- F8 · External data missing from DAS
+- F8 · Input data missing from DAS
 - F9 · Outputs not produced by code
 - F10 · Missing README / List of Exhibits
 - F11 · Extraneous files
@@ -277,45 +277,85 @@ No README. No main script. No requirements file. No structure. No hope.
 The project is intentionally realistic — not a caricature. Code files at the root is extremely common. The mystery file in the meeting notes is the kind of thing that would stump a replicator.
 :::
 
-## What's broken? {.smaller}
+## Let's set it up {.smaller}
 
-| Flag | Evidence |
-|---|---|
-| **F1** · Hardcoded paths | `C:\Users\wb6878f9\Dropbox\thailand_paper` in all 4 scripts |
-| **F2** · No entry point | No main script; no documented run order |
-| **F3** · Scattered `setwd` | `setwd("C:/Users/...")` inside `clean_wdi.R` |
-| **F4** · Randomness, no seed | `np.random.normal(0, 0.5, ...)` in `make_figure2.py` — different every run |
-| **F5** · Packages not installed | `outreg2` used in Stata, no install; no `requirements.txt` |
-| **F6** · Versions not pinned | No version statement in R, Stata, or Python |
-| **F8** · Missing DAS entry | `final_merged_v2.csv` used in regression; source unknown |
-| **F9** · Output not from code | `table1_FINAL_formatted_byhand.csv` — hand-assembled |
-| **F10** · No README | No data availability statement, no exhibit list |
-| **F11** · Extraneous files | `.DS_Store`, `notes/`, `old/analysis_v2_OLD.do` |
-
-::: {.notes}
-Walk through a few rows — F1 and F2 mean the code can't run at all on any other machine. F8 means verification stalls. F9 is the one authors most often miss. The "where did v2 come from??" note is a gift — that's exactly what a reviewer finds.
+::: {.callout-note appearance="simple"}
+We'll set up the skill together — I'll walk you through it.
 :::
 
-## Let's set it up
+1. **Download & unzip** the demo project, then open it in VS Code
+   *File → Open Folder* — select the **folder**, not a file
 
-1. **Open** the demo project folder in VS Code (*File → Open Folder*)
-2. Drag the `.agents/skills/reproducibility-skill/` to the demo project folder (skill [here](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip)). 
-3. **Open the Claude Code/GitHub Copilot chat panel** and type:
+2. **Add the skill:** create the folder structure and drop the skill in, from vs code terminal, or right-click new folder. 
 
-. . .
+```{.bash}
+mkdir -p .agents/skills
+```
+
+Then copy the `reproducibility-skill/` folder into `.agents/skills/` so you have:
+
+```{.plaintext}
+demo-project/
+├── .agents/
+│   └── skills/
+│       └── reproducibility-skill/
+│           └── SKILL.md
+├── data/
+├── code/
+└── ...
+```
+
+3. **Open the Claude Code / Copilot chat panel** and type:
 
 > *"Prepare a reproducibility package for this project."*
 
-Claude/GitHub Copilot reads the skill, detects the match, and starts Phase 1 — no further setup needed.
+The agent reads the skill, detects the match, and starts **Phase 1**.
 
-. . .
-
-**For your own projects:** you can copy the skill folder from
-
-[github.com/worldbank/wb-reproducible-research-repository → ai-skills](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills)
+::: {.callout-tip appearance="simple"}
+We'll use **git** to see what's changing, good practice with AI agents. 
+:::
 
 ::: {.notes}
-The skill is pre-installed in the demo for today. Walk people through the VS Code steps before switching windows. Most common issue: opening a file rather than a folder.
+Walk people through the VS Code steps before switching windows. Most common issue: opening a file rather than a folder — call this out explicitly and pause to check everyone has the folder open, not a file.
+
+Then walk them through creating `.agents/skills` and dropping the skill folder in — do it live so everyone lands in the same place. If `.agents` doesn't show in the explorer, dot-folders are sometimes hidden; `ls -a` confirms it's there.
+
+On the git tip: reinforce *why* — AI agents can touch a lot of files at once, and `git status` / the diff view is how you stay in control of what you're accepting.
+:::
+
+## For your own projects 
+
+Same setup, on your own, a one-time step per project:
+
+1. **Download the skill** from the repo:
+   [github.com/worldbank/wb-reproducible-research-repository](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill)
+   *(or the packaged `.zip` from the [releases page](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip))*
+
+2. **Create the folder structure** at your project root — from the VS Code terminal:
+
+```{.bash}
+mkdir -p .agents/skills
+```
+
+3. **Copy `reproducibility-skill/`** into `.agents/skills/`:
+
+```{.plaintext}
+your-project/
+└── .agents/
+    └── skills/
+        └── reproducibility-skill/
+            └── SKILL.md
+```
+
+Then open the chat panel and use the same prompt:
+> *"Prepare a reproducibility package for this project."*
+
+::: {.callout-tip appearance="simple"}
+The agent picks up **any** skill placed in `.agents/skills/` automatically; exactly what we just did together.
+:::
+
+::: {.notes}
+This mirrors what we did in the setup slide, so it should feel familiar. Emphasize it's a one-time thing per project, and the `.agents/skills/` convention is all the agent needs.
 :::
 
 ## What you'll see — the audit output 
@@ -410,7 +450,7 @@ We'll stop and read at each gate before moving forward:
 
 **Get the skill:**
 
-[github.com/worldbank/wb-reproducible-research-repository → ai-skills](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills)
+[https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill)
 
 → Copy `.agents/skills/reproducibility-skill/` into any project. The checklist and flags are readable on their own — no AI agent needed.
 
