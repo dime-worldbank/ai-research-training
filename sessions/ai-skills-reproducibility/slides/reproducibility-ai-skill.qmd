@@ -63,7 +63,7 @@ Before we begin make sure we have everything we need:
   - **GitHub Copilot** (Copilot Chat extension, with a Claude model available), or
   - the **Claude Code extension**, linked to a personal Claude account
 - Demo project, available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
-- Our AI skill, available [here](https://github.com/worldbank/wb-reproducible-research-repository/releases/latest)  
+- Our AI skill, available [here](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip)  
 
 
 ## What is an AI skill?
@@ -299,7 +299,7 @@ Walk through a few rows — F1 and F2 mean the code can't run at all on any othe
 ## Let's set it up
 
 1. **Open** the demo project folder in VS Code (*File → Open Folder*)
-2. Drag the `.agents/skills/reproducibility-skill/` to the demo project folder (skill [here](https://github.com/worldbank/wb-reproducible-research-repository/releases/latest)). 
+2. Drag the `.agents/skills/reproducibility-skill/` to the demo project folder (skill [here](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip)). 
 3. **Open the Claude Code/GitHub Copilot chat panel** and type:
 
 . . .
