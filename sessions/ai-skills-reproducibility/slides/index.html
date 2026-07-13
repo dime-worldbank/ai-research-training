@@ -442,7 +442,7 @@
   <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="María Reyes Retana">
-  <meta name="dcterms.date" content="2026-07-10">
+  <meta name="dcterms.date" content="2026-07-13">
   <title>AI Skills in Action: From Messy Project to Reproducibility Package</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1069,7 +1069,7 @@ María Reyes Retana
     </div>
 </div>
 
-  <p class="date">2026-07-10</p>
+  <p class="date">2026-07-13</p>
 </section>
 <section id="objective" class="slide level2">
 <h2>Objective</h2>
@@ -1196,6 +1196,40 @@ display:block!important;
 </tr>
 </tbody>
 </table>
+</div>
+</section>
+<section id="skills-architecture" class="slide level2">
+<h2>Skills architecture</h2>
+<p>Every skill has the same three-part shape — ours included:</p>
+<pre><code>reproducibility-skill/
+├── SKILL.md              ← always loaded once the skill triggers
+├── references/           ← opened on demand, only when a phase needs them
+│   ├── checklist.md          the official package requirements
+│   ├── flags.md               F1–F14 detection patterns
+│   └── datasets.md           WDI/PWT/OECD/ILO citation rules
+└── assets/                ← used directly as deliverables, not &quot;read&quot;
+    ├── README_template.md
+    ├── README_example.md
+    └── main.do / main.R / main.py</code></pre>
+<div class="fragment">
+<ul>
+<li><strong><code>SKILL.md</code></strong> — the dispatcher: short, always read, points to the rest</li>
+<li><strong><code>references/</code></strong> — consulted mid-task (e.g. <code>flags.md</code> during the audit) — extends what the agent knows</li>
+<li><strong><code>assets/</code></strong> — copied or filled in (e.g. <code>README_template.md</code> becomes the actual README) — extends what the agent produces</li>
+</ul>
+<aside class="notes">
+<p>One diagram, three bullets — keep it tight. SKILL.md dispatches; references get consulted; assets get produced or copied. That’s the whole architecture, and it’s why the skill can carry far more standard than would ever fit in a prompt.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </div>
 </section></section>
 <section>
@@ -1415,7 +1449,7 @@ display:block!important;
 <li><p><strong>Download &amp; unzip</strong> the demo project, then open it in VS Code <em>File → Open Folder</em> — select the <strong>folder</strong>, not a file</p></li>
 <li><p><strong>Add the skill:</strong> create the folder structure and drop the skill in, from vs code terminal, or right-click new folder.</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .agents/skills</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .agents/skills</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then copy the <code>reproducibility-skill/</code> folder into <code>.agents/skills/</code> so you have:</p>
 <pre class="plaintext"><code>demo-project/
 ├── .agents/
@@ -1465,7 +1499,7 @@ display:block!important;
 <li><p><strong>Download the skill</strong> from the repo: <a href="https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill">github.com/worldbank/wb-reproducible-research-repository</a> <em>(or the packaged <code>.zip</code> from the <a href="https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip">releases page</a>)</em></p></li>
 <li><p><strong>Create the folder structure</strong> at your project root — from the VS Code terminal:</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .agents/skills</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .agents/skills</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li><strong>Copy <code>reproducibility-skill/</code></strong> into <code>.agents/skills/</code>:</li>
 </ol>

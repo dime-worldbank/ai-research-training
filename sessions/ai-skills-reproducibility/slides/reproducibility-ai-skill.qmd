@@ -70,7 +70,7 @@ Before we begin make sure we have everything we need:
 
 A **skill** is a folder of instructions, scripts, and resources that an AI agent reads to improve performance on specialized tasks. When you ask it to complete a task, the agent reviews the available skills, loads the relevant ones, and applies their instructions.
 
-Our skill... 
+Our skill...
 
 ```
 .agents/skills/reproducibility-skill/
@@ -105,6 +105,33 @@ The reproducibility standard is too long to paste into a chat reliably: full che
 | Standard lives in someone's head | Standard lives in files the agent reads |
 | Each conversation starts from scratch | Guardrails are built into the workflow |
 | Standard changes → tell everyone again | Update one file → everyone's next run uses it |
+
+## Skills architecture
+
+Every skill has the same three-part shape — ours included:
+
+```
+reproducibility-skill/
+├── SKILL.md              ← always loaded once the skill triggers
+├── references/           ← opened on demand, only when a phase needs them
+│   ├── checklist.md          the official package requirements
+│   ├── flags.md               F1–F14 detection patterns
+│   └── datasets.md           WDI/PWT/OECD/ILO citation rules
+└── assets/                ← used directly as deliverables, not "read"
+    ├── README_template.md
+    ├── README_example.md
+    └── main.do / main.R / main.py
+```
+
+. . .
+
+- **`SKILL.md`** — the dispatcher: short, always read, points to the rest
+- **`references/`** — consulted mid-task (e.g. `flags.md` during the audit) — extends what the agent knows
+- **`assets/`** — copied or filled in (e.g. `README_template.md` becomes the actual README) — extends what the agent produces
+
+::: {.notes}
+One diagram, three bullets — keep it tight. SKILL.md dispatches; references get consulted; assets get produced or copied. That's the whole architecture, and it's why the skill can carry far more standard than would ever fit in a prompt.
+:::
 
 # Part 2 · The skill {background-color="#002A4F"}
 
