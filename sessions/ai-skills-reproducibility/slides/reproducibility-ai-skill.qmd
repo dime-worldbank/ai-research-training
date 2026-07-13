@@ -1,5 +1,5 @@
 ---
-title: "AI Skills in Action: From Messy/Incomplete Project to Reproducibility Package"
+title: "AI Skills in Action: From Messy Project to Reproducibility Package"
 subtitle: "A hands-on session with AI Skills + the WB Reproducibility Package skill"
 author: "María Reyes Retana"
 institute: "Reproducible Research Initiative · DECDI"
