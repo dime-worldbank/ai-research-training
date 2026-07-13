@@ -11,7 +11,7 @@
 
 
 
-<title>Session 1 · AI Skills to Facilitate Reproducible Research</title>
+<title>AI Skills in Action: From Messy Project to Reproducibility Package</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -348,8 +348,8 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Session 1 · AI Skills to Facilitate
-Reproducible Research</h1>
+<h1 class="title toc-ignore">AI Skills in Action: From Messy Project to
+Reproducibility Package</h1>
 
 </div>
 
@@ -359,25 +359,29 @@ Reproducible Research</h1>
 <h1>AI Skills to Facilitate Reproducible Research</h1>
 <p>Materials for the hands-on session on preparing reproducibility
 packages with an AI skill.</p>
-<p>This is a <strong>hands-on</strong> session: we take a research
-project that was <em>not</em> built for reproducibility and turn it into
-a package that passes World Bank verification — live, together, using an
-AI coding agent (Claude Code or GitHub Copilot) in VS Code.</p>
-<p><strong>Objective:</strong> show how to produce a package that passes
-reproducibility verification <em>on the first submission</em>, starting
-from code that was never written with reproducibility in mind.</p>
+<p>This is a <strong>hands-on</strong> session on using an AI skill to
+build — or audit — a reproducibility package, live, together, using an
+AI coding agent (Claude Code or GitHub Copilot) in VS Code. It works
+whether your code was <strong>never written with reproducibility in
+mind</strong> (a legacy or side project), or you already have a package
+and just want to <strong>check it meets the standard</strong> before
+submission — likely the more common case for DIME teams.</p>
+<p><strong>Objective:</strong> produce a well-structured reproducibility
+package that runs on someone else’s computer and meets all requirements
+— whether you’re starting from scratch or auditing an existing
+package.</p>
 <blockquote>
 <p><strong>Short on time or can’t install things?</strong> You can just
 <strong>watch</strong> — the full demo runs live, and everything here
 stays available afterward so you can repeat it on your own machine. If
-you only do one setup step, do step 1.</p>
+you only do one setup step, do step 1-2.</p>
 </blockquote>
 <div id="in-this-folder" class="section level2">
 <h2>In this folder</h2>
 <ul>
-<li><code>materials/demo-package.zip</code> — the (deliberately messy)
-project we will fix during the session</li>
-<li><code>slides/</code> — the session slides</li>
+<li><a href="./slides/"><code>slides/</code></a> — <strong><a href="./slides/">view the slide deck</a></strong></li>
+<li><a href="https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip"><code>materials/demo-project.zip</code></a>
+— the (deliberately messy) project we will fix during the session</li>
 <li>this README — session overview and setup</li>
 </ul>
 </div>
@@ -389,41 +393,28 @@ follow along on your own machine.</p>
 <h3>1. Visual Studio Code</h3>
 <p>Install <strong>Visual Studio Code</strong>. You can request it from
 the <strong>Software Center</strong>.</p>
-<blockquote>
-<p>Make sure it’s Visual Studio <strong>Code</strong> (the lightweight
-editor), not <em>Visual Studio</em> (the larger IDE) — they’re different
-products.</p>
-</blockquote>
 </div>
 <div id="access-to-claude-in-vs-code" class="section level3">
 <h3>2. Access to Claude in VS Code</h3>
 <p>You need <strong>one</strong> of these, signed in inside VS Code:</p>
 <ul>
-<li><strong>Claude account linked to VS Code</strong> — the Claude Code
-extension, signed in with a personal or team Claude account;
-<strong>or</strong></li>
 <li><strong>GitHub Copilot</strong> — your World Bank GitHub account
-connected to Copilot, signed in to the Copilot Chat extension (with a
-Claude model available).</li>
+connected to Copilot, signed in to the Copilot Chat extension;
+<strong>or</strong></li>
+<li><strong>Claude account linked to VS Code</strong> — the Claude Code
+extension, signed in with a personal or team Claude account.</li>
 </ul>
 <p>Either one works. Quick test: open the chat panel in VS Code and
 confirm it responds.</p>
-</div>
-<div id="a-note-on-the-demo-languages" class="section level3">
-<h3>3. A note on the demo languages</h3>
-<p>The demo project deliberately mixes <strong>three languages — Stata,
-Python, and R</strong> — which is what makes it a realistic
-reproducibility challenge.</p>
 <blockquote>
-<p>You do <strong>not</strong> need all three installed to follow along.
-Watching the skill audit, restructure, and document the package needs no
-runtime at all. Only the final <em>run-check</em> step uses the
-languages, and for Stata we walk through the protocol rather than run it
-live. Install what you already have; nothing extra is required.</p>
+<p>New to GitHub Copilot, or hitting setup issues? The World Bank OSPO’s
+<a href="https://github.com/worldbank/ospo">Copilot getting-started,
+best-practices, and troubleshooting guides</a> are a good first
+stop.</p>
 </blockquote>
 </div>
 <div id="the-skill" class="section level3">
-<h3>4. The skill</h3>
+<h3>3. The skill</h3>
 <p>We download this together during the session, but feel free to grab
 it beforehand from the latest release:</p>
 <p><a href="https://github.com/worldbank/wb-reproducible-research-repository/releases/latest" class="uri">https://github.com/worldbank/wb-reproducible-research-repository/releases/latest</a></p>
@@ -431,13 +422,14 @@ it beforehand from the latest release:</p>
 during the session.</p>
 </div>
 <div id="the-demo-package" class="section level3">
-<h3>5. The demo package</h3>
+<h3>4. The demo package</h3>
 <p>The project we will fix — also downloaded during the session. It’s in
 this repo:</p>
-<p><a href="./materials/demo-package.zip"><code>materials/demo-package.zip</code></a></p>
+<p><a href="https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip"><code>materials/demo-project.zip</code></a></p>
 <p>Unzip it somewhere easy to find
-(e.g. <code>Documents/repro-demo/</code>) and leave the files as they
-are — the mess is the point.</p>
+(e.g. <code>/Users/name/Github</code>;
+<code>C:/wb6849591f/Github</code>;) and leave the files as they are —
+the mess is the point.</p>
 </div>
 </div>
 <div id="setup-checklist" class="section level2">
