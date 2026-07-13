@@ -1,5 +1,5 @@
 ---
-title: "AI Skills in Action: From Messy Project to Reproducibility Package"
+title: "AI Skills in Action: From Messy/Incomplete Project to Reproducibility Package"
 subtitle: "A hands-on session with AI Skills + the WB Reproducibility Package skill"
 author: "María Reyes Retana"
 institute: "Reproducible Research Initiative · DECDI"
@@ -18,17 +18,23 @@ format:
 
 ## Objective
 
-Take a research project whose code was **never written to be a reproducibility package**…
+Two starting points:
 
-…and produce a **complete** reproducibility package that **passes first run and completeness check**.
+- A package that **already exists**, but you're not sure it meets the reproducibility standards.
+- Code **written without reproducibility in mind**, a legacy or side project.
+
+
+. . .
+
+Either way: produce a **well-structured reproducibility package that runs on someone else computer and meets all requirements**.
 
 . . .
 
 > The skill embeds the *exact checks the reproducibility team applies as reviewers.*
-> Passing its audit means passing completeness check, and skipping the round-trips where most calendar time is lost.
+> Passing its audit means passing completeness check, and skipping the resubmissions where most calendar time is lost.
 
 ::: {.notes}
-Lead with the pain point: most verification failures aren't about bad code, they're about things the author forgot to check. The skill makes forgetting impossible.
+Lead with the pain point: most verification failures aren't about bad code, they're about things the author forgot to check. The skill makes forgetting impossible. Note for DIME audience: the "audit an existing package" path is probably more common than "never written for reproducibility" — most teams have an RA-built package already, they just don't know if it holds up.
 :::
 
 ## Agenda
@@ -58,10 +64,10 @@ Lead with the pain point: most verification failures aren't about bad code, they
 
 Before we begin make sure we have everything we need: 
 
-- **Visual Studio Code** installed (available in the Software Center — note: *VS Code*, not Visual Studio)
+- **Visual Studio Code** installed (available in the Software Center)
 - One of the two, signed in within VS Code:
   - **GitHub Copilot** (Copilot Chat extension, with a Claude model available), or
-  - the **Claude Code extension**, linked to a personal Claude account
+  -The **Claude Code extension**, linked to a personal Claude account
 - Demo project, available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
 - Our AI skill, available in [our repo](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill); [direct download](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip)  
 
@@ -489,7 +495,9 @@ If the standard changes, the skill gets updated, you pull/download again. Everyo
 
 ## Thank you
 
-*Slides, demo package, and skill will be shared after the session.* Questions: **reproducibility@worldbank.org**
+[Session materials](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-reproducibility/)
+
+Questions: **reproducibility@worldbank.org**
 
 ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnYwZXU4aDMzbXp2NTRnc2h1ZTc2bnMxbGt3M3NlNmhheG1nZzBpcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/uWlpPGquhGZNFzY90z/giphy.gif){width="60%"}
 
