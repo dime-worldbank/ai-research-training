@@ -12,9 +12,9 @@ Materials for the hands-on session on preparing reproducibility packages with an
 
 This is a **hands-on** session on using an AI skill to build, or audit, a reproducibility package, live, together, using an AI coding agent (Claude Code or GitHub Copilot) in VS Code. It works whether your code was **never written with reproducibility in mind** (a legacy or side project), or you already have a package and just want to **check it meets the standard** before submission.
 
-**Objective:** produce a well-structured reproducibility package that runs on someone else computer and meets all requirements.
+**Objective:** produce a well-structured reproducibility package that runs on someone else's computer and meets all requirements.
 
-> **Short on time or can't install things?** You can just **watch** — the full demo runs live, and everything here stays available afterward so you can repeat it on your own machine. If you only do one setup step, do step 1-2.
+> **Short on time or can't install things?** You can just **watch** — the full demo runs live, and everything here stays available afterward so you can repeat it on your own machine. If you only do one setup step, do steps 1 and 2.
 
 ## In this folder
 
@@ -30,7 +30,7 @@ Please set these up beforehand (about 10 minutes) if you want to follow along on
 
 Install **Visual Studio Code**. You can do it yourself using the **Software Center**.
 
-### 2. Access to Claude in VS Code
+### 2. Access to AI assistant in VS Code
 
 You need **one** of these, signed in inside VS Code:
 
@@ -43,11 +43,11 @@ Either one works. Quick test: open the chat panel in VS Code and confirm it resp
 
 ### 3. The skill
 
-We download this together during the session, but feel free to grab it beforehand from the latest release:
+We download this together during the session, but feel free to download it beforehand from the latest release:
 
 <https://github.com/worldbank/wb-reproducible-research-repository/releases/latest>
 
-Download the `.zip` — we place it into the demo project during the session.
+Download the `.zip` — we will place it into the demo project during the session.
 
 ### 4. The demo package
 
