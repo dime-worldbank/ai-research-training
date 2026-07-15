@@ -18,15 +18,15 @@ format:
 
 ## Objective
 
+Produce a **well-structured reproducibility package that runs on someone else's computer and meets all requirements**.
+
+. . .
+
 Two starting points:
 
 - A package that **already exists**, but you're not sure it meets the reproducibility standards.
 - Code **written without reproducibility in mind**, a legacy or side project.
 
-
-. . .
-
-Either way: produce a **well-structured reproducibility package that runs on someone else computer and meets all requirements**.
 
 . . .
 
@@ -64,10 +64,11 @@ Lead with the pain point: most verification failures aren't about bad code, they
 
 Before we begin make sure we have everything we need: 
 
+- These slides (useful to copy links): [https://bit.ly/ai-reproducibility](https://bit.ly/ai-reproducibility).
 - **Visual Studio Code** installed (available in the Software Center)
 - One of the two, signed in within VS Code:
   - **GitHub Copilot** (Copilot Chat extension, with a Claude model available), or
-  -The **Claude Code extension**, linked to a personal Claude account
+  - The **Claude Code extension**, linked to a personal Claude account
 - Demo project, available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
 - Our AI skill, available in [our repo](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill); [direct download](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip)  
 
