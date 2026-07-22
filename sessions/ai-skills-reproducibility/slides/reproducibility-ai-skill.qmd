@@ -311,6 +311,7 @@ No README. No main script. No requirements file. No structure. No hope.
 The project is intentionally realistic — not a caricature. Code files at the root is extremely common. The mystery file in the meeting notes is the kind of thing that would stump a replicator.
 :::
 
+
 ## Let's set it up {.smaller}
 
 ::: {.callout-note appearance="simple"}
@@ -320,7 +321,7 @@ We'll set up the skill together — I'll walk you through it.
 1. **Download & unzip** the demo project, then open it in VS Code
    *File → Open Folder* — select the **folder**, not a file
 
-2. **Add the skill:** create the folder structure and drop the skill in, from vs code terminal, or right-click new folder. 
+2. **Add the skill:** create the folder structure and drop the skill in, from vs code terminal, or right-click new folder.
 
 ```{.bash}
 mkdir -p .agents/skills
@@ -339,6 +340,27 @@ demo-project/
 └── ...
 ```
 
+3. **See skill** Check if skill is available by typing `/skill` — `reproducibility-skill` should be listed.
+If it does not appear you might need to close VS code and open again. 
+
+
+![](screenshots/reproducibility_skill.png){width="45%"}
+
+## Settings check {.smaller}
+
+Set the extension to **Local**:
+
+![](screenshots/agent_setup.png){width="45%"}
+. . .
+
+If you skip it and later see:
+
+> `Claude CLI Error: Claude Code process exited with code 1`
+
+**Fix:** start a new chat, then switch to **Local**.
+
+## Let's test it
+
 3. **Open the Claude Code / Copilot chat panel** and type:
 
 > *"Prepare a reproducibility package for this project."*
@@ -346,13 +368,17 @@ demo-project/
 The agent reads the skill, detects the match, and starts **Phase 1**.
 
 ::: {.callout-tip appearance="simple"}
-We'll use **git** to see what's changing, good practice with AI agents. 
+We'll use **git** to see what's changing, good practice with AI agents.
 :::
+
+If the skill is working the agent should tell you that is reading the reproducibility skill. 
 
 ::: {.notes}
 Walk people through the VS Code steps before switching windows. Most common issue: opening a file rather than a folder — call this out explicitly and pause to check everyone has the folder open, not a file.
 
 Then walk them through creating `.agents/skills` and dropping the skill folder in — do it live so everyone lands in the same place. If `.agents` doesn't show in the explorer, dot-folders are sometimes hidden; `ls -a` confirms it's there.
+
+Have people run the `/skill` check before the real prompt — last time a few went straight to the full prompt, hit a silent non-match, and it took minutes to diagnose. If it's not recognized: renaming .agents to .github is the fastest fix; otherwise check the name: field in SKILL.md matches the folder name.
 
 On the git tip: reinforce *why* — AI agents can touch a lot of files at once, and `git status` / the diff view is how you stay in control of what you're accepting.
 :::
