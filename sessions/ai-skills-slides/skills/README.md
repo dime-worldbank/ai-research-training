@@ -151,7 +151,7 @@ If the agent does not automatically recognize the skill, point it directly to
 the instruction file:
 
 ```text
-Read ai-skills/prepare-slides/SKILL.md completely and follow its workflow.
+Read .agents/skills/prepare-slides/SKILL.md completely and follow its workflow.
 Load the references it identifies for this task and use the bundled assets for
 the selected output format.
 ```
