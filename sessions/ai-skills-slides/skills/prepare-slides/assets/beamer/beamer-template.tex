@@ -1,0 +1,225 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{metropolis}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{multicol}
+
+% Fonts per DECDI branding guide: Montserrat (headings), Lato (body).
+% Both ship as pdfLaTeX-compatible packages (no fontspec/XeLaTeX needed).
+\usepackage[default]{lato}
+\usepackage{montserrat}
+\setbeamerfont{title}{family=\fontfamily{Montserrat-TLF}\selectfont, series=\bfseries}
+\setbeamerfont{frametitle}{family=\fontfamily{Montserrat-TLF}\selectfont, series=\bfseries}
+\setbeamerfont{section title}{family=\fontfamily{Montserrat-TLF}\selectfont, series=\bfseries}
+
+% DECDI branding colors synchronized from the skill's branding/colors.yml.
+\definecolor{decdinavy}{HTML}{002A4F}
+\definecolor{decdiblue}{HTML}{2599CD}
+\definecolor{decdilightblue}{HTML}{2AACE2}
+
+\setbeamercolor{palette primary}{bg=decdinavy, fg=white}
+\setbeamercolor{palette secondary}{bg=decdiblue, fg=white}
+\setbeamercolor{palette tertiary}{bg=decdilightblue, fg=white}
+\setbeamercolor{title separator}{fg=decdiblue}
+\setbeamercolor{progress bar}{fg=decdiblue, bg=decdinavy!20}
+\setbeamercolor{frametitle}{fg=white}
+\setbeamercolor{background canvas}{bg=white}
+
+\title{Presentation Title}
+\subtitle{Subtitle or one-line description}
+\date{}
+\author{Author Name}
+\institute{DECDI \newline The World Bank}
+
+% Logo: shown only on the title slide and closing slide.
+% Positioned in the lower-left corner.
+
+\newlength{\decdilogowidth}
+\setlength{\decdilogowidth}{3.29cm}
+
+\newlength{\decdilogomargin}
+\setlength{\decdilogomargin}{0.4cm}
+
+\newcommand{\decdilogooverlay}[1]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[
+      anchor=north east,
+      inner sep=0pt,
+      xshift=-0.4cm,
+      yshift=-0.4cm
+    ] at (current page.north east) {%
+      \includegraphics[width=\decdilogowidth]{#1}%
+    };
+  \end{tikzpicture}%
+}
+
+% Small source and interpretation notes placed below figures or tables.
+% Omit Source for the manuscript authors' own analysis.
+\newcommand{\visualnote}[1]{%
+  \par\vspace{0.12cm}%
+  {\scriptsize\color{gray}#1}%
+}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+  \decdilogooverlay{img/COLOR_WB_DEC}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Agenda}
+	\tableofcontents
+\end{frame}
+
+\section{Context}
+
+\begin{frame}{Context slide}
+	One idea per slide. Keep bullets short — this is a talking prompt, not a document.
+	\begin{itemize}
+		\item Point one
+		\item Point two
+		\item Point three
+	\end{itemize}
+\end{frame}
+
+\section{Results}
+
+\begin{frame}{A figure}
+	\begin{figure}
+		\centering
+		% Replace with: \includegraphics[width=.7\textwidth]{img/your-figure}
+		\fbox{\parbox[c][4cm][c]{.7\textwidth}{\centering [Insert figure here]}}
+	\end{figure}
+	\visualnote{\textbf{Notes:} Add uncertainty, sample, units, or other details
+	only when needed. Add \textbf{Source:} only for an external source.}
+\end{frame}
+
+\begin{frame}{A table}
+	\begin{table}
+		\centering
+		\begin{threeparttable}
+			\begin{tabular}{lcc}
+				\toprule
+				& Column A & Column B \\
+				\midrule
+				Row 1 & 0.00 & 0.00 \\
+				Row 2 & 0.00 & 0.00 \\
+				\bottomrule
+			\end{tabular}
+			\begin{tablenotes}
+				\scriptsize
+				\item Note: replace with your table notes.
+			\end{tablenotes}
+		\end{threeparttable}
+	\end{table}
+\end{frame}
+
+\section{Template Slides}
+
+\begin{frame}{One image}
+	% Replace with: \includegraphics[width=.6\textwidth]{img/your-figure}
+	\begin{figure}
+		\centering
+		\fbox{\parbox[c][4.5cm][c]{.6\textwidth}{\centering [Insert image here]}}
+	\end{figure}
+	\visualnote{\textbf{Notes:} Add interpretation details only when needed.
+	Add \textbf{Source:} only for an external source.}
+\end{frame}
+
+\begin{frame}{Two images side by side}
+	\begin{columns}[T]
+		\column{.48\textwidth}
+		\centering
+		% Replace with: \includegraphics[width=\linewidth]{img/your-figure-1}
+		\fbox{\parbox[c][3.5cm][c]{\linewidth}{\centering [Insert image 1 here]}}\\
+		\small Caption for image 1.
+
+		\column{.48\textwidth}
+		\centering
+		% Replace with: \includegraphics[width=\linewidth]{img/your-figure-2}
+		\fbox{\parbox[c][3.5cm][c]{\linewidth}{\centering [Insert image 2 here]}}\\
+		\small Caption for image 2.
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Image and text}
+	\begin{columns}[c]
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item Point one about the image
+			\item Point two about the image
+			\item Point three about the image
+		\end{itemize}
+
+		\column{.5\textwidth}
+		\centering
+		% Replace with: \includegraphics[width=\linewidth]{img/your-figure}
+		\fbox{\parbox[c][4cm][c]{\linewidth}{\centering [Insert image here]}}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Table and text}
+	\begin{columns}[c]
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item Point one about the table
+			\item Point two about the table
+			\item Point three about the table
+		\end{itemize}
+
+		\column{.5\textwidth}
+		\centering
+		\begin{threeparttable}
+			\begin{tabular}{lc}
+				\toprule
+				& Value \\
+				\midrule
+				Row 1 & 0.00 \\
+				Row 2 & 0.00 \\
+				\bottomrule
+			\end{tabular}
+			\begin{tablenotes}
+				\scriptsize
+				\item Note: replace with your table notes.
+			\end{tablenotes}
+		\end{threeparttable}
+	\end{columns}
+\end{frame}
+
+\section{Next Steps}
+
+\begin{frame}{Next steps}
+	\begin{itemize}
+		\item Action item one
+		\item Action item two
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]
+  \centering
+
+  \vfill
+
+  {\usebeamerfont{title}\usebeamercolor[fg]{title}
+  \Huge Thank you}
+
+  \vspace{0.5cm}
+
+  {\large
+  Author Name\\
+  DECDI, The World Bank}
+
+  \vfill
+
+  \decdilogooverlay{img/COLOR_WB_DEC}
+\end{frame}
+
+\end{document}

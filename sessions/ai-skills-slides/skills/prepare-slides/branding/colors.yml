@@ -1,0 +1,63 @@
+# DECDI branding colors — single source of truth.
+# Extracted from https://www.canva.com/design/DAG_uu89IfA/9M6MXACvYKjn4wmVqjc5Lg/view?utm_content=DAG_uu89IfA&utm_campaign=designshare&utm_medium=link&utm_source=viewer#16.
+# Referenced (not duplicated) by skills/prepare-slides — see references/decdi-branding.md.
+
+fonts:
+  heading: "Montserrat"       # Bold, for titles/headings
+  body: "Lato"                 # Body text and subheadings
+
+overall_branding:
+  # Default palette for any deck. Ordered dark -> light; use as a sequential
+  # ramp for continuous data or pick individual colors for categorical use.
+  navy: "#002A4F"      # primary, R0 G42 B79
+  blue_dark: "#1C618C"  # R28 G97 B140
+  blue_mid: "#2599CD"   # R37 G153 B205
+  blue_light: "#2AACE2" # R42 G172 B226
+  cyan: "#01ADEF"       # R1 G173 B239
+
+sub_labs:
+  # Optional categorical palette — use when a deck is specifically branded
+  # for one Impact Lab / program rather than DECDI overall.
+  #
+  # Only the "base" hex for each lab comes from the brand guide.
+  # The "dark"/"light" shades below are DERIVED
+  # (algorithmic tint/shade of the base, not brand-guide-verified) so each
+  # lab has a usable 3-step ramp for sequential charts, matching the shape of
+  # overall_branding above. If the brand guide is ever updated with official
+  # dark/light values per lab, replace these derived ones.
+  people_impact_lab:
+    dark: "#631324"   # derived
+    base: "#991D38"   # maroon, brand-guide value
+    light: "#C78392"  # derived
+  prosperity_impact_lab:
+    dark: "#A67E08"   # derived
+    base: "#FFC20D"   # yellow, brand-guide value
+    light: "#FFDD7A"  # derived
+  infrastructure_digital_impact_lab:
+    dark: "#035149"   # derived
+    base: "#047D70"   # teal, brand-guide value
+    light: "#75B8B0"  # derived
+  embed:
+    dark: "#A15C1A"   # derived
+    base: "#F78D28"   # orange, brand-guide value
+    light: "#FBC089"  # derived
+  analytics:
+    dark: "#530153"   # derived
+    base: "#800280"   # purple, brand-guide value
+    light: "#B974B9"  # derived
+
+logos:
+  default: "WB_DEC"   # plain DEC logo, no LEADS mark — use unless a deck is LEADS-specific
+  variants:
+    color: "logos/COLOR_WB_DEC.png"
+    black: "logos/BLACK_WB_DEC.png"
+    white: "logos/WHITE_WB_DEC.png"
+  leads_variants: # available but not default — use only for LEADS-branded decks
+    color: "logos/COLOR_WB_DEC_LEADS_01.png"
+    black: "logos/BLACK_WB_DEC_LEADS_01.png"
+    white: "logos/WHITE_WB_DEC_LEADS_01.png"
+  wbg:
+    rgb: "logos/WB-WBG-horizontal-RGB.png"
+    black: "logos/WB-WBG-horizontal-black.png"
+    white: "logos/WB-WBG-horizontal-white.png"
+    grayscale: "logos/WB-WBG-horizontal-grayscale.png"
