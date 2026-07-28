@@ -21,8 +21,10 @@ format:
 source("_extensions/decdi/setup_decdi_palettes.R")
 source("_extensions/decdi/setup_ggplot2_decdi.R")
 
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(dplyr, ggplot2, gt, knitr)
+required_pkgs <- c("dplyr", "ggplot2", "gt", "knitr")
+missing_pkgs <- required_pkgs[!vapply(required_pkgs, requireNamespace, logical(1), quietly = TRUE)]
+if (length(missing_pkgs)) stop("Missing R packages: ", paste(missing_pkgs, collapse = ", "), ". Install them before rendering.")
+invisible(lapply(required_pkgs, library, character.only = TRUE))
 ```
 
 ## Agenda
