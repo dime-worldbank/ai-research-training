@@ -43,6 +43,7 @@
 #Github
 !/**/*.yml
 !/**/*.css
+!/**/*.scss
 !/_includes/head-custom.html
 
 
@@ -95,7 +96,8 @@
 !/**/Output/**/*.xml
 !/**/Output/**/*.eps
 !/**/Output/**/*.svg
-
+# PowerPoint
+!/**/*.pptx
 #######################
 # Include all the files with passwords or tokens here. All files named
 # password or passwords are with this template ignored no matter which

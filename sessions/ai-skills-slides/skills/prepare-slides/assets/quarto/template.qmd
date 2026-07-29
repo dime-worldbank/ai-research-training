@@ -1,0 +1,90 @@
+---
+title: "Presentation Title"
+subtitle: "Subtitle or one-line description"
+author: "Author Name"
+institute: DECDI, The World Bank
+date: today
+format:
+  decdi-revealjs:
+    output-file: index.html
+    toc: true
+    toc-depth: 1
+    toc-location: body
+    toc-title: "Contents"
+    self-contained: true
+    logo: "_extensions/decdi/logos/COLOR_WB_DEC.png"
+    footer: "DECDI | [Your Program Name]"
+---
+
+```{r Setup}
+#| include: false
+source("_extensions/decdi/setup_decdi_palettes.R")
+source("_extensions/decdi/setup_ggplot2_decdi.R")
+
+required_pkgs <- c("dplyr", "ggplot2", "gt", "knitr")
+missing_pkgs <- required_pkgs[!vapply(required_pkgs, requireNamespace, logical(1), quietly = TRUE)]
+if (length(missing_pkgs)) stop("Missing R packages: ", paste(missing_pkgs, collapse = ", "), ". Install them before rendering.")
+invisible(lapply(required_pkgs, library, character.only = TRUE))
+```
+
+## Agenda
+
+- Context / motivation
+- Approach
+- Results
+- Next steps
+
+# Context {background-color="#002A4F"}
+
+## Context slide
+
+One idea per slide. Keep bullets short — this is a talking prompt, not a
+document.
+
+- Point one
+- Point two
+- Point three
+
+# Results {background-color="#002A4F"}
+
+## A figure
+
+```{r}
+#| echo: false
+#| fig.align: center
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point(color = decdi_palette("DECDI")["BlueMid"]) +
+  labs(title = "Figure Title", x = "X axis label", y = "Y axis label")
+```
+
+::: {.visual-note}
+**Notes:** Points show individual observations. Add a source line here only if
+the visual uses an external source.
+:::
+
+## A table
+
+```{r}
+#| echo: false
+mtcars |>
+  dplyr::slice_head(n = 5) |>
+  dplyr::select(mpg, cyl, wt) |>
+  gt::gt() |>
+  gt::tab_header(title = "Table Title")
+```
+
+::: {.visual-note}
+**Notes:** Add significance, uncertainty, sample, units, or restrictions only
+when they are needed for interpretation.
+:::
+
+# Next Steps {background-color="#002A4F"}
+
+## Next steps
+
+- Action item one
+- Action item two
+
+## Thank you
+
+Questions / discussion.
