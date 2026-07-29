@@ -114,8 +114,39 @@ source("_extensions/decdi/setup_decdi_palettes.R")
 source("_extensions/decdi/setup_ggplot2_decdi.R")
 ```
 
+Never rely on ggplot2's default gray or hue scales. Apply the bundled DECDI
+theme and explicit brand scales; use neutral gray only as an intentional,
+documented choice.
+
+Avoid a silent named-scale mismatch when building manual scales from
+`decdi_palette()`. A lookup such as `decdi_palette("DECDI")["BlueMid"]`
+retains the name `BlueMid`. Nesting that value inside another named vector can
+produce names such as `TRUE.BlueMid`, so ggplot2 cannot match the scale to the
+data and silently falls back to its defaults. Remove the inner name:
+
+```r
+status_colors <- c(
+  "TRUE" = unname(decdi_palette("DECDI")["BlueMid"]),
+  "FALSE" = unname(decdi_palette("DECDI")["Navy"])
+)
+
+scale_fill_manual(values = status_colors)
+```
+
+Use the same `unname()` pattern for `scale_color_manual()`.
+
 Load only packages used by the deck. Do not install packages during rendering;
 report missing dependencies and provide setup instructions instead.
+
+### Rebranding an existing project
+
+Work in a copy of the existing Quarto project, preserving content and slide
+order per `SKILL.md`'s Rebrand definition. Apply approved brand changes
+through the project YAML, DECDI extension or SCSS, font settings, palette
+helpers, chart scales, logos, and footers — including the section-divider
+navy fill and title-slide accent bar defined in `decdi-branding.md`'s
+brand-carried layout treatments, not only color values — before making
+slide-specific fixes.
 
 ### Build
 
@@ -208,6 +239,18 @@ external source and interpretation details:
 Omit the source line for the manuscript authors' own analysis. The bundled
 command uses muted `\scriptsize` text. Do not put sources inside `\caption{}`.
 
+### Rebranding an existing project
+
+Work in a copy of the existing Beamer project, preserving content and frame
+order per `SKILL.md`'s Rebrand definition. Apply approved brand changes
+through theme colors, font settings, logo commands, and chart colors —
+including the title-treatment and `\visualnote{}` styling defined in
+`decdi-branding.md`'s brand-carried layout treatments, not only color values
+— before making frame-specific fixes. Do not add a navy section-divider fill
+to match Quarto/PowerPoint; Beamer's plain-white divider is an intentional
+difference, not a gap to close, unless the user explicitly asks for that
+visual change.
+
 ### Build
 
 Compile the deck twice so the table of contents, sections, and navigation are
@@ -257,13 +300,31 @@ deliberate comparison, and substantive closing.
 
 Do not use Quarto to create PowerPoint output.
 
-Preserve `template.pptx` as the clean starting point. Create a working copy
-with the requested output name, then edit the copy with native PowerPoint
-presentation tooling.
+For a build, or an improvement using template-based reconstruction (see
+`SKILL.md`'s Phase 2 Improve step — the Phase 1 verdict was "Needs
+substantial revision" or "Rebuild recommended"), preserve `template.pptx` as
+the clean starting point. Create a working copy with the requested output
+name, then edit the copy with native PowerPoint presentation tooling.
 
-Use the starter slides as layout and styling references:
+For a targeted improvement (verdict "Ready with minor revisions," or a
+Fast-path request), edit a copy of the *supplied* deck directly instead —
+do not start from `template.pptx`. Use the bundled template and
+`decdi-branding.md` only as a reference for any approved visual changes
+within that copy.
 
-- Duplicate the closest starter slide for each new slide.
+When working from `template.pptx` (build, or template-based improvement),
+use the starter slides as layout and styling references:
+
+- Duplicate the closest starter slide for each new slide, using
+  `assets/pptx/duplicate_slide.py`'s `duplicate_slide(prs, index)` rather
+  than hand-rolling a shape-by-shape copy. A slide's background fill
+  (`<p:bg>`, e.g. the navy section-divider background) lives outside the
+  shape tree and is silently dropped by a naive copy — the duplicate ends
+  up with no background fill at all (not even the wrong color), which on a
+  divider slide means invisible white-on-white title text. The bundled
+  helper also re-links copied images' relationships correctly, which a
+  shape-by-shape copy does not. Run it directly (see the file's `__main__`
+  block) or import `duplicate_slide` into a longer script.
 - Replace all bracketed placeholder text and placeholder visual frames.
 - Delete starter slides that are not needed in the final deck.
 - Keep text, tables, charts, and simple shapes editable.
@@ -273,9 +334,24 @@ Use the starter slides as layout and styling references:
 - Place the logo only on the title and closing slides, following
   `decdi-branding.md`.
 
-When revising an existing PowerPoint deck, use the supplied deck as the primary
-source rather than replacing it with `template.pptx`. Review and obtain
-approval before making changes, as required by `deck-review-checklist.md`.
+For a template-based improvement, use the supplied deck as the source of
+approved content and evidence, then map that content into the closest
+starter layouts. Rewrite, split, reorder, or move detail according to the
+approved plan; do not shrink text or carry dense wording forward merely to
+preserve the old layout.
+
+For a targeted improvement, apply the same rewriting principle — do not
+preserve dense wording merely because it appeared in the original deck — but
+edit the supplied deck's existing slides directly rather than duplicating
+starter slides.
+
+For a rebrand, work in a copy of the supplied deck, preserving content and
+slide order per `SKILL.md`'s Rebrand definition. Apply approved theme fonts,
+theme colors, master-level elements, SmartArt or shape colors, logos,
+backgrounds, and numbering — including the section-divider treatment and
+title-slide treatment defined in `decdi-branding.md`'s brand-carried layout
+treatments, not only color values — in batches before addressing
+slide-specific exceptions.
 
 ### Creating content
 
@@ -296,8 +372,10 @@ approval before making changes, as required by `deck-review-checklist.md`.
 Save the editable output as a `.pptx` file. The output filename should describe
 the presentation rather than retaining the generic `template.pptx` name.
 
-Render every slide for visual inspection before delivery. Check the full-size
-slides as well as the deck-level sequence.
+After batching related changes, render every slide for visual inspection
+before delivery. Check every new or changed slide at full size as well as the
+complete deck-level sequence. Do not rerender after every minor change unless
+needed to diagnose a problem.
 
 Inspect the final `.pptx` for:
 

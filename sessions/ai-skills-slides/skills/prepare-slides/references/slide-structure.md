@@ -162,6 +162,30 @@ Organize results around the claims they support.
 If a result cannot be interpreted safely from the available material, identify
 the ambiguity rather than guessing.
 
+## Improving an existing deck
+
+Treat the existing deck as the source of truth for approved evidence, not as a
+requirement to preserve its wording or crowded layouts.
+
+- Rewrite manuscript-like paragraphs and dense bullets into concise
+  presentation language.
+- Keep roughly 3-5 talking points when bullets are appropriate.
+- Split slides or move secondary detail to notes or the appendix instead of
+  reducing font sizes below what the deck's format normally uses.
+- Preserve exact values, qualifications, citations, and the strength of the
+  original claims while improving how they are communicated.
+
+Whether this means editing the existing file in place or mapping content into
+the bundled starter layouts depends on the Phase 1 verdict (see
+`SKILL.md`'s Phase 2 Improve step and `deck-review-checklist.md`'s "When to
+recommend a rebuild") — a deck rated "Ready with minor revisions" is edited
+directly; only "Needs substantial revision" or "Rebuild recommended" moves
+content into the starter template. Do not default to a full template remap
+for every improvement request.
+
+These rules apply to the improvement service. A rebrand-only request preserves
+the existing content and layout unless the author approves a broader change.
+
 ## Closing and appendix
 
 Choose a substantive closing that completes the narrative:

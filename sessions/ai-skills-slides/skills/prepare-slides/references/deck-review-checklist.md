@@ -13,6 +13,21 @@ deck unless the user approves the proposed changes.
 This review is Phase 1 of the skill. It must produce both an assessment of the
 current deck and an approvable revision plan. Editing begins only in Phase 2.
 
+## Choose the proposed service
+
+Recommend Improve, Rebrand, or Review only — see `SKILL.md`'s "Select the
+service" for what each covers. This review's job is to recommend which one
+fits and, for Improve, whether targeted revision or template-based
+reconstruction is the right approach (see "When to recommend a rebuild"
+below and the Overall verdict).
+
+For a rebrand-only request, use a compact review per `SKILL.md`'s "Compact
+Phase 1 proposal for rebrand": current brand issues, global elements to
+change (including the brand-carried layout treatments in
+`decdi-branding.md`), slide-specific exceptions, logo-family choice, and a
+validation plan. Do not require a revised outline or visual decision table
+unless the content will change.
+
 ## Standards used in the review
 
 Apply:
@@ -136,6 +151,8 @@ When DECDI branding is expected:
 
 - [ ] Are Montserrat and Lato used where the format supports them?
 - [ ] Are colors drawn from the approved palette?
+- [ ] Do rendered chart colors use approved brand values rather than software
+      defaults?
 - [ ] Are program-specific colors used only when appropriate?
 - [ ] Is the correct DEC, LEADS, or WBG logo family used?
 - [ ] Is the correct logo variant used for the background?
@@ -247,8 +264,9 @@ IDs defined in `figure-table-guidelines.md`. Do not create the alternatives yet.
 
 ## Revision recommendation
 
-State whether targeted revision is sufficient or a full rebuild should be
-considered.
+State whether the recommended service is improvement, rebranding, or review
+only. For improvement, state whether targeted revision is sufficient or
+template-based reconstruction should be used.
 
 ## Author Decision Form
 
@@ -259,7 +277,7 @@ direction. Stop after the report and wait for the author's response.
 
 ## When to recommend a rebuild
 
-Recommend discussing a rebuild when:
+Recommend template-based reconstruction for an improvement when:
 
 - The deck lacks a coherent narrative.
 - Most slides require structural changes.
@@ -269,5 +287,6 @@ Recommend discussing a rebuild when:
 - Incremental edits would be slower or less reliable than rebuilding from the
   provided template.
 
-Do not silently replace an existing deck. Summarize the problems, explain the
-tradeoff, and ask whether the user wants targeted revisions or a full rebuild.
+Do not silently reconstruct an existing deck. Summarize the problems, explain
+the tradeoff, and ask the author to approve targeted improvement,
+template-based reconstruction, or rebranding.
