@@ -34,13 +34,13 @@ Exercise 2 improves an existing deck.
 
 ## Before we begin: prerequisites
 
-- **Training slides:** [open in your browser](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-slides/slides/)
+- **Training slides:** [https://bit.ly/ai-slide-skills](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-slides/slides/)
 - **Visual Studio Code** installed from the Software Center
 - One AI assistant signed in within VS Code:
   - GitHub Copilot with the Copilot Chat extension and a Claude model
   - Claude Code extension linked to a personal or team account
-- Your own existing project, or the [**demo project**](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip)
-- The [**prepare-slides AI skill**](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
+- Your own existing project, or the demo project: download [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip)
+- The **prepare-slides AI skill:** download [here](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
 
 ::: {.notes}
 Participants can follow the demonstration if they cannot complete the setup.
