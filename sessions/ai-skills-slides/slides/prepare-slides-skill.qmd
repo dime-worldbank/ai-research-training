@@ -40,7 +40,7 @@ Exercise 2 improves an existing deck.
   - GitHub Copilot with the Copilot Chat extension and a Claude model
   - Claude Code extension linked to a personal or team account
 - Your own existing project, or the [**demo project**](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip)
-- The **prepare-slides AI skill:** link to be added
+- The [**prepare-slides AI skill**](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
 
 ::: {.notes}
 Participants can follow the demonstration if they cannot complete the setup.
@@ -351,7 +351,7 @@ Both routes use the same skill and approval workflow.
 
 ## If you are using your own project
 
-1. Download and unzip the skill
+1. Download and unzip the [prepare-slides skill](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
 2. Create `.agents/skills/` at the project root
 3. Copy the complete `prepare-slides/` folder into it
 
@@ -372,7 +372,7 @@ your-project/
 ## If you are using the demo project
 
 1. Download and unzip the demo project. The demo-project folder has 2 sub-folders: `exercise-1` and `exercise-2`. We will use the `exercise-1` to create slides from scratch.  
-2. Download and unzip the skill
+2. Download and unzip the [prepare-slides skill](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
 3. Copy `prepare-slides/` into the exercise-1's `.agents/skills/` folder
 
 ```text
@@ -508,7 +508,7 @@ recolored and that every approved change was implemented.
 
 ## Install the complete folder once per project
 
-1. Download and unzip the skill
+1. Download and unzip the [prepare-slides skill](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
 2. Create `.agents/skills/` at the project root if needed
 3. Copy the complete `prepare-slides/` folder into it
 

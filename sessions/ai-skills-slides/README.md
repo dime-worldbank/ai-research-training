@@ -28,7 +28,7 @@ final format.
 
 - **Training slides:** [view the slide deck](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-slides/slides/)
 - **Demo project:** [download the ZIP](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip)
-- **Prepare-slides skill:** [DOWNLOAD LINK TO BE ADDED]
+- **Prepare-slides skill:** [download the ZIP](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
 - [`materials/`](./materials/) contains the files used in the two exercises
 - [`skills/prepare-slides/`](./skills/prepare-slides/) contains the complete
   skill source
@@ -59,7 +59,7 @@ responds.
 
 Download the skill ZIP:
 
-**[DOWNLOAD LINK TO BE ADDED]**
+**[Download the prepare-slides skill](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)**
 
 Unzip it and keep the complete `prepare-slides/` folder. During the session,
 you will copy this folder into the project used for the exercise.

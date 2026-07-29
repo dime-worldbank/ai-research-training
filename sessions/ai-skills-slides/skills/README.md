@@ -37,8 +37,11 @@ your-project/
 
 Create an `.agents/skills/` folder at the root of your project if one does not already exist. This folder name is a convention rather than a requirement. If your AI agent uses a designated skills directory, place the skill there and follow that agent’s installation instructions.
 
-- You can close the entire repo and  Copy the complete `prepare-slides/` folder into your project 
-- Download the `.zip` folder here, and place it in the `.agents/skills` folder of you project
+- You can clone the entire repository and copy the complete `prepare-slides/`
+  folder into your project.
+- [Download `prepare-slides.zip`](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip),
+  unzip it, and place the `prepare-slides/` folder in your project's
+  `.agents/skills/` folder.
 
 ### 2. Identify the source files
 
