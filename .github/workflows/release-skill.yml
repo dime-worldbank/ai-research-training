@@ -1,0 +1,72 @@
+name: Release AI Skill
+
+# Fires automatically whenever a merge/push to main touches the
+# prepare-slides skill folder. Also runnable manually from the Actions tab.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "sessions/ai-skills-slides/skills/prepare-slides/**"
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Override tag name (leave blank to auto-increment)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # need full tag history to compute the next version
+
+      - name: Compute next tag
+        id: tag
+        run: |
+          if [ -n "${{ github.event.inputs.tag_name }}" ]; then
+            echo "tag=${{ github.event.inputs.tag_name }}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Find the latest skill-vX.Y.Z tag, default to skill-v1.0.0 if none exist
+          latest=$(git tag --list 'skill-v*.*.*' --sort=-v:refname | head -n 1)
+          if [ -z "$latest" ]; then
+            next="skill-v1.0.0"
+          else
+            ver="${latest#skill-v}"
+            major=$(echo "$ver" | cut -d. -f1)
+            minor=$(echo "$ver" | cut -d. -f2)
+            patch=$(echo "$ver" | cut -d. -f3)
+            next="skill-v${major}.${minor}.$((patch + 1))"
+          fi
+          echo "tag=$next" >> "$GITHUB_OUTPUT"
+
+      - name: Zip the prepare-slides skill
+        run: |
+          cd sessions/ai-skills-slides/skills
+          zip -r "$GITHUB_WORKSPACE/prepare-slides.zip" prepare-slides
+
+      - name: Create release with zip attached
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: "Prepare Slides AI Skill – ${{ steps.tag.outputs.tag }}"
+          body: |
+            Auto-generated release: the `prepare-slides` skill changed on `main`.
+
+            Download `prepare-slides.zip` below, unzip it, and drop the
+            `prepare-slides` folder into your Claude skills directory
+            to install the "Prepare Slides" skill.
+          files: prepare-slides.zip
+          draft: false
+          prerelease: false
+          target_commitish: ${{ github.sha }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
