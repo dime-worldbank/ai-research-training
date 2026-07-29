@@ -1,4 +1,4 @@
-\# Demo Project
+# Demo Project
 
 
 
@@ -6,11 +6,11 @@ The demo project is supplied in place of your own research project. It contains 
 
 
 
-\## Exercise 1: Prepare a new deck
+## Exercise 1: Prepare a new deck
 
 
 
-A reproducibility package for \[Factor Market Failures and the Adoption of Irrigation in Rwanda](https://www.aeaweb.org/articles?id=10.1257/aer.20210059).
+A reproducibility package for [Factor Market Failures and the Adoption of Irrigation in Rwanda](https://www.aeaweb.org/articles?id=10.1257/aer.20210059).
 
 
 
@@ -18,7 +18,7 @@ Use these materials to prepare a slide deck from research files.
 
 
 
-\## Exercise 2: Improve an existing deck
+## Exercise 2: Improve an existing deck
 
 
 
