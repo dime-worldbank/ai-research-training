@@ -1,0 +1,29 @@
+% Used by pandoc when building the deep-dive PDF.
+% Styles the fenced code example as a titled code-file panel.
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\AtBeginDocument{%
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\small}%
+  \renewenvironment{Shaded}{%
+    \begin{tcolorbox}[
+      breakable,
+      colback=gray!4,
+      colframe=black!18,
+      colbacktitle=black!75,
+      coltitle=white,
+      fonttitle=\ttfamily\bfseries\footnotesize,
+      title=.github/copilot-instructions.md,
+      boxrule=0.5pt,
+      arc=0pt,
+      left=6pt,
+      right=6pt,
+      top=4pt,
+      bottom=4pt,
+      toptitle=1pt,
+      bottomtitle=1pt,
+      sharp corners,
+    ]%
+  }{%
+    \end{tcolorbox}%
+  }%
+}
