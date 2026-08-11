@@ -1,0 +1,532 @@
+---
+title: "AI Skills in Action: From Messy Project to Reproducibility Package"
+subtitle: "A hands-on session with AI Skills + the WB Reproducibility Package skill"
+author: "María Reyes Retana"
+institute: "Reproducible Research Initiative · DECDI"
+date: today
+format:
+  dime-revealjs:
+    output-file: index.html
+    self-contained: true
+    slide-number: true
+    toc: false
+    logo: "logos/LOGO_WB_DEC_01.png"
+    footer: "Reproducible Research Initiative · reproducibility@worldbank.org"
+    code-line-numbers: false
+    transition: fade
+---
+
+## Objective
+
+Produce a **well-structured reproducibility package that runs on someone else's computer and meets all requirements**.
+
+. . .
+
+Two starting points:
+
+- A package that **already exists**, but you're not sure it meets the reproducibility standards.
+- Code **written without reproducibility in mind**, a legacy or side project.
+
+
+. . .
+
+> The skill embeds the *exact checks the reproducibility team applies as reviewers.*
+> Passing its audit means passing completeness check, and skipping the resubmissions where most calendar time is lost.
+
+::: {.notes}
+Lead with the pain point: most verification failures aren't about bad code, they're about things the author forgot to check. The skill makes forgetting impossible. Note for DIME audience: the "audit an existing package" path is probably more common than "never written for reproducibility" — most teams have an RA-built package already, they just don't know if it holds up.
+:::
+
+## Agenda
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Part 1 — Background**
+
+0. Setup check — do you have everything?
+1. What are AI skills?
+2. What this skill does, phase by phase
+:::
+
+::: {.column width="50%"}
+**Part 2 — Practice**
+
+3. Hands-on demo/exercise
+4. Wrap-up
+:::
+
+::::
+
+# Part 1 · Background {background-color="#002A4F"}
+
+## Are we ready?
+
+Before we begin make sure we have everything we need: 
+
+- These slides (useful to copy links): [https://bit.ly/ai-reproducibility](https://bit.ly/ai-reproducibility).
+- **Visual Studio Code** installed (available in the Software Center)
+- One of the two, signed in within VS Code:
+  - **GitHub Copilot** (Copilot Chat extension, with a Claude model available), or
+  - The **Claude Code extension**, linked to a personal Claude account
+- Demo project, available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
+- Our AI skill, available in [our repo](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill); [direct download](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip)  
+
+
+## What is an AI skill?
+
+A **skill** is a folder of instructions, scripts, and resources that an AI agent reads to improve performance on specialized tasks. When you ask it to complete a task, the agent reviews the available skills, loads the relevant ones, and applies their instructions.
+
+Our skill...
+
+```
+.agents/skills/reproducibility-skill/
+├── SKILL.md              # A 4-phase workflow 
+├── references/
+│   ├── checklist.md      # official WB package requirements
+│   ├── flags.md          # 14 common failure flags with detection patterns
+│   └── datasets.md       # WDI, PWT, OECD, ILO — licenses and citation formats
+└── assets/
+    ├── README_template.md # Our reproducibility README template
+    ├── README_example.md  # Example of a great README
+    └── main.do / main.R / main.py # Example of main files for projects
+```
+
+. . .
+
+The agent loads it **only when triggered**, and reads the actual reference files, not its memory of them.
+
+::: {.notes}
+Key point: the skill ships the standard as readable files. The agent can be wrong about what it remembers; it can't be wrong about what's in front of it.
+:::
+
+## Why a skill, and not just a prompt?
+
+The reproducibility standard is too long to paste into a chat reliably: full checklist + **14 failure flags** based on the reproducibility team experience + assets and references.
+
+. . .
+
+| Without the skill | With the skill |
+|---|---|
+| You remember to check a few things | The agent checks **every item**, every time |
+| Standard lives in someone's head | Standard lives in files the agent reads |
+| Each conversation starts from scratch | Guardrails are built into the workflow |
+| Standard changes → tell everyone again | Update one file → everyone's next run uses it |
+
+## Skills architecture
+
+Every skill has the same three-part shape — ours included:
+
+```
+reproducibility-skill/
+├── SKILL.md              ← always loaded once the skill triggers
+├── references/           ← opened on demand, only when a phase needs them
+│   ├── checklist.md          the official package requirements
+│   ├── flags.md               F1–F14 detection patterns
+│   └── datasets.md           WDI/PWT/OECD/ILO citation rules
+└── assets/                ← used directly as deliverables, not "read"
+    ├── README_template.md
+    ├── README_example.md
+    └── main.do / main.R / main.py
+```
+
+. . .
+
+- **`SKILL.md`** — the dispatcher: short, always read, points to the rest
+- **`references/`** — consulted mid-task (e.g. `flags.md` during the audit) — extends what the agent knows
+- **`assets/`** — copied or filled in (e.g. `README_template.md` becomes the actual README) — extends what the agent produces
+
+::: {.notes}
+One diagram, three bullets — keep it tight. SKILL.md dispatches; references get consulted; assets get produced or copied. That's the whole architecture, and it's why the skill can carry far more standard than would ever fit in a prompt.
+:::
+
+# Part 2 · The skill {background-color="#002A4F"}
+
+## Four phases, with stop points
+
+| Phase | What happens | Writes files? |
+|---|---|---|
+| **1 · Audit** | Checks everything against checklist + flags F1–F14; classifies every data file | Read-only |
+| **2 · Outline** | Proposes target structure, gap table — the build plan | Proposes only |
+| **3 · Build** | Drafts README, DAS, main script; applies approved fixes | After your approval |
+| **4 · Run check** | Sets outputs aside, reruns from scratch, verifies every exhibit regenerates | After your approval (you might need to run licensed code) |
+
+::: {.notes}
+Emphasize: the agent stops between every phase and waits for approval. It will not write a single file until you've seen and approved the outline. This is the author's control point.
+:::
+
+## Phase 1 · Audit — two passes
+
+The agent inventories the project and runs two passes in parallel:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Checklist pass**
+
+Every required component → **present / partial / missing**, with filename or line as evidence
+
+*(Presence means verified against content, not just that a file exists)*
+:::
+
+::: {.column width="50%"}
+**Flag pass**
+
+Flags F1–F14 → **PASS / FLAG / N/A**, with file and line number
+
+Detection runs actual patterns — hardcoded paths, seeds, install commands, write operations
+:::
+
+::::
+
+. . .
+
+**+ Data ↔ README cross-check:** which files does the code *produce* vs. which are *external inputs*? Every external input needs a DAS entry.
+
+## The 14 failure flags (F1–F14) 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Paths & structure**
+
+- F1 · Hardcoded user-specific paths
+- F2 · No single entry point
+- F3 · Scattered `cd` / `setwd` in analysis scripts
+- F12 · Outputs overwrite inputs
+
+**Randomness & versions**
+
+- F4 · Randomness without a seed
+- F5 · User packages not installed by code
+- F6 · Software versions not pinned
+:::
+
+::: {.column width="50%"}
+**Documentation**
+
+- F7 · Manuscript–code version mismatch
+- F8 · Input data missing from DAS
+- F9 · Outputs not produced by code
+- F10 · Missing README / List of Exhibits
+- F11 · Extraneous files
+
+**Special cases**
+
+- F13 · Restricted data included by mistake
+- F14 · Large-compute pathway not documented
+:::
+
+::::
+
+## Phase 1 · Audit: what the agent checks
+
+Goal: report the current state of the project against the standard. **Change nothing.**
+
+. . .
+
+- **Inventory** — every data file, script, output, README, manuscript
+- **Checklist pass** — each item recorded as present / partial / missing, with file or line as evidence
+- **Flag pass** — F1–F14 run via detection patterns (grep, not eyeballing): hardcoded paths, missing seeds, install commands…
+- **README ↔ code** — every script, global, and version claim in the README verified against what the code actually does
+- **Data ↔ DAS** — every external input classified, matched to a documented source; unknown provenance = blocking question
+- **Exhibit coverage** — every table and figure maps to a script and an output that really gets written
+
+. . .
+
+**And then it stops.** Audit reports the facts, no fixes, no edits. Proposing changes is Phase 2.
+
+## Phases 2–3 · Outline → Build {.smaller}
+
+**Outline** *(nothing written to the project yet)*
+
+- Maps every file into the standard three-folder tree: `data/ · code/ · output/`
+- Entry-point rule: replicator changes a path in **exactly one place per language**, at the top of a main script
+- Gap table: one row per checklist gap and per flag, with a concrete action to close each
+- **Stops again**: you approve, edit, or reject rows before anything is built
+
+. . .
+
+**Build** *(only after approval)*
+
+- README from the standard template: Overview, Data Availability Statement, Instructions, List of Exhibits, Requirements
+- Main script(s): version statement, single path global, package installs, seeds, run order
+- Re-runs the full Phase 1 audit as a final check
+
+## Phase 4 · Run check
+
+A package that audits clean but has never run from scratch **is not done**.
+
+. . .
+
+1. Build expected-output list from the List of Exhibits
+2. Set existing outputs aside — **never deleted without your approval**
+3. Rerun from a fresh start, changing only the designated path line
+4. Verify every exhibit **regenerates**: fresh timestamp, non-empty, matches previous outputs
+5. Record run times → into the README
+6. Cleans the project and produces a final reproducibility package. 
+7. Reminds author to use this version of exhibits for the manuscript (version control)
+
+
+Where the agent can’t execute (e.g., Stata): you get the **exact clean-run protocol** as a checklist, designed to catch paths pointing at the old project location.
+
+# Part 3 · Hands-on {background-color="#002A4F"}
+
+## Meet the demo project
+
+Available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
+
+:::: {.columns}
+
+::: {.column width="62%"}
+A cross-country study on **GDP per capita ↔ informality** in R, Stata, and Python.
+
+```
+demo-project/
+├── analysis_final_v3.do    ← C:\Users\wb6878f9\Dropbox\...
+├── bootstrap_se.do         ← C:\Users\wb6878f9\Dropbox\...
+├── clean_wdi.R             ← C:\Users\wb6878f9\Dropbox\...
+├── make_figure2.py         ← no seed; hardcoded path
+├── data/
+│   ├── wdi_gdppc_extract.csv
+│   ├── pwt1001_extract.csv
+│   ├── oecd_self_employment.csv
+│   └── final_merged_v2.csv  ← ⚠ source unknown
+├── output/
+│   └── table1_FINAL_formatted_byhand.csv
+├── notes/meeting_notes.txt  ← "where did v2 come from??"
+└── old/analysis_v2_OLD.do
+```
+
+No README. No main script. No requirements file. No structure. No hope. 
+:::
+
+::: {.column width="38%"}
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWpqMnQ5cmd2NnJsZDZmdXJhejhzZ24wcWhsbHZzb3BiamkybmlxYiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/NTur7XlVDUdqM/giphy.gif){width="100%"}
+:::
+
+::::
+
+::: {.notes}
+The project is intentionally realistic — not a caricature. Code files at the root is extremely common. The mystery file in the meeting notes is the kind of thing that would stump a replicator.
+:::
+
+
+## Let's set it up {.smaller}
+
+::: {.callout-note appearance="simple"}
+We'll set up the skill together — I'll walk you through it.
+:::
+
+1. **Download & unzip** the demo project, then open it in VS Code
+   *File → Open Folder* — select the **folder**, not a file
+
+2. **Add the skill:** create the folder structure and drop the skill in, from vs code terminal, or right-click new folder.
+
+```{.bash}
+mkdir -p .agents/skills
+```
+
+Then copy the `reproducibility-skill/` folder into `.agents/skills/` so you have:
+
+```{.plaintext}
+demo-project/
+├── .agents/
+│   └── skills/
+│       └── reproducibility-skill/
+│           └── SKILL.md
+├── data/
+├── code/
+└── ...
+```
+
+3. **See skill** Check if skill is available by typing `/skill` — `reproducibility-skill` should be listed.
+If it does not appear you might need to close VS code and open again. 
+
+
+![](screenshots/reproducibility_skill.png){width="45%"}
+
+## Settings check {.smaller}
+
+Set the extension to **Local**:
+
+![](screenshots/agent_setup.png){width="45%"}
+. . .
+
+If you skip it and later see:
+
+> `Claude CLI Error: Claude Code process exited with code 1`
+
+**Fix:** start a new chat, then switch to **Local**.
+
+## Let's test it
+
+3. **Open the Claude Code / Copilot chat panel** and type:
+
+> *"Prepare a reproducibility package for this project."*
+
+The agent reads the skill, detects the match, and starts **Phase 1**.
+
+::: {.callout-tip appearance="simple"}
+We'll use **git** to see what's changing, good practice with AI agents.
+:::
+
+If the skill is working the agent should tell you that is reading the reproducibility skill. 
+
+::: {.notes}
+Walk people through the VS Code steps before switching windows. Most common issue: opening a file rather than a folder — call this out explicitly and pause to check everyone has the folder open, not a file.
+
+Then walk them through creating `.agents/skills` and dropping the skill folder in — do it live so everyone lands in the same place. If `.agents` doesn't show in the explorer, dot-folders are sometimes hidden; `ls -a` confirms it's there.
+
+Have people run the `/skill` check before the real prompt — last time a few went straight to the full prompt, hit a silent non-match, and it took minutes to diagnose. If it's not recognized: renaming .agents to .github is the fastest fix; otherwise check the name: field in SKILL.md matches the folder name.
+
+On the git tip: reinforce *why* — AI agents can touch a lot of files at once, and `git status` / the diff view is how you stay in control of what you're accepting.
+:::
+
+## For your own projects 
+
+Same setup, on your own, a one-time step per project:
+
+1. **Download the skill** from the repo:
+   [github.com/worldbank/wb-reproducible-research-repository](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill)
+   *(or the packaged `.zip` from the [releases page](https://github.com/worldbank/wb-reproducible-research-repository/releases/download/skill-v2026.07.08/reproducibility-skill.zip))*
+
+2. **Create the folder structure** at your project root — from the VS Code terminal:
+
+```{.bash}
+mkdir -p .agents/skills
+```
+
+3. **Copy `reproducibility-skill/`** into `.agents/skills/`:
+
+```{.plaintext}
+your-project/
+└── .agents/
+    └── skills/
+        └── reproducibility-skill/
+            └── SKILL.md
+```
+
+Then open the chat panel and use the same prompt:
+> *"Prepare a reproducibility package for this project."*
+
+::: {.callout-tip appearance="simple"}
+The agent picks up **any** skill placed in `.agents/skills/` automatically; exactly what we just did together.
+:::
+
+::: {.notes}
+This mirrors what we did in the setup slide, so it should feel familiar. Emphasize it's a one-time thing per project, and the `.agents/skills/` convention is all the agent needs.
+:::
+
+## What you'll see — the audit output 
+
+:::: {.columns}
+
+::: {.column width="62%"}
+The agent produces tables before asking permission to continue:
+
+```
+Checklist status
+──────────────────────────────────────
+Component              Status
+README                 MISSING
+Data Availability Stmt MISSING
+List of Exhibits       MISSING
+Main script            MISSING
+
+Flag results (10 FLAGS)
+──────────────────────────────────────
+F1  Hardcoded paths    FLAG  (4 files)
+F2  No entry point     FLAG
+F3  Scattered setwd    FLAG  clean_wdi.R:1
+F4  No seed            FLAG  make_figure2.py
+F5  Packages missing   FLAG
+F6  Versions missing   FLAG
+F8  Data not in DAS    FLAG  final_merged_v2.csv
+F9  Output not code    FLAG  table1_..._byhand.csv
+F10 No README          FLAG
+F11 Extraneous files   FLAG  .DS_Store, notes/, old/
+```
+
+Then stops: *"Shall I proceed to the outline?"*
+:::
+
+::: {.column width="38%"}
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWdmNWx2bXZ3cDhzcjRrdHY0Y2c1c242ZzNqMDYwcG85dDdsYmd0ZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/sNWGEbc5Jzp4c/giphy.gif){width="90%"}
+:::
+
+::::
+
+## What to watch for
+
+We'll stop and read at each gate before moving forward:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**During the audit**
+
+- Does the agent catch all 10 flags?
+- How does it handle `final_merged_v2.csv` — does it ask before guessing?
+- What does it say about the meeting notes and `old/` folder?
+:::
+
+::: {.column width="50%"}
+**During outline and build**
+
+- The gap table — one concrete action per flag
+- The proposed folder restructure (code at root → `code/`)
+- The main wrapper script for 3 languages
+- Run-check protocol for Stata
+:::
+
+::::
+
+→ Switching to VS Code now. Follow along or run it yourself — both are fine.
+
+# Part 4 · Wrap-up {background-color="#002A4F"}
+
+## When is a package "done"?
+
+:::: {.columns}
+
+::: {.column width="65%"}
+
+1. **Audit clean** — checklist complete, no open flags
+2. **DAS complete** — every external input has confirmed source, URL, and access date
+3. **One-click entry point** — one path to change per language, packages install, seeds set
+4. **Exhibit mapping** — every table and figure maps to a script and an output file
+5. **Clean rerun** — ran from scratch, every exhibit regenerated with a fresh timestamp
+
+:::
+
+::: {.column width="35%"}
+![](https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3N2V0NGp5ODB6NmR1bjJqamZ4MjJ6NngwMHphNXE1end3bnFvcTd0eCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/inRsJhYwI9gbdNKVG5/giphy.gif){width="70%"}
+:::
+
+::::
+
+## Use it on your own project
+
+**Get the skill:**
+
+[https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill)
+
+→ Copy `.agents/skills/reproducibility-skill/` into any project. The checklist and flags are readable on their own — no AI agent needed.
+
+. . .
+
+If the standard changes, the skill gets updated, you pull/download again. Everyone's next run uses the new version.
+
+**Questions:** [reproducibility@worldbank.org](mailto:reproducibility@worldbank.org)
+
+## Thank you
+
+[Session materials](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-reproducibility/)
+
+Questions: **reproducibility@worldbank.org**
+
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnYwZXU4aDMzbXp2NTRnc2h1ZTc2bnMxbGt3M3NlNmhheG1nZzBpcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/uWlpPGquhGZNFzY90z/giphy.gif){width="60%"}
+
+
+
