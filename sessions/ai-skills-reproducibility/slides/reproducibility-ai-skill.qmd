@@ -65,7 +65,7 @@ Lead with the pain point: most verification failures aren't about bad code, they
 Before we begin make sure we have everything we need: 
 
 - These slides (useful to copy links): [https://bit.ly/ai-reproducibility](https://bit.ly/ai-reproducibility).
-- **Visual Studio Code** installed (available in the Software Center)
+- **Visual Studio Code** installed (available in the Software Center for Windows, SelfService for Mac)
 - One of the two, signed in within VS Code:
   - **GitHub Copilot** (Copilot Chat extension, with a Claude model available), or
   - The **Claude Code extension**, linked to a personal Claude account
@@ -115,7 +115,7 @@ The reproducibility standard is too long to paste into a chat reliably: full che
 
 ## Skills architecture
 
-Every skill has the same three-part shape — ours included:
+Every skill has the same structure — ours included:
 
 ```
 reproducibility-skill/
