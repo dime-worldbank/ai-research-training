@@ -1,0 +1,21 @@
+---
+title: "Set Up Python and R for Agentic Workflows"
+subtitle: "Hands-on · Day 0 · Setup for AI-enabled Research"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Install Python and R and configure them for use with coding agents.
+
+## Steps
+
+- Install Python and R
+- Configure VS Code extensions for Python and R
+- Verify the setup with a simple script
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

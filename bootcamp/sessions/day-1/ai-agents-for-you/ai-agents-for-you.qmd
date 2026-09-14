@@ -1,0 +1,21 @@
+---
+title: "Making AI Agents Work for You"
+subtitle: "Writing good prompts and building reusable skills · Day 1 · Intro to Agentic AI at the WBG"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Direct AI agents efficiently through effective prompting and reusable skills.
+
+## Agenda
+
+- Principles of good prompting
+- What is an AI skill?
+- Building and reusing skills across projects
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

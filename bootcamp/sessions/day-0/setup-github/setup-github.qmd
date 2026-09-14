@@ -1,0 +1,21 @@
+---
+title: "Set Up GitHub Account and Install GitHub Desktop"
+subtitle: "Day 0 · Setup for AI-enabled Research"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Create a GitHub account and install GitHub Desktop.
+
+## Steps
+
+- Sign up / sign in at github.com with your WBG email
+- Download and install GitHub Desktop
+- Sign in to GitHub Desktop with your GitHub account
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.
