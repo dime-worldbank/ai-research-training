@@ -16,6 +16,30 @@ date: today
 - Open your project folder
 - Install recommended extensions
 
-## Key Takeaways
+## Installing VS Code
 
-- Placeholder — fill in with session content.
+Install Visual Studio Code (VS Code). This is the code editor we will use for the training.
+	- **Personal computer**: [Download VS Code](https://code.visualstudio.com/).
+	- **WB computer**: Open *Software Center* from the Windows Start menu, search for **Visual Studio Code** or **vscode**, and click the software and then click **Install**.
+
+For WB computers, even when we use software center, ITS appreciates if we log the installation of it with a Software Installation request. This also helps us as the more logged installations of VS Code, the more resources ITS is willing to allocate for supporting it.
+
+## Explore these concepts
+
+- Opening a project folder in VS Code such that you see the file tree view
+- Open up several files and observe how they are displayed in the editor. Compare code, images, pdf, word documents, and other file types. You will notice that VS Code is made for code, but handle types commonly used in coding quite well as well. For examples images (research diagrams, web page images etc.)
+- Install common extensions for your preferred programming languages and workflows. If you use several there is no conflict in installing multiple extensions simultaneously. These are popular extensions, but there is no one "correct" set of extensions for everyone.
+    - Stata: `Stata Enhanced`
+    - Python: `Python`
+    - R: `R`/`R Syntax`
+
+## How are files saved
+
+- Have several files open, and make an edit to one of them
+- Observe how VS Code indicates unsaved changes (e.g., with a dot in the tab)
+- Save the file and notice how the indicator disappears
+- Understand that VS Code automatically saves files only if you have enabled auto-save in the settings
+- Make an edit to another file again and then close VS Code without saving the file.
+- You are not prompted to save the file.
+- Open the VS Code again and see how the same files are open and that unsaved changes are still there! VS Code saves your work in the background automatically, but do not overwrite the file in your file system until you explicitly save it. This makes sense in many software development workflows. 
+- VS Code only has **temporary** background saved versions for files you have opened, so if you close a tab with unsaved edits you need to take the decision to either save the file or discard any unchanged edits.

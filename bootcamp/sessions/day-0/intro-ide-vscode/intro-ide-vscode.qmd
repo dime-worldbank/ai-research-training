@@ -8,14 +8,37 @@ date: today
 
 ## Objective
 
-- Understand what an IDE is and why VS Code is used for agentic workflows.
+- Understand what an IDE is 
+- Features in IDEs that improved productivity and workflow
+- VS Code is used for agentic workflows.
 
-## Agenda
+## What is an IDE?
 
-- What is an IDE and why use one
-- Tour of the VS Code interface
-- Extensions relevant to AI-enabled research
+Code is just text and can be edited in any text editor. Some languages have their own text editor, with features specific to that language - for example, Stata's do-file editor or RStudio for R.
 
-## Key Takeaways
+An IDE is a text editor on steroids. IDEs like VS Code are typically not specific to any one programming language. This means that they have a broader usage base. A broader usage base makes it more likely that when a new tool is introduced, that owner of that tool first develop support for it within the IDE.
 
-- Placeholder — fill in with session content.
+## Why use an IDE? 
+
+AI tools are new and constantly changing, but general IDEs will likely adopt support for these tools more quickly than language-specific editors, making them a more future-proof choice for developers in the AI world.
+
+We think using IDEs like VS Code makes you a better code writer, but the reason it is a requirement to use it in this training is that it gives us access to AI tools no matter what language you as a user work in at a day to day basis.
+
+But once you've been forced to use an advanced IDE to get access to AI, you might start wondering how you ever managed without it. :)
+
+## What to show?
+
+- How to install VS Code
+- Basic navigation and interface overview
+    - Workspaces - you have a full project in view
+    - Search across workspace
+    - Split screens
+- Installing and using extensions
+    - language syntax highlighting
+    - Git tools
+- Writing and running code in different languages
+    - Stata - write code in VS Code, run it in do-file editor
+    - R - write and run code directly in VS Code
+    - Python - write and run code directly in VS Code
+
+
