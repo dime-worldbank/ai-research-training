@@ -10,13 +10,13 @@ date: today
 
 - Create a GitHub account
 - Get access to the Intro to Git/GitHub materials
-- Install Git Client - GitHub Desktop
+- Install a Git client - GitHub Desktop
 
 ## GitHub Account and Access
 
 
 1. If you do not already have a GitHub account, follow [these best-practice instructions](https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md) to sign up. If you already have a GitHub account, you do **not** need to create a separate one for your WB work.
-2. Share username with Impact Analytics team
+2. Share your username with the Impact Analytics team
 3. Accept the invitation to the training repository
 
 ## GitHub Desktop
@@ -27,5 +27,5 @@ date: today
 2. After installing GitHub Desktop, open it and go to *File* → *Options*, then log in using your GitHub account.
 3. *Optional but recommended*: Go to *Help* → *About GitHub Desktop* to check for updates. GitHub Desktop will update itself automatically when a newer version is available.
 
-For WB computers, even when we use software center, ITS appreciates if we log the installation of it with a Software Installation request. This also helps us as the more logged installations of GitHub Desktop, the more resources ITS is willing to allocate for supporting it.
+For WB computers, even when we use Software Center, ITS appreciates it if we log the installation with a Software Installation request. This also helps because the more logged installations of GitHub Desktop there are, the more resources ITS is willing to allocate for supporting it.
 
