@@ -75,3 +75,14 @@ If not, follow these steps:
 - Open the chat by clicking the GitHub Copilot Chat icon next to the search bar at the top of your VS Code window.
 - To make sure the agent will not edit any files, switch the mode from "Agent" to "Ask".
 - Then ask the agent a question about your project. Since this is a coding agent, it will be better at code-related queries, but can handle other files as well. If you have a code folder, ask it to find the code folder and give a high-level overview of what the code files in this project are about.
+
+
+
+
+---
+
+## More content to be added 
+
+* NES (Next Edit Suggestions) - provide an example of how GitHub Copilot suggests edits to your code based on the context and previous edits.
+* Inline questions - provide an example of how to ask questions directly within the code using GitHub Copilot Chat.
+* Chat - provide an example of how to interact with GitHub Copilot Chat for various tasks within your project.
