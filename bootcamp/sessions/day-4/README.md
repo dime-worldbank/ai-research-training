@@ -14,16 +14,16 @@ Participants gain hands-on experience with the full spectrum of advanced AI-enab
 
 ## Schedule
 
-| Time | Session | Lead |
-| --- | --- | --- |
-| 9:00 - 9:10 | Welcome | |
-| 9:10 - 10:45 | Hands-on: Using the World Bank AI API in MEGA | MEGA |
-| 10:45 - 11:00 | Break | |
-| 11:00 - 12:15 | Hands-on: AI-assisted dashboards and web apps with Replit | ITS (TBC) - Showcase or Hands-on |
-| 12:15 - 1:15 | Lunch | |
-| 1:15 - 1:45 | Trustworthy AI: Intro to Model Context Protocols (MCPs) | Data Group (TBC) |
-| 1:45 - 2:30 | Why and How to Use Multi-Agentic Workflows | WBG Institute |
-| 2:30 - 3:00 | AI-supported Geospatial Analysis | ieConnect (TBC) |
-| 3:00 - 3:15 | Break | |
-| 3:15 - 4:15 | Hands-on: Git Workflows for Verifying AI Outputs | Impact Analytics |
-| 4:15 - 4:45 | Closing session and course evaluation | |
+| Time | Session | Lead | Material (link or note) |
+| --- | --- | --- | --- |
+| 9:00 - 9:10 | Welcome | | |
+| 9:10 - 10:45 | Hands-on: Using the World Bank AI API in MEGA | MEGA | |
+| 10:45 - 11:00 | Break | Break | Break |
+| 11:00 - 12:15 | Hands-on: AI-assisted dashboards and web apps with Replit | ITS (TBC) - Showcase or Hands-on | |
+| 12:15 - 1:15 | Lunch | Lunch | Lunch |
+| 1:15 - 1:45 | Trustworthy AI: Intro to Model Context Protocols (MCPs) | Data Group (TBC) | |
+| 1:45 - 2:30 | Why and How to Use Multi-Agentic Workflows | WBG Institute | |
+| 2:30 - 3:00 | AI-supported Geospatial Analysis | ieConnect (TBC) | |
+| 3:00 - 3:15 | Break | Break | Break |
+| 3:15 - 4:15 | Hands-on: Git Workflows for Verifying AI Outputs | Impact Analytics | |
+| 4:15 - 4:45 | Closing session and course evaluation | | |
