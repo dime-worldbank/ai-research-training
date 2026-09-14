@@ -27,5 +27,5 @@ date: today
 2. After installing GitHub Desktop, open it and go to *File* → *Options*, then log in using your GitHub account.
 3. *Optional but recommended*: Go to *Help* → *About GitHub Desktop* to check for updates. GitHub Desktop will update itself automatically when a newer version is available.
 
-
+For WB computers, even when we use software center, ITS appreciates if we log the installation of it with a Software Installation request. This also helps us as the more logged installations of GitHub Desktop, the more resources ITS is willing to allocate for supporting it.
 
