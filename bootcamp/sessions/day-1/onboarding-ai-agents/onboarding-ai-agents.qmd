@@ -1,0 +1,21 @@
+---
+title: "Onboarding AI Agents: Memory Files"
+subtitle: "Day 1 · Intro to Agentic AI at the WBG"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Learn how to onboard an AI agent to a specific research project using memory files.
+
+## Agenda
+
+- What are memory files and why they matter
+- Structuring a project README/AI memory file
+- Live example: writing a memory file
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

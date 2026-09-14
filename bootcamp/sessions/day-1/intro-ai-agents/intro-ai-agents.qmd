@@ -1,0 +1,21 @@
+---
+title: "Introduction to AI Agents"
+subtitle: "Day 1 · Intro to Agentic AI at the WBG"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Build a shared understanding of what AI agents are and what they can already do at the WBG.
+
+## Agenda
+
+- What is an AI agent?
+- Agentic AI vs. traditional chat assistants
+- Examples of agentic workflows at the WBG
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

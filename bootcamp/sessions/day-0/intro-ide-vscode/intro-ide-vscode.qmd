@@ -1,0 +1,21 @@
+---
+title: "Intro to Integrated Development Environments (VS Code)"
+subtitle: "Day 0 · Setup for AI-enabled Research"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Understand what an IDE is and why VS Code is used for agentic workflows.
+
+## Agenda
+
+- What is an IDE and why use one
+- Tour of the VS Code interface
+- Extensions relevant to AI-enabled research
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

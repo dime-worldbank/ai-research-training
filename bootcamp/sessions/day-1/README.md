@@ -14,16 +14,16 @@ Participants develop a solid foundation in agentic AI — what it is, what is al
 | Time | Session | Lead | Material (link or note) |
 | --- | --- | --- | --- |
 | 9:00 - 9:10 | Welcome | | |
-| 9:10 - 9:45 | Introduction to AI Agents | Impact Analytics | Not done : Update roadmap series to new format |
-| 9:45 - 10:15 | Onboarding AI Agents: Memory Files | Impact Analytics | Not done : Update roadmap series to new format |
+| 9:10 - 9:45 | Introduction to AI Agents | Impact Analytics | [Introduction to AI Agents](intro-ai-agents/intro-ai-agents.qmd) |
+| 9:45 - 10:15 | Onboarding AI Agents: Memory Files | Impact Analytics | [Onboarding AI Agents: Memory Files](onboarding-ai-agents/onboarding-ai-agents.qmd) |
 | 10:15 - 10:30 | Break | Break | Break |
-| 10:30 - 11:00 | Using AI agents efficiently and cost-effectively | Impact Analytics | Not done : |
+| 10:30 - 11:00 | Using AI agents efficiently and cost-effectively | Impact Analytics | [Using AI Agents Efficiently and Cost-Effectively](cost-effective-ai/cost-effective-ai.qmd) |
 | 11:00 - 11:30 | Intro to the World Bank's GitHub and Open Source Catalog | Open Source Program Office | External |
 | 11:30 - 12:30 | Knowledge Bazaar  | WBG Staff | External: slides optional |
 | 12:30 - 1:30 | Lunch Break | Lunch Break | Lunch Break |
 | 1:30 - 2:00 | AI at the WBG: Current Landscape and Future Ambitions | ITSAE - AI Literacy Team | External |
-| 2:00 - 2:45 | Making AI Agents Work for You: writing good prompts and building reusable skills | Impact Analytics | Not done : Update slides to new format |
-| 2:45 - 3:30 | Create a memory file for your project and install a skill | Impact Analytics | Not done : Update slides to new format |
+| 2:00 - 2:45 | Making AI Agents Work for You: writing good prompts and building reusable skills | Impact Analytics | [Making AI Agents Work for You](ai-agents-for-you/ai-agents-for-you.qmd) |
+| 2:45 - 3:30 | Create a memory file for your project and install a skill | Impact Analytics | |
 | 3:30 - 3:45 | Break | Break | Break |
 | 3:45 - 4:15 | AI ethics, governance, and safe use | Impact Analytics | Done |
-| 4:15 - 5:00 | Human-in-the-loop: Evaluating AI Outputs | Impact Analytics | Not done :  |
+| 4:15 - 5:00 | Human-in-the-loop: Evaluating AI Outputs | Impact Analytics | [Human-in-the-Loop: Evaluating AI Outputs](human-in-the-loop/human-in-the-loop.qmd) |

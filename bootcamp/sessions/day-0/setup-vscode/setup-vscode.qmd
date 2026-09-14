@@ -1,0 +1,21 @@
+---
+title: "Set Up VS Code on Your Computer"
+subtitle: "Hands-on · Day 0 · Setup for AI-enabled Research"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Install VS Code and open your project folder in the IDE.
+
+## Steps
+
+- Download and install VS Code
+- Open your project folder
+- Install recommended extensions
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

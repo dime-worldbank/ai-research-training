@@ -1,0 +1,21 @@
+---
+title: "Human-in-the-Loop: Evaluating AI Outputs"
+subtitle: "Day 1 · Intro to Agentic AI at the WBG"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Apply human-in-the-loop practices to evaluate and validate AI outputs with confidence.
+
+## Agenda
+
+- Why human review remains essential
+- Techniques for evaluating AI-generated outputs
+- Building a validation checklist
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

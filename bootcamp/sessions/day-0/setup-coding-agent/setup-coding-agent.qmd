@@ -1,0 +1,21 @@
+---
+title: "Set Up a Coding Agent on Your Computer"
+subtitle: "Hands-on · Day 0 · Setup for AI-enabled Research"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Install and configure a coding agent (e.g., GitHub Copilot or Claude Code) on your computer.
+
+## Steps
+
+- Install the extension and sign in
+- Verify access to a coding agent
+- Run a first interaction with the agent
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

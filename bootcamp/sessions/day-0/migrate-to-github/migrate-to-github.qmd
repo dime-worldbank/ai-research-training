@@ -1,0 +1,21 @@
+---
+title: "Migrating an Existing Project to GitHub"
+subtitle: "Hands-on · Day 0 · Setup for AI-enabled Research"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Move an existing local project into a GitHub repository.
+
+## Steps
+
+- Create a new repository on GitHub
+- Initialize/connect the local project folder
+- Commit and push existing files
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

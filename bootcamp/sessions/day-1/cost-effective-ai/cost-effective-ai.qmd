@@ -1,0 +1,21 @@
+---
+title: "Using AI Agents Efficiently and Cost-Effectively"
+subtitle: "Day 1 · Intro to Agentic AI at the WBG"
+author: "Impact Analytics"
+date: today
+# format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
+---
+
+## Objective
+
+- Understand the cost and efficiency trade-offs of using AI agents.
+
+## Agenda
+
+- Cost drivers: tokens, models, context
+- Practices to reduce cost while keeping quality
+- Choosing the right model/agent for the task
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.
