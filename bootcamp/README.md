@@ -21,3 +21,6 @@ The [`sessions/`](sessions) folder contains day-by-day guides, schedules, object
 - **[Day 4: AI-enabled Workflows for Advanced Users](sessions/day-4/README.md)**  
   *Advanced & Scalable AI*: World Bank AI API integration in MEGA, AI-assisted web apps and dashboards, Model Context Protocols (MCPs), multi-agentic systems, geospatial analysis, and Git-based output verification.
 
+- **[Template Directory](sessions/template/README.md)**  
+  *Session Templates*: Standardized templates and boilerplate resources to build and format new training sessions for Impact Analytics.
+
