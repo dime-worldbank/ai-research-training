@@ -197,12 +197,11 @@ format:
   text-align:left;border-radius:4px;color:var(--navy);line-height:1.4}
 .rule-card strong{display:block;font-size:.85em;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-bottom:.15em}
 
-/* ============ book shelf (typographic covers, not reproductions) ============ */
-.shelf{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4em;margin:.5em 0 .3em;align-items:start}
-.bk .cover{height:9.4em;border-radius:3px;padding:.85em .8em;display:flex;flex-direction:column;
-  justify-content:space-between;color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.22)}
-.bk .cover .t{font-size:.85em;font-weight:900;line-height:1.15;letter-spacing:-.01em}
-.bk .cover .a{font-size:.6em;font-weight:700;opacity:.92;line-height:1.3}
+/* ============ book shelf (real cover photos) ============ */
+.shelf{display:grid;grid-template-columns:repeat(2,14em);gap:2.4em;margin:.5em 0 .3em;justify-content:center}
+.bk .cover{width:100%;height:15em;object-fit:contain;border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,.22)}
+.bk .t{font-size:.85em;font-weight:900;line-height:1.15;letter-spacing:-.01em;margin-top:.55em}
+.bk .a{display:block;font-size:.6em;font-weight:700;opacity:.75;line-height:1.3;margin-top:.15em}
 .bk .why{font-size:.62em;line-height:1.45;margin-top:.5em;color:#3A4A59;text-align:left}
 
 /* ============ callouts ============ */
@@ -1260,21 +1259,21 @@ The stages overlap: transcription may occur during collection or processing. App
 **This presentation was developed with AI assistance and reviewed by the author for accuracy.**
 
 
-## Parting gift: three book recommendations
+## Parting gift: two book recommendations
 
 ```{=html}
 <div class="shelf">
   <div class="bk">
-    <div class="cover" style="background:#7D3C98"><span class="t">Data Feminism</span><span class="a">Catherine D&rsquo;Ignazio<br>&amp; Lauren F. Klein &middot; 2020</span></div>
+    <img class="cover" src="_extensions/pictures/data_feminism.jpg" alt="Data Feminism book cover">
+    <span class="t">Data Feminism</span>
+    <span class="a">Catherine D&rsquo;Ignazio &amp; Lauren F. Klein &middot; 2020</span>
     <div class="why">Who counts, who does the counting, and who is missing.</div>
   </div>
   <div class="bk">
-    <div class="cover" style="background:#1C618C"><span class="t">Algorithms of Oppression</span><span class="a">Safiya Umoja Noble &middot; 2018</span></div>
+    <img class="cover" src="_extensions/pictures/algorithms.jpeg" alt="Algorithms of Oppression book cover">
+    <span class="t">Algorithms of Oppression</span>
+    <span class="a">Safiya Umoja Noble &middot; 2018</span>
     <div class="why">Retrieval is not neutral.</div>
-  </div>
-  <div class="bk">
-    <div class="cover" style="background:#1E8F5B"><span class="t">Automating Inequality</span><span class="a">Virginia Eubanks &middot; 2018</span></div>
-    <div class="why">What automated eligibility and targeting systems do to poor people.</div>
   </div>
 </div>
 ```
