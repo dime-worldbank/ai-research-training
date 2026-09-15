@@ -38,12 +38,14 @@ Materials for each session — slides, demo packages, setup instructions — are
   <p>AI-assisted code review and stress-testing reproducibility packages.</p>
 </div>
 
-<div class="card upcoming">
-  <span class="pill pill-upcoming">Upcoming</span>
-  <h3>4 &middot; AI Ethics, Governance &amp; Safe Use</h3>
-  <p class="card-meta">Sep 17</p>
-  <p>Data sensitivity tiers, permissible uses, disclosure, and escalation paths.</p>
-</div>
+<a href="./sessions/ai-ethics-governance/">
+  <div class="card">
+    <span class="pill pill-available">Available</span>
+    <h3>4 &middot; AI Ethics, Governance &amp; Safe Use</h3>
+    <p class="card-meta">Sep 17</p>
+    <p>Data sensitivity tiers, permissible uses, disclosure, and escalation paths.</p>
+  </div>
+</a>
 
 </div>
 
@@ -64,7 +66,7 @@ Materials for each session — slides, demo packages, setup instructions — are
 | 1 | [AI Skills to Facilitate Reproducible Research](./sessions/ai-skills-reproducibility/) | Jul 16 | **Available** &middot; [Slides →](./sessions/ai-skills-reproducibility/slides/) |
 | 2 | Using AI to Automate Research Outputs | Jul 30 | Upcoming |
 | 3 | Using AI to Review Code and Verify Research Reproducibility | Sep 8 | Upcoming |
-| 4 | AI Ethics, Governance, and Safe Use at the World Bank | Sep 17 | Upcoming |
+| 4 | [AI Ethics, Governance, and Safe Use at the World Bank](./sessions/ai-ethics-governance/) | Sep 17 | **Available** &middot; [Slides →](./sessions/ai-ethics-governance/) |
 | 5 | Using AI for Feedback on Your Research | Oct 1 | Upcoming |
 | 6 | Using the World Bank AI API in MEGA | Oct 15 | Upcoming |
 | 7 | AI for Survey Instrument Design | Oct 29 | Upcoming |

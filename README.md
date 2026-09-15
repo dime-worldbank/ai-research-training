@@ -2,7 +2,7 @@
 
 This repository hosts the materials for the **DECDI AI for Research** training series — a sequence of practical sessions on using AI tools across the research lifecycle.
 
-📄 **Browse the sessions:** <https://worldbank.github.io/ai-roadmap-materials/>
+📄 **Browse the sessions:** <https://dime-worldbank.github.io/ai-research-training/>
 
 Each session's slides, demo packages, and setup instructions are published here as the series runs.
 
