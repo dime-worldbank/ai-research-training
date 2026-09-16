@@ -87,6 +87,21 @@ format:
 .pick-panel ul{margin:.2em 0 .4em;padding-left:1.1em}
 .pick-panel li{margin-bottom:.12em}
 .pick-panel a{color:var(--blue)}
+/* ---- screenshot pairs: same question, two languages ---- */
+.shotbox .pick-panel{border:none;padding:0;min-height:0}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:.45em;margin:0 0 .3em}
+.shot{position:relative;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.shot .lang{position:absolute;top:0;left:0;z-index:1;font-size:.52em;font-weight:900;color:#fff;background:var(--navy);padding:.15em .55em;letter-spacing:.04em;border-bottom-right-radius:4px;pointer-events:none}
+.shot .lang::after{content:" \00B7  click to enlarge";font-weight:400;opacity:.75}
+.shot img{display:block;width:100%;height:17.5em;object-fit:contain;object-position:top center;background:#fff;border-bottom:1px solid var(--line);cursor:zoom-in}
+.shot-zoom{position:fixed;inset:0;z-index:9999;background:rgba(0,20,40,.88);display:flex;align-items:center;justify-content:center;cursor:zoom-out;padding:2vh 2vw}
+.shot-zoom img{max-width:96vw;max-height:94vh;object-fit:contain;background:#fff;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.shot .src{font-size:.56em;line-height:1.4;padding:.35em .55em;text-align:left;color:#3A4A59}
+.shot .src b{color:var(--navy)}
+.src-bad{color:#8E2A20;font-weight:700}
+.src-ok{color:#155C3B;font-weight:700}
+.shot-pane[hidden]{display:none}
+.shot-verdict{font-size:.62em;line-height:1.4;text-align:left;background:var(--pale);border-left:5px solid var(--cyan);padding:.4em .7em;border-radius:4px;color:var(--ink)}
 .flag-bad{color:#8E2A20;font-weight:700}
 .flag-ok{color:#155C3B;font-weight:700}
 
@@ -395,6 +410,30 @@ PICK.code={
     '<tr><td class="k">Settings</td><td><a href="https://github.com/settings/copilot">github.com/settings/copilot</a> &rarr; Privacy &rarr; disable model training</td></tr>'+
     '</table>'
 };
+/* Validity: one fact, three assistants, two languages. The screenshots are real <img> tags in
+   the slide itself, so Quarto's self-contained export embeds them as data URIs (paths inside a
+   JS string are not rewritten and would break once index.html moves). This only toggles panes. */
+function shotShow(btn,id){
+  var wrap=btn.closest('.shotbox');
+  wrap.querySelectorAll('.pick-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  wrap.querySelectorAll('.shot-pane').forEach(function(p){p.hidden=(p.id!==id);});
+}
+/* click a screenshot to see it full screen; click or Esc to close */
+document.addEventListener('click',function(e){
+  var z=document.querySelector('.shot-zoom');
+  if(z){ z.remove(); e.stopPropagation(); return; }
+  var img=e.target.closest && e.target.closest('.shot img');
+  if(!img) return;
+  z=document.createElement('div'); z.className='shot-zoom';
+  z.innerHTML='<img alt="">'; z.firstChild.src=img.src; z.firstChild.alt=img.alt;
+  document.body.appendChild(z); e.stopPropagation();
+},true);
+document.addEventListener('keydown',function(e){
+  var z=document.querySelector('.shot-zoom');
+  if(z&&(e.key==='Escape'||e.key==='Esc')){ z.remove(); e.stopPropagation(); e.preventDefault(); }
+},true);
+
 (function(){
   var cleared='<tr><td class="k">Cleared for</td><td class="flag-bad">Personal plans are not approved tools. Unless AI@WBG lists it, it may not be installed on WBG systems or given access to WBG data or repositories.</td></tr>';
   PICK.tool.t_cc=PICK.code.cc.replace('<table>','<table>'+cleared);
@@ -636,11 +675,11 @@ window.addEventListener('load',function(){
   <div class="jt"><strong>Answering on your phone</strong>Every question in this session is in one short form. Open it now and keep the tab open: <span class="joinurl">forms.office.com/r/REPLACE-ME</span></div>
 </div>
 <div class="poll-grid">
-  <div class="poll-row" data-poll="w1" data-idx="0"><button class="poll-btn" onclick="pollVote('w1',0)">Pasted a work document into a personal AI account</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
-  <div class="poll-row" data-poll="w1" data-idx="1"><button class="poll-btn" onclick="pollVote('w1',1)">Used AI output without saying that you had</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
-  <div class="poll-row" data-poll="w1" data-idx="2"><button class="poll-btn" onclick="pollVote('w1',2)">Accepted a result because it looked right</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
-  <div class="poll-row" data-poll="w1" data-idx="3"><button class="poll-btn" onclick="pollVote('w1',3)">Uploaded a photo of yourself, your family, or your children</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
-  <div class="poll-row" data-poll="w1" data-idx="4"><button class="poll-btn" onclick="pollVote('w1',4)">None of the above</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="0"><button class="poll-btn" onclick="pollVote('w1',0)">Uploaded an Official Use Only document without checking whether the AI account was approved for it?</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="1"><button class="poll-btn" onclick="pollVote('w1',1)">Used an AI-generated table or figure without checking its source or underlying code?</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="2"><button class="poll-btn" onclick="pollVote('w1',2)">Accepted a result because it looked right without checking the sources</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="3"><button class="poll-btn" onclick="pollVote('w1',3)">Given a coding assistant access to a folder containing non public data?</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="4"><button class="poll-btn" onclick="pollVote('w1',4)">Used AI-generated text in a paper or presentation without explaining its contribution?</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
 </div>
 ```
 
@@ -798,51 +837,47 @@ Time: three minutes.
 ## What you may never do
 
 ::: {.lede-line}
-With AI there are a lot of judgment calls. These four are not.
+With AI there are a lot of judgment calls. These are not.
 :::
 
-- Prevent a human from overriding an AI-generated decision
-- Use AI to promote bias, discrimination, or stigmatization
-- Use AI to manipulate or deceive, or to infer a person's emotions
-- Actively hide the fact that AI was used
+ - Cause or exacerbate harm, whether individual or collective, to social, cultural, economic, natural, and political environments.
+- Promotes bias, discrimination and stigmatization of individuals or groups.
+- Prevents humans from overriding AI generated decisions.
+- Actively hides the use of AI.
+- Are purposefully manipulative or uses deceptive techniques.
+- Infer emotions of a human (e.g. client or counterpart).
 
 ::: {.visual-note}
-The WBG prohibited practices, from the [Acceptable Use of AI Addendum](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFAnnex/727dee72-17dc-4648-a9d5-0252c01ff988Annex1.pdf). They apply by any means, AI included. **From here on, blue boxes give practical checks; red boxes flag the prohibited practices described here.**
+The WBG prohibited practices, from the [Acceptable Use of AI Addendum](https://worldbankgroup.sharepoint.com/:p:/r/sites/AIWBG/Shared%20Documents/Guides/AI%20Prohibited%20Practices.pptx?d=w4073f635f0b04d7ca43dd588eddcbc73&csf=1&web=1&e=6JjC1W). They apply by any means, AI included. **From here on, blue boxes give practical checks; red boxes flag the prohibited practices described here.**
 :::
 
-::: {.notes}
-**[CHECK BEFORE DELIVERY]** Confirm the exact wording and the complete list against the current Addendum.
+## What you should do! 
 
-Say: four bright lines, sixty seconds, no discussion needed. Then explain the colour convention: blue gives practical checks, red flags prohibited practices. The linked policy remains the source for exact requirements.
+Use the TACTIC Framework
 
-If someone asks about the emotions one: emotion inference from faces or voices in a hiring, lending, or eligibility context is where this bites, and it is not hypothetical.
+| | The check | Risk it addresses |
+|---|---|---|
+| **T** Transparency | Have I disclosed meaningful AI assistance? | Legal |
+| **A** Accountability | Have I verified the claims, and do I own this? | Validity · Accountability |
+| **C** Context | Have I applied institutional, country, and cultural knowledge? | Validity · Ethical |
+| **T** Take ownership | Is human judgment still in charge of the decision? | Accountability |
+| **I** Impact | Who is wronged if this is wrong? | Ethical |
+| **C** Compliance | Approved tool, right classification, data agreement respected? | Security &amp; privacy · Legal |
 
-Time: one minute.
+::: {.visual-note}
+**Source:** [T.A.C.T.I.C. AI Checklist from learning module (Using AI Responsibly@WBG](https://wbg.sabacloud.com/Saba/Web_spf/NA1PRD0002/app/me/learningeventdetail/cours000000000050989?classId=dowbt000000000017453)
 :::
-
-
 
 # 4 &middot; The Risks {background-color="#002A4F"}
 
 ## How the next part works
 
-For the first four risks, we use three pieces:
+We will present different scenario for the differnt risks, A, B, C. 
 
-- **A situation**, drawn from real work. You decide what you would do, and we take hands before the answer.
+- **A situation**, drawn from real work.
 - **A practical check**, in blue, and relevant prohibited practices, in red.
-- **A real case** at the bottom.
+- **A real case**.
 
-::: {.consensus-band}
-We close with a note on legal disclosure, then apply all five risks across the research lifecycle.
-:::
-
-::: {.notes}
-Say: thirty seconds. Set the pattern once so you do not have to explain it five times.
-
-Tell them the cases at the bottom are there so nobody has to take your word for it, and that the slides are shareable afterwards.
-
-Time: thirty seconds.
-:::
 
 ## Accountability: who answers for the score?
 
@@ -934,17 +969,71 @@ Review outputs for inaccuracy and incompleteness. AI is not an authoritative sou
 **Real case · New York, 2023:** lawyers filed a brief citing six court decisions that ChatGPT had invented, and vouched for them when the court asked. The court fined them $5,000. (*Mata v. Avianca*, No. 22-cv-1461, S.D.N.Y., [opinion on sanctions](https://www.courtlistener.com/docket/63107798/mata-v-avianca-inc/))
 :::
 
-::: {.notes}
-Say: hands for each option before you click. Let people argue for a moment; someone will pick C because the title sounds too neat, which is a lucky guess and not a method.
 
-After the reveal: this is a simulated fabrication, not the documented output of a particular model. Nobody in this room can do it by eye, and that includes me.
+## Validity: similar fact, different sources
 
-The code point, out loud: the same failure in code does not announce itself with a red error. It returns a number. Test AI-written code on a case you can work out by hand.
+```{=html}
+<div class="risk-head" data-r="1"></div>
+```
 
-If silent: ask who has caught a fabricated citation in a draft, and how.
-
-Time: three minutes.
+::: {.lede-line}
+Mexico's poverty rate is not a contested number. It has an official measurement, published by **INEGI**. In September 2026 I asked three assistants for it, in **English** and in **Spanish**.
 :::
+
+```{=html}
+<div class="shotbox"><div class="picker">
+<button class="pick-btn active" onclick="shotShow(this,'sp_gpt')">ChatGPT<small>personal</small></button>
+<button class="pick-btn" onclick="shotShow(this,'sp_cla')">Claude<small>personal</small></button>
+<button class="pick-btn" onclick="shotShow(this,'sp_gem')">Gemini<small>enterprise</small></button>
+</div><div class="pick-panel tall">
+
+<div class="shot-pane" id="sp_gpt">
+<div class="shots">
+<div class="shot"><span class="lang">ENGLISH</span>
+<img src="_extensions/pictures/chatgpt_eng_mex_crop.png" alt="ChatGPT answering in English about Mexico's extreme poverty rate">
+<span class="src"><b>5.3% extreme poverty, 2024.</b> <span class="src-ok">Linked INEGI directly.</span> But the retrieved set also held a WMO warmest-year bulletin, a sports highlights reel and a Dua Lipa concert clip.</span></div>
+<div class="shot"><span class="lang">ESPA&Ntilde;OL</span>
+<img src="_extensions/pictures/chatgpt_esp_mex_crop.png" alt="ChatGPT answering in Spanish about Mexico's poverty rate">
+<span class="src"><b>29.6%, 38.5 millones, 2024.</b> <span class="src-ok">Linked INEGI directly.</span> Retrieved set: INEGI's press room, an INEGI post on X, <span class="src-bad">and a Facebook post.</span></span></div>
+</div>
+<div class="shot-verdict">The only assistant that took me to the statistical agency &mdash; in both languages. I asked it two different questions here: <em>extreme</em> poverty in English, poverty in Spanish, and both answers are right for the question asked. What changed with the language was what it read to get there.</div>
+</div>
+
+<div class="shot-pane" id="sp_cla" hidden>
+<div class="shots">
+<div class="shot"><span class="lang">ENGLISH</span>
+<img src="_extensions/pictures/claude_eng_mex_crop.png" alt="Claude answering in English about Mexico's poverty rate">
+<span class="src"><b>29.6%, ~38 million; extreme poverty 5.3%.</b> Sources: <span class="src-bad">BBVA Research &mdash; a bank &mdash; and a news article.</span></span></div>
+<div class="shot"><span class="lang">ESPA&Ntilde;OL</span>
+<img src="_extensions/pictures/claude_esp_mex_crop.png" alt="Claude answering in Spanish about Mexico's poverty rate">
+<span class="src"><b>29.6%, poco m&aacute;s de 38 millones.</b> Sources: <span class="src-bad">two press items and the Gaceta UNAM.</span></span></div>
+</div>
+<div class="shot-verdict">Same question, same answer, both languages &mdash; and it named INEGI and CONEVAL in the text. <strong>It never linked either one in the source.</strong> Follow the citations and you land on a bank's research arm and a university newspaper.</div>
+</div>
+
+<div class="shot-pane" id="sp_gem" hidden>
+<div class="shots">
+<div class="shot"><span class="lang">ENGLISH</span>
+<img src="_extensions/pictures/gemini_eng_mex_crop.png" alt="Gemini answering in English about Mexico's poverty rate">
+<span class="src"><b>29.6%; extreme poverty 5.3%</b> &mdash; the table cites that figure to <span class="src-bad">Wikipedia.</span> Around it: World Bank, IMF, AP, Human Rights Watch.</span></div>
+<div class="shot"><span class="lang">ESPA&Ntilde;OL</span>
+<img src="_extensions/pictures/gemini_esp_mex_crop.png" alt="Gemini answering in Spanish about Mexico's poverty rate">
+<span class="src"><b>29.6%; pobreza extrema 5.4%</b> &mdash; the table cites that figure to <span class="src-bad">Facebook.</span> Around it: M&eacute;xico &iquest;C&oacute;mo Vamos?, Gaceta UNAM, a blog.</span></div>
+</div>
+<div class="shot-verdict"><strong>One fact, two numbers.</strong> Extreme poverty is 5.3% when the chain runs through Wikipedia and 5.4% when it runs through a Facebook post &mdash; and you only see the gap because the two screenshots sit side by side.</div>
+</div>
+
+</div></div>
+```
+
+::: {.consensus-band}
+Every answer lands near the official figures &mdash (in this case). The numbers agree, so nothing looks wrong. Underneath: **not one linked CONEVAL**, **two never linked INEGI at all**, **only Gemini Enterprise** linked the World Bank and **what the model read changed with the language I asked in**.
+:::
+
+::: {.visual-note}
+**Practical check:** cite the measurement, never the assistant. If you cannot name the institution that produced the number and open the page it sits on, you do not have the number yet.
+:::
+
 
 ## Validity: when AI does the measuring
 
@@ -1282,25 +1371,7 @@ The stages overlap: transcription may occur during collection or processing. App
 ## Thank you! questions? 
 
 
-
-# Appendix {background-color="#002A4F"}
-
-## A1. T.A.C.T.I.C., the check before you send
-
-| | The check | Risk it addresses |
-|---|---|---|
-| **T** Transparency | Have I disclosed meaningful AI assistance? | Legal |
-| **A** Accountability | Have I verified the claims, and do I own this? | Validity · Accountability |
-| **C** Context | Have I applied institutional, country, and cultural knowledge? | Validity · Ethical |
-| **T** Take ownership | Is human judgment still in charge of the decision? | Accountability |
-| **I** Impact | Who is wronged if this is wrong? | Ethical |
-| **C** Compliance | Approved tool, right classification, data agreement respected? | Security &amp; privacy · Legal |
-
-::: {.visual-note}
-**Source:** T.A.C.T.I.C. AI Checklist, supporting reference for *Using AI Responsibly@WBG*. The phrasing as questions and the risk mapping are ours. **[CHECK BEFORE DELIVERY]** Confirm the official checklist wording before rephrasing it as questions.
-:::
-
-## A2. References
+## References
 
 ```{=html}
 <ul class="refs">
