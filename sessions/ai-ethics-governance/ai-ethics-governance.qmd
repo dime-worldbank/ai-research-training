@@ -205,7 +205,9 @@ format:
 .joinbox .joinurl{font-weight:700;color:var(--blue)}
 
 /* ============ visible stage action lists ============ */
-.stage-actions{margin:.4em 0 0;padding-left:1.1em}
+.stage-actions{margin:.4em 0 0;padding-left:0;list-style:none}
+.stage-actions li{position:relative;padding:.1em 0 .1em 1.5em;line-height:1.35}
+.stage-actions li::before{content:"\2610";position:absolute;left:0;top:.1em;color:var(--blue);font-size:1em}
 
 /* ============ practical check highlight ============ */
 .rule-card{border-left:6px solid var(--blue);background:var(--pale);padding:.5em .9em;font-size:.85em;
@@ -304,39 +306,42 @@ var STAGE_Q=['What should AI support, and which judgments stay with us?',
 var STAGE_USE=["Concept notes, research questions, literature reviews, identification strategies and draft questionnaires.", "Survey programming, interviews and consultations, transcription, dataset searches, downloads and document extraction.", "Cleaning and merging data, harmonising names, constructing variables, translating responses and classifying text.", "Estimation code, tables and figures, interpretation of results and checks of robustness.", "Drafting and editing papers, translating summaries, preparing policy briefs and documenting the research package."];
 var STAGE_DO=[
   [
-    "Define the task AI supports and the judgments the researcher retains. For operational decisions, plan human review, override and a way to contest errors.",
-    "Check concept-note claims and references against original sources. Make sure the proposed methods fit the question, data and assumptions.",
-    "Review proposed survey questions and translations for leading wording, local meaning and whose experiences they miss. Pilot with people.",
-    "Plan permitted data use, participant information and any required privacy or ethics review before collection.",
-    "If AI will generate research variables or labels, budget human validation across relevant languages and groups."
+    "Decide which task AI will support and which judgments stay with you. For anything feeding an operational decision, plan for human review, override, and a way for people to contest errors.",
+    "If AI helped draft the concept note or a literature review, verify every claim and citation against its original source &mdash; AI-generated reference lists can include citations that are wrong or do not exist.",
+    "Confirm yourself that the proposed method fits the question, data, and assumptions. An AI-drafted design can look complete without being right for your case.",
+    "If AI drafted or translated survey questions, check them for leading wording and local meaning, then pilot with real respondents before fielding.",
+    "Before collecting any data, confirm what AI use is permitted under the data agreement, participant consent, and any required ethics or IRB review.",
+    "If AI will generate variables or labels later in the project, budget time now for human validation across the relevant languages and groups."
   ],
   [
-    "For surveys and interviews, check that participant information, consent and the collection protocol cover the intended recording and AI use.",
-    "Test survey code, skip logic and translations. Check who is missed through language, connectivity, nonresponse or the sampling approach.",
-    "Check AI transcripts and extracted values against source recordings or documents. Preserve uncertainty and missing responses rather than inventing answers.",
-    "For existing data, verify source, version, definitions and coverage. Check that downloads and extractions are complete.",
-    "Confirm permitted access and use before transferring data to a tool. Minimise sensitive content, including voices and interview text."
+    "Confirm participant consent, information sheets, and the collection protocol explicitly cover any recording or AI use you plan, such as transcription or translation.",
+    "If AI helped write survey code, skip logic, or translations, test it with realistic edge-case responses. Separately check who might be missed by language, connectivity, nonresponse, or the sampling approach.",
+    "Check every AI transcript or extracted value against the source recording or document. Preserve genuine uncertainty and missing responses &mdash; do not let AI invent an answer.",
+    "If AI helped locate or extract secondary data, verify the source, version, definitions, and coverage yourself, and confirm the download or extraction is complete.",
+    "Before sending any data to an AI tool, confirm you are authorised to under the data's classification, the data agreement, and, for identified data, the IRB protocol.",
+    "Strip or minimise personally identifiable content before it goes anywhere near an AI tool &mdash; names, exact locations, voices, and interview text that could identify a respondent. Removing names alone does not make a dataset safe to share."
   ],
   [
-    "Preserve original data and record transformations. Use only data permitted for the tool and purpose.",
-    "Understand AI-written code and test small examples, including missing values, duplicates and unmatched records.",
-    "Track observation counts, missingness, duplicates and merge results before and after transformations. Investigate unexpected changes.",
-    "When AI generates analytical content, record model/version, date, prompts and settings. Retain raw outputs in an authorised location.",
-    "If AI creates labels or variables, validate against human-reviewed examples, including relevant groups and languages."
+    "Keep the original data untouched and log every transformation. Only send a tool data that is permitted for that data's classification and purpose.",
+    "Read and understand AI-written code before you run it. Test it on small examples, including missing values, duplicates, and unmatched records.",
+    "Before and after any AI-assisted transformation, compare observation counts, missingness, and merge results. Investigate every unexpected change &mdash; AI-written code can silently drop or duplicate records.",
+    "When AI generates analytical content, record the model, version, date, prompts, and settings, and keep the raw outputs in an authorised location.",
+    "If AI creates labels or variables, validate them against human-reviewed examples, including the relevant languages and groups."
   ],
   [
-    "Confirm the intended sample, variable definitions, weights and model specification. Apply the methodological checks the research question requires.",
-    "Check every figure and table against underlying results: values, labels, axes, units, sample sizes and uncertainty.",
-    "Check that interpretations preserve magnitude, uncertainty and limitations, and distinguish association from causation.",
-    "When AI-generated measures enter the analysis, assess how their errors affect the findings, including differences across groups.",
-    "Have someone with the relevant expertise review substantive conclusions. Successful code execution does not establish correctness."
+    "Whether or not AI wrote the estimation code, confirm yourself that the sample, variable definitions, weights, and model specification are correct, and apply the methodological checks your question requires.",
+    "Check every AI-drafted or AI-formatted figure and table against the underlying results: values, labels, axes, units, sample sizes, and uncertainty.",
+    "If AI helped write the interpretation, check that it preserves magnitude, uncertainty, and limitations, and does not quietly turn an association into a causal claim.",
+    "When an AI-generated measure enters the analysis, assess how its errors affect the findings, including whether they differ across groups.",
+    "Have someone with the relevant expertise review the substantive conclusions. Code running successfully does not mean it is correct."
   ],
   [
-    "Verify claims and citations against original sources. Check consistency across text, tables, figures and the abstract.",
-    "Ensure translations and policy summaries preserve uncertainty and qualifications. Do not turn a tentative finding into a firm recommendation.",
-    "Disclose AI assistance following the applicable institutional and publication requirements.",
-    "In the package, document AI-generated analytical outputs and link the records from the README. For coding assistance alone, retain scripts and consider a brief disclosure. <a href=\"https://worldbank.github.io/wb-reproducible-research-repository/guidance/AI_reproducibility_guidelines.html\" target=\"_blank\" rel=\"noopener\">RRR guidance</a>",
-    "Review what may be shared, including data, prompts, outputs and third-party material."
+    "Verify every claim and citation against the original source, especially anything AI helped draft, and check consistency across the text, tables, figures, and abstract.",
+    "If AI drafted a translation or policy summary, confirm it preserves the paper's uncertainty and qualifications rather than turning a tentative finding into a firm recommendation.",
+    "Disclose meaningful AI assistance at submission, following the target journal's policy. Requirements vary and are getting stricter &mdash; for example, the American Economic Association requires authors to describe any AI use in drafting or editing; AI cannot be listed as an author, and authors remain solely accountable for fact-checking its output.",
+    "If you are reviewing a paper, disclose any AI use in your review too, and use only tools that guarantee the manuscript will not be used to train a model &mdash; several journals, including the AEA, now require this explicitly.",
+    "In the reproducibility package, document AI-generated analytical outputs and link the records from the README. For coding assistance alone, retain the scripts and consider a brief disclosure. <a href=\"https://worldbank.github.io/wb-reproducible-research-repository/guidance/AI_reproducibility_guidelines.html\" target=\"_blank\" rel=\"noopener\">RRR guidance</a>",
+    "Review what may be shared beyond the paper itself &mdash; data, prompts, outputs, and any third-party material."
   ]
 ];
 function chip(name,color,on){ return '<span class="chip '+(on?'on':'off')+'" style="--stage:'+color+'">'+name+'</span>'; }
@@ -675,16 +680,19 @@ window.addEventListener('load',function(){
   <div class="jt"><strong>Answering on your phone</strong>Every question in this session is in one short form. Open it now and keep the tab open: <span class="joinurl">forms.office.com/r/REPLACE-ME</span></div>
 </div>
 <div class="poll-grid">
-  <div class="poll-row" data-poll="w1" data-idx="0"><button class="poll-btn" onclick="pollVote('w1',0)">Uploaded an Official Use Only document without checking whether the AI account was approved for it?</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
-  <div class="poll-row" data-poll="w1" data-idx="1"><button class="poll-btn" onclick="pollVote('w1',1)">Used an AI-generated table or figure without checking its source or underlying code?</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
-  <div class="poll-row" data-poll="w1" data-idx="2"><button class="poll-btn" onclick="pollVote('w1',2)">Accepted a result because it looked right without checking the sources</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
-  <div class="poll-row" data-poll="w1" data-idx="3"><button class="poll-btn" onclick="pollVote('w1',3)">Given a coding assistant access to a folder containing non public data?</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
-  <div class="poll-row" data-poll="w1" data-idx="4"><button class="poll-btn" onclick="pollVote('w1',4)">Used AI-generated text in a paper or presentation without explaining its contribution?</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="0"><button class="poll-btn" onclick="pollVote('w1',0)">Shared an Official Use Only file with ChatGPT or Claude without checking whether the account was approved for it</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="1"><button class="poll-btn" onclick="pollVote('w1',1)">Used AI-generated charts, tables, or figures without checking the source or underlying code</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="2"><button class="poll-btn" onclick="pollVote('w1',2)">Produced a paper or deck with AI help and did not disclose that assistance</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="3"><button class="poll-btn" onclick="pollVote('w1',3)">Uploaded personally identifiable or other non-public data to Claude or a coding assistant for tasks like cleaning</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="4"><button class="poll-btn" onclick="pollVote('w1',4)">Accepted an AI-generated result because it looked right without checking the sources</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
+  <div class="poll-row" data-poll="w1" data-idx="5"><button class="poll-btn" onclick="pollVote('w1',5)">None of the above</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
 </div>
 ```
 
-::: {.consensus-band .fragment}
-Nobody in this room is careless. We just rarely know what it costs, or what we are allowed/should do. That is what the next hour is for.
+## You're Not the Only One
+
+::: {.quote-big}
+Whatever you clicked, you weren't the only one. That's not a coincidence &mdash; the rules for AI are new, unevenly known, and nobody's really taught them yet. This hour is that teaching.
 :::
 
 # 1 &middot; Why It Matters {background-color="#002A4F"}
@@ -879,7 +887,7 @@ We will present different scenario for the differnt risks, A, B, C.
 - **A real case**.
 
 
-## Accountability: who answers for the score?
+## Accountability: who owns the decision?
 
 ```{=html}
 <div class="risk-head" data-r="0"></div>
@@ -888,16 +896,16 @@ We will present different scenario for the differnt risks, A, B, C.
 :::: {.columns}
 ::: {.column width="62%"}
 ::: {.quiz-scenario}
-Togo, 2020. Emergency cash transfers must go out within weeks and there is no social registry. A phone-data poverty model beats the feasible alternative, geographic targeting, on exclusion error. Before advising the government to use it, what needs to be true?
+A ministry of agriculture is about to launch an AI system that automatically approves or denies farmers' fertilizer subsidy applications, based on land size, past harvests, and income. Accuracy testing, explaining the criteria to farmers, and independent certification are all worth doing &mdash; and the ministry has limited time before planting season starts. Which one condition would you insist on before anything else?
 :::
 ::: {.quiz-options}
-<button class="quiz-option" onclick="quizAnswer(this, false)">A. It is more accurate than the alternative. That is the test.</button>
-<button class="quiz-option" onclick="quizAnswer(this, false)">B. Officials can explain to any excluded person why the model excluded them.</button>
-<button class="quiz-option" onclick="quizAnswer(this, true)">C. A named official owns the decision, can override the model, and excluded people have a way back in.</button>
-<button class="quiz-option" onclick="quizAnswer(this, false)">D. An independent audit has certified the model.</button>
+<button class="quiz-option" onclick="quizAnswer(this, false)">A. The system's approval accuracy has been validated against the outgoing manual process.</button>
+<button class="quiz-option" onclick="quizAnswer(this, false)">B. Farmers can see which factors were used in their decision.</button>
+<button class="quiz-option" onclick="quizAnswer(this, true)">C. A named official can review, override, and reinstate any individual farmer's wrongly denied case.</button>
+<button class="quiz-option" onclick="quizAnswer(this, false)">D. An independent body has certified the system before rollout.</button>
 :::
 ::: {.quiz-feedback}
-**C is correct.** Accountability needs three things: a named person who can be held to the decision, the power to reverse it, and a route back for the people it affects. Togo did use the model: against geographic targeting it cut exclusion errors by 4&ndash;21%, and against a hypothetical full registry it would have raised them by 9&ndash;35% ([Aiken et al. 2022](https://www.nature.com/articles/s41586-022-04484-9)).<br>**A** is not enough: accuracy against one comparator says nothing about who owns the decision or how an error gets corrected. **B** is rarely available, because an individual explanation of a boosted-tree score usually cannot be produced, and an explanation on its own still gives the household no remedy. **D** happens before deployment and does nothing for the household wrongly excluded afterwards.
+**C is correct.** All four matter &mdash; but only C protects the specific farmer the system gets wrong. Accuracy, transparency, and certification all describe the system in general; none of them do anything for an individual case once a mistake has already happened.<br>If you can only insist on one thing before launch, insist on a way to catch and reverse individual errors. Everything else is worth doing, but this is the one thing that, if missing, means a wrongly denied farmer has nowhere to go.
 :::
 :::
 ::: {.column width="36%" .fragment}
@@ -916,15 +924,15 @@ Preventing humans from overriding AI-generated decisions.
 ::::
 
 ::: {.case-line}
-**Real case · Netherlands:** a self-learning fraud model used nationality as a risk factor; officials reviewing a flagged case could not see why it had been scored. About 26,000 parents were wrongly accused, and the government resigned in January 2021. ([Amnesty International, 2021](https://www.amnesty.org/en/documents/eur35/4686/2021/en/))
+**Real case &middot; India:** since 2016, Telangana state has used a machine-learning system to merge records across government databases and catch duplicate or fraudulent welfare beneficiaries. Reporting found it has wrongly cut off thousands of families from food, income, and housing benefits due to database-merging errors. People affected are stuck in a bureaucratic maze with little to no way to contest it, and Amnesty International itself could not complete an audit of the system because of how opaque it is. ([Amnesty International, 2024](https://www.amnesty.org/en/latest/news/2024/04/india-global-new-technologies-in-automated-social-protection-systems-can-threaten-human-rights/))
 :::
 
 ::: {.notes}
-Say: read the case in one breath, then the scenario. Take hands on each option before revealing. Expect a split between B and C; that split is the point.
+Say: read the scenario, take hands on each option before revealing. Expect a split across several options; that split is the point &mdash; A, B, and D are all real practices worth doing, and the case is that only C is non-negotiable.
 
-If silent: ask who has ever advised a client on a targeting model. Then: could anyone in the ministry have overridden it?
+After the reveal: this is not hypothetical, it is a live system. No named official could review, override, and reinstate an individual case, so thousands of families are still stuck with no way back in.
 
-After the reveal: Togo is a success with a real trade-off, not a cautionary tale. Override and appeal are good practice; they are not claims about what Togo implemented.
+The Netherlands had a version of this too: a tax authority's fraud model used nationality as a risk factor, officials could not see why anyone was flagged, about 26,000 parents were wrongly accused, and the government resigned over it in 2021. Mention it if useful as a second data point &mdash; this is not a one-country problem.
 
 Same test for ordinary work: who can explain and correct an AI-assisted result once you have moved on to the next project?
 
@@ -1096,7 +1104,7 @@ Time: three minutes. Protect this slide.
 :::: {.columns}
 ::: {.column width="62%"}
 ::: {.quiz-scenario}
-You want an approved WBG tool to draft the cleaning code for a Confidential household survey. The data agreement says research use only. What do you give the tool?
+You want an approved WBG tool to draft the cleaning code for a Confidential household survey. The data is identified, so access is restricted to the people named in the IRB protocol &mdash; and separately, the data agreement says research use only. What do you give the tool?
 :::
 ::: {.quiz-options}
 <button class="quiz-option" onclick="quizAnswer(this, false)">A. Nothing. Confidential data should not go near an AI tool.</button>
@@ -1105,7 +1113,7 @@ You want an approved WBG tool to draft the cleaning code for a Confidential hous
 <button class="quiz-option" onclick="quizAnswer(this, false)">D. The whole file. The tool is approved for Confidential data.</button>
 :::
 ::: {.quiz-feedback}
-**B is correct.** Writing cleaning code requires the shape of the data, not the records themselves, and a synthetic extract carries the structure and the quirks without carrying anybody.<br>**D** confuses two separate permissions: even where the tool is cleared for the classification, tool approval is not data authorisation. "Research use only" travels with the data and the agreement still governs the purpose. **C** sends Personal Data: twenty real rows carrying village, age, and household size identify households. **A** has a cost of its own. The code still gets written, by hand late at night or in a personal account.
+**B is correct.** Writing cleaning code requires the shape of the data, not the records themselves, and a synthetic extract carries the structure and the quirks without carrying anybody.<br>**D** confuses two separate permissions. Tool approval is not data authorisation &mdash; even a tool cleared for Confidential data doesn't inherit the data agreement's terms, and "research use only" governs regardless of which tool is used. Separately, the IRB approval under which this data was collected names the specific people allowed to access it, and an AI tool is not one of them. Either restriction alone would block this; here both apply.<br>**C** sends Personal Data to someone outside the IRB's approved list: twenty real rows carrying village, age, and household size identify households. This is a privacy/human-subjects violation, not a contract one &mdash; it would still be wrong even if the data agreement said nothing about research use.<br>**A** has a cost of its own. The code still gets written, by hand late at night or in a personal account.
 :::
 :::
 ::: {.column width="36%" .fragment}
@@ -1118,7 +1126,7 @@ Restricted and Personal Data only in approved tools. A PIA before AI processes P
 ::::
 
 ::: {.case-line}
-**Real case · Samsung, 2023:** engineers pasted proprietary source code and meeting notes into ChatGPT to debug and transcribe. Within weeks the company banned generative AI tools for staff. ([Forbes, 2 May 2023](https://www.forbes.com/sites/siladityaray/2023/05/02/samsung-bans-chatgpt-and-other-chatbots-for-employees-after-sensitive-code-leak/))
+**Real case · Samsung, 2023:** within three weeks of lifting an internal ban on ChatGPT, three separate incidents surfaced &mdash; engineers pasted confidential semiconductor source code in to debug and optimise it, and another employee fed in an internal meeting recording to draft a summary. Unlike an ordinary leak, none of it could be pulled back: submitted data can be retained and used to improve the model. Samsung banned generative AI tools for staff within weeks. ([Forbes, 2 May 2023](https://www.forbes.com/sites/siladityaray/2023/05/02/samsung-bans-chatgpt-and-other-chatbots-for-employees-after-sensitive-code-leak/))
 :::
 
 ::: {.notes}
@@ -1212,15 +1220,15 @@ Time: two minutes. Cut this one to sixty seconds if you are behind: say the line
 :::: {.columns}
 ::: {.column width="62%"}
 ::: {.quiz-scenario}
-Four proxies from four of our projects: night-time lights for local economic activity; phone ownership for programme reach; health spending for health need; an AI literature search for the literature. Which would you sign off?
+A development agency wants to identify the poorest villages for a cash-transfer programme, but cannot survey every household in the country. It trains a model on satellite images &mdash; night-time lights, building density, roads &mdash; calibrated against the villages where survey data already exists, then uses it to estimate wealth in villages that were never surveyed. Before scaling this model nationwide, what needs to be true?
 :::
 ::: {.quiz-options}
-<button class="quiz-option" onclick="quizAnswer(this, false)">A. The first three, with care. The AI search is not a proxy, it is just a search.</button>
-<button class="quiz-option" onclick="quizAnswer(this, false)">B. None. Each maps differently for the poor, so each is biased against them.</button>
-<button class="quiz-option" onclick="quizAnswer(this, true)">C. Any of them, if the mapping is stated and tested for the groups you will report on.</button>
+<button class="quiz-option" onclick="quizAnswer(this, false)">A. The model should be validated to confirm it accurately predicts wealth in the villages it was trained on. That is the test.</button>
+<button class="quiz-option" onclick="quizAnswer(this, false)">B. Every village should have satellite imagery of sufficient resolution.</button>
+<button class="quiz-option" onclick="quizAnswer(this, true)">C. Someone must check whether the visual signals it learned &mdash; buildings, roads, lights &mdash; track welfare evenly across different livelihoods, including communities that don't show up the same way in satellite images.</button>
 :::
 ::: {.quiz-feedback}
-**C is correct.** A proxy is defensible when you state what it stands in for and test how well that holds for the groups you will report on. The failure is an untested mapping, not the proxy itself, and it produces a biased estimate before it produces an unfair decision.<br>**A** misses that an AI literature search is also a proxy. It stands in for what the field knows, and the mapping goes untested because the output looks like a reading list rather than like a variable. **B** rules out every measure in development research, since all of them stand in for something we cannot observe directly.
+**C is correct.** The model is a proxy: it stands in for wealth using what's visible from space. That's only safe once you've tested whether the same visual markers mean the same thing everywhere it will be used &mdash; a dispersed pastoralist community won't look like a poor village in the training data, it will look like nothing at all.<br>**A** confirms the model fits where it was trained, not whether the same signal holds elsewhere. **B** fixes image availability, not whether the proxy is the right stand-in for welfare.
 :::
 :::
 ::: {.column width="36%" .fragment}
@@ -1238,16 +1246,14 @@ Using AI to promote bias, discrimination, or stigmatization; to manipulate or de
 :::
 ::::
 
-::: {.visual-note}
-**Three doors.** *The model:* answers to global opinion questions most resemble views in the USA and parts of Europe and South America ([Durmus et al. 2024](https://arxiv.org/abs/2306.16388)). *Our data:* phone-survey respondents skew older, better educated, and toward household heads ([Brubaker et al. 2021](https://doi.org/10.1371/journal.pone.0258877)). *What it hands back:* LLM-selected references over-weight already highly cited work beyond what human citation patterns explain ([Algaba et al. 2025](https://aclanthology.org/2025.findings-naacl.381/)), and in controlled tests tend to pick male-authored references ([He 2025](https://arxiv.org/abs/2508.02740)).
-:::
-
 ::: {.case-line}
-**Real case · United States, 2019:** a health algorithm applied to about 200 million people a year predicted *cost* instead of *need*. Because less is spent on Black patients at the same level of illness, equally sick Black patients were scored healthier. The target variable created the bias. ([Obermeyer et al. 2019](https://doi.org/10.1126/science.aax2342))
+**Real case · United States, 2019:** the same mistake, made and measured elsewhere. A health algorithm applied to about 200 million people a year needed a proxy for health need, so it was trained to predict healthcare *cost* instead. Because less is historically spent treating Black patients at the same level of illness, cost quietly measured *access* to care, not *need* for it &mdash; equally sick Black patients scored as healthier. Fixing it would have raised the share of Black patients flagged for extra care from 17.7% to 46.5%. Different sector, same untested proxy. ([Obermeyer et al. 2019](https://doi.org/10.1126/science.aax2342))
 :::
 
 ::: {.notes}
-three doors for bias. The model was trained on whom; our data reached whom; and what the tool hands back when we ask it a question. The third is the new one and the one nobody audits. Safiya Noble made this argument about search engines years before anyone was drafting literature reviews this way; her book is on the reading slide.
+Say: the model is not wrong, it is doing exactly what it was trained to do. The bias is in the choice of proxy, made before anyone ran the model.
+
+The real case is the same mechanism in a different sector, with numbers attached, so it stops being hypothetical.
 :::
 
 ## Legal: disclosure in the paper and package
@@ -1329,6 +1335,15 @@ The stages overlap: transcription may occur during collection or processing. App
 
 
 # Closing {background-color="#002A4F"}
+
+
+## Takeaways (start today)
+
+1. Check the data label before you open the tool.
+2. Verify every number, quote, and citation before you use it.
+3. Keep a record of what you asked AI and how you checked it.
+4. Disclose meaningful AI assistance instead of staying silent. ([RRR: Documenting AI use](https://worldbank.github.io/wb-reproducible-research-repository/guidance/AI_reproducibility_guidelines.html))
+5. If you're not sure, ask ai@worldbankgroup.org.
 
 
 ## Resources and contacts
