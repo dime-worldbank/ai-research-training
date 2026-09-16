@@ -21,7 +21,7 @@
 <body style="margin:0; padding:0; background-color:#EFF2F5; -webkit-text-size-adjust:100%;">
 
   <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
-    Three in four published R scripts fail to run on a clean machine. How the reproducibility skill&rsquo;s read-only audit catches those failures before a reviewer does.
+    Three in four published R scripts fail to run on a clean machine. A 10-minute audit can catch the same problems in your project.
   </div>
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFF2F5;">
@@ -82,7 +82,7 @@
                 <tr>
                   <td class="px" style="padding:20px 40px 32px 40px;">
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:0;">
-                      Trisovic and coauthors downloaded more than <b>9,000</b> R scripts from over 2,000 reproducibility packages on Harvard Dataverse and re-ran each one on a fresh machine: the authors&rsquo; own code, the authors&rsquo; own data, no changes. <b>74%</b> stopped with an error. The causes were mundane: a working directory set to someone&rsquo;s laptop, a package never installed, a file the script expected but the package did not ship. Automatically fixing just the paths and package installs cut the failure rate to 56%. This is <b>computational reproducibility</b>: same code, same data, same results as the paper. It is the check the Reproducible Research team runs on every PRWP package, and it fails for reasons an author can find before submission.
+                      Trisovic and coauthors pulled more than <b>9,000</b> R scripts from over 2,000 packages on Harvard Dataverse and tried to run each one on a fresh machine. Same code, same data, nothing changed. <b>74%</b> hit an error. Usually something small: a working directory pointed at someone&rsquo;s laptop, a package that never got installed, a file the script expected that wasn&rsquo;t in the folder. When they automatically fixed just the paths and the package installs, the failure rate dropped to 56%. That&rsquo;s <b>computational reproducibility</b>. Can someone else run your code on your data and get the paper&rsquo;s results? It&rsquo;s the check the Reproducible Research team does on every PRWP package, and most of the failures are things you can find yourself before you submit.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:12px 0 0 0;">
                       Source: <a href="https://www.nature.com/articles/s41597-022-01143-6" style="color:#0071BC;">Trisovic, Lau, Pasquier &amp; Crosas, <i>A large-scale study on research code quality and execution</i>, Scientific Data (2022)</a> &nbsp;&middot;&nbsp; <a href="https://github.com/atrisovic/dataverse-r-study" style="color:#0071BC;">code and data</a>
@@ -93,38 +93,33 @@
             </td>
           </tr>
 
-          <!-- ===== The Audit ===== -->
+          <!-- ===== The Skill ===== -->
           <tr>
             <td style="background-color:#F5F8FA; border-top:1px solid #DDE4EA;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td class="px" style="padding:32px 40px 28px 40px;">
                     <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
-                      Computational Reproducibility
+                      The Reproducibility Skill
                     </span>
                     <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:22px; line-height:28px; color:#002244; margin:10px 0 14px 0;">
-                      What the audit checks, and what it does not
+                      Catch a failed run before the reviewer does
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
-                      Three terms get mixed up, and they are different checks. <b>Computational reproducibility:</b> someone else runs your code on your data and gets the exhibits in the paper. That is what PRWP verification tests, and what the Reproducibility Package skill&rsquo;s <b>Audit</b> phase (July 16 session) checks for. <b>Replication:</b> someone re-does the analysis from the paper&rsquo;s description, without your code (see Field Notes). <b>Code review:</b> someone reads the code and asks whether it does the right thing. This issue is about the first.
+                      Those Dataverse scripts failed for the same reasons Bank packages fail. A path that only works on one laptop. A package nobody installed. A file the code expects that isn&rsquo;t in the folder. We developed a skill that looks for those problems in your project. Worth being precise about the words. <b>Computational reproducibility</b> means someone else runs your code on your data and gets the same exhibits. That&rsquo;s different from rebuilding the analysis from the paper (Field Notes covers that). And a package that runs can still be the wrong analysis.
                     </p>
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; The audit is <b>read-only</b>. The agent inventories the project, then checks it against the official package checklist and the <b>14 failure flags</b> the Reproducible Research team sees most often in verification: hardcoded paths, no main script, scattered <span style="font-family:Consolas, Menlo, monospace; font-size:13px;">cd</span>/<span style="font-family:Consolas, Menlo, monospace; font-size:13px;">setwd</span>, unseeded randomness, packages not installed by code, unpinned versions, hand-made exhibits, and so on.
-                      </td></tr>
-                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; It classifies every data file as an <b>external input</b> or something the code writes, and cross-checks the inputs against the Data Availability Statement. A file the code reads but the package neither ships nor documents is exactly what crashed the scripts in the Big Number.
-                      </td></tr>
-                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; It maps every table and figure in the manuscript to the script and output file that produce it. Each finding comes as PASS, FLAG, or N/A with the <b>file and line</b>, so you can check it yourself. Then it stops and waits. Proposing fixes is the next phase, and nothing is written until you approve.
-                      </td></tr>
-                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; An audit-clean package can still be <b>wrong</b>. The audit does not ask whether the regression is the right one, whether the sample restriction matches the paper, or whether a merge duplicated observations. It also says nothing about whether the code is readable or efficient. Those are code review questions, and code review catches problems a reproducibility check never will.
-                      </td></tr>
-                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0;">
-                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; The two checks complement each other. Use the audit to make sure the package runs and regenerates every exhibit; use code review to make sure it computes what the paper says. A later session in the series will cover AI-assisted code review using the DIME peer code review process.
-                      </td></tr>
-                    </table>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
+                      The skill is built on the checks the Reproducible Research team actually uses when they verify a PRWP package. It has four phases. The first one, the <b>Audit</b>, is read-only. It looks through the folder the way a reviewer would and reports what would break a clean run. It doesn&rsquo;t rewrite anything.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
+                      What it finds is familiar. Dropbox paths. No main script. Missing seeds. Packages the code uses but never installs. Tables pasted in by hand. Data files the code reads that aren&rsquo;t in the folder. Same class of problems that sent 74% of those Dataverse scripts off the rails, and the same ones that send Bank packages back for another round.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
+                      That&rsquo;s all it claims to do. It won&rsquo;t tell you if the regression is the right one, if the sample matches the paper, or if a merge quietly doubled the observations. A colleague reading the code will catch those. The audit won&rsquo;t. Later phases can propose fixes and re-run the package, but only after you&rsquo;ve looked at the report.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 0 0;">
+                      So the useful first move is just the audit, on a project you already have. That&rsquo;s the 10 minutes below.
+                    </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:16px 0 0 0;">
                       Materials: <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-reproducibility/" style="color:#0071BC;">setup guide</a> &nbsp;&middot;&nbsp; <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-reproducibility/slides/" style="color:#0071BC;">slides</a> &nbsp;&middot;&nbsp; <a href="https://github.com/worldbank/wb-reproducible-research-repository/releases/latest" style="color:#0071BC;">latest skill release</a> &nbsp;&middot;&nbsp; <a href="https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip" style="color:#0071BC;">demo project</a>
                     </p>
@@ -144,7 +139,7 @@
                       Try This Today &nbsp;&middot;&nbsp; 10 minutes
                     </span>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
-                      Run the reproducibility skill&rsquo;s <b>Audit phase</b> on one project you are working on now. Stop before it proposes or makes changes. You are asking one question: would this run on a reviewer&rsquo;s machine?
+                      Take a project you&rsquo;re working on and run the skill&rsquo;s <b>Audit phase</b>. Don&rsquo;t let it change anything yet. Just ask whether it would run on someone else&rsquo;s machine.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
                       1. Open VS Code and confirm that GitHub Copilot or Claude Code responds in the chat panel. The <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-reproducibility/" style="color:#0071BC; font-weight:bold;">setup guide</a> covers both options.<br>
@@ -156,13 +151,13 @@
                       <span style="font-family:Consolas, Menlo, monospace; font-size:13px; background-color:#F5F8FA; padding:1px 5px; border:1px solid #DDE4EA;">Use the reproducibility skill to audit this project. Complete the Audit phase only. Report each finding with the file, evidence, and requirement it relates to. Do not change files.</span>
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
-                      Pick one FLAG and verify it yourself in the cited file. Mark it confirmed, needs confirmation, or false positive. When the agent asks to continue to Outline, stop there.
+                      Pick one flag, open the file it cites, and check it. Is it real, unclear, or a false alarm? When the agent asks to go on to Outline, stop there.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0 0;">
                       <tr>
                         <td style="background-color:#EAF4FB; border-left:4px solid #0071BC; padding:16px 20px;">
                           <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:21px; color:#333333;">
-                            <b>Have more than 10 minutes?</b> Read the full report and sort the flags into three groups: <i>would stop a clean run</i> (paths, packages, missing inputs), <i>would change the numbers</i> (seeds, versions, hand-edited outputs), and <i>would confuse the reviewer</i> (README, exhibit list, stray files). This issue&rsquo;s Deep Dive walks through the report table by table.
+                            <b>Have more than 10 minutes?</b> Read the rest of the report. Some flags would stop the run (paths, missing files). Some would change the numbers (seeds, hand-edited tables). Some just make the package harder to follow. The Deep Dive walks through the report.
                           </span>
                         </td>
                       </tr>
@@ -186,7 +181,7 @@
                       Reading the audit report
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
-                      The audit returns four tables: checklist status, flags, data classification, and exhibit coverage. This guide explains what each one tells you, how to triage a flag without trusting the agent&rsquo;s word for it, which items only the author can answer, and where the audit&rsquo;s job ends and code review begins. About 12 minutes.
+                      The audit comes back with four tables. This walk-through is about reading them: which flags to take seriously, which questions only you can answer, and what the report can&rsquo;t tell you. About 12 minutes.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
@@ -216,10 +211,10 @@
                       Replication is a different problem
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 12px 0;">
-                      Kubota and coauthors gave an AI system a published paper, the raw survey data, and the codebook, but <b>no code</b>, and asked it to rebuild the tables from the text alone. For one table it used all 100 attempts and still ended with mismatched sample sizes and significance levels.
+                      Kubota and coauthors gave an AI system a published paper, the raw survey data, and the codebook. <b>No code.</b> They asked it to rebuild the tables from the text. For one table it tried 100 times and still got sample sizes and significance levels that didn&rsquo;t match.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
-                      That is replication, not the computational reproducibility the audit checks. Field Notes explains why the two should not be confused, what the system&rsquo;s discrepancy reports did reveal, and where this kind of tool could eventually help.
+                      That&rsquo;s a different job from the audit. Field Notes walks through what the system actually did, and why the leftover gaps are still useful.
                     </p>
                     <a href="https://github.com/dime-worldbank/ai-research-training/blob/issue-04/Newsletter/issue-04/field-notes-replication-is-different.md" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#0071BC; text-decoration:none;">
                       Read the Field Notes &rarr;
@@ -246,7 +241,7 @@
                       <b>Setup: October 1</b> &nbsp;&middot;&nbsp; Main course: October 5&ndash;8
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
-                      Four days of hands-on agentic workflows for World Bank research: project setup, data and analysis, reproducible outputs, and advanced tools. Bring one live project. The October 1 session covers Git, VS Code, and coding agents on WBG laptops if you need the foundations.
+                      Four days of hands-on work with coding agents on World Bank research: project setup, data and analysis, reproducible outputs, and some of the newer tools. Bring a live project. If you still need Git, VS Code, or agents on a WBG laptop, come to the October 1 setup session.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
@@ -303,7 +298,7 @@
                       <b style="color:#FFFFFF;">DECRG: Tuesday, September 22</b>
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0 0 20px 0;">
-                      The RG offering of the July 30 session. Turn manuscripts and results folders into DECDI-branded decks, with you approving the plan before any files change.
+                      Turn manuscripts and results folders into DECDI-branded decks, with you approving the plan before any files change.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
