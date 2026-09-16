@@ -33,7 +33,7 @@ date: today
 - Go back to the extension view in VS Code, and search again for "GitHub Copilot Chat"
 - If it still shows an "Install" button, click it to install the extension.
 
-![](img/install-copilot-extension.png)
+![](./img/install-copilot-extension.png)
 
 ## Log in to your GitHub account
 
@@ -49,7 +49,7 @@ If not, follow these steps:
 :::
 
 ::: {.column width="30%"}
-![](img/login-gh-account.png)
+![](./img/login-gh-account.png)
 :::
 :::
 
@@ -65,7 +65,7 @@ If not, follow these steps:
 :::
 
 ::: {.column width="30%"}
-![](img/verify-copilot-license.png)
+![](./img/verify-copilot-license.png)
 :::
 :::
 
