@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AI for Research: Reviewing Code and Results</title>
+<title>AI for Research: The Reproducibility Audit</title>
 <!--
   Internal newsletter - DECDI / Impact Analytics.
   Deep Dive and Field Notes link to the markdown files on the issue-04 branch.
@@ -21,7 +21,7 @@
 <body style="margin:0; padding:0; background-color:#EFF2F5; -webkit-text-size-adjust:100%;">
 
   <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
-    An AI replication system tried 100 times and still left gaps. What this says about code review, reproducibility checks, and human review.
+    Three in four published R scripts fail to run on a clean machine. How the reproducibility skill&rsquo;s read-only audit catches those failures before a reviewer does.
   </div>
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFF2F5;">
@@ -44,7 +44,7 @@
                 <tr>
                   <td class="px" style="padding:0 40px 24px 40px;">
                     <span style="font-family:Georgia, 'Times New Roman', serif; font-size:34px; line-height:40px; color:#FFFFFF; font-weight:bold;">
-                      AI for Research: Reviewing Code and Results
+                      AI for Research: The Reproducibility Audit
                     </span>
                     <br>
                     <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#B8CCDD;">
@@ -72,20 +72,20 @@
                 </tr>
                 <tr>
                   <td class="px" align="center" style="padding:12px 40px 0 40px;">
-                    <span class="bignum" style="font-family:Georgia, 'Times New Roman', serif; font-size:72px; line-height:78px; color:#002244; font-weight:bold;">100</span>
+                    <span class="bignum" style="font-family:Georgia, 'Times New Roman', serif; font-size:72px; line-height:78px; color:#002244; font-weight:bold;">74%</span>
                     <br>
                     <span style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:22px; color:#54595F;">
-                      attempts to reproduce one published table,<br><b>with differences still left at the end</b>
+                      of R scripts in published reproducibility packages<br><b>failed to run in a clean environment</b>
                     </span>
                   </td>
                 </tr>
                 <tr>
                   <td class="px" style="padding:20px 40px 32px 40px;">
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:0;">
-                      Kubota and coauthors gave an AI system a paper, its data, and a codebook. The system wrote and ran analysis code, compared its output with the published result, and revised the code. For one table, it used all <b>100</b> attempts. Its best score was 74 out of 100. Coefficient signs mostly aligned, but sample sizes, magnitudes, and significance levels still differed. The useful output was the discrepancy report: it showed where documentation, variable coding, or the generated code needed a closer look.
+                      Trisovic and coauthors downloaded more than <b>9,000</b> R scripts from over 2,000 reproducibility packages on Harvard Dataverse and re-ran each one on a fresh machine: the authors&rsquo; own code, the authors&rsquo; own data, no changes. <b>74%</b> stopped with an error. The causes were mundane: a working directory set to someone&rsquo;s laptop, a package never installed, a file the script expected but the package did not ship. Automatically fixing just the paths and package installs cut the failure rate to 56%. This is <b>computational reproducibility</b>: same code, same data, same results as the paper. It is the check the Reproducible Research team runs on every PRWP package, and it fails for reasons an author can find before submission.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:12px 0 0 0;">
-                      Source: <a href="https://arxiv.org/abs/2602.18453" style="color:#0071BC;">Kubota et al., LLM-Assisted Replication for Quantitative Social Science (2026)</a> &nbsp;&middot;&nbsp; <a href="https://github.com/kubotaso/AI_Social_Replication" style="color:#0071BC;">code and outputs</a>
+                      Source: <a href="https://www.nature.com/articles/s41597-022-01143-6" style="color:#0071BC;">Trisovic, Lau, Pasquier &amp; Crosas, <i>A large-scale study on research code quality and execution</i>, Scientific Data (2022)</a> &nbsp;&middot;&nbsp; <a href="https://github.com/atrisovic/dataverse-r-study" style="color:#0071BC;">code and data</a>
                     </p>
                   </td>
                 </tr>
@@ -93,36 +93,36 @@
             </td>
           </tr>
 
-          <!-- ===== Reviewing Code and Results ===== -->
+          <!-- ===== The Audit ===== -->
           <tr>
             <td style="background-color:#F5F8FA; border-top:1px solid #DDE4EA;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td class="px" style="padding:32px 40px 28px 40px;">
                     <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
-                      Reviewing Code and Results
+                      Computational Reproducibility
                     </span>
                     <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:22px; line-height:28px; color:#002244; margin:10px 0 14px 0;">
-                      Catch reproducibility problems before submission
+                      What the audit checks, and what it does not
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
-                      The gaps in the example above are common reasons reproducibility checks fail: unclear variable construction, undocumented missing-value rules, changing samples, and differences between the written method and the code. Many of these problems can be caught during project work, before the package reaches a reviewer.
+                      Three terms get mixed up, and they are different checks. <b>Computational reproducibility:</b> someone else runs your code on your data and gets the exhibits in the paper. That is what PRWP verification tests, and what the Reproducibility Package skill&rsquo;s <b>Audit</b> phase (July 16 session) checks for. <b>Replication:</b> someone re-does the analysis from the paper&rsquo;s description, without your code (see Field Notes). <b>Code review:</b> someone reads the code and asks whether it does the right thing. This issue is about the first.
                     </p>
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; Regular <b>code review</b> can catch risky merge logic, undocumented sample restrictions, hardcoded paths, missing seeds, and outputs edited by hand.
+                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; The audit is <b>read-only</b>. The agent inventories the project, then checks it against the official package checklist and the <b>14 failure flags</b> the Reproducible Research team sees most often in verification: hardcoded paths, no main script, scattered <span style="font-family:Consolas, Menlo, monospace; font-size:13px;">cd</span>/<span style="font-family:Consolas, Menlo, monospace; font-size:13px;">setwd</span>, unseeded randomness, packages not installed by code, unpinned versions, hand-made exhibits, and so on.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; Good project practices make that review easier: one main script, project-relative paths, documented inputs, clear intermediate files, and tables and figures generated by code.
+                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; It classifies every data file as an <b>external input</b> or something the code writes, and cross-checks the inputs against the Data Availability Statement. A file the code reads but the package neither ships nor documents is exactly what crashed the scripts in the Big Number.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; Coding agents can help apply these checks across a project. They can inventory files, compare the README with the code, trace outputs, and flag places that need review. Each finding should include evidence that a researcher can check.
+                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; It maps every table and figure in the manuscript to the script and output file that produce it. Each finding comes as PASS, FLAG, or N/A with the <b>file and line</b>, so you can check it yourself. Then it stops and waits. Proposing fixes is the next phase, and nothing is written until you approve.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; At <b>Impact Analytics</b>, we developed the Reproducibility Package skill. It is built on our extensive experience reviewing reproducibility packages and guides a coding agent through four phases: Audit, Outline, Build, and Run check.
+                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; An audit-clean package can still be <b>wrong</b>. The audit does not ask whether the regression is the right one, whether the sample restriction matches the paper, or whether a merge duplicated observations. It also says nothing about whether the code is readable or efficient. Those are code review questions, and code review catches problems a reproducibility check never will.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0;">
-                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; It can audit an existing package or help reorganize a legacy project. It pauses between phases so you can review the findings and approve changes. The <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-reproducibility/slides/" style="color:#0071BC;">slides</a> give a short walkthrough.
+                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; The two checks complement each other. Use the audit to make sure the package runs and regenerates every exhibit; use code review to make sure it computes what the paper says. A later session in the series will cover AI-assisted code review using the DIME peer code review process.
                       </td></tr>
                     </table>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:16px 0 0 0;">
@@ -144,7 +144,7 @@
                       Try This Today &nbsp;&middot;&nbsp; 10 minutes
                     </span>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
-                      Run the reproducibility skill&rsquo;s <b>Audit phase</b> on one project. Stop before it proposes or makes changes.
+                      Run the reproducibility skill&rsquo;s <b>Audit phase</b> on one project you are working on now. Stop before it proposes or makes changes. You are asking one question: would this run on a reviewer&rsquo;s machine?
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
                       1. Open VS Code and confirm that GitHub Copilot or Claude Code responds in the chat panel. The <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-reproducibility/" style="color:#0071BC; font-weight:bold;">setup guide</a> covers both options.<br>
@@ -156,13 +156,13 @@
                       <span style="font-family:Consolas, Menlo, monospace; font-size:13px; background-color:#F5F8FA; padding:1px 5px; border:1px solid #DDE4EA;">Use the reproducibility skill to audit this project. Complete the Audit phase only. Report each finding with the file, evidence, and requirement it relates to. Do not change files.</span>
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
-                      Pick one finding and verify it yourself in the cited file. Mark it confirmed, unclear, or a false positive. When the agent asks to continue, stop there.
+                      Pick one FLAG and verify it yourself in the cited file. Mark it confirmed, needs confirmation, or false positive. When the agent asks to continue to Outline, stop there.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0 0;">
                       <tr>
                         <td style="background-color:#EAF4FB; border-left:4px solid #0071BC; padding:16px 20px;">
                           <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:21px; color:#333333;">
-                            <b>Have more than 10 minutes?</b> Read the full audit and sort findings into three groups: package structure, code and paths, and documentation. Approve an Outline only after you agree with the proposed fixes.
+                            <b>Have more than 10 minutes?</b> Read the full report and sort the flags into three groups: <i>would stop a clean run</i> (paths, packages, missing inputs), <i>would change the numbers</i> (seeds, versions, hand-edited outputs), and <i>would confuse the reviewer</i> (README, exhibit list, stray files). This issue&rsquo;s Deep Dive walks through the report table by table.
                           </span>
                         </td>
                       </tr>
@@ -183,15 +183,15 @@
                       Deep Dive &nbsp;&middot;&nbsp; Track C, Part 1
                     </span>
                     <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
-                      Add review checks around the reproducibility skill
+                      Reading the audit report
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
-                      The official skill covers package requirements and common failures. Teams can add their own checks for merge assumptions, naming, packages, and other house rules. This guide shows where those checks belong and how to require evidence, set severity, and track false positives. About 12 minutes.
+                      The audit returns four tables: checklist status, flags, data classification, and exhibit coverage. This guide explains what each one tells you, how to triage a flag without trusting the agent&rsquo;s word for it, which items only the author can answer, and where the audit&rsquo;s job ends and code review begins. About 12 minutes.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td style="background-color:#0071BC; border-radius:2px;">
-                          <a href="https://github.com/dime-worldbank/ai-research-training/blob/issue-04/Newsletter/issue-04/deep-dive-review-checks.md" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; padding:11px 22px;">
+                          <a href="https://github.com/dime-worldbank/ai-research-training/blob/issue-04/Newsletter/issue-04/deep-dive-reading-the-audit.md" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; padding:11px 22px;">
                             Read the Deep Dive &rarr;
                           </a>
                         </td>
@@ -213,15 +213,15 @@
                       Field Notes &nbsp;&middot;&nbsp; beyond the trainings
                     </span>
                     <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
-                      When a failed reproduction is useful
+                      Replication is a different problem
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 12px 0;">
-                      The Kubota prototype reproduced the broad pattern in a sociology paper, but several coefficients and sample sizes remained different. Its logs traced some gaps to ambiguous variable definitions and missing preprocessing details.
+                      Kubota and coauthors gave an AI system a published paper, the raw survey data, and the codebook, but <b>no code</b>, and asked it to rebuild the tables from the text alone. For one table it used all 100 attempts and still ended with mismatched sample sizes and significance levels.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
-                      Field Notes explains what the system checked, where it struggled, and how a discrepancy report can guide a human review without treating the score as a verdict on the paper.
+                      That is replication, not the computational reproducibility the audit checks. Field Notes explains why the two should not be confused, what the system&rsquo;s discrepancy reports did reveal, and where this kind of tool could eventually help.
                     </p>
-                    <a href="https://github.com/dime-worldbank/ai-research-training/blob/issue-04/Newsletter/issue-04/field-notes-informative-failure.md" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#0071BC; text-decoration:none;">
+                    <a href="https://github.com/dime-worldbank/ai-research-training/blob/issue-04/Newsletter/issue-04/field-notes-replication-is-different.md" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#0071BC; text-decoration:none;">
                       Read the Field Notes &rarr;
                     </a>
                   </td>
