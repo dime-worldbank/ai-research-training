@@ -1,0 +1,371 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+
+// Brand palette
+$analytics-dark:  #530153;
+$analytics-base:  #800280;
+$analytics-light: #B974B9;
+$analytics-tint:  #F4EAF4;
+$analytics-grey:  #6B6B6B;
+$analytics-rule:  #E2E2E2;
+
+// Typography
+$font-family-sans-serif: "Lato", -apple-system, "Segoe UI", sans-serif !default;
+$presentation-font-size-root: 30px !default;
+$presentation-heading-font: "Montserrat", -apple-system, "Segoe UI", sans-serif !default;
+$presentation-heading-font-weight: 700 !default;
+$presentation-heading-color: $analytics-dark !default;
+$presentation-h1-font-size: 1.7em !default;
+$presentation-h2-font-size: 1.25em !default;
+$presentation-h3-font-size: 1.05em !default;
+$presentation-line-height: 1.45 !default;
+
+// Surfaces
+$body-bg: #FFFFFF !default;
+$body-color: #1A1A1A !default;
+$link-color: $analytics-base !default;
+$code-color: $analytics-base !default;
+$code-block-bg: #FAF7FA !default;
+$selection-bg: $analytics-light !default;
+
+/*-- scss:rules --*/
+
+// ---------- kill every motion ----------
+.reveal .slides section,
+.reveal .slides section > *,
+.reveal [data-transition],
+.reveal .backgrounds,
+.reveal .slide-background {
+  transition: none !important;
+  animation: none !important;
+}
+.reveal .fragment {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+// ---------- content slides ----------
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  text-align: left;
+  top: 0 !important;
+}
+
+.reveal h2 {
+  border-bottom: 4px solid $analytics-base;
+  padding-bottom: 0.18em;
+  margin-bottom: 0.7em;
+  display: block;
+}
+
+.reveal h3 {
+  color: $analytics-base;
+}
+
+// markers sit on the same left edge as paragraph text
+.reveal ul,
+.reveal ol {
+  display: block;
+  margin-left: 0;
+  padding-left: 1.05em;
+  list-style-position: outside;
+}
+
+.reveal ol {
+  padding-left: 1.35em;
+}
+
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ul,
+.reveal ol ol {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+}
+
+.reveal li {
+  margin-bottom: 0.45em;
+}
+
+.reveal li > p {
+  margin: 0;
+}
+
+.reveal li::marker {
+  color: $analytics-base;
+}
+
+.reveal strong {
+  color: $analytics-dark;
+}
+
+// ---------- section dividers ----------
+.reveal .slides section.divider,
+.reveal .slides section[data-background-color="#530153"] {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  h1, h2 {
+    color: #FFFFFF;
+    border-bottom: 4px solid $analytics-light;
+    padding-bottom: 0.2em;
+    display: inline-block;
+  }
+}
+
+.reveal .slides section.closing {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  h2 {
+    border-bottom: 4px solid $analytics-base;
+    padding-bottom: 0.25em;
+    margin-bottom: 0.6em;
+  }
+}
+
+// ---------- title slide ----------
+#title-slide {
+  display: flex !important;
+  flex-direction: column;
+  height: 100%;
+  text-align: left;
+
+  .title {
+    font-size: 1.55em;
+    line-height: 1.15;
+    margin: 0 0 0.15em 0;
+    border-bottom: 5px solid $analytics-base;
+    padding-bottom: 0.75em;
+  }
+
+  .subtitle {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 0.8em;
+    color: $analytics-base;
+    margin: 0.5em 0 0 0;
+  }
+
+  .author,
+  .institute,
+  .date {
+    font-size: 0.6em;
+    color: $analytics-grey;
+    margin: 0;
+  }
+
+  .author {
+    margin-top: 1.1em;
+    color: $analytics-dark;
+    font-weight: 700;
+  }
+
+  .institute {
+    font-style: italic;
+  }
+
+  .date {
+    margin-top: 0.3em;
+  }
+}
+
+.title-block-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+// ---------- logo strip ----------
+// used by the title slide partial and by any slide carrying .logo-strip
+
+.logo-strip {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin: 0;
+  padding-bottom: 28px;
+
+  // markdown wraps loose images in a <p>; dissolve it so the
+  // images are direct flex children, as in the partial
+  > p {
+    display: contents;
+  }
+
+  img {
+    max-height: 54px;
+    max-width: 200px;
+    width: auto;
+    object-fit: contain;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    background: none;
+  }
+}
+
+// logos above the content
+.logo-strip-top {
+  align-items: flex-start;
+  padding-top: 0;
+  padding-bottom: 28px;
+}
+
+// logos pinned under the content, on a flex column slide
+.logo-strip-bottom {
+  margin-top: auto;
+  align-items: flex-end;
+  padding-top: 24px;
+  padding-bottom: 0;
+}
+
+// dashed placeholders, shown until the YAML points at real files
+.logo-slot {
+  flex: 0 0 auto;
+  width: 210px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed $analytics-light;
+  border-radius: 3px;
+  background: $analytics-tint;
+  color: $analytics-base;
+  font-family: "Lato", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+// ---------- tables ----------
+.reveal table {
+  font-size: 0.72em;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.4em 0 0.4em 0;
+}
+
+.reveal p + table,
+.reveal p + div > table,
+.reveal p + .cell table {
+  margin-top: 1.4em;
+}
+
+.reveal table th {
+  font-family: "Montserrat", sans-serif;
+  color: $analytics-dark;
+  border-bottom: 2px solid $analytics-base;
+  text-align: left;
+  padding: 0.4em 0.8em 0.4em 0;
+}
+
+.reveal table td {
+  border-bottom: 1px solid $analytics-rule;
+  padding: 0.4em 0.8em 0.4em 0;
+}
+
+.reveal table th:last-child,
+.reveal table td:last-child {
+  padding-right: 0;
+}
+
+.reveal .small-table table {
+  font-size: 0.6em;
+}
+
+// ---------- code ----------
+.reveal pre {
+  box-shadow: none;
+  border-left: 4px solid $analytics-base;
+  background: $code-block-bg;
+  width: 100%;
+  margin: 0.6em 0;
+}
+
+.reveal pre code {
+  padding: 0.7em 0.9em;
+  font-size: 0.78em;
+  line-height: 1.4;
+}
+
+// ---------- chrome ----------
+.reveal .slide-number {
+  background: none;
+  color: $analytics-base;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+}
+
+.reveal .footer {
+  color: $analytics-grey;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+}
+
+.reveal .has-dark-background .slide-number,
+.reveal .has-dark-background .footer {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.reveal .progress {
+  color: $analytics-base;
+}
+
+// ---------- images ----------
+.reveal img {
+  border: none;
+  box-shadow: none;
+  background: none;
+  margin: 0;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.reveal figure {
+  margin: 0;
+}
+
+.reveal figure figcaption,
+.reveal .figure-caption,
+.reveal .quarto-figure figcaption {
+  font-size: 0.5em;
+  color: $analytics-grey;
+  text-align: left;
+  margin-top: 0.5em;
+}
+
+// side by side image and text
+.reveal .columns {
+  align-items: center;
+}
+
+// ---------- helpers ----------
+.source-note {
+  font-size: 0.5em;
+  color: $analytics-grey;
+  margin-top: 0.6em;
+}
+
+.callout-note-custom {
+  border-left: 4px solid $analytics-base;
+  background: $analytics-tint;
+  padding: 0.6em 0.9em;
+  margin: 0.6em 0;
+}
+
+.dark  { color: $analytics-dark;  font-weight: 700; }
+.base  { color: $analytics-base;  font-weight: 700; }
+.light { color: $analytics-light; }
