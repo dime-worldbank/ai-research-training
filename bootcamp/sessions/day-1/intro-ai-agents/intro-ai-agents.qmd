@@ -6,16 +6,107 @@ date: today
 # format/theme are inherited from bootcamp/_quarto.yml (revealjs + sessions/template/bootcamp-theme.scss)
 ---
 
-## Objective
+## The Two Things LLMs Can Do
 
-- Build a shared understanding of what AI agents are and what they can already do at the WBG.
+:::: {.columns}
 
-## Agenda
+::: {.column width="50%"}
+### Embedding Models
 
-- What is an AI agent?
-- Agentic AI vs. traditional chat assistants
-- Examples of agentic workflows at the WBG
+- Understand meaning of text, excels at:
+  - Summaries
+  - Finding task in prompt
+  - Identify gaps in available information
+- Universal topic understanding
+:::
 
-## Key Takeaways
+::: {.column width="50%"}
+### Generative Models
 
-- Placeholder — fill in with session content.
+- Create text by selecting the most probable word, one word at a time
+- Has generic knowledge
+- Can replicate common tasks
+:::
+
+::::
+
+## Reasoning Models
+
+:::: {.columns}
+
+::: {.column width="60%"}
+1. Prompt
+2. Review prompt for missing context
+3. Use tools to fetch context and update prompt
+4. Generate a draft answer
+5. Review answer completeness
+6. Answer
+:::
+
+::: {.column width="40%"}
+- Models review and improves input and its own output
+- Not a linear process
+- Steps are repeated until the LLM is satisfied
+:::
+
+::::
+
+## What is an Agent?
+
+:::: {.columns}
+
+::: {.column width="60%"}
+1. Prompt
+2. Review prompt
+3. Use tools
+4. Draft an answer
+5. Review completeness
+6. Answer or Action
+:::
+
+::: {.column width="40%"}
+- An agent is a system known as the agentic loop, which heavily depends on LLMs
+- While the LLM determines the next task to undertake, it is the agent that carries out the execution of that task
+- The LLMs typically run on servers in the cloud. Those servers do not have access to files on your computer. But the agent can have that
+:::
+
+::::
+
+## Where is the Agent Middleware Installed?
+
+Agents can be installed anywhere — but where it is installed matters to what information it can access.
+
+:::: {.columns}
+
+::: {.column width="33%"}
+### Internet-based services
+
+- Such as: chatgpt.com, claude.ai/code
+- Access:
+  - Publicly available information
+  - Content you’ve connected it to
+  - Not WB owned resources such as GitHub
+- Any project-specific context must be pasted manually into your prompt
+:::
+
+::: {.column width="33%"}
+### Enterprise intranet
+
+- Such as: mAI on WB intranet
+- Access:
+  - Publicly available information
+  - WB content ITS have connected it to
+- Most project-specific context must be pasted manually into your prompt
+:::
+
+::: {.column width="33%"}
+### On your computer
+
+- Such as: GitHub Copilot or Claude Code in VS Code, or Claude Desktop
+- Access:
+  - Publicly available information
+  - Project files on your computer
+  - Any project-specific context not in your files must be pasted manually into your prompt
+:::
+
+::::
