@@ -2,6 +2,14 @@
 
 Welcome to the **AI-Enabled Research Bootcamp**. This directory contains the training agenda, curriculum materials, and session documentation designed to equip researchers and staff at the World Bank Group with practical, agentic AI workflows.
 
+## Render session PDFs
+
+To render all session materials as PDFs, you can use the provided PowerShell script:
+
+```powershell
+.\render-pdfs.ps1
+```
+
 ## Directory Structure
 
 The [`sessions/`](sessions) folder contains day-by-day guides, schedules, objectives, and training materials:
