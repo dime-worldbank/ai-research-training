@@ -1,0 +1,7 @@
+/.quarto/
+**/*.quarto_ipynb
+
+# Ignore compiled files and generated content
+**/libs/
+sessions/**/*.html
+sessions/**/*.tex
