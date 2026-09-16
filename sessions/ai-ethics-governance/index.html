@@ -1332,7 +1332,9 @@ border-radius:4px;padding:.5em .8em;margin:.2em 0 .5em;text-align:left}
 .joinbox .jt strong{display:block;color:var(--navy);font-size:1.1em}
 .joinbox .joinurl{font-weight:700;color:var(--blue)}
 
-.stage-actions{margin:.4em 0 0;padding-left:1.1em}
+.stage-actions{margin:.4em 0 0;padding-left:0;list-style:none}
+.stage-actions li{position:relative;padding:.1em 0 .1em 1.5em;line-height:1.35}
+.stage-actions li::before{content:"\2610";position:absolute;left:0;top:.1em;color:var(--blue);font-size:1em}
 
 .rule-card{border-left:6px solid var(--blue);background:var(--pale);padding:.5em .9em;font-size:.85em;
 text-align:left;border-radius:4px;color:var(--navy);line-height:1.4}
@@ -1419,39 +1421,42 @@ var STAGE_Q=['What should AI support, and which judgments stay with us?',
 var STAGE_USE=["Concept notes, research questions, literature reviews, identification strategies and draft questionnaires.", "Survey programming, interviews and consultations, transcription, dataset searches, downloads and document extraction.", "Cleaning and merging data, harmonising names, constructing variables, translating responses and classifying text.", "Estimation code, tables and figures, interpretation of results and checks of robustness.", "Drafting and editing papers, translating summaries, preparing policy briefs and documenting the research package."];
 var STAGE_DO=[
   [
-    "Define the task AI supports and the judgments the researcher retains. For operational decisions, plan human review, override and a way to contest errors.",
-    "Check concept-note claims and references against original sources. Make sure the proposed methods fit the question, data and assumptions.",
-    "Review proposed survey questions and translations for leading wording, local meaning and whose experiences they miss. Pilot with people.",
-    "Plan permitted data use, participant information and any required privacy or ethics review before collection.",
-    "If AI will generate research variables or labels, budget human validation across relevant languages and groups."
+    "Decide which task AI will support and which judgments stay with you. For anything feeding an operational decision, plan for human review, override, and a way for people to contest errors.",
+    "If AI helped draft the concept note or a literature review, verify every claim and citation against its original source &mdash; AI-generated reference lists can include citations that are wrong or do not exist.",
+    "Confirm yourself that the proposed method fits the question, data, and assumptions. An AI-drafted design can look complete without being right for your case.",
+    "If AI drafted or translated survey questions, check them for leading wording and local meaning, then pilot with real respondents before fielding.",
+    "Before collecting any data, confirm what AI use is permitted under the data agreement, participant consent, and any required ethics or IRB review.",
+    "If AI will generate variables or labels later in the project, budget time now for human validation across the relevant languages and groups."
   ],
   [
-    "For surveys and interviews, check that participant information, consent and the collection protocol cover the intended recording and AI use.",
-    "Test survey code, skip logic and translations. Check who is missed through language, connectivity, nonresponse or the sampling approach.",
-    "Check AI transcripts and extracted values against source recordings or documents. Preserve uncertainty and missing responses rather than inventing answers.",
-    "For existing data, verify source, version, definitions and coverage. Check that downloads and extractions are complete.",
-    "Confirm permitted access and use before transferring data to a tool. Minimise sensitive content, including voices and interview text."
+    "Confirm participant consent, information sheets, and the collection protocol explicitly cover any recording or AI use you plan, such as transcription or translation.",
+    "If AI helped write survey code, skip logic, or translations, test it with realistic edge-case responses. Separately check who might be missed by language, connectivity, nonresponse, or the sampling approach.",
+    "Check every AI transcript or extracted value against the source recording or document. Preserve genuine uncertainty and missing responses &mdash; do not let AI invent an answer.",
+    "If AI helped locate or extract secondary data, verify the source, version, definitions, and coverage yourself, and confirm the download or extraction is complete.",
+    "Before sending any data to an AI tool, confirm you are authorised to under the data's classification, the data agreement, and, for identified data, the IRB protocol.",
+    "Strip or minimise personally identifiable content before it goes anywhere near an AI tool &mdash; names, exact locations, voices, and interview text that could identify a respondent. Removing names alone does not make a dataset safe to share."
   ],
   [
-    "Preserve original data and record transformations. Use only data permitted for the tool and purpose.",
-    "Understand AI-written code and test small examples, including missing values, duplicates and unmatched records.",
-    "Track observation counts, missingness, duplicates and merge results before and after transformations. Investigate unexpected changes.",
-    "When AI generates analytical content, record model/version, date, prompts and settings. Retain raw outputs in an authorised location.",
-    "If AI creates labels or variables, validate against human-reviewed examples, including relevant groups and languages."
+    "Keep the original data untouched and log every transformation. Only send a tool data that is permitted for that data's classification and purpose.",
+    "Read and understand AI-written code before you run it. Test it on small examples, including missing values, duplicates, and unmatched records.",
+    "Before and after any AI-assisted transformation, compare observation counts, missingness, and merge results. Investigate every unexpected change &mdash; AI-written code can silently drop or duplicate records.",
+    "When AI generates analytical content, record the model, version, date, prompts, and settings, and keep the raw outputs in an authorised location.",
+    "If AI creates labels or variables, validate them against human-reviewed examples, including the relevant languages and groups."
   ],
   [
-    "Confirm the intended sample, variable definitions, weights and model specification. Apply the methodological checks the research question requires.",
-    "Check every figure and table against underlying results: values, labels, axes, units, sample sizes and uncertainty.",
-    "Check that interpretations preserve magnitude, uncertainty and limitations, and distinguish association from causation.",
-    "When AI-generated measures enter the analysis, assess how their errors affect the findings, including differences across groups.",
-    "Have someone with the relevant expertise review substantive conclusions. Successful code execution does not establish correctness."
+    "Whether or not AI wrote the estimation code, confirm yourself that the sample, variable definitions, weights, and model specification are correct, and apply the methodological checks your question requires.",
+    "Check every AI-drafted or AI-formatted figure and table against the underlying results: values, labels, axes, units, sample sizes, and uncertainty.",
+    "If AI helped write the interpretation, check that it preserves magnitude, uncertainty, and limitations, and does not quietly turn an association into a causal claim.",
+    "When an AI-generated measure enters the analysis, assess how its errors affect the findings, including whether they differ across groups.",
+    "Have someone with the relevant expertise review the substantive conclusions. Code running successfully does not mean it is correct."
   ],
   [
-    "Verify claims and citations against original sources. Check consistency across text, tables, figures and the abstract.",
-    "Ensure translations and policy summaries preserve uncertainty and qualifications. Do not turn a tentative finding into a firm recommendation.",
-    "Disclose AI assistance following the applicable institutional and publication requirements.",
-    "In the package, document AI-generated analytical outputs and link the records from the README. For coding assistance alone, retain scripts and consider a brief disclosure. <a href=\"https://worldbank.github.io/wb-reproducible-research-repository/guidance/AI_reproducibility_guidelines.html\" target=\"_blank\" rel=\"noopener\">RRR guidance</a>",
-    "Review what may be shared, including data, prompts, outputs and third-party material."
+    "Verify every claim and citation against the original source, especially anything AI helped draft, and check consistency across the text, tables, figures, and abstract.",
+    "If AI drafted a translation or policy summary, confirm it preserves the paper's uncertainty and qualifications rather than turning a tentative finding into a firm recommendation.",
+    "Disclose meaningful AI assistance at submission, following the target journal's policy. Requirements vary and are getting stricter &mdash; for example, the American Economic Association requires authors to describe any AI use in drafting or editing; AI cannot be listed as an author, and authors remain solely accountable for fact-checking its output.",
+    "If you are reviewing a paper, disclose any AI use in your review too, and use only tools that guarantee the manuscript will not be used to train a model &mdash; several journals, including the AEA, now require this explicitly.",
+    "In the reproducibility package, document AI-generated analytical outputs and link the records from the README. For coding assistance alone, retain the scripts and consider a brief disclosure. <a href=\"https://worldbank.github.io/wb-reproducible-research-repository/guidance/AI_reproducibility_guidelines.html\" target=\"_blank\" rel=\"noopener\">RRR guidance</a>",
+    "Review what may be shared beyond the paper itself &mdash; data, prompts, outputs, and any third-party material."
   ]
 ];
 function chip(name,color,on){ return '<span class="chip '+(on?'on':'off')+'" style="--stage:'+color+'">'+name+'</span>'; }
