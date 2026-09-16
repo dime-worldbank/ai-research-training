@@ -1,3 +1,4 @@
 format:
   revealjs:
+    pdf: true
     theme: [default, sessions/template/bootcamp-theme.scss]
