@@ -21,16 +21,204 @@ source("../../../_extensions/bootcamp/setup_palettes.R")
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-## Objective
+# Scope of This Session {background-color="#530153"}
 
-- Direct AI agents efficiently through effective prompting and reusable skills.
+## Scope of This Session
 
-## Agenda
+- Introduction to skills
+  - What are skills?
+  - What are their formats?
+  - How do I install and use them?
+- Exercise
+  - Compare agents without onboarding, with a memory file, and with skills
+  - Optional exercise demonstrating full coding-agent capability
 
-- Principles of good prompting
-- What is an AI skill?
-- Building and reusing skills across projects
+# Recap and Introduction {background-color="#530153"}
 
-## Key Takeaways
+## Recap
 
-- Placeholder — fill in with session content.
+- AI is a skilled but naive RA requiring guidance.
+- Agents search files for prompt-relevant guidance to add to the context window.
+- Use memory files for project-specific content you always want AI to find or that cannot be found in your files.
+- Cramming every use case into the memory file makes it dominate the context window.
+- Irrelevant information competes for and distracts the AI's attention from the specific prompt.
+
+## Progressive Disclosure
+
+- Instructions can be loaded only when the agent deems them relevant.
+- This is called **progressive disclosure**. It is central to skills, but not unique to them.
+- In the last session, we used progressive disclosure to point to codebooks from the memory file.
+
+```markdown
+### Input Datasets
+- data/raw/census_2011.csv - Household demographics. Main variables: household ID,
+  income. When needed, full codebook: data/raw/census_2011_codebook.csv
+```
+
+# Skills: Purpose {background-color="#530153"}
+
+## Memory Files vs. Skills
+
+| | Memory files | Skills |
+|---|---|---|
+| Typical purpose | Domain knowledge and instructions relevant for every prompt | Detailed instructions relevant only for specific prompt use cases |
+| Added to every new context window? | Yes | No, only when the agent thinks they are needed |
+| Need to be token-efficient? | Yes, because they are always loaded | Much less so, because they are loaded only when relevant |
+| Project-specific or domain-specific? | Mostly project-specific; reuse but adapt common sections | Domain-specific, including tools, research fields, econometrics, and personal preferences; reusable across projects |
+
+## Efficient Way to Provide Details
+
+- All available skill descriptions are loaded into each new context window.
+- Only when a skill is relevant is the full content loaded.
+- Therefore, skills can contain details such as:
+  - Step-by-step instructions for a task
+  - What the agent should ask or confirm before proceeding
+  - Templates for the expected output format
+
+# Skills: Format {background-color="#530153"}
+
+## Skills Format
+
+- Skills are files with natural-language content, similar to memory files.
+- A skill requires frontmatter with at least a name and a description.
+- The description is not what the skill does. It tells the agent when to use it and when not to use it.
+
+```markdown
+---
+name: new-shiny-dash
+description: Use when setting up a new dashboard - use when Shiny or no specific
+  dashboard tool is specified
+---
+# New Shiny Dashboard Skill
+Always start from the templates in `templates/` and build toward one of the
+`examples/`. If not sure which example is the best fit, ask the user.
+Then populate it by [...]
+```
+
+## Open-Source Folder Format
+
+- Minimum requirement: a `SKILL.md` file in a folder named after the skill.
+- The skill folder may contain resources in subfolders referenced by the skill file.
+- The skill is everything in the skill folder; resources are used through progressive disclosure.
+
+```text
+skills/
+|-- stata-skill/
+|   `-- SKILL.md              Instructions for the Stata skill
+`-- new-shiny-dash/
+    |-- SKILL.md              Instructions for the skill
+    |-- templates/             Files for the agent to start from
+    `-- examples/              Examples of end results
+```
+
+## Skills Folder Location
+
+- The skill folder has a standardized format, but where to save it differs by agent.
+- Similar to memory files, agents will eventually find and use skills even when the location is not their native one.
+
+| Skill folder location | Agent | Cross-agent compatibility |
+|---|---|---|
+| `.agents/skills/` | Open-source format, such as Cursor and Codex | Commonly used as a backup by other agents |
+| `.claude/skills/` | Claude | Well-recognized and quickly found by most agents |
+| `.github/skills/` | GitHub Copilot | Less well-recognized, but eventually found and used |
+
+# Skills: Installation {background-color="#530153"}
+
+## Installation
+
+- Many skills are not project-specific. Install skills written by others.
+- More skills do not automatically mean a better agent. Agents are nudged to use skills over generic knowledge.
+- Sometimes you want general knowledge. Too many skills can make the agent find a skill when it is not needed.
+- Do not worry about adding a few more skills; the point is not to install the whole universe of skills.
+
+## Manual Installation
+
+- A skill folder only needs to be saved in your project.
+- Manual installation works anywhere, regardless of how the skill was published.
+- Knowing how to install manually helps with troubleshooting.
+
+### How to Install
+
+1. Locate or create your skills folder.
+2. Download or copy the full skill folder, including all its content, into your skills folder.
+3. Type `/skills` in the Agent and confirm that your skill is there.
+
+## Demo: Manual Installation
+
+## Installation Tools
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Command line
+
+- Requires basic knowledge of command-line tools.
+- Install Node.js using the installation guide or eServices Software Installation.
+- Follow the Skills documentation at <https://skills.sh/docs>.
+- This is emerging as an industry standard, so use it if the CLI is not intimidating.
+:::
+
+::: {.column width="50%"}
+### VS Code extension
+
+- Essentially a wrapper for the CLI tool.
+- Requires no CLI knowledge.
+- No extension has yet been published by a well-established trusted source.
+- Once VS Code or another trusted source releases an extension with many downloads, use this approach.
+:::
+
+::::
+
+Manual installation is always available. Use it until a tool you trust becomes available.
+
+# Skills: Library and Examples {background-color="#530153"}
+
+## Skills Library
+
+- We are still populating the library at <https://github.com/dime-worldbank/coding-agents-hub>.
+- As with memory files, this is where we want to share skill examples for different purposes.
+- Share skills that you have used and found useful.
+
+## Example Skill: Stata
+
+- Stata usage is much smaller than R and especially Python, so Stata is less represented in an agent's generic knowledge.
+- Adding a Stata skill to a project with Stata code can make a big difference.
+- Example: <https://github.com/dylantmoore/stata-skill>
+
+## Example Skill: Literature Review
+
+Example: <https://meleantonio.github.io/awesome-econ-ai-stuff/skills/literature/lit-review-assistant/index>
+
+```markdown
+---
+name: lit-review-assistant
+description: Search, summarize, and synthesize economics literature
+---
+[...]
+## Instructions
+### Step 1: Define the Research Domain
+Ask the user:
+1. What is your specific research question?
+2. What's the scope? (Narrow field survey vs. cross-disciplinary review)
+3. What databases do you have access to? (JSTOR, EconLit, Google Scholar, NBER)
+4. What time period is relevant?
+5. Are there seminal papers to start from?
+[...]
+```
+
+## mAI Skills
+
+- mAI is not a code agent with access to your code files, so the use case is different, but it is a great place to experiment.
+- Go to <https://ai.worldbank.org/mai/skills/> and use the **Create Skill** wizard.
+
+# Exercises {background-color="#530153"}
+
+## Exercise
+
+- Exercise repository: <https://github.com/dime-worldbank/coding-agent-exercise>
+- We will focus on the `main-dofile` exercise.
+- `research-roles-skills` demonstrates a setup for a more advanced use case.
+
+# Thank You! {background-color="#530153"}
+
+## Questions?

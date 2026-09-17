@@ -21,16 +21,310 @@ source("../../../_extensions/bootcamp/setup_palettes.R")
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-## Objective
+# Scope of This Session {background-color="#530153"}
 
-- Learn how to onboard an AI agent to a specific research project using memory files.
+## Scope of This Session
 
-## Agenda
+- AI onboarding: how to make it work in your specific context
+- How to format and set up memory files
+- What to put in a memory file
 
-- What are memory files and why they matter
-- Structuring a project README/AI memory file
-- Live example: writing a memory file
+# Recap and Introduction {background-color="#530153"}
 
-## Key Takeaways
+## Populating the Context Window
 
-- Placeholder — fill in with session content.
+Remember:
+
+- The LLM is new to your project for every new request
+- The LLM only has access to what is in its context window
+- Project-specific context must be inserted into the context window; otherwise, the LLM falls back on generic answers
+
+## Do Not Rely Only on Agents for Context
+
+Agents can browse files and find context, but this is:
+
+- Token-expensive to repeat each time
+- Non-deterministic: the agent may gather different context each time
+- Incomplete: not all required context can be found in project files
+
+Agents have features for humans to provide context in an efficient and predictable way. We should use them.
+
+## Do I Really Need to Worry About Token Efficiency?
+
+- Maybe not now, but eventually. The more workflows we hand to AI, the more tokens we will use.
+- The less we use tools that optimize token usage, the more we will have to pay to AI companies.
+- Efficient token usage -> smaller context windows -> locally hosted models become feasible -> safer use with confidential data
+
+# Memory Files: Purpose {background-color="#530153"}
+
+## Agent Terminology Overload
+
+- Are you overwhelmed by terms such as memory files, skills, and sub-agents?
+- Do not be. They are similar and serve similar purposes, but they are loaded differently into the context window.
+- Putting everything in the memory file is never wrong, just often not the most optimized option.
+- We will set aside the alternatives for now and return to them when they are a better fit.
+
+## Memory Files
+
+In prompt engineering, a central recommendation is to include as much context as possible in each prompt.
+
+- Think of the memory file as a project-specific prefix to all your prompts, loaded into each new context window.
+- Add both what the agent gathers from project files each time and relevant context the agent will not find in those files.
+
+## Steer the Model Toward Your Topic
+
+LLMs receive prompts on vastly different topics all the time:
+
+- A scientist designing a research project
+- Someone setting up a new exercise routine
+- Anything else humans can think of
+
+LLMs have no knowledge of what your prompt is about until they receive and process your context window. We get better results if we immediately draw their attention to our topic of interest.
+
+## Steer the Model Toward Your Topic
+
+The LLM's neural networks capture relations across all topics on the internet. Draw the model's attention to relevant topics by mentioning them explicitly:
+
+- Coding agent
+- Research project
+- Development Economics
+- Infrastructure
+
+## What Do LLMs Know?
+
+- LLMs do not store facts; they predict the next word using probabilities.
+- When answers are factually correct, it is because sentences with the correct answer are commonly found online.
+- Research questions typically lack universally valid correct answers that are commonly repeated online.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Common factual question:**
+
+What is the capital of France?
+
+The capital of France is ...
+:::
+
+::: {.column width="50%"}
+**Research question:**
+
+What control variables are needed to make my regression valid?
+
+You need to control for ...
+:::
+
+::::
+
+## What Can You Trust a Coding Agent to Do?
+
+- A coding agent reliably reproduces patterns seen thousands of times online. Trust it for generic tasks such as dashboards, API clients, visualizations, and utility functions.
+- Has it seen the econometric judgment behind your research?
+- Has it seen your exact regression specification a thousand times?
+- Has it seen scripts cleaning your exact dataset a thousand times?
+- Agents can still assist, but we need to onboard them.
+
+## What Do RAs Know?
+
+- Would the best RA from the best master's program contribute without any onboarding?
+- AI onboarding is approximately RA onboarding.
+- Use resources previously used to onboard RAs as the starting point for onboarding AIs.
+- Upload RA onboarding documents and ask the AI to summarize the information most relevant to contributing to code.
+
+# Memory Files: Format {background-color="#530153"}
+
+## Markdown
+
+- Instructions to agents are written in Markdown, which is easily read by humans and machines.
+- Markdown uses symbols for formatting, similar to LaTeX but much simpler.
+- Formatting is not required for agents; it makes the text easier for humans to read.
+
+| You write | How it appears |
+|---|---|
+| Regular text | Regular text |
+| `# Level 1 heading` | Level 1 heading |
+| `## Level 2 heading` | Level 2 heading |
+| `**bold text**` | **bold text** |
+| `1. numbered point` | 1. numbered point |
+| `` `inline code` `` | `inline code` |
+| `[link text](url)` | [link text](url) |
+
+### Raw Markdown
+
+```markdown
+# Project Notes
+## Data Sources
+Raw files are saved in data/raw.
+```
+
+## Content Format
+
+- Think of a memory file as a prefix to all your prompts.
+- Prompts are natural-language instructions without technical requirements, and so are memory files.
+- Since memory files are added to each context window, they tend to be less verbose and use bullet points and other formatting that makes them concise.
+
+## Memory File Name Format
+
+- Different agents look for different memory file names when loading automatically.
+- Agents often use `AGENTS.md` as a fallback if the expected file name is not found.
+- Even without a match or fallback, agents can find memory files by browsing project files.
+
+| Name | Agent | Cross-agent compatibility |
+|---|---|---|
+| `AGENTS.md` | Cursor, Codex, and others | Widely recognized and a common fallback |
+| `CLAUDE.md` | Claude | Well-recognized agent-specific name, though not always loaded directly |
+| `.github/copilot-instructions.md` | GitHub Copilot | Eventually located by other agents, but slower because it is in a subfolder |
+| `GEMINI.md` | Gemini | Less common, but eventually located by other agents |
+
+## Setup
+
+- Agents have built-in functions called slash commands.
+- One such command is `/init`, or a variation of that name; it sets up a memory file.
+- The current recommendation is to delete most of what the agent adds during `/init`, because it is mostly information the agent can rediscover.
+
+## Demo: Set Up a Memory File
+
+# Memory Files: Supporting Resources {background-color="#530153"}
+
+## File Paths
+
+- Agents can follow paths pointing to additional resources, such as `folder/folder/file.md`.
+- Guide the agent when to load each resource so it is added to the context window only when relevant.
+- In many cases, features like skills are a better fit for this.
+
+## Memory File Content
+
+- There is no universal best practice yet for these files.
+- Coding agents are made by and for software developers.
+- Making these agents work for our field is not only a technical question; it is also a domain-knowledge question.
+
+### Possible Sections
+
+- Project description
+- Folder structure
+- Data descriptions
+- Software preferences
+- Research design
+- Rules
+
+## Please Be Brave Early Explorers!
+
+- Even though no one feels like an expert, we need to show each other our experiments.
+- Only by building a shared body of memory-file knowledge for our field will a best practice emerge.
+- We want to start a collection of memory files and turn best practices into templates.
+
+# Memory File Content: Project Description {background-color="#530153"}
+
+## Project Description
+
+- For each request, the LLM looks at your project for the first time. Give it some background.
+- Use LLMs to make a short summary of your concept note or analysis plan.
+- Focus on details important to someone implementing your project, not details important to someone approving or funding it.
+
+## Project Description: What Sets Your Research Apart?
+
+Focus on details that steer the model away from textbook examples or what private-sector data scientists do.
+
+| Probably better | Probably worse |
+|---|---|
+| Developing-country context | Exact country context |
+| The novel research question | Just the general research topic |
+| The type of data sources | A generic description of the topic |
+
+## Folder Structure
+
+- Tell the agent where to find what and where to save what.
+- Do not just list folders; also explain their intended usage.
+
+```text
+project/
+|-- data/
+|   |-- raw/       Raw datasets; do not save processed data here
+|   `-- processed/ Modified datasets ready for analysis
+|-- code/
+|   |-- clean/     Data-cleaning scripts
+|   `-- analysis/  Statistical analysis scripts
+`-- paper/         Manuscript and related documents
+```
+
+## Data Descriptions
+
+- Describe the location of input datasets.
+- Describe the main variables in each dataset.
+- Point to a codebook for full documentation.
+
+### Input Datasets
+
+- `data/raw/census_2011.csv`: household demographics. Main variables: household ID and income. Full codebook: `data/raw/census_2011_codebook.csv`.
+- `data/raw/firm_panel.dta`: firm-level output. Main variables: firm ID and sales. Full codebook: `data/raw/firm_panel_codebook.csv`.
+- `data/raw/prices_monthly.csv`: monthly commodity prices. Main variables: commodity, region, month, and price. Full codebook: `data/raw/prices_monthly_codebook.csv`.
+
+## Software Preferences
+
+- List the tools you want to use.
+- Specify the programming language and packages.
+- Specify data packages, such as `dplyr` versus `data.table`.
+- Specify output formats for tables and visualizations.
+- Specify the dynamic document type.
+
+### Example
+
+- Write data-cleaning and analysis code in Stata.
+- Use Python or R only for data visualization.
+- Use LaTeX for the report and export all tables in `.tex` format.
+
+## Programming Preferences
+
+- Include preferred best practices, such as using a main do-file that runs all other code.
+- Include naming conventions.
+
+### Code Writing Guidelines
+
+- Make sure all code can be run through a single script called `code/main.do`.
+- Each time you create a new script, add it to the workflow in `main.do`.
+- Write clean and well-commented code; human readability is important.
+
+## Research Design and Preferences
+
+- This is an area where you will always know better than the agent what is valid in your context.
+- The next session will provide a more specific tool, skills, for detailed steps. For now, list a high-level description of the research design.
+- Include the randomization strategy, units of randomization, treatment modality, and so on.
+- Include preferences such as "always use OLS."
+
+## Rules
+
+Telling the agent what not to do is just as important as telling it what to do.
+
+Examples:
+
+- Packages and tools not to use
+- Files not to edit
+- Anything else you have ever told an RA not to do
+
+# Memory Files: Adaptation {background-color="#530153"}
+
+## Templates and Adaptation
+
+We have started a resource hub at <https://github.com/dime-worldbank/coding-agents-hub/tree/main/memory-files>.
+
+Use these examples as inspiration and adapt them to your context.
+
+## Demo: Examples of Memory Files
+
+## Links
+
+ITS's guide for requesting, setting up, and troubleshooting GitHub Copilot: <https://github.com/worldbank/ospo/tree/main/docs/copilot>
+
+To view that page, you need to be a member of a WB GitHub account.
+
+# Limitations and Next Steps {background-color="#530153"}
+
+## Keep Memory Files Concise
+
+- Adding all onboarding information to the memory file would soon leave little space for the actual task.
+- Optimized solutions load context only when needed. The most common is skills, which is the topic of the next session.
+- It is still better to add relevant context to the memory file, even if it is not the most optimized option, than to omit it.
+
+# Thank You! {background-color="#530153"}
+
+## Questions?

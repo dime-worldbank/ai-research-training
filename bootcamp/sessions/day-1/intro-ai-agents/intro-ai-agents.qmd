@@ -20,7 +20,13 @@ source("../../../_extensions/bootcamp/setup_palettes.R")
 
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
-# Section {background-color="#530153"}
+# What are agents? {background-color="#530153"}
+
+## Scope of This Session
+
+- Overview of agents, with an emphasis on and examples from coding agents
+- Instructions for installing coding agents on WB computers
+- Tools and context windows: how agents gather additional information relevant to your prompt
 
 ## The Two Things LLMs Can Do
 
@@ -45,6 +51,166 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 :::
 
 ::::
+
+# Tools {background-color="#530153"}
+
+## LLMs Cannot Do Math
+
+### What is "3 x 7"?
+
+How many of you calculated it by:
+
+- Adding 7 three times: 7 + 7 = 14, and 14 + 7 = 21
+- Fetching the answer from memory
+
+LLMs can solve "3 x 7" because it appears in many multiplication tables in the training data. However, "35 x 22" is rarely present in multiplication tables, so LLMs do not reliably know the answer.
+
+## AI Platforms Can Do Math
+
+- If you ask ChatGPT "What is 35 x 22?", it can still answer correctly. How?
+- AI systems are more than LLMs: they have tools with instructions for when to use them
+- The model identifies a math question, sends the computation to a calculator, and receives the answer
+
+### Example
+
+Bob, Alice, and Tom have 7 apples each. How many apples do they have in total?
+
+## Code Agents on WB Computers
+
+# Code Agents on WB Computers {background-color="#530153"}
+
+## Restrictions on Agents at the WB
+
+- This field changes more quickly than ITS/OIS approves tools
+- While we do not have direct access to every new tool, we have access to similar tools with similar features
+- Start practicing those features now so you can adapt more quickly as more tools become available
+
+## Which Agent is Best?
+
+- Any definite answer will soon be outdated, so this session does not attempt one
+- Anthropic has pioneered many features, and Claude is currently a market leader
+- Onboarding an agent to your project's specific context may matter more than using the currently best agent
+- Agent onboarding is the topic for the next two sessions and will be relevant regardless of which agent we use in the future
+
+## Available Agents at the WB
+
+- ITS has approved GitHub Copilot and provides licenses free to teams; it shares similar features with Claude Code
+- Claude Code applications are not approved, but are being piloted
+- GitHub Copilot is used through an extension in the VS Code editor and includes a light version of Claude
+- The light version does not have Claude's full UI and has a smaller context window
+
+## Set Up GitHub Copilot on WB Computers
+
+- ITS licenses require a GitHub account. See the public best-practice guide.
+- You need to be a member of a WB GitHub organization. Request membership through eService.
+- Request a GitHub Copilot license through WB GitHub member access, or email `github_enterprise_admin@worldbankgroup.org`.
+- Request a VS Code installation through eService.
+- The remaining steps will be demonstrated now.
+
+## Demo: Brief Introduction to VS Code
+
+Demo project: <https://github.com/dime-worldbank/ce-coding-agent-demo>
+
+## Demo: Set Up GitHub Copilot
+
+## Demo: Use Claude through GitHub Copilot
+
+## Demo: Manage Spending
+
+# Context Window {background-color="#530153"}
+
+## Context Window
+
+- The context window holds the information and details that generative models use to generate an answer one word at a time
+- Only what is in the context window is available to the LLM; anything relevant that is missing will be guessed from the model's generic knowledge
+- Including project-specific details in the context window is how a coding agent can produce quality output even when correct answers are not frequently available on the internet
+
+## Tools
+
+- Tools add content to the context window
+- If the context window only contains the human prompt "What is 35 x 22?", the generative model may guess a number
+- If the AI system has a calculator tool, the calculation is sent to the calculator and the answer is inserted into the context window
+- The generative model can then generate natural language that answers the math question
+
+### Calculator tool result
+
+`35 x 22 = 770`
+
+## Agentic Loop and Context Window
+
+:::: {.columns}
+
+::: {.column width="55%"}
+1. Prompt
+2. Review prompt
+3. Use tools
+4. Draft an answer
+5. Review completeness
+6. Answer or action
+
+The agent repeats the review, tool-use, drafting, and completeness steps as needed.
+:::
+
+::: {.column width="45%"}
+### Context window contents
+
+- System prompt
+- Human prompt: "What is 35 x 22?"
+- Calculator tool result: `35 x 22 = 770`
+- Additional context added by the agent
+:::
+
+::::
+
+## Coding Agent Tools
+
+For coding agents, the main tool is searching project files and inserting the relevant parts into the context window.
+
+### Which prompt gets the most correct and helpful answer?
+
+**A.** Paste only the error code and ask for a solution.
+
+**B.** Paste the error code and relevant parts of project files that could be related to the error.
+
+Option B is a central best practice in prompt engineering. Coding agents do this best practice for you.
+
+## Sessions
+
+- Each chat or agent execution is called a session. Each session has its own context window.
+- Each prompt and answer is added to the context window, and the full conversation is submitted for each new prompt.
+- Edit and resubmit your previous prompt rather than asking the AI to "forget" previous prompts or answers.
+
+## Manage Your Context Window
+
+- All models have a maximum context window. If the maximum length is reached, the model will summarize earlier parts.
+- The more content in the context window, the more details the model must account for in its attention.
+- Reset the context window by starting a new chat or session when changing topic.
+
+## Planning Mode
+
+- Use planning mode to build a context window for a more complex task.
+- In planning mode, the agent asks for human input only when it identifies missing relevant context.
+- The process repeats until you decide the remaining gaps can be filled by the model's generic knowledge. Then ask it to execute.
+
+## Demo: Planning Mode
+
+# Next Sessions {background-color="#530153"}
+
+## Next Sessions: Onboarding
+
+- Agents are good at building the context window for you, but as a domain expert, you are even better
+- The next two sessions cover memory files and skills, which can provide context for all or specific prompts
+- Memory and skills make agents faster and reduce token consumption
+- They also reduce the risk that agents guess from generic knowledge that does not apply to our specific context
+
+## Next Sessions: Sign Up
+
+- **Memory files** - 12:30 PM to 2:00 PM EDT, June 25 - sign up through the session registration link
+- **Skills** - 9:30 AM to 11:00 AM EDT, July 7 - sign up through the session registration link
+
+# Thank You! {background-color="#530153"}
+
+## Questions?
 
 ## Reasoning Models
 
