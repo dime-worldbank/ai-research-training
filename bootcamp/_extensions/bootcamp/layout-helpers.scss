@@ -1,0 +1,8 @@
+/*-- scss:rules --*/
+// specificity must beat Quarto's `div.columns { display: initial }` reset
+div.columns.v-center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
