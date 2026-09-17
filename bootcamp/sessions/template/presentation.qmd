@@ -6,7 +6,7 @@ institute: "Team or Unit"
 # Update to date for this session
 date: 6 Oct, 2026
 date-format: "D MMMM YYYY"
-footer: "AI-enabled Research Bootcamp"
+footer: "AI-Enabled Research Bootcamp"
 # Three horizontal logos on the title slide.
 # Leave commented out to keep the dashed placeholders.
 logos:
