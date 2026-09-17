@@ -9,8 +9,8 @@ footer: "AI-enabled Research Bootcamp"
 # Three horizontal logos on the title slide.
 # Leave commented out to keep the dashed placeholders.
 logos:
-  - images/logos/LOGO_BLACK_WB_DEC_01.png
-  - images/logos/AI BOOTCAMP - Branding (13).png
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
 
 format: bootcamp-revealjs
 ---
