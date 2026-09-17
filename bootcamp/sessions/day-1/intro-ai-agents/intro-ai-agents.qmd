@@ -3,7 +3,7 @@ title: "Introduction to AI Agents"
 subtitle: "Day 1 · Intro to Agentic AI at the WBG"
 author: "Impact Analytics"
 institute: "Impact Analytics"
-date: today
+date: 5 Oct, 2026
 date-format: "D MMMM YYYY"
 footer: "AI-enabled Research Bootcamp"
 logos:

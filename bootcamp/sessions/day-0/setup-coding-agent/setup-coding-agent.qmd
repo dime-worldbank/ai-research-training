@@ -3,7 +3,7 @@ title: "Set Up a Coding Agent on Your Computer"
 subtitle: "Hands-on · Day 0 · Setup for AI-enabled Research"
 author: "Impact Analytics"
 institute: "Impact Analytics"
-date: today
+date: 1 Oct, 2026
 date-format: "D MMMM YYYY"
 footer: "AI-enabled Research Bootcamp"
 logos:
