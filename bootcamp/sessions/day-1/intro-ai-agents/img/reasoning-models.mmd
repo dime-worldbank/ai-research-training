@@ -11,7 +11,7 @@ flowchart TB
   end
 
     reviewPrompt <--> tool
-    reviewAnswer <--> generate
+    generate <--> reviewAnswer
     prompt["Prompt"]:::whiteBox --> reviewBox
     reviewBox <--> generateBox
     generateBox --> answer["Answer"]:::whiteBox

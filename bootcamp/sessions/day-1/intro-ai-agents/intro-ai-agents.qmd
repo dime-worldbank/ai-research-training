@@ -36,7 +36,7 @@ No matter how amazed we are with new AI capabilities the last year, the Large La
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%" }
 ### Embedding Models
 
 - Understand meaning of text, excels at:
@@ -58,17 +58,17 @@ No matter how amazed we are with new AI capabilities the last year, the Large La
 
 ## Example of the Reasoning models
 
-:::: {.columns}
+:::: {.columns .v-center-container}
 
-::: {.column width="50%"}
-
-  Reasoning models
+::: {.column width="50%" }
 
   ![](./img/reasoning-models.svg)
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="50%" }
+
+### Reasoning Models
 
 - Models review and improves input and its own output
 - Not a linear process
