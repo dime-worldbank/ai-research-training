@@ -2,13 +2,13 @@
 
 Welcome to the **AI-Enabled Research Bootcamp**. This directory contains the training agenda, curriculum materials, and session documentation designed to equip researchers and staff at the World Bank Group with practical, agentic AI workflows.
 
-## Render session PDFs
 
-To render all session materials as PDFs, you can use the provided PowerShell script:
+## Template
 
-```powershell
-.\render-pdfs.ps1
-```
+To use the template for a new session, only copy the `bootcamp/sessions/template/presentation.qmd` file to the folder for that session. 
+
+If you save it under the path `bootcamp/sessions/<day>/<session-topic>/<session-topic>.qmd`,  then all `../../..` relative paths within the presentation will continue to work correctly, and the template formatting will work out of the box.
+
 
 ## Directory Structure
 
@@ -29,6 +29,10 @@ The [`sessions/`](sessions) folder contains day-by-day guides, schedules, object
 - **[Day 4: AI-enabled Workflows for Advanced Users](sessions/day-4/README.md)**  
   *Advanced & Scalable AI*: World Bank AI API integration in MEGA, AI-assisted web apps and dashboards, Model Context Protocols (MCPs), multi-agentic systems, geospatial analysis, and Git-based output verification.
 
-- **[Template Directory](sessions/template/README.md)**  
-  *Session Templates*: Standardized templates and boilerplate resources to build and format new training sessions for Impact Analytics.
+## Render session PDFs
 
+To render all session materials as PDFs, you can use the provided PowerShell script:
+
+```powershell
+.\render-pdfs.ps1
+```
