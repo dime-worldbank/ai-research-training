@@ -372,7 +372,7 @@ var PICK={};
 /* Security & privacy: which tool, which data */
 PICK.tool={
   t_mai:'<table>'+
-    '<tr><td class="k">Status</td><td>Live &middot; all staff &middot; free. Product owner: Shivnaren Srinivasan.</td></tr>'+
+    '<tr><td class="k">Status</td><td>Live &middot; all staff &middot; free.</td></tr>'+
     '<tr><td class="k">Cleared for</td><td class="flag-ok">WBG Restricted Data and Personal Data, per AI@WBG guidance.</td></tr>'+
     '<tr><td class="k">Trains on your prompts?</td><td>No &mdash; operates within WBG security controls.</td></tr>'+
     '<tr><td class="k">Still applies</td><td>Tool approval is not data authorization.</td></tr>'+
