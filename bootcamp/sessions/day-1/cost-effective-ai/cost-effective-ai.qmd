@@ -1,7 +1,7 @@
 ---
 title: "Using AI Agents Efficiently and Cost-Effectively"
 subtitle: "Day 1 · Intro to Agentic AI at the WBG"
-author: "Impact Analytics"
+author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
 date: 5 Oct, 2026
 date-format: "D MMMM YYYY"
