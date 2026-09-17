@@ -18,6 +18,11 @@ format:
     height: 720
 ---
 
+
+
+
+## Have you ever...?
+
 ```{=html}
 <style>
 /* ============ shared tokens ============ */
@@ -101,6 +106,25 @@ format:
 .src-bad{color:#8E2A20;font-weight:700}
 .src-ok{color:#155C3B;font-weight:700}
 .shot-pane[hidden]{display:none}
+.case-pair{display:grid;grid-template-columns:1fr 1fr;gap:.6em;align-items:stretch}
+.case-pair .case-line{margin:0;font-size:.68em}
+.thanks{display:flex;flex-direction:column;align-items:center;gap:.8em;margin-top:.6em;text-align:center}
+.thanks-line{font-size:1.05em;color:var(--navy);line-height:1.35;max-width:32em}
+.thanks-line strong{color:var(--blue)}
+.thanks-gif{display:flex;flex-direction:column;align-items:center;gap:.2em}
+.thanks-gif iframe{border-radius:8px;max-width:100%}
+.thanks-gif a{font-size:.4em;color:#5B6B7A}
+.how-list{display:grid;grid-template-columns:40% 1fr;gap:.55em 1.1em;align-items:center;margin:.3em 0 .4em;text-align:left}
+.how-list .ex{font-size:.78em}
+.how-list .ex .quiz-option{margin:0}
+.how-list .say{font-size:.72em;line-height:1.4;color:var(--ink)}
+.how-list .say strong{color:var(--navy)}
+.legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1em;margin:.1em 0 .3em;text-align:left}
+.legal-col{display:flex;flex-direction:column;gap:.35em}
+.legal-kicker{font-size:.62em;font-weight:900;color:var(--navy);text-transform:uppercase;letter-spacing:.05em}
+.legal-kicker em{text-transform:none}
+.legal-grid .shot img{height:12.5em;object-fit:cover;object-position:top left}
+.legal-text{font-size:.62em;line-height:1.45;color:var(--ink)}
 .shot-verdict{font-size:.62em;line-height:1.4;text-align:left;background:var(--pale);border-left:5px solid var(--cyan);padding:.4em .7em;border-radius:4px;color:var(--ink)}
 .flag-bad{color:#8E2A20;font-weight:700}
 .flag-ok{color:#155C3B;font-weight:700}
@@ -131,6 +155,9 @@ format:
   text-align:left;border-radius:4px;color:#3A2A28;line-height:1.4}
 .case-line strong{color:#8E2A20}
 .no-line{margin-top:.45em;border-left:5px solid var(--red);background:#FBE4E4;color:#8E2A20;padding:.4em .7em;font-size:.8em;border-radius:4px;line-height:1.4;text-align:left}
+.case-line.with-shot{display:flex;gap:.9em;align-items:flex-start}
+.case-line.with-shot img{flex:0 0 44%;border-radius:3px;box-shadow:0 2px 9px rgba(0,0,0,.18)}
+.case-line.with-shot .ct{flex:1}
 
 /* ============ AI vs governance timeline ============ */
 .tl{display:grid;grid-template-columns:7.5em repeat(6,1fr);gap:.3em;font-size:.6em;margin:.3em 0 .4em;text-align:left}
@@ -196,13 +223,6 @@ format:
 .map-panel .bank{font-size:.62em;line-height:1.4;background:var(--pale);border-radius:4px;
   padding:.45em .6em;color:var(--navy);margin:0}
 
-/* ============ join strip (live form on phones) ============ */
-.joinbox{display:flex;align-items:center;gap:.9em;background:#F5F8FA;border-left:5px solid var(--cyan);
-  border-radius:4px;padding:.5em .8em;margin:.2em 0 .5em;text-align:left}
-.joinbox .qr{width:4.6em;height:4.6em;flex:0 0 auto;background:#fff;border-radius:3px;padding:.15em}
-.joinbox .jt{font-size:.72em;line-height:1.4;color:var(--ink)}
-.joinbox .jt strong{display:block;color:var(--navy);font-size:1.1em}
-.joinbox .joinurl{font-weight:700;color:var(--blue)}
 
 /* ============ visible stage action lists ============ */
 .stage-actions{margin:.4em 0 0;padding-left:0;list-style:none}
@@ -215,8 +235,8 @@ format:
 .rule-card strong{display:block;font-size:.85em;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-bottom:.15em}
 
 /* ============ book shelf (real cover photos) ============ */
-.shelf{display:grid;grid-template-columns:repeat(2,14em);gap:2.4em;margin:.5em 0 .3em;justify-content:center}
-.bk .cover{width:100%;height:15em;object-fit:contain;border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,.22)}
+.shelf{display:grid;grid-template-columns:repeat(3,12em);gap:2.2em;margin:.5em 0 .3em;justify-content:center}
+.bk .cover{width:100%;height:14em;object-fit:contain;border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,.22)}
 .bk .t{font-size:.85em;font-weight:900;line-height:1.15;letter-spacing:-.01em;margin-top:.55em}
 .bk .a{display:block;font-size:.6em;font-weight:700;opacity:.75;line-height:1.3;margin-top:.15em}
 .bk .why{font-size:.62em;line-height:1.45;margin-top:.5em;color:#3A4A59;text-align:left}
@@ -331,7 +351,7 @@ var STAGE_DO=[
   [
     "Whether or not AI wrote the estimation code, confirm yourself that the sample, variable definitions, weights, and model specification are correct, and apply the methodological checks your question requires.",
     "Check every AI-drafted or AI-formatted figure and table against the underlying results: values, labels, axes, units, sample sizes, and uncertainty.",
-    "If AI helped write the interpretation, check that it preserves magnitude, uncertainty, and limitations, and does not quietly turn an association into a causal claim.",
+    "If AI helped write the interpretation, check that it preserves magnitude, uncertainty, and limitations.",
     "When an AI-generated measure enters the analysis, assess how its errors affect the findings, including whether they differ across groups.",
     "Have someone with the relevant expertise review the substantive conclusions. Code running successfully does not mean it is correct."
   ],
@@ -339,7 +359,7 @@ var STAGE_DO=[
     "Verify every claim and citation against the original source, especially anything AI helped draft, and check consistency across the text, tables, figures, and abstract.",
     "If AI drafted a translation or policy summary, confirm it preserves the paper's uncertainty and qualifications rather than turning a tentative finding into a firm recommendation.",
     "Disclose meaningful AI assistance at submission, following the target journal's policy. Requirements vary and are getting stricter &mdash; for example, the American Economic Association requires authors to describe any AI use in drafting or editing; AI cannot be listed as an author, and authors remain solely accountable for fact-checking its output.",
-    "If you are reviewing a paper, disclose any AI use in your review too, and use only tools that guarantee the manuscript will not be used to train a model &mdash; several journals, including the AEA, now require this explicitly.",
+    "If you are reviewing a paper, disclose any AI use in your review too, and use only tools that guarantee the manuscript will not be used to train a model &mdash; several journals, including the AEA, now require this explicitly. <a href=\"https://www.aeaweb.org/journals/aer/submissions\" target=\"_blank\" rel=\"noopener\">AEA guidance</a>",
     "In the reproducibility package, document AI-generated analytical outputs and link the records from the README. For coding assistance alone, retain the scripts and consider a brief disclosure. <a href=\"https://worldbank.github.io/wb-reproducible-research-repository/guidance/AI_reproducibility_guidelines.html\" target=\"_blank\" rel=\"noopener\">RRR guidance</a>",
     "Review what may be shared beyond the paper itself &mdash; data, prompts, outputs, and any third-party material."
   ]
@@ -354,20 +374,18 @@ PICK.tool={
   t_mai:'<table>'+
     '<tr><td class="k">Status</td><td>Live &middot; all staff &middot; free. Product owner: Shivnaren Srinivasan.</td></tr>'+
     '<tr><td class="k">Cleared for</td><td class="flag-ok">WBG Restricted Data and Personal Data, per AI@WBG guidance.</td></tr>'+
-    '<tr><td class="k">Trains on your prompts?</td><td>No &mdash; operates within WBG security controls. Confirm current retention terms with ai@worldbankgroup.org.</td></tr>'+
-    '<tr><td class="k">Ceiling</td><td>Confirm with ai@worldbankgroup.org before using it for Strictly Confidential material.</td></tr>'+
-    '<tr><td class="k">Still applies</td><td>Tool approval is not data authorization. Need-to-know still governs, and Personal Data still needs a PIA.</td></tr>'+
+    '<tr><td class="k">Trains on your prompts?</td><td>No &mdash; operates within WBG security controls.</td></tr>'+
+    '<tr><td class="k">Still applies</td><td>Tool approval is not data authorization.</td></tr>'+
     '</table>',
   t_cop:'<table>'+
     '<tr><td class="k">Status</td><td>Approved for WBG staff alongside mAI.</td></tr>'+
     '<tr><td class="k">Cleared for</td><td class="flag-ok">WBG Restricted Data and Personal Data, per AI@WBG guidance.</td></tr>'+
-    '<tr><td class="k">Trains on your prompts?</td><td>Not used to train public models under WBG enterprise terms. Confirm retention and access with ai@worldbankgroup.org.</td></tr>'+
-    '<tr><td class="k">Note</td><td>IFC client or partner work goes to <a href="https://chatifc.ifc.org/">ChatIFC</a> instead.</td></tr>'+
+    '<tr><td class="k">Trains on your prompts?</td><td>Not used to train public models under WBG enterprise terms.</td></tr>'+
     '</table>',
   t_gemc:'<table>'+
-    '<tr><td class="k">Status</td><td>Not currently listed as an approved WBG tool. Check <a href="https://ai.worldbankgroup.org/">AI@WBG</a>.</td></tr>'+
-    '<tr><td class="k">Cleared for</td><td class="flag-bad">Nothing, unless AI@WBG lists it for your use.</td></tr>'+
-    '<tr><td class="k">Trains on your prompts?</td><td>Under a qualifying Workspace licence, Google states content is not human-reviewed and is not used to train models outside your domain &mdash; but confirm our specific licence.</td></tr>'+
+    '<tr><td class="k">Status</td><td>Live &middot; all staff &middot; license required. Email <a href="https://ai.worldbankgroup.org/">AI@WBG</a>.</td></tr>'+
+    '<tr><td class="k">Cleared for</td><td class="flag-ok">WBG content, including Strictly Confidential content.</td></tr>'+
+    '<tr><td class="k">Trains on your prompts?</td><td>Under a qualifying Workspace licence, Google states content is not human-reviewed and is not used to train models outside your domain &mdash.</td></tr>'+
     '<tr><td class="k">Policy</td><td><a href="https://knowledge.workspace.google.com/admin/gemini/gemini-for-google-workspace-faq">Workspace Gemini FAQ</a></td></tr>'+
     '</table>',
   t_gpt:'<table>'+
@@ -400,21 +418,6 @@ STAGES.forEach(function(st,i){
     '<ul class="stage-actions">'+STAGE_DO[i].map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';
 });
 
-/* coding assistants (personal plans), shown in the tool picker */
-PICK.code={
-  cc:'<table>'+
-    '<tr><td class="k">Pro / Max sign-in</td><td class="flag-bad">Code and conversations used for training unless you opt out, since the September 2025 consumer-terms update. 5-year retention with training on, 30 days with it off.</td></tr>'+
-    '<tr><td class="k">API / Team / Enterprise</td><td class="flag-ok">No training by default under commercial terms. 30-day standard retention; zero-retention for qualified Enterprise accounts.</td></tr>'+
-    '<tr><td class="k">Watch out</td><td>The <code>/feedback</code> command sends your conversation history, including code, retained 5 years.</td></tr>'+
-    '<tr><td class="k">Docs / settings</td><td><a href="https://code.claude.com/docs/en/data-usage">Data usage</a> &middot; <a href="https://claude.ai/settings/data-privacy-controls">Privacy controls</a></td></tr>'+
-    '</table>',
-  gh:'<table>'+
-    '<tr><td class="k">Free / Pro / Pro+</td><td class="flag-bad">Since 24 April 2026, prompts, code snippets, suggestions and surrounding context are used for model training unless you opt out.</td></tr>'+
-    '<tr><td class="k">Business / Enterprise</td><td class="flag-ok">Contractually excluded from training.</td></tr>'+
-    '<tr><td class="k">The subtlety</td><td>GitHub does not train on private repository content <em>at rest</em> &mdash; but snippets and context sent while you work in that repo are interaction data. A private repo is not protection.</td></tr>'+
-    '<tr><td class="k">Settings</td><td><a href="https://github.com/settings/copilot">github.com/settings/copilot</a> &rarr; Privacy &rarr; disable model training</td></tr>'+
-    '</table>'
-};
 /* Validity: one fact, three assistants, two languages. The screenshots are real <img> tags in
    the slide itself, so Quarto's self-contained export embeds them as data URIs (paths inside a
    JS string are not rewritten and would break once index.html moves). This only toggles panes. */
@@ -438,12 +441,6 @@ document.addEventListener('keydown',function(e){
   var z=document.querySelector('.shot-zoom');
   if(z&&(e.key==='Escape'||e.key==='Esc')){ z.remove(); e.stopPropagation(); e.preventDefault(); }
 },true);
-
-(function(){
-  var cleared='<tr><td class="k">Cleared for</td><td class="flag-bad">Personal plans are not approved tools. Unless AI@WBG lists it, it may not be installed on WBG systems or given access to WBG data or repositories.</td></tr>';
-  PICK.tool.t_cc=PICK.code.cc.replace('<table>','<table>'+cleared);
-  PICK.tool.t_ghc=PICK.code.gh.replace('<table>','<table>'+cleared);
-})();
 
 function pickShow(group,id,el){
   var wrap=el.parentElement.parentElement;
@@ -496,7 +493,7 @@ var RISKS=[
   b:''},
  {n:'Security &amp; privacy',
   u:'Exposure to hacking or malicious activity, and harm to data subjects.',
-  c:['Microdata, client documents, or code pasted into a personal account','Identifiers left in prompts and chat histories','Photographs and files with other people in them','Hidden instructions in a document the tool reads'],
+  c:['Microdata, client documents, or code pasted into a personal account','Identifiers left in prompts and chat histories','Photographs and files with other people in them'],
   b:''},
  {n:'Ethical',
   u:'Bias against individuals, communities, or member countries.',
@@ -670,15 +667,7 @@ window.addEventListener('load',function(){
 </script>
 ```
 
-
-
-## Have you ever...?
-
 ```{=html}
-<div class="joinbox">
-  <img class="qr" alt="QR code to the session form" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMyIgaGVpZ2h0PSIzMyIgY2xhc3M9InNlZ25vIj48cGF0aCBjbGFzcz0icXJsaW5lIiBzdHJva2U9IiMwMDJhNGYiIGQ9Ik0yIDIuNWg3bTUgMGg0bTIgMGgxbTMgMGg3bS0yOSAxaDFtNSAwaDFtMSAwaDFtMSAwaDFtMyAwaDFtMSAwaDJtMiAwaDFtMSAwaDFtNSAwaDFtLTI5IDFoMW0xIDBoM20xIDBoMW0xIDBoMm0yIDBoMW0xIDBoM20yIDBoMW0yIDBoMW0xIDBoM20xIDBoMW0tMjkgMWgxbTEgMGgzbTEgMGgxbTEgMGgxbTEgMGgybTIgMGg0bTIgMGgxbTEgMGgxbTEgMGgzbTEgMGgxbS0yOSAxaDFtMSAwaDNtMSAwaDFtMiAwaDNtMyAwaDZtMSAwaDFtMSAwaDNtMSAwaDFtLTI5IDFoMW01IDBoMW00IDBoMm0zIDBoMW01IDBoMW01IDBoMW0tMjkgMWg3bTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg3bS0yMSAxaDFtMSAwaDFtMSAwaDFtMyAwaDFtMiAwaDJtLTIxIDFoMW01IDBoMW0xIDBoMW0yIDBoMW01IDBoM20xIDBoMm0yIDBoM20tMjggMWg0bTEgMGgxbTEgMGgybTEgMGgxMm0xIDBoMm0xIDBoMm0tMjcgMWgxbTEgMGgybTEgMGgxbTEgMGgybTEgMGgxbTEgMGg1bTIgMGgybTEgMGgybS0yNSAxaDFtMSAwaDFtMSAwaDJtMSAwaDFtMSAwaDFtMSAwaDNtMiAwaDFtMyAwaDRtMSAwaDFtLTI2IDFoMm0xIDBoMW0yIDBoM200IDBoMW0xIDBoMm0yIDBoNW00IDBoMW0tMjcgMWgybTEgMGgxbTEgMGgxbTEgMGgybTEgMGgxbTMgMGgxbTIgMGgybTEgMGgzbTIgMGgybS0yNiAxaDFtMSAwaDJtMSAwaDFtMiAwaDJtMiAwaDRtMSAwaDFtMSAwaDFtMiAwaDJtLTI3IDFoMm0yIDBoMm0zIDBoM20zIDBoMm0xIDBoM20zIDBoMW0xIDBoMW0xIDBoMW0tMjkgMWgybTIgMGg1bTYgMGgxbTEgMGgybTQgMGgxbTEgMGgybS0yNyAxaDFtNCAwaDFtMSAwaDJtMiAwaDRtMSAwaDVtMSAwaDNtMSAwaDNtLTI5IDFoM20xIDBoMW0xIDBoMm0zIDBoMW0zIDBoMW0zIDBoMW01IDBoMW0yIDBoMW0tMjkgMWgxbTEgMGgxbTEgMGgxbTUgMGg0bTcgMGgzbS0yNCAxaDFtMSAwaDNtMSAwaDJtMiAwaDFtMSAwaDFtMSAwaDJtMyAwaDZtMSAwaDNtLTIxIDFoMW0yIDBoMm0xIDBoMW01IDBoMW0zIDBoMm0tMjYgMWg3bTIgMGgybTQgMGgxbTEgMGg0bTEgMGgxbTEgMGgzbS0yNyAxaDFtNSAwaDFtMiAwaDFtMSAwaDFtMiAwaDFtMSAwaDFtMSAwaDNtMyAwaDFtMiAwaDFtLTI4IDFoMW0xIDBoM20xIDBoMW00IDBoMW0xIDBoMm0xIDBoMm0xIDBoN20yIDBoMW0tMjkgMWgxbTEgMGgzbTEgMGgxbTIgMGgzbTEgMGgybTEgMGgxbTEgMGgxbTEgMGgybTMgMGgybTEgMGgxbS0yOSAxaDFtMSAwaDNtMSAwaDFtMyAwaDJtMiAwaDJtMyAwaDFtMSAwaDdtLTI4IDFoMW01IDBoMW0yIDBoNG0zIDBoMW00IDBoMm0yIDBoMm0xIDBoMW0tMjkgMWg3bTEgMGgzbTEgMGg1bTIgMGgxbTEgMGg0bTEgMGgxIi8+PC9zdmc+Cg==">
-  <div class="jt"><strong>Answering on your phone</strong>Every question in this session is in one short form. Open it now and keep the tab open: <span class="joinurl">forms.office.com/r/REPLACE-ME</span></div>
-</div>
 <div class="poll-grid">
   <div class="poll-row" data-poll="w1" data-idx="0"><button class="poll-btn" onclick="pollVote('w1',0)">Shared an Official Use Only file with ChatGPT or Claude without checking whether the account was approved for it</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
   <div class="poll-row" data-poll="w1" data-idx="1"><button class="poll-btn" onclick="pollVote('w1',1)">Used AI-generated charts, tables, or figures without checking the source or underlying code</button><div class="poll-bar-track"><div class="poll-bar-fill"></div></div><span class="poll-count">0</span></div>
@@ -692,7 +681,7 @@ window.addEventListener('load',function(){
 ## You're Not the Only One
 
 ::: {.quote-big}
-Whatever you clicked, you weren't the only one. That's not a coincidence &mdash; the rules for AI are new, unevenly known, and nobody's really taught them yet. This hour is that teaching.
+Whatever you raised your hand for, you weren't the only one. That's not a coincidence &mdash; the rules for AI are new, unevenly known, and nobody's really taught them yet. This hour is that teaching.
 :::
 
 # 1 &middot; Why It Matters {background-color="#002A4F"}
@@ -811,7 +800,7 @@ Time: one minute. Second slide to cut: the band is the whole point.
 ## Five risks to consider when you use AI
 
 ::: {.lede-line}
-The WBG AI Risk Management Framework names **five risks** when using AI. 
+The WBG AI Risk Management Framework groups what can go wrong when you use AI into **five risks**. Click each one to see what it means and how it shows up in research work.
 :::
 
 ```{=html}
@@ -845,15 +834,17 @@ Time: three minutes.
 ## What you may never do
 
 ::: {.lede-line}
-With AI there are a lot of judgment calls. These are not.
+Most AI use involves judgment calls. These six don't: the Bank prohibits them.
 :::
 
- - Cause or exacerbate harm, whether individual or collective, to social, cultural, economic, natural, and political environments.
-- Promotes bias, discrimination and stigmatization of individuals or groups.
-- Prevents humans from overriding AI generated decisions.
-- Actively hides the use of AI.
-- Are purposefully manipulative or uses deceptive techniques.
-- Infer emotions of a human (e.g. client or counterpart).
+**Never use AI to:**
+
+- Cause or worsen harm to people or communities, whether social, cultural, economic, environmental or political.
+- Promote bias, discrimination or stigma against individuals or groups.
+- Make decisions that a person cannot override.
+- Hide that AI was used.
+- Manipulate or deceive.
+- Infer someone's emotions, such as a client's or a counterpart's.
 
 ::: {.visual-note}
 The WBG prohibited practices, from the [Acceptable Use of AI Addendum](https://worldbankgroup.sharepoint.com/:p:/r/sites/AIWBG/Shared%20Documents/Guides/AI%20Prohibited%20Practices.pptx?d=w4073f635f0b04d7ca43dd588eddcbc73&csf=1&web=1&e=6JjC1W). They apply by any means, AI included. **From here on, blue boxes give practical checks; red boxes flag the prohibited practices described here.**
@@ -880,12 +871,37 @@ Use the TACTIC Framework
 
 ## How the next part works
 
-We will present different scenario for the differnt risks, A, B, C. 
+::: {.lede-line}
+We take the five risks one at a time. Each slide follows the same pattern, so here is what to look for.
+:::
 
-- **A situation**, drawn from real work.
-- **A practical check**, in blue, and relevant prohibited practices, in red.
-- **A real case**.
+```{=html}
+<div class="how-list">
+  <div class="ex"><button class="quiz-option" type="button" tabindex="-1" style="pointer-events:none;width:100%">A. Hand-code a random validation sample&hellip;</button></div>
+  <div class="say"><strong>A situation from research work.</strong> Pick your answer before I click. Then we see which is best, and why the others fall short.</div>
 
+  <div class="ex"><div class="rule-card"><strong>Practical check</strong>What to do in your own work.</div></div>
+  <div class="say"><strong>Blue: the practical check.</strong> The habit to take away.</div>
+
+  <div class="ex"><div class="no-line" style="margin:0"><strong>Prohibited:</strong> a Bank rule, not a judgment call.</div></div>
+  <div class="say"><strong>Red: a prohibited practice.</strong> Shown only where one of the Bank's prohibited practices applies.</div>
+
+  <div class="ex"><div class="case-line"><strong>Real case &middot;</strong> what happened when it went wrong.</div></div>
+  <div class="say"><strong>A real case.</strong> Documented, with a link, so you can read it yourself.</div>
+</div>
+```
+
+::: {.visual-note}
+Some slides swap the scenario for a live example: my own tests with ChatGPT, Claude and Gemini, or a tool picker to click through.
+:::
+
+::: {.notes}
+Say: one minute on the format so nobody has to work it out later. Point at each row.
+
+Line to land: the scenario is where you think; blue is what you take home; red is not up for discussion.
+
+Time: one minute.
+:::
 
 ## Accountability: who owns the decision?
 
@@ -985,7 +1001,7 @@ Review outputs for inaccuracy and incompleteness. AI is not an authoritative sou
 ```
 
 ::: {.lede-line}
-Mexico's poverty rate is not a contested number. It has an official measurement, published by **INEGI**. In September 2026 I asked three assistants for it, in **English** and in **Spanish**.
+ In September 2026 I asked three assistants for Mexico's poverty rate, in **English** and in **Spanish**. (Two official sources for its measurement CONEVAL and INEGI)
 :::
 
 ```{=html}
@@ -1035,7 +1051,7 @@ Mexico's poverty rate is not a contested number. It has an official measurement,
 ```
 
 ::: {.consensus-band}
-Every answer lands near the official figures &mdash (in this case). The numbers agree, so nothing looks wrong. Underneath: **not one linked CONEVAL**, **two never linked INEGI at all**, **only Gemini Enterprise** linked the World Bank and **what the model read changed with the language I asked in**.
+Every answer lands near the official figures (in this case). The numbers agree, so nothing looks wrong. Underneath: **not one linked CONEVAL**, **two never linked INEGI at all**, **only Gemini Enterprise** linked the World Bank and **what the model read changed with the language I asked in**.
 :::
 
 ::: {.visual-note}
@@ -1107,41 +1123,28 @@ Time: three minutes. Protect this slide.
 You want an approved WBG tool to draft the cleaning code for a Confidential household survey. The data is identified, so access is restricted to the people named in the IRB protocol &mdash; and separately, the data agreement says research use only. What do you give the tool?
 :::
 ::: {.quiz-options}
-<button class="quiz-option" onclick="quizAnswer(this, false)">A. Nothing. Confidential data should not go near an AI tool.</button>
+<button class="quiz-option" onclick="quizAnswer(this, false)">A. Nothing. Personally identifiable information should never go into an AI tool, even a WBG-approved one.</button>
 <button class="quiz-option" onclick="quizAnswer(this, true)">B. The codebook and a synthetic extract with the same structure and quirks.</button>
 <button class="quiz-option" onclick="quizAnswer(this, false)">C. The codebook and twenty real rows, so the code matches the data.</button>
 <button class="quiz-option" onclick="quizAnswer(this, false)">D. The whole file. The tool is approved for Confidential data.</button>
 :::
 ::: {.quiz-feedback}
-**B is correct.** Writing cleaning code requires the shape of the data, not the records themselves, and a synthetic extract carries the structure and the quirks without carrying anybody.<br>**D** confuses two separate permissions. Tool approval is not data authorisation &mdash; even a tool cleared for Confidential data doesn't inherit the data agreement's terms, and "research use only" governs regardless of which tool is used. Separately, the IRB approval under which this data was collected names the specific people allowed to access it, and an AI tool is not one of them. Either restriction alone would block this; here both apply.<br>**C** sends Personal Data to someone outside the IRB's approved list: twenty real rows carrying village, age, and household size identify households. This is a privacy/human-subjects violation, not a contract one &mdash; it would still be wrong even if the data agreement said nothing about research use.<br>**A** has a cost of its own. The code still gets written, by hand late at night or in a personal account.
+**B is correct.** Writing cleaning code requires the shape of the data, not the records themselves, and a synthetic extract carries the structure and the quirks without carrying anybody.<br>**D** confuses two separate permissions. Tool approval is not data authorisation &mdash; even a tool cleared for Confidential data doesn't inherit the data agreement's terms, and "research use only" governs regardless of which tool is used. Separately, the IRB approval under which this data was collected names the specific people allowed to access it, and an AI tool is not one of them. Either restriction alone would block this; here both apply.<br>**C** sends Personal Data to someone outside the IRB's approved list: twenty real rows carrying village, age, and household size identify households. This is a privacy/human-subjects violation, not a contract one &mdash; it would still be wrong even if the data agreement said nothing about research use.<br>**A** gets the principle right but stops too early. The records should stay out, but the codebook and a synthetic extract contain no one, so the tool can still help. Refusing everything has a cost of its own: the code still gets written, by hand late at night or in a personal account.
 :::
 :::
 ::: {.column width="36%" .fragment}
 ::: {.rule-card}
 **Practical check**
 
-Restricted and Personal Data only in approved tools. A PIA before AI processes Personal Data. Report incidents to OIS.
+Clearance is not authorisation. Personal Data is separately governed by the [WBG Policy on Personal Data Privacy](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFDocuments/abbc6711-2d7e-409d-a1a5-07a703157d48.pdf.pdf), which requires a legitimate purpose for each use — and drafting cleaning code is not one. The assistant needs the shape of the data, not the people in it.
 :::
 :::
 ::::
 
 ::: {.case-line}
-**Real case · Samsung, 2023:** within three weeks of lifting an internal ban on ChatGPT, three separate incidents surfaced &mdash; engineers pasted confidential semiconductor source code in to debug and optimise it, and another employee fed in an internal meeting recording to draft a summary. Unlike an ordinary leak, none of it could be pulled back: submitted data can be retained and used to improve the model. Samsung banned generative AI tools for staff within weeks. ([Forbes, 2 May 2023](https://www.forbes.com/sites/siladityaray/2023/05/02/samsung-bans-chatgpt-and-other-chatbots-for-employees-after-sensitive-code-leak/))
+**Real case · Samsung, 2023:** Engineers pasted confidential semiconductor source code in to debug and optimise it, and another employee fed in an internal meeting recording to draft a summary. Unlike an ordinary leak, none of it could be pulled back: submitted data can be retained and used to improve the model. Samsung banned generative AI tools for staff within weeks. ([Forbes, 2 May 2023](https://www.forbes.com/sites/siladityaray/2023/05/02/samsung-bans-chatgpt-and-other-chatbots-for-employees-after-sensitive-code-leak/))
 :::
 
-::: {.notes}
-**[CHECK BEFORE DELIVERY]** Confirm that mAI or M365 Copilot is in fact cleared for Confidential microdata before you say "may be permitted" out loud. If it is not, D becomes simply wrong and the feedback should say so.
-
-Ask: hands on each. D and A both get votes; make them argue with each other. Run it as a discussion, not a scored quiz.
-
-Answer key across the session, so you do not lose your place: C, D, A, B, C, B.
-
-If silent: ask who has ever built a synthetic extract to get help with code. That is often the safest useful request.
-
-For agents: what gets transferred can include files, repository context, logs, and connected systems. For audio: a recorded interview is microdata with a voice attached.
-
-Time: three minutes.
-:::
 
 ## Security: how restricted is your data?
 
@@ -1192,8 +1195,6 @@ Time: two minutes.
 <button class="pick-btn" onclick="pickShow('tool','t_gpt',this)">ChatGPT<small>personal</small></button>
 <button class="pick-btn" onclick="pickShow('tool','t_cla',this)">Claude<small>personal</small></button>
 <button class="pick-btn" onclick="pickShow('tool','t_gem',this)">Gemini<small>personal</small></button>
-<button class="pick-btn" onclick="pickShow('tool','t_ghc',this)">GitHub Copilot<small>personal</small></button>
-<button class="pick-btn" onclick="pickShow('tool','t_cc',this)">Claude Code<small>personal</small></button>
 </div><div class="pick-panel tall"></div></div>
 ```
 
@@ -1202,16 +1203,16 @@ Not on the approved list? Only under the four conditions of the [Acceptable Use 
 :::
 
 ::: {.notes}
-**[CHECK BEFORE DELIVERY]** Re-verify in the week of delivery: (i) the Bank's current position on AI agents; (ii) whether Claude Code or GitHub Copilot has an approved WBG configuration; (iii) the training and retention terms in each personal-plan panel (Anthropic, OpenAI, Google, GitHub all changed theirs within the last year); (iv) the mAI product-owner name and the "cleared for" rows, which come from internal guidance.
+**[CHECK BEFORE DELIVERY]** Re-verify in the week of delivery: (i) the Bank's current position on AI agents; (ii) the training and retention terms in each personal-plan panel (Anthropic, OpenAI and Google all changed theirs within the last year); (iii) the mAI product-owner name and the "cleared for" rows, which come from internal guidance.
 
-Say: do not click all eight. Click mAI, then one personal tool, then GitHub Copilot. The row that matters is "Cleared for". The rest is reference for the handout.
+Say: do not click all six. Click mAI, then one personal tool. The row that matters is "Cleared for". The rest is reference for the handout.
 
-Line to land: a personal account with training switched off is still not an approved tool. And a private repository is not protection, because the code you are working on is sent as context.
+Line to land: a personal account with training switched off is still not an approved tool.
 
 Time: two minutes. Cut this one to sixty seconds if you are behind: say the line, show mAI, move on.
 :::
 
-## Ethical: the proxy nobody tested
+## Ethical: where bias enters
 
 ```{=html}
 <div class="risk-head" data-r="3"></div>
@@ -1246,33 +1247,83 @@ Using AI to promote bias, discrimination, or stigmatization; to manipulate or de
 :::
 ::::
 
+:::: {.case-pair}
 ::: {.case-line}
-**Real case · United States, 2019:** the same mistake, made and measured elsewhere. A health algorithm applied to about 200 million people a year needed a proxy for health need, so it was trained to predict healthcare *cost* instead. Because less is historically spent treating Black patients at the same level of illness, cost quietly measured *access* to care, not *need* for it &mdash; equally sick Black patients scored as healthier. Fixing it would have raised the share of Black patients flagged for extra care from 17.7% to 46.5%. Different sector, same untested proxy. ([Obermeyer et al. 2019](https://doi.org/10.1126/science.aax2342))
+**Real case · United States, 2019:** A health algorithm applied to about 200 million people a year needed a proxy for health need, so it was trained to predict healthcare *cost* instead. Because less is historically spent treating Black patients at the same level of illness, cost quietly measured *access* to care, not *need* for it &mdash; equally sick Black patients scored as healthier. Fixing it would have raised the share of Black patients flagged for extra care from 17.7% to 46.5%. ([Obermeyer et al. 2019](https://doi.org/10.1126/science.aax2342))
+:::
+
+::: {.case-line}
+**Real case · Dermatology AI:** leading skin-cancer models were tested on a diverse set of clinical images, and accuracy dropped significantly. The models were better at finding cancer in lighter-skinned patients and underperformed for darker-skinned patients. ([Frasier et al. 2025](https://www.jdermis.com/full-text/the-blind-spots-of-artificial-intelligence-in-skin-cancer-diagnosis), reviewing Daneshjou et al. 2022)
+:::
+::::
+
+::: {.notes}
+
+Two real cases, same lesson: a model can work well on average and fail the people it was not built around.
+:::
+
+## Ethical: four ways bias gets in
+
+```{=html}
+<div class="risk-head" data-r="3"></div>
+```
+
+| Source | What it can mean for our work |
+|---|---|
+| **Training data** | Historical stereotypes and uneven representation influence responses. |
+| **Model design** | Targets, labels and measures of success reward some outcomes over others. |
+| **Inputs and retrieval** | Our documents, examples or selected sources omit relevant perspectives. |
+| **Application** | We use the tool in a language or population where it has not been validated. |
+
+::: {.consensus-band}
+Aggregate accuracy is compatible with total failure for the people we exist to serve. **Who is missing, and how could that change the result?**
 :::
 
 ::: {.notes}
-Say: the model is not wrong, it is doing exactly what it was trained to do. The bias is in the choice of proxy, made before anyone ran the model.
+Say: bias is not one thing that lives inside the model. It can enter at different points, and three of them are choices we make.
 
-The real case is the same mechanism in a different sector, with numbers attached, so it stops being hypothetical.
+Point at the last two rows: inputs and application are ours. What we feed the tool and where we use it.
+
+Map the two cases you just saw onto the table: dermatology is training data, the health algorithm is model design (the target). Then land the band line slowly, and say it twice: a model can be accurate overall and wrong for almost everyone in the group your project is about.
+
+Time: two minutes.
 :::
 
-## Legal: disclosure in the paper and package
+## Legal: AI disclosure 
 
 ```{=html}
 <div class="risk-head" data-r="4"></div>
 ```
 
-**In the paper:** describe meaningful AI assistance and the checks actually performed. Follow the applicable WBG and publication requirements.
+```{=html}
+<div class="legal-grid">
+<div class="legal-col">
+<div class="legal-kicker">Real case &middot; <em>Journal of Applied Economics</em>, 2025</div>
+<div class="shot"><span class="lang">RETRACTION NOTICE</span>
+<img src="_extensions/pictures/legal_crop.png" alt="Taylor &amp; Francis statement of retraction for Qudah et al. (2024), Using bibliometrics to understand algorithmic finance">
+</div>
+<div class="legal-text">A paper published in August 2024 was <strong>retracted in January 2025</strong>. The editors found that significant sections had been written with ChatGPT and other generative AI tools, <strong>contrary to the publisher's AI policy</strong>.</div>
+<div class="shot-verdict"><strong>Read the policy before you submit.</strong> Every journal sets its own AI rules. Break them and you can lose the paper.</div>
+</div>
+<div class="legal-col">
+<div class="legal-kicker">At the Bank &middot; the rule says <em>what</em>, not <em>how</em></div>
+<div class="shot"><span class="lang">mAI ANSWER</span>
+<img src="_extensions/pictures/legal_mai.png" alt="mAI answer on WBG disclosure labels, citing the Report on the WBG's Rollout of the Artificial Intelligence Governance Framework">
+</div>
+<div class="legal-text">The Acceptable Use of AI Addendum already requires it: <em>&ldquo;Disclose the use of AI Output when used in World Bank Group&rsquo;s external and internal facing websites, documents or publications.&rdquo;</em> It <strong>does not say how</strong>. I asked mAI: it found <strong>set labels only for CER</strong> (External and Corporate Relations) and says the rollout report flags the missing format as a gap. Its source: the <em>Report on the WBG&rsquo;s Rollout of the AI Governance Framework</em>, which <strong>I am not allowed to open</strong>.</div>
+<div class="shot-verdict"><strong>This is also a validity problem.</strong> Even an approved tool can give me a claim I have no way to check. I can't verify it, so I can't cite it.</div>
+</div>
+</div>
+```
 
-**In the reproducibility package:** when AI directly produces analytical content, include an AI Use Statement in the README. Record the model, prompts, inputs and settings, raw and final outputs, and human validation. Link to detailed logs where needed.
-
-**If AI only helped write or debug code:** include the scripts. The RRR guidance encourages a README disclosure but does not require the additional AI-output documentation.
-
-**Example to adapt:** “AI assisted with drafting the analysis code. The authors reviewed the logic and checked each figure and table against the underlying data.”
+::: {.consensus-band}
+**Disclose it.** The Bank already requires disclosure, in internal and external documents alike. There is no set format yet, so say what you used and what you checked, as the next slide shows.
+:::
 
 ::: {.visual-note}
-Use only wording that reflects what you actually did. Keep sensitive records in an authorised location. **Sources:** [WBG Addendum](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFAnnex/727dee72-17dc-4648-a9d5-0252c01ff988Annex1.pdf) · [RRR: Documenting AI use](https://worldbank.github.io/wb-reproducible-research-repository/guidance/AI_reproducibility_guidelines.html).
+**Sources:** [WBG Acceptable Use of AI Addendum](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFAnnex/727dee72-17dc-4648-a9d5-0252c01ff988Annex1.pdf) &middot; [Statement of retraction](https://doi.org/10.1080/15140326.2024.2431386), *Journal of Applied Economics* (2025) &middot; [Taylor &amp; Francis AI policy](https://taylorandfrancis.com/our-policies/ai-policy/) &middot; mAI answer, author's query, September 2026 (underlying report not accessible to the author).
 :::
+
 
 # 5 &middot; Where In The Work {background-color="#002A4F"}
 
@@ -1341,9 +1392,10 @@ The stages overlap: transcription may occur during collection or processing. App
 
 1. Check the data label before you open the tool.
 2. Verify every number, quote, and citation before you use it.
-3. Keep a record of what you asked AI and how you checked it.
-4. Disclose meaningful AI assistance instead of staying silent. ([RRR: Documenting AI use](https://worldbank.github.io/wb-reproducible-research-repository/guidance/AI_reproducibility_guidelines.html))
-5. If you're not sure, ask ai@worldbankgroup.org.
+3. Ask who is not in your data, and how their absence could change your results.
+4. Keep a record of what you asked AI and how you checked it.
+5. Disclose meaningful AI assistance instead of staying silent. ([RRR: Documenting AI use](https://worldbank.github.io/wb-reproducible-research-repository/guidance/AI_reproducibility_guidelines.html))
+6. If you're not sure, ask ai@worldbankgroup.org.
 
 
 ## Resources and contacts
@@ -1354,16 +1406,15 @@ The stages overlap: transcription may occur during collection or processing. App
 | [WBG Acceptable Use of AI Addendum](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFAnnex/727dee72-17dc-4648-a9d5-0252c01ff988Annex1.pdf) | Binding requirements, including prohibited practices and the four conditions for unapproved tools |
 | [WBG AI Risk Management Framework](https://worldbankgroup.sharepoint.com/:p:/s/ITSSRFiles/EYRhCk4Xdh1PkVpeB1uw9egBWBIV5tJcBlTMQRFW1HbtOQ?e=6xh3wK&CID=BB4D28B7-094F-4C2F-ADF5-1B27D4E72EAE&wdLOR=cF67CCC10-3A55-4C8C-BE42-210E53B70B08) | The five risks |
 | [Responsible Use of Generative AI announcement](https://worldbankgroup.sharepoint.com/sites/newshub/SitePages/Announcements/Responsible-Use-of-Generative-Artificial-Intelligence-at-the-World-Bank-Group-04052023-122115.aspx) | Short staff guidance on information and verification |
-| **Tool settings and personal use** | Reference slides A3–A4 |
-| **T.A.C.T.I.C. AI Checklist** | The thirty-second check before you send something (appendix, slide A1) |
-| WBG Data Privacy Office | Personal Data questions and Privacy Impact Assessments |
+| **[T.A.C.T.I.C. AI Checklist from learning module (Using AI Responsibly@WBG](https://wbg.sabacloud.com/Saba/Web_spf/NA1PRD0002/app/me/learningeventdetail/cours000000000050989?classId=dowbt000000000017453)** | The thirty-second check before you send something |
+| [WBG Personal Data Privacy](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFDocuments/abbc6711-2d7e-409d-a1a5-07a703157d48.pdf.pdf) | Core privacy principles governing use of personal data |
 | OIS | Unexpected AI behaviour or unauthorised data access |
 | ai@worldbankgroup.org | AI questions, use cases, and guidance |
 
 **This presentation was developed with AI assistance and reviewed by the author for accuracy.**
 
 
-## Parting gift: two book recommendations
+## Parting gift: three book recommendations
 
 ```{=html}
 <div class="shelf">
@@ -1379,11 +1430,27 @@ The stages overlap: transcription may occur during collection or processing. App
     <span class="a">Safiya Umoja Noble &middot; 2018</span>
     <div class="why">Retrieval is not neutral.</div>
   </div>
+  <div class="bk">
+    <img class="cover" src="_extensions/pictures/atlas_ai.png" alt="Atlas of AI book cover">
+    <span class="t">Atlas of AI</span>
+    <span class="a">Kate Crawford &middot; 2021</span>
+    <div class="why">What AI is made of: minerals, labour, and data.</div>
+  </div>
 </div>
 ```
 
 
-## Thank you! questions? 
+## Thank you! Questions? {.no-fit}
+
+```{=html}
+<div class="thanks">
+  <div class="thanks-line">Let’s use AI to improve how we work, <strong>and take responsibility for how we use it.</strong></div>
+  <div class="thanks-gif">
+    <iframe src="https://giphy.com/embed/a3IWyhkEC0p32" width="480" height="298" frameBorder="0" class="giphy-embed" allowFullScreen title="Thank you GIF"></iframe>
+    <a href="https://giphy.com/gifs/thank-you-cute-a3IWyhkEC0p32">via GIPHY</a>
+  </div>
+</div>
+```
 
 
 ## References
