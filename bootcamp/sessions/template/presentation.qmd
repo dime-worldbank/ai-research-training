@@ -3,7 +3,8 @@ title: "Your Presentation Title"
 subtitle: "Subtitle or one line description"
 author: "Author Name"
 institute: "Team or Unit"
-date: today
+# Update to date for this session
+date: 6 Oct, 2026
 date-format: "D MMMM YYYY"
 footer: "AI-enabled Research Bootcamp"
 # Three horizontal logos on the title slide.
