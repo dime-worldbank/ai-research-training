@@ -5,7 +5,7 @@ author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
 date: 5 Oct, 2026
 date-format: "D MMMM YYYY"
-footer: "AI-enabled Research Bootcamp"
+footer: "AI-Enabled Research Bootcamp"
 logos:
   - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
   - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
