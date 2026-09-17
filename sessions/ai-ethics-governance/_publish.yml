@@ -1,0 +1,4 @@
+- source: ai-ethics-governance.qmd
+  netlify:
+    - id: 613ca244-f879-493b-a2b9-2e08fbffd59b
+      url: https://guileless-muffin-da893a.netlify.app
