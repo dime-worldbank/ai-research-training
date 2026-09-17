@@ -1,7 +1,7 @@
 ---
 title: "Introduction to AI Agents"
 subtitle: "Day 1 · Intro to Agentic AI at the WBG"
-author: "Impact Analytics"
+author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
 date: 5 Oct, 2026
 date-format: "D MMMM YYYY"
@@ -20,7 +20,7 @@ source("../../../_extensions/bootcamp/setup_palettes.R")
 
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
-# What are agents? {background-color="#530153"}
+
 
 ## Scope of This Session
 
@@ -28,7 +28,11 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 - Instructions for installing coding agents on WB computers
 - Tools and context windows: how agents gather additional information relevant to your prompt
 
+# How Does AI Work? And What Are Agents? {background-color="#530153"}
+
 ## The Two Things LLMs Can Do
+
+No matter how amazed we are with new AI capabilities the last year, the Large Language Models (LLMs) that is the technology behind text based AI, can only do these two things. And that has not changed since the publication of ChatGPT changed the world forever.
 
 :::: {.columns}
 
@@ -51,6 +55,29 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 :::
 
 ::::
+
+## Example of the Reasoning models
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+  Reasoning models
+
+  ![](./img/reasoning-models.svg)
+
+:::
+
+::: {.column width="50%"}
+
+- Models review and improves input and its own output
+- Not a linear process
+- Steps are repeated until the LLM is satisfied
+
+:::
+
+::::
+
 
 # Tools {background-color="#530153"}
 

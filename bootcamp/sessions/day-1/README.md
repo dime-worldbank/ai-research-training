@@ -27,3 +27,10 @@ Participants develop a solid foundation in agentic AI — what it is, what is al
 | 3:30 - 3:45 | Break | Break | Break |
 | 3:45 - 4:15 | AI ethics, governance, and safe use | Impact Analytics | Done |
 | 4:15 - 5:00 | Human-in-the-loop: Evaluating AI Outputs | Impact Analytics | [Human-in-the-Loop: Evaluating AI Outputs](human-in-the-loop/human-in-the-loop.qmd) |
+
+
+## Mermaid Gen
+
+```bash
+npx mmdc -i workflow.mmd -o workflow.svg -c asstets/mermaid-config.json -w 1600 -H 900
+```
