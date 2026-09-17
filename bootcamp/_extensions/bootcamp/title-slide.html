@@ -1,0 +1,31 @@
+<section id="title-slide" class="quarto-title-block">
+
+  <div class="logo-strip">
+$if(logos)$
+$for(logos)$
+    <img src="$logos$" alt="">
+$endfor$
+$else$
+    <div class="logo-slot">Logo 1</div>
+    <div class="logo-slot">Logo 2</div>
+$endif$
+  </div>
+
+  <div class="title-block-main">
+    <h1 class="title">$title$</h1>
+$if(subtitle)$
+    <p class="subtitle">$subtitle$</p>
+$endif$
+
+$for(by-author)$
+    <p class="author">$by-author.name.literal$</p>
+$endfor$
+$if(institute)$
+    <p class="institute">$for(institute)$$institute$$sep$ &nbsp;|&nbsp; $endfor$</p>
+$endif$
+$if(date)$
+    <p class="date">$date$</p>
+$endif$
+  </div>
+
+</section>

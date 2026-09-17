@@ -17,10 +17,14 @@ if (-not $browser) {
 }
 
 $documents = Get-ChildItem (Join-Path $projectRoot $SourceRoot) -Recurse -Filter "*.qmd" |
+    Where-Object {
+        $relativePath = $_.FullName.Substring($projectRoot.Length + 1)
+        ($relativePath -notmatch '(^|[\\/])template[\\/]') -and ($_.Name -ne 'presentation.qmd')
+    } |
     Sort-Object FullName
 
 if (-not $documents) {
-    throw "No .qmd files found under '$SourceRoot'."
+    throw "No .qmd files found under '$SourceRoot' after excluding the template presentation."
 }
 
 $browserProfile = Join-Path $env:TEMP ("quarto-pdf-" + [Guid]::NewGuid())
@@ -32,7 +36,7 @@ try {
         $relativeDocument = Resolve-Path -Relative $document.FullName
         Pop-Location
         Write-Host "Rendering $relativeDocument"
-        & quarto render $relativeDocument --to revealjs
+        & quarto render $relativeDocument
         if ($LASTEXITCODE -ne 0) {
             throw "Quarto failed to render $relativeDocument."
         }
