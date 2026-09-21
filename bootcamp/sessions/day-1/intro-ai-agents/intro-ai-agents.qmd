@@ -30,8 +30,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ::: { .column width="100%" }
 
-- Overview of agents, with an emphasis on and examples from coding agents
-- Instructions for installing coding agents on WB computers
+- Overview of Large Language Models (LLMs) and how Agents fits in to the LLM evolution
+- Introduction to agents, with an emphasis on coding agents and examples from coding work
 - Tools and context windows: how agents gather additional information relevant to your prompt
 
 :::
@@ -40,9 +40,12 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 # How Does AI Work? And What Are Agents? {background-color="#530153"}
 
-## The Two Things LLMs Can Do
+## Two Types of AI Models
 
-No matter how amazed we are with new AI capabilities the last year, the Large Language Models (LLMs) that is the technology behind text based AI, can only do these two things. And that has not changed since the publication of ChatGPT changed the world forever.
+No matter how amazed we are with new AI capabilities the last year, 
+the Large Language Models (LLMs) that is the technology behind text based AI, 
+can only do these two things. 
+And that has not changed since the publication of ChatGPT changed the world forever.
 
 <div style="height: 1.45em;"></div>
 
@@ -52,24 +55,24 @@ No matter how amazed we are with new AI capabilities the last year, the Large La
 ::: { .column width="50%" }
 ### Embedding Models
 
-- Understand meaning of text, excels at:
-  - Summaries
-  - Finding task in prompt
-  - Identify gaps in available information
-- Universal topic understanding
+- Represent the meaning of text as numbers, which is useful for:
+  - Comparing text for similarity
+  - Finding relevant tasks or documents
+  - Identifying gaps in available information
+- Do not generate text by themselves
 :::
 
 ::: {.column width="50%"}
 ### Generative Models
 
-- Create text by selecting the most probable word, one word at a time
-- Has generic knowledge
-- Can replicate common tasks
+- Generate text one word at a time by predicting likely next word
+- Draw on patterns learned during training
+- Can perform common language tasks
 :::
 
 ::::
 
-## Example of the Reasoning models
+## But What About Reasoning Models?
 
 :::: {.columns .v-center-container}
 
@@ -83,9 +86,9 @@ No matter how amazed we are with new AI capabilities the last year, the Large La
 
 ### Reasoning Models
 
-- Models review your prompt and use tools to gather additional information that "improves" your prompt
-- Not a linear process - jumps back and forth as the model deems fit
-- Steps are repeated until the model is satisfied
+- A reasoning model breaks a task into steps and reviews its own progress
+- When connected to tools, it can gather additional information that improves its response
+- The process is not necessarily linear: it may jump back and forth between steps
 
 :::
 
@@ -100,7 +103,7 @@ No matter how amazed we are with new AI capabilities the last year, the Large La
 ### What is "3 x 7"?
 
 ::: {.fragment}
-How many of you calculated it by:
+How many of you solved it by:
 
 - Adding 7 three times: 7 + 7 = 14, and 14 + 7 = 21
 - Fetching the answer from memory
@@ -108,37 +111,35 @@ How many of you calculated it by:
 
 ::: {.fragment}
 
-### Language models fetches from memory
-LLMs can solve "3 x 7" because it appears in many multiplication tables in the training data. 
+### Language models fetch patterns from training
+LLMs can often answer "3 x 7" because the answer appears in many multiplication tables in their training data.
 
-However, "35 x 22" is rarely present in multiplication tables, so LLMs do not reliably know the answer.
+However, the exact calculation "35 x 22" is unlikely to appear in the training data, so LLMs alone may produce an incorrect answer.
 
 How can AI platforms like ChatGPT still solve 35 x 22?
 :::
 
 ## But How Can AI Platforms Do Math?
 
-
-AI platforms, like ChatGPT or mAI, are much more than just the model in the LLM. They have tools with instructions for when to use them.
+AI platforms, like ChatGPT or mAI, are more than just the language model. They can connect the model to tools and have instructions for when to use them.
 
 ::: {.fragment}
-The model identifies the prompt is a math question. It extracts the numbers and the operator, and sends this to a calculator. The answer is then added to the prompt. 
+The model identifies that the prompt is a math question. It extracts the numbers and the operator, then sends them to a calculator. The calculator's answer is added to the context. The updated prompt becomes:
 :::
 ::: {.fragment}
-The updated prompt becomes:
 ```json
 {
   "human_prompt": "What is 35 x 22?",
   "calculator_tool_answer": 770
 }
 ```
-You do then not need math to generate the answer: "35 times 22 is equal to 770".
+The model can then generate the answer without doing the calculation itself: "35 times 22 is equal to 770".
 :::
 
 ::: {.fragment}
-### Have you ever helped a child with math home work:
+### Have you ever helped a child with math homework?
 
-Bob, Alice, and Tom have 7 apples each. How many apples do they have together?
+Bob, Alice, and Tom have 7 apples each. How many apples do they have altogether?
 :::
 
 # Agents {background-color="#530153"}
@@ -149,9 +150,9 @@ Bob, Alice, and Tom have 7 apples each. How many apples do they have together?
 
 ::: {.column width="65%" }
 
-* An agent is software that combines LLM and tools.
+* An agent is software that combines language models and tools.
 * It uses the LLM to review a request and decide which tools to use.
-* For example, a coding agent can read code files in the project folder, adding what it finds to the prompt.
+* For example, a coding agent can read code files in the project folder and add relevant content to the context.
 * Once the model has enough context, the agent generates a response or, for coding tasks, writes code in the project folder.
 
 :::
@@ -171,7 +172,7 @@ Bob, Alice, and Tom have 7 apples each. How many apples do they have together?
 
 ::::
 
-## What is Context Window?
+## What Is a Context Window?
 
 :::: {.columns .v-center-container}
 ::: {.column width="65%" }
@@ -180,7 +181,7 @@ Bob, Alice, and Tom have 7 apples each. How many apples do they have together?
 
 * This is central to why AI performs so much better today than three years ago.
 
-* Everything sent to the generative model is called: **_the Context Window_** -- the human prompt is often only a small part of it. 
+* Everything sent to the generative model is part of the **_context window_** -- the human prompt is often only a small part of it.
 
 * It may include full content of project files, code outputs, and web searches. Managing the context window is central to productive and cost-effective AI use.
 
@@ -199,40 +200,46 @@ Bob, Alice, and Tom have 7 apples each. How many apples do they have together?
 
 ## Which Agent is Best?
 
-- Any definite answer will soon be outdated, so I won't attempt one
+- Any definite answer will soon be outdated, so I will not attempt one
 - Anthropic has pioneered many features, and Claude is currently a market leader
 - But just as no one knew about Claude two years ago, no one knows today what tools will be the market leader in two years.
 - While the details differ and the features are called different things, how to use AI, including agentic AI, comes down to managing the context window. 
-- **_Prediction:_** Skills sets for managing context windows, will be essential for effective usage of AI in the future as well -- but will look and be called differently.
+- **_Prediction:_** Skill sets for managing context windows will remain essential for effective AI use, even if they look different and are called something else.
+  - _"Don't give the AI user a fish, teach the AI user to fish."_
 - Currently, ITS provisions licenses for GitHub Copilot, so that is what we will use in this training.
 
-## Common confusions related to data privacy and AI agents
+## Common Confusions Related to Data Privacy and AI Agents
 
-- mAI, GitHub Copilot has access to Claude models. This is **NOT** the same as using Claude Code. Claude Code is an agent -- agents combine models and tools.
-- mAI sends your request to a more secure server, ensuring that sensitive information is better protected -- this **DOES NOT** transfer to GitHub Copilot or Claude Code.
-- Neither GitHub Copilot or Claude Code allows you to route traffic to mAI models that are much more private. 
+::: {.fragment}
+- mAI and GitHub Copilot provides access to Claude models. This is **NOT** the same as using Claude Code. 
+:::
+::: {.fragment}
+- Claude Code is an agent: agents combine models and tools -- Claude Code exclusively use Claude models.
+:::
+::: {.fragment}
+- mAI sends your request to a more secure server, which protects sensitive information. This **DOES NOT** transfer that protection to GitHub Copilot or Claude Code.
+:::
+::: {.fragment}
+- Neither GitHub Copilot nor Claude Code allows you to route traffic through mAI's privately hosted server with the exact same models.
+:::
+::: {.fragment}
+- A personal Claude Code license has less data privacy restrictions compared to WB enterprise GitHub Copilot license -- this explains part of why Claude Code performs better. It simply sends more to the Claude servers for processing.
+:::
 
-## Set Up GitHub Copilot on WB Computers
+# Context window  {background-color="#530153"}
 
-We expect you for the session after the coffee break to have VS Code installed with GitHub Copilot enables and authenticated. 
-
-Come see us if this is not already the case.
-
-
-# Context window
-
-## What do I need to know about the Context Windows?
+## What Do I Need to Know About Context Windows?
 
 :::: {.columns .v-center-container}
 ::: {.column width="75%" }
 
 The more information included in the context window, the better responses, right? - **NO!!**
 
-* All context windows has a max capacity. The size of the context window depends on the model. If you surpass the limit, the AI will start making summaries of the earlier content.
+* Every context window has a maximum capacity. Its size depends on the model. If you approach or exceed that limit, the AI will summarize earlier content to avoid errors.
 
 * However, the closer to that limit, the less the AI can handle and keep track of details and nuances. How close you can be to the context limit depends on the specific task. 
 
-* One character in coding can break the code, while one miscolored image pixel is not visible to the human eye.
+  * A single incorrect character in code can crash the execution, while a single miscolored pixel in an AI image is not visible to the human eye.
 
 :::
 ::: {.column width="25%" }
@@ -246,15 +253,19 @@ The more information included in the context window, the better responses, right
 
 ## Prompt Engineering vs. Agents
 
-Prompt Engineering was the hottest buzz word two years ago. And one central theme was to provide the AI with all relevant context in the prompt. -- That is still relevant, but the agents do much of it for us. 
+Prompt engineering was a popular buzzword two years ago. One central practice was to provide the AI with all relevant context in the prompt. That is still relevant, but agents can gather much of that context for us.
 
+<div style="height: 2em;"></div>
+
+::: {.fragment}
 ### Which prompt gets the most correct and helpful answer?
 
 **A.** Paste only the error code and ask for a solution.
 
 **B.** Paste the error code and relevant parts of project files that could be related to the error.
 
-Option B is a central best practice in prompt engineering. Coding agents do this best practice for you.
+Option B is a central best practice in prompt engineering. Coding agents can do much of this work for you.
+:::
 
 ## Sessions
 
@@ -264,7 +275,7 @@ Option B is a central best practice in prompt engineering. Coding agents do this
 
 - If you are starting a new topic, _always_ start a new session. Otherwise, you clutter the context window which leads to loss of details -- it also saves your token credits.
 
-- Edit and resubmit your previous prompt rather than asking the AI to "forget" previous prompts or answers.
+- Edit and resubmit your previous prompt rather than asking the AI to "forget" earlier prompts or answers.
 
 ## Planning Mode
 
@@ -274,6 +285,11 @@ Option B is a central best practice in prompt engineering. Coding agents do this
   - The agent gathers relevant context and asks for human input instead of guessing when it cannot find relevant context 
 - The agent will provide you with its plan after you have answered questions. If you spot something incorrect or missing, you can provide additional input before execution.
 
+## Set Up GitHub Copilot on WB Computers
+
+For the session after the coffee break, we expect you to have VS Code installed, with GitHub Copilot enabled and authenticated.
+
+Come see us if this is not already the case.
 
 # Thank You! - Questions? {background-color="#530153"}
 
