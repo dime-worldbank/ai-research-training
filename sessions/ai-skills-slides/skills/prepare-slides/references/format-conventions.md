@@ -14,6 +14,12 @@ Apply shared guidance from:
 - `figure-table-guidelines.md` for figures and tables.
 - `decdi-branding.md` for colors, fonts, and logos.
 
+The preset visual patterns and raster-dimension tests in
+`figure-table-guidelines.md` apply to all three formats. Select the pattern and
+copy the corresponding bundled example. Layout measurements in the starter
+assets are implementation details; do not recalculate or tune them for each
+slide.
+
 ## Quarto
 
 ### Starting files
@@ -59,21 +65,10 @@ Use a level-two heading for a content slide:
 ## Enrollment increased after the program
 ```
 
-Use columns for side-by-side content:
-
-```markdown
-:::: {.columns}
-
-::: {.column width="50%"}
-Left-side content
-:::
-
-::: {.column width="50%"}
-Right-side content
-:::
-
-::::
-```
+For `one-visual`, `visual-and-text`, and `comparison`, copy the matching example
+from the bundled `template.qmd` and replace its content without changing the
+layout measurements. Crop empty outer whitespace before insertion. Do not
+reconstruct the composition or tune the layout slide by slide.
 
 Use a notes block for speaker notes:
 
@@ -194,18 +189,6 @@ Use one `frame` for each slide:
 \end{frame}
 ```
 
-Use `columns` for side-by-side content:
-
-```tex
-\begin{columns}[T]
-  \column{0.48\textwidth}
-  Left-side content
-
-  \column{0.48\textwidth}
-  Right-side content
-\end{columns}
-```
-
 Use the existing title and closing frames as starting points. Apply logo
 selection and placement from `decdi-branding.md`.
 
@@ -214,8 +197,13 @@ selection and placement from `decdi-branding.md`.
 Insert figures with `\includegraphics`:
 
 ```tex
-\includegraphics[width=0.8\textwidth]{img/main-result.png}
+\includegraphics[width=\textwidth]{img/main-result.png}
 ```
+
+For `one-visual`, `visual-and-text`, and `comparison`, copy the matching frame
+from the bundled `beamer-template.tex` and replace its content without changing
+the layout measurements. Crop empty outer whitespace before insertion. Do not
+reconstruct the frame or tune the layout slide by slide.
 
 Use `booktabs` commands for tables:
 
@@ -328,7 +316,12 @@ use the starter slides as layout and styling references:
 - Replace all bracketed placeholder text and placeholder visual frames.
 - Delete starter slides that are not needed in the final deck.
 - Keep text, tables, charts, and simple shapes editable.
-- Insert research figures and photographs as appropriately sized image assets.
+- Insert research figures and photographs into the selected visual area.
+- Apply the shared visual-pattern minimums to the actual image or chart
+  content. Use slide 4's full-width evidence area for `one-visual`, slide 3's
+  text-and-visual area for `visual-and-text`, and slide 5's equal visual areas
+  for `comparison`. Duplicate the named starter slide rather than rebuilding
+  its composition. Remove excess whitespace within an image before sizing it.
 - Preserve the template's 16:9 dimensions, typography, colors, margins, and
   visual hierarchy.
 - Place the logo only on the title and closing slides, following

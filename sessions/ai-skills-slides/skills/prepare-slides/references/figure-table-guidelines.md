@@ -15,6 +15,117 @@ the corresponding format reference.
 - Move secondary results and complete specifications to the appendix.
 - Apply the colors and accessibility guidance in `decdi-branding.md`.
 
+## Mandatory exhibit-selection flow
+
+Use this sequence for every evidence slide. Decide what evidence belongs on
+the slide before choosing its layout.
+
+1. **State the slide claim.** Write the single conclusion or question the
+   exhibit must support. If the slide has no evidence-based claim or question,
+   do not add an exhibit merely for decoration.
+2. **Apply the main-deck test.** Keep the exhibit in the main deck only when
+   the audience needs it to understand, compare, or trust a main conclusion.
+   Move useful supporting detail to the appendix; omit material that does not
+   advance either purpose.
+3. **Prefer faithful existing evidence.** Retain an existing exhibit when it
+   directly supports the claim, is accurate, and will be legible on a slide.
+   Simplify it when the evidence is right but the presentation is too dense.
+   Do not replace it merely to make the deck look different.
+4. **Check what can be produced faithfully.** Create or adapt an exhibit only
+   from supplied editable data or exact reported results. When these are not
+   available, retain an approved usable exhibit or offer an editable
+   placeholder. Never infer values from a plotted image.
+5. **Choose the exhibit form from the audience's task.** Use the simplest form
+   that performs that task:
+   - one headline value or short factual result: text or a numeric callout,
+     not a chart;
+   - comparison across discrete categories: bar or dot plot;
+   - change over time or another ordered sequence: line chart;
+   - estimates with uncertainty: points with intervals;
+   - relationship between continuous variables: scatterplot;
+   - exact values the audience must look up: simplified table.
+6. **Choose the visual pattern.** After the exhibit form is settled, select
+   `one-visual`, `visual-and-text`, or `comparison` using the rules below. If
+   none fits cleanly, split the content or move secondary evidence to the
+   appendix instead of inventing a custom layout.
+7. **Record only real choices.** Assign a visual ID when two or more faithful
+   options would materially change the slide. Recommend one option and explain
+   the claim fit, audience task, source requirement, and main-deck or appendix
+   decision. Do not create artificial alternatives for an exhibit that is
+   already effective.
+
+This order is mandatory: claim, deck relevance, available evidence, exhibit
+form, then layout pattern. Visual variety is not a selection criterion.
+
+## Shared visual patterns and size test
+
+Use these preset patterns for new decks and template-based improvements in
+PowerPoint, Quarto, and Beamer. Select one pattern during Phase 1, use the
+corresponding format-specific layout in Phase 2, and fill its visual area. Do
+not create a custom geometry for each slide.
+
+| Pattern | Use | Required composition | Minimum raster dimensions |
+|---|---|---|---|
+| `one-visual` | One figure or table carries the slide | Full content width below the title | 1600 × 500 px |
+| `visual-and-text` | The figure and explanatory text both matter | Two approximately equal columns; visual fills one column | 900 × 500 px |
+| `comparison` | Two equally important visuals support one comparison | Two equal visual areas | 720 × 425 px for each visual |
+
+Select the pattern using these rules:
+
+- Use `one-visual` when the visual can carry the message without visible
+  explanatory prose.
+- Use `visual-and-text` only when the audience must see explanatory text while
+  reading the visual.
+- Use `comparison` only when the slide's message depends on comparing exactly
+  two visuals.
+- Split the slide or move secondary evidence to the appendix when it requires
+  more than two independent visuals.
+
+Keep content within these default budgets:
+
+- `one-visual`: title, visual, and any required source or interpretation note;
+  no separate body-text block.
+- `visual-and-text`: no more than three bullets or about 45 words beside the
+  visual.
+- `comparison`: two short labels and, when needed, one short interpretation
+  statement; do not add a separate bullet list.
+
+When content exceeds the relevant budget, shorten it, move detail to speaker
+notes or the appendix, or split the slide. Do not shrink the visual or its
+labels to retain excess text.
+
+The raster dimensions are a fast pre-insertion screen, not a target for
+resampling. Read the image's pixel dimensions once. Do not calculate effective
+PPI or repeatedly resize and reassess it. The pixel test does not apply to
+vector files or native editable charts and tables; still inspect their labels
+at presentation size.
+
+Crop unnecessary outer whitespace before placement, then make the visual fill
+the selected layout's visual area while preserving its aspect ratio. A large
+image box containing a small plot does not pass. For a short native table, use
+the full available width but let the row count set its height; do not add empty
+rows or stretch it. For a comparison, use equal-sized areas and the same scale
+when the evidence is comparable.
+
+If a visual cannot fill the preset layout without distortion, cropped evidence,
+or unreadable labels, simplify it, select another preset pattern, or split the
+slide. Do not spend time tuning custom layout dimensions. Preserve the existing
+structure for a targeted edit or rebrand unless the author approved a layout
+change; flag a failing visual instead of silently redesigning the deck.
+
+If a raster visual fails in a new or rebuilt slide, use this bounded fallback:
+
+1. Check once for an existing vector or higher-resolution export in the
+   supplied project.
+2. When supplied code and data support it, regenerate the visual once.
+3. If neither succeeds, leave the visual area blank rather than inserting a
+   blurry asset; identify the slide, missing visual, and required replacement
+   in the final handoff.
+
+Do not begin an open-ended asset search or repeatedly regenerate the visual.
+For a targeted edit or rebrand, retain and flag an existing failing visual
+unless the author approved its replacement.
+
 ## Accuracy
 
 - Preserve the meaning, values, signs, units, and uncertainty of the original
@@ -29,20 +140,22 @@ guessing.
 
 ## Phase 1 visual decisions
 
-During Phase 1, identify meaningful choices before creating or editing any
-visual. Do not force a choice when the existing form is already effective.
+During Phase 1, apply the mandatory exhibit-selection flow before creating or
+editing any visual. Identify meaningful choices, but do not force a choice when
+the existing form is already effective.
 
 Assign each real decision a stable ID and present the options side by side:
 
-| Visual ID | Slide ID | Current form | Options | Recommendation | Reason and data requirement |
-|---|---|---|---|---|---|
-| V01 | S05 | Manuscript Table 3 | A: simplified table; B: coefficient plot; C: keep existing | B | Comparisons are easier to scan; exact estimates and confidence intervals required |
+| Visual ID | Slide ID | Slide claim | Current form | Options | Recommendation and reason | Evidence requirement | Destination |
+|---|---|---|---|---|---|---|---|
+| V01 | S05 | Effects differ across outcomes | Manuscript Table 3 | A: simplified table; B: point-and-interval plot; C: keep existing | B: comparison is the audience task | Exact estimates and confidence intervals | Main deck |
 
 Options may include keeping the existing visual, simplifying a table, using an
 alternative chart, leaving a placeholder for an author-supplied screenshot,
 moving the result to the appendix, or omitting it. Explain why the recommended
-option communicates the result more clearly and state whether it requires
-editable data, exact reported values, or an author-supplied image.
+option supports the slide claim and audience task. State whether it requires
+editable data, exact reported values, or an author-supplied image, and whether
+the result belongs in the main deck, appendix, or should be omitted.
 
 Do not produce multiple finished alternatives during Phase 1. The author
 selects an option by visual ID in the Author Decision Form defined in
@@ -66,8 +179,8 @@ For each manuscript visual, offer two options when they are feasible:
 
 - **Adapt:** Recreate a cleaner branded figure or simplified table from exact
   information reported in the manuscript.
-- **Placeholder:** Reserve an appropriately sized, editable area for the
-  author to insert a screenshot of the original figure or table.
+- **Placeholder:** Reserve the selected pattern's visual area for the author to
+  insert a screenshot of the original figure or table.
 
 Use a side-by-side review table:
 
@@ -222,20 +335,9 @@ Use a file format that can be stored with the project and reviewed in GitHub.
 - Store generated visuals in a predictable folder such as `figures/`.
 - Preserve each image’s aspect ratio.
 - Crop unnecessary whitespace.
-- Do not enlarge a low-resolution image.
+- Apply the minimum-pixel and blank-area rule above; do not enlarge a
+  low-resolution image to make it appear to fill the slide.
 - Check the rendered deck for clipping, blurring, and unreadable labels.
 
-## Final check
-
-Confirm that:
-
-- The title accurately represents the result.
-- The numbers and interpretation match the source.
-- The visual is legible at presentation size.
-- Units, groups, and uncertainty are clear.
-- The underlying result is traceable internally.
-- Any external source is cited visibly.
-- Interpretation notes are included only when needed and remain legible.
-- Colors are accessible and brand-consistent.
-- The exported image is stored with the project.
-- No missing information was invented.
+Use `deck-review-checklist.md` for the final visual and evidence checks rather
+than repeating a second checklist here.

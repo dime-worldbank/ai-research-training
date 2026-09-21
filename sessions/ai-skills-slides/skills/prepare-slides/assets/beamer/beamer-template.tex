@@ -92,11 +92,12 @@
 
 \section{Results}
 
-\begin{frame}{A figure}
+% Pattern: one-visual. Keep only the title, visual, and necessary note.
+\begin{frame}{One visual}
 	\begin{figure}
 		\centering
-		% Replace with: \includegraphics[width=.7\textwidth]{img/your-figure}
-		\fbox{\parbox[c][4cm][c]{.7\textwidth}{\centering [Insert figure here]}}
+		% Replace with: \includegraphics[width=\textwidth,height=.62\textheight,keepaspectratio]{img/your-figure}
+		\fbox{\parbox[c][4.5cm][c]{.96\textwidth}{\centering [Insert figure here]}}
 	\end{figure}
 	\visualnote{\textbf{Notes:} Add uncertainty, sample, units, or other details
 	only when needed. Add \textbf{Source:} only for an external source.}
@@ -124,33 +125,25 @@
 
 \section{Template Slides}
 
-\begin{frame}{One image}
-	% Replace with: \includegraphics[width=.6\textwidth]{img/your-figure}
-	\begin{figure}
-		\centering
-		\fbox{\parbox[c][4.5cm][c]{.6\textwidth}{\centering [Insert image here]}}
-	\end{figure}
-	\visualnote{\textbf{Notes:} Add interpretation details only when needed.
-	Add \textbf{Source:} only for an external source.}
-\end{frame}
-
-\begin{frame}{Two images side by side}
+% Pattern: comparison. Use exactly two equal visual areas.
+\begin{frame}{Comparison}
 	\begin{columns}[T]
 		\column{.48\textwidth}
 		\centering
 		% Replace with: \includegraphics[width=\linewidth]{img/your-figure-1}
-		\fbox{\parbox[c][3.5cm][c]{\linewidth}{\centering [Insert image 1 here]}}\\
+		\fbox{\parbox[c][3.5cm][c]{.96\linewidth}{\centering [Insert image 1 here]}}\\
 		\small Caption for image 1.
 
 		\column{.48\textwidth}
 		\centering
 		% Replace with: \includegraphics[width=\linewidth]{img/your-figure-2}
-		\fbox{\parbox[c][3.5cm][c]{\linewidth}{\centering [Insert image 2 here]}}\\
+		\fbox{\parbox[c][3.5cm][c]{.96\linewidth}{\centering [Insert image 2 here]}}\\
 		\small Caption for image 2.
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Image and text}
+% Pattern: visual-and-text. Keep visible prose to three bullets or about 45 words.
+\begin{frame}{Visual and text}
 	\begin{columns}[c]
 		\column{.45\textwidth}
 		\begin{itemize}
@@ -162,35 +155,7 @@
 		\column{.5\textwidth}
 		\centering
 		% Replace with: \includegraphics[width=\linewidth]{img/your-figure}
-		\fbox{\parbox[c][4cm][c]{\linewidth}{\centering [Insert image here]}}
-	\end{columns}
-\end{frame}
-
-\begin{frame}{Table and text}
-	\begin{columns}[c]
-		\column{.45\textwidth}
-		\begin{itemize}
-			\item Point one about the table
-			\item Point two about the table
-			\item Point three about the table
-		\end{itemize}
-
-		\column{.5\textwidth}
-		\centering
-		\begin{threeparttable}
-			\begin{tabular}{lc}
-				\toprule
-				& Value \\
-				\midrule
-				Row 1 & 0.00 \\
-				Row 2 & 0.00 \\
-				\bottomrule
-			\end{tabular}
-			\begin{tablenotes}
-				\scriptsize
-				\item Note: replace with your table notes.
-			\end{tablenotes}
-		\end{threeparttable}
+		\fbox{\parbox[c][4cm][c]{.96\linewidth}{\centering [Insert image here]}}
 	\end{columns}
 \end{frame}
 

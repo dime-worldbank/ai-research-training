@@ -45,6 +45,25 @@ Inspect the supplied files before proposing an outline. Determine:
   existing deck, or other supporting files.
 - Whether DECDI, a specific program, LEADS, WBG, or another brand is expected.
 
+### Source-access gate
+
+Before Phase 1, classify each supplied source as **primary** or **supporting**.
+A primary source is one the task depends on for its claims, narrative, or
+requested content. Record each primary file as `read`, `partially read`, or
+`unreadable`, with the sections or pages inspected when available.
+
+When a manuscript PDF is a primary source, access and use its contents before
+proposing the outline. Existing slides, filenames, summaries, and supplementary
+files may support the work, but they do not replace reviewing the manuscript.
+Follow the efficient PDF-reading procedure in `references/slide-structure.md`.
+Do not present an outline as manuscript-based when the PDF was not read.
+
+If a primary PDF cannot be accessed, report the problem and request an
+accessible PDF or extracted text instead of inferring its contents. Do not
+silently continue from secondary materials. This gate does not require reading
+an unrelated PDF or a primary source that is irrelevant to a narrow,
+already-specified edit.
+
 Do not require the output format during Phase 1. If the user already specified
 Quarto/Reveal.js, Beamer, or PowerPoint, record the choice and do not ask again.
 Preserve an existing deck's format unless the user requests a conversion.
@@ -59,12 +78,16 @@ than presentations.
 
 Do not create, edit, rebrand, or rebuild presentation files in this phase.
 
-1. Inventory the available source material and identify what it can support.
+1. Inventory the available source material, apply the source-access gate, and
+   identify what each source can support.
 2. For build or improve, read `references/slide-structure.md` and plan the
    narrative, timing, and main-deck/appendix split.
 3. For build or improve, read `references/figure-table-guidelines.md` and
-   identify any figure or table that should be retained, simplified, replaced,
-   moved, or omitted.
+   apply its mandatory exhibit-selection flow. Decide the claim and whether the
+   evidence belongs in the main deck before choosing the exhibit form; choose
+   the visual pattern only after the exhibit form is settled. Identify any
+   figure or table that should be retained, simplified, replaced, moved, or
+   omitted.
 4. If an existing deck was supplied, apply
    `references/deck-review-checklist.md` and inspect the rendered deck whenever
    possible.
@@ -98,16 +121,23 @@ Phase 1 review rather than silently expanding scope beyond what was asked.
 Use this full proposal for a build, or an improve request broad enough that
 the Fast path above does not apply. Provide:
 
-1. A short narrative summary explaining the proposed story, audience fit, and
+1. A concise source-use summary listing each primary file, its role, its
+   `read`, `partially read`, or `unreadable` status, the sections or pages used,
+   and any access limitation.
+2. A short narrative summary explaining the proposed story, audience fit, and
    approximate main-deck/appendix split.
-2. A slide-by-slide outline following `references/slide-structure.md`, using
-   stable IDs such as `S01`, `S02`, and `S03`.
-3. A decision table following `references/figure-table-guidelines.md` for every
+3. A slide-by-slide outline following `references/slide-structure.md`, using
+   stable IDs such as `S01`, `S02`, and `S03`. Record the shared visual pattern
+   (`one-visual`, `visual-and-text`, or `comparison`) for each evidence slide
+   after applying the exhibit-selection flow.
+4. A decision table following `references/figure-table-guidelines.md` for every
    meaningful visual alternative, using stable IDs such as `V01`, `V02`, and
-   `V03`.
-4. For an existing deck, the assessment and prioritized recommendations
+   `V03`. Include the slide claim, recommended exhibit form, evidence needed,
+   and main-deck, appendix, or omit destination. Do not create alternatives
+   solely to add visual variety.
+5. For an existing deck, the assessment and prioritized recommendations
    required by `references/deck-review-checklist.md`.
-5. A prefilled Author Decision Form.
+6. A prefilled Author Decision Form.
 
 Do not manufacture alternative visuals during Phase 1. Describe them clearly
 enough for the author to choose. When data are unavailable, follow the
@@ -221,6 +251,38 @@ Begin only after Phase 1 is approved.
 6. Batch related changes, then build or export the deck and inspect the
    rendered output.
 
+For every Phase 2 run that creates or edits an output, keep a short
+`production-decisions.txt` beside the editable source. Create it when Phase 2
+begins and start it with an **Approval record** that preserves the completed
+Author Decision Form, including:
+
+- service and output format;
+- primary source files and any source-access limitations;
+- outline status and approved slide changes, when relevant;
+- the selected option for every visual ID;
+- logo family, when branding is in scope;
+- other author comments and known limitations.
+
+Normalize a clear natural-language approval into these fields even when the
+author did not complete the form verbatim. Mark irrelevant fields as not
+applicable; do not infer a decision that the author did not make.
+
+After the approval record, record each slide ID, final title, approved visual
+pattern, visual ID and exact local asset path, plus any figure-generation
+script, input files, command or parameters (including a random seed when used),
+and output path. For a narrow edit or rebrand, record the approved named changes
+and affected source files instead of manufacturing a full slide record. For
+generated imagery, retain the approved image file and record its prompt and
+model when available. Record necessary deviations from the approved outline.
+Keep generated visual assets with the deck. Do not calculate file hashes.
+
+For a subsequent run on the same deck, read `production-decisions.txt` before
+planning or building. Reuse its recorded approvals, layouts, and assets when
+the new request does not supersede them and their dependencies remain
+available. Do not ask the author to repeat those decisions. Record any newly
+approved change or unavailable dependency in the same file; prior approval is
+not permission for an unrequested change.
+
 When a manuscript is the only source for a figure or table, implement the
 author's approved choice: either adapt the reported result into a faithful,
 branded presentation visual when enough exact information is available, or
@@ -302,14 +364,19 @@ Before delivery:
 3. Inspect every new or changed slide at full size and inspect the complete
    deck sequence. Check narrative order, content accuracy, branding, fonts,
    logo placement, contrast, image quality, clipping, overflow, overlap, and
-   missing assets. Run automated overflow or overlap checks when the available
-   tooling supports them.
+   missing assets. Apply the shared preset-layout and raster-dimension tests in
+   `references/figure-table-guidelines.md`. Run automated overflow or overlap
+   checks when the available tooling supports them.
 4. Fix material problems and rebuild until the output is presentation-ready.
 5. Reconcile the result against every approved Phase 1 item and confirm that
    none was silently skipped.
 6. Confirm that no template examples, unintended placeholders, or temporary
    build artifacts remain. Retain clearly labeled screenshot placeholders only
-   when the author approved them.
+   when the author approved them. For a new or rebuilt slide, if an asset fails
+   the raster-dimension rule and no suitable replacement exists, leave its visual
+   area blank, identify the affected slide and asset in the handoff, and do not
+   describe that deck as presentation-ready. For a targeted edit or rebrand,
+   preserve and flag an existing failing visual unless replacement was approved.
 
 Deliver the editable source, required local assets, and rendered output. Note
 any approved screenshot placeholders, unresolved content questions,
