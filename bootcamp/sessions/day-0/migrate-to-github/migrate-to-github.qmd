@@ -1,0 +1,36 @@
+---
+title: "Migrating an Existing Project to GitHub"
+subtitle: "Hands-on · Day 0 · Setup for AI-enabled Research"
+author: "Kristoffer Bjärkefur"
+institute: "Impact Analytics"
+date: 1 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+
+format: bootcamp-revealjs
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../../../_extensions/bootcamp/setup_palettes.R")
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Objective
+
+- Move an existing local project into a GitHub repository.
+
+## Steps
+
+- Create a new repository on GitHub
+- Initialize/connect the local project folder
+- Commit and push existing files
+
+## Key Takeaways
+
+- Placeholder — fill in with session content.

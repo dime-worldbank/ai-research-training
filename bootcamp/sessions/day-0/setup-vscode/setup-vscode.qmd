@@ -1,0 +1,60 @@
+---
+title: "Set Up VS Code on Your Computer"
+subtitle: "Hands-on · Day 0 · Setup for AI-enabled Research"
+author: "Kristoffer Bjärkefur"
+institute: "Impact Analytics"
+date: 1 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+
+format: bootcamp-revealjs
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../../../_extensions/bootcamp/setup_palettes.R")
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Objective
+
+- Install VS Code and open your project folder in the IDE.
+
+## Steps
+
+- Download and install VS Code
+- Open your project folder
+- Install recommended extensions
+
+## Installing VS Code
+
+Install Visual Studio Code (VS Code). This is the code editor we will use for the training.
+	- **Personal computer**: [Download VS Code](https://code.visualstudio.com/).
+    - **WB computer**: Open *Software Center* from the Windows Start menu, search for **Visual Studio Code** or **vscode**, select the software, and click **Install**.
+
+For WB computers, even when we use Software Center, ITS appreciates it if we log the installation with a Software Installation request. This also helps because the more logged installations of VS Code there are, the more resources ITS is willing to allocate for supporting it.
+
+## Explore these concepts
+
+- Opening a project folder in VS Code so that you can see the file tree view
+- Open several files and observe how they are displayed in the editor. Compare code, images, PDF and Word documents, and other file types. You will notice that VS Code is made for code, but handles types commonly used in coding quite well. For example, images such as research diagrams and web page images.
+- Install common extensions for your preferred programming languages and workflows. If you use several, there is no conflict in installing multiple extensions simultaneously. These are popular extensions, but there is no one "correct" set of extensions for everyone.
+    - Stata: `Stata Enhanced`
+    - Python: `Python`
+    - R: `R`/`R Syntax`
+
+## How are files saved
+
+- Have several files open, and make an edit to one of them
+- Observe how VS Code indicates unsaved changes (e.g., with a dot in the tab)
+- Save the file and notice how the indicator disappears
+- Understand that VS Code automatically saves files only if you have enabled auto-save in the settings
+- Make an edit to another file again and then close VS Code without saving the file.
+- You are not prompted to save the file.
+- Open VS Code again and see how the same files are open and that unsaved changes are still there! VS Code saves your work in the background automatically, but does not overwrite the file in your file system until you explicitly save it. This makes sense in many software development workflows.
+- VS Code only has **temporary** background-saved versions for files you have opened, so if you close a tab with unsaved edits you need to decide whether to save the file or discard any unsaved edits.

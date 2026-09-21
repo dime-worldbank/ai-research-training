@@ -13,13 +13,13 @@ Participants gain the foundational skills for reproducible workflows. They under
 
 ## Schedule
 
-| Time | Session | Lead |
-| --- | --- | --- |
-| 9:30 - 10:00 | Set up GitHub account and install GitHub Desktop | Impact Analytics |
-| 10:00 - 12:00 | Intuitive Introduction to Git/GitHub | Impact Analytics |
-| 11:30 - 12:30 | Migrating an Existing Project to GitHub - Hands-on part during lunch | Impact Analytics |
-| 12:30 - 1:45 | Lunch Break | |
-| 1:45 - 2:15 | Intro to Integrated Development Environments (VS Code) | Impact Analytics |
-| 2:15 - 2:45 | Hands-on: Set up VS Code on your computer and open your project folder in the IDE | Impact Analytics |
-| 2:45 - 3:15 | Hands-on: Set up Python and R on your computer to facilitate agentic workflows | Impact Analytics |
-| 3:15 - 4:00 | Hands-on: Set up a coding agent on your computer | Impact Analytics |
+| Time | Session | Lead | Material (link or note) |
+| --- | --- | --- | --- |
+| 9:30 - 10:00 | Set up GitHub account and install GitHub Desktop | Impact Analytics | [Set up GitHub account and install GitHub Desktop](setup-github/setup-github.qmd) |
+| 10:00 - 12:00 | Intuitive Introduction to Git/GitHub | Impact Analytics | [Intro to Git/GitHub Contributor](https://github.com/worldbank/dime-github-trainings/tree/main/GitHub-trainings/Intro-Git-GitHub-Contributor)|
+| 11:30 - 12:30 | Migrating an Existing Project to GitHub - Hands-on part during lunch | Impact Analytics | [Migrating an Existing Project to GitHub](migrate-to-github/migrate-to-github.qmd) | 
+| 12:30 - 1:45 | Lunch Break | Lunch Break | Lunch Break |
+| 1:45 - 2:15 | Intro to Integrated Development Environments (VS Code) | Impact Analytics | [Intro to IDEs (VS Code)](intro-ide-vscode/intro-ide-vscode.qmd) | 
+| 2:15 - 2:45 | Hands-on: Set up VS Code on your computer and open your project folder in the IDE | Impact Analytics | [Set up VS Code](setup-vscode/setup-vscode.qmd) |
+| 2:45 - 3:15 | Hands-on: Set up Python and R on your computer to facilitate agentic workflows | Impact Analytics | [Set up Python and R](setup-python-r/setup-python-r.qmd) |
+| 3:15 - 4:00 | Hands-on: Set up a coding agent on your computer | Impact Analytics | [Set up a coding agent](setup-coding-agent/setup-coding-agent.qmd) |

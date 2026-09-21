@@ -1,0 +1,28 @@
+flowchart TB
+ subgraph reviewBox["Collect Context"]
+    direction LR
+        reviewPrompt["Review missing context"]
+        tool["Use tools to fetch context"]
+  end
+ subgraph generateBox["Reason About Answer"]
+    direction LR
+        generate["Generate a draft answer"]
+        reviewAnswer["Review answer completeness"]
+  end
+
+    reviewPrompt <--> tool
+    generate <--> reviewAnswer
+    prompt["Prompt"]:::whiteBox --> reviewBox
+    reviewBox <--> generateBox
+    generateBox --> answer["Answer"]:::whiteBox
+
+    reviewPrompt:::llmEmbed
+    tool:::tool
+    generate:::llmGen
+    reviewAnswer:::llmEmbed
+    classDef llmEmbed fill:#70C2E7,stroke:#707070
+    classDef llmGen fill:#81D089,stroke:#707070
+    classDef tool fill:#A5A5A5,stroke:#707070
+    style reviewBox fill:#D0CECE,stroke:#707070,stroke-width:2px,color:#222
+    style generateBox fill:#D0CECE,stroke:#707070,stroke-width:2px,color:#222
+    classDef whiteBox fill:#FFFFFF,stroke:#707070,stroke-width:2px,color:#222
