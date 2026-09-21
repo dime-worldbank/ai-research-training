@@ -1,6 +1,10 @@
 /.quarto/
 **/*.quarto_ipynb
 
+# Ignore PowerPoint files
+*.ppt
+*.pptx
+
 # Ignore compiled files and generated content
 **/libs/
 sessions/**/*.html
