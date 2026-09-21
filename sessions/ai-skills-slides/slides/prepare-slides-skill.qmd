@@ -99,7 +99,7 @@ apply the template, and check the formatting.
 - Adapt the story and level of detail for the intended audience
 - Review the outline and visual choices before production
 - Create or improve slides in PowerPoint, Quarto, or Beamer
-- Apply DECDI branding and check the rendered output
+- Apply DEC/World Bank branding and check the rendered output
 
 **Spend your time tailoring the message, not rebuilding the presentation.**
 
@@ -220,13 +220,36 @@ fixes material problems.
 
 For a new deck or substantial improvement, the agent provides:
 
-1. A short narrative summary
-2. A slide-by-slide outline
-3. Visual alternatives for figures and tables
-4. An assessment of the existing deck, when relevant
-5. A prefilled Author Decision Form
+1. A source-use summary: each primary file, its role, and whether it was
+   read, partially read, or unreadable
+2. A short narrative summary
+3. A slide-by-slide outline
+4. Visual alternatives for figures and tables
+5. An assessment of the existing deck, when relevant
+6. A prefilled Author Decision Form
 
 **No presentation files are created or edited during Phase 1.**
+
+## Every proposal starts with a source-use summary
+
+**Primary source files:**
+
+- `paper.pdf` (manuscript, AER 2022): read via extracted text: abstract,
+  intro, data/design, results, conclusion
+- `project-materials/tabfig/figs/*.pdf`: inspected as rendered images; all
+  used figures are the manuscript authors' own exhibits
+
+. . .
+
+**Supporting materials:** results files and code, consulted to verify figures
+and table values, not to source new claims
+
+**No source-access limitations.**
+
+::: {.notes}
+This is what makes the review question "Did it state what it could not
+verify?" answerable: the source-use summary is the answer.
+:::
 
 ## A Phase 1 proposal shows the proposed outline {.smaller}
 
@@ -235,6 +258,24 @@ For a new deck or substantial improvement, the agent provides:
 ## The proposal also records visual decisions {.smaller}
 
 ![](images/phase1b.png){width="100%"}
+
+## The agent picks visuals in a fixed order, not by what looks nice
+
+1. **What's the point?** the one claim this figure/table needs to prove
+2. **Does it belong in the main deck?** or is it just supporting detail?
+3. **What evidence do we actually have?** real data/numbers only, no guessing
+4. **What's the simplest way to show it?** one number, a bar chart, a table...
+5. **Which layout fits?** one visual, visual + text, or a side-by-side comparison
+
+. . .
+
+**Visual variety is never the reason to choose a chart.**
+
+::: {.notes}
+This order is mandatory: claim → relevance → evidence → form → layout. It
+stops the agent from picking a visual because it looks good rather than
+because the audience needs it.
+:::
 
 ## The author can approve, edit, or request alternatives
 
@@ -293,6 +334,24 @@ Edit a copy of the existing source using the starter's visual system.
 After reviewing the output, the author can request additional changes. The
 original source remains unchanged unless in-place editing was explicitly
 requested.
+:::
+
+## Phase 2 keeps a record of what was approved and built
+
+Every Phase 2 run keeps a `production-decisions.txt` file beside the deck:
+
+- The completed Author Decision Form (service, format, visual choices, logo)
+- Each slide's final title, visual pattern, and asset path
+- Any figure-generation script, inputs, and parameters used
+
+. . .
+
+On a later request for the same deck, the agent reads this file first and
+reuses prior approvals instead of asking again.
+
+::: {.callout-note appearance="simple"}
+You'll see this file appear in your exercise folder after Phase 2. It's
+expected, not a build artifact to delete.
 :::
 
 # Limitations {background-color="#002A4F"}
