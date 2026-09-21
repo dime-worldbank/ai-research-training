@@ -10,7 +10,9 @@ logos:
   - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
   - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
 
-format: bootcamp-revealjs
+format:
+  bootcamp-revealjs:
+    fragments: true
 ---
 
 ```{r}
@@ -24,9 +26,17 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Scope of This Session
 
+:::: {.columns .v-center-container}
+
+::: { .column width="100%" }
+
 - Overview of agents, with an emphasis on and examples from coding agents
 - Instructions for installing coding agents on WB computers
 - Tools and context windows: how agents gather additional information relevant to your prompt
+
+:::
+
+::::
 
 # How Does AI Work? And What Are Agents? {background-color="#530153"}
 
@@ -34,9 +44,12 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 No matter how amazed we are with new AI capabilities the last year, the Large Language Models (LLMs) that is the technology behind text based AI, can only do these two things. And that has not changed since the publication of ChatGPT changed the world forever.
 
+<div style="height: 1.45em;"></div>
+
+
 :::: {.columns}
 
-::: {.column width="50%" }
+::: { .column width="50%" }
 ### Embedding Models
 
 - Understand meaning of text, excels at:
@@ -70,9 +83,9 @@ No matter how amazed we are with new AI capabilities the last year, the Large La
 
 ### Reasoning Models
 
-- Models review and improves input and its own output
-- Not a linear process
-- Steps are repeated until the LLM is satisfied
+- Models review your prompt and use tools to gather additional information that "improves" your prompt
+- Not a linear process - jumps back and forth as the model deems fit
+- Steps are repeated until the model is satisfied
 
 :::
 
@@ -81,28 +94,130 @@ No matter how amazed we are with new AI capabilities the last year, the Large La
 
 # Tools {background-color="#530153"}
 
+
 ## LLMs Cannot Do Math
 
 ### What is "3 x 7"?
 
+::: {.fragment}
 How many of you calculated it by:
 
 - Adding 7 three times: 7 + 7 = 14, and 14 + 7 = 21
 - Fetching the answer from memory
+:::
 
-LLMs can solve "3 x 7" because it appears in many multiplication tables in the training data. However, "35 x 22" is rarely present in multiplication tables, so LLMs do not reliably know the answer.
+::: {.fragment}
 
-## AI Platforms Can Do Math
+### Language models fetches from memory
+LLMs can solve "3 x 7" because it appears in many multiplication tables in the training data. 
 
-- If you ask ChatGPT "What is 35 x 22?", it can still answer correctly. How?
-- AI systems are more than LLMs: they have tools with instructions for when to use them
-- The model identifies a math question, sends the computation to a calculator, and receives the answer
+However, "35 x 22" is rarely present in multiplication tables, so LLMs do not reliably know the answer.
 
-### Example
+How can AI platforms like ChatGPT still solve 35 x 22?
+:::
 
-Bob, Alice, and Tom have 7 apples each. How many apples do they have in total?
+## But How Can AI Platforms Do Math?
 
-## Code Agents on WB Computers
+
+AI platforms, like ChatGPT or mAI, are much more than just the model in the LLM. They have tools with instructions for when to use them.
+
+::: {.fragment}
+The model identifies the prompt is a math question. It extracts the numbers and the operator, and sends this to a calculator. The answer is then added to the prompt. 
+:::
+::: {.fragment}
+The updated prompt becomes:
+```json
+{
+  "human_prompt": "What is 35 x 22?",
+  "calculator_tool_answer": 770
+}
+```
+You do then not need math to generate the answer: "35 times 22 is equal to 770".
+:::
+
+::: {.fragment}
+### Have you ever helped a child with math home work:
+
+Bob, Alice, and Tom have 7 apples each. How many apples do they have together?
+:::
+
+## Agents
+
+:::: {.columns .v-center-container}
+
+::: {.column width="65%" }
+
+* An agent is software that combines LLM and tools.
+* It uses the LLM to review a request and decide which tools to use.
+* For example, a coding agent can read code files in the project folder, adding what it finds to the prompt.
+* Once the model has enough context, the agent generates a response or, for coding tasks, writes code in the project folder.
+
+:::
+
+::: {.column width="35%" }
+
+  ![](./img/reasoning-models.svg)
+
+```json
+{
+  "human_prompt": "What is 35 x 22?",
+  "calculator_tool_answer": 770
+}
+```
+
+:::
+
+::::
+
+## What is Context Window?
+
+:::: {.columns .v-center-container}
+::: {.column width="65%" }
+
+* In most AI requests, much more information relevant for the task is gathered in addition to what the user provides.
+
+* This is central to why AI performs so much better today than three years ago.
+
+* Everything sent to the generative model is called: the context window -- the human prompt is often only a small part of it. 
+
+* It may include full content of project files, code outputs, and web searches. Managing the context window is central to productive and cost-effective AI use.
+
+:::
+::: {.column width="35%" }
+
+```json
+{
+  "human_prompt": "What is 35 x 22?",
+  "calculator_tool_answer": 770
+}
+```
+
+:::
+::::
+
+## What do I need to know about the Context Windows?
+
+:::: {.columns .v-center-container}
+::: {.column width="75%" }
+
+The more information included in the context window, the better responses, right? - **NO!!**
+
+* All context windows has a max capacity. The size of the context window depends on the model. If you surpass the limit, the AI will start making summaries of the earlier content.
+
+* However, the closer to that limit, the less the AI can handle and keep track of details and nuances. How close you can be to the context limit depends on the specific task. 
+
+* One character in coding can break the code, while one miscolored image pixel is not visible to the human eye.
+
+:::
+::: {.column width="25%" }
+
+![](../img/context-window.png)
+
+<span style="display: block; text-align: center; font-size: 0.7em; line-height: 1;">This is how we will represent context window from now on.</span>
+
+:::
+::::
+
 
 # Code Agents on WB Computers {background-color="#530153"}
 
