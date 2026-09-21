@@ -86,9 +86,9 @@ narrative into a slide-by-slide outline for author review.
 Use stable slide IDs so the author can approve or revise individual items
 without relying on titles that may change:
 
-| Slide ID | Proposed title or purpose | Content and evidence | Proposed visual | Source | Location |
-|---|---|---|---|---|---|
-| S01 | | | | | Main deck or appendix |
+| Slide ID | Proposed title or purpose | Content and evidence | Visual pattern | Visual ID | Source | Location |
+|---|---|---|---|---|---|---|
+| S01 | | | One-visual / visual-and-text / comparison / none | V01 or none | | Main deck or appendix |
 
 The outline should:
 
@@ -100,6 +100,10 @@ The outline should:
   needs a slide.
 - Use a proposed finding-led title only when the evidence already supports it.
 - Mark unresolved questions instead of filling gaps with assumptions.
+- Assign each evidence slide one of the shared visual patterns in
+  `figure-table-guidelines.md`. Use `none` for slides without a figure or table.
+  Preserve the chosen pattern through production unless the author approves a
+  change or it cannot be implemented faithfully.
 
 If the source is an existing deck, map the current slides to the proposed
 sequence and state whether each should be kept, revised, combined, moved,
@@ -111,6 +115,20 @@ selection and implementation occur only after the author approves Phase 1.
 ## Building from scratch
 
 ### From a manuscript
+
+When the manuscript is a PDF, access it before drafting the outline. Use a
+native PDF reader or extract its text once. If the text is absent or unusable,
+attempt OCR once when an OCR tool is available. If that also fails, mark the
+PDF unreadable and return to the author for an accessible copy or extracted
+text; do not repeatedly convert or OCR it.
+
+Inspect at least the abstract or executive summary, introduction, data,
+methods or research design, results, conclusion and limitations, and the
+captions and notes for relevant figures and tables. Use the closest equivalent
+sections when the manuscript uses different headings. Read the surrounding
+passages for every claim selected for the deck, and record the relevant section
+or page in the Phase 1 source-use summary. Search results, the abstract, an
+existing deck, or a summary alone are not sufficient manuscript review.
 
 Select presentation content rather than reproducing the paper's full structure.
 

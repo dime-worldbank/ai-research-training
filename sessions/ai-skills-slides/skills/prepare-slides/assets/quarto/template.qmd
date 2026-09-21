@@ -47,20 +47,99 @@ document.
 
 # Results {background-color="#002A4F"}
 
-## A figure
+## One visual
+
+<!-- Pattern: one-visual. Keep only the title, visual, and necessary note. -->
 
 ```{r}
 #| echo: false
 #| fig.align: center
+#| fig-width: 11
+#| fig-height: 5
+#| out-width: 100%
 ggplot(mtcars, aes(wt, mpg)) +
   geom_point(color = decdi_palette("DECDI")["BlueMid"]) +
-  labs(title = "Figure Title", x = "X axis label", y = "Y axis label")
+  labs(x = "Vehicle weight", y = "Fuel economy")
 ```
 
 ::: {.visual-note}
 **Notes:** Points show individual observations. Add a source line here only if
 the visual uses an external source.
 :::
+
+## Visual and text
+
+<!-- Pattern: visual-and-text. Keep visible prose to three bullets or about 45 words. -->
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Fuel economy declines as vehicle weight rises.
+- The pattern is visible across the sample.
+- Use the note for qualifications the audience needs.
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 4.5
+#| out-width: 100%
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point(color = decdi_palette("DECDI")["BlueMid"]) +
+  labs(x = "Vehicle weight", y = "Fuel economy")
+```
+
+:::
+
+::::
+
+## Comparison
+
+<!-- Pattern: comparison. Use exactly two equal visual areas. -->
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### Four-cylinder vehicles
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 4
+#| out-width: 100%
+mtcars |>
+  dplyr::filter(cyl == 4) |>
+  ggplot(aes(wt, mpg)) +
+  geom_point(color = decdi_palette("DECDI")["BlueMid"]) +
+  labs(x = "Vehicle weight", y = "Fuel economy")
+```
+
+:::
+
+::: {.column width="50%"}
+
+### Six- and eight-cylinder vehicles
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 4
+#| out-width: 100%
+mtcars |>
+  dplyr::filter(cyl != 4) |>
+  ggplot(aes(wt, mpg)) +
+  geom_point(color = decdi_palette("DECDI")["Navy"]) +
+  labs(x = "Vehicle weight", y = "Fuel economy")
+```
+
+:::
+
+::::
 
 ## A table
 

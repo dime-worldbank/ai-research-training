@@ -135,6 +135,15 @@ Apply `figure-table-guidelines.md`.
 - [ ] Are small interpretation notes included where significance, uncertainty,
       sample, units, or restrictions require explanation?
 - [ ] Are visuals legible at presentation size?
+- [ ] Does each evidence slide use the pattern selected in the approved outline,
+      and does its visible text stay within that pattern's content budget?
+- [ ] For new or rebuilt slides, does each visual fill the preset layout for
+      its approved pattern without excessive internal whitespace? If not, is
+      the layout change or exception explained?
+- [ ] For new or rebuilt slides, does every raster visual meet the
+      minimum pixel dimensions for its pattern, or has a failing asset been left out and
+      flagged for replacement? For a targeted edit or rebrand, has an existing
+      failing visual been flagged without silently replacing it?
 - [ ] Are tables simplified appropriately for presentation?
 - [ ] Does the deck use unformatted software output as final slide content?
 - [ ] Are manuscript-derived figures and tables represented faithfully?
