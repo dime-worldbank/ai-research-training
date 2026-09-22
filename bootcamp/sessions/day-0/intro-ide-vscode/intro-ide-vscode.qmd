@@ -1,5 +1,5 @@
 ---
-title: "Intro to Integrated Development Environments (VS Code)"
+title: "Intro to VS Code and IDEs"
 subtitle: "Day 0 · Setup for AI-enabled Research"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
@@ -23,37 +23,30 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Objective
 
-- Understand what an IDE is 
-- Features in IDEs that improve productivity and workflow
-- VS Code is used for agentic workflows.
+- Understand what an IDE is
+- Learn IDE features that improve productivity and workflow
+- See why VS Code enables agentic workflows
 
 ## What is an IDE?
 
-Code is just text and can be edited in any text editor. Some languages have their own text editor, with features specific to that language - for example, Stata's do-file editor or RStudio for R.
+* Code is just text and can be edited in any text editor.
 
-An IDE is a text editor on steroids. IDEs like VS Code are typically not specific to any one programming language. This means that they have a broader user base. A broader user base makes it more likely that when a new tool is introduced, its developers will first develop support for it within the IDE.
+* Some languages have their own editors with features specifically designed for that language, for example Stata's do-file editor or RStudio for R.
 
-## Why use an IDE? 
+* An IDE is basically a text editor on steroids. IDEs like VS Code are not tied to one programming language, which means they have a much broader user base.
 
-AI tools are new and constantly changing, but general IDEs will likely adopt support for these tools more quickly than language-specific editors, making them a more future-proof choice for developers in the AI world.
+* That large user base constantly develops small productivity and code-management tools, which are then made available to IDEs like VS Code through custom extensions and plugins.
 
-We think using IDEs like VS Code makes you a better code writer, but the reason it is a requirement to use it in this training is that it gives us access to AI tools no matter what language you work in as a user on a day-to-day basis.
+## Why use an IDE?
 
-But once you've been forced to use an advanced IDE to get access to AI, you might start wondering how you ever managed without it. :)
+* IDEs with large user bases tend to adopt the latest tools first. AI is changing very quickly, and smaller code editors like Stata's do-file editor or RStudio may lag behind.
 
-## What to show?
+* To stay up to date with the latest developments, using a widely used IDE is important.
 
-- How to install VS Code
-- Basic navigation and interface overview
-    - Workspaces - have a full project in view
-    - Search across workspace
-    - Split screens
-- Installing and using extensions
-    - language syntax highlighting
-    - Git tools
-- Writing and running code in different languages
-    - Stata - write code in VS Code, run it in the do-file editor
-    - R - write and run code directly in VS Code
-    - Python - write and run code directly in VS Code
+* Switching from a language-specific editor to a general IDE like VS Code may take some time, but the long-term gains in productivity and access to new tools usually outweigh the initial learning curve.
 
+* Once you become comfortable with an IDE like VS Code, you will likely feel like a more capable coder and it is likely hard to imagine going back to older workflows. :)
 
+# VS Code Demo {background-color="#530153"}
+
+{{< include ../vscode-demo/_vscode-demo.qmd >}}

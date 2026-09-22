@@ -23,38 +23,38 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Objective
 
-- Install VS Code and open your project folder in the IDE.
-
-## Steps
-
-- Download and install VS Code
+- Install VS Code
 - Open your project folder
-- Install recommended extensions
+- Optionally install common extensions
 
-## Installing VS Code
+## Installing VS Code - WB Computer
 
-Install Visual Studio Code (VS Code). This is the code editor we will use for the training.
-	- **Personal computer**: [Download VS Code](https://code.visualstudio.com/).
-    - **WB computer**: Open *Software Center* from the Windows Start menu, search for **Visual Studio Code** or **vscode**, select the software, and click **Install**.
+Install Visual Studio Code (VS Code). This is the code editor we will use during the training.
+
+**WB computer**:
+
+- Open *Software Center* from the Windows Start menu
+- Search for **Visual Studio Code** or **vscode**
+- Select the software and click **Install**
 
 For WB computers, even when we use Software Center, ITS appreciates it if we log the installation with a Software Installation request. This also helps because the more logged installations of VS Code there are, the more resources ITS is willing to allocate for supporting it.
 
-## Explore these concepts
+## Installing VS Code - Personal Computer
 
-- Opening a project folder in VS Code so that you can see the file tree view
-- Open several files and observe how they are displayed in the editor. Compare code, images, PDF and Word documents, and other file types. You will notice that VS Code is made for code, but handles types commonly used in coding quite well. For example, images such as research diagrams and web page images.
-- Install common extensions for your preferred programming languages and workflows. If you use several, there is no conflict in installing multiple extensions simultaneously. These are popular extensions, but there is no one "correct" set of extensions for everyone.
+Install Visual Studio Code (VS Code). This is the code editor we will use during the training.
+
+**Personal computer**:
+
+- Go to https://code.visualstudio.com/
+- Download and install VS Code
+
+## Common Extensions
+
+- Install common extensions for your preferred programming languages and workflows. If you use several, there is no conflict in installing multiple extensions at the same time. These are popular extensions, but there is no single "correct" set for everyone.
     - Stata: `Stata Enhanced`
     - Python: `Python`
     - R: `R`/`R Syntax`
 
-## How are files saved
+# Try demoed features {background-color="#530153"}
 
-- Have several files open, and make an edit to one of them
-- Observe how VS Code indicates unsaved changes (e.g., with a dot in the tab)
-- Save the file and notice how the indicator disappears
-- Understand that VS Code automatically saves files only if you have enabled auto-save in the settings
-- Make an edit to another file again and then close VS Code without saving the file.
-- You are not prompted to save the file.
-- Open VS Code again and see how the same files are open and that unsaved changes are still there! VS Code saves your work in the background automatically, but does not overwrite the file in your file system until you explicitly save it. This makes sense in many software development workflows.
-- VS Code only has **temporary** background-saved versions for files you have opened, so if you close a tab with unsaved edits you need to decide whether to save the file or discard any unsaved edits.
+{{< include ../vscode-demo/_vscode-demo.qmd >}}
