@@ -1,5 +1,5 @@
 ---
-title: "Set Up GitHub Account and Install GitHub Desktop"
+title: "Setup GitHub Account and Install GitHub Desktop"
 subtitle: "Day 0 · Setup for AI-enabled Research"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
@@ -23,24 +23,64 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Objective
 
-- Create a GitHub account
-- Get access to the Intro to Git/GitHub materials
-- Install a Git client - GitHub Desktop
+1. Create a GitHub account
+2. Get access to the Intro to Git/GitHub materials
+3. Install a Git client - GitHub Desktop
 
-## GitHub Account and Access
+## GitHub Account - Best Practices
 
+* You never need two GitHub accounts unless that is you own personal preference. Instead, use a single account for both personal and WB work.
+* We suggest that you use your personal email as the main email, as then you do not get locked out of your account the day you leave the WB.
+* You can have multiple email addresses associated with your GitHub account, and route notifications accordingly. 
+  * For example, any notification related to a WB hosted repo is sent to your WB email address, and all other notifications are sent to your personal email address.
+* See more [best-practice instructions here](https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md)
 
-1. If you do not already have a GitHub account, follow [these best-practice instructions](https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md) to sign up. If you already have a GitHub account, you do **not** need to create a separate one for your WB work.
-2. Share your username with the Impact Analytics team
-3. Accept the invitation to the training repository
+## GitHub Account
 
-## GitHub Desktop
+_Skip this slide if you already have a GitHub account_
 
-1. Install the GitHub Desktop application. This is a free GitHub client approved for WB computers and the client used in this training because it is beginner-friendly.
-	- **Personal computer**: [Download GitHub Desktop](https://desktop.github.com/).
-	- **WB computer**: Open *Software Center* from the Windows Start menu, search for **GitHub Desktop**, and click **Install**.
+* If you do not already have a GitHub account, follow [these best-practice instructions](https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md) to sign up. 
+* If you already have a GitHub account, you may create a second one for work. But you are not required to do so and our recommendation is to not do so.
+
+## Repository Access
+
+* This morning we will use this repository for the training: https://github.com/dime-wb-trainings/lyrics-aibc -- It is a `public` repository, meaning that everyone has `read` access. They can view but not make any edits.
+* You need to be invited to this repository with `write` access in order to participate in the next session. To do so:
+  * Share your username with the Impact Analytics team
+  * Accept the invitation to the training repository. Either in the invitation link sent by GitHub or go to https://github.com/dime-wb-trainings/lyrics-aibc/invitations. But only after someone has had time to invite you.
+
+If you are waiting to be invited, feel free to skip to next slide, and come back once you have received the invitation. You do not need to have `write` access to complete the steps in next slide.
+
+## GitHub Desktop - Introduction
+
+* You will need to have access to a Git Client during the next session. Then you will also be introduced to what a Git Client is if you do not know. 
+
+* There are many Git Clients available, but for this training, we will use GitHub Desktop. It is a free Git Client developed by GitHub, and therefore provide many pre-configured connections between GitHub.com and GitHub Desktop.
+
+* You may use a different Git Client, but our instructions and support will be focused on GitHub Desktop. If you have only used the Git Client in the command line before, we strongly encourage you to, at least for this training, try how a GUI Git Client can help you with quality control.
+
+Depending on whether you are using a WB computer or a personal computer, follow the respective instructions on the following slides.
+
+## GitHub Desktop - WB Computer
+
+1. Install the GitHub Desktop application: Open *Software Center* from the Windows Start menu, search for **GitHub Desktop**, and click **Install**.
 2. After installing GitHub Desktop, open it and go to *File* → *Options*, then log in using your GitHub account.
 3. *Optional but recommended*: Go to *Help* → *About GitHub Desktop* to check for updates. GitHub Desktop will update itself automatically when a newer version is available.
 
 For WB computers, even when we use Software Center, ITS appreciates it if we log the installation with a Software Installation request. This also helps because the more logged installations of GitHub Desktop there are, the more resources ITS is willing to allocate for supporting it.
 
+## GitHub Desktop - Personal Computer
+
+1. Install the GitHub Desktop application. This is a free GitHub client and the client used in this training because it is beginner-friendly.
+	- **Personal computer**: [Download GitHub Desktop](https://desktop.github.com/).
+2. After installing GitHub Desktop, open it and go to *File* → *Options*, then log in using your GitHub account.
+3. *Optional but recommended*: Go to *Help* → *About GitHub Desktop* to check for updates. GitHub Desktop will update itself automatically when a newer version is available.
+  
+
+## Objective
+
+You are done when the following objectives are completed:
+
+1. Create a GitHub account
+2. Get access to the Intro to Git/GitHub materials
+3. Install a Git client - GitHub Desktop
