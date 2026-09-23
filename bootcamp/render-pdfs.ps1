@@ -4,6 +4,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 $projectRoot = $PSScriptRoot
+$pdfsRoot = Join-Path $projectRoot "pdfs"
+$sharePointConfigPath = Join-Path $projectRoot "sharepoint-path.local.txt"
+
 $chromeCandidates = @(
     "$env:ProgramFiles\Google\Chrome\Application\chrome.exe",
     "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe",
@@ -16,16 +19,28 @@ if (-not $browser) {
     throw "Chrome or Edge was not found. Install one of these browsers to create PDFs."
 }
 
-$documents = Get-ChildItem (Join-Path $projectRoot $SourceRoot) -Recurse -Filter "*.qmd" |
-    Where-Object {
-        $relativePath = $_.FullName.Substring($projectRoot.Length + 1)
-        ($relativePath -notmatch '(^|[\\/])template[\\/]') -and ($_.Name -ne 'presentation.qmd')
-    } |
+$sourceRootPath = Join-Path $projectRoot $SourceRoot
+
+# Any .qmd whose name starts with "_" is a template/partial, not a presentation to render.
+$documents = Get-ChildItem $sourceRootPath -Recurse -Filter "*.qmd" |
+    Where-Object { $_.Name -notlike "_*" } |
     Sort-Object FullName
 
 if (-not $documents) {
-    throw "No .qmd files found under '$SourceRoot' after excluding the template presentation."
+    throw "No .qmd files found under '$SourceRoot'."
 }
+
+Write-Host "Discovered $($documents.Count) presentation(s) to render:"
+foreach ($document in $documents) {
+    Push-Location $projectRoot
+    $relativeDocument = Resolve-Path -Relative $document.FullName
+    Pop-Location
+    Write-Host "  $relativeDocument"
+}
+
+# bootcamp/pdfs should only ever hold the latest render; the SharePoint copy is a separate, never-wiped destination.
+Get-ChildItem $pdfsRoot -Directory -Filter "day-*" -ErrorAction SilentlyContinue |
+    Remove-Item -Recurse -Force
 
 $browserProfile = Join-Path $env:TEMP ("quarto-pdf-" + [Guid]::NewGuid())
 New-Item -ItemType Directory -Path $browserProfile | Out-Null
@@ -57,6 +72,25 @@ try {
         if ($LASTEXITCODE -ne 0) {
             throw "Browser failed to create $pdfPath."
         }
+
+        # Mirror into bootcamp/pdfs/<day>/<pdf-name>/, honoring a sibling render-meta.yml name override
+        $sessionFolder = $document.Directory
+        $relativeToSourceRoot = $sessionFolder.FullName.Substring($sourceRootPath.Length).TrimStart('\', '/')
+        $day = ($relativeToSourceRoot -split '[\\/]')[0]
+
+        $pdfName = [IO.Path]::GetFileNameWithoutExtension($document.Name)
+        $metaPath = Join-Path $sessionFolder.FullName "render-meta.yml"
+        if (Test-Path $metaPath) {
+            $nameLine = Get-Content $metaPath | Where-Object { $_ -match '^\s*name\s*:\s*(.+)$' } | Select-Object -First 1
+            if ($nameLine -match '^\s*name\s*:\s*(.+)$') {
+                $pdfName = $Matches[1].Trim().Trim("'`"")
+            }
+        }
+
+        $destinationDir = Join-Path (Join-Path $pdfsRoot $day) $pdfName
+        New-Item -ItemType Directory -Path $destinationDir -Force | Out-Null
+        $destinationPdf = Join-Path $destinationDir "$pdfName.pdf"
+        Copy-Item -Path $pdfPath -Destination $destinationPdf -Force
     }
 }
 finally {
@@ -66,3 +100,39 @@ finally {
 }
 
 Write-Host "Created $($documents.Count) PDF files."
+
+if (Test-Path $sharePointConfigPath) {
+    $sharePointPath = Get-Content $sharePointConfigPath | Where-Object { $_.Trim() } | Select-Object -First 1
+}
+else {
+    $sharePointPath = $null
+}
+
+if (-not $sharePointPath) {
+    Write-Warning "No SharePoint path configured. Create bootcamp/sharepoint-path.local.txt with the destination folder path to enable syncing. See bootcamp/pdfs/README.md for more details."
+}
+else {
+    $sharePointPath = $sharePointPath.Trim()
+    $answer = Read-Host "Copy bootcamp/pdfs into '$sharePointPath'? That folder may also hold files from other teams. (Y/N)"
+    while ($answer -notmatch '^[YyNn]$') {
+        $answer = Read-Host "Please answer Y or N"
+    }
+
+    if ($answer -match '^[Yy]$') {
+        # File-by-file copy so unrelated content already in the SharePoint folder is never touched.
+        $pdfFiles = Get-ChildItem $pdfsRoot -Recurse -File | Where-Object { $_.Name -ne "README.md" }
+        foreach ($file in $pdfFiles) {
+            $relativePath = $file.FullName.Substring($pdfsRoot.Length).TrimStart('\', '/')
+            $destinationPath = Join-Path $sharePointPath $relativePath
+            $destinationFolder = Split-Path $destinationPath -Parent
+            if (-not (Test-Path $destinationFolder)) {
+                New-Item -ItemType Directory -Path $destinationFolder -Force | Out-Null
+            }
+            Copy-Item -Path $file.FullName -Destination $destinationPath -Force
+        }
+        Write-Host "Copied $($pdfFiles.Count) file(s) to '$sharePointPath'."
+    }
+    else {
+        Write-Host "Skipped SharePoint copy."
+    }
+}
