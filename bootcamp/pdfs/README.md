@@ -17,7 +17,7 @@ So if you do not want to include your presentation in theis workflow, give it a 
 
 It will use the same name and path for the generated PDF as the source `.qmd` file. So `sessions/day-1/my-topic/my-topic.qmd` will result in `pdfs/day-1/my-topic/my-topic.pdf`.
 
-However, you can override the default name by adding a `render-meta.yml` file next to the `.qmd` with a custom name. Then the pdf path will be `pdfs/day-1/<name>/<name>.pdf` regardless of what the `.qmd` file is called. See example below
+However, you can override the default name by adding a `render-meta.yml` file next to the `.qmd` with a custom name. Then the pdf path will be `pdfs/day-1/<name>/<name>.pdf` regardless of what the `.qmd` file is called. See example below or copy and modify example from `day-0` sessions. 
 
 ```yaml
 name: 1-my-topic-long-name
