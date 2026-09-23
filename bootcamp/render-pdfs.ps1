@@ -38,6 +38,10 @@ foreach ($document in $documents) {
     Write-Host "  $relativeDocument"
 }
 
+# bootcamp/pdfs should only ever hold the latest render; the SharePoint copy is a separate, never-wiped destination.
+Get-ChildItem $pdfsRoot -Directory -Filter "day-*" -ErrorAction SilentlyContinue |
+    Remove-Item -Recurse -Force
+
 $browserProfile = Join-Path $env:TEMP ("quarto-pdf-" + [Guid]::NewGuid())
 New-Item -ItemType Directory -Path $browserProfile | Out-Null
 
@@ -69,11 +73,10 @@ try {
             throw "Browser failed to create $pdfPath."
         }
 
-        # Mirror into bootcamp/pdfs/<day>/<session>/, honoring a sibling render-meta.yml name override
+        # Mirror into bootcamp/pdfs/<day>/<pdf-name>/, honoring a sibling render-meta.yml name override
         $sessionFolder = $document.Directory
         $relativeToSourceRoot = $sessionFolder.FullName.Substring($sourceRootPath.Length).TrimStart('\', '/')
         $day = ($relativeToSourceRoot -split '[\\/]')[0]
-        $sessionFolderName = $sessionFolder.Name
 
         $pdfName = [IO.Path]::GetFileNameWithoutExtension($document.Name)
         $metaPath = Join-Path $sessionFolder.FullName "render-meta.yml"
@@ -84,7 +87,7 @@ try {
             }
         }
 
-        $destinationDir = Join-Path (Join-Path $pdfsRoot $day) $sessionFolderName
+        $destinationDir = Join-Path (Join-Path $pdfsRoot $day) $pdfName
         New-Item -ItemType Directory -Path $destinationDir -Force | Out-Null
         $destinationPdf = Join-Path $destinationDir "$pdfName.pdf"
         Copy-Item -Path $pdfPath -Destination $destinationPdf -Force
