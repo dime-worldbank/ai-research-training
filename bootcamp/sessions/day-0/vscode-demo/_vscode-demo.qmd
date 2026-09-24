@@ -1,0 +1,60 @@
+
+## Navigation - Workspaces
+
+- In VS Code, you open your full project folder as a **_workspace_**. This gives you an overview of the project while you edit individual files.
+- Useful workspace features:
+    - If you need the project path to a file, right-click the file in the file Explorer and choose "Copy Relative Path" to get the path from the project root.
+    - You can search across the entire workspace to find where a variable or keyword is used.
+
+## Navigation - Search and Multi-root Workspaces
+
+- Advanced features:
+    - If you have several project folders in different locations, you can add them all to the same workspace.
+    - You can save a multi-root workspace to a file and reopen it later to restore the full setup.
+
+## Navigation - Files
+
+- When you click a file, it opens in a temporary tab. Clicking another file replaces the previous one.
+- If you want to keep a file open, double-click it to pin it, or start editing it; it will remain open until you close it manually.
+- You can open files in split view by right-clicking a file and selecting "Open to the Side" or by dragging a file tab to the side of the editor. You can split the editor into as many panes as your screen can accommodate.
+
+## Saving edits - Files
+
+- Have several files open, and make an edit to one of them.
+    - Observe how VS Code indicates unsaved changes (e.g., with a dot in the tab).
+    - Save the file and notice how the indicator disappears.
+- Make an edit to another file again and then close VS Code without saving the file.
+    - Note that you are not prompted to save the file.
+- Open VS Code again and see the same files still open, with unsaved changes still there. VS Code saves work in the background automatically, but does not overwrite the file on disk until you explicitly save it. -- Don't rely on this as long term storage.
+- VS Code keeps only temporary background-saved versions for open files, so if you close a tab with unsaved edits, you must choose to save or discard them.
+
+## Extensions - Overview
+
+* Extensions are add-ons that enhance the functionality of VS Code.
+* They can be developed by the VS Code team, independent users, or software companies that want to make their products easier to use.
+* _**Data Security Warning**_: VS Code removes extensions that users have reported as malicious. To stay safe, install extensions only from trusted publishers such as Microsoft, Azure, AWS, GitHub, and other well-known providers, or extensions that have been downloaded many thousands of times.
+
+## Extensions - Common Extensions
+
+* Commonly downloaded extensions include:
+  * Syntax highlighting for languages like Python, R, Stata, JavaScript, and more.
+  * Git integration for version control.
+  * Linters and formatters.
+  * AI integration.
+  * Deployment tools to send dashboards or web applications to a server directly from VS Code.
+- During this training, we will rely heavily on GitHub Copilot's extension to access agentic AI functions.
+
+## Code Execution - Overview
+
+- Most VS Code users like being able to open a terminal directly in the editor and run commands without leaving the code editor.
+- This works especially well for languages like Python or R, where it is common to run code directly from the integrated terminal.
+
+## Code Execution - Stata
+
+- For Stata, this is also possible, but it is often harder to set up. A common workflow is therefore:
+  - Create a main do-file that orchestrates the execution of other do-files.
+  - Keep the main do-file open in Stata's do-file editor.
+  - Edit the individual do-files in VS Code as needed, 
+  - Run the individual do-files through the main do-file in Stata.
+
+

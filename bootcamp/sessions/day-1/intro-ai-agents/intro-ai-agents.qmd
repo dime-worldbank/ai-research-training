@@ -150,7 +150,7 @@ Bob, Alice, and Tom have 7 apples each. How many apples do they have altogether?
 
 ::: {.column width="65%" }
 
-* An agent is software that combines language models and tools.
+* An agent is software that combines LLMs and tools.
 * It uses the LLM to review a request and decide which tools to use.
 * For example, a coding agent can read code files in the project folder and add relevant content to the context.
 * Once the model has enough context, the agent generates a response or, for coding tasks, writes code in the project folder.

@@ -1,5 +1,5 @@
 ---
-title: "Set Up GitHub Account and Install GitHub Desktop"
+title: "Setup GitHub Account and Install GitHub Desktop"
 subtitle: "Day 0 · Setup for AI-enabled Research"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
@@ -23,24 +23,63 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Objective
 
-- Create a GitHub account
-- Get access to the Intro to Git/GitHub materials
-- Install a Git client - GitHub Desktop
+1. Create a GitHub account
+2. Get access to the Intro to Git/GitHub materials
+3. Install a Git client: GitHub Desktop
 
-## GitHub Account and Access
+## GitHub Account - Best Practices
 
+* You do not need two GitHub accounts. Instead, use a single account for both personal and WB work, unless having separate accounts is your personal preference.
+* We suggest using your personal email as the primary email address so that you do not lose access to your account when you leave the WB.
+* You can associate multiple email addresses with your GitHub account and configure notification emails accordingly.
+  * For example, you could use your WB email address for notifications related to WB-hosted repositories and your personal email for other notifications.
+* See the [best-practice instructions here](https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md).
 
-1. If you do not already have a GitHub account, follow [these best-practice instructions](https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md) to sign up. If you already have a GitHub account, you do **not** need to create a separate one for your WB work.
-2. Share your username with the Impact Analytics team
-3. Accept the invitation to the training repository
+## GitHub Account
 
-## GitHub Desktop
+_Skip this slide if you already have a GitHub account_
 
-1. Install the GitHub Desktop application. This is a free GitHub client approved for WB computers and the client used in this training because it is beginner-friendly.
-	- **Personal computer**: [Download GitHub Desktop](https://desktop.github.com/).
-	- **WB computer**: Open *Software Center* from the Windows Start menu, search for **GitHub Desktop**, and click **Install**.
+* If you do not already have a GitHub account, follow [these best-practice instructions](https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md) to sign up.
+* If you already have a GitHub account, use it for work as well. You are not required to create a second account.
+
+## Repository Access
+
+* This morning we will use this repository for the training: https://github.com/dime-wb-trainings/lyrics-aibc. It is a `public` repository, meaning that everyone can view it, but only collaborators with permission can make changes to it.
+* You need to be invited to this repository with `write` access to participate in the next session. To do so:
+  * Share your username with the Impact Analytics team
+  * Accept the invitation to the training repository, either through the invitation link sent by GitHub or at https://github.com/dime-wb-trainings/lyrics-aibc/invitations. Wait until someone has had time to invite you before checking the invitations page.
+
+If you are waiting to be invited, feel free to skip to the next slide and return once you have received the invitation. You do not need `write` access to complete the steps on the next slide.
+
+## GitHub Desktop - Introduction
+
+* You will need access to a Git client during the next session. You will also be introduced to Git clients if you are not familiar with what they are.
+
+* There are many Git clients available, but for this training, we will use GitHub Desktop. It is a free Git client developed by GitHub and provides simplified connections between GitHub.com on the internet and GitHub Desktop on your computer.
+
+* You may use a different Git client, but our instructions and support will focus on GitHub Desktop. If you have only used Git from the command line, we encourage you to try a graphical Git client during this training and see how it can support quality control.
+
+Depending on whether you are using a WB computer or a personal computer, follow the relevant instructions on the next slides.
+
+## GitHub Desktop - WB Computer
+
+1. Install the GitHub Desktop application: Open *Software Center* from the Windows Start menu, search for **GitHub Desktop**, and click **Install**.
 2. After installing GitHub Desktop, open it and go to *File* → *Options*, then log in using your GitHub account.
 3. *Optional but recommended*: Go to *Help* → *About GitHub Desktop* to check for updates. GitHub Desktop will update itself automatically when a newer version is available.
 
-For WB computers, even when we use Software Center, ITS appreciates it if we log the installation with a Software Installation request. This also helps because the more logged installations of GitHub Desktop there are, the more resources ITS is willing to allocate for supporting it.
+For WB computers, even when you use Software Center, ITS appreciates it if you record the installation with a Software Installation request. This helps ITS understand demand and allocate resources to support GitHub Desktop.
 
+## GitHub Desktop - Personal Computer
+
+1. Install the GitHub Desktop application. It is a free GitHub client, and we use it in this training because it is beginner-friendly. [Download GitHub Desktop here](https://desktop.github.com/) and follow installation instructions.
+2. After installing GitHub Desktop, open it and go to *File* → *Options*, then log in using your GitHub account.
+3. *Optional but recommended*: Go to *Help* → *About GitHub Desktop* to check for updates. GitHub Desktop will update itself automatically when a newer version is available.
+  
+
+## Objective
+
+You are done when the following objectives are completed:
+
+1. Create a GitHub account
+2. Get access to the Intro to Git/GitHub materials
+3. Install a Git client: GitHub Desktop
