@@ -34,3 +34,10 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ## Key Takeaways
 
 - Placeholder — fill in with session content.
+
+
+## Do I Really Need to Worry About Token Efficiency?
+
+- Maybe not now, but eventually. The more workflows we hand to AI, the more tokens we will use.
+- The less we use tools that optimize token usage, the more we will have to pay to AI companies.
+- Efficient token usage -> smaller context windows -> locally hosted models become feasible -> safer use with confidential data
