@@ -7,6 +7,19 @@ $projectRoot = $PSScriptRoot
 $pdfsRoot = Join-Path $projectRoot "pdfs"
 $sharePointConfigPath = Join-Path $projectRoot "sharepoint-path.local.txt"
 
+function Ensure-Directory {
+    param([Parameter(Mandatory)][string]$Path)
+
+    if (Test-Path -LiteralPath $Path) {
+        if (-not (Test-Path -LiteralPath $Path -PathType Container)) {
+            throw "Directory path '$Path' exists but is not a directory."
+        }
+        return
+    }
+
+    New-Item -ItemType Directory -Path $Path -Force -ErrorAction Stop | Out-Null
+}
+
 $chromeCandidates = @(
     "$env:ProgramFiles\Google\Chrome\Application\chrome.exe",
     "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe",
@@ -20,6 +33,7 @@ if (-not $browser) {
 }
 
 $sourceRootPath = Join-Path $projectRoot $SourceRoot
+Ensure-Directory $pdfsRoot
 
 # Any .qmd whose name starts with "_" is a template/partial, not a presentation to render.
 $documents = Get-ChildItem $sourceRootPath -Recurse -Filter "*.qmd" |
@@ -88,7 +102,7 @@ try {
         }
 
         $destinationDir = Join-Path (Join-Path $pdfsRoot $day) $pdfName
-        New-Item -ItemType Directory -Path $destinationDir -Force | Out-Null
+    Ensure-Directory $destinationDir
         $destinationPdf = Join-Path $destinationDir "$pdfName.pdf"
         Copy-Item -Path $pdfPath -Destination $destinationPdf -Force
     }
@@ -125,9 +139,7 @@ else {
             $relativePath = $file.FullName.Substring($pdfsRoot.Length).TrimStart('\', '/')
             $destinationPath = Join-Path $sharePointPath $relativePath
             $destinationFolder = Split-Path $destinationPath -Parent
-            if (-not (Test-Path $destinationFolder)) {
-                New-Item -ItemType Directory -Path $destinationFolder -Force | Out-Null
-            }
+            Ensure-Directory $destinationFolder
             Copy-Item -Path $file.FullName -Destination $destinationPath -Force
         }
         Write-Host "Copied $($pdfFiles.Count) file(s) to '$sharePointPath'."
