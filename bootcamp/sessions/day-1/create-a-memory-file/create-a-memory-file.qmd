@@ -1,0 +1,65 @@
+---
+title: "Create a Memory File"
+subtitle: "Day 1 · Intro to Agentic AI at the WBG"
+author: "Kristoffer Bjärkefur"
+institute: "Impact Analytics"
+date: 5 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+
+format: bootcamp-revealjs
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../../../_extensions/bootcamp/setup_palettes.R")
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Starting fresh or using a template?
+
+- For this exercise, we recommend starting with an empty memory file and filling in everything manually.
+- This will help you to practice and consider each piece of information you include.
+- This is typically not done in a real-life scenario, where it is common to start with a template or a memory file from another project.
+
+At the end of this slide deck, you will see a link to some example memory files. Feel free to look at them if you feel stuck during this exercise, but try to create your own without looking at the templates first.
+
+## Use the agent to create the memory file?
+
+* It is also possible to use the agent itself to create the memory file.
+* Some agents provide so-called _slash commands_.
+* One example is `/init`, which creates a memory file for you.
+* However, memory files created by `/init` tend to be verbose and are usually based only on what the agent finds in the project folder.
+* They may not include the project-owner guidance that you want all future edits to follow.
+* Still, feel free to ask the agent to add sections that are tedious to type, such as the folder structure. Afterwards, add the information that you, as the project owner, want all contributors to know.
+
+## Set up a new AGENTS.md
+
+In the root folder (the top folder) of your project folder, create a new file called `AGENTS.md`.
+
+Then go through the slides from the `2-onboarding-ai-agents-memory-files` session and follow the suggested content in that session.
+
+Remember that the suggested content is just a guideline. Compare it with an RA onboarding document: there are some sections that RA onboarding documents typically include. However, every project is unique, and you should tailor your memory file to fit your specific project's needs.
+
+Also, no one gets an `AGENTS.md` file perfect the first time, so do not worry about that for now. The memory file should be a living document where, throughout the project, you add details that the agent needs to perform tasks as you want it to.
+
+## Keep Memory Files Concise
+
+After you set up your memory file, take some time to review it and see if it can be made more concise without losing important context. 
+
+- Since the memory file is included in every request you make, keeping it concise helps you use tokens efficiently and preserve your token budget.
+- Adding all onboarding information to the memory file would soon leave little space for the actual task in the context window.
+- Use targeted ways to load context only when needed. For example, move a verbose section to a separate file in your project and link to it in the memory file. Include a description next to that link that tells the agent when to load that file into context.
+- If you are unsure, it is still better to add relevant context to the memory file than to omit it, even if it is not the most token optimized option. This is an art more than a science.
+
+## Templates and Adaptation
+
+We have started a resource hub at <https://github.com/dime-worldbank/coding-agents-hub/tree/main/memory-files>.
+
+The examples in the `example-library` folder are mature memory files specific to the projects they were created for. It is very unlikely that they will be a good fit for your project as-is. Still, you can use them as references and draw inspiration from them.
+

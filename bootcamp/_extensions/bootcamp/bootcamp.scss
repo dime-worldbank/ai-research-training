@@ -345,6 +345,8 @@ $selection-bg: $analytics-light !default;
 
 // side by side image and text
 .reveal .columns {
+  display: flex;
+  gap: min(4vw, 1.5em);
   align-items: center;
 }
 
