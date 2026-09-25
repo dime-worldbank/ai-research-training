@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>AI for Research: Ethics and Safe Use</title>
+<!--
+  Internal newsletter - DECDI / Impact Analytics. DRAFT for Issue 5.
+  Recap follows sessions/ai-ethics-governance (Maria Reyes Retana, September 17).
+  Before send:
+  - Replace DEEP_DIVE_URL and FIELD_NOTES_URL.
+  - Replace SIGNUP_URL for October 1 (still TBD in sessiondates.txt).
+  - Confirm the slides URL if the session page is not yet on the training site.
+-->
+<style>
+  @media only screen and (max-width: 640px) {
+    .container { width: 100% !important; }
+    .px { padding-left: 24px !important; padding-right: 24px !important; }
+    .bignum { font-size: 52px !important; }
+  }
+  a { color: #0071BC; }
+</style>
+</head>
+<body style="margin:0; padding:0; background-color:#EFF2F5; -webkit-text-size-adjust:100%;">
+
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
+    A health algorithm flagged 17.7% of Black patients for extra care. The corrected share was 46.5%. Recap of the ethics session, and October 1.
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFF2F5;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+
+        <table role="presentation" class="container" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px; max-width:640px;">
+
+          <!-- ===== Masthead ===== -->
+          <tr>
+            <td style="background-color:#002244; padding:0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:28px 40px 6px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#8AC6E6; text-transform:uppercase;">
+                      DECDI &nbsp;&middot;&nbsp; Impact Analytics &nbsp;&middot;&nbsp; Internal
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px" style="padding:0 40px 24px 40px;">
+                    <span style="font-family:Georgia, 'Times New Roman', serif; font-size:34px; line-height:40px; color:#FFFFFF; font-weight:bold;">
+                      AI for Research: Ethics and Safe Use
+                    </span>
+                    <br>
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#B8CCDD;">
+                      Issue 5 &nbsp;&middot;&nbsp; September 24, 2026 &nbsp;&middot;&nbsp; A 5-minute read
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height:4px; background-color:#0071BC; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== The Big Number ===== -->
+          <tr>
+            <td style="background-color:#FFFFFF;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:36px 40px 0 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      The Big Number
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px" align="center" style="padding:12px 40px 0 40px;">
+                    <span class="bignum" style="font-family:Georgia, 'Times New Roman', serif; font-size:64px; line-height:72px; color:#002244; font-weight:bold;">17.7% &rarr; 46.5%</span>
+                    <br>
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:22px; color:#54595F;">
+                      Black patients flagged for extra care,<br><b>before and after the measure of need was fixed</b>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px" style="padding:20px 40px 32px 40px;">
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:0;">
+                      A health algorithm applied to about <b>200 million</b> people a year predicted healthcare cost, and treated that cost as a measure of health need. Less money has historically been spent treating Black patients at the same level of illness, so the score tracked who could get care. Equally sick Black patients came out looking healthier. Fixing the measure would have raised the share of Black patients flagged for extra care from <b>17.7%</b> to <b>46.5%</b>. A result can fit the data and still be wrong for the people it is about. The same risk sits in our own work when a convenient measure stands in for need, welfare, or a coded answer. The check has to ask who is left out, and how that changes the result.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:12px 0 0 0;">
+                      Source: <a href="https://doi.org/10.1126/science.aax2342" style="color:#0071BC;">Obermeyer et al., Science (2019)</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== In Case You Missed It ===== -->
+          <tr>
+            <td style="background-color:#F5F8FA; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      In Case You Missed It
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:22px; line-height:28px; color:#002244; margin:10px 0 14px 0;">
+                      AI Ethics, Governance, and Safe Use
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
+                      Quick recap of the September 17 session. The hour was about using AI so the work stays accurate, fair, secure, and easy to stand behind. For World Bank work, follow the Bank&rsquo;s rules.
+                    </p>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; The WBG AI Risk Management Framework groups what can go wrong into five risks: <b>accountability and traceability</b>, <b>validity and accuracy</b>, <b>security and privacy</b>, <b>ethical</b>, and <b>legal</b>.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; You own the output. A named person has to be able to review and correct an individual case. An overall accuracy score describes the system. It leaves that person&rsquo;s case unchanged.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; Check the original. &ldquo;Verified&rdquo; means you opened the page, the citation, or the code and read it. A number that looks right can rest on Wikipedia, a news article, or a Facebook post. The sources can change with the language of the question.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; Start with the <b>label on the information</b>, then choose the tool. An approved tool still needs a separate yes for that data. A personal ChatGPT, Claude, or Gemini account stays limited to public information, even with training switched off.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0;">
+                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; Permission is the starting point. At each stage of the work (design, collection, processing, analysis, publication) ask two questions: is it right, and who is harmed if it is wrong? The short habit for that check is <b>TACTIC</b>, below.
+                      </td></tr>
+                    </table>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:16px 0 0 0;">
+                      Slides: <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-ethics-governance/" style="color:#0071BC;">session page</a> &nbsp;&middot;&nbsp; approved tools: <a href="https://ai.worldbankgroup.org/" style="color:#0071BC;">AI@WBG</a> &nbsp;&middot;&nbsp; questions: <a href="mailto:ai@worldbankgroup.org" style="color:#0071BC;">ai@worldbankgroup.org</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Try This Today ===== -->
+          <tr>
+            <td style="background-color:#FFFFFF; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      Try This Today &nbsp;&middot;&nbsp; 10 minutes
+                    </span>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
+                      Take one task you are about to give an AI tool. Run the session&rsquo;s two checks before you send anything: the data label, then <b>TACTIC</b>. Use the filename and what you already know. Leave the file where it is.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
+                      <b>1. Name the label.</b> Public, Official Use Only, Confidential, or Strictly Confidential. Most daily work is Official Use Only. Research microdata is Confidential. If you cannot name the label, stop and label the file.<br><br>
+                      <b>2. Choose the tool from the label.</b> Official Use Only and Confidential go to approved World Bank tools: mAI and M365 Copilot. Gemini enterprise is cleared for World Bank content, including Strictly Confidential. Personal ChatGPT, Claude, and Gemini take public information only, and only when all four conditions in the Acceptable Use of AI Addendum hold. The rule stays the same if training is switched off.<br><br>
+                      <b>3. If the task is code on identified survey data,</b> send the codebook and a made-up extract with the same structure. Keep the real rows and the full file on your side. The data agreement is a separate permission. The IRB list names people, so the tool needs to be named there too.<br><br>
+                      <b>4. Run TACTIC on what you are about to send, and on what you plan to keep:</b><br>
+                      &nbsp;&nbsp;<b>T</b>ransparency: will you say where AI helped in a way that matters?<br>
+                      &nbsp;&nbsp;<b>A</b>ccountability: have you checked the claims, and do you own them?<br>
+                      &nbsp;&nbsp;<b>C</b>ontext: have you applied what you know about the institution, the country, and the culture?<br>
+                      &nbsp;&nbsp;<b>T</b>ake ownership: is a person still in charge of the decision?<br>
+                      &nbsp;&nbsp;<b>I</b>mpact: who is harmed if this is wrong?<br>
+                      &nbsp;&nbsp;<b>C</b>ompliance: approved tool, right label, data agreement respected?<br><br>
+                      Send it when every letter passes. If you are unsure, write to <a href="mailto:ai@worldbankgroup.org" style="color:#0071BC;">ai@worldbankgroup.org</a>.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0 0;">
+                      <tr>
+                        <td style="background-color:#EAF4FB; border-left:4px solid #0071BC; padding:16px 20px;">
+                          <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:21px; color:#333333;">
+                            <b>Have more than 10 minutes?</b> Repeat TACTIC for one output you already kept this month, such as a citation, a table, or a block of cleaning code. Open the source behind one number. This issue&rsquo;s Deep Dive explains what GitHub publishes about text you send through enterprise Copilot.
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Deep Dive ===== -->
+          <tr>
+            <td style="background-color:#F5F8FA; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      Deep Dive &nbsp;&middot;&nbsp; Track B, Part 3
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
+                      What Copilot&rsquo;s enterprise terms cover
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
+                      On Business and Enterprise plans, GitHub leaves your prompts out of model training. The text still goes to the company that runs the model. How long it is kept depends on where you use Copilot, which model you pick, and which license you are on. About 12 minutes. Where this article and the Bank&rsquo;s guidance differ, follow the Bank.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="background-color:#0071BC; border-radius:2px;">
+                          <!-- DEEP_DIVE_URL: replace before send -->
+                          <a href="#" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; padding:11px 22px;">
+                            Read the Deep Dive &rarr;
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Field Notes ===== -->
+          <tr>
+            <td style="background-color:#FFFFFF; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      Field Notes &nbsp;&middot;&nbsp; beyond the trainings
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
+                      When the measure is the wrong one
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 12px 0;">
+                      The algorithm predicted cost. Cost already reflected who had been able to get care.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
+                      Field Notes walks through what Obermeyer and coauthors measured, why a model that fits its data can still fail the people the program is for, and the question to ask of any stand-in measure in our own work.
+                    </p>
+                    <!-- FIELD_NOTES_URL: replace before send -->
+                    <a href="#" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#0071BC; text-decoration:none;">
+                      Read the Field Notes &rarr;
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Coming Up ===== -->
+          <tr>
+            <td style="background-color:#002244;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 32px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#8AC6E6; text-transform:uppercase; font-weight:bold;">
+                      Coming Up
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:22px; line-height:28px; color:#FFFFFF; margin:10px 0 8px 0;">
+                      Using AI for Feedback on Your Research
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0 0 6px 0;">
+                      <b style="color:#FFFFFF;">Thursday, October 1</b> &nbsp;&middot;&nbsp; Maria Jones, with staff who have used the tools
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0 0 20px 0;">
+                      Which AI feedback actually improved a paper, and which wasted an afternoon. Bring one section you are willing to put in front of a tool.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="background-color:#FFFFFF; border-radius:2px;">
+                          <!-- SIGNUP_URL: October 1 link still TBD -->
+                          <a href="#" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#002244; text-decoration:none; padding:11px 22px;">
+                            October 1 session &rarr;
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#7C93A8; margin:20px 0 0 0;">
+                      Then: Using the World Bank AI API in MEGA (Oct 15)
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Footer ===== -->
+          <tr>
+            <td style="background-color:#EFF2F5;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" align="center" style="padding:24px 40px 8px 40px;">
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#8A8F94; margin:0;">
+                      AI for Research is the companion newsletter to the DECDI AI training series,<br>
+                      produced by the Impact Analytics team. Internal distribution only.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding:4px 40px 28px 40px;">
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#8A8F94; margin:0;">
+                      Got a workflow from your own project? Reply to this email. We&rsquo;ll use internal examples first in future issues.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
