@@ -22,10 +22,11 @@ Participants learn how to use AI across the full research production pipeline â€
 | 10:45 - 11:30 | Hands-on: Create a Dynamic Presentation or Brief | Impact Analytics | |
 | 11:30 - 12:15 | Hands-on: Use AI to draft and get feedback on Working Papers | Impact Analytics | |
 | 12:15 - 1:15 | Lunch Break | Lunch Break | Lunch Break |
-| 1:15 - 1:45 | Reproducible Research Standards | Impact Analytics | |
-| 1:45 - 2:15 | How AI Can Facilitate Reproducible Workflows | Impact Analytics | |
-| 2:15 - 2:45 | Hands-on: Use AI to create a reproducibility package | Impact Analytics | |
-| 2:45 - 3:00 | Break | Break | Break |
-| 3:00 - 4:00 | Hands-on: Use AI to verify a reproducibility package | Impact Analytics | |
-| 4:00 - 4:30 | AI tools for Data Documentation and Publication | Data Group | |
-| 4:30 - 5:00 | Hands-on: Create an AI Adoption Plan for your Project | Impact Analytics | |
+| 1:15 - 1:45 | Reproducible Research Standards | Impact Analytics | [AI Skills in Action: Reproducibility Package](reproducibility-skill/reproducibility-skill.qmd) |
+| 1:45 - 2:15 | How AI Can Facilitate Reproducible Workflows | Impact Analytics | [AI Skills in Action: Reproducibility Package](reproducibility-skill/reproducibility-skill.qmd) |
+| 2:15 - 3:00 | Hands-on: Use AI to create a reproducibility package | Impact Analytics | [AI Skills in Action: Reproducibility Package](reproducibility-skill/reproducibility-skill.qmd) |
+| 3:00 - 3:15 | Break | Break | Break |
+| 3:15 - 4:00 | Hands-on: Create an AI Adoption Plan for your Project | Impact Analytics | |
+| 4:00 - 5:00 | AI tools for Data Documentation and Publication | Data Group | |
+
+
