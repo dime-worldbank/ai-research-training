@@ -23,6 +23,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 # Reusable command and expected-output text for the verification slides.
 python_verify <- "Command to verify installation: `python --version` -> expected output if already installed: `Python 3.*.*`"
 r_verify <- "Command to verify installation: `R --version` -> expected output if already installed: `R version 4.*.* [...]` followed by R's copyright information"
+r_wb_verify <- "Command to verify installation: `R.exe --version` -> expected output if already installed: `R version 4.*.* [...]` followed by R's copyright information"
+
 quarto_verify <- "Command to verify installation: `quarto --version` -> expected output if already installed: `1.*.*`"
 latex_verify <- "Command to verify installation: `latex --version` -> output is usually verbose. If there is no error and it includes a LaTeX compiler name, such as `pdfTeX 3.*.*` or `MiKTeX *.*.*`, the installation is verified."
 wb_installation_note <- function(software) {
@@ -142,7 +144,7 @@ The folder location does not matter when running these specific commands.
 
 1. Open Company Portal from the Start menu. Search for "RforWindows".
 2. Select the "RforWindows" application and click "Install".
-3. Then verify that R is available in the command line. `r r_verify`
+3. Then verify that R is available in the command line. `r r_wb_verify`
 
 `r wb_path_note("R", "C:\\Program Files\\R\\R-4.6.1\\bin")`
 
