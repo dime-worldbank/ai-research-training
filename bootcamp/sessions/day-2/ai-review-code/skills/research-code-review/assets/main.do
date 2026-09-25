@@ -7,6 +7,9 @@
 	* If no version is mentioned, use your current Stata installation version.
 	version 18
 
+	* Set seed for reproducibility
+	set seed 12345
+
 	* Set project global(s)
 	global project 	"???"
 	global code 	"${project}/code"
@@ -20,6 +23,10 @@
 	foreach command of local user_commands {
 	   cap which `command'
 	   if _rc == 111 {
+		   * NOTE: ssc install pulls the current version of the package, not
+		   * a pinned one. If exact reproducibility of the package version
+		   * matters, install from a versioned/archived source instead and
+		   * record the version installed.
 		   ssc install `command'
 	   }
 	}

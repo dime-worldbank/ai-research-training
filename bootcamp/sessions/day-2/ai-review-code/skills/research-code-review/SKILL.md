@@ -1,6 +1,6 @@
 ---
 name: research-code-review
-description: Review research code or complete research-code packages for correctness, stability, reproducibility, privacy risks, and maintainability. Use for read-only Phase 1 reviews of Stata, R, Python, or other languages, and for user-approved follow-up fixes. Always obtain the privacy confirmation before inspecting the package.
+description: Review research code or complete research-code packages for correctness, stability, reproducibility, privacy risks, and maintainability. Use for read-only Phase 1 reviews of Stata, R, Python, or other languages, and for user-approved follow-up fixes. Do not list, open, or read any file in the package — not even filenames — until the privacy confirmation in this skill has been obtained.
 ---
 
 # Research Code Review
@@ -12,12 +12,17 @@ must be supported by the bundled references and by evidence in the code.
 
 ## Privacy gate
 
-Before reading filenames, code, documentation, configuration, or data, ask:
+Before reading or listing filenames, code, documentation, configuration, or data, ask:
 
 > Before I inspect this code or package, please confirm that it contains no
 > private, confidential, restricted, or personally identifying data and that I
 > may proceed. If you are uncertain, remove or exclude the data files and I can
 > perform a code-only review.
+
+Treat only an unambiguous affirmative ("yes," "confirmed," "no private data")
+as consent. Treat a hedge such as "probably fine," "should be okay," or "I
+think so" the same as a "no": do not proceed, and repeat the offer to exclude
+data files or move to a code-only review.
 
 Wait for explicit confirmation. If the user cannot confirm, do not inspect the
 package. Explain how to exclude data and offer to resume with code and
@@ -29,9 +34,9 @@ modification.
 Do not modify files, run project code, install dependencies, or reproduce
 outputs in Phase 1.
 
-1. Inventory the files in scope. Identify languages, the README, entry-point
-   script, dependency files, tests, scripts, and declared outputs. Do not open
-   data files.
+1. After the privacy gate is confirmed, inventory the files in scope. Identify
+   languages, the README, entry-point script, dependency files, tests,
+   scripts, and declared outputs. Do not open data files.
 2. State the inferred scope when the user did not specify one. Distinguish a
    complete-package review from a review of selected files.
 3. Read [references/review-flags.md](references/review-flags.md). Apply only
@@ -66,10 +71,8 @@ finding or report a limitation.
 
 ## End Phase 1
 
-After presenting the complete report, ask:
-
-> Would you like to make these changes yourself, or would you like me to
-> implement the straightforward recommendations?
+After presenting the complete report, end with the closing question specified
+in [references/phase-one-report.md](references/phase-one-report.md).
 
 Offer implementation only for changes whose intended behavior is clear.
 Sampling, treatment assignment, observation exclusions, imputation,
@@ -80,17 +83,41 @@ researcher decision.
 
 If the user asks the agent to make changes, first ask:
 
-> Is this project tracked in Git and pushed to a GitHub repository? If so,
-> should I make the changes on a new branch so you can review the complete diff?
+> Is this project tracked with Git? If so, should I make the changes on a new
+> branch so you can review the complete diff?
 
-Wait for the answer before editing. Do not create or publish a repository or
-branch unless authorized. If no GitHub repository exists, explain that a local
-diff is possible and recommend establishing version control.
+If the user already answered the Git-tracked question `yes` in the Phase 1
+decision form, do not ask that part again — still ask about the branch before
+editing. Treat only an explicit affirmative as confirmation for each part. If
+the tracked-with-Git response is blank, `no`, uncertain, or otherwise not
+affirmative, do not edit any file; explain that a local diff is possible
+without Git and recommend establishing version control, and that
+implementation will remain paused until the user confirms Git tracking or
+accepts an untracked local diff. Do not initialize a repository or create a
+branch unless the user affirmatively asks for that.
 
-Agree on which recommendations to implement. Make only those changes, preserve
-research decisions, and validate in proportion to risk. Report changed files,
-verification performed, remaining limitations, and any recommendations left
-for the researcher.
+Phase 2 may run the specific affected script to confirm a fix behaves as
+intended, when execution is low-risk and the user has approved it. Do not run
+the full pipeline or reproduce all declared outputs unless the user
+separately asks for that.
+
+Agree on which recommendations to implement. A blanket approval such as "do
+the straightforward ones" covers only `Yes` items. The user may approve a
+clearly stated `Conditional` proposal by ID or approve all such proposals
+together. When a Conditional proposed next action states one unambiguous
+behavior and the user approves it, treat that approval as establishing the
+intended behavior and do not ask the same question again. If the report instead
+asks for a missing value or a choice among alternatives, obtain that answer
+before editing. Interpret decision-form responses as follows: `approve`
+authorizes the exact proposal; `change:` authorizes only the written
+alternative; `provide:` supplies the stated prerequisite; `defer` authorizes
+no change; and `discuss` requests explanation before a decision. A direct
+answer to a requested value or question also supplies that prerequisite.
+Accept equivalent natural-language replies. Leave blank, ambiguous, or
+contradictory items unresolved and ask only for the missing clarification.
+Make only the approved changes, preserve research decisions, and validate in
+proportion to risk. Report changed files, verification performed, remaining
+limitations, and any recommendations left for the researcher.
 
 ## Entry-point assets
 

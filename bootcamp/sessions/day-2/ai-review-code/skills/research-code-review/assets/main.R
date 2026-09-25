@@ -25,6 +25,12 @@ path <- "your/path/to/package/"
 # Note: It's recommended to avoid hardcoding paths and instead use relative paths when possible,
 # especially when sharing scripts or working in teams.
 
+# Reproducibility settings ----
+SEED <- 12345
+set.seed(SEED)
+# If using packages with their own RNG streams (e.g. parallel, caret), pass
+# the seed or a matching set.seed() call explicitly where required.
+
 # Run the R scripts ----
 # Source the scripts that are part of your project.
 # Modify the filenames as needed to match your project structure.
