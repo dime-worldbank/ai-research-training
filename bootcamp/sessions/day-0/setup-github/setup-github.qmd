@@ -29,11 +29,10 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## GitHub Account - Best Practices
 
-* You do not need two GitHub accounts. Instead, use a single account for both personal and WB work, unless having separate accounts is your personal preference.
-* We suggest using your personal email as the primary email address so that you do not lose access to your account when you leave the WB.
+* If you do not yet have a github account, we suggest using your personal email to set up the account so you do not lose access if you leave the WB.
+* If you already have a pesonal github account, you do not need to create a second account (unless having separate accounts is your personal preference).
 * You can associate multiple email addresses with your GitHub account and configure notification emails accordingly.
-  * For example, you could use your WB email address for notifications related to WB-hosted repositories and your personal email for other notifications.
-* See the [best-practice instructions here](https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md).
+  * For example, use WB email address for notifications for WB-hosted repositories and personal email for other notifications.
 
 ## GitHub Account
 
