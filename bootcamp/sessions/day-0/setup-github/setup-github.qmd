@@ -60,17 +60,18 @@ If you are waiting to be invited, feel free to skip to the next slide and return
 
 Depending on whether you are using a WB computer or a personal computer, follow the relevant instructions on the next slides.
 
-## GitHub Desktop - WB Computer
+## Install GitHub Desktop - WB Computer
 
 1. Install the GitHub Desktop application: Open *Software Center* from the Windows Start menu, search for **GitHub Desktop**, and click **Install**.
 2. After installing GitHub Desktop, open it and go to *File* → *Options*, then log in using your GitHub account.
 3. *Optional but recommended*: Go to *Help* → *About GitHub Desktop* to check for updates. GitHub Desktop will update itself automatically when a newer version is available.
 
 For WB computers, even when you use Software Center, ITS appreciates it if you record the installation with a Software Installation request. This helps ITS understand demand and allocate resources to support GitHub Desktop.
+<!-- PROVIDE INSTRUCTIONS OR A LINK FOR HOW TO DO THE INSTALLATION REQUEST
 
-## GitHub Desktop - Personal Computer
+## Install GitHub Desktop - Personal Computer
 
-1. Install the GitHub Desktop application. It is a free GitHub client, and we use it in this training because it is beginner-friendly. [Download GitHub Desktop here](https://desktop.github.com/) and follow installation instructions.
+1. Install the GitHub Desktop application. [Download GitHub Desktop here](https://desktop.github.com/) and follow installation instructions.
 2. After installing GitHub Desktop, open it and go to *File* → *Options*, then log in using your GitHub account.
 3. *Optional but recommended*: Go to *Help* → *About GitHub Desktop* to check for updates. GitHub Desktop will update itself automatically when a newer version is available.
   
@@ -80,5 +81,6 @@ For WB computers, even when you use Software Center, ITS appreciates it if you r
 You are done when the following objectives are completed:
 
 1. Create a GitHub account
-2. Get access to the Intro to Git/GitHub materials
+2. Get access to the Training Repository we will use in the next session
 3. Install a Git client: GitHub Desktop
+<!-- SUGGEST ADDING INSTRUCTIONS FOR HOW TO OPEN THE TRAINING REPOSITORY IN GITHUB DESKTOP AND IN EXPLORER
