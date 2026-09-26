@@ -39,20 +39,24 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Repository Access
 
-* This morning we will use this repository for the training: https://github.com/dime-wb-trainings/lyrics-aibc. It is a `public` repository, meaning that everyone can view it, but only collaborators with permission can make changes to it.
+* Training repository: https://github.com/dime-wb-trainings/lyrics-aibc. 
+    * It is a `public` repository, meaning that everyone can view it, but only collaborators with permission can make changes to it.
 * You need to be invited to this repository with `write` access to participate in the next session. To do so:
-  * Share your username with the Impact Analytics team
-  * Accept the invitation to the training repository, either through the invitation link sent by GitHub or at https://github.com/dime-wb-trainings/lyrics-aibc/invitations. Wait until someone has had time to invite you before checking the invitations page.
+  * Share your username with the Impact Analytics team 
+  <!-- ADD HOW TO DO SO, EMAIL DIMEANALYTICS@WB, OR?
+  * Accept the invitation to the training repository. You will get an email from GitHub with an invitation link, or you can go to https://github.com/dime-wb-trainings/lyrics-aibc/invitations. (Wait until someone has had time to invite you before checking the invitations page.)
 
 If you are waiting to be invited, feel free to skip to the next slide and return once you have received the invitation. You do not need `write` access to complete the steps on the next slide.
 
 ## GitHub Desktop - Introduction
 
-* You will need access to a Git client during the next session. You will also be introduced to Git clients if you are not familiar with what they are.
+* The next session will introduce Git clients. 
+* You will need access to a Git client during the session. 
 
 * There are many Git clients available, but for this training, we will use GitHub Desktop. It is a free Git client developed by GitHub and provides simplified connections between GitHub.com on the internet and GitHub Desktop on your computer.
 
-* You may use a different Git client, but our instructions and support will focus on GitHub Desktop. If you have only used Git from the command line, we encourage you to try a graphical Git client during this training and see how it can support quality control.
+* You may use a different Git client, but our instructions and support will focus on GitHub Desktop. 
+   *If you have only used Git from the command line, we encourage you to try a graphical Git client during this training and see how it can support quality control.
 
 Depending on whether you are using a WB computer or a personal computer, follow the relevant instructions on the next slides.
 
