@@ -38,6 +38,7 @@ Install Visual Studio Code (VS Code). This is the code editor we will use during
 - Select the software and click **Install**
 
 For WB computers, even when we use Software Center, ITS appreciates it if we log the installation with a Software Installation request. This also helps because the more logged installations of VS Code there are, the more resources ITS is willing to allocate for supporting it.
+<!-- ADD INSTRUCTIONS OR ESERVICES LINK
 
 ## Installing VS Code - Personal Computer
 
@@ -46,6 +47,7 @@ Install Visual Studio Code (VS Code). This is the code editor we will use during
 **Personal computer**:
 
 - Go to https://code.visualstudio.com/
+<!-- WOULD BE SIMPLER IF YOU MADE THIS IS A CLICKABLE LINK
 - Download and install VS Code
 
 ## Common Extensions
