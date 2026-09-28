@@ -10,7 +10,9 @@ logos:
   - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
   - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
 
-format: bootcamp-revealjs
+format:
+  bootcamp-revealjs:
+    embed-resources: true
 ---
 
 ```{r}

@@ -51,14 +51,20 @@
 ## Code Execution - Overview
 
 - Most VS Code users like being able to open a terminal directly in the editor and run commands without leaving the code editor.
-- This works especially well for languages like Python or R, where it is common to run code directly from the integrated terminal.
+- This works especially well for languages like Python, where it is common to run code directly from the integrated terminal.
+- R can be run via the command line, so this is easy to set up, but doing so does not provide features that RStudio offers, such as browsing data, visualizing plots, and managing projects.
+- Running Stata from the command line is possible but tends to be harder. As with R, this workflow does not provide the features offered by the Stata interface.
 
-## Code Execution - Stata
+It is common that expert R and Stata users use both VS Code and RStudio/Stata. See next slide.
 
-- For Stata, this is also possible, but it is often harder to set up. A common workflow is therefore:
-  - Create a main do-file that orchestrates the execution of other do-files.
-  - Keep the main do-file open in Stata's do-file editor.
-  - Edit the individual do-files in VS Code as needed, 
-  - Run the individual do-files through the main do-file in Stata.
+## Code Execution - Combining VS Code with RStudio/Stata
+
+A common approach is to write code in VS Code but execute it from a main script in RStudio or Stata, depending on your programming language.
+
+- Create a main script (an R script or do-file, depending on your language) that orchestrates the execution of all the other scripts.
+- Keep the main script open in RStudio or Stata's do-file editor. 
+    - It is important to keep only the main script open there, as edits in VS Code are not reflected in real time.
+- Edit the individual do-files and R scripts in VS Code as needed.
+- Run the main script in RStudio or Stata to test or execute the individual do-files and R scripts.
 
 
