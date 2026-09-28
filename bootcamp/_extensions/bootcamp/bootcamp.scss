@@ -31,6 +31,17 @@ $selection-bg: $analytics-light !default;
 
 /*-- scss:rules --*/
 
+// ---------- kill every motion ----------
+.reveal .slides section,
+.reveal .slides section > *,
+.reveal [data-transition],
+.reveal .backgrounds,
+.reveal .slide-background {
+  transition: none !important;
+  animation: none !important;
+}
+
+
 // ---------- content slides ----------
 .reveal .slides {
   text-align: left;
@@ -334,6 +345,8 @@ $selection-bg: $analytics-light !default;
 
 // side by side image and text
 .reveal .columns {
+  display: flex;
+  gap: min(4vw, 1.5em);
   align-items: center;
 }
 
