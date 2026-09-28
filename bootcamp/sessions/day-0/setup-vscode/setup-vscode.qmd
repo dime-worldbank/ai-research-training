@@ -39,7 +39,6 @@ Install Visual Studio Code (VS Code). This is the code editor we will use during
 
 For WB computers, even when you use Software Center, ITS appreciates it if you record the installation with a [Software Installation Request](https://worldbankgroup.service-now.com/wbg?id=wbg_sc_cat_item_guide&sys_id=e643726c1bb73ed02685c8c5624bcbfb). This helps ITS understand demand and allocate resources to support GitHub Desktop.
 
-
 ## Installing VS Code - Personal Computer
 
 Install Visual Studio Code (VS Code). This is the code editor we will use during the training.
@@ -51,10 +50,14 @@ Install Visual Studio Code (VS Code). This is the code editor we will use during
 
 ## Common Extensions
 
-- Install common extensions for your preferred programming languages and workflows. If you use several, there is no conflict in installing multiple extensions at the same time. These are popular extensions, but there is no single "correct" set for everyone.
-    - Stata: `Stata Enhanced`
-    - Python: `Python`
-    - R: `R`/`R Syntax`
+Install common extensions for your preferred programming languages and workflows. If you use several, there is no conflict in installing multiple extensions at the same time. These are popular extensions, but there is no single "correct" set for everyone.
+
+- Stata: `Stata Enhanced`
+- Python: `Python`
+- R: `R`/`R Syntax`
+- LaTeX: `LaTeX Workshop`
+- Quarto: `Quarto`
+- Markdown: `Markdown Preview Enhanced`
 
 # Explore Demoed Features {background-color="#530153"}
 
