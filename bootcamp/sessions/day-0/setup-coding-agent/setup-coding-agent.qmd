@@ -77,7 +77,6 @@ If not, follow these steps:
 
 ## Make sure VS Code picks up your WB GitHub Copilot License
 
-
 ::: {.columns}
 ::: {.column width="70%"}
 - For this step, make sure that you have received confirmation that you have been assigned a license. The steps below will confirm whether you have a license.
@@ -91,6 +90,15 @@ If not, follow these steps:
 ![](./img/verify-copilot-license.png)
 :::
 :::
+
+## Claude Code extension
+
+If you want to use Claude Code in VS Code, then you need to follow similar steps. 
+
+1. Install the Claude Code extension in VS Code.
+2. Log in with your personal Claude license - ITS currently do not provide WB-managed Claude licenses.
+
+Note that, just like ChatGPT, we are not allowed to share non-public data with Claude. Making a request in Claude Code's VS Code extension makes all files currently open in the VS Code workspace available to Claude. Any `.gitignore` file does not make a difference to this.
 
 ## Make your first interaction with GitHub Copilot
 
@@ -112,8 +120,6 @@ If not, follow these steps:
 :::
 
 ## Ask a question
-
-
 
 ::: {.columns .center}
 ::: {.column width="45%" .center}
