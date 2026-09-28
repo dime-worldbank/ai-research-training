@@ -25,14 +25,223 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Objective
 
-- Move an existing local project into a GitHub repository.
+- This session assumes basic knowledge of GitHub
+- Set up a repository on GitHub
+- Prepare project for migration to GitHub
+- Make sure project runs in its new location
 
-## Steps
 
-- Create a new repository on GitHub
-- Initialize/connect the local project folder
-- Commit and push existing files
+# Section 1: Request a Repository {background-color="#530153"}
 
-## Key Takeaways
+## Request a repo - create a repository name
 
-- Placeholder — fill in with session content.
+Choose a descriptive name for the repository for your project that also works well as a URL. See here for examples: [https://github.com/orgs/dime-worldbank/repositories](https://github.com/orgs/dime-worldbank/repositories). Here are specific guidelines:
+
+* No spaces—spaces are not allowed in URLs or GitHub repository names. Use hyphens (`-`) instead.
+* No underscores (`_`)—underscores do not display well in underlined URLs. Use hyphens (`-`) instead.
+* No uppercase letters—URLs can be case-sensitive, which may cause errors. Use only lowercase letters.
+* Use only lowercase letters (`a-z`) and numbers (`0-9`). Do not start with a number. Avoid special characters (e.g., `&`, `!`, `()`). The only exception is the hyphen (`-`), which is URL-safe and useful for separating words.
+* Avoid long repository names to keep URLs manageable and easy to share.
+
+## Request a repo - create a Repository Description
+
+This is a brief "About" section for your repository. See examples in [ietoolkit](https://github.com/worldbank/ietoolkit/), [dia-toolkit](https://github.com/worldbank/dia-toolkit/), or [moz-proirri-savings](https://github.com/dime-worldbank/moz-proirri-savings). GitHub limits descriptions to 350 characters.
+
+## Request a repo - Set Up Access Team 
+
+- By default, teams are not given admin access to their repositories, as this grants access to permanently destructive actions. However, this is ultimately up to each team.
+- Instead, GitHub teams can be assigned to one or more repositories. Project teams can add and remove users from these teams, thereby granting and revoking access to repositories.
+- At least one team member must be a team maintainer; best practice is to have at least two. Team maintainers can manage team membership.
+
+Learn more about GitHub Teams [here](https://github.com/dime-worldbank/dime-account-admin/blob/main/resources/why-use-teams.md).
+
+Whenever possible, use an existing team for a new repository. For example, if a second repository is created for a project, use the same team as the first repository. This reduces workload for both the project team and the GitHub account administrators.
+
+If no existing team is suitable, a new team can be created. When naming a new team, follow the repository naming conventions above. Do not use the exact repository name for the team; instead, use `<repo-name>-team` if you want similar names.
+
+
+## Request a repo - Send the Request
+
+Unless you already have a repository you want to use, request a new repository by sending this email to [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org).
+
+Copy and fill in this information in the email:
+
+::: {.callout-tip title="Repo Request Email template"}
+
+**Repository Name**:<br>
+**Repository Description** _(max 350 characters)_:<br>
+**Will you use an existing team** _(yes/no)_:<br>
+**DIME GitHub Team Name** (_existing team or team to be created_):<br>
+**Your GitHub Username**: <br>
+
+:::
+
+## This guide assumes
+
+- This guide assumes that your files are currently stored and shared through OneDrive; the instructions below use OneDrive as the example.
+- The same guidance applies to other syncing services, such as SharePoint, and to projects shared on a network drive or another shared location.
+
+## Clone the repository
+
+Wait for confirmation that your repository has been created, then clone it.
+
+# Section 2: Move Files {background-color="#530153"}
+
+## Make sure you have a `.gitignore`
+
+### Why Use a `.gitignore` File
+
+Some files should not be shared on GitHub:
+
+- Efficiency: frequently updated binary files such as `.dta`, `.doc`, `.pdf`, and `.xls` can slow Git down.
+- Data privacy: GitHub is secure, but it is not the right place for confidential data.
+- Files not shared on GitHub can continue to be shared through OneDrive.
+
+### Use a template
+
+Your repository most likely came with a `.gitignore` template. If not, you can use the [Impact Analytics template](https://raw.githubusercontent.com/worldbank/dime-github-trainings/refs/heads/main/GitHub-resources/DIME-GitHub-Templates/gitignore_template.txt), which suits most World Bank projects without modification.
+
+If you want to use that template, copy the content from the link above into a new `.gitignore` file in your repository.
+
+## Copy Files into the Clone
+
+1. First make sure the `.gitignore` file is present in your clone on your computer.
+2. Unless your data work folder is too big, copy it into your clone. Make sure to copy and **not** move or cut and paste the files. Wait for the copy to finish.
+   - If the folder is too large or will not fit on the computer, move files selectively. Check carefully that all required files and folder paths are included.
+3. Then use GitHub Desktop to review the files shown as ready to commit.
+   - Do not commit everything at once. Review files folder by folder and commit in manageable groups.
+   - Make sure that only files you want to track on GitHub are staged for commit. If needed, update the `.gitignore` file to exclude files you do not want to commit.
+   - Check every folder carefully to ensure no identifying information is being sent to GitHub.
+
+## Verify Ignored Files
+
+1. Go to your project folder and delete the `.gitignore` file.
+2. Go back to GitHub Desktop and check which files are now visible as ready to commit. Do not commit them.
+3. These are the files that should not be committed to GitHub and should remain shared on OneDrive.
+4. These are typically data files and documents, not code or other raw text files.
+5. Once you are convinced the list is correct, go to the `.gitignore` file in GitHub Desktop and restore it (discard its deletion).
+
+## Remove Uncommitted Files from the Clone
+
+- Before this step, make sure the project folder still contains all the files in the original location on OneDrive.
+
+- Any team member cloning the repository will have only the files you committed. To test the repository as they will receive it, perform a clean clone before making any other changes.
+- A clean clone contains the files committed to GitHub. To create one, delete the clone from your file system. When GitHub Desktop reports that it cannot find the clone on your computer, choose the option to **re-clone** the repository from GitHub.
+
+The files you chose to track have been transferred to GitHub. Next, update code paths and address folders that Git does not otherwise represent.
+
+# Section 4: Make Code Work in its new location {background-color="#530153"}
+
+## Update Folder Paths in Code
+
+When all project files are shared only in OneDrive, a master script may need only one root path:
+
+```stata
+global onedrive "C:\Users\WB123456\OneDrive - WBG\Projects\my-agriculture-project"
+```
+
+When code is shared in GitHub and other files remain in OneDrive, define two root paths:
+
+```stata
+global onedrive "C:\Users\WB123456\OneDrive - WBG\Projects\my-agriculture-project"
+global clone "C:/Users/WB123456/github/my-agriculture-project"
+```
+
+## Code Points to Different Locations
+
+Code in the clone and data in OneDrive use different roots. For example, in Stata:
+
+```stata
+* Define globals
+global onedrive "C:/Users/username/OneDrive - WBG/Projects/my-agriculture-project"
+global clone "C:/Users/username/Documents/GitHub/my-agriculture-project"
+
+* Open data from OneDrive
+use "${onedrive}/Baseline/data/hh_data_deidentified.dta", clear
+
+* Run analysis code from the clone
+do "${clone}/Baseline/dofiles/hh_analysis.do"
+```
+
+## Add the Clone Folder Path
+
+1. In main scripts, define both the OneDrive root and the clone root.
+
+```stata
+if ${user} == 1 {
+  global onedrive "C:/Users/username/OneDrive/DIME Analytics"
+  global clone "C:/Users/username/Documents/GitHub/dimeanalytics"
+}
+```
+2. Update other globals so data paths point to OneDrive and code/output paths point to the clone as appropriate.
+
+```stata
+global Baseline_od "${onedrive}/Baseline"
+global Baseline "${clone}/Baseline"
+global Baseline_dt "${Baseline_od}/DataSets"
+global Baseline_do "${Baseline}/Dofiles"
+global Baseline_out "${Baseline}/Output"
+```
+
+# Section 5: Automatically Fix the Empty-Folder Issue {background-color="#530153"}
+
+## Why Empty Folders Are Not Shared
+
+- Git tracks files, not folders by themselves.
+- A file's path is part of its name to Git. For example, `src/ado_files/iebaltab.ado` includes its folder path.
+- Sharing a file also shares its containing folder and parent folders.
+- A folder with no shared files, and no subfolders containing shared files, is not represented in Git.
+
+## Empty Folders: The Problem
+
+If `.png` files are ignored, a folder that contains only those files may be present in one person's OneDrive copy but absent from another person's clone. Code expecting that folder can then fail.
+
+## Empty Folders: The Solution
+
+Add a placeholder file such as `README.md` to folders that need to exist in the clone but contain no files shared with Git. Git tracks the placeholder, so it also represents the folder path.
+
+## Manual Fix
+
+- This session focuses on the more convenient `iegitaddmd` command.
+
+### `iegitaddmd`: Use Case 1
+
+Create placeholder files for folders in the clone:
+
+```stata
+iegitaddmd, folder("${clone}/Baseline")
+```
+
+### `iegitaddmd`: Use Case 2
+
+Compare the clone with the OneDrive folder to identify folders that need placeholders:
+
+```stata
+iegitaddmd, folder("${clone}/Baseline") ///
+  comparefolder("${onedrive}/Baseline")
+```
+
+### `iegitaddmd`: Best Practice
+
+1. Use `dryrun` to verify the folder paths. The command lists where placeholder files would be created without creating them.
+
+```stata
+iegitaddmd, folder("${clone}/Baseline") ///
+  comparefolder("${onedrive}/Baseline") dryrun
+
+iegitaddmd, folder("${clone}/Baseline") dryrun
+```
+
+2. Once the paths are correct, remove `dryrun` to create the placeholder files.
+3. After you understand the command and are comfortable with the paths, consider using the `automatic` option.
+4. Test whether your master script runs again.
+
+# Section 6: Delete Code from OneDrive {background-color="#530153"}
+
+## Do Not Store Code in Two Locations
+
+This can be done later, after the GitHub copy has been checked and the team is ready to use it as the single shared code location.
+
+- Storing code in two places causes confusion; GitHub should become the source of truth for code.
+- It is reasonable to wait while testing that the migration works, but avoid maintaining two active copies longer than necessary.
+- Share what has been most difficult about getting started with Git, during this session or later.
