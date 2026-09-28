@@ -1,7 +1,16 @@
 /.quarto/
 **/*.quarto_ipynb
 
+# Ignore PowerPoint files
+*.ppt
+*.pptx
+
 # Ignore compiled files and generated content
 **/libs/
 sessions/**/*.html
 sessions/**/*.tex
+
+# Generated PDFs and local machine config, not version controlled
+pdfs/**
+!pdfs/README.md
+sharepoint-path.local.txt

@@ -1,0 +1,59 @@
+---
+title: "Intro to VS Code and IDEs"
+subtitle: "Day 0 · Setup for AI-enabled Research"
+author: "Kristoffer Bjärkefur"
+institute: "Impact Analytics"
+date: 1 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+
+format: bootcamp-revealjs
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../../../_extensions/bootcamp/setup_palettes.R")
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Objective
+
+- Understand what an IDE is
+- Learn IDE features that improve productivity and workflow
+- See why VS Code enables agentic workflows
+
+## What is an IDE (Integrated Development Environment)?
+
+* Code is just text and can be edited in any text editor. An IDE is basically a text editor on steroids. 
+
+* Some languages have their own editors with features specifically designed for that language
+    * E.g., Stata's do-file editor, RStudio for R.
+
+* IDEs like VS Code are not tied to one programming language, which means they have a much broader user base.
+
+* That large user base constantly develops small productivity and code-management tools, made available through custom extensions and plugins.
+
+## Why use an IDE?
+
+* IDEs with large userbases tend to adopt the latest tools first. Using an IDE with a wide userbase is very helpful for staying up to date with the latest developments
+
+* AI is changing very quickly, and smaller language-specific code editors likely lag behind.
+
+* Switching from a language-specific editor to a general IDE like VS Code may take some time, but the long-term gains in productivity and access to new tools outweigh the initial cost of adoption (J-curve)
+
+* Once you become comfortable with an IDE like VS Code, you will likely feel like a more capable coder and it is likely hard to imagine going back to older workflows. :)
+
+# VS Code Demo {background-color="#530153"}
+
+## Suggestion: Watch Demo Now - Explore Later
+
+* Feel free to sit back and just watch the demo. 
+* You will have the opportunity to explore these features during the hands-on session.
+* During the hands-on session, any part of the demo can be repeated as needed.
+
+{{< include ../vscode-demo/_vscode-demo.qmd >}}

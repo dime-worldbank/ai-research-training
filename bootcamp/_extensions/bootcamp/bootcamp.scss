@@ -40,11 +40,7 @@ $selection-bg: $analytics-light !default;
   transition: none !important;
   animation: none !important;
 }
-.reveal .fragment {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-}
+
 
 // ---------- content slides ----------
 .reveal .slides {
@@ -349,6 +345,8 @@ $selection-bg: $analytics-light !default;
 
 // side by side image and text
 .reveal .columns {
+  display: flex;
+  gap: min(4vw, 1.5em);
   align-items: center;
 }
 
