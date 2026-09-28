@@ -8,10 +8,11 @@
 <!--
   Internal newsletter - DECDI / Impact Analytics. DRAFT for Issue 5.
   Recap follows sessions/ai-ethics-governance (Maria Reyes Retana, September 17).
+  October 1 session cancelled (Bootcamp); Coming Up leads with October 15.
   Before send:
   - Replace DEEP_DIVE_URL and FIELD_NOTES_URL.
-  - Replace SIGNUP_URL for October 1 (still TBD in sessiondates.txt).
-  - Confirm the slides URL if the session page is not yet on the training site.
+  - Replace BOOTCAMP_URL and SIGNUP_URL for October 15.
+  - Get Maria Reyes Retana's sign-off on the final text.
 -->
 <style>
   @media only screen and (max-width: 640px) {
@@ -25,7 +26,7 @@
 <body style="margin:0; padding:0; background-color:#EFF2F5; -webkit-text-size-adjust:100%;">
 
   <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
-    A health algorithm flagged 17.7% of Black patients for extra care. The corrected share was 46.5%. Recap of the ethics session, and October 1.
+    A health algorithm missed most of the Black patients who needed extra care. What that means for our own measures, a recap of the ethics session, and the Bootcamp.
   </div>
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFF2F5;">
@@ -52,7 +53,7 @@
                     </span>
                     <br>
                     <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#B8CCDD;">
-                      Issue 5 &nbsp;&middot;&nbsp; September 24, 2026 &nbsp;&middot;&nbsp; A 5-minute read
+                      Issue 5 &nbsp;&middot;&nbsp; September 28, 2026 &nbsp;&middot;&nbsp; A 5-minute read
                     </span>
                   </td>
                 </tr>
@@ -79,14 +80,17 @@
                     <span class="bignum" style="font-family:Georgia, 'Times New Roman', serif; font-size:64px; line-height:72px; color:#002244; font-weight:bold;">17.7% &rarr; 46.5%</span>
                     <br>
                     <span style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:22px; color:#54595F;">
-                      Black patients flagged for extra care,<br><b>before and after the measure of need was fixed</b>
+                      Share of Black patients getting extra help,<br>before and after fixing the bias
                     </span>
                   </td>
                 </tr>
                 <tr>
                   <td class="px" style="padding:20px 40px 32px 40px;">
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:0;">
-                      A health algorithm applied to about <b>200 million</b> people a year predicted healthcare cost, and treated that cost as a measure of health need. Less money has historically been spent treating Black patients at the same level of illness, so the score tracked who could get care. Equally sick Black patients came out looking healthier. Fixing the measure would have raised the share of Black patients flagged for extra care from <b>17.7%</b> to <b>46.5%</b>. A result can fit the data and still be wrong for the people it is about. The same risk sits in our own work when a convenient measure stands in for need, welfare, or a coded answer. The check has to ask who is left out, and how that changes the result.
+                      A health algorithm used on about 200 million patients a year was biased against Black patients. It used health costs to measure health needs. But less is spent on Black patients who are just as sick as White patients. So the algorithm wrongly concluded that Black patients were healthier. Fixing this would have raised the share of Black patients getting extra help from 17.7% to 46.5%.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
+                      By standard accuracy checks, cost looked like a good measure. It wasn&rsquo;t. The same risk exists in our work whenever a measure is wrong more often for some groups. Household spending used to measure welfare is one example. AI-coded survey answers that are less accurate in some languages are another. Before you trust a result, ask: what does this measure really capture, who is it wrong for, and what happens if it is wrong?
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:12px 0 0 0;">
                       Source: <a href="https://doi.org/10.1126/science.aax2342" style="color:#0071BC;">Obermeyer et al., Science (2019)</a>
@@ -110,25 +114,34 @@
                       AI Ethics, Governance, and Safe Use
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
-                      Quick recap of the September 17 session. The hour was about using AI so the work stays accurate, fair, secure, and easy to stand behind. For World Bank work, follow the Bank&rsquo;s rules.
+                      A quick recap of the September 17 session. We already use AI in our work. The question now is how to use it carefully. The main message: ethics is not a box you tick at the end. It matters at every stage of the research.
                     </p>
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; The WBG AI Risk Management Framework groups what can go wrong into five risks: <b>accountability and traceability</b>, <b>validity and accuracy</b>, <b>security and privacy</b>, <b>ethical</b>, and <b>legal</b>.
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:12px; letter-spacing:1px; color:#002244; text-transform:uppercase; font-weight:bold; padding:0 0 8px 0;">
+                        Bank rules
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; You own the output. A named person has to be able to review and correct an individual case. An overall accuracy score describes the system. It leaves that person&rsquo;s case unchanged.
+                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; <b>Know the five risks.</b> The <a href="https://worldbankgroup.sharepoint.com/:p:/s/ITSSRFiles/EYRhCk4Xdh1PkVpeB1uw9egBWBIV5tJcBlTMQRFW1HbtOQ?e=6xh3wK&amp;CID=BB4D28B7-094F-4C2F-ADF5-1B27D4E72EAE&amp;wdLOR=cF67CCC10-3A55-4C8C-BE42-210E53B70B08" style="color:#0071BC;">WBG AI Risk Management Framework</a> groups them as: accountability, accuracy, security and privacy, ethics, and legal.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 16px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; <b>Check the file first, then pick the tool.</b> Every file has a classification: Public, Official Use Only, Confidential, or Strictly Confidential. Only use tools the Bank has approved for that classification. Also check the data licence, data agreement, or IRB protocol. They may not allow sharing the data with any AI tool, even an approved one. Personal ChatGPT, Claude, or Gemini accounts are for public files only, even with training switched off.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:12px; letter-spacing:1px; color:#002244; text-transform:uppercase; font-weight:bold; padding:0 0 8px 0;">
+                        Good research practice
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; Check the original. &ldquo;Verified&rdquo; means you opened the page, the citation, or the code and read it. A number that looks right can rest on Wikipedia, a news article, or a Facebook post. The sources can change with the language of the question.
+                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; <b>You own the output.</b> A named person has to review, and be able to override, what the AI produces for each individual case.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; Start with the <b>label on the information</b>, then choose the tool. An approved tool still needs a separate yes for that data. A personal ChatGPT, Claude, or Gemini account stays limited to public information, even with training switched off.
+                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; <b>Check the source yourself.</b> &ldquo;Verified&rdquo; means you opened the page, citation, or code and read it. A number that looks right may come from Wikipedia, a news story, or a Facebook post.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0;">
-                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; Permission is the starting point. At each stage of the work (design, collection, processing, analysis, publication) ask two questions: is it right, and who is harmed if it is wrong? The short habit for that check is <b>TACTIC</b>, below.
+                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; <b>Following the rules is the minimum.</b> A result can follow every rule and still be wrong. At each stage (design, data collection, processing, analysis, publication), ask two questions about your result: is it correct, and who is harmed if it isn&rsquo;t?
                       </td></tr>
                     </table>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:14px 0 0 0;">
+                      The short checklist for this is TACTIC, below.
+                    </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:16px 0 0 0;">
                       Slides: <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-ethics-governance/" style="color:#0071BC;">session page</a> &nbsp;&middot;&nbsp; approved tools: <a href="https://ai.worldbankgroup.org/" style="color:#0071BC;">AI@WBG</a> &nbsp;&middot;&nbsp; questions: <a href="mailto:ai@worldbankgroup.org" style="color:#0071BC;">ai@worldbankgroup.org</a>
                     </p>
@@ -148,26 +161,26 @@
                       Try This Today &nbsp;&middot;&nbsp; 10 minutes
                     </span>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
-                      Take one task you are about to give an AI tool. Run the session&rsquo;s two checks before you send anything: the data label, then <b>TACTIC</b>. Use the filename and what you already know. Leave the file where it is.
+                      Pick one task you&rsquo;re about to give an AI tool. Before you send anything, do these checks.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
-                      <b>1. Name the label.</b> Public, Official Use Only, Confidential, or Strictly Confidential. Most daily work is Official Use Only. Research microdata is Confidential. If you cannot name the label, stop and label the file.<br><br>
-                      <b>2. Choose the tool from the label.</b> Official Use Only and Confidential go to approved World Bank tools: mAI and M365 Copilot. Gemini enterprise is cleared for World Bank content, including Strictly Confidential. Personal ChatGPT, Claude, and Gemini take public information only, and only when all four conditions in the Acceptable Use of AI Addendum hold. The rule stays the same if training is switched off.<br><br>
-                      <b>3. If the task is code on identified survey data,</b> send the codebook and a made-up extract with the same structure. Keep the real rows and the full file on your side. The data agreement is a separate permission. The IRB list names people, so the tool needs to be named there too.<br><br>
-                      <b>4. Run TACTIC on what you are about to send, and on what you plan to keep:</b><br>
-                      &nbsp;&nbsp;<b>T</b>ransparency: will you say where AI helped in a way that matters?<br>
-                      &nbsp;&nbsp;<b>A</b>ccountability: have you checked the claims, and do you own them?<br>
-                      &nbsp;&nbsp;<b>C</b>ontext: have you applied what you know about the institution, the country, and the culture?<br>
-                      &nbsp;&nbsp;<b>T</b>ake ownership: is a person still in charge of the decision?<br>
-                      &nbsp;&nbsp;<b>I</b>mpact: who is harmed if this is wrong?<br>
-                      &nbsp;&nbsp;<b>C</b>ompliance: approved tool, right label, data agreement respected?<br><br>
-                      Send it when every letter passes. If you are unsure, write to <a href="mailto:ai@worldbankgroup.org" style="color:#0071BC;">ai@worldbankgroup.org</a>.
+                      <b>1. Find the file&rsquo;s classification.</b> Public, Official Use Only, Confidential, or Strictly Confidential. Most everyday work is Official Use Only. Research data is usually Confidential. If you don&rsquo;t know the classification, find out before going further.<br><br>
+                      <b>2. Pick a tool that fits the classification.</b> Official Use Only and Confidential files can go into approved Bank tools such as mAI and M365 Copilot. The current list is on <a href="https://ai.worldbankgroup.org/" style="color:#0071BC;">AI@WBG</a>. Personal ChatGPT, Claude, and Gemini accounts are for public files only, and only if you meet the four conditions in the <a href="https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFAnnex/727dee72-17dc-4648-a9d5-0252c01ff988Annex1.pdf" style="color:#0071BC;">Acceptable Use of AI Addendum</a>. Switching off training doesn&rsquo;t change this.<br><br>
+                      <b>3. If the data is confidential or under a restrictive licence, don&rsquo;t give the AI the real data.</b> This applies whether or not the data identifies people. Instead, share the codebook and a small made-up dataset with the same structure. Keep the real data on your side. Also check that your data agreement and IRB protocol allow the data to be shared with an AI tool.<br><br>
+                      <b>4. Run TACTIC:</b><br>
+                      &nbsp;&nbsp;<b>T</b>ransparency: Will you say where AI helped?<br>
+                      &nbsp;&nbsp;<b>A</b>ccountability: Have you checked the claims yourself?<br>
+                      &nbsp;&nbsp;<b>C</b>ontext: Have you used what you know about the country, the institution, and the people?<br>
+                      &nbsp;&nbsp;<b>T</b>ake ownership: Is a person still making the decision?<br>
+                      &nbsp;&nbsp;<b>I</b>mpact: Who is harmed if this is wrong?<br>
+                      &nbsp;&nbsp;<b>C</b>ompliance: Right tool, right classification, data agreement respected?<br><br>
+                      If every answer is yes, go ahead. If you&rsquo;re unsure, write to <a href="mailto:ai@worldbankgroup.org" style="color:#0071BC;">ai@worldbankgroup.org</a>. TACTIC comes from the <a href="https://wbg.sabacloud.com/Saba/Web_spf/NA1PRD0002/app/me/learningeventdetail/cours000000000050989?classId=dowbt000000000017453" style="color:#0071BC;">Using AI Responsibly@WBG</a> course.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0 0;">
                       <tr>
                         <td style="background-color:#EAF4FB; border-left:4px solid #0071BC; padding:16px 20px;">
                           <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:21px; color:#333333;">
-                            <b>Have more than 10 minutes?</b> Repeat TACTIC for one output you already kept this month, such as a citation, a table, or a block of cleaning code. Open the source behind one number. This issue&rsquo;s Deep Dive explains what GitHub publishes about text you send through enterprise Copilot.
+                            <b>Have more than 10 minutes?</b> Run TACTIC on something AI helped with this month, like a citation, a table, or some cleaning code. Open the source behind one number and check it.
                           </span>
                         </td>
                       </tr>
@@ -188,10 +201,10 @@
                       Deep Dive &nbsp;&middot;&nbsp; Track B, Part 3
                     </span>
                     <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
-                      What Copilot&rsquo;s enterprise terms cover
+                      What GitHub Copilot&rsquo;s enterprise terms cover
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
-                      On Business and Enterprise plans, GitHub leaves your prompts out of model training. The text still goes to the company that runs the model. How long it is kept depends on where you use Copilot, which model you pick, and which license you are on. About 12 minutes. Where this article and the Bank&rsquo;s guidance differ, follow the Bank.
+                      With a Business or Enterprise plan, GitHub doesn&rsquo;t use your prompts to train its models. But your prompts are still sent to the company that runs the model. How long they&rsquo;re kept depends on where you use Copilot, which model you choose, and your licence. About 12 minutes. If this article and Bank guidance disagree, follow the Bank.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
@@ -219,13 +232,13 @@
                       Field Notes &nbsp;&middot;&nbsp; beyond the trainings
                     </span>
                     <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
-                      When the measure is the wrong one
+                      When AI does the coding, it becomes part of the measurement
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 12px 0;">
-                      The algorithm predicted cost. Cost already reflected who had been able to get care.
+                      The health algorithm used a measure that was wrong more often for one group. AI-coded survey answers can do the same.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
-                      Field Notes walks through what Obermeyer and coauthors measured, why a model that fits its data can still fail the people the program is for, and the question to ask of any stand-in measure in our own work.
+                      Field Notes picks up the session&rsquo;s French and Hausa example. A study by Egami and coauthors found that feeding AI labels straight into a regression gave biased results, even when the labels were 80&ndash;90% accurate. It then covers what a small, random, hand-coded sample can fix.
                     </p>
                     <!-- FIELD_NOTES_URL: replace before send -->
                     <a href="#" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#0071BC; text-decoration:none;">
@@ -247,27 +260,33 @@
                       Coming Up
                     </span>
                     <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:22px; line-height:28px; color:#FFFFFF; margin:10px 0 8px 0;">
-                      Using AI for Feedback on Your Research
+                      Using the World Bank AI API in MEGA
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0 0 6px 0;">
-                      <b style="color:#FFFFFF;">Thursday, October 1</b> &nbsp;&middot;&nbsp; Maria Jones, with staff who have used the tools
+                      <b style="color:#FFFFFF;">Thursday, October 15</b>
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0 0 20px 0;">
-                      Which AI feedback actually improved a paper, and which wasted an afternoon. Bring one section you are willing to put in front of a tool.
+                      How to set up a MEGA workspace and call the World Bank AI API from your own code.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td style="background-color:#FFFFFF; border-radius:2px;">
-                          <!-- SIGNUP_URL: October 1 link still TBD -->
+                          <!-- SIGNUP_URL: October 15 link -->
                           <a href="#" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#002244; text-decoration:none; padding:11px 22px;">
-                            October 1 session &rarr;
+                            October 15 session &rarr;
                           </a>
                         </td>
                       </tr>
                     </table>
-                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#7C93A8; margin:20px 0 0 0;">
-                      Then: Using the World Bank AI API in MEGA (Oct 15)
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:24px 0 0 0; padding-top:20px; border-top:1px solid #1F4468;">
+                      <b style="color:#FFFFFF;">Before that: AI-Enabled Research Bootcamp</b><br>
+                      Setup: October 1 &nbsp;&middot;&nbsp; Main course: October 5&ndash;8<br>
+                      Four days of hands-on work using AI coding agents on real World Bank research. Bring a project you&rsquo;re working on. The October 1 session on AI feedback is cancelled because of the Bootcamp.
                     </p>
+                    <!-- BOOTCAMP_URL: replace before send -->
+                    <a href="#" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; margin:10px 0 0 0;">
+                      Bootcamp details &rarr;
+                    </a>
                   </td>
                 </tr>
               </table>

@@ -1,4 +1,4 @@
-# Deep Dive (Track B, Part 3): Working Inside the Enterprise Boundary
+# Deep Dive (Track B, Part 3): What GitHub Copilot's Enterprise Terms Cover
 
 *Background article for AI for Research, Issue 5. Reading time: about 12 minutes.*
 
