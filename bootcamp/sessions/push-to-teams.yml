@@ -1,0 +1,19 @@
+day-0:
+  - intro-ide-vscode/intro-ide-vscode.qmd
+  - migrate-to-github/migrate-to-github.qmd
+  - setup-coding-agent/setup-coding-agent.qmd
+  - setup-github/setup-github.qmd
+  - setup-python-r/setup-python-r.qmd
+  - setup-vscode/setup-vscode.qmd
+day-1:
+  - ai-agents-for-you/ai-agents-for-you.qmd
+  - cost-effective-ai/cost-effective-ai.qmd
+  - create-a-memory-file/create-a-memory-file.qmd
+  - intro-ai-agents/intro-ai-agents.qmd
+  - onboarding-ai-agents/onboarding-ai-agents.qmd
+day-2:
+  - human-in-the-loop/human-in-the-loop.qmd
+day-3:
+  - ai-adoption-plan/ai-adoption-plan.qmd
+day-4:
+  - git-verify-ai-output/git-verify-ai-output.qmd

@@ -13,6 +13,7 @@ logos:
 format:
   bootcamp-revealjs:
     fragments: true
+    embed-resources: true
 ---
 
 ```{r}

@@ -4,10 +4,10 @@ param(
 
 $ErrorActionPreference = "Stop"
 $projectRoot = $PSScriptRoot
-$pdfsRoot = Join-Path $projectRoot "pdfs"
+$allowlistFileName = "push-to-teams.yml"
 $sharePointConfigPath = Join-Path $projectRoot "sharepoint-path.local.txt"
 
-function Ensure-Directory {
+function New-DirectoryIfMissing {
     param([Parameter(Mandatory)][string]$Path)
 
     if (Test-Path -LiteralPath $Path) {
@@ -20,100 +20,148 @@ function Ensure-Directory {
     New-Item -ItemType Directory -Path $Path -Force -ErrorAction Stop | Out-Null
 }
 
-$chromeCandidates = @(
-    "$env:ProgramFiles\Google\Chrome\Application\chrome.exe",
-    "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe",
-    "$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe",
-    "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe"
-)
-$browser = $chromeCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
-
-if (-not $browser) {
-    throw "Chrome or Edge was not found. Install one of these browsers to create PDFs."
-}
-
 $sourceRootPath = Join-Path $projectRoot $SourceRoot
-Ensure-Directory $pdfsRoot
+if (-not (Test-Path -LiteralPath $sourceRootPath -PathType Container)) {
+    throw "Session source folder was not found: $sourceRootPath"
+}
+$sourceRootPath = (Resolve-Path -LiteralPath $sourceRootPath).Path
+$allowlistPath = Join-Path $sourceRootPath $allowlistFileName
 
-# Any .qmd whose name starts with "_" is a template/partial, not a presentation to render.
-$documents = Get-ChildItem $sourceRootPath -Recurse -Filter "*.qmd" |
-    Where-Object { $_.Name -notlike "_*" } |
-    Sort-Object FullName
+function Get-PresentationName {
+    param([Parameter(Mandatory)][System.IO.FileInfo]$SourceFile)
 
-if (-not $documents) {
-    throw "No .qmd files found under '$SourceRoot'."
+    $name = $SourceFile.BaseName
+    $metadataPath = Join-Path $SourceFile.DirectoryName "render-meta.yml"
+    if (Test-Path -LiteralPath $metadataPath -PathType Leaf) {
+        $metadataNames = @(
+            Get-Content -LiteralPath $metadataPath | Where-Object { $_ -match '^\s*name\s*:\s*(.+)$' }
+        )
+        if ($metadataNames.Count -gt 1) {
+            throw "More than one 'name' property found in '$metadataPath'."
+        }
+        if ($metadataNames.Count -eq 1 -and $metadataNames[0] -match '^\s*name\s*:\s*(.+)$') {
+            $name = $Matches[1].Trim().Trim("'`"")
+        }
+    }
+
+    if ($name -notmatch '^[A-Za-z0-9][A-Za-z0-9._ -]*$' -or $name -match '[. ]$' -or $name -in @('.', '..')) {
+        throw "Invalid Teams name '$name' for '$($SourceFile.FullName)'. Use letters, numbers, spaces, periods, underscores, or hyphens."
+    }
+
+    return $name
 }
 
-Write-Host "Discovered $($documents.Count) presentation(s) to render:"
-foreach ($document in $documents) {
-    Push-Location $projectRoot
-    $relativeDocument = Resolve-Path -Relative $document.FullName
-    Pop-Location
-    Write-Host "  $relativeDocument"
-}
+function Get-AllowlistedPresentations {
+    param(
+        [Parameter(Mandatory)][string]$AllowlistPath,
+        [Parameter(Mandatory)][string]$SourceRootPath
+    )
 
-# bootcamp/pdfs should only ever hold the latest render; the SharePoint copy is a separate, never-wiped destination.
-Get-ChildItem $pdfsRoot -Directory -Filter "day-*" -ErrorAction SilentlyContinue |
-    Remove-Item -Recurse -Force
+    if (-not (Test-Path -LiteralPath $AllowlistPath -PathType Leaf)) {
+        throw "Publication allowlist was not found: $AllowlistPath"
+    }
 
-$browserProfile = Join-Path $env:TEMP ("quarto-pdf-" + [Guid]::NewGuid())
-New-Item -ItemType Directory -Path $browserProfile | Out-Null
+    $presentations = @()
+    $seenDays = @{}
+    $seenPaths = @{}
+    $seenDestinations = @{}
+    $currentDay = $null
+    $lineNumber = 0
 
-try {
-    foreach ($document in $documents) {
-        Push-Location $projectRoot
-        $relativeDocument = Resolve-Path -Relative $document.FullName
-        Pop-Location
-        Write-Host "Rendering $relativeDocument"
-        & quarto render $relativeDocument
-        if ($LASTEXITCODE -ne 0) {
-            throw "Quarto failed to render $relativeDocument."
+    foreach ($line in Get-Content -LiteralPath $AllowlistPath) {
+        $lineNumber++
+        if ($line -match '^\s*$' -or $line -match '^\s*#') {
+            continue
         }
 
-        $htmlPath = [IO.Path]::ChangeExtension($document.FullName, ".html")
-        $pdfPath = [IO.Path]::ChangeExtension($document.FullName, ".pdf")
-        $htmlUrl = ([Uri]$htmlPath).AbsoluteUri + "?print-pdf"
-
-        & $browser `
-            --headless `
-            --disable-gpu `
-            --no-pdf-header-footer `
-            --run-all-compositor-stages-before-draw `
-            --virtual-time-budget=3000 `
-            "--user-data-dir=$browserProfile" `
-            "--print-to-pdf=$pdfPath" `
-            $htmlUrl
-        if ($LASTEXITCODE -ne 0) {
-            throw "Browser failed to create $pdfPath."
-        }
-
-        # Mirror into bootcamp/pdfs/<day>/<pdf-name>/, honoring a sibling render-meta.yml name override
-        $sessionFolder = $document.Directory
-        $relativeToSourceRoot = $sessionFolder.FullName.Substring($sourceRootPath.Length).TrimStart('\', '/')
-        $day = ($relativeToSourceRoot -split '[\\/]')[0]
-
-        $pdfName = [IO.Path]::GetFileNameWithoutExtension($document.Name)
-        $metaPath = Join-Path $sessionFolder.FullName "render-meta.yml"
-        if (Test-Path $metaPath) {
-            $nameLine = Get-Content $metaPath | Where-Object { $_ -match '^\s*name\s*:\s*(.+)$' } | Select-Object -First 1
-            if ($nameLine -match '^\s*name\s*:\s*(.+)$') {
-                $pdfName = $Matches[1].Trim().Trim("'`"")
+        if ($line -match '^(day-\d+):$') {
+            $currentDay = $Matches[1]
+            if ($seenDays.ContainsKey($currentDay)) {
+                throw "Duplicate day '$currentDay' in '$AllowlistPath' at line $lineNumber."
             }
+            $seenDays[$currentDay] = $true
+            continue
         }
 
-        $destinationDir = Join-Path (Join-Path $pdfsRoot $day) $pdfName
-    Ensure-Directory $destinationDir
-        $destinationPdf = Join-Path $destinationDir "$pdfName.pdf"
-        Copy-Item -Path $pdfPath -Destination $destinationPdf -Force
+        if ($line -match '^  - (.+)$') {
+            if (-not $currentDay) {
+                throw "A presentation entry appears before a day heading in '$AllowlistPath' at line $lineNumber."
+            }
+
+            $relativePath = $Matches[1]
+            if ($relativePath -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*(/[A-Za-z0-9][A-Za-z0-9._-]*)*\.qmd$') {
+                throw "Invalid QMD path '$relativePath' in '$AllowlistPath' at line $lineNumber. Use a relative path with forward slashes and a .qmd extension."
+            }
+
+            $allowlistEntry = "$currentDay/$relativePath"
+            if ($seenPaths.ContainsKey($allowlistEntry)) {
+                throw "Duplicate presentation '$allowlistEntry' in '$AllowlistPath'."
+            }
+            $seenPaths[$allowlistEntry] = $true
+
+            $sourcePath = Join-Path $SourceRootPath $allowlistEntry
+            if (-not (Test-Path -LiteralPath $sourcePath -PathType Leaf)) {
+                throw "Listed presentation was not found: $sourcePath"
+            }
+
+            $sourceFile = Get-Item -LiteralPath $sourcePath
+            if ($sourceFile.Name.StartsWith('_')) {
+                throw "Underscore-prefixed QMD files cannot be published: $sourcePath"
+            }
+
+            $name = Get-PresentationName -SourceFile $sourceFile
+            $destinationKey = "$currentDay/$name"
+            if ($seenDestinations.ContainsKey($destinationKey)) {
+                throw "Multiple presentations resolve to the same Teams destination '$destinationKey'."
+            }
+            $seenDestinations[$destinationKey] = $true
+
+            $presentations += [pscustomobject]@{
+                Day = $currentDay
+                Name = $name
+                RelativePath = $allowlistEntry
+                SourcePath = $sourceFile.FullName
+                HtmlPath = Join-Path $sourceFile.DirectoryName ($sourceFile.BaseName + ".html")
+            }
+            continue
+        }
+
+        throw "Unsupported allowlist syntax in '$AllowlistPath' at line $lineNumber. Use day headings and two-space-indented '- path/to/file.qmd' entries."
     }
+
+    if ($presentations.Count -eq 0) {
+        throw "No presentations are listed in '$AllowlistPath'."
+    }
+
+    return $presentations
 }
-finally {
-    if (Test-Path $browserProfile) {
-        Remove-Item $browserProfile -Recurse -Force -ErrorAction SilentlyContinue
+
+$documents = @(Get-AllowlistedPresentations -AllowlistPath $allowlistPath -SourceRootPath $sourceRootPath)
+
+Write-Host "Allowlisted $($documents.Count) presentation(s) to render:"
+foreach ($document in $documents) {
+    Write-Host "  $($document.RelativePath)"
+}
+
+foreach ($document in $documents) {
+    Write-Host "Rendering $($document.RelativePath) to HTML"
+    Push-Location $projectRoot
+    try {
+        & quarto render $document.SourcePath
+        if ($LASTEXITCODE -ne 0) {
+            throw "Quarto failed to render '$($document.RelativePath)'."
+        }
+    }
+    finally {
+        Pop-Location
+    }
+
+    if (-not (Test-Path -LiteralPath $document.HtmlPath -PathType Leaf)) {
+        throw "Quarto did not create the expected HTML file '$($document.HtmlPath)'."
     }
 }
 
-Write-Host "Created $($documents.Count) PDF files."
+Write-Host "Rendered $($documents.Count) allowlisted HTML file(s). No PDFs were created."
 
 if (Test-Path $sharePointConfigPath) {
     $sharePointPath = Get-Content $sharePointConfigPath | Where-Object { $_.Trim() } | Select-Object -First 1
@@ -123,28 +171,25 @@ else {
 }
 
 if (-not $sharePointPath) {
-    Write-Warning "No SharePoint path configured. Create bootcamp/sharepoint-path.local.txt with the destination folder path to enable syncing. See bootcamp/pdfs/README.md for more details."
+    Write-Warning "No Teams folder path configured. Create bootcamp/sharepoint-path.local.txt with the destination folder path to enable publishing. See bootcamp/pdfs/README.md for more details."
 }
 else {
     $sharePointPath = $sharePointPath.Trim()
-    $answer = Read-Host "Copy bootcamp/pdfs into '$sharePointPath'? That folder may also hold files from other teams. (Y/N)"
+    $answer = Read-Host "Copy $($documents.Count) allowlisted HTML file(s) into '$sharePointPath'? (Y/N)"
     while ($answer -notmatch '^[YyNn]$') {
         $answer = Read-Host "Please answer Y or N"
     }
 
     if ($answer -match '^[Yy]$') {
-        # File-by-file copy so unrelated content already in the SharePoint folder is never touched.
-        $pdfFiles = Get-ChildItem $pdfsRoot -Recurse -File | Where-Object { $_.Name -ne "README.md" }
-        foreach ($file in $pdfFiles) {
-            $relativePath = $file.FullName.Substring($pdfsRoot.Length).TrimStart('\', '/')
-            $destinationPath = Join-Path $sharePointPath $relativePath
-            $destinationFolder = Split-Path $destinationPath -Parent
-            Ensure-Directory $destinationFolder
-            Copy-Item -Path $file.FullName -Destination $destinationPath -Force
+        foreach ($document in $documents) {
+            $destinationFolder = Join-Path (Join-Path $sharePointPath $document.Day) $document.Name
+            New-DirectoryIfMissing $destinationFolder
+            $destinationHtml = Join-Path $destinationFolder ($document.Name + ".html")
+            Copy-Item -LiteralPath $document.HtmlPath -Destination $destinationHtml -Force
         }
-        Write-Host "Copied $($pdfFiles.Count) file(s) to '$sharePointPath'."
+        Write-Host "Copied $($documents.Count) HTML file(s) to '$sharePointPath'."
     }
     else {
-        Write-Host "Skipped SharePoint copy."
+        Write-Host "Skipped Teams copy."
     }
 }

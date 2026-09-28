@@ -10,7 +10,9 @@ logos:
   - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
   - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
 
-format: bootcamp-revealjs
+format:
+  bootcamp-revealjs:
+    embed-resources: true
 ---
 
 ```{r}
@@ -47,6 +49,27 @@ Install Visual Studio Code (VS Code). This is the code editor we will use during
 
 - Go to [https://code.visualstudio.com/](https://code.visualstudio.com/)
 - Download and install VS Code
+
+## Enable Menu Bar and Status Bar
+
+We will make use of the "_menu bar_" and "_status bar_" in VS Code in our instructions. These are hidden by default. So in order to follow our instructions, you need to enable them.
+
+Follow the instructions in the image below to enable the menu bar. Note how this menu then moves to the top of your window. Then find the **View** menue in the now enabled menu bar and go to **Appearance** to enable the status bar as well.
+
+
+:::: {.columns}
+::: {.column width="20%" }
+:::
+
+::: {.column width="60%" }
+  ![](./img/enable-menu-status-bar.png)
+:::
+
+::: {.column width="20%" }
+:::
+::::
+
+
 
 ## Common Extensions
 

@@ -29,10 +29,22 @@ The [`sessions/`](sessions) folder contains day-by-day guides, schedules, object
 - **[Day 4: AI-enabled Workflows for Advanced Users](sessions/day-4/README.md)**  
   *Advanced & Scalable AI*: World Bank AI API integration in MEGA, AI-assisted web apps and dashboards, Model Context Protocols (MCPs), multi-agentic systems, geospatial analysis, and Git-based output verification.
 
-## Render session PDFs
+## Publish session presentations to Teams
 
-To render all session materials as PDFs, you can use the provided PowerShell script:
+The publishing list in [`sessions/push-to-teams.yml`](sessions/push-to-teams.yml) is the only set of presentations rendered and copied to Teams. Add a `.qmd` path under its day heading to publish a presentation; unlisted presentations are not included.
+
+Each listed presentation must render as a standalone HTML file. Set `embed-resources: true` in its format configuration:
+
+```yaml
+format:
+  bootcamp-revealjs:
+    embed-resources: true
+```
+
+To render the listed presentations and publish them to the configured Teams folder, run:
 
 ```powershell
 .\render-pdfs.ps1
 ```
+
+The script retains its legacy filename, but it publishes HTML only and does not create PDFs. A sibling `render-meta.yml` `name` property, when present, is used for both the Teams session folder and HTML filename; otherwise, the `.qmd` basename is used.
