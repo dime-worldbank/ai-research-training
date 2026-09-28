@@ -37,8 +37,8 @@ Install Visual Studio Code (VS Code). This is the code editor we will use during
 - Search for **Visual Studio Code** or **vscode**
 - Select the software and click **Install**
 
-For WB computers, even when we use Software Center, ITS appreciates it if we log the installation with a Software Installation request. This also helps because the more logged installations of VS Code there are, the more resources ITS is willing to allocate for supporting it.
-<!-- ADD INSTRUCTIONS OR ESERVICES LINK
+For WB computers, even when you use Software Center, ITS appreciates it if you record the installation with a [Software Installation Request](https://worldbankgroup.service-now.com/wbg?id=wbg_sc_cat_item_guide&sys_id=e643726c1bb73ed02685c8c5624bcbfb). This helps ITS understand demand and allocate resources to support GitHub Desktop.
+
 
 ## Installing VS Code - Personal Computer
 
@@ -46,8 +46,7 @@ Install Visual Studio Code (VS Code). This is the code editor we will use during
 
 **Personal computer**:
 
-- Go to https://code.visualstudio.com/
-<!-- WOULD BE SIMPLER IF YOU MADE THIS IS A CLICKABLE LINK
+- Go to [https://code.visualstudio.com/](https://code.visualstudio.com/)
 - Download and install VS Code
 
 ## Common Extensions
@@ -57,6 +56,6 @@ Install Visual Studio Code (VS Code). This is the code editor we will use during
     - Python: `Python`
     - R: `R`/`R Syntax`
 
-# Try demoed features {background-color="#530153"}
+# Explore Demoed Features {background-color="#530153"}
 
 {{< include ../vscode-demo/_vscode-demo.qmd >}}

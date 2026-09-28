@@ -42,12 +42,18 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 * IDEs with large userbases tend to adopt the latest tools first. Using an IDE with a wide userbase is very helpful for staying up to date with the latest developments
 
-* AI is changing very quickly, and smaller language-specific code editors lkely lag behind.
+* AI is changing very quickly, and smaller language-specific code editors likely lag behind.
 
 * Switching from a language-specific editor to a general IDE like VS Code may take some time, but the long-term gains in productivity and access to new tools outweigh the initial cost of adoption (J-curve)
 
 * Once you become comfortable with an IDE like VS Code, you will likely feel like a more capable coder and it is likely hard to imagine going back to older workflows. :)
 
 # VS Code Demo {background-color="#530153"}
+
+## Suggestion: Watch Demo Now - Explore Later
+
+* Feel free to sit back and just watch the demo. 
+* You will have the opportunity to explore these features during the hands-on session.
+* During the hands-on session, any part of the demo can be repeated as needed.
 
 {{< include ../vscode-demo/_vscode-demo.qmd >}}

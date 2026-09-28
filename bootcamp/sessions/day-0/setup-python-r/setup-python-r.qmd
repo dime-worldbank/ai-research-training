@@ -28,7 +28,7 @@ r_wb_verify <- "Command to verify installation: `R.exe --version` -> expected ou
 quarto_verify <- "Command to verify installation: `quarto --version` -> expected output if already installed: `1.*.*`"
 latex_verify <- "Command to verify installation: `latex --version` -> output is usually verbose. If there is no error and it includes a LaTeX compiler name, such as `pdfTeX 3.*.*` or `MiKTeX *.*.*`, the installation is verified."
 wb_installation_note <- function(software) {
-  paste0("Even when you self-install software, ITS appreciates it if you submit a Software Installation eServices request. Note in the comments that you installed ", software, " through self-service. This helps ITS understand demand and allocate resources to support ", software, " users.")
+  paste0("Even when you self-install software, ITS appreciates it if you submit a [Software Installation eServices Request](https://worldbankgroup.service-now.com/wbg?id=wbg_sc_cat_item_guide&sys_id=e643726c1bb73ed02685c8c5624bcbfb). Note in the comments that you installed ", software, " through self-service. This helps ITS understand demand and allocate resources to support ", software, " users.")
 }
 
 wb_path_note <- function(software, path) {

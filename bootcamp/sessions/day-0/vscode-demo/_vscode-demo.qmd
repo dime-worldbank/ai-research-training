@@ -32,7 +32,11 @@
 
 * Extensions are add-ons that enhance the functionality of VS Code.
 * They can be developed by the VS Code team, independent users, or software companies that want to make their products easier to use.
-* _**Data Security Warning**_: VS Code removes extensions that users have reported as malicious. To stay safe, install extensions only from trusted publishers such as Microsoft, Azure, AWS, GitHub, and other well-known providers, or extensions that have been downloaded many thousands of times.
+* _**Data Security Warning**_: 
+  * VS Code removes extensions that users have reported as malicious. 
+  * Still, to stay safe:
+    * install extensions only from trusted publishers. such as Microsoft, Azure, AWS, GitHub, and other well-known providers.
+    * _OR_ install only extensions that have been downloaded many thousands of times.
 
 ## Extensions - Common Extensions
 
