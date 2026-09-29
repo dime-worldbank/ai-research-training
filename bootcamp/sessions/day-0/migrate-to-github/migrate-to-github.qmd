@@ -35,6 +35,7 @@ Note: This session assumes familiarity with the basics of GitHub
 ## Before Getting Started
 
 - **Important:** If the team is moving shared code to GitHub, everyone who edits that code should work from the GitHub clone. Keeping separate active copies in GitHub and OneDrive can lead to confusion and lost changes.
+- Impact Analytics has experimented with mixed systems that allow team members to work on either OneDrive or GitHub. However, this requires careful coordination that no team was able to maintain over time which lead to errors and confusion.
 - This guide assumes that your files are currently stored and shared through OneDrive. The steps are similar for other syncing services, such as SharePoint or Dropbox, and for projects shared on a network drive or another shared location.
 
 
@@ -44,8 +45,43 @@ Note: This session assumes familiarity with the basics of GitHub
 
 ### Repo requirement
 
-* You need a repository under one of the World Bank's GitHub accounts. If you already have one, skip to Section 2.
+* You need a repository under one of the World Bank's GitHub accounts. If you already have one, skip to [Section 2](#section-2-move-files).
 * If not, follow the steps in this section to request one.
+
+The next couple of slides helps you gather and create the information needed to request a GitHub repository.
+
+## Information needed to request a GitHub Repository
+
+### Description
+A brief "_about_" section for your repository. GitHub limits descriptions to 350 characters. 
+
+Here are some good examples to follow: [ietoolkit](https://github.com/worldbank/ietoolkit/), [dia-toolkit](https://github.com/worldbank/dia-toolkit/), or [moz-proirri-savings](https://github.com/dime-worldbank/moz-proirri-savings).
+
+### Repo Name
+A good repo name is descriptive but also works well as a URL. Here are specific guidelines:
+* Use only lowercase letters (`a-z`), numbers (`0-9`), and hyphens (`-`). Avoid spaces, underscores, uppercase letters, and other special characters for readable, portable repository names.
+* Do not start the name with a number. Use hyphens to separate words.
+* Avoid long repository names to keep URLs manageable and easy to share.
+
+[See here for example names on the DECDI account](https://github.com/orgs/dime-worldbank/repositories).
+
+## GitHub Team - Why we use them?
+
+- Repository access is given at team-level (not individuals) when the repo is created. 
+- Each GitHub team will designate at least one "team maintainer" who can manage membership, which grants/revokes access to the team's repositories. Best practice is to have two maintainers.
+- Read more about GitHub Teams and why we use them [here](https://github.com/dime-worldbank/dime-account-admin/blob/main/resources/why-use-teams.md).
+
+## GitHub Team - How to use them?
+
+### Use a single team for multiple repositories
+* GitHub teams can be assigned to one or more repositories. When possible, use an existing team for a new repository 
+    * Ex. a second repository is created for the same project, use the same team as the first repository. 
+* This reduces workload for both the project team and the GitHub account administrators.
+
+### Create a new team if needed
+* If no suitable team exists, a new team can be created together with the new repository.
+* When naming a new team, follow the repository naming conventions above. 
+* Do not use the exact same name for the team as for the repository. You can use `<repo-name>-team` if you want similar names.
 
 ## Request a repo
 
@@ -62,41 +98,6 @@ Request a new repository by sending this email to [dimeanalytics@worldbank.org](
 
 :::
 
-
-## Information neeed to request a GitHub Repository
-
-### Description
-A brief "_about_" section for your repository. GitHub limits descriptions to 350 characters. 
-
-Here are some good examples to follow: [ietoolkit](https://github.com/worldbank/ietoolkit/), [dia-toolkit](https://github.com/worldbank/dia-toolkit/), or [moz-proirri-savings](https://github.com/dime-worldbank/moz-proirri-savings).
-
-### Repo Name
-A good repo name is descriptive but also works well as a URL. Here are specific guidelines:
-* Use only lowercase letters (`a-z`), numbers (`0-9`), and hyphens (`-`). Avoid spaces, underscores, uppercase letters, and other special characters for readable, portable repository names.
-* Do not start the name with a number. Use hyphens to separate words.
-* Avoid long repository names to keep URLs manageable and easy to share.
-
-[See here for example names on the DECDI account](https://github.com/orgs/dime-worldbank/repositories).
-
-## GitHub Team 
-
-- Repository access is given at team-level (not individuals) when the repo is created. 
-- Each GitHub team will designate at least one "team maintainer" who can manage membership, which grants/revokes access to the team's repositories. Best practice is to have two maintainers.
-- Read more about GitHub Teams and why we use them [here](https://github.com/dime-worldbank/dime-account-admin/blob/main/resources/why-use-teams.md).
-
-### Use a single team for multiple repositories
-* GitHub teams can be assigned to one or more repositories. 
-* When possible, use an existing team for a new repository 
-    * Ex. a second repository is created for the same project, use the same team as the first repository. 
-* This reduces workload for both the project team and the GitHub account administrators.
-
-### Create a new team if needed
-* If no existing team is suitable, a new team can be created. 
-* When naming a new team, follow the repository naming conventions above. 
-* Do not use the exact same name for the team as for the repository. You can use `<repo-name>-team` if you want similar names.
-
-
-
 # Section 2: Move Files {background-color="#530153"}
 
 ## Clone Your Repository
@@ -111,6 +112,7 @@ In some steps on the next slide you will delete files from your computer. If you
 However, move slowly through these slides and ask the helpers if you are unsure about any step. It is better to ask too often than to risk losing files.
 
 ## Step 1: Make Sure You Have a Good `.gitignore`
+
 * Before moving on, check that the repository has a useful `.gitignore` file. Review it and add project-specific rules as needed; do not assume the defaults cover every file you need to exclude.
 
 ### Why Use a `.gitignore` File
@@ -122,21 +124,21 @@ Some files should not be committed to GitHub, for reasons of:
 
 **Note:** Files not shared on GitHub can continue to be shared through OneDrive.
 
-### Use a template
+## If needed: Set up a `.gitignore` File Using a Template
 
-- Your repository may already include a `.gitignore` template. 
+- Your repository may already include a `.gitignore` 
 - If not, you can start with the [Impact Analytics template](https://raw.githubusercontent.com/worldbank/dime-github-trainings/refs/heads/main/GitHub-resources/DIME-GitHub-Templates/gitignore_template.txt) and modify if needed (you probably don't need to). 
 - To use the template, copy the content from the link above into a new `.gitignore` file in your repository.
 
 ## Step 2: Copy Files into the Clone
 
 1. First make sure the `.gitignore` file is present in your clone on your computer.
-2. Copy the code or data work folder from your existing project into the clone. Make sure to **copy, not move or cut and paste, the files**. Wait for the copy to finish.
+2. Copy the code or data work folder from your existing project into the clone. Make sure to **copy the files** instead of **moving or cut-paste the files**. Wait for the copy to finish.
     - If the project is too large to copy in one go, copy files selectively. Keep the original project intact and check that all required files and folder paths are included.
 3. Then use GitHub Desktop to review the files shown as ready to commit.
   - Make sure that only files you want to track on GitHub are included in each commit. If needed, update the `.gitignore` file to exclude files you do not want to commit.
   - Check the files carefully to ensure no confidential or identifying information is being sent to GitHub.
-  - Review files folder by folder and commit in manageable groups rather than committing everything at once.
+  - Review files folder by folder and do not just commit everything at once.
 
 ## Step 3: Verify Ignored Files
 
@@ -151,14 +153,14 @@ If a file that should be tracked was ignored, restore the `.gitignore` file, upd
 
 ## Step 4: Test a Clean Clone
 
-Before testing a clean clone, confirm that the original project is intact and that the commits you need have been pushed to GitHub. Do not delete your only copy of any files or discard uncommitted work.
+Before testing a clean clone, confirm that the original project is intact and that the commits you need have been pushed to GitHub by going to your repository on GitHub.com.
 
-- Anyone cloning the repository gets the files committed and pushed to GitHub, not uncommitted local files. 
+- Anyone cloning the repository only gets the files committed and pushed to GitHub, not uncommitted local files. 
 - To create a clean clone, delete your clone and re-clone the repository from GitHub.
 - Open that clean clone and check that the project has the expected files. 
 - The next section helps you verify the project code runs as intended. 
 
-Next, update code paths and address folders that Git does not otherwise represent. 
+Next, update code paths and address folders that Git does not track as they are empty.
 
 # Section 3: Make Code Work in its new location {background-color="#530153"}
 
@@ -256,7 +258,6 @@ source(here("Baseline", "code", "hh_analysis.R"))
 
 ```r
 onedrive <- "C:/Users/WB123456/OneDrive - WBG/Projects/my-agriculture-project"
-
 baseline_dt  <- file.path(onedrive, "Baseline", "data")
 baseline_do  <- here("Baseline", "code")
 baseline_out <- here("Baseline", "output")
@@ -278,10 +279,12 @@ Ask a helper if you are unsure how to apply this approach in your programming la
 
 ## Why Empty Folders Are Not Shared
 
-- Git tracks files, not folders by themselves.
-- A file's path is part of its name to Git. For example, `src/ado_files/iebaltab.ado` includes its folder path.
-- A tracked file causes its containing folder and parent folders to appear in a clone.
-- A folder with no tracked files is not represented in Git, even if it exists in your personal clone.
+- Git tracks files, but not folders by themselves.
+- A file's path is part of its name to Git and a tracked file therefore includes the names of the folder and that folder's parent folders.
+- A folder with no tracked files in it or in any of its subfolders, is therefore not represented in Git, even if it exists in your personal clone.
+- For example, `src/ado-files/iebaltab.ado` tracks a file called `iebaltab.ado`.
+   - The file's path implies that there is a folder called `src` that has a subfolder called `ado-files` where the file is located.
+   - The folders `src` and `ado-files` are not tracked on their own, and had been unknown to Git had a tracked file not been in them.
 
 ## Empty Folders: 
 
