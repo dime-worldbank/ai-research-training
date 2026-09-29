@@ -1,6 +1,6 @@
 ---
 title: "Human-in-the-Loop: Evaluating AI Outputs"
-subtitle: "Day 1 · Intro to Agentic AI at the WBG"
+subtitle: "Day 2 · Intro to Agentic AI at the WBG"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
 date: 5 Oct, 2026
