@@ -53,8 +53,9 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ```markdown
 ### Input Datasets
-- data/raw/census_2011.csv - Household demographics. Main variables: household ID,
-  income. When needed, full codebook: data/raw/census_2011_codebook.csv
+- `data/raw/census_2011.csv`: 
+  - household demographics. Main variables: household ID and income. 
+  - Full codebook: `data/raw/census_2011_codebook.csv`.
 ```
 
 # Skills: Purpose {background-color="#530153"}
@@ -70,12 +71,29 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Efficient Way to Provide Details
 
+
+
+:::: {.columns .v-center-container}
+
+::: {.column width="70%" }
+
 - All available skill descriptions are loaded into each new context window.
 - Only when a skill is relevant is the full content loaded.
 - Therefore, skills can contain details such as:
   - Step-by-step instructions for a task
   - What the agent should ask or confirm before proceeding
   - Templates for the expected output format
+
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="25%" }
+  ![skills and descriptions](../img/skills-and-descriptions.png)
+:::
+
+::::
 
 # Skills: Format {background-color="#530153"}
 
@@ -187,39 +205,10 @@ Manual installation is always available. Use it until a tool you trust becomes a
 - Adding a Stata skill to a project with Stata code can make a big difference.
 - Example: <https://github.com/dylantmoore/stata-skill>
 
-## Example Skill: Literature Review
-
-Example: <https://meleantonio.github.io/awesome-econ-ai-stuff/skills/literature/lit-review-assistant/index>
-
-```markdown
----
-name: lit-review-assistant
-description: Search, summarize, and synthesize economics literature
----
-[...]
-## Instructions
-### Step 1: Define the Research Domain
-Ask the user:
-1. What is your specific research question?
-2. What's the scope? (Narrow field survey vs. cross-disciplinary review)
-3. What databases do you have access to? (JSTOR, EconLit, Google Scholar, NBER)
-4. What time period is relevant?
-5. Are there seminal papers to start from?
-[...]
-```
-
 ## mAI Skills
 
 - mAI is not a code agent with access to your code files, so the use case is different, but it is a great place to experiment.
 - Go to <https://ai.worldbank.org/mai/skills/> and use the **Create Skill** wizard.
-
-# Exercises {background-color="#530153"}
-
-## Exercise
-
-- Exercise repository: <https://github.com/dime-worldbank/coding-agent-exercise>
-- We will focus on the `main-dofile` exercise.
-- `research-roles-skills` demonstrates a setup for a more advanced use case.
 
 # Thank You! {background-color="#530153"}
 
