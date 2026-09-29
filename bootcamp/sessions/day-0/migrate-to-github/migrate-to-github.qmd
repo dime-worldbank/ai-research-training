@@ -311,9 +311,58 @@ If a folder contains only files ignored by Git (for example, generated `.png` fi
 
 ### The Solution - Two options
 
-1. Before saving a file, have the code check whether the target folder exists and create it if necessary. Most languages provide a way to do this, but easier in languages with advanced file system utilities, such as Python.
+```{mermaid}
+%%| fig-width: 9
+flowchart LR
+  A["Folder is ignored by Git<br/>(missing in a fresh clone)"] --> B{"Who creates it?"}
+  B -->|"Option 1: the code"| C["Code creates the folder<br/>before saving a file"]
+  B -->|"Option 2: Git"| D["Add a placeholder file<br/>(e.g. README.md) to the folder"]
+  C --> E["Works in any fresh clone"]
+  D --> E
+```
 
-2. Add a placeholder file such as `README.md` to folders that need to exist in the clone but contain no other files tracked by Git. Git tracks the placeholder, so it also represents the folder path. See the `iegitaddmd` command ([documentation](https://worldbank.github.io/ietoolkit/reference/iegitaddmd.html)) for a utility that can do this.
+## Option 1: Let the Code Create the Folder
+
+Add one line before saving. It does nothing if the folder already exists.
+
+::: {.panel-tabset}
+
+### Stata
+
+```stata
+capture mkdir "${clone}/Baseline/Output"   // no error if it exists
+graph export "${clone}/Baseline/Output/fig1.png", replace
+```
+
+Stata's `mkdir` creates one level at a time, so run it for each nested level.
+
+### R
+
+```r
+dir.create(file.path(clone, "Baseline", "Output"),
+           recursive = TRUE, showWarnings = FALSE)
+ggsave(file.path(clone, "Baseline", "Output", "fig1.png"))
+```
+
+### Python
+
+```python
+from pathlib import Path
+
+out = Path(clone) / "Baseline" / "Output"
+out.mkdir(parents=True, exist_ok=True)
+fig.savefig(out / "fig1.png")
+```
+
+:::
+
+## Option 2: Add a Placeholder File
+
+Put a small file in each folder that must exist. Git tracks the file, so the folder appears in every clone.
+
+1. Create a `README.md` in the folder saying what it is for (e.g. "Figures created by the analysis code; not tracked").
+2. Commit it. Keep ignoring the generated files, e.g. `.gitignore`: `Output/*.png`
+3. Stata: `iegitaddmd` creates these files for you ([documentation](https://worldbank.github.io/ietoolkit/reference/iegitaddmd.html)).
 
 # Section 5: Delete Code from OneDrive {background-color="#530153"}
 
