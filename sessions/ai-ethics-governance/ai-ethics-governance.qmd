@@ -3,7 +3,7 @@ title: "How We Use AI Matters"
 subtitle: "Ethics, governance, and safe use at the World Bank Group"
 author: "Maria Reyes Retana"
 institute: DECDI, The World Bank
-date: "September 17, 2026"
+date: "September 29, 2026"
 format:
   decdi-revealjs:
     output-file: index.html
@@ -13,7 +13,7 @@ format:
     toc-title: "Contents"
     self-contained: true
     logo: "_extensions/decdi/logos/COLOR_WB_DEC.png"
-    footer: "AI Ethics, Governance & Safe Use | September 17, 2026"
+    footer: "AI Ethics, Governance & Safe Use | September 29, 2026"
     width: 1280
     height: 720
 ---
