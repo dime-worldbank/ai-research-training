@@ -130,7 +130,7 @@ Some files should not be committed to GitHub, for reasons of:
 
 Git is made for code (such as `.py`, `.R`, `.do`, etc.) or any other file in plain text format (such as `.txt`, `.tex`, `.qmd`, etc.). Git handles version control efficiently for these types of files, and stores granular history of changes for them.
 
-**Note:** Files not shared on GitHub can continue to be shared through OneDrive. Files should only be either on Github or on OneDrive, but not both.
+**Important:** Files not shared on GitHub can continue to be shared through OneDrive. Files should only be either on Github or on OneDrive, but not both.
 
 ## Step 2: Copy Files into the Clone
 
