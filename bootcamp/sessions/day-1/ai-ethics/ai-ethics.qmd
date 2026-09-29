@@ -53,6 +53,7 @@ format:
 .quiz-feedback{margin-top:.6em;padding:.5em .9em;background:#fff;border:2px dashed var(--cyan);
   border-radius:6px;font-size:.8em;line-height:1.4;text-align:left;display:none}
 .quiz-feedback.visible{display:block}
+.column .quiz-feedback{margin:0 0 .6em}
 
 /* ============ poll (opening slide) ============ */
 .poll-grid{display:flex;flex-direction:column;gap:.45em;margin-top:.6em}
@@ -229,7 +230,8 @@ function quizAnswer(btn, ok){
   g.querySelectorAll('.quiz-option').forEach(function(b){b.disabled=true;});
   btn.classList.add(ok?'correct':'incorrect');
   var f=g.nextElementSibling;
-  if(f&&f.classList.contains('quiz-feedback')) f.classList.add('visible');
+  if(!(f&&f.classList.contains('quiz-feedback'))){ var sec=g.closest('section'); f=sec&&sec.querySelector('.quiz-feedback'); }
+  if(f) f.classList.add('visible');
 }
 
 /* ---- poll ---- */
@@ -677,6 +679,66 @@ Ask: which of the five does your team talk about least? Usually accountability.
 Time: two minutes.
 :::
 
+## Classify every file before you share it
+
+Start with **the label on the information**, then choose the tool. Not the other way round. The label applies to every file, not only datasets: code, documents, emails, meeting recordings and anything in a folder an agent can open.
+
+| Classification | In our work | Which AI tools |
+|---|---|---|
+| **Public** | Published reports, open data | Approved tools freely. Others only under the Addendum's four conditions |
+| **Official Use Only** | Most daily work | Approved WBG tools only |
+| **Confidential** | Research microdata, HR, negotiation material | Approved WBG tools only, need to know |
+| **Strictly Confidential** | Investigations, restricted Board or legal material | Ask ai@worldbankgroup.org first |
+
+. . .
+
+::: {.warn-card}
+Switching off training in a personal account changes nothing about the label or the rules. And an approved tool does not answer whether the data agreement allows this use.
+:::
+
+::: {.visual-note}
+Four conditions: [Acceptable Use of AI Addendum](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFAnnex/727dee72-17dc-4648-a9d5-0252c01ff988Annex1.pdf). Classification: WBG Information Classification and Control Policy; label files with TagIt. Examples are illustrative. The label on the file governs.
+:::
+
+::: {.notes}
+**[CHECK BEFORE DELIVERY]** Confirm against current policy: (i) whether Public information may go into any tool, or whether the four conditions apply even then; (ii) the examples in the Official Use Only and Confidential rows, especially where research microdata sits; (iii) the current approved-tool list.
+
+The four conditions, if asked: no Restricted or Personal Data; no installation on WBG systems or access to WBG data; no output in an external WBG product; only insignificant potential adverse impact. All four must hold.
+
+Ask: what label would your last AI-assisted document carry? Most daily work is Official Use Only by default.
+
+Time: ninety seconds. This is reference material: say the line about the label and the tool, then move on.
+:::
+
+## Which tools are cleared for which label?
+
+```{=html}
+<div><div class="picker">
+<button class="pick-btn active" onclick="pickShow('tool','t_mai',this)">mAI</button>
+<button class="pick-btn" onclick="pickShow('tool','t_cop',this)">M365 Copilot</button>
+<button class="pick-btn" onclick="pickShow('tool','t_gemc',this)">Gemini<small>enterprise</small></button>
+<button class="pick-btn" onclick="pickShow('tool','t_ghc',this)">GitHub Copilot</button>
+<button class="pick-btn" onclick="pickShow('tool','t_gpt',this)">ChatGPT<small>personal</small></button>
+<button class="pick-btn" onclick="pickShow('tool','t_cla',this)">Claude<small>personal</small></button>
+<button class="pick-btn" onclick="pickShow('tool','t_ccode',this)">Claude Code<small>personal</small></button>
+<button class="pick-btn" onclick="pickShow('tool','t_gem',this)">Gemini<small>personal</small></button>
+</div><div class="pick-panel tall"></div></div>
+```
+
+::: {.visual-note}
+Not on the approved list? Only under the four conditions of the [Acceptable Use of AI Addendum](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFAnnex/727dee72-17dc-4648-a9d5-0252c01ff988Annex1.pdf). **Sources:** AI@WBG · provider terms, accessed September 2026. Current approved tools: [ai.worldbankgroup.org](https://ai.worldbankgroup.org/).
+:::
+
+::: {.notes}
+**[CHECK BEFORE DELIVERY]** Re-verify in the week of delivery: (i) the Bank's current position on AI agents; (ii) the training and retention terms in each personal-plan panel (Anthropic, OpenAI and Google all changed theirs within the last year); (iii) the mAI product-owner name and the "cleared for" rows, which come from internal guidance; (iv) GitHub Copilot's current licensed plan and whether Claude Code is separately approved or falls under the same personal-account rules as Claude.ai.
+
+Say: do not click all eight. Click mAI, then GitHub Copilot to contrast Official Use Only against mAI's broader clearance, then one personal tool. The row that matters is "Cleared for". The rest is reference for the handout.
+
+Line to land: a personal account with training switched off is still not an approved tool.
+
+Time: ninety seconds. Cut this one to sixty seconds if you are behind: say the line, show mAI, move on.
+:::
+
 ## What you may never do
 
 ::: {.lede-line}
@@ -770,7 +832,7 @@ Time: one minute.
 ```
 
 :::: {.columns}
-::: {.column width="62%"}
+::: {.column width="50%"}
 ::: {.quiz-scenario}
 A ministry of agriculture is about to launch an AI system that automatically approves or denies farmers' fertilizer subsidy applications, based on land size, past harvests, and income. Accuracy testing, explaining the criteria to farmers, and independent certification are all worth doing &mdash; and the ministry has limited time before planting season starts. Which one condition would you insist on before anything else?
 :::
@@ -780,18 +842,18 @@ A ministry of agriculture is about to launch an AI system that automatically app
 <button class="quiz-option" onclick="quizAnswer(this, true)">C. A named official can review, override, and reinstate any individual farmer's wrongly denied case.</button>
 <button class="quiz-option" onclick="quizAnswer(this, false)">D. An independent body has certified the system before rollout.</button>
 :::
+:::
+::: {.column width="48%"}
 ::: {.quiz-feedback}
 **C is correct.** All four matter &mdash; but only C protects the specific farmer the system gets wrong. Accuracy, transparency, and certification all describe the system in general; none of them do anything for an individual case once a mistake has already happened.<br>If you can only insist on one thing before launch, insist on a way to catch and reverse individual errors. Everything else is worth doing, but this is the one thing that, if missing, means a wrongly denied farmer has nowhere to go.
 :::
-:::
-::: {.column width="36%" .fragment}
-::: {.rule-card}
+::: {.rule-card .fragment}
 **Practical check**
 
 Verify and validate all output. You remain accountable for it.
 :::
 
-::: {.no-line}
+::: {.no-line .fragment}
 **Prohibited**
 
 Preventing humans from overriding AI-generated decisions.
@@ -822,7 +884,7 @@ Time: four and a half minutes. This is one of the slides where the time is meant
 ```
 
 :::: {.columns}
-::: {.column width="62%"}
+::: {.column width="50%"}
 We all know AI invents things, but it's hard to tell by looking. One of these does not exist:
 
 ::: {.quiz-options}
@@ -832,12 +894,12 @@ We all know AI invents things, but it's hard to tell by looking. One of these do
 <button class="quiz-option" onclick="quizAnswer(this, true)">D. Okonkwo, A. &amp; Ramirez, L. (2023). Algorithmic exclusion in social registries: Evidence from twelve countries. <em>Journal of Development Economics</em>, 164, 103187.</button>
 :::
 
+:::
+::: {.column width="48%"}
 ::: {.quiz-feedback}
 **D was invented for this exercise.** Plausible journal, volume, article number, topic, authors. You cannot spot a fabricated citation by reading it, only by opening the original and checking that it says what you claim it says. The same goes for numbers, quotations, and for code: AI-written code that runs is not AI-written code that is correct.
 :::
-:::
-::: {.column width="36%" .fragment}
-::: {.rule-card}
+::: {.rule-card .fragment}
 **Practical check**
 
 Review outputs for inaccuracy and incompleteness. AI is not an authoritative source.
@@ -919,7 +981,7 @@ Time: three and a half minutes.
 ```
 
 ::: {.consensus-band}
-Every answer lands near the official figures (in this case). The numbers agree, so nothing looks wrong. Underneath: **two never linked INEGI or CONEVAL at all**, **only Gemini Enterprise** linked the World Bank and **what the model read changed with the language I asked in**.
+Every answer lands near the official figures (in this case). The numbers agree, so nothing looks wrong. Underneath: **two never linked INEGI or CONEVAL at all**, **only Gemini Enterprise** linked the World Bank and **what the model read changed with the language I asked in**. This matters most when AI drafts a literature review or a section of a report: you may get the right number with the wrong citation, not the official source.
 :::
 
 ::: {.visual-note}
@@ -946,7 +1008,7 @@ When AI turns responses or documents into research variables, it becomes part of
 :::
 
 :::: {.columns}
-::: {.column width="62%"}
+::: {.column width="50%"}
 ::: {.quiz-scenario}
 20,000 open-ended responses in French and Hausa. An LLM codes them in an hour and agrees with you on the ten you read. Hand-coding costs two weeks; the paper is due Friday. What is the least you need to make the AI codes usable?
 :::
@@ -955,12 +1017,12 @@ When AI turns responses or documents into research variables, it becomes part of
 <button class="quiz-option" onclick="quizAnswer(this, false)">B. Hand-code only the responses the model was least confident about, and fix those</button>
 <button class="quiz-option" onclick="quizAnswer(this, false)">C. Check a random sample; if agreement exceeds 85%, use the AI codes as they are</button>
 :::
+:::
+::: {.column width="48%"}
 ::: {.quiz-feedback}
 **A is the best starting point.** A randomly selected, human-reviewed sample helps assess errors, including differences by language. The analysis must then account for those errors using an appropriate method.<br>**B** misses confident mistakes. **C** treats an overall agreement score as sufficient, even when performance differs across groups. Neither establishes that the findings are reliable.
 :::
-:::
-::: {.column width="36%" .fragment}
-::: {.rule-card}
+::: {.rule-card .fragment}
 **Practical check**
 
 Validate your claims. You own the estimate.
@@ -987,32 +1049,36 @@ Line to land: you do not need a perfect labeller, you need a measured one.
 Time: four and a half minutes. Protect this slide.
 :::
 
-## Security: what you paste is what you leak
+## Security: what can your tool reach?
 
 ```{=html}
 <div class="risk-head" data-r="2"></div>
 ```
 
+::: {.lede-line}
+With an agent, the risk is not only what you upload. It is every folder and file you give it access to.
+:::
+
 :::: {.columns}
-::: {.column width="62%"}
+::: {.column width="50%"}
 ::: {.quiz-scenario}
-You want an approved WBG tool to draft the cleaning code for a Confidential household survey. The data is identified, so access is restricted to the people named in the IRB protocol &mdash; and separately, the data agreement says research use only. What do you give the tool?
+You want an approved WBG coding agent to draft the cleaning code for a Confidential household survey. The project folder holds the identified microdata, so access is restricted to the people named in the IRB protocol &mdash; and separately, the data agreement says research use only. What do you give the agent access to?
 :::
 ::: {.quiz-options}
 <button class="quiz-option" onclick="quizAnswer(this, false)">A. Nothing. Personally identifiable information should never go into an AI tool, even a WBG-approved one.</button>
-<button class="quiz-option" onclick="quizAnswer(this, true)">B. The codebook and a synthetic extract with the same structure and quirks.</button>
+<button class="quiz-option" onclick="quizAnswer(this, true)">B. A separate folder with the codebook and a synthetic extract with the same structure and quirks.</button>
 <button class="quiz-option" onclick="quizAnswer(this, false)">C. The codebook and twenty real rows, so the code matches the data.</button>
-<button class="quiz-option" onclick="quizAnswer(this, false)">D. The whole file. The tool is approved for Confidential data.</button>
+<button class="quiz-option" onclick="quizAnswer(this, false)">D. The whole project folder. The tool is approved for Confidential data.</button>
 :::
+:::
+::: {.column width="48%"}
 ::: {.quiz-feedback}
-**B is correct.** Writing cleaning code requires the shape of the data, not the records themselves, and a synthetic extract carries the structure and the quirks without carrying anybody.<br>**D** confuses two separate permissions. Tool approval is not data authorisation &mdash; even a tool cleared for Confidential data doesn't inherit the data agreement's terms, and "research use only" governs regardless of which tool is used. Separately, the IRB approval under which this data was collected names the specific people allowed to access it, and an AI tool is not one of them. Either restriction alone would block this; here both apply.<br>**C** sends Personal Data to someone outside the IRB's approved list: twenty real rows carrying village, age, and household size identify households. This is a privacy/human-subjects violation, not a contract one &mdash; it would still be wrong even if the data agreement said nothing about research use.<br>**A** gets the principle right but stops too early. The records should stay out, but the codebook and a synthetic extract contain no one, so the tool can still help. Refusing everything has a cost of its own: the code still gets written, by hand late at night or in a personal account.
+**B is correct.** Cleaning code needs the shape of the data, not the records. A synthetic extract carries the structure and the quirks without carrying anybody, and a separate folder keeps the restricted files out of the agent's reach.<br>**D** hands over everything the agent can open, and confuses two permissions: tool approval is not data authorisation. The data agreement (research use only) and the IRB (named people only) still apply.<br>**C** sends Personal Data: village, age and household size identify households.<br>**A** stops too early. The records stay out, but the codebook and a synthetic extract contain no one, so the tool can still help.
 :::
-:::
-::: {.column width="36%" .fragment}
-::: {.rule-card}
+::: {.rule-card .fragment}
 **Practical check**
 
-Clearance is not authorisation. Personal Data is separately governed by the [WBG Policy on Personal Data Privacy](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFDocuments/abbc6711-2d7e-409d-a1a5-07a703157d48.pdf.pdf), which requires a legitimate purpose for each use — and drafting cleaning code is not one. The assistant needs the shape of the data, not the people in it.
+Before you point an agent at a folder, know which files in it are restricted, and swap them for synthetic or dummy versions. Clearance is not authorisation. Personal Data is separately governed by the [WBG Policy on Personal Data Privacy](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFDocuments/abbc6711-2d7e-409d-a1a5-07a703157d48.pdf.pdf), which requires a legitimate purpose for each use — and drafting cleaning code is not one. The assistant needs the shape of the data, not the people in it.
 :::
 :::
 ::::
@@ -1022,81 +1088,17 @@ Clearance is not authorisation. Personal Data is separately governed by the [WBG
 :::
 
 ::: {.notes}
-Say: take hands on each option. Expect a lot of C ("twenty rows won't hurt") and some A. Both are the useful mistakes: C is the shortcut, A is the refusal that pushes the work into a personal account.
+Say: with agents, the question is not what you upload but which folders and files you give access to. Know which are restricted and what to replace them with. This should come up again in Tuesday's sessions; **[CONFIRM with the Tuesday presenters]**.
+
+If pressed on the options: C is a privacy and human-subjects violation, not a contract one, so it would be wrong even if the data agreement said nothing about research use. D fails on two counts: the data agreement and the IRB list of named people. A has a cost of its own: the code still gets written, by hand late at night or in a personal account.
+
+Take hands on each option. Expect a lot of C ("twenty rows won't hurt") and some A. Both are the useful mistakes: C is the shortcut, A is the refusal that pushes the work into a personal account.
 
 Land the distinction: tool approval and data authorisation are two separate permissions. Then the Samsung case: the meeting recording is the one to dwell on, because it does not feel like data.
 
 Time: four and a half minutes.
 :::
 
-
-## Security: how restricted is your data?
-
-```{=html}
-<div class="risk-head" data-r="2"></div>
-```
-
-Start with **the label on the information**, then choose the tool. Not the other way round.
-
-| Classification | In our work | Which AI tools |
-|---|---|---|
-| **Public** | Published reports, open data | Approved tools freely. Others only under the Addendum's four conditions |
-| **Official Use Only** | Most daily work | Approved WBG tools only |
-| **Confidential** | Research microdata, HR, negotiation material | Approved WBG tools only, need to know |
-| **Strictly Confidential** | Investigations, restricted Board or legal material | Ask ai@worldbankgroup.org first |
-
-. . .
-
-::: {.warn-card}
-Switching off training in a personal account changes nothing about the label or the rules. And an approved tool does not answer whether the data agreement allows this use.
-:::
-
-::: {.visual-note}
-Four conditions: [Acceptable Use of AI Addendum](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFAnnex/727dee72-17dc-4648-a9d5-0252c01ff988Annex1.pdf). Classification: WBG Information Classification and Control Policy; label files with TagIt. Examples are illustrative. The label on the file governs.
-:::
-
-::: {.notes}
-**[CHECK BEFORE DELIVERY]** Confirm against current policy: (i) whether Public information may go into any tool, or whether the four conditions apply even then; (ii) the examples in the Official Use Only and Confidential rows, especially where research microdata sits; (iii) the current approved-tool list.
-
-The four conditions, if asked: no Restricted or Personal Data; no installation on WBG systems or access to WBG data; no output in an external WBG product; only insignificant potential adverse impact. All four must hold.
-
-Ask: what label would your last AI-assisted document carry? Most daily work is Official Use Only by default.
-
-Time: ninety seconds. This is reference material: say the line about the label and the tool, then move on.
-:::
-
-## Security: Tool settings and data use
-
-```{=html}
-<div class="risk-head" data-r="2"></div>
-```
-
-```{=html}
-<div><div class="picker">
-<button class="pick-btn active" onclick="pickShow('tool','t_mai',this)">mAI</button>
-<button class="pick-btn" onclick="pickShow('tool','t_cop',this)">M365 Copilot</button>
-<button class="pick-btn" onclick="pickShow('tool','t_gemc',this)">Gemini<small>enterprise</small></button>
-<button class="pick-btn" onclick="pickShow('tool','t_ghc',this)">GitHub Copilot</button>
-<button class="pick-btn" onclick="pickShow('tool','t_gpt',this)">ChatGPT<small>personal</small></button>
-<button class="pick-btn" onclick="pickShow('tool','t_cla',this)">Claude<small>personal</small></button>
-<button class="pick-btn" onclick="pickShow('tool','t_ccode',this)">Claude Code<small>personal</small></button>
-<button class="pick-btn" onclick="pickShow('tool','t_gem',this)">Gemini<small>personal</small></button>
-</div><div class="pick-panel tall"></div></div>
-```
-
-::: {.visual-note}
-Not on the approved list? Only under the four conditions of the [Acceptable Use of AI Addendum](https://worldbankgroup.sharepoint.com/sites/ppfonline/PPFAnnex/727dee72-17dc-4648-a9d5-0252c01ff988Annex1.pdf). **Sources:** AI@WBG · provider terms, accessed September 2026. Current approved tools: [ai.worldbankgroup.org](https://ai.worldbankgroup.org/).
-:::
-
-::: {.notes}
-**[CHECK BEFORE DELIVERY]** Re-verify in the week of delivery: (i) the Bank's current position on AI agents; (ii) the training and retention terms in each personal-plan panel (Anthropic, OpenAI and Google all changed theirs within the last year); (iii) the mAI product-owner name and the "cleared for" rows, which come from internal guidance; (iv) GitHub Copilot's current licensed plan and whether Claude Code is separately approved or falls under the same personal-account rules as Claude.ai.
-
-Say: do not click all eight. Click mAI, then GitHub Copilot to contrast Official Use Only against mAI's broader clearance, then one personal tool. The row that matters is "Cleared for". The rest is reference for the handout.
-
-Line to land: a personal account with training switched off is still not an approved tool.
-
-Time: ninety seconds. Cut this one to sixty seconds if you are behind: say the line, show mAI, move on.
-:::
 
 ## Ethical: where bias enters
 
@@ -1105,27 +1107,27 @@ Time: ninety seconds. Cut this one to sixty seconds if you are behind: say the l
 ```
 
 :::: {.columns}
-::: {.column width="62%"}
+::: {.column width="50%"}
 ::: {.quiz-scenario}
 A development agency wants to identify the poorest villages for a cash-transfer programme, but cannot survey every household in the country. It trains a model on satellite images &mdash; night-time lights, building density, roads &mdash; calibrated against the villages where survey data already exists, then uses it to estimate wealth in villages that were never surveyed. Before scaling this model nationwide, what needs to be true?
 :::
 ::: {.quiz-options}
 <button class="quiz-option" onclick="quizAnswer(this, false)">A. The model should be validated to confirm it accurately predicts wealth in the villages it was trained on.</button>
 <button class="quiz-option" onclick="quizAnswer(this, false)">B. Every village should have satellite imagery of sufficient resolution.</button>
-<button class="quiz-option" onclick="quizAnswer(this, true)">C. Someone must check whether the visual signals it learned &mdash; buildings, roads, lights &mdash; track welfare evenly across different livelihoods, including communities that don't show up the same way in satellite images.</button>
+<button class="quiz-option" onclick="quizAnswer(this, true)">C. Someone must check whether what it learned (buildings, roads, lights) tracks welfare evenly across livelihoods, including communities that look different in satellite images.</button>
 :::
+:::
+::: {.column width="48%"}
 ::: {.quiz-feedback}
 **C is correct.** The model is a proxy: it stands in for wealth using what's visible from space. That's only safe once you've tested whether the same visual markers mean the same thing everywhere it will be used &mdash; a dispersed pastoralist community won't look like a poor village in the training data, it will look like nothing at all.<br>**A** confirms the model fits where it was trained, not whether the same signal holds elsewhere. **B** fixes image availability, not whether the proxy is the right stand-in for welfare.
 :::
-:::
-::: {.column width="36%" .fragment}
-::: {.rule-card}
+::: {.rule-card .fragment}
 **Practical check**
 
 Review output for unintended bias.
 :::
 
-::: {.no-line}
+::: {.no-line .fragment}
 **Prohibited**
 
 Using AI to promote bias, discrimination, or stigmatization; to manipulate or deceive; or to infer a person&rsquo;s emotions.
@@ -1135,7 +1137,7 @@ Using AI to promote bias, discrimination, or stigmatization; to manipulate or de
 
 :::: {.case-pair}
 ::: {.case-line}
-**Real case · United States, 2019:** A health algorithm applied to about 200 million people a year needed a proxy for health need, so it was trained to predict healthcare *cost* instead. Because less is historically spent treating Black patients at the same level of illness, cost quietly measured *access* to care, not *need* for it &mdash; equally sick Black patients scored as healthier. Fixing it would have raised the share of Black patients flagged for extra care from 17.7% to 46.5%. ([Obermeyer et al. 2019](https://doi.org/10.1126/science.aax2342))
+**Real case · United States, 2019:** A health algorithm used on about 200 million people a year was trained to predict healthcare *cost* as a proxy for health need. Because less is historically spent on Black patients at the same level of illness, cost measured *access*, not *need*: equally sick Black patients scored as healthier. Fixing it would raise their share flagged for extra care from 17.7% to 46.5%. ([Obermeyer et al. 2019](https://doi.org/10.1126/science.aax2342))
 :::
 
 ::: {.case-line}
@@ -1223,7 +1225,7 @@ Time: three and a half minutes.
 :::
 
 
-# 4 &middot; Where In The Work {background-color="#530153"}
+# 4 &middot; Where In the Analytical Workflow {background-color="#530153"}
 
 ## Compliance is the floor: where does it bite?
 
