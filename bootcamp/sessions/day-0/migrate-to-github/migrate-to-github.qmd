@@ -115,20 +115,22 @@ However, move slowly through these slides and ask the helpers if you are unsure 
 
 * Before moving on, check that the repository has a useful `.gitignore` file. Review it and add project-specific rules as needed; do not assume the defaults cover every file you need to exclude.
 
-### Why Use a `.gitignore` File
+### If needed: Set up a `.gitignore` File Using a Template
+
+- Your repository may already include a `.gitignore` 
+- If not, you can start with the [Impact Analytics template](https://raw.githubusercontent.com/worldbank/dime-github-trainings/refs/heads/main/GitHub-resources/DIME-GitHub-Templates/gitignore_template.txt) and modify if needed (you probably don't need to). 
+- To use the template, copy the content from the link above into a new `.gitignore` file in your repository.
+
+## Why Use a `.gitignore` File
 
 Some files should not be committed to GitHub, for reasons of:
 
 - Efficiency: don't add large or frequently updated binary files (for example,`.dta`, `.doc`, `.pdf`, `.xls` etc.) These can make a repository slower and take up 100s of GB on each persons computer. 
 - Data privacy: GitHub is not approved for confidential data (regardless if your repository is private or public).
 
-**Note:** Files not shared on GitHub can continue to be shared through OneDrive.
+Git is made for code (such as `.py`, `.R`, `.do`, etc.) or any other file in plain text format (such as `.txt`, `.tex`, `.qmd`, etc.). Git handles version control efficiently for these types of files, and stores granular history of changes for them.
 
-## If needed: Set up a `.gitignore` File Using a Template
-
-- Your repository may already include a `.gitignore` 
-- If not, you can start with the [Impact Analytics template](https://raw.githubusercontent.com/worldbank/dime-github-trainings/refs/heads/main/GitHub-resources/DIME-GitHub-Templates/gitignore_template.txt) and modify if needed (you probably don't need to). 
-- To use the template, copy the content from the link above into a new `.gitignore` file in your repository.
+**Note:** Files not shared on GitHub can continue to be shared through OneDrive. Files should only be either on Github or on OneDrive, but not both.
 
 ## Step 2: Copy Files into the Clone
 
@@ -162,10 +164,7 @@ If a file that should be tracked was ignored, restore the `.gitignore` file, upd
 <span style="display: block; font-size: 0.7em; text-align: center; line-height: 1;">Right-click the file and select "Discard Changes". Discarding a deletion restores the deleted file.</span>
 
 :::
-
 ::::
-
-
 
 
 ## Step 4: Test a Clean Clone
