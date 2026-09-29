@@ -142,6 +142,10 @@ Some files should not be committed to GitHub, for reasons of:
 
 ## Step 3: Verify Ignored Files
 
+
+:::: {.columns}
+
+::: {.column width="80%"}
 Check that the `.gitignore` rules are not excluding files that should be tracked on GitHub. This is a temporary check; do not commit while the file is removed.
 
 1. In the clone, temporarily remove the `.gitignore` file.
@@ -150,6 +154,19 @@ Check that the `.gitignore` rules are not excluding files that should be tracked
 4. Restore the `.gitignore` file in GitHub Desktop by discarding its deletion. 
 
 If a file that should be tracked was ignored, restore the `.gitignore` file, update the rules and commit that file. Repeat as necessary.
+:::
+
+::: {.column width="20%"}
+![](./img/restore-a-file.png)
+
+<span style="display: block; font-size: 0.7em; text-align: center; line-height: 1;">Right-click the file and select "Discard Changes". Discarding a deletion restores the deleted file.</span>
+
+:::
+
+::::
+
+
+
 
 ## Step 4: Test a Clean Clone
 
