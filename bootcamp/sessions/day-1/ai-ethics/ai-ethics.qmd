@@ -619,7 +619,7 @@ Time: one and a half minutes.
 ## Where the guidance comes from {.no-fit}
 
 ::: {.lede-line}
-For reference: international frameworks mostly agree on what matters. For WBG work, one of them is what governs.
+For reference: international frameworks mostly agree on what matters. 
 :::
 
 ```{=html}
