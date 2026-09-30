@@ -1072,14 +1072,14 @@ margin-right: 0; }
 </section>
 <section id="objective" class="slide level2">
 <h2>Objective</h2>
-<p>Produce a <strong>well-structured reproducibility package that runs on someone else’s computer and meets the World Bank standard</strong>.</p>
+<p>Produce a <strong>well-structured reproducibility package that runs on someone else’s computer and meets the World Bank standards</strong>.</p>
 <p>Two starting points for the skill:</p>
 <ul>
 <li>A package that <strong>already exists</strong>, but you’re not sure it meets the standard</li>
 <li>Code <strong>written without reproducibility in mind</strong>, a legacy or side project</li>
 </ul>
 <div class="callout-note-custom">
-<p>The skill embeds the <em>exact checks the reproducibility team applies as reviewers</em>.</p>
+<p>The skill embeds the <em>exact checks the reproducibility team applies as the DEC Reproducibility Verification Team</em>.</p>
 </div>
 </section>
 <section id="how-this-session-works" class="slide level2">
@@ -1099,7 +1099,7 @@ margin-right: 0; }
 <h2>Are we ready?</h2>
 <p>Before we begin, make sure you have everything we need:</p>
 <ul>
-<li>These slides (useful to copy links): <a href="https://bit.ly/ai-reproducibility">https://bit.ly/ai-reproducibility</a></li>
+<li>These slides (useful to copy links): <a href="https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-3/reproducibility-skill">https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-3/reproducibility-skill</a></li>
 <li><strong>Visual Studio Code</strong> installed (Software Center on Windows, Self Service on Mac)</li>
 <li>One of the two, signed in within VS Code:
 <ul>
@@ -1108,8 +1108,8 @@ margin-right: 0; }
 </ul></li>
 <li><strong>A project to work on</strong>, one of the two:
 <ul>
-<li>Our demo project, available <a href="https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip">here</a>, or</li>
-<li><strong>Your own project:</strong> code, data, and (ideally) the manuscript in one folder</li>
+<li><strong>Your own project (recommended):</strong> code, data, and (ideally) the manuscript, or</li>
+<li>Our demo project, available <a href="https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip">here</a></li>
 </ul></li>
 <li>The reproducibility skill, in <a href="https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill">our repo</a> (<a href="https://github.com/worldbank/wb-reproducible-research-repository/releases/latest/download/reproducibility-skill.zip">direct download</a>)</li>
 </ul>
@@ -1145,7 +1145,7 @@ margin-right: 0; }
   <div class="pkg-panel" data-key="doc" hidden>
     <h3>README</h3>
     <ul>
-      <li><strong>Instructions:</strong> run order and run time, the one line to change, software and versions</li>
+      <li><strong>Instructions:</strong> run order and run time, the one path to change in the main script (gold standard), software and versions</li>
       <li><strong>Data Availability Statement:</strong> source, URL, access year and license for every input</li>
       <li><strong>List of Exhibits:</strong> every table and figure mapped to the script and file that produce it</li>
     </ul>
@@ -1170,7 +1170,7 @@ margin-right: 0; }
     <h3>Something a stranger can run</h3>
     <ul>
       <li>A reviewer downloads it, changes one path, runs it, and gets <strong>every exhibit in the paper</strong></li>
-      <li>Verified packages get the reproducibility seal and a citable entry in the Repository</li>
+      <li>Verified packages get the reproducibility seal and a citable entry in the <a href="https://reproducibility.worldbank.org/">Reproducible Research Repository</a></li>
     </ul>
   </div>
 </div>
@@ -1239,9 +1239,47 @@ display:block!important;
 <p>Source: Reproducibility Initiative progress report, September 2026. Verified packages with a change category assigned (N = 535). Minor changes are fixed by reviewers (installing Stata packages, correcting file paths or variable names).</p>
 </div>
 </section>
-<section id="why-packages-fail-and-where-the-skill-comes-from" class="slide level2">
-<h2>Why packages fail, and where the skill comes from</h2>
-<p>Every round-trip with the reviewer adds days. The failures repeat, so we wrote them down:</p>
+<section id="why-packages-fail" class="slide level2">
+<h2>Why packages fail</h2>
+<p>Every round-trip with the reviewer adds days. The failures repeat:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Why packages fail</th>
+<th>What it looks like</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Unstructured package</strong></td>
+<td><code>C:/Users/ana/...</code> paths, no main script</td>
+</tr>
+<tr class="even">
+<td><strong>Thin README</strong></td>
+<td>No List of Exhibits, unexplained files</td>
+</tr>
+<tr class="odd">
+<td><strong>Incomplete data statement</strong></td>
+<td>Data the code reads but the README never mentions</td>
+</tr>
+<tr class="even">
+<td><strong>Instability</strong></td>
+<td>Missing packages, no seeds</td>
+</tr>
+<tr class="odd">
+<td><strong>Manuscript ≠ code</strong> (the most common)</td>
+<td>A table in the paper comes from an older run</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="where-the-skill-comes-from" class="slide level2">
+<h2>Where the skill comes from</h2>
+<p>We wrote these failures down and built a skill that checks for them:</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 50%">
@@ -1255,32 +1293,33 @@ display:block!important;
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Unstructured package:</strong> unclear steps, version issues</td>
-<td>Single entry point, run order, pinned versions, no scattered paths</td>
+<td><strong>Unstructured package</strong></td>
+<td>Single entry point, run order, pinned versions</td>
 </tr>
 <tr class="even">
-<td><strong>Missing or thin README:</strong> undocumented workflows</td>
-<td>README from the official template, List of Exhibits mapped to scripts</td>
+<td><strong>Thin README</strong></td>
+<td>Official template, List of Exhibits mapped to scripts</td>
 </tr>
 <tr class="odd">
-<td><strong>Incomplete data statement:</strong> starts from undocumented data</td>
-<td>Every external input traced to a source, URL, and access year</td>
+<td><strong>Incomplete data statement</strong></td>
+<td>Every input traced to source, URL, access year</td>
 </tr>
 <tr class="even">
-<td><strong>Instability:</strong> missing dependencies, no seeds</td>
+<td><strong>Instability</strong></td>
 <td>Packages installed by code, seeds on every random step</td>
 </tr>
 <tr class="odd">
-<td><strong>Manuscript ≠ code:</strong> the most common failure</td>
-<td>Every exhibit regenerated from a clean run before submission</td>
+<td><strong>Manuscript ≠ code</strong></td>
+<td>Every exhibit regenerated from a clean run</td>
 </tr>
 </tbody>
 </table>
 <div class="callout-note-custom">
-<p>The skill is the <strong>official checklist + 14 failure flags</strong> from the team’s reviews, written as files an AI agent reads and applies.</p>
+<p>The skill = the <strong>official checklist</strong> + <strong>14 failure flags</strong> (F1–F14), written as files an AI agent reads and applies.</p>
+<p>Read the <a href="https://github.com/worldbank/wb-reproducible-research-repository/blob/main/ai-skills/reproducibility-skill/references/checklist.md">checklist</a> and the <a href="https://reproducibility.worldbank.org">Reproducible Research Repository</a> resources.</p>
 </div>
 <aside class="notes">
-<p>This is the bridge to the next session. The four failure categories come from the masterclass; the version-mismatch share is the single most common failure. Every row maps to something the skill checks explicitly.</p>
+<p>This is the bridge to the next session. The failure categories come from the masterclass; the version-mismatch share is the single most common failure. Every row maps to something the skill checks explicitly.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1456,7 +1495,8 @@ display:block!important;
 <p><strong>Code-only mode:</strong> the agent never sees the data</p>
 <ul>
 <li>It works on a <strong>copy with no data</strong> (no data files, logs, or notebook outputs) and stops if it finds any</li>
-<li>You run <code>data_inventory</code> locally (file names, hashes, variable names, <strong>never values</strong>) and do the final run check</li>
+<li>You run a script, <code>data_inventory</code>, that <strong>creates an inventory of your data</strong>. The agent uses that for the rest</li>
+<li>You do the final run check</li>
 </ul>
 <aside class="notes">
 <p>The demo project is public data, so today we run in full mode. Walk through the private case live: when in doubt, treat data as the more restrictive category. The skill’s “never open data” rule is a second layer; the real protection is that the data is not in the folder the agent can reach.</p>
@@ -1472,13 +1512,23 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
+<section id="code-only-mode-how-to-run-data_inventory" class="slide level2">
+<h2>Code-only mode · How to run <code>data_inventory</code></h2>
+<p>A script in the skill (<code>assets/data_inventory.do</code>, <code>.R</code>, or <code>.py</code>). It records file names, hashes, sizes, and variable names, <strong>never values</strong>.</p>
+<ol type="1">
+<li>Open the script in your language</li>
+<li>Set two lines at the top: the <strong>data folder</strong> and an <strong>output folder</strong> (in the code-only copy)</li>
+<li>Run it: it writes <code>data_inventory.csv</code>, one row per data file</li>
+<li>Add it in the folder for the project so the Agent has access to it.</li>
+</ol>
+</section>
 <section id="phase-1-audit-what-the-agent-checks" class="slide level2">
 <h2>Phase 1 · Audit: what the agent checks</h2>
 <p>Goal: report the current state of the project against the standard. <strong>Change nothing.</strong></p>
 <ul>
 <li><strong>Scope:</strong> the manuscript’s exhibits define what is in scope</li>
 <li><strong>Checklist pass:</strong> present / partial / missing, with file or line as evidence</li>
-<li><strong>Flag pass:</strong> F1–F14 via detection patterns (grep, not eyeballing)</li>
+<li><strong>Flag pass:</strong> F1–F14, each checked by searching the code for specific patterns (e.g., <code>C:/Users</code>, <code>setwd</code>, <code>set seed</code>), not by skimming</li>
 <li><strong>README ↔︎ code:</strong> an existing README or main script is checked against what the code actually does</li>
 <li><strong>Data ↔︎ DAS:</strong> each data file is an <em>external input</em> or <em>produced by code</em>; every external input needs a DAS entry; unknown source = blocking question</li>
 <li><strong>Exhibit coverage:</strong> every table and figure maps to a script and an output</li>
@@ -1630,18 +1680,18 @@ display:block!important;
 <h2>Pick your project</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Option A · Our demo project</strong></p>
-<ul>
-<li>Small, messy on purpose, runs in minutes</li>
-<li>Best if you want to see the whole workflow first</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><strong>Option B · Your own project</strong></p>
+<p><strong>Option A · Your own project (recommended)</strong></p>
 <ul>
 <li>Work on a <strong>copy</strong> or commit to git first</li>
 <li>Put the <strong>manuscript</strong> in the folder: it defines what’s in scope</li>
 <li>Non-public data? Phase 0 tells you if you need <strong>code-only mode</strong></li>
 <li>Stata / Matlab: you run the final check yourself</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Option B · Our demo project</strong></p>
+<ul>
+<li>Small, messy on purpose, runs in minutes</li>
+<li>Best if you want to see the whole workflow first</li>
 </ul>
 </div></div>
 <div class="callout-note-custom">

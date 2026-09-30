@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Objective
 
-Produce a **well-structured reproducibility package that runs on someone else's computer and meets the World Bank standard**.
+Produce a **well-structured reproducibility package that runs on someone else's computer and meets the World Bank standards**.
 
 Two starting points for the skill:
 
@@ -33,7 +33,7 @@ Two starting points for the skill:
 - Code **written without reproducibility in mind**, a legacy or side project
 
 ::: {.callout-note-custom}
-The skill embeds the *exact checks the reproducibility team applies as reviewers*. 
+The skill embeds the *exact checks the reproducibility team applies as the DEC Reproducibility Verification Team*. 
 :::
 
 ## How this session works
@@ -53,14 +53,14 @@ Set up while we talk: the next slide has everything you need for the hands-on pa
 
 Before we begin, make sure you have everything we need:
 
-- These slides (useful to copy links): [https://bit.ly/ai-reproducibility](https://bit.ly/ai-reproducibility)
+- These slides (useful to copy links): [https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-3/reproducibility-skill](https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-3/reproducibility-skill)
 - **Visual Studio Code** installed (Software Center on Windows, Self Service on Mac)
 - One of the two, signed in within VS Code:
   - **GitHub Copilot** (Copilot Chat extension, with a Claude model available), or
   - The **Claude Code extension**
 - **A project to work on**, one of the two:
-  - Our demo project, available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip), or
-  - **Your own project:** code, data, and (ideally) the manuscript in one folder
+  - **Your own project (recommended):** code, data, and (ideally) the manuscript, or
+  - Our demo project, available [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip)
 - The reproducibility skill, in [our repo](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill) ([direct download](https://github.com/worldbank/wb-reproducible-research-repository/releases/latest/download/reproducibility-skill.zip))
 
 
@@ -93,7 +93,7 @@ The bar is **computational reproducibility**: same data + same code = same resul
   <div class="pkg-panel" data-key="doc" hidden>
     <h3>README</h3>
     <ul>
-      <li><strong>Instructions:</strong> run order and run time, the one line to change, software and versions</li>
+      <li><strong>Instructions:</strong> run order and run time, the one path to change in the main script (gold standard), software and versions</li>
       <li><strong>Data Availability Statement:</strong> source, URL, access year and license for every input</li>
       <li><strong>List of Exhibits:</strong> every table and figure mapped to the script and file that produce it</li>
     </ul>
@@ -118,7 +118,7 @@ The bar is **computational reproducibility**: same data + same code = same resul
     <h3>Something a stranger can run</h3>
     <ul>
       <li>A reviewer downloads it, changes one path, runs it, and gets <strong>every exhibit in the paper</strong></li>
-      <li>Verified packages get the reproducibility seal and a citable entry in the Repository</li>
+      <li>Verified packages get the reproducibility seal and a citable entry in the <a href="https://reproducibility.worldbank.org/">Reproducible Research Repository</a></li>
     </ul>
   </div>
 </div>
@@ -206,25 +206,40 @@ ggplot(changes, aes(x = share, y = change, fill = change)) +
 Source: Reproducibility Initiative progress report, September 2026. Verified packages with a change category assigned (N = 535). Minor changes are fixed by reviewers (installing Stata packages, correcting file paths or variable names).
 :::
 
-## Why packages fail, and where the skill comes from
+## Why packages fail
 
-Every round-trip with the reviewer adds days. The failures repeat, so we wrote them down:
+Every round-trip with the reviewer adds days. The failures repeat:
+
+| Why packages fail | What it looks like |
+|---|---|
+| **Unstructured package** | `C:/Users/ana/...` paths, no main script |
+| **Thin README** | No List of Exhibits, unexplained files |
+| **Incomplete data statement** | Data the code reads but the README never mentions |
+| **Instability** | Missing packages, no seeds |
+| **Manuscript ≠ code** (the most common) | A table in the paper comes from an older run |
+
+## Where the skill comes from
+
+We wrote these failures down and built a skill that checks for them:
 
 | Why packages fail | What the skill checks |
 |---|---|
-| **Unstructured package:** unclear steps, version issues | Single entry point, run order, pinned versions, no scattered paths |
-| **Missing or thin README:** undocumented workflows | README from the official template, List of Exhibits mapped to scripts |
-| **Incomplete data statement:** starts from undocumented data | Every external input traced to a source, URL, and access year |
-| **Instability:** missing dependencies, no seeds | Packages installed by code, seeds on every random step |
-| **Manuscript ≠ code:** the most common failure | Every exhibit regenerated from a clean run before submission |
+| **Unstructured package** | Single entry point, run order, pinned versions |
+| **Thin README** | Official template, List of Exhibits mapped to scripts |
+| **Incomplete data statement** | Every input traced to source, URL, access year |
+| **Instability** | Packages installed by code, seeds on every random step |
+| **Manuscript ≠ code** | Every exhibit regenerated from a clean run |
 
 ::: {.callout-note-custom}
-The skill is the **official checklist + 14 failure flags** from the team's reviews, written as files an AI agent reads and applies.
+The skill = the **official checklist** + **14 failure flags** (F1–F14), written as files an AI agent reads and applies.
+
+Read the [checklist](https://github.com/worldbank/wb-reproducible-research-repository/blob/main/ai-skills/reproducibility-skill/references/checklist.md) and the [Reproducible Research Repository](https://reproducibility.worldbank.org) resources.
 :::
 
 ::: {.notes}
-This is the bridge to the next session. The four failure categories come from the masterclass; the version-mismatch share is the single most common failure. Every row maps to something the skill checks explicitly.
+This is the bridge to the next session. The failure categories come from the masterclass; the version-mismatch share is the single most common failure. Every row maps to something the skill checks explicitly.
 :::
+
 
 # How AI Can Facilitate Reproducible Workflows {background-color="#530153"}
 
@@ -295,11 +310,22 @@ Before opening any file, the agent asks your **data classification** and **AI to
 **Code-only mode:** the agent never sees the data
 
 - It works on a **copy with no data** (no data files, logs, or notebook outputs) and stops if it finds any
-- You run `data_inventory` locally (file names, hashes, variable names, **never values**) and do the final run check
+- You run a script, `data_inventory`, that **creates an inventory of your data**. The agent uses that for the rest
+- You do the final run check
 
 ::: {.notes}
 The demo project is public data, so today we run in full mode. Walk through the private case live: when in doubt, treat data as the more restrictive category. The skill's "never open data" rule is a second layer; the real protection is that the data is not in the folder the agent can reach.
 :::
+
+## Code-only mode · How to run `data_inventory`
+
+A script in the skill (`assets/data_inventory.do`, `.R`, or `.py`). It records file names, hashes, sizes, and variable names, **never values**.
+
+1. Open the script in your language
+2. Set two lines at the top: the **data folder** and an **output folder** (in the code-only copy)
+3. Run it: it writes `data_inventory.csv`, one row per data file
+4. Add it in the folder for the project so the Agent has access to it. 
+
 
 ## Phase 1 · Audit: what the agent checks
 
@@ -307,7 +333,7 @@ Goal: report the current state of the project against the standard. **Change not
 
 - **Scope:** the manuscript's exhibits define what is in scope
 - **Checklist pass:** present / partial / missing, with file or line as evidence
-- **Flag pass:** F1–F14 via detection patterns (grep, not eyeballing)
+- **Flag pass:** F1–F14, each checked by searching the code for specific patterns (e.g., `C:/Users`, `setwd`, `set seed`), not by skimming
 - **README ↔ code:** an existing README or main script is checked against what the code actually does
 - **Data ↔ DAS:** each data file is an *external input* or *produced by code*; every external input needs a DAS entry; unknown source = blocking question
 - **Exhibit coverage:** every table and figure maps to a script and an output
@@ -429,19 +455,19 @@ This is the workflow Maria wants people to take away. Steps 2–3 (shaded) are w
 :::: {.columns}
 
 ::: {.column width="50%"}
-**Option A · Our demo project**
-
-- Small, messy on purpose, runs in minutes
-- Best if you want to see the whole workflow first
-:::
-
-::: {.column width="50%"}
-**Option B · Your own project**
+**Option A · Your own project (recommended)**
 
 - Work on a **copy** or commit to git first
 - Put the **manuscript** in the folder: it defines what's in scope
 - Non-public data? Phase 0 tells you if you need **code-only mode**
 - Stata / Matlab: you run the final check yourself
+:::
+
+::: {.column width="50%"}
+**Option B · Our demo project**
+
+- Small, messy on purpose, runs in minutes
+- Best if you want to see the whole workflow first
 :::
 
 ::::
