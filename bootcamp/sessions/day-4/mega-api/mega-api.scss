@@ -1,0 +1,135 @@
+/*-- scss:defaults --*/
+
+// MEGA palette, overrides the bootcamp defaults
+$analytics-dark:  #02375A;
+$analytics-base:  #00558E;
+$analytics-light: #9BC8E8;
+$analytics-tint:  #D7E9F6;
+
+$code-block-bg: #F5F9FC;
+
+/*-- scss:rules --*/
+
+// section dividers: use {background-color="#02375A"}
+.reveal .slides section[data-background-color="#02375A"] {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  h1, h2 {
+    color: #FFFFFF;
+    border-bottom: 4px solid $analytics-light;
+    padding-bottom: 0.2em;
+    display: inline-block;
+  }
+}
+
+// ---------- flow diagrams: ::: {.flow} with .step and .arrow children ----------
+.reveal .flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0.35em;
+  margin: 0.8em 0;
+  font-size: 0.68em;
+  line-height: 1.3;
+
+  .step {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    background: $analytics-tint;
+    border-radius: 6px;
+    padding: 1em 0.7em;
+
+    p { margin: 0 0 0.4em 0; }
+
+    img {
+      height: 84px;
+      width: auto;
+      margin-bottom: 0.5em;
+      background: #FFFFFF;
+      border-radius: 6px;
+      padding: 4px;
+    }
+  }
+
+  .step.mega {
+    background: $analytics-dark;
+    color: #FFFFFF;
+
+    strong { color: #FFFFFF; }
+  }
+
+  .arrow {
+    flex: 0 0 auto;
+    align-self: center;
+    color: $analytics-base;
+    font-size: 1.8em;
+    font-weight: 700;
+
+    p { margin: 0; }
+  }
+}
+
+// vertically centred step labels: ::: {.flow .centered}
+.reveal .flow.centered .step {
+  justify-content: center;
+
+  p:last-child { margin-bottom: 0; }
+}
+
+// extra space above and below a flow: ::: {.flow .spaced}
+.reveal .flow.spaced {
+  margin: 70px 0 60px 0;
+}
+
+// one step fanning out to several: ::: {.fan} of ::: {.branch} (arrow + step)
+.reveal .flow .fan {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+
+  .branch {
+    display: flex;
+    align-items: stretch;
+    gap: 0.35em;
+  }
+
+  .step {
+    padding: 0.5em 0.7em;
+    justify-content: center;
+  }
+}
+
+// role badge, e.g. [PI]{.role}
+.reveal .role {
+  display: inline-block;
+  background: $analytics-base;
+  color: #FFFFFF;
+  border-radius: 999px;
+  padding: 0 0.55em;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+// side-by-side cards
+.reveal .cards {
+  display: flex;
+  gap: 0.8em;
+  margin-top: 0.6em;
+
+  .card {
+    flex: 1 1 0;
+    background: $analytics-tint;
+    border-radius: 6px;
+    padding: 0.9em 1.1em;
+    font-size: 0.9em;
+
+    p { margin: 0 0 0.4em 0; }
+  }
+}
