@@ -10,7 +10,7 @@ footer: "AI-Enabled Research Bootcamp"
 # Three horizontal logos on the title slide.
 # Leave commented out to keep the dashed placeholders.
 logos:
-  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
   - images/mega-logo.png
 
 format:
@@ -25,7 +25,7 @@ format:
 # ../../../ matches the relative path from a qmd file saved
 # in the location: sessions/<day>/<topic>/presentation.qmd. 
 # Update the file path for presentations elsewhere
-source("../../../_extensions/bootcamp/setup_palettes.R")
+source("../../../../_extensions/bootcamp/setup_palettes.R")
 
 # MEGA palette for charts, overrides the bootcamp one
 analytics_colors[c("dark", "base", "light", "tint")] <-
@@ -212,12 +212,12 @@ The Governance GP's **Reimagining Public Finance** initiative is updating approa
 
 ## Exercise: log in to the MEGA workspace
 
-1. Go to [the exercise workspace](https://adb-6102124407836814.14.azuredatabricks.net/browse/folders/4413675519954599?)
+1. Go to [the exercise workspace](https://adb-6102124407836814.14.azuredatabricks.net/browse/folders/4413675519955135?)
 2. You should be prompted to log in with your **Microsoft Entra ID**
 3. Follow along with the exercise steps
 
 ::: {.callout-note-custom}
-**Not prompted to log in?** Raise your hand and a member of our team will make sure you have been correctly added to the workspace.
+**Failed log in?** Raise your hand and a member of our team will make sure you have been correctly added to the workspace.
 :::
 
 
