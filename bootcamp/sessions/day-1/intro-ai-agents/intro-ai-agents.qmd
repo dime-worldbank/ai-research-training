@@ -119,7 +119,7 @@ And that has not changed since the publication of ChatGPT changed the world fore
 ### What is "3 x 7"?
 
 ::: {.fragment}
-How many of you solved it by:
+How many of you found the answer by:
 
 - Adding 7 three times: 7 + 7 = 14, and 14 + 7 = 21
 - Fetching the answer from memory
@@ -137,10 +137,10 @@ How can AI platforms like ChatGPT still solve 35 x 22?
 
 ## But How Can AI Platforms Do Math?
 
-AI products, like ChatGPT or mAI, are more than just the language model. They can connect the model to tools and have instructions for when to use them.
+AI products like ChatGPT or mAI are more than just language models. They can connect a model to tools and provide instructions on when to use them.
 
 ::: {.fragment}
-The model identifies that the prompt is a math question. It extracts the numbers and the operator, then sends them to a calculator. The calculator's answer is added to the context. The updated prompt becomes:
+The model recognizes the prompt as a math question, extracts the numbers and operator, and sends them to a calculator. The calculator's answer is added to the context. The updated prompt becomes:
 :::
 ::: {.fragment}
 ```json
@@ -149,13 +149,13 @@ The model identifies that the prompt is a math question. It extracts the numbers
   "calculator_tool_answer": 770
 }
 ```
-The model can then generate the answer without doing the calculation itself: "35 times 22 is equal to 770".
+With the calculator's answer in context, the model can respond without doing the calculation itself: "35 times 22 is equal to 770."
 :::
 
 ::: {.fragment}
 ### Have you ever helped a child with math homework?
 
-Bob, Alice, and Tom have 7 apples each. How many apples do they have altogether?
+Bob, Alice, and Tom each have 7 apples. How many apples do they have altogether?
 :::
 
 # Agents {background-color="#530153"}
