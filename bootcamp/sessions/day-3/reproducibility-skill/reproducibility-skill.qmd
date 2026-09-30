@@ -33,7 +33,7 @@ Two starting points for the skill:
 - Code **written without reproducibility in mind**, a legacy or side project
 
 ::: {.callout-note-custom}
-The skill embeds the *exact checks the reproducibility team applies as reviewers*. 
+The skill embeds the *exact checks the reproducibility team applies as the DEC Reproducibility Verification Team*. 
 :::
 
 ## How this session works
