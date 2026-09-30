@@ -10,5 +10,9 @@
 sessions/**/*.html
 sessions/**/*.tex
 
+# ...except the rendered slides published on GitHub Pages
+# (render each deck to <session>/index.html with embed-resources: true)
+!sessions/**/index.html
+
 # local machine config, not version controlled
 sharepoint-path.local.txt

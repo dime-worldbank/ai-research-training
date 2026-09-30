@@ -7,7 +7,7 @@ Participants learn how to use AI across the full research production pipeline â€
 
 ### Expected Outcomes
 - Participants use AI skills to create a presentation or policy brief for their own project
-- Participants create and verify a reproducibility package for their own project
+- Participants create a reproducibility package for their own project
 - Participants create an AI adoption plan, specifying how they will use AI going forward, with specific 6-week and 3-month targets
 
 ## Schedule
@@ -20,7 +20,7 @@ Participants learn how to use AI across the full research production pipeline â€
 | 10:00 - 10:15 | Break | Break | Break |
 | 10:15 - 10:45 | AI Skills for reproducible presentations and policy briefs | Impact Analytics | |
 | 10:45 - 11:30 | Hands-on: Create a Dynamic Presentation or Brief | Impact Analytics | |
-| 11:30 - 12:15 | Hands-on: Use AI to draft and get feedback on Working Papers | Impact Analytics | |
+| 11:30 - 12:15 | Hands-on: Use AI to draft and get feedback on Working Papers | Impact Analytics | [AI to Draft and Review Working Papers](writing_and_reviewing_workingpapers/writing-and-reviewing-workingpapers.qmd) |
 | 12:15 - 1:15 | Lunch Break | Lunch Break | Lunch Break |
 | 1:15 - 1:45 | Reproducible Research Standards | Impact Analytics | [AI Skills in Action: Reproducibility Package](reproducibility-skill/reproducibility-skill.qmd) |
 | 1:45 - 2:15 | How AI Can Facilitate Reproducible Workflows | Impact Analytics | [AI Skills in Action: Reproducibility Package](reproducibility-skill/reproducibility-skill.qmd) |

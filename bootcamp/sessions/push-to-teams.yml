@@ -1,4 +1,5 @@
 day-0:
+  - intro-git-github/intro-git-github.qmd
   - intro-ide-vscode/intro-ide-vscode.qmd
   - migrate-to-github/migrate-to-github.qmd
   - setup-coding-agent/setup-coding-agent.qmd

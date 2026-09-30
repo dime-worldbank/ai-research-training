@@ -1,0 +1,17 @@
+{%- assign day = site.data.bootcamp.days[include.day] -%}
+<div class="agenda-wrap"><table class="agenda">
+<thead><tr><th>Time</th><th>Session</th><th>Lead</th><th>Slides</th></tr></thead>
+<tbody>
+{%- for s in day.sessions -%}
+{%- if s.kind == 'break' or s.kind == 'lunch' -%}
+<tr class="agenda-break"><td class="t">{{ s.time }}</td><td colspan="3">{% if s.kind == 'lunch' %}🍽️ Lunch{% else %}☕ Break{% endif %}</td></tr>
+{%- else -%}
+<tr class="{% if s.hands_on %}agenda-hands{% endif %}{% if s.kind == 'welcome' %} agenda-welcome{% endif %}"><td class="t">{{ s.time }}</td><td class="title">{{ s.title }}{% if s.hands_on %} <span class="tag-hands">Hands-on</span>{% endif %}</td><td class="lead">{{ s.lead }}</td><td class="link">
+{%- if s.link -%}
+{%- if s.external -%}<a class="btn-slides" href="{{ s.link }}">Open ↗</a>{%- else -%}<a class="btn-slides" href="{{ s.link | relative_url }}">Slides</a>{%- endif -%}
+{%- elsif s.kind -%}
+{%- else -%}<span class="soon">Coming soon</span>{%- endif -%}
+</td></tr>
+{%- endif -%}
+{%- endfor -%}
+</tbody></table></div>
