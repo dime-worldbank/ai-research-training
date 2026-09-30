@@ -30,24 +30,24 @@ r_wb_verify <- "Command to verify command line access: `R.exe --version` -> expe
 quarto_verify <- "Command to verify command line access: `quarto --version` -> expected output: `1.*.*`"
 latex_verify <- "Command to verify command line access: `latex --version` -> output is usually verbose and differ between different LaTeX distributions. Expect a LaTeX compiler name, such as `pdfTeX 3.*.*` or `MiKTeX *.*.*`."
 
-wb_installation_note <- function(software) {
-  paste0("Even when you self-install software, ITS appreciates it if you submit a [Software Installation eServices Request](https://worldbankgroup.service-now.com/wbg?id=wbg_sc_cat_item_guide&sys_id=e643726c1bb73ed02685c8c5624bcbfb). Note in the comments that you installed ", software, " through self-service. This helps ITS understand demand and allocate resources to support ", software, " users.")
+wb_ereq_note <- function(software) {
+  paste0("**Also:** submit a [Software Installation eServices Request](https://worldbankgroup.service-now.com/wbg?id=wbg_sc_cat_item_guide&sys_id=e643726c1bb73ed02685c8c5624bcbfb) noting you installed ", software, " yourself. This is expected even for self-installs, and it helps ITS understand demand and allocate resources to support ", software, " users.")
 }
 
-wb_path_note <- function(software, path) {
-  paste0("If the installation seemed successful but the verification command does not return the expected output, follow the instructions on the slide \"**Adding software to the system path**\". On WB computers, a common installation location for ", software, " is `", path, "`, but confirm that before using that in those instructions.")
+path_fallback_note <- "If the installation seemed successful but the verification command does not return the expected output (for example, it shows an error instead of a version number), follow the instructions on the slide [Adding software to the system path - Windows](#adding-software-to-the-system-path---windows) or [- Mac](#adding-software-to-the-system-path---mac)."
+
+wb_path_note <- function(software) {
+  path_fallback_note
 }
 
 personal_path_note <- function(software) {
-  paste0("If the installation seemed successful but ", software, " is still not available from the command line, then use the agent or an AI ChatBot to find how to add this software to your computer's path variable.")
+  paste0(path_fallback_note, " On a personal computer you can also use the agent or an AI ChatBot to find how to add ", software, " to your computer's path variable.")
 }
 
 
 ```
 
 ## Objective
-
-### Objective
 
 * Install software used by the agent
 * Make those software accessible from the command line - where the agent can find them
@@ -57,6 +57,26 @@ personal_path_note <- function(software) {
 In guides and documentation related to this, you will see both the terms "**command line**" and "**terminal**". 
 
 Those terms are related, and for the purpose of this training, those two terms will be considered equivalent. You will see and hear us use those terms interchangeably.
+
+## Why does the agent need software you don't use?
+
+* The agent works by **running programs on your computer**, and it picks the right tool for each task.
+* Those tools are often **different from the ones you use every day**. For example, agents use Python to read PDF and Word files, even if your project is entirely in Stata.
+* So we install a small set of tools that agents commonly call, and make sure the agent can **reach** them.
+
+## What does "reachable from the command line" mean?
+
+:::: {.columns}
+
+::: {.column width="62%" }
+* When you **click** an app, your computer already knows where it is installed.
+* On the **command line**, you only type a program's name. The computer finds it by searching a list of folders called the **PATH**.
+* So software can be installed and work fine when you click it, but **fail from the command line** if its folder is not in the PATH.
+* The agent works **only from the command line**, so your software must be in the PATH.
+:::
+
+
+::::
 
 ## Command Line Access
 
@@ -125,13 +145,17 @@ Open the default terminal (as shown in the previous slide) and run these command
 
 ## Installing Python - WB Computer
 
-1. Open Company Portal from the Start menu and search for "Python".
+1. Open Company Portal from the Start menu (on a Mac, open Self Service+) and search for "Python".
 2. Select Python and click "Install".
 3. Then verify that Python is available in the command line. `r python_verify`
 
-`r wb_path_note("Python", "C:\\WBG\\Python313")`
+`r wb_path_note("Python")`
 
-`r wb_installation_note("Python")`
+::: {style="font-size: 0.62em;"}
+::: {.callout-note appearance="simple" icon=false}
+`r wb_ereq_note("Python")`
+:::
+:::
   
 ## Installing Python - Personal Computer
 
@@ -143,13 +167,17 @@ Open the default terminal (as shown in the previous slide) and run these command
 
 ## Installing LaTeX - WB Computer
 
-1. Open Company Portal from the Start menu and search for "MiKTeX".
+1. Open Company Portal from the Start menu (on a Mac, open Self Service+) and search for "MiKTeX".
 2. Select MiKTeX and click "Install".
 3. Then verify that LaTeX is available in the command line. `r latex_verify`
 
-`r wb_path_note("MiKTeX", "C:\\Program Files\\MiKTeX\\miktex\\bin\\x64")`
+`r wb_path_note("MiKTeX")`
 
-`r wb_installation_note("MiKTeX")`
+::: {style="font-size: 0.62em;"}
+::: {.callout-note appearance="simple" icon=false}
+`r wb_ereq_note("MiKTeX")`
+:::
+:::
 
 ## Installing LaTeX - Personal Computer
 
@@ -165,9 +193,13 @@ Open the default terminal (as shown in the previous slide) and run these command
 2. Select the Quarto application and click "Install".
 3. Then verify that Quarto is available in the command line. `r quarto_verify`
 
-`r wb_path_note("Quarto", "C:\\WBG\\Quarto\\bin")`
+`r wb_path_note("Quarto")`
 
-`r wb_installation_note("Quarto")`
+::: {style="font-size: 0.62em;"}
+::: {.callout-note appearance="simple" icon=false}
+`r wb_ereq_note("Quarto")`
+:::
+:::
 
 ## Installing Quarto - Personal Computer
 
@@ -183,9 +215,13 @@ Open the default terminal (as shown in the previous slide) and run these command
 2. Select the "RforWindows" application and click "Install".
 3. Then verify that R is available in the command line. `r r_wb_verify`
 
-`r wb_path_note("R", "C:\\Program Files\\R\\R-4.6.1\\bin")`
+`r wb_path_note("R")`
 
-`r wb_installation_note("R")`
+::: {style="font-size: 0.62em;"}
+::: {.callout-note appearance="simple" icon=false}
+`r wb_ereq_note("R")`
+:::
+:::
 
 ## Installing R - Personal Computer
 
@@ -197,7 +233,7 @@ Open the default terminal (as shown in the previous slide) and run these command
 
 If desired, you may also download and install RStudio as your R code editor, but the agent will not access R through RStudio.
 
-## Adding software to the system path
+## Adding software to the system path - Windows
 
 :::: {.columns}
 
@@ -207,7 +243,7 @@ _For a WB Windows Computer, you must follow this procedure:_
 
 1. In the Start menu, search for "Edit environment variables for your account" and select it.
 2. In the User variables box, select "Path" and click "Edit".
-3. Click "New" and add the location the software was installed.
+3. Click "New" and add the folder where the software is installed (common locations on the next slide).
 4. Then click "OK" in both boxes to save the changes. 
 5. Close and reopen VS Code, then verify that the software is available in the terminal.
 
@@ -220,3 +256,35 @@ _For a WB Windows Computer, you must follow this procedure:_
 ::::
 
 If you are using a personal computer, search online or ask an AI chatbot how to add the specific software to your computer's system PATH.
+
+## Where is the software installed? (WB Windows computers)
+
+These are common installation folders on WB computers. **Confirm that the folder exists on your computer** (open it in File Explorer) before adding it to the PATH.
+
+| Software | Common folder |
+|----------|---------------|
+| Python | `C:\WBG\Python313` |
+| MiKTeX (LaTeX) | `C:\Program Files\MiKTeX\miktex\bin\x64` |
+| Quarto | `C:\WBG\Quarto\bin` |
+| R | `C:\Program Files\R\R-4.6.1\bin` |
+
+## Adding software to the system path - Mac
+
+**On a Mac, installers usually set this up for you.** Only follow these steps if the verification command fails.
+
+1. In the VS Code terminal, run `touch ~/.zprofile && open -e ~/.zprofile` to open your shell settings file.
+2. Add this line at the end, using the folder where the software is installed: `export PATH="$PATH:/folder/where/software/is"`
+3. Save the file, close and reopen VS Code, then verify that the software is available in the terminal.
+
+## Where is the software installed? (Mac)
+
+**Confirm the folder exists on your Mac** (run `ls /the/folder`) before adding it to the PATH. To see where a program is, run `which quarto`.
+
+| Software | Common folder |
+|----------|---------------|
+| Python (python.org) | `/Library/Frameworks/Python.framework/Versions/3.13/bin` (the version number changes) |
+| Quarto | `/Applications/quarto/bin` |
+
+The R installer already links `R` into `/usr/local/bin`, which is on the PATH by default, so R rarely needs this.
+
+**LaTeX on a Mac:** MiKTeX may not make `latex` available from the command line after installing. Quarto alone meets the requirement, so on a Mac we recommend Quarto instead of LaTeX.
