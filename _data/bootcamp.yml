@@ -2,7 +2,7 @@
 # Session fields: time, title, lead, hands_on, kind (break|lunch|welcome), link (site path or https URL), external.
 name: AI-Enabled Research Bootcamp
 dates: Oct 1 & Oct 5–8, 2026
-agenda_url: https://www.canva.com/design/DAHT37UVp3k/z8gvUN_hMD0hSYwGE1qYGw/edit
+agenda_url: "https://www.canva.com/design/DAHT37UVp3k/MqhtbPu8GPBX2F0ywXmRaQ/view?utm_content=DAHT37UVp3k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h232f439bda"
 intro:
 - 'Artificial intelligence is changing how research is done. This bootcamp puts AI
   capabilities directly into the hands of WBG researchers. Over four days, participants
@@ -86,21 +86,21 @@ days:
     title: Break
     kind: break
   - time: 10:30 – 11:00
+    title: Intro to the World Bank's GitHub and Open Source Catalog
+    lead: Open Source Program Office
+  - time: 11:00 – 12:00
+    title: AI Tools Bazaar (impactAI, AVA, ScoreSight, Knowledger, Translate)
+    lead: Tool teams
+  - time: 12:00 – 1:00
+    title: Lunch
+    kind: lunch
+  - time: 1:00 – 1:45
+    title: 'AI at the WBG: Current Landscape and Future Ambitions'
+    lead: ITSAE AI Literacy Team
+  - time: 1:45 – 2:15
     title: Using AI agents efficiently and cost-effectively
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-1/cost-effective-ai/"
-  - time: 11:00 – 11:30
-    title: Intro to the World Bank's GitHub and Open Source Catalog
-    lead: Open Source Program Office
-  - time: 11:30 – 12:20
-    title: AI Tools Bazaar (impactAI, AVA, ScoreSight, Knowledger, Translate)
-    lead: Tool teams
-  - time: 12:20 – 1:20
-    title: Lunch
-    kind: lunch
-  - time: 1:20 – 2:15
-    title: 'AI at the WBG: Current Landscape and Future Ambitions'
-    lead: ITSAE AI Literacy Team
   - time: 2:15 – 3:00
     title: 'Making AI agents work for you: good prompts and reusable skills'
     lead: Impact Analytics
@@ -242,7 +242,7 @@ days:
     follow up on in a survey.'
   outcomes:
   - A presentation or policy brief for your own project, made with AI skills
-  - A reproducibility package for your own project, created and verified
+  - A reproducibility package for your own project
   - An AI adoption plan with specific 6-week and 3-month targets
 - id: 4
   theme: AI-enabled workflows for advanced users
@@ -282,7 +282,7 @@ days:
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-4/git-verify-ai-output/"
   - time: 4:15 – 4:45
-    title: Closing session and course evaluation
+    title: Closing session
   weekday: Thursday
   date: Oct 8
   track: Optional · advanced
