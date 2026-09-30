@@ -118,7 +118,7 @@ The bar is **computational reproducibility**: same data + same code = same resul
     <h3>Something a stranger can run</h3>
     <ul>
       <li>A reviewer downloads it, changes one path, runs it, and gets <strong>every exhibit in the paper</strong></li>
-      <li>Verified packages get the reproducibility seal and a citable entry in the Repository</li>
+      <li>Verified packages get the reproducibility seal and a citable entry in the [Reproducible Research Repository](https://reproducibility.worldbank.org/)</li>
     </ul>
   </div>
 </div>
