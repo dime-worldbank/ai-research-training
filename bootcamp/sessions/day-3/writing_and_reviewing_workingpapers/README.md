@@ -25,6 +25,16 @@ In [`skills/`](skills/). Each paper folder links `skills/` there, so your agent 
 
 `econ-write` and `upstream-econ-review` are vendored baselines (MIT and PolyForm Noncommercial). The WB skills only add personalization and the human gates.
 
+## Downloads
+
+| Zip | Contents |
+|---|---|
+| [`skills.zip`](materials/skills.zip) | The skills only, to copy into your own paper's folder |
+| [`zambia-attendance-with-draft.zip`](materials/zambia-attendance-with-draft.zip) | Comment track: draft, tables, profile and guides, with `skills/` included |
+| [`zambia-attendance-no-draft.zip`](materials/zambia-attendance-no-draft.zip) | Draft track: tables, concept note, reference materials, with `skills/` included |
+
+The demo zips leave out the instructor answer key.
+
 ## Demo projects
 
 Same fictional Zambia school-meals study in both.

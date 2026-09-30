@@ -147,24 +147,26 @@ Set up while we talk: next slide.
 
 [VS Code + an agent]{.ct}
 
-GitHub Copilot (Claude model) or the Claude Code extension
+GitHub Copilot (any strong model) or the Claude Code extension
 :::
 
 ::: {.card .big-ic}
 <svg class="ic" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
 
-[The session folder]{.ct}
+[(Optional) demo project]{.ct}
 
-`skills/` and two demo projects, from [our repo](https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers)
+[Comment track](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-with-draft.zip) or [draft track](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-no-draft.zip) (.zip, skills included)
 :::
 
 ::: {.card .line .big-ic}
 <svg class="ic" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
 
-[Optional: your paper]{.ct}
+[Or: your paper]{.ct}
 
 Quarto, LaTeX or Markdown, with its output tables
 :::
+Skills for your own paper: [skills.zip](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/skills.zip) - See the teams channel for this file.
+
 :::
 
 ::: {.notes}
@@ -359,7 +361,7 @@ Each of these is caught by a specific check: numbers are traced to outputs/, cit
 ```
 
 ::: {.punch}
-The agent drafts, checks and suggests. It does not decide.
+The agent drafts, checks, challenges you and suggests based on that.
 :::
 
 ::: {.notes}
@@ -400,9 +402,6 @@ Comments against the guides
 :::
 :::
 
-```{=html}
-<div class="step ai" style="margin-top:14px;font-size:0.8em">Built on two open-source baselines for economics writing and review</div>
-```
 
 ::: {.notes}
 Baselines: econ-writing-skill and econ-paper-review-skill by Lu Han (github.com/hanlulong). They hold the general rules of good economics writing and refereeing. The WB skills add the author's preferences, the grounding in the project's own tables, and the approval steps.
@@ -432,7 +431,7 @@ Baselines: econ-writing-skill and econ-paper-review-skill by Lu Han (github.com/
   <div>✓ claim, <b>in your words</b></div>
   <div>✓ your biggest fear</div>
   <div>✓ your conventions</div>
-  <div class="foot">One question at a time · ~10–15 min</div>
+  <div class="foot">~10–15 min</div>
 </div>
 ```
 :::
@@ -461,7 +460,7 @@ Answers taken from the demo's pre-baked profile. The agent also asks who the pap
 ```
 
 ::: {.punch}
-A plain text file. Edit it: your edits win.
+All preferences are saved in plain text files. Edit them after the interview.
 :::
 
 ::: {.notes}
@@ -519,7 +518,7 @@ A challenge is your objection in your own words. The agent rechecks the evidence
 Only accepted comments go to the drafting skill, and each resulting change is shown to you before it lands.
 :::
 
-## Drafting from your tables
+## Drafting from your project
 
 ```{=html}
 <div class="flow" style="margin-top:0.4em">
@@ -549,7 +548,7 @@ wb-paper-write takes numbers only from the output files named in the profile. An
 ```
 
 ::: {.punch}
-The disclosure lists only what actually happened.
+The skill produces a decision record you can build a disclosure list from.
 :::
 
 ::: {.notes}
@@ -594,18 +593,18 @@ Both are the same fictional study: school meals and attendance in Zambia, 1,840 
 
 ```{=html}
 <div class="flow" style="margin-top:0.4em">
-  <div class="step ai"><b>1 · Copy</b><small><code>skills/</code> into your track's folder</small></div><span class="arrow">→</span>
+  <div class="step ai"><b>1 · Unzip</b><small>your track's .zip</small></div><span class="arrow">→</span>
   <div class="step ai"><b>2 · Open</b><small>that folder in VS Code</small></div><span class="arrow">→</span>
   <div class="step you"><b>3 · Paste</b><small>the first message</small></div>
 </div>
 <div class="flow-label">A · Comment</div>
 <div class="prompt">Follow skills/wb-paper-review/SKILL.md. Scope: Methodologist · accuracy · Results.</div>
 <div class="flow-label">B · Draft</div>
-<div class="prompt">Follow skills/wb-paper-setup/SKILL.md on the Quick route. I am the author. Interview me.</div>
+<div class="prompt">Follow skills/wb-paper-setup/SKILL.md on the Quick route. I am the author. Lets draft this paper</div>
 ```
 
 ::: {.notes}
-Most common issue: opening a file instead of the folder. Second: forgetting to copy skills/, so the agent cannot find SKILL.md.
+Most common issue: opening a file instead of the folder. Each demo zip already contains skills/; if the agent cannot find SKILL.md, the folder opened is probably one level too high or too low.
 :::
 
 ## What to watch for
@@ -643,7 +642,7 @@ Track A, if time: run Methodologist · design · full draft. It should put the p
 ::: {.column width="55%"}
 ```{=html}
 <div class="tree">your-paper/
-├── skills/            <em>← copy in</em>
+├── skills/            <em>← unzip skills.zip here</em>
 └── wb-paper/references/
     ├── positive/      <em>papers you admire</em>
     ├── negative/      <em>writing you dislike</em>
@@ -666,4 +665,6 @@ Setup creates the four folders if they are missing and asks you to add files; em
 
 ## Thank you {.closing}
 
-Skills and demo projects: [github.com/dime-worldbank/ai-research-training](https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers)
+Skills for your own paper: [skills.zip](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/skills.zip)
+
+Everything else: [github.com/dime-worldbank/ai-research-training](https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers)
