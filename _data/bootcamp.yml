@@ -25,8 +25,7 @@ days:
   - time: 10:00 – 11:30
     title: Intuitive Introduction to Git/GitHub
     lead: Impact Analytics
-    link: https://github.com/worldbank/dime-github-trainings/tree/main/GitHub-trainings/Intro-Git-GitHub-Contributor
-    external: true
+    link: "/bootcamp/sessions/day-0/intro-git-github/"
   - time: 11:30 – 12:30
     title: Migrating an existing project to GitHub (hands-on during lunch)
     hands_on: true
