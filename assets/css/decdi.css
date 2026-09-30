@@ -251,6 +251,100 @@ body {
   font-size: 0.94rem;
 }
 
+/* ---- Bootcamp section: Analytics purple (matches the bootcamp slide template) ---- */
+.bootcamp {
+  --bc-dark:  #530153;
+  --bc-base:  #800280;
+  --bc-light: #B974B9;
+  --bc-tint:  #F4EAF4;
+  background: #fff;
+  border: 1px solid var(--bc-tint);
+  border-top: 4px solid var(--bc-base);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(83,1,83,0.07);
+  padding: 0.5rem 1.75rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.bootcamp h2,
+.bootcamp h3 {
+  color: var(--bc-dark);
+}
+
+.bootcamp h2 {
+  border-bottom: 4px solid var(--bc-base);
+}
+
+.bootcamp h3 {
+  border-left: 5px solid var(--bc-base);
+  padding-left: 0.6rem;
+  margin-top: 2.4rem;
+}
+
+.bootcamp a {
+  color: var(--bc-base);
+  border-bottom-color: rgba(128,2,128,0.3);
+}
+
+.bootcamp a:hover {
+  color: var(--bc-dark);
+  border-bottom-color: var(--bc-dark);
+}
+
+.bootcamp table {
+  border-color: var(--bc-tint);
+  box-shadow: 0 1px 6px rgba(83,1,83,0.10);
+}
+
+.bootcamp table th {
+  background: var(--bc-base);
+}
+
+.bootcamp table tr:nth-child(even) td { background: var(--bc-tint); }
+.bootcamp table tr:hover td { background: #ead6ea; }
+
+.bootcamp-hero {
+  text-align: center;
+  background: linear-gradient(180deg, #fff 0%, var(--bc-tint) 100%);
+  border-radius: 12px;
+  padding: 1.25rem 1rem 1.5rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.bootcamp-hero img {
+  max-width: 460px;
+  width: 100%;
+  height: auto;
+}
+
+.bootcamp-hero p {
+  margin: 0.4rem 0;
+}
+
+.bootcamp-dates {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: var(--bc-dark);
+  font-size: 1.05rem;
+}
+
+.main-content .bootcamp-hero a.bootcamp-button {
+  display: inline-block;
+  background: var(--bc-base);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  border-bottom: none;
+}
+
+.main-content .bootcamp-hero a.bootcamp-button:hover {
+  background: var(--bc-dark);
+  color: #fff;
+}
+
 /* ---- Site footer ---- */
 .site-footer {
   border-top: 2px solid var(--decdi-analytics);
