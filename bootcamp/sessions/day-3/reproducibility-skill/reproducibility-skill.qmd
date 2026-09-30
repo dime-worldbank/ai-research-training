@@ -208,7 +208,7 @@ Source: Reproducibility Initiative progress report, September 2026. Verified pac
 
 ## Why packages fail, and where the skill comes from
 
-Every round-trip with the reviewer adds days. The failures repeat, so we wrote them down:
+Every round-trip with the reviewer adds days. The failures repeat, so we wrote them down and developed a skill that helps you avoid them:
 
 | Why packages fail | What the skill checks |
 |---|---|
