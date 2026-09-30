@@ -16,7 +16,7 @@ Participants gain the foundational skills for reproducible workflows. They under
 | Time | Session | Lead | Material (link or note) |
 | --- | --- | --- | --- |
 | 9:30 - 10:00 | Set up GitHub account and install GitHub Desktop | Impact Analytics | [Set up GitHub account and install GitHub Desktop](setup-github/setup-github.qmd) |
-| 10:00 - 12:00 | Intuitive Introduction to Git/GitHub | Impact Analytics | [Intro to Git/GitHub Contributor](https://github.com/worldbank/dime-github-trainings/tree/main/GitHub-trainings/Intro-Git-GitHub-Contributor)|
+| 10:00 - 12:00 | Intuitive Introduction to Git/GitHub | Impact Analytics | [An Intro to Git and GitHub - Contributor Role](intro-git-github/intro-git-github.qmd)|
 | 11:30 - 12:30 | Migrating an Existing Project to GitHub - Hands-on part during lunch | Impact Analytics | [Migrating an Existing Project to GitHub](migrate-to-github/migrate-to-github.qmd) | 
 | 12:30 - 1:45 | Lunch Break | Lunch Break | Lunch Break |
 | 1:45 - 2:15 | Intro to Integrated Development Environments (VS Code) | Impact Analytics | [Intro to IDEs (VS Code)](intro-ide-vscode/intro-ide-vscode.qmd) | 
