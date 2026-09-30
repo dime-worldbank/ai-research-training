@@ -1,0 +1,49 @@
+---
+layout: default
+---
+{%- assign day = site.data.bootcamp.days[page.day] -%}
+{%- assign prev_i = page.day | minus: 1 -%}
+{%- assign next_i = page.day | plus: 1 -%}
+<div class="bootcamp">
+
+{% include bootcamp-daynav.html current=page.day %}
+
+<div class="day-header">
+<p class="day-kicker"><span class="track track-{{ day.tag }}">{{ day.track }}</span> {{ day.weekday }}, {{ day.date }}, 2026</p>
+{%- if day.note %}
+<p class="day-note">{{ day.note }}</p>
+{%- endif %}
+</div>
+
+<h2>Objective</h2>
+<p>{{ day.objective }}</p>
+
+<h2>You will leave with</h2>
+<ul class="outcomes">
+{%- for o in day.outcomes %}
+<li>{{ o }}</li>
+{%- endfor %}
+</ul>
+
+<h2>Schedule</h2>
+<p class="legend"><span class="tag-hands">Hands-on</span> sessions are where you work on your own project. Slide links open the session deck.</p>
+{% include bootcamp-schedule.html day=page.day %}
+
+{{ content }}
+
+<div class="day-pager">
+{%- if page.day > 0 -%}
+{%- assign prev = site.data.bootcamp.days[prev_i] -%}
+<a class="pager prev" href="{{ '/bootcamp/day-' | append: prev.id | append: '/' | relative_url }}"><span>← Previous</span><strong>Day {{ prev.id }} · {{ prev.theme }}</strong></a>
+{%- else -%}
+<a class="pager prev" href="{{ '/bootcamp/' | relative_url }}"><span>← Back to</span><strong>Full agenda</strong></a>
+{%- endif -%}
+{%- if next_i < site.data.bootcamp.days.size -%}
+{%- assign next = site.data.bootcamp.days[next_i] -%}
+<a class="pager next" href="{{ '/bootcamp/day-' | append: next.id | append: '/' | relative_url }}"><span>Next →</span><strong>Day {{ next.id }} · {{ next.theme }}</strong></a>
+{%- else -%}
+<a class="pager next" href="{{ '/bootcamp/' | relative_url }}"><span>Back to →</span><strong>Full agenda</strong></a>
+{%- endif -%}
+</div>
+
+</div>
