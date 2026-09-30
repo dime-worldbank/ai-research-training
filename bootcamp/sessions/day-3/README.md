@@ -7,7 +7,7 @@ Participants learn how to use AI across the full research production pipeline â€
 
 ### Expected Outcomes
 - Participants use AI skills to create a presentation or policy brief for their own project
-- Participants create and verify a reproducibility package for their own project
+- Participants create a reproducibility package for their own project
 - Participants create an AI adoption plan, specifying how they will use AI going forward, with specific 6-week and 3-month targets
 
 ## Schedule
