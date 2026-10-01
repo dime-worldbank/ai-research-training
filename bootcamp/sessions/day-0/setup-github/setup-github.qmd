@@ -47,7 +47,7 @@ login_update_ghd <- "2. After installing GitHub Desktop, open it and go to *File
 * Training repository: https://github.com/dime-wb-trainings/lyrics-aibc. 
     * It is a `public` repository, meaning that everyone can view it, but only collaborators with permission can make changes to it.
 * You need to be invited to this repository with `write` access to participate in the next session. To do so:
-  * Send your username [Impact Analytics](mailto:dimeanalytics@worldbank.org) or share in the Teams chat.
+  * Send your username [Impact Analytics](mailto:dimeanalytics@worldbank.org) or share in the `Questions` channel in Teams.
   * Wait until someone has had time to  invite you. Then you will get an invitation link by email from GitHub, or you can go to [this invitation link](https://github.com/dime-wb-trainings/lyrics-aibc/invitations). Open the link in a browser where you are already logged in to GitHub.
 
 If you are waiting to be invited, feel free to skip to the next slide and return once you have received the invitation. You do not need `write` access to complete the steps on the next slide.
