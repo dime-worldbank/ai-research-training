@@ -1,5 +1,5 @@
 ---
-title: "An Intro to Git and GitHub - Contributor Role"
+title: "An Intro to Git and GitHub"
 subtitle: "Day 0 · Setup for AI-enabled Research"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
@@ -12,17 +12,19 @@ logos:
 
 format:
   bootcamp-revealjs:
+    fragments: true
     embed-resources: true
+
 ---
 
 ## Before the session starts:
 
 1. Do you have a GitHub.com account? If not, go to <https://github.com/join> and sign up
-2. Have you sent your GitHub username to the organizer or to [kbjarkefur@worldbank.org](mailto:kbjarkefur@worldbank.org)?
+2. Have you sent your GitHub username to the organizer or to [Impact Analytics](mailto:dimeanalytics@worldbank.org) or shared in the `Questions` channel in Teams?
 3. Have you installed GitHub Desktop? If not go to <https://desktop.github.com/> and download it.
 4. Have you logged in at least once on GitHub Desktop? If not open GitHub Desktop and log in using your GitHub account.
 5. Have you been invited to [github.com/dime-wb-trainings/lyrics-aibc](https://github.com/dime-wb-trainings/lyrics-aibc)?
-6. And have you accepted at [github.com/dime-wb-trainings/lyrics-aibc/invitations](https://github.com/dime-wb-trainings/lyrics-aibc/invitations)?
+6. Have you received and invitation and accepted it at [github.com/dime-wb-trainings/lyrics-aibc/invitations](https://github.com/dime-wb-trainings/lyrics-aibc/invitations)?
 
 ## Three common GitHub roles
 
@@ -61,14 +63,22 @@ The objective of this training is to make you able to take the role of a **Contr
 :::: {.columns}
 
 ::: {.column width="60%"}
+
+::: {.fragment}
 * Git solves the *Final.doc* problem
-* [Common solution to the *Final.doc* problem: Name all your docs like *YYMMDD\_docname\_INITIALS.doc*]{.fragment fragment-index=2}
-* [Git tracks *YYMMDD* and *INITIALS* for all edits without the user having to remember it]{.fragment fragment-index=3}
-* [That's far from everything, Git also solves:]{.fragment fragment-index=4}
-    * [Conflicting copy problem (DropBox etc.)]{.fragment fragment-index=4}
-    * [I can't re-produce my Baseline report problem]{.fragment fragment-index=4}
-    * [Who wrote this code 4 years ago and why?]{.fragment fragment-index=4}
-    * [And much much more...]{.fragment fragment-index=4}
+:::
+::: {.fragment}
+* Common solution to the *Final.doc* problem: Name all your docs like *YYMMDD\_docname\_INITIALS.doc*
+* Git tracks *YYMMDD* and *INITIALS* for all edits without the user having to remember it
+:::
+::: {.fragment}
+* That's far from everything, Git also solves:
+    * Conflicting copy problem (DropBox etc.)
+    * I can't re-produce my Baseline report problem
+    * Who wrote this code 4 years ago and why?
+    * And much much more...
+:::
+
 :::
 
 ::: {.column width="40%"}
@@ -110,8 +120,12 @@ Three Git concepts needed to do this:
 
 ## Code free training!
 
-::: {style="text-align: center; padding: 0 12%;"}
-**No code today!**
+:::: {.columns .v-center-container}
+
+::: {.column width="100%" }
+
+::: {style="text-align: center; padding: 0 20%;"}
+**No code in this session!**
 
 We will not work with code today.
 
@@ -119,6 +133,9 @@ Code tends to distract people if, for example, they see a command they do not un
 
 Instead we will work with lyrics in .txt files that works exactly the same as code files in Git.
 :::
+
+:::
+::::
 
 ## How to browse GitHub.Com
 
@@ -146,9 +163,16 @@ Go from **repo** to **landing page**
 
 ## What is cloning?
 
+:::: {.columns .v-center-container}
+
+::: {.column width="100%" }
+
 Cloning is similar to downloading a **repository** to your computer.
 
 The difference between cloning and downloading is that **when Git clones a repository it remembers where you downloaded it from**. This is necessary so that Git knows where send any edits you make to the files when sharing them with your team.
+
+:::
+::::
 
 ## How do I clone a repository from GitHub?
 
@@ -171,15 +195,26 @@ How to clone a repository:
 
 ## Explore the clone
 
+:::: {.columns .v-center-container}
+
+::: {.column width="100%" }
+
 ::: {style="text-align: center; padding: 0 10%;"}
 **Explore the clone!**
 
 Compare the files and folders you cloned to your computer with those in the repository on [github.com/dime-wb-trainings/lyrics-aibc](https://github.com/dime-wb-trainings/lyrics-aibc)
 :::
 
+:::
+::::
+
 # Collaboration on a repository {background-color="#530153"}
 
 ## Collaboration needs two more concepts
+
+:::: {.columns .v-center-container}
+
+::: {.column width="100%" }
 
 ::: {style="text-align: center;"}
 In order to collaborate on a repository we need to introduce two topics:
@@ -194,6 +229,8 @@ In order to collaborate on a repository we need to introduce two topics:
 [**Branches**]{style="font-size: 1.6em;"}
 :::
 
+:::
+::::
 ::::
 :::
 
@@ -217,11 +254,21 @@ In DropBox each saved version of a file is saved to the version history. This is
 
 ## What is a commit?
 
+:::: {.columns .v-center-container}
+
+::: {.column width="100%" }
+
 Instead of having a list of each saved version of a file, in Git we use **commits to indicate what is each meaningful difference between two versions of our project folder**.
 
+::: {.fragment}
 Each commit is a snap shot of all files in the project folder, and lists how that snap shot differ from the previous snap shot (the previous commit).
-
+:::
+::: {.fragment}
 Each commit has a time stamp and tracks who did the commit. This is very similar to the *YYMMDD\_docname\_INITIALS.doc* solution to the *Final.doc* problem.
+:::
+
+:::
+::::
 
 ## How to make a commit
 
@@ -293,7 +340,7 @@ A typical Git work flow involves multiple branches and there are tools in GitHub
 **Now it is time for you to collaborate:**
 
 1. Make sure your branch is checked out in GitHub Desktop.
-2. Open a text editor. It could be *Notepad* if you are using Windows, *TextEdit* if you are using Mac, or any other code editor like *Atom*, or *Notepad++* etc.
+2. Open a text editor. It could be *Notepad* if you are using Windows, *TextEdit* if you are using Mac, or any other code editor like *VS Code*, or *Notepad++* etc.
 3. Google the lyrics of your favorite song, and copy the lyrics to a new file in the text editor you just opened
 4. Save the lyrics in your local clone according to these instructions:
     * Save the file in *.txt* format (Especially Mac users, this is not always the default)
@@ -386,52 +433,11 @@ All great training ends with a magic trick! This is a pedagogical magic trick, d
 I need a volunteer for a simple task from the audience!
 :::
 
-# Next steps for the research team {background-color="#530153"}
-
-## Three common GitHub Roles
-
-:::: {.columns}
-
-::: {.column width="33%"}
-### Observer
-
-* Browse code in GitHub
-* Provide feedback through GitHub
-* **Who?** Typically a PI that does not code
-:::
-
-::: {.column width="33%"}
-### Contributor
-
-* Contribute to code in GitHub
-* Understand and follow instructions from a Repo Maintainer
-* **Who?** Typically an RA, or a PI that codes
-:::
-
-::: {.column width="33%"}
-### Repo Maintainer
-
-* Make sure that best practices and standards are followed in the repository
-* Guide new contributors
-* **Who?** Typically the most senior RA. Takes too much time for a PI.
-:::
-
-::::
-
-## Next steps for the research team
-
-Before adopting Git the research team should discuss the following things:
-
-* Who will be repo maintainer
-* Agree on a work flow
-* Public/private repository
-* External collaborators
-* Where to put data and where to put code
-* Request a repo on DIME or World Bank account
-
 ## Useful links
 
 * All Impact Analytics GitHub trainings: <https://osf.io/e54gy/>
 * Other Impact Analytics GitHub resources: <https://github.com/worldbank/dime-github-trainings>. For example:
     * Impact Analytics GitHub Templates (for example .gitignore): <https://github.com/worldbank/dime-github-trainings/tree/master/GitHub-resources/DIME-GitHub-Templates>
 * Markdown cheat sheet (how to format text on GitHub.com): <https://www.markdownguide.org/cheat-sheet/>
+
+# Thank You! - Questions? {background-color="#530153"}
