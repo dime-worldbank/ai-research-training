@@ -102,6 +102,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 /* ---------- prompt box ---------- */
 .prompt { background: #1E1E1E; color: #F4EAF4; border-radius: 8px; padding: 14px 18px; font-family: "Fira Code", monospace; font-size: 0.72em; line-height: 1.35; }
+.reveal .column > .card + .card, .reveal .column > .card + div > .card, .reveal .column > * + .card { margin-top: 18px; }
 </style>
 ```
 

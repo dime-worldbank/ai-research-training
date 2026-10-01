@@ -15,8 +15,7 @@ Participants learn how to use AI across the full research production pipeline â€
 | Time | Session | Lead | Material (link or note) |
 | --- | --- | --- | --- |
 | 9:00 - 9:10 | Welcome | | |
-| 9:10 - 9:35 | AI tools for citations and references | ImpactAI / Impact Analytics | |
-| 9:35 - 10:00 | AI tools for evidence aggregation and literature review | Impact Analytics | |
+| 9:10 - 10:00 | AI tools for evidence aggregation and literature review | Impact Analytics | [AI Tools for Evidence Aggregation and Literature Review](literature-session/literature-session.qmd) |
 | 10:00 - 10:15 | Break | Break | Break |
 | 10:15 - 10:45 | AI Skills for reproducible presentations and policy briefs | Impact Analytics | |
 | 10:45 - 11:30 | Hands-on: Create a Dynamic Presentation or Brief | Impact Analytics | |

@@ -1,0 +1,31 @@
+<svg viewBox="-4 -4 808 386" xmlns="http://www.w3.org/2000/svg" font-family="Lato, Helvetica, Arial, sans-serif" role="img">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4A4F57"/></marker></defs>
+<path d="M400.0,58 V76 H100.0 V156" fill="none" stroke="#4A4F57" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="106.0" y="102" font-size="19" font-weight="700" fill="#1A1A1A">0</text>
+<text x="106.0" y="123" font-size="19" fill="#800280" font-weight="700">12</text>
+<path d="M400.0,58 V76 H400.0 V156" fill="none" stroke="#4A4F57" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="406.0" y="102" font-size="19" font-weight="700" fill="#1A1A1A">1</text>
+<text x="406.0" y="123" font-size="19" fill="#800280" font-weight="700">40</text>
+<path d="M400.0,216 V234 H300.0 V314" fill="none" stroke="#4A4F57" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="306.0" y="260" font-size="19" font-weight="700" fill="#1A1A1A">No every</text>
+<text x="306.0" y="281" font-size="19" font-weight="700" fill="#1A1A1A">time</text>
+<text x="306.0" y="302" font-size="19" fill="#800280" font-weight="700">33.4</text>
+<path d="M400.0,216 V234 H500.0 V314" fill="none" stroke="#4A4F57" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="506.0" y="260" font-size="19" font-weight="700" fill="#1A1A1A">any Yes</text>
+<text x="506.0" y="281" font-size="19" fill="#800280" font-weight="700">6.6</text>
+<path d="M400.0,58 V76 H700.0 V156" fill="none" stroke="#4A4F57" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="706.0" y="102" font-size="19" font-weight="700" fill="#1A1A1A">2+</text>
+<text x="706.0" y="123" font-size="19" fill="#800280" font-weight="700">48</text>
+<rect x="312.0" y="0" width="176" height="58" rx="7" fill="#EDEEF0" stroke="#5A5F66" stroke-width="2"/>
+<text x="400.0" y="36.0" font-size="20" text-anchor="middle" fill="#1A1A1A" font-style="italic">How many Nos?</text>
+<rect x="12.0" y="158" width="176" height="58" rx="7" fill="#E6F2E6" stroke="#2E7D32" stroke-width="2"/>
+<text x="100.0" y="194.0" font-size="20" text-anchor="middle" fill="#1A1A1A" font-weight="400">Full text</text>
+<rect x="312.0" y="158" width="176" height="58" rx="7" fill="#E3F1F0" stroke="#0F6B6B" stroke-width="2"/>
+<text x="400.0" y="194.0" font-size="20" text-anchor="middle" fill="#0F3F3F" font-weight="700">Ask up to 3×</text>
+<rect x="212.0" y="316" width="176" height="58" rx="7" fill="#F8E1E1" stroke="#C0392B" stroke-width="2"/>
+<text x="300.0" y="352.0" font-size="20" text-anchor="middle" fill="#1A1A1A" font-weight="400">Exclude</text>
+<rect x="412.0" y="316" width="176" height="58" rx="7" fill="#FBEEDC" stroke="#A6640C" stroke-width="2"/>
+<text x="500.0" y="352.0" font-size="20" text-anchor="middle" fill="#1A1A1A" font-weight="400">Human review</text>
+<rect x="612.0" y="158" width="176" height="58" rx="7" fill="#F8E1E1" stroke="#C0392B" stroke-width="2"/>
+<text x="700.0" y="194.0" font-size="20" text-anchor="middle" fill="#1A1A1A" font-weight="400">Exclude</text>
+</svg>
