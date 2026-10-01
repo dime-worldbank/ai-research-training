@@ -1,5 +1,6 @@
 # Bootcamp agenda — single source for /bootcamp/ and each day page.
-# Session fields: time, title, lead, hands_on, kind (break|lunch|welcome), link (site path or https URL), external.
+# Session fields: time, title, lead, hands_on, kind (break|lunch|welcome), link (site path or https URL), external,
+# materials (list of {label, url}: files and repos participants use in the session; shown in the Materials column).
 name: AI-Enabled Research Bootcamp
 dates: Oct 1 & Oct 5–8, 2026
 agenda_url: "https://www.canva.com/design/DAHT37UVp3k/MqhtbPu8GPBX2F0ywXmRaQ/view?utm_content=DAHT37UVp3k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h232f439bda"
@@ -22,15 +23,26 @@ days:
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-0/setup-github/"
+    materials:
+    - label: "GitHub Desktop"
+      url: "https://desktop.github.com/"
+    - label: "Account guide"
+      url: "https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md"
   - time: 10:00 – 11:30
     title: Intuitive Introduction to Git/GitHub
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-0/intro-git-github/"
+    materials:
+    - label: "Practice repo"
+      url: "https://github.com/dime-wb-trainings/lyrics-aibc"
   - time: 11:30 – 12:30
     title: Migrating an existing project to GitHub (hands-on during lunch)
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-0/migrate-to-github/"
+    materials:
+    - label: ".gitignore template"
+      url: "https://raw.githubusercontent.com/worldbank/dime-github-trainings/refs/heads/main/GitHub-resources/DIME-GitHub-Templates/gitignore_template.txt"
   - time: 12:30 – 1:45
     title: Lunch
     kind: lunch
@@ -43,16 +55,29 @@ days:
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-0/setup-vscode/"
+    materials:
+    - label: "VS Code"
+      url: "https://code.visualstudio.com/"
   - time: 2:45 – 3:15
     title: Set up command line software for agentic workflows
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-0/setup-python-r/"
+    materials:
+    - label: "Python"
+      url: "https://www.python.org/downloads/"
+    - label: "R"
+      url: "https://cran.r-project.org/"
+    - label: "Quarto"
+      url: "https://quarto.org/docs/get-started/"
   - time: 3:15 – 4:00
     title: Set up a coding agent on your computer
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-0/setup-coding-agent/"
+    materials:
+    - label: "WB Copilot guide (WB login)"
+      url: "https://github.com/worldbank/ospo/blob/main/docs/copilot/README.md"
   weekday: Thursday
   date: Oct 1
   track: Optional prerequisite
@@ -105,6 +130,11 @@ days:
     title: 'Making AI agents work for you: good prompts and reusable skills'
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-1/ai-agents-for-you/"
+    materials:
+    - label: "Exercise repo"
+      url: "https://github.com/dime-worldbank/coding-agent-exercise"
+    - label: "mAI skill wizard (WB login)"
+      url: "https://ai.worldbank.org/mai/skills/"
   - time: 3:00 – 3:15
     title: Break
     kind: break
@@ -113,6 +143,9 @@ days:
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-1/create-a-memory-file/"
+    materials:
+    - label: "Memory file examples (WB login)"
+      url: "https://github.com/dime-worldbank/coding-agents-hub/tree/main/memory-files"
   - time: 4:00 – 5:00
     title: AI ethics, governance, and safe use
     lead: Impact Analytics
@@ -205,12 +238,24 @@ days:
     title: 'AI skills for presentations: create a dynamic presentation'
     hands_on: true
     lead: Impact Analytics
-    link: "/bootcamp/sessions/day-3/ai-skills-slides/slides/"
+    link: "/sessions/ai-skills-slides/slides/"
+    materials:
+    - label: "Demo projects"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip"
+    - label: "Slides skill"
+      url: "https://github.com/dime-worldbank/ai-research-training/tree/main/sessions/ai-skills-slides/skills/prepare-slides"
   - time: 11:30 – 12:15
     title: Use AI to draft and get feedback on working papers
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/"
+    materials:
+    - label: "Skills"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/skills.zip"
+    - label: "Comment track"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-with-draft.zip"
+    - label: "Draft track"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-no-draft.zip"
   - time: 12:15 – 1:15
     title: Lunch
     kind: lunch
@@ -219,6 +264,13 @@ days:
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-3/reproducibility-skill/"
+    materials:
+    - label: "Demo project"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip"
+    - label: "Reproducibility skill"
+      url: "https://github.com/worldbank/wb-reproducible-research-repository/releases/latest/download/reproducibility-skill.zip"
+    - label: "Checklist"
+      url: "https://github.com/worldbank/wb-reproducible-research-repository/blob/main/ai-skills/reproducibility-skill/references/checklist.md"
   - time: 3:00 – 3:15
     title: Break
     kind: break

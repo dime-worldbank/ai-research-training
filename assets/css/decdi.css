@@ -546,6 +546,11 @@ body:has(.bootcamp) .page-header {
 .agenda td.title { font-weight: 500; }
 .agenda td.lead { color: var(--decdi-muted); font-size: 0.82rem; }
 .agenda td.link { white-space: nowrap; text-align: right; }
+.agenda td.materials { font-size: 0.78rem; line-height: 1.35; min-width: 9rem; }
+.main-content .bootcamp a.mat-link { display: block; color: var(--bc-dark); text-decoration: none; border-bottom: none; padding: 1px 0; white-space: nowrap; }
+.main-content .bootcamp a.mat-link::before { content: "↗ "; color: var(--bc-light); }
+.main-content .bootcamp a.mat-link[href$=".zip"]::before { content: "↓ "; }
+.main-content .bootcamp a.mat-link:hover { text-decoration: underline; }
 
 .main-content .bootcamp table.agenda tr td { background: #fff; }
 .main-content .bootcamp table.agenda tr.agenda-hands td { background: #fbf4fb; }
