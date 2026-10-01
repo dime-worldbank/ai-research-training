@@ -139,7 +139,7 @@ LLMs do not retain your project context between requests. We get better results 
 
 :::: {.columns}
 
-::: {.column width="20%" style="border: 1px solid #999; border-radius: 8px; padding: 1em;"}
+::: {.column style="width: 20%; border: 1px solid #999; border-radius: 8px; padding: 1em;"}
 **General Factual Question:**
 
 _Prompt:_ What is the capital of France?
@@ -147,7 +147,7 @@ _Prompt:_ What is the capital of France?
 _AI Answer:_ The capital of France is ...
 :::
 
-::: {.column width="20%" style="border: 1px solid #999; border-radius: 8px; padding: 1em;"}
+::: {.column style="width: 20%; border: 1px solid #999; border-radius: 8px; padding: 1em;"}
 **Specific Research Question:**
 
 _Prompt:_ What control variables are needed to make my regression valid?
