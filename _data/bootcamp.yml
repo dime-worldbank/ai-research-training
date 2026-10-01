@@ -197,6 +197,7 @@ days:
   - time: 9:10 – 10:00
     title: AI tools for evidence aggregation and literature review
     lead: Impact Analytics
+    link: "/bootcamp/sessions/day-3/literature-session/"
   - time: 10:00 – 10:15
     title: Break
     kind: break

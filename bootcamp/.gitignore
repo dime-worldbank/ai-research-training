@@ -14,5 +14,8 @@ sessions/**/*.tex
 # (render each deck to <session>/index.html with embed-resources: true)
 !sessions/**/index.html
 
+# source material for the literature session, not published
+sessions/day-3/literature-session/presentation*/
+
 # local machine config, not version controlled
 sharepoint-path.local.txt
