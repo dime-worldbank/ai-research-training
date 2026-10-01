@@ -1,6 +1,7 @@
 # Bootcamp agenda — single source for /bootcamp/ and each day page.
 # Session fields: time, title, lead, hands_on, kind (break|lunch|welcome), link (site path or https URL), external,
-# materials (list of {label, url}: files and repos participants use in the session; shown in the Materials column).
+# materials (list of {label, url}: files and repos participants use in the session; shown in the Materials column;
+# url is a full https URL or a site path like /bootcamp/...; .zip files are not published on the site, so link them via github.com/.../raw/...).
 name: AI-Enabled Research Bootcamp
 dates: Oct 1 & Oct 5–8, 2026
 agenda_url: "https://www.canva.com/design/DAHT37UVp3k/MqhtbPu8GPBX2F0ywXmRaQ/view?utm_content=DAHT37UVp3k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h232f439bda"

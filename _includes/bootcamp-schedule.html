@@ -12,7 +12,7 @@
 {%- elsif s.kind -%}
 {%- else -%}<span class="soon">Coming soon</span>{%- endif -%}
 </td><td class="materials">
-{%- for m in s.materials -%}<a class="mat-link" href="{{ m.url }}">{{ m.label }}</a>{%- endfor -%}
+{%- for m in s.materials -%}<a class="mat-link" href="{% if m.url contains '://' %}{{ m.url }}{% else %}{{ m.url | relative_url }}{% endif %}">{{ m.label }}</a>{%- endfor -%}
 </td></tr>
 {%- endif -%}
 {%- endfor -%}
