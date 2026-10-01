@@ -36,11 +36,8 @@ Find all GitHub Copilot-related resources at the WB here: [https://github.com/wo
 
 Requirements:
 
-- Be a member of at least one WB GitHub organization
-    - For example: [https://github.com/worldbank](https://github.com/worldbank) or [https://github.com/dime-worldbank](https://github.com/dime-worldbank)
-    - If you are not a member of any WB GitHub organization, request access [using this eServices request](https://worldbankgroup.service-now.com/wbg/en/join-github-organization-account-request?id=wbg_sc_catalog&sys_id=910e1739db1a54903c5960ab13961912).
 - Know your github username (hint: this is not your email address)
-- Send an email, _including your GitHub username_, to github@worldbank.org saying that you are requesting access to WB GitHub Copilot -- move to the next slide while waiting for confirmation
+- Send an email, _including your GitHub username_, to [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org) or share in the `Questions` channel in Teams saying that you are requesting access to WB GitHub Copilot -- move to the next slide while waiting for confirmation
 
 ## Install GitHub Copilot Extension
 

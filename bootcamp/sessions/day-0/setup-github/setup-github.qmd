@@ -99,3 +99,10 @@ You are done when the following objectives are completed:
 3. Install a Git client: GitHub Desktop
 4. Have requested to become a member of a WB GitHub organization account
 
+### GitHub Copilot License
+
+Before you go, request a GitHub Copilot license such that that is already done.
+
+Do so, by sending an email, _including your GitHub username_, to [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org) or sharing your username in the `Questions` channel in Teams saying that you are requesting access to WB GitHub Copilot
+
+Then wait for instructions in the confirmation from us.
