@@ -52,8 +52,6 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ::::
 
-
-
 ## Why is guidance for context important
 
 :::: {.columns .v-center-container}
@@ -169,9 +167,9 @@ It is usually reliable for generic tasks such as dashboards, API clients, visual
 - Has it seen your exact regression specification a thousand times?
 - Has it seen scripts cleaning your exact dataset a thousand times?
 
-### Agents can still be helpful in such tasks, but they need to be onboarded.
+### For agents to be productive in such tasks, they need to be onboarded
 
-And you know this, as you have done onboarding before...
+And you know how to do this, as you have done onboarding before...
 
 ## What Do RAs Know?
 
@@ -189,7 +187,7 @@ And you know this, as you have done onboarding before...
 ::: {.column width="50%" }
   - AI onboarding is similar in principle to RA onboarding.
   - Use resources previously used to onboard RAs as the starting point for onboarding AIs.
-  - Upload RA onboarding documents and ask the AI to summarize the information most relevant to contributing to code.
+  - When populating each section suggested in later slides, upload any RA onboarding documents you already have, and ask the AI to use information relevant to that section from those documents. Then edit as needed.
 :::
 
 ::::
@@ -243,9 +241,9 @@ Raw files are saved in data/raw.
 
 ## Content Format
 
-- Think of a memory file as project-specific prefix added to your prompts.
+- Again, think of a memory file as project-specific prefix added to your prompts.
 - This is project onboarding that the LLM needs to provide project-relevant answers.
-- Prompts are natural-language instructions without technical requirements, and so are memory files.
+- Prompts are natural-language instructions without technical requirements, and so are memory files - so it is really just an extension of your prompt.
 - Since memory files are added to each context window, they tend to be less verbose and use bullet points and other formatting that makes them concise.
 
 ## Set up
