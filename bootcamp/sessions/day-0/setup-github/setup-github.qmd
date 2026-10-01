@@ -85,3 +85,10 @@ You are done when the following objectives are completed:
 2. Get access to the Training Repository we will use in the next session
 3. Install a Git client: GitHub Desktop
 
+### GitHub Copilot License
+
+Before you go, request a GitHub Copilot license such that that is already done.
+
+Do so, by sending an email, _including your GitHub username_, to [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org) or sharing your username in the `Questions` channel in Teams saying that you are requesting access to WB GitHub Copilot
+
+Then wait for instructions in the confirmation from us.
