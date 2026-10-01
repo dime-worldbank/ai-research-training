@@ -3,9 +3,13 @@
 Welcome to the **AI-Enabled Research Bootcamp**. This directory contains the training agenda, curriculum materials, and session documentation designed to equip researchers and staff at the World Bank Group with practical, agentic AI workflows.
 
 
+## Contributing
+
+To add or update a session (slides, materials, or the agenda on the [bootcamp site](https://dime-worldbank.github.io/ai-research-training/bootcamp/)), see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Template
 
-To use the template for a new session, only copy the `bootcamp/sessions/template/presentation.qmd` file to the folder for that session. 
+To use the template for a new session, only copy the `bootcamp/sessions/template/_presentation.qmd` file to the folder for that session. 
 
 If you save it under the path `bootcamp/sessions/<day>/<session-topic>/<session-topic>.qmd`,  then all `../../..` relative paths within the presentation will continue to work correctly, and the template formatting will work out of the box.
 
