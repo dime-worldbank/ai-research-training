@@ -210,6 +210,31 @@ The Governance GP's **Reimagining Public Finance** initiative is updating approa
 
 # Exercise {background-color="#02375A"}
 
+## Before we jump in
+
+1. This exercise is meant for users who are **experienced coders** in R or Python. Since we have more R users than Python users, the exercise will occur in a R notebook, however advanced Python users will be able to follow along.
+2. **Why are we doing this exercise in MEGA?** Out-of-the-box support and compute!
+3. The purpose of this exercise is not to make you an expert in the MAI Factory API by the time you leave this room, but to show you what is possible when you combine MAI Factory and MEGA.
+
+## Quick concepts that will facilitate your understanding
+
+1. **Databricks:** Think of it as a shared computer in the cloud. More storage, more power, better collaboration.
+2. Databricks is a platform with lots of different features: it takes a long time to learn. I will just cover some concepts needed for the exercise.
+
+::: {.cards}
+::: {.card}
+**Workspace**
+
+A list of folders where you can organize your code scripts and notebooks.
+:::
+::: {.card}
+**Volume**
+
+A space where you can store documents, which you can then access from scripts and notebooks in the Workspace.
+:::
+:::
+
+
 ## Exercise: log in to the MEGA workspace
 
 1. Go to [the exercise workspace](https://adb-6102124407836814.14.azuredatabricks.net/browse/folders/4413675519955135?)
