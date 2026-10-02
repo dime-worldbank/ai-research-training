@@ -3,7 +3,7 @@ title: "How We Use AI Matters"
 subtitle: "Ethics, governance, and safe use at the World Bank Group"
 author: "Maria Reyes Retana"
 institute: DECDI, The World Bank
-date: "September 17, 2026"
+date: "September 29, 2026"
 format:
   decdi-revealjs:
     output-file: index.html
@@ -13,7 +13,7 @@ format:
     toc-title: "Contents"
     self-contained: true
     logo: "_extensions/decdi/logos/COLOR_WB_DEC.png"
-    footer: "AI Ethics, Governance & Safe Use | September 17, 2026"
+    footer: "AI Ethics, Governance & Safe Use | September 29, 2026"
     width: 1280
     height: 720
 ---
@@ -128,6 +128,7 @@ format:
 .shot-verdict{font-size:.62em;line-height:1.4;text-align:left;background:var(--pale);border-left:5px solid var(--cyan);padding:.4em .7em;border-radius:4px;color:var(--ink)}
 .flag-bad{color:#8E2A20;font-weight:700}
 .flag-ok{color:#155C3B;font-weight:700}
+.flag-mid{color:#B8860B;font-weight:700}
 
 /* ============ cards and diagrams ============ */
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5em;margin:.3em 0 .5em}
@@ -158,15 +159,6 @@ format:
 .case-line.with-shot{display:flex;gap:.9em;align-items:flex-start}
 .case-line.with-shot img{flex:0 0 44%;border-radius:3px;box-shadow:0 2px 9px rgba(0,0,0,.18)}
 .case-line.with-shot .ct{flex:1}
-
-/* ============ AI vs governance timeline ============ */
-.tl{display:grid;grid-template-columns:7.5em repeat(6,1fr);gap:.3em;font-size:.6em;margin:.3em 0 .4em;text-align:left}
-.tl .yr{font-weight:900;color:var(--navy);border-bottom:3px solid var(--navy);padding:.2em .3em;font-size:1.15em}
-.tl .lane{font-weight:900;color:#fff;border-radius:4px;padding:.45em .5em;display:flex;align-items:center}
-.tl .lane.ai{background:var(--cyan)} .tl .lane.gov{background:var(--navy)}
-.tl .ev{background:#F5F8FA;border-radius:4px;padding:.4em .45em;line-height:1.3;min-height:3.2em}
-.tl .ev.ai{border-left:4px solid var(--cyan)} .tl .ev.gov{border-left:4px solid var(--navy)}
-.tl .ev.empty{background:transparent;border:none}
 
 /* ============ risk x lifecycle matrix ============ */
 .rl{margin-top:.2em}
@@ -388,6 +380,13 @@ PICK.tool={
     '<tr><td class="k">Trains on your prompts?</td><td>Under a qualifying Workspace licence, Google states content is not human-reviewed and is not used to train models outside your domain &mdash.</td></tr>'+
     '<tr><td class="k">Policy</td><td><a href="https://knowledge.workspace.google.com/admin/gemini/gemini-for-google-workspace-faq">Workspace Gemini FAQ</a></td></tr>'+
     '</table>',
+  t_ghcop:'<table>'+
+    '<tr><td class="k">Status</td><td>Approved for WBG staff coding, under a Bank enterprise licence.</td></tr>'+
+    '<tr><td class="k">Cleared for</td><td class="flag-mid">Official Use Only. Not cleared for Confidential, Restricted, or Personal Data.</td></tr>'+
+    '<tr><td class="k">Trains on your code?</td><td>Not used to train GitHub&rsquo;s or OpenAI&rsquo;s models under the Bank&rsquo;s enterprise terms.</td></tr>'+
+    '<tr><td class="k">Still applies</td><td>Tool approval is not data authorization &mdash; check the classification before you point it at a file.</td></tr>'+
+    '<tr><td class="k">Policy</td><td><a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/">GitHub Copilot data usage</a></td></tr>'+
+    '</table>',
   t_gpt:'<table>'+
     '<tr><td class="k">Cleared for</td><td class="flag-bad">Public information only, and only under the Addendum&rsquo;s four conditions.</td></tr>'+
     '<tr><td class="k">Trains on your chats?</td><td class="flag-bad">Yes, unless you opt out.</td></tr>'+
@@ -399,6 +398,12 @@ PICK.tool={
     '<tr><td class="k">Trains on your chats?</td><td class="flag-bad">Yes, unless you turn it off. Consumer training became opt-out in September 2025.</td></tr>'+
     '<tr><td class="k">Retention</td><td>Up to 5 years with training on; 30 days with it off. Safety-flagged content is handled separately.</td></tr>'+
     '<tr><td class="k">Policy / settings</td><td><a href="https://www.anthropic.com/legal/privacy">Privacy policy</a> &middot; <a href="https://claude.ai/settings/data-privacy-controls">Turn training off</a></td></tr>'+
+    '</table>',
+  t_ccode:'<table>'+
+    '<tr><td class="k">Cleared for</td><td class="flag-bad">Public information only, and only under the Addendum&rsquo;s four conditions &mdash; same status as Claude or ChatGPT on a personal plan.</td></tr>'+
+    '<tr><td class="k">Trains on your data?</td><td>Depends on the plan underneath it: opt-out on a personal Pro/Max subscription, not used for training by default through the API.</td></tr>'+
+    '<tr><td class="k">Still applies</td><td class="flag-bad">Not an approved tool, and it reads and edits local files &mdash; check what else is in the working directory before pointing it at Bank data.</td></tr>'+
+    '<tr><td class="k">Policy</td><td><a href="https://code.claude.com/docs/en/data-usage">Claude Code data usage</a></td></tr>'+
     '</table>',
   t_gem:'<table>'+
     '<tr><td class="k">Cleared for</td><td class="flag-bad">Public information only, and only under the Addendum&rsquo;s four conditions.</td></tr>'+
@@ -724,78 +729,41 @@ Dwell on card four. Aggregate accuracy is compatible with total failure for the 
 
 Ask: which card describes the thing you clicked on the first slide?
 
-Transition: so where do we turn for guidance?
+Transition: so what does the Bank ask of us?
 
 Time: two minutes.
 :::
 
-# 2 &middot; Where the Guidance Comes From {background-color="#002A4F"}
+# 2 &middot; What the Bank Asks {background-color="#002A4F"}
 
-## AI moves faster than governance
+## Where the guidance comes from {.no-fit}
 
-```{=html}
-<div class="tl">
-  <div></div><div class="yr">2019&ndash;21</div><div class="yr">2022</div><div class="yr">2023</div><div class="yr">2024</div><div class="yr">2025</div><div class="yr">2026&ndash;27</div>
-  <div class="lane ai">AI</div>
-  <div class="ev empty"></div>
-  <div class="ev ai"><strong>ChatGPT</strong> puts generative AI in everyone&rsquo;s hands (Nov)</div>
-  <div class="ev ai">AI assistants built into office software</div>
-  <div class="ev ai">Models that read documents, images and data &middot; <strong>voice</strong> you can talk over</div>
-  <div class="ev ai">Coding assistants and agents that act on files and systems &middot; audio and video generation</div>
-  <div class="ev ai">&hellip;and whatever comes next</div>
-  <div class="lane gov">Governance</div>
-  <div class="ev gov"><strong>OECD</strong> AI Principles (2019) &middot; <strong>UNESCO</strong> Recommendation (2021)</div>
-  <div class="ev empty"></div>
-  <div class="ev gov"><strong>NIST</strong> AI RMF (Jan) &middot; <strong>WBG</strong> generative AI guidance (Apr) &middot; <strong>ISO/IEC 42001</strong> (Dec)</div>
-  <div class="ev gov"><strong>EU AI Act</strong> in force (Aug) &middot; OECD principles updated (May)</div>
-  <div class="ev gov">EU AI Act obligations begin to apply</div>
-  <div class="ev gov">EU AI Act obligations still phasing in</div>
-</div>
-<div class="consensus-band">Capabilities arrive in months; binding rules take longer. The gap between the two rows is where our judgment is more relevant.</div>
-```
-
-::: {.visual-note}
-**Bigger is not free.** Training and running these models costs energy, water, and minerals, and who bears that cost is an ethical question in its own right. It is beyond the scope of today; Crawford's *Atlas of AI* is where to start.
-
-Sources: [OECD](https://oecd.ai/en/ai-principles) · [UNESCO](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics) · [NIST AI RMF](https://airc.nist.gov/) · [ISO/IEC 42001](https://www.iso.org/artificial-intelligence/responsible-ai-ethics) · [EU AI Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+::: {.lede-line}
+There are a lot of frameworks: OECD, UNESCO, NIST, ISO, the EU AI Act, and more. It is hard to know which one applies to our work; but for WBG work, one of them governs, and they mostly agree on what matters.
 :::
-
-::: {.notes}
-Say: not "governance is absent", not "catching up". Principles came first; generative AI overtook them; the implementation questions are still open.
-
-The adoption line is the one to land: the top row is also a description of our own behaviour. A new model is announced and we switch, without asking whether the task needed it. Ask the room how many changed their default model in the last three months, and how many compared the two on an actual task.
-
-On the environmental note: say it in one sentence and do not open it up. It is real, it is an ethical question, and it is not today's session.
-
-Worth pointing at: voice and audio. A recorded interview or a consultation you transcribe with an AI tool is the same data question as a spreadsheet, and it does not feel like one. Most policies were written before anyone was uploading audio.
-
-Time: one and a half minutes. First slide to cut if behind.
-:::
-
-## The frameworks mostly agree {.no-fit}
 
 ```{=html}
 <div class="why-grid">
   <div class="why-card"><strong>They agree on</strong>Accountability &middot; fairness &middot; validity and security &middot; privacy and transparency &middot; watching for harm.</div>
-  <div class="why-card"><strong>They differ on</strong>Definitions, thresholds, remedies &mdash; and which of them actually binds you.</div>
+  <div class="why-card"><strong>They differ on</strong>Definitions, thresholds, remedies; and which of them actually binds you.</div>
 </div>
 ```
 
 ::: {.consensus-band}
-The hard part is not disagreement about what matters. It is knowing which document to follow for the task in front of you. For WBG work, the Bank&rsquo;s framework governs.
+The hard part is not disagreement about what matters. It is knowing which document to follow for the task in front of you. **For WBG work, the Bank&rsquo;s framework governs**; the five risks on the next slide.
+:::
+
+::: {.visual-note}
+**For reference, not for today:** [OECD](https://oecd.ai/en/ai-principles) · [UNESCO](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics) · [NIST AI RMF](https://airc.nist.gov/) · [ISO/IEC 42001](https://www.iso.org/artificial-intelligence/responsible-ai-ethics) · [EU AI Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
 :::
 
 ::: {.notes}
-Say: there is no single universal procedure, so we need one anchor. That anchor is the next slide.
-
-Ask (optional): has anyone been asked to comply with two of these at once? Usually a journal and the Bank.
+Reference only, do not open any of these. Say the one line: several international frameworks exist and mostly agree on what matters; for our work, the Bank's own framework is what governs, and that is the next slide.
 
 This slide is marked no-fit, so it keeps the theme's normal type size instead of being scaled up to fill the slide. If you add content it may overflow; remove {.no-fit} from the heading if it does.
 
-Time: one minute. Second slide to cut: the band is the whole point.
+Time: thirty seconds. First slide to cut if behind; the sources stay on the slide for anyone who wants them later.
 :::
-
-# 3 &middot; What the Bank Asks {background-color="#002A4F"}
 
 ## Five risks to consider when you use AI
 
@@ -867,7 +835,7 @@ Use the TACTIC Framework
 **Source:** [T.A.C.T.I.C. AI Checklist from learning module (Using AI Responsibly@WBG](https://wbg.sabacloud.com/Saba/Web_spf/NA1PRD0002/app/me/learningeventdetail/cours000000000050989?classId=dowbt000000000017453)
 :::
 
-# 4 &middot; The Risks {background-color="#002A4F"}
+# 3 &middot; The Risks {background-color="#002A4F"}
 
 ## How the next part works
 
@@ -1192,8 +1160,10 @@ Time: two minutes.
 <button class="pick-btn active" onclick="pickShow('tool','t_mai',this)">mAI</button>
 <button class="pick-btn" onclick="pickShow('tool','t_cop',this)">M365 Copilot</button>
 <button class="pick-btn" onclick="pickShow('tool','t_gemc',this)">Gemini<small>enterprise</small></button>
+<button class="pick-btn" onclick="pickShow('tool','t_ghcop',this)">GitHub Copilot</button>
 <button class="pick-btn" onclick="pickShow('tool','t_gpt',this)">ChatGPT<small>personal</small></button>
 <button class="pick-btn" onclick="pickShow('tool','t_cla',this)">Claude<small>personal</small></button>
+<button class="pick-btn" onclick="pickShow('tool','t_ccode',this)">Claude Code</button>
 <button class="pick-btn" onclick="pickShow('tool','t_gem',this)">Gemini<small>personal</small></button>
 </div><div class="pick-panel tall"></div></div>
 ```
@@ -1203,11 +1173,13 @@ Not on the approved list? Only under the four conditions of the [Acceptable Use 
 :::
 
 ::: {.notes}
-**[CHECK BEFORE DELIVERY]** Re-verify in the week of delivery: (i) the Bank's current position on AI agents; (ii) the training and retention terms in each personal-plan panel (Anthropic, OpenAI and Google all changed theirs within the last year); (iii) the mAI product-owner name and the "cleared for" rows, which come from internal guidance.
+**[CHECK BEFORE DELIVERY]** Re-verify in the week of delivery: (i) the Bank's current position on AI agents; (ii) the training and retention terms in each personal-plan panel (Anthropic, OpenAI and Google all changed theirs within the last year); (iii) the mAI product-owner name and the "cleared for" rows, which come from internal guidance; (iv) GitHub Copilot's licence terms and its Official Use Only clearance; (v) whether Claude Code's clearance still tracks the personal-plan tools, since Anthropic could ship a WBG-licensed version.
 
-Say: do not click all six. Click mAI, then one personal tool. The row that matters is "Cleared for". The rest is reference for the handout.
+Say: do not click all eight. Click mAI, then GitHub Copilot, then one personal tool. The row that matters is "Cleared for". The rest is reference for the handout.
 
-Line to land: a personal account with training switched off is still not an approved tool.
+Line to land: a personal account with training switched off is still not an approved tool &mdash; and that includes Claude Code run from a personal plan, which is cleared the same as Claude or ChatGPT on the web: public information only.
+
+GitHub Copilot is different: it is licensed through the Bank, so it is approved &mdash; but only for Official Use Only data, not Confidential or Restricted, unlike mAI and M365 Copilot.
 
 Time: two minutes. Cut this one to sixty seconds if you are behind: say the line, show mAI, move on.
 :::
@@ -1325,7 +1297,7 @@ Time: two minutes.
 :::
 
 
-# 5 &middot; Where In The Work {background-color="#002A4F"}
+# 4 &middot; Where In The Work {background-color="#002A4F"}
 
 ## Compliance is the floor
 

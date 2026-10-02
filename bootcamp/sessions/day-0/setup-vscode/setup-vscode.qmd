@@ -1,0 +1,88 @@
+---
+title: "Set Up VS Code on Your Computer"
+subtitle: "Hands-on · Day 0 · Setup for AI-enabled Research"
+author: "Kristoffer Bjärkefur"
+institute: "Impact Analytics"
+date: 1 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+
+format:
+  bootcamp-revealjs:
+    embed-resources: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../../../_extensions/bootcamp/setup_palettes.R")
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Objective
+
+- Install VS Code
+- Open your project folder in VS Code's so called _workspace_.
+- Optionally install common extensions
+- Familiarize yourself with VS Code's interface and features
+
+## Installing VS Code - WB Computer
+
+Install Visual Studio Code (VS Code). This is the code editor we will use during the training.
+
+**WB computer**:
+
+- Open *Software Center* from the Windows Start menu
+- Search for **Visual Studio Code** or **vscode**
+- Select the software and click **Install**
+
+For WB computers, even when you use Software Center, ITS appreciates it if you record the installation with a [Software Installation Request](https://worldbankgroup.service-now.com/wbg?id=wbg_sc_cat_item_guide&sys_id=e643726c1bb73ed02685c8c5624bcbfb). This helps ITS understand demand and allocate resources to support GitHub Desktop.
+
+## Installing VS Code - Personal Computer
+
+Install Visual Studio Code (VS Code). This is the code editor we will use during the training.
+
+**Personal computer**:
+
+- Go to [https://code.visualstudio.com/](https://code.visualstudio.com/)
+- Download and install VS Code
+
+## Enable Menu Bar and Status Bar
+
+We will make use of the "_menu bar_" and "_status bar_" in VS Code in our instructions. These are hidden by default. So in order to follow our instructions, you need to enable them.
+
+Follow the instructions in the image below to enable the menu bar. Note how this menu then moves to the top of your window. Then find the **View** menue in the now enabled menu bar and go to **Appearance** to enable the status bar as well.
+
+
+:::: {.columns}
+::: {.column width="20%" }
+:::
+
+::: {.column width="60%" }
+  ![](./img/enable-menu-status-bar.png)
+:::
+
+::: {.column width="20%" }
+:::
+::::
+
+
+
+## Common Extensions
+
+Install common extensions for your preferred programming languages and workflows. If you use several, there is no conflict in installing multiple extensions at the same time. These are popular extensions, but there is no single "correct" set for everyone.
+
+- Stata: `Stata Enhanced`
+- Python: `Python`
+- R: `R`/`R Syntax`
+- LaTeX: `LaTeX Workshop`
+- Quarto: `Quarto`
+- Markdown: `Markdown Preview Enhanced`
+
+# Explore Demoed Features {background-color="#530153"}
+
+{{< include ../vscode-demo/_vscode-demo.qmd >}}

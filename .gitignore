@@ -90,6 +90,10 @@
 # Powershell script
 !/**/*.ps1
 
+# Mermaid
+!/**/*.mmd
+!/**/mermaid-config.json
+
 #######################
 # Include some additional file formats in any output folder. You might have
 # to change the name of the Output folder to whatever it is called in your
@@ -110,6 +114,10 @@
 # using different names and then you must edit the lines below accordingly.
 password.*
 passwords.*
+
+# Jekyll local build output
+_site/
+.jekyll-cache/
 password/
 passwords/
 .Rproj.user
