@@ -52,8 +52,6 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ::::
 
-
-
 ## Why is guidance for context important
 
 :::: {.columns .v-center-container}
@@ -139,7 +137,7 @@ LLMs do not retain your project context between requests. We get better results 
 
 :::: {.columns}
 
-::: {.column style="width: 20%; border: 1px solid #999; border-radius: 8px; padding: 1em;"}
+::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 1em;"}
 **General Factual Question:**
 
 _Prompt:_ What is the capital of France?
@@ -147,7 +145,7 @@ _Prompt:_ What is the capital of France?
 _AI Answer:_ The capital of France is ...
 :::
 
-::: {.column style="width: 20%; border: 1px solid #999; border-radius: 8px; padding: 1em;"}
+::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 1em;"}
 **Specific Research Question:**
 
 _Prompt:_ What control variables are needed to make my regression valid?
@@ -169,9 +167,9 @@ It is usually reliable for generic tasks such as dashboards, API clients, visual
 - Has it seen your exact regression specification a thousand times?
 - Has it seen scripts cleaning your exact dataset a thousand times?
 
-### Agents can still be helpful in such tasks, but they need to be onboarded.
+### For agents to be productive in such tasks, they need to be onboarded
 
-And you know this, as you have done onboarding before...
+And you know how to do this, as you have done onboarding before...
 
 ## What Do RAs Know?
 
@@ -189,7 +187,7 @@ And you know this, as you have done onboarding before...
 ::: {.column width="50%" }
   - AI onboarding is similar in principle to RA onboarding.
   - Use resources previously used to onboard RAs as the starting point for onboarding AIs.
-  - Upload RA onboarding documents and ask the AI to summarize the information most relevant to contributing to code.
+  - When populating each section suggested in later slides, upload any RA onboarding documents you already have, and ask the AI to use information relevant to that section from those documents. Then edit as needed.
 :::
 
 ::::
@@ -243,22 +241,40 @@ Raw files are saved in data/raw.
 
 ## Content Format
 
-- Think of a memory file as project-specific prefix added to your prompts.
+- Again, think of a memory file as project-specific prefix added to your prompts.
 - This is project onboarding that the LLM needs to provide project-relevant answers.
-- Prompts are natural-language instructions without technical requirements, and so are memory files.
+- Prompts are natural-language instructions without technical requirements, and so are memory files - so it is really just an extension of your prompt.
 - Since memory files are added to each context window, they tend to be less verbose and use bullet points and other formatting that makes them concise.
 
-### Set up
+## Set up
 
-- Just create a file named `AGENTS.md` in your project directory - we recommend you using that file name to make your project agent-agnostic.
+:::: {.columns .v-center-container}
+
+::: {.column width="70%" }
+- Just create a file named `AGENTS.md` in your root folder of your project.
+  - If you have multiple projects in your workspace, create an `AGENTS.md` file in each root to describe that part of the workspace.
+- We recommend you using that file name to make your project agent-agnostic.
+:::
+
+::: {.column width="30%" }
+![](./img/new-memory-file.png)
+:::
+::::
 
 ## Memory File Content
 
-- There is no universal best practice yet for these files.
-- Coding agents are made by and for software developers.
-- Making these agents work for our field is not only a technical question; it is also a domain-knowledge question.
+:::: {.columns .v-center-container}
 
-### Possible Sections
+::: {.column width="50%" }
+
+- Making these agents work for your specific field is not only a technical question; it is also a domain-knowledge question.
+- Each field still has a lot to learn before fully understanding how to best onboard AI agents for their specific needs.
+- There is no universal best practice yet for these files - but we will offer several examples commonly used.
+:::
+
+::: {.column width="30%" }
+
+### Common Sections
 
 - Project description
 - Folder structure
@@ -266,6 +282,9 @@ Raw files are saved in data/raw.
 - Software preferences
 - Research design
 - Rules
+
+:::
+::::
 
 ## Project Description
 
@@ -282,8 +301,6 @@ What makes your project different from textbook examples or private-sector data 
 | Developing-country context | Exact country context |
 | The novel research question | Just the general research topic |
 | The type of data sources | A generic description of the topic |
-
-
 
 ## Folder Structure and Important Files
 
@@ -379,7 +396,6 @@ Treatment assignment strategy file: `paper/research-design/treatment_assignment.
 - Include the randomization strategy, units of randomization, treatment modality, and so on.
 - Include preferences such as "always use OLS."
 
-
 ## Rules
 
 Telling the agent what not to do is just as important as telling it what to do.
@@ -389,6 +405,7 @@ Telling the agent what not to do is just as important as telling it what to do.
 - Packages and tools not to use
 - Files not to edit
 - Anything else you have ever told an RA not to do
+- Do not execute R code using the command line command `R`, always use `R.exe` <- WB Windows computer requirement
 
 # Thank You! {background-color="#530153"}
 
