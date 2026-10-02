@@ -1,6 +1,6 @@
 ---
-title: "Making AI Agents Work for You"
-subtitle: "Writing good prompts and building reusable skills · Day 1 · Intro to Agentic AI at the WBG"
+title: "Making AI Agents Work for You - Skills and Prompts"
+subtitle: "Day 1 · Intro to Agentic AI at the WBG"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
 date: 5 Oct, 2026
@@ -13,6 +13,7 @@ logos:
 format:
   bootcamp-revealjs:
     embed-resources: true
+    output-file: index.html
 ---
 
 ```{r}
@@ -31,9 +32,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
   - What are skills?
   - What are their formats?
   - How do I install and use them?
-- Exercise
-  - Compare agents without onboarding, with a memory file, and with skills
-  - Optional exercise demonstrating full coding-agent capability
+- Prompting
 
 # Recap and Introduction {background-color="#530153"}
 
@@ -41,9 +40,12 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 - AI is a skilled but naive RA requiring guidance.
 - Agents search files for prompt-relevant guidance to add to the context window.
-- Use memory files for project-specific content you always want AI to find or that cannot be found in your files.
-- Cramming every use case into the memory file makes it dominate the context window.
-- Irrelevant information competes for and distracts the AI's attention from the specific prompt.
+- Use memory files for:
+  - Project-specific content you always want AI to gather first
+  - Relevant context that cannot be found in your files.
+- Caution:
+  - Cramming every use case into the memory file makes it dominate the context window.
+  - Irrelevant information in the context window competes for and distracts the AI's attention from the specific task.
 
 ## Progressive Disclosure
 
@@ -64,14 +66,12 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 | | Memory files | Skills |
 |---|---|---|
-| Typical purpose | Domain knowledge and instructions relevant for every prompt | Detailed instructions relevant only for specific prompt use cases |
+| Typical purpose | Domain knowledge and instructions relevant for every prompt | Detailed instructions relevant only for specific tasks |
 | Added to every new context window? | Yes | No, only when the agent thinks they are needed |
 | Need to be token-efficient? | Yes, because they are always loaded | Much less so, because they are loaded only when relevant |
-| Project-specific or domain-specific? | Mostly project-specific; reuse but adapt common sections | Domain-specific, including tools, research fields, econometrics, and personal preferences; reusable across projects |
+| Project-specific or domain-specific? | Mostly project-specific; reuse from other projects but adapt common sections | Domain-specific, including tools, research fields, econometrics, and personal preferences; typically reusable across projects |
 
 ## Efficient Way to Provide Details
-
-
 
 :::: {.columns .v-center-container}
 
@@ -90,7 +90,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 :::
 
 ::: {.column width="25%" }
-  ![skills and descriptions](../img/skills-and-descriptions.png)
+  ![](../img/context-windows-skills.png)
 :::
 
 ::::
