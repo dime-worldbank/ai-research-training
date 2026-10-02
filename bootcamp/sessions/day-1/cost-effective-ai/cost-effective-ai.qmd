@@ -12,8 +12,9 @@ logos:
 
 format:
   bootcamp-revealjs:
-    embed-resources: true
     fragments: true
+    embed-resources: true
+    output-file: index.html
 
 ---
 

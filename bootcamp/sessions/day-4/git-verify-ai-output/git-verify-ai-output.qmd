@@ -15,7 +15,9 @@ logos:
 
 format:
   bootcamp-revealjs:
+    fragments: true
     embed-resources: true
+    output-file: index.html
 ---
 
 ```{r}
