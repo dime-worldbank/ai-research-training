@@ -9,21 +9,27 @@ Each session's slides, demo packages, and setup instructions are published here 
 ## Structure
 
 ```
-ai-roadmap-materials/
-├── index.md          landing page for the site (session list)
-├── _config.yml       GitHub Pages configuration
-└── sessions/
-    └── 01-reproducibility-packages/
-        ├── README.md      session overview + setup prerequisites
-        ├── slides/        the session deck
-        └── materials/     demo package and other files
+ai-research-training/
+├── index.md             site landing page
+├── roadmap.md           AI for Research series: session list
+├── _config.yml          GitHub Pages configuration
+├── _data/bootcamp.yml   bootcamp agenda: sessions, slide links, materials
+├── _includes/ _layouts/ assets/   site templates and styles
+├── sessions/            AI for Research series, one folder per session
+│   └── ai-skills-reproducibility/
+│       ├── README.md        session overview and setup
+│       ├── slides/          the session deck (index.html is published)
+│       └── materials/       demo package and other files
+└── bootcamp/            AI-Enabled Research Bootcamp
+    └── sessions/<day>/<topic>/   one folder per bootcamp session
 ```
+
+The site is built by GitHub Pages from `main`. It serves the files committed to the repo; decks are rendered locally to `index.html` and committed.
 
 ## Adding a session
 
-1. Copy an existing session folder under `sessions/`, renamed with the next number (e.g. `02-automating-outputs`).
-2. Replace its `README.md`, `slides/`, and `materials/` with the new session's content.
-3. Add a row to the session table in `index.md` and flip its status to a link once materials are ready.
+- **Bootcamp sessions:** see [`bootcamp/CONTRIBUTING.md`](bootcamp/CONTRIBUTING.md).
+- **AI for Research series:** add a folder under `sessions/` with a `README.md`, `slides/` (deck rendered to `slides/index.html`) and `materials/`, then add a row to the session table in `roadmap.md`.
 
 ## Sessions
 
