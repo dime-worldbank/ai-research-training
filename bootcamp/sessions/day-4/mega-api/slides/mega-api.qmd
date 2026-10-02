@@ -235,6 +235,94 @@ A space where you can store documents, which you can then access from scripts an
 :::
 
 
+## The example workflow we will try to replicate: Summarizing and coding interviews in a foreign language
+
+::: {.pipeline}
+::: {.phase}
+[Design]{.phase-label}
+
+::: {.flow .centered}
+::: {.step}
+**Themes**
+
+What we want to learn about
+:::
+::: {.arrow}
+→
+:::
+::: {.step}
+**Questions**
+
+Turn each theme into questions
+:::
+::: {.arrow}
+→
+:::
+::: {.step}
+**Questionnaire**
+
+Order and finalize the instrument
+:::
+:::
+:::
+::: {.phase-arrow}
+→
+:::
+::: {.phase}
+[Fieldwork]{.phase-label}
+
+::: {.flow .centered}
+::: {.step}
+**Interviews**
+
+Conducted in the local language
+:::
+::: {.arrow}
+→
+:::
+::: {.step}
+**Transcribe**
+
+Audio to text
+:::
+::: {.arrow}
+→
+:::
+::: {.step .mega}
+**Translate**
+
+Into the analysis language
+:::
+:::
+:::
+::: {.phase-arrow}
+→
+:::
+::: {.phase}
+[Analysis]{.phase-label}
+
+::: {.flow .centered}
+::: {.step .mega}
+**Code**
+
+Read and map answers to set categories
+:::
+::: {.arrow}
+→
+:::
+::: {.step}
+**Analyze**
+
+Patterns across interviews
+:::
+:::
+:::
+:::
+
+::: {.pipeline-legend}
+[ ]{.swatch} Steps we will do with AI in this exercise
+:::
+
 ## Exercise: log in to the MEGA workspace
 
 1. Go to [the exercise workspace](https://adb-6102124407836814.14.azuredatabricks.net/browse/folders/4413675519955135?)

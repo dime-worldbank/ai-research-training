@@ -133,3 +133,74 @@ $code-block-bg: #F5F9FC;
     p { margin: 0 0 0.4em 0; }
   }
 }
+
+// phased pipeline: ::: {.pipeline} of ::: {.phase} ([label]{.phase-label} + a .flow), joined by ::: {.phase-arrow}
+.reveal .pipeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0.3em;
+  margin-top: 2.2em;
+
+  .phase {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid $analytics-light;
+    border-radius: 8px;
+    padding: 0.5em 0.5em 0.6em;
+
+    > p { margin: 0 0 0.3em 0; text-align: center; }
+
+    .flow {
+      flex: 1 1 auto;
+      margin: 0;
+      font-size: 0.52em;
+    }
+
+    .step {
+      min-width: 0;
+      min-height: 9em;
+      padding: 0.8em 0.4em;
+    }
+  }
+
+  // phase width follows its number of steps (3, 3, 2) so all steps are equal
+  .phase { flex: 3 1 0; min-width: 0; }
+  .phase:last-child { flex: 2 1 0; }
+
+  .phase-label {
+    display: inline-block;
+    background: $analytics-dark;
+    color: #FFFFFF;
+    border-radius: 999px;
+    padding: 0.05em 0.8em;
+    font-weight: 700;
+    font-size: 0.6em;
+  }
+
+  .phase-arrow {
+    flex: 0 0 auto;
+    align-self: center;
+    color: $analytics-dark;
+    font-size: 1.4em;
+    font-weight: 700;
+
+    p { margin: 0; }
+  }
+}
+
+// legend under a pipeline: ::: {.pipeline-legend} with a [ ]{.swatch}
+.reveal .pipeline-legend {
+  margin-top: 1em;
+  font-size: 0.6em;
+  color: $analytics-dark;
+
+  .swatch {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    margin-right: 0.4em;
+    border-radius: 3px;
+    background: $analytics-dark;
+  }
+}

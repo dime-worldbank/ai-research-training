@@ -32,6 +32,14 @@
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Load the packages the notebook uses:
+# MAGIC - `httr2` builds and sends the HTTP requests to the API, and `jsonlite` reads the JSON the model returns
+# MAGIC - `dplyr`, `purrr`, `stringr`, `tibble` and `tidyr` handle the data wrangling and text processing
+# MAGIC - `ggplot2` is there in case you want to plot the coded results at the end
+
+# COMMAND ----------
+
 library(httr2)
 library(jsonlite)
 library(dplyr)
@@ -43,6 +51,15 @@ library(ggplot2)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Set the two addresses every API call needs:
+# MAGIC - `api_base_url` is the MAI Factory gateway. MEGA stores it in the environment variable
+# MAGIC   `CONVERSATIONALAI_BASE_URL`, so we read it from there instead of typing it out.
+# MAGIC - `CLAUDE_ENDPOINT` names the model we want behind that gateway, in this case Claude Sonnet 4.6.
+# MAGIC   To try a different model, swap in another endpoint from the MAI Factory catalog.
+
+# COMMAND ----------
+
 # The API base URL is available as an environment variable in MEGA
 api_base_url <- Sys.getenv("CONVERSATIONALAI_BASE_URL")
 
@@ -51,13 +68,36 @@ CLAUDE_ENDPOINT <- "https://azapim.worldbank.org/maifactory/bedrock/model/us.ant
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Point to the two interview transcripts. They are stored in a Databricks **Volume**, which is
+# MAGIC why the paths start with `/Volumes/...`. Nothing is read yet; we only save the paths.
+
+# COMMAND ----------
+
 int1_path <- "/Volumes/prd_mega/spytho27/vpytho27/Workspace/mai_exercise/Interview 1.txt"
 int2_path <- "/Volumes/prd_mega/spytho27/vpytho27/Workspace/mai_exercise/Interview 2.txt"
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC `%run` executes the `Coding_Rubric` notebook inside this session, as if its code were pasted
+# MAGIC here. Afterwards we have a data frame called `coding_rubric` with one row per variable (20 in
+# MAGIC total) and these columns: `theme_code`, `theme_label`, `variable_id`, `guide_question`
+# MAGIC and `category_options` (the allowed answers, separated by `|`).
+
+# COMMAND ----------
+
 # Load the Coding Rubric
 %run "./Coding_Rubric"
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC Two settings used later on:
+# MAGIC - `interviewers` lists the people who asked the questions. Any turn spoken by them is dropped, so
+# MAGIC   only the interviewee's answers get translated and coded.
+# MAGIC - `DEMO_CHUNKS` caps how many chunks we send to the API while we test each step on Interview 1.
+# MAGIC   This keeps the demo quick and cheap; the final run at the end processes everything.
 
 # COMMAND ----------
 
@@ -73,7 +113,19 @@ DEMO_CHUNKS <- 3
 # MAGIC ## 1. Conversational AI gateway
 # MAGIC
 # MAGIC Every model is reached through the same gateway URL, with the
-# MAGIC actual model chosen via the `mai-endpoint` query parameter. `call_conversational_ai()` wraps that pattern once 
+# MAGIC actual model chosen via the `mai-endpoint` query parameter. `call_conversational_ai()` wraps that pattern once
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `call_conversational_ai()` sends one request to the gateway and returns the response as an R list.
+# MAGIC Step by step, it:
+# MAGIC 1. adds `mai-endpoint` (which model to use), plus any extra parameters, to the URL as query parameters
+# MAGIC 2. attaches `payload` (the prompt and its settings) as the JSON body of the request
+# MAGIC 3. retries up to 3 times if the request fails, waiting 2 and then 4 seconds between attempts
+# MAGIC 4. sends the request and converts the JSON response into an R list
+# MAGIC
+# MAGIC This function works for any model in the catalog; it doesn't know anything about Claude.
 
 # COMMAND ----------
 
@@ -89,6 +141,18 @@ call_conversational_ai <- function(endpoint, payload, extra_params = list()) {
   resp_body_json(resp)
 }
 
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `call_claude()` is a Claude-specific wrapper around `call_conversational_ai()`, so the rest of the
+# MAGIC notebook can send a prompt and get text back in a single line. It:
+# MAGIC 1. builds the payload in the format Claude expects: a single user message with the prompt, and
+# MAGIC    `max_tokens`, the maximum length of the reply
+# MAGIC 2. passes `temperature` along if you set one. A temperature of 0 makes the output as consistent
+# MAGIC    as possible from one run to the next, which is what we want for translation and coding.
+# MAGIC 3. sends the request to `CLAUDE_ENDPOINT` and pulls the reply text out of the response
+
+# COMMAND ----------
 
 # Setup: one call equals one prompt in, one text response out.
 call_claude <- function(prompt, max_tokens = 2048, temperature = NULL) {
@@ -109,8 +173,15 @@ call_claude <- function(prompt, max_tokens = 2048, temperature = NULL) {
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC A quick test before we build anything on top of the connection: send a short prompt and print
+# MAGIC Claude's reply. If you see a sensible answer, the gateway, the endpoint and our two functions
+# MAGIC all work. If you get an error instead, fix it here before moving on.
+
+# COMMAND ----------
+
 #Let's test if it works
-call_claude("I say ping, you say?")
+call_claude("Knock knock?")
 
 # COMMAND ----------
 
@@ -119,7 +190,20 @@ call_claude("I say ping, you say?")
 # MAGIC
 # MAGIC The transcripts are txt documents where each paragraph is one speaker turn:
 # MAGIC a "Speaker Name   H:MM" header line, followed by the (often auto-transcribed
-# MAGIC and imperfect) spoken text. 
+# MAGIC and imperfect) spoken text.
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `read_transcript_paragraphs()` reads a transcript file into a character vector with one element per
+# MAGIC paragraph. It:
+# MAGIC 1. reads the file line by line as UTF-8, so Italian accents come through correctly
+# MAGIC 2. removes the invisible line separator (`LINE_SEP`) that Word sometimes leaves at the start of a
+# MAGIC    line, then trims surrounding spaces
+# MAGIC 3. drops empty lines
+# MAGIC
+# MAGIC Inside each paragraph, the speaker header and the spoken text are still separated by `LINE_SEP`.
+# MAGIC The next cell uses it to split them.
 
 # COMMAND ----------
 
@@ -128,10 +212,23 @@ LINE_SEP <- intToUtf8(8232)
 
 read_transcript_paragraphs <- function(path) {
   raw <- readLines(path, encoding = "UTF-8", warn = FALSE)
-  raw <- str_remove(raw, paste0("^", LINE_SEP)) 
+  raw <- str_remove(raw, paste0("^", LINE_SEP))
   raw <- str_trim(raw)
   raw[nzchar(raw)]
 }
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `turn_pattern` is a regular expression that recognizes a speaker turn and splits it into three
+# MAGIC parts (capture groups):
+# MAGIC 1. **speaker:** a name made of letters (including accented ones), spaces, apostrophes and periods
+# MAGIC 2. **timestamp:** `M:SS` or `H:MM:SS`, for example `0:03` or `1:02:45`
+# MAGIC 3. **text:** everything after the `LINE_SEP` that follows the timestamp
+# MAGIC
+# MAGIC `dotall = TRUE` lets the text part run across several lines, so a long answer is kept whole.
+
+# COMMAND ----------
 
 # Matches "Speaker Name   0:03<LINE_SEP><turn text, possibly several sentences>"
 # so that we can separate interviewer and interviewee transcription
@@ -139,6 +236,18 @@ turn_pattern <- regex(
   paste0("^\\s*([A-Za-zÀ-ÖØ-öø-ÿ' .]+?)\\s+(\\d{1,2}:\\d{2}(?::\\d{2})?)", LINE_SEP, "(.*)$"),
   dotall = TRUE
 )
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `parse_turns()` applies `turn_pattern` to every paragraph and returns a table with one row per
+# MAGIC speaker turn and three columns: `speaker`, `timestamp` and `text_it` (the Italian text).
+# MAGIC
+# MAGIC Paragraphs that don't match the pattern, such as the title, the date or "recording started",
+# MAGIC are dropped. In the text, any remaining line separators are replaced with spaces and repeated
+# MAGIC whitespace is collapsed.
+
+# COMMAND ----------
 
 # Paragraphs that don't match (title, date, "recording started/stopped") are
 # metadata, not spoken turns, and can be dropped.
@@ -151,6 +260,17 @@ parse_turns <- function(paragraphs) {
     text_it = str_squish(str_replace_all(m[matched, 4], LINE_SEP, " "))
   )
 }
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC Now we run both functions on Interview 1: read the paragraphs, parse them into turns, and
+# MAGIC filter out every turn spoken by one of the `interviewers`. The result, `int1_turns`, holds only
+# MAGIC the interviewee's answers.
+# MAGIC
+# MAGIC `display()` shows the table, and `count()` lists the speakers left with their number of turns.
+# MAGIC Check that no interviewer names appear in that count. If one does, their name is spelled
+# MAGIC differently in the transcript than in `interviewers`.
 
 # COMMAND ----------
 
@@ -171,7 +291,19 @@ count(int1_turns, speaker)
 # MAGIC Sending one turn per API call would be slow and would strip away
 # MAGIC conversational context (a short "Ok." only makes sense next to the question
 # MAGIC that prompted it). Instead we group consecutive turns into chunks up to a
-# MAGIC character budget to stay comfortably inside the model's context window. 
+# MAGIC character budget to stay comfortably inside the model's context window.
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `chunk_turns()` adds a `chunk_id` column that assigns every turn to a chunk. It:
+# MAGIC 1. estimates the size of each turn: the length of the text, plus the speaker name, plus 10
+# MAGIC    characters for the timestamp and separators
+# MAGIC 2. goes through the turns in order, adding each one to the current chunk
+# MAGIC 3. starts a new chunk when the next turn would push the current one over `max_chars` (3,000
+# MAGIC    characters by default)
+# MAGIC
+# MAGIC Turns are never split or reordered. A single turn longer than `max_chars` becomes a chunk on its own.
 
 # COMMAND ----------
 
@@ -192,6 +324,16 @@ chunk_turns <- function(turns, max_chars = 3000) {
   turns
 }
 
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `format_turns_block()` turns a table of turns into the plain text we paste into a prompt, with
+# MAGIC one line per turn in the form `Speaker | Timestamp | Text`. The `text_col` argument picks which
+# MAGIC text to use: `"text_it"` for the Italian original when we translate, `"text_en"` for the English
+# MAGIC translation when we code.
+
+# COMMAND ----------
+
 # Render a set of turns into the plain-text block we hand to the model, and
 # back again once the model returns the same shape translated.
 format_turns_block <- function(turns_df, text_col) {
@@ -202,7 +344,20 @@ format_turns_block <- function(turns_df, text_col) {
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 4. Step 1 - Translate 
+# MAGIC Apply `chunk_turns()` to Interview 1, then count the turns in each chunk. The number of rows in
+# MAGIC this count is the number of translation calls the full interview needs.
+
+# COMMAND ----------
+
+# Assign each turn of the first interview to a chunk
+int1_turns <- chunk_turns(int1_turns)
+
+count(int1_turns, chunk_id)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## 4. Step 1 - Translate
 # MAGIC
 # MAGIC We ask the model to translate turn-by-turn and preserve the
 # MAGIC `Speaker | Timestamp | Text` structure exactly, so the response can be
@@ -210,14 +365,27 @@ format_turns_block <- function(turns_df, text_col) {
 # MAGIC format is what makes an LLM call usable as a pipeline step rather than a
 # MAGIC one-off chat answer.
 # MAGIC
-# MAGIC **Note on the translated transcript:** as the exercise is set up, the 
-# MAGIC translation lives only in memory for the duration of this function call 
+# MAGIC **Note on the translated transcript:** as the exercise is set up, the
+# MAGIC translation lives only in memory for the duration of this function call
 # MAGIC it's used to build the coding prompt and then discarded. That's fine for
 # MAGIC this exercise, but it means you can't go back later to re-read the full
 # MAGIC English transcript against a coded quote, and re-coding with a revised
 # MAGIC rubric means paying to re-translate. A production version of this
-# MAGIC pipeline save the translation (e.g. to a CSV file) as its own output, 
+# MAGIC pipeline save the translation (e.g. to a CSV file) as its own output,
 # MAGIC separate from the coded table.
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `build_translation_prompt()` writes the instructions for one chunk. The prompt has three parts:
+# MAGIC 1. **context:** what the text is (an auto-transcribed Italian interview about EU-funded programme
+# MAGIC    monitoring) and what the translation is for
+# MAGIC 2. **rules:** keep names and timestamps unchanged, translate literally without summarizing,
+# MAGIC    handle transcription errors sensibly, and return only the translated lines
+# MAGIC 3. **the chunk itself**, formatted by `format_turns_block()` using the Italian text
+# MAGIC
+# MAGIC Asking for the same `Speaker | Timestamp | Text` format we send is what lets the next function
+# MAGIC read the answer back into the table.
 
 # COMMAND ----------
 
@@ -241,6 +409,21 @@ build_translation_prompt <- function(chunk_df) {
   )
 }
 
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `parse_translation_response()` reads the model's reply back into the chunk's table. It:
+# MAGIC 1. splits the reply into lines and drops blank ones
+# MAGIC 2. splits each line on `|` into speaker, timestamp and text
+# MAGIC 3. checks that the reply has exactly one line per turn we sent
+# MAGIC
+# MAGIC If the counts match, the third part of each line becomes a new `text_en` column, matched to the
+# MAGIC turns by position. If they don't match (the model merged or skipped a line), it shows a warning
+# MAGIC and copies the Italian text into `text_en` for that chunk, rather than risk attaching a
+# MAGIC translation to the wrong turn.
+
+# COMMAND ----------
+
 parse_translation_response <- function(response_text, chunk_df) {
   lines <- str_split(str_trim(response_text), "\n")[[1]]
   lines <- lines[nzchar(str_trim(lines))]
@@ -260,6 +443,15 @@ parse_translation_response <- function(response_text, chunk_df) {
   chunk_df %>% mutate(text_en = str_trim(parts[, 3]))
 }
 
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `translate_chunk()` chains the three translation steps for one chunk: build the prompt, send it
+# MAGIC to Claude with `temperature = 0` and room for up to 3,000 tokens of output, and parse the reply.
+# MAGIC It returns the chunk's table with the `text_en` column added.
+
+# COMMAND ----------
+
 translate_chunk <- function(chunk_df) {
   prompt <- build_translation_prompt(chunk_df)
   response <- call_claude(prompt, max_tokens = 3000, temperature = 0)
@@ -268,10 +460,22 @@ translate_chunk <- function(chunk_df) {
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Now we translate the first few chunks of Interview 1:
+# MAGIC 1. `split()` turns `int1_turns` into a list with one table per `chunk_id`
+# MAGIC 2. `head(..., DEMO_CHUNKS)` keeps the first 3 chunks
+# MAGIC 3. `map_dfr()` runs `translate_chunk()` on each chunk (one API call each) and stacks the results
+# MAGIC    into one table, `int1_demo`
+# MAGIC
+# MAGIC The table shows the Italian and English text side by side, so you can check the translation
+# MAGIC line by line.
+
+# COMMAND ----------
+
 #Let's try it on some chunks!
 
 int1_demo <- map_dfr(
-  split(int1_turns, int1_turns$chunk_id)[1:DEMO_CHUNKS],
+  head(split(int1_turns, int1_turns$chunk_id), DEMO_CHUNKS),
   translate_chunk
 )
 
@@ -290,6 +494,20 @@ int1_demo %>% select(speaker, timestamp, text_it, text_en) %>% display()
 # MAGIC   joined with `[...]`), never a paraphrase
 # MAGIC
 # MAGIC The rule that makes this comparable rather than just quote-tagging. If the transcript never addresses a variable, both fields will come back "Not stated".
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `build_rubric_coding_prompt()` writes the coding instructions. Unlike translation, coding sends
+# MAGIC the **whole** translated transcript in a single prompt, because an answer to one rubric question
+# MAGIC can come up anywhere in the interview. The prompt contains:
+# MAGIC 1. **the rubric:** each variable numbered, with its guide question and allowed categories
+# MAGIC 2. **context:** the interviewer's lines have been removed, so the text may read as fragmented
+# MAGIC 3. **the rules:** code all 20 variables, never infer, use "Not stated" when a topic isn't
+# MAGIC    addressed, and quote word for word
+# MAGIC 4. **the output format:** a JSON array with one object per variable, each with `variable_id`,
+# MAGIC    `category_value` and `text_value`
+# MAGIC 5. **the transcript**, formatted by `format_turns_block()` using the English text
 
 # COMMAND ----------
 
@@ -336,6 +554,16 @@ build_rubric_coding_prompt <- function(translated_turns, rubric) {
   )
 }
 
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `strip_code_fences()` cleans up the reply before we parse it. Even when told not to, models
+# MAGIC sometimes wrap JSON in markdown fences (```` ```json ... ``` ````), which would make the JSON
+# MAGIC parser fail. This function removes an opening and a closing fence if they are there, and leaves
+# MAGIC the text unchanged otherwise.
+
+# COMMAND ----------
+
 # Models sometimes wrap JSON in ```json fences despite instructions not to.
 # We can strip those defensively.
 strip_code_fences <- function(text) {
@@ -345,8 +573,23 @@ strip_code_fences <- function(text) {
   str_trim(text)
 }
 
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `verify_quotes_are_correct()` checks the model's quotes against the source. It:
+# MAGIC 1. joins all the English turns into one long string
+# MAGIC 2. for every coded variable, splits `text_value` on `[...]` into separate quotes, skipping
+# MAGIC    "Not stated" and missing values
+# MAGIC 3. checks that each quote appears **exactly** in that string
+# MAGIC
+# MAGIC If any quote isn't found, it shows a warning listing the `variable_id`s to review by hand. A failed
+# MAGIC check usually means the model paraphrased or tidied up the wording. The function only warns; it
+# MAGIC doesn't change the coded table.
+
+# COMMAND ----------
+
 # Validation: Checks that every returned quote is a real substring of what was actually
-# sent to the model. This catches a paraphrase or a fabricated quote. 
+# sent to the model. This catches a paraphrase or a fabricated quote.
 
 verify_quotes_are_correct <- function(coded, translated_turns, interview_label) {
   source_text <- paste(translated_turns$text_en, collapse = " ")
@@ -368,6 +611,19 @@ verify_quotes_are_correct <- function(coded, translated_turns, interview_label) 
 }
 
 
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `code_interview()` runs the whole coding step for one interview and returns one row per rubric
+# MAGIC variable. It:
+# MAGIC 1. builds the prompt and sends it to Claude with `temperature = 0` and room for up to 4,000 tokens
+# MAGIC 2. strips any code fences and parses the JSON reply into a table. If the JSON can't be parsed, it
+# MAGIC    shows a warning and returns an empty table instead of stopping the notebook.
+# MAGIC 3. warns if the model returned more or fewer than 20 variables
+# MAGIC 4. joins the answers onto the rubric by `variable_id`, so the result always has all 20 variables
+# MAGIC    in rubric order, with their theme and guide question. A variable the model skipped shows up as `NA`.
+# MAGIC 5. runs `verify_quotes_are_correct()` on the result
 
 # COMMAND ----------
 
@@ -406,6 +662,14 @@ code_interview <- function(translated_turns, rubric, interview_label) {
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC Code the demo translation from Step 1 (`int1_demo`) against the rubric. This is one API call.
+# MAGIC
+# MAGIC We only translated the first few chunks, so expect many variables to come back "Not stated": the
+# MAGIC interviewee hasn't reached those topics yet. That is the rubric's no-inference rule at work.
+
+# COMMAND ----------
+
 #Let's try on our interview subset - the one we translated before!
 
 int1_demo_coded <- code_interview(int1_demo, coding_rubric, "Interview 1 (demo)")
@@ -416,9 +680,22 @@ display(int1_demo_coded)
 # MAGIC %md
 # MAGIC ## 6. Run the pipeline on both transcripts
 # MAGIC
-# MAGIC First we will consolidate the entire pipeline in a single function, 
+# MAGIC First we will consolidate the entire pipeline in a single function,
 # MAGIC and then we will run it on the two sample transcripts provided
 # MAGIC
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC `process_transcript()` puts every step together for one transcript file:
+# MAGIC 1. read and parse the file into turns
+# MAGIC 2. drop the interviewers' turns and assign chunks
+# MAGIC 3. keep the first `max_chunks` chunks (all of them by default, since `max_chunks = Inf`)
+# MAGIC 4. translate each chunk
+# MAGIC 5. code the full translation against the rubric
+# MAGIC 6. add a `region` column as the first column, so results from different interviews can be stacked
+# MAGIC
+# MAGIC To test on a smaller sample, pass for example `max_chunks = 3`.
 
 # COMMAND ----------
 
@@ -431,6 +708,19 @@ process_transcript <- function(path, region, rubric, interviewers, max_chunks = 
   code_interview(translated_turns, rubric, region) %>%
     mutate(region = region, .before = 1)
 }
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC The final run. For each transcript path, we use the file name without its extension
+# MAGIC (`"Interview 1"`, `"Interview 2"`) as the label, run `process_transcript()` on the full
+# MAGIC interview, and stack the results with `bind_rows()`.
+# MAGIC
+# MAGIC `all_coded` has 40 rows: 20 rubric variables for each interview. Comparing the two interviews on
+# MAGIC the same `variable_id` is the cross-case comparison the rubric was designed for.
+# MAGIC
+# MAGIC This cell makes one translation call per chunk plus one coding call per interview, so it takes
+# MAGIC noticeably longer than the demo cells.
 
 # COMMAND ----------
 
