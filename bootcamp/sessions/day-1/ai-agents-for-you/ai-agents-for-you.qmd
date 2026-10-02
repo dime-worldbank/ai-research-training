@@ -61,7 +61,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
   - Full codebook: `data/raw/census_2011_codebook.csv`.
 ```
 
-# When should a well-crafted prompt become skills {background-color="#530153"}
+# When Should Prompts Become Skills {background-color="#530153"}
 
 ## Well-Crafted Prompts vs. Skills
 
@@ -70,8 +70,6 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
  - For recurring tasks, investing that time in a skill is more efficient as it is automatically reused when relevant
  - If you make skills part of your project folder, anyone else in your team will also benefit from the instructions in the skill
  - If you are a TTL who want your team members to follow consistent procedures, creating skills ensures that everyone has access to the same instructions.
-
-# Skills: Purpose {background-color="#530153"}
 
 ## Memory Files vs. Skills
 
@@ -82,37 +80,16 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 | Need to be token-efficient? | Yes, because they are always loaded | Much less so, because they are loaded only when relevant |
 | Project-specific or domain-specific? | Mostly project-specific; reuse from other projects but adapt common sections | Domain-specific, including tools, research fields, econometrics, and personal preferences; typically reusable across projects |
 
-## Efficient Way to Provide Details
-
-:::: {.columns .v-center-container}
-
-::: {.column width="70%" }
-
-- All available skill descriptions are loaded into each new context window.
-- Only when a skill is relevant is the full content loaded.
-- Therefore, skills can contain details such as:
-  - Step-by-step instructions for a task
-  - What the agent should ask or confirm before proceeding
-  - Templates for the expected output format
-
-:::
-
-::: {.column width="5%" }
-:::
-
-::: {.column width="25%" }
-  ![](../img/context-windows-skills.png)
-:::
-
-::::
 
 # Skills: Format {background-color="#530153"}
 
-## Skills Format
+## Skills Format - Technical Requirements
 
-- Skills are files with natural-language content, similar to memory files.
-- A skill requires frontmatter with at least a name and a description.
-- The description is not what the skill does. It tells the agent when to use it and when not to use it.
+- Skills are also files with natural-language content, similar to prompts and memory files.
+- A skill requires "_frontmatter"_ with at least a name and a description.
+- The description should not include how the skill solves a task. 
+- The description purpose is only to tell the agent when to use it and when not to use it.
+- The content (everything but the frontmatter) contains the actual instructions and details for the skill.
 
 ```markdown
 ---
@@ -126,30 +103,73 @@ Always start from the templates in `templates/` and build toward one of the
 Then populate it by [...]
 ```
 
+## An Efficient Way to Populate the Context Window
+
+:::: {.columns .v-center-container}
+
+::: {.column width="65%" }
+
+- All available skill's frontmatter are loaded into each new context window.
+- Only when the agent thinks a skill is needed is its full content loaded.
+- Therefore, skills can contain extensive details such as:
+  - Step-by-step instructions for a task
+  - What the agent should ask or confirm before proceeding
+  - Templates and examples to be used for the expected output format
+
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="30%" }
+  ![](../img/context-windows-skills.png)
+:::
+
+::::
+
 ## Open-Source Folder Format
 
 - Minimum requirement: a `SKILL.md` file in a folder named after the skill.
 - The skill folder may contain resources in subfolders referenced by the skill file.
 - The skill is everything in the skill folder; resources are used through progressive disclosure.
 
-```text
+:::: {.columns}
+
+::: {.column width="50%" }
+```markdown
 skills/
 |-- stata-skill/
-|   `-- SKILL.md              Instructions for the Stata skill
-`-- new-shiny-dash/
-    |-- SKILL.md              Instructions for the skill
-    |-- templates/             Files for the agent to start from
-    `-- examples/              Examples of end results
+|   |-- SKILL.md     Instructions for the Stata skill
+|-- new-shiny-dash/
+|   |-- SKILL.md     Instructions for the skill
+|   |-- templates/   Files for the agent to start from
+|   |-- examples/    Examples of end results
 ```
+:::
+
+::: {.column width="50%" }
+```markdown
+---
+name: new-shiny-dash
+description: Use when setting up a new dashboard - use [...]
+---
+# New Shiny Dashboard Skill
+Always start from the templates in `templates/` and build 
+toward one of the `examples/`. If not sure which example 
+is the best fit, ask the user. Then populate it by [...]
+```
+:::
+::::
+
 
 ## Skills Folder Location
 
-- The skill folder has a standardized format, but where to save it differs by agent.
+- While the skill folder has a standardized open-source format, but where to save it differs by agent.
 - Similar to memory files, agents will eventually find and use skills even when the location is not their native one.
 
 | Skill folder location | Agent | Cross-agent compatibility |
 |---|---|---|
-| `.agents/skills/` | Open-source format, such as Cursor and Codex | Commonly used as a backup by other agents |
+| `.agents/skills/` | Open-source format, such as Cursor and Codex | Commonly used as a backup by other agents - for example Claude and GitHub Copilot |
 | `.claude/skills/` | Claude | Well-recognized and quickly found by most agents |
 | `.github/skills/` | GitHub Copilot | Less well-recognized, but eventually found and used |
 
@@ -157,10 +177,12 @@ skills/
 
 ## Installation
 
-- Many skills are not project-specific. Install skills written by others.
+- Many skills are not project-specific. Therefore:
+  - Common to install skills written by others.
+  - Common to install the same skill across projects
 - More skills do not automatically mean a better agent. Agents are nudged to use skills over generic knowledge.
 - Sometimes you want general knowledge. Too many skills can make the agent find a skill when it is not needed.
-- Do not worry about adding a few more skills; the point is not to install the whole universe of skills.
+- Do not worry about adding a few more skills; the point made here is to not install the whole universe of skills.
 
 ## Manual Installation
 
@@ -168,53 +190,53 @@ skills/
 - Manual installation works anywhere, regardless of how the skill was published.
 - Knowing how to install manually helps with troubleshooting.
 
-### How to Install
+### How to Install - Follow these steps during hands-on session
 
 1. Locate or create your skills folder.
 2. Download or copy the full skill folder, including all its content, into your skills folder.
-3. Type `/skills` in the Agent and confirm that your skill is there.
+3. Type `/skills` in the Agent and confirm that your skill is there - it should then appear as an option.
+
+#### _Automatic Installation_
+
+There are ways to automatically install skills. However, those are not straightforward to set up on a WB computer, and not all skills are shared in a format where this is possible.
 
 ## Demo: Manual Installation
-
-## Installation Tools
-
-:::: {.columns}
-
-::: {.column width="50%"}
-### Command line
-
-- Requires basic knowledge of command-line tools.
-- Install Node.js using the installation guide or eServices Software Installation.
-- Follow the Skills documentation at <https://skills.sh/docs>.
-- This is emerging as an industry standard, so use it if the CLI is not intimidating.
-:::
-
-::: {.column width="50%"}
-### VS Code extension
-
-- Essentially a wrapper for the CLI tool.
-- Requires no CLI knowledge.
-- No extension has yet been published by a well-established trusted source.
-- Once VS Code or another trusted source releases an extension with many downloads, use this approach.
-:::
-
-::::
-
-Manual installation is always available. Use it until a tool you trust becomes available.
 
 # Skills: Library and Examples {background-color="#530153"}
 
 ## Skills Library
 
-- We are still populating the library at <https://github.com/dime-worldbank/coding-agents-hub>.
+:::: {.columns .v-center-container}
+::: {.column width="55%" }
+
+- We have a library that we are still populating at [https://github.com/dime-worldbank/coding-agents-hub](https://github.com/dime-worldbank/coding-agents-hub).
 - As with memory files, this is where we want to share skill examples for different purposes.
-- Share skills that you have used and found useful.
+- Share skills with us that you have used and found useful for general purposes and we are happy to add them.
+
+:::
+
+::: {.column width="45%" }
+  ![](../img/coding-agent-hub-library.png)
+:::
+::::
 
 ## Example Skill: Stata
 
+:::: {.columns .v-center-container}
+::: {.column width="65%" }
+
 - Stata usage is much smaller than R and especially Python, so Stata is less represented in an agent's generic knowledge.
 - Adding a Stata skill to a project with Stata code can make a big difference.
-- Example: <https://github.com/dylantmoore/stata-skill>
+- Example: [https://github.com/dylantmoore/stata-skill](https://github.com/dylantmoore/stata-skill)
+  - This repository is set up for automatic installation, which makes finding the relevant folder harder. 
+  - Find the `Skills.md` file, then copy that file's parent folder into your project's skills folder.
+
+:::
+
+::: {.column width="35%" }
+  ![](./img/stata-skill-location.png)
+:::
+::::
 
 # Thank You! {background-color="#530153"}
 
