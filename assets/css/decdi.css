@@ -545,12 +545,10 @@ body:has(.bootcamp) .page-header {
 .agenda td.t { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--bc-dark); font-weight: 600; width: 1%; }
 .agenda td.title { font-weight: 500; }
 .agenda td.lead { color: var(--decdi-muted); font-size: 0.82rem; }
-.agenda td.link { white-space: nowrap; text-align: right; }
-.agenda td.materials { font-size: 0.78rem; line-height: 1.35; min-width: 9rem; }
-.main-content .bootcamp a.mat-link { display: block; color: var(--bc-dark); text-decoration: none; border-bottom: none; padding: 1px 0; white-space: nowrap; }
-.main-content .bootcamp a.mat-link::before { content: "↗ "; color: var(--bc-light); }
-.main-content .bootcamp a.mat-link[href$=".zip"]::before { content: "↓ "; }
-.main-content .bootcamp a.mat-link:hover { text-decoration: underline; }
+.agenda th:nth-child(4), .agenda th:nth-child(5) { text-align: center; }
+.agenda td.link, .agenda td.materials { width: 7.5rem; min-width: 7.5rem; text-align: center; vertical-align: middle; }
+.agenda td.link { white-space: nowrap; }
+.agenda td.materials { line-height: 1; }
 
 .main-content .bootcamp table.agenda tr td { background: #fff; }
 .main-content .bootcamp table.agenda tr.agenda-hands td { background: #fbf4fb; }
@@ -592,6 +590,23 @@ body:has(.bootcamp) .page-header {
 }
 
 .main-content .bootcamp a.btn-slides:hover { background: var(--bc-base); color: #fff; }
+
+.main-content .bootcamp a.btn-slides.btn-mat {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 3px 0;
+  padding: 2px 8px;
+  font-size: 0.66rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: var(--bc-tint);
+  border-color: var(--bc-light);
+  color: var(--bc-dark);
+}
+.main-content .bootcamp a.btn-slides.btn-mat:hover { background: var(--bc-base); border-color: var(--bc-base); color: #fff; }
 
 .soon { font-size: 0.76rem; color: #9aa4b1; font-style: italic; }
 

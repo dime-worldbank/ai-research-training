@@ -29,7 +29,7 @@ The site serves files committed to `main`; nothing is rendered automatically.
    ```
 
 2. In [`../_data/bootcamp.yml`](../_data/bootcamp.yml), give the session a `link` to its folder, and optionally a `materials` list (see below).
-3. Link the `.qmd` from the day's `sessions/<day>/README.md` schedule.
+3. Don't add the session to a README schedule: the agenda lives only in `_data/bootcamp.yml`. `bootcamp/sessions/<day>/` redirects to the day page on the site.
 
 **After any later edit to the `.qmd`, re-render `index.html` and commit it**, or the site keeps showing the old version.
 
@@ -50,7 +50,7 @@ The site serves files committed to `main`; nothing is rendered automatically.
 
 - `link` and `materials` URLs can be full URLs or site paths starting with `/`; site paths get the site prefix automatically.
 - `.zip` files are not published on the site, and `.md` files are served as raw text, so link those through GitHub (`github.com/.../raw/refs/heads/main/...` for downloads, `github.com/.../blob/main/...` to view).
-- Mark links that need a World Bank login (internal repos, mAI) with "(WB login)" in the label.
+- Materials show as small buttons, so keep each label to one or two short words (e.g. "Exercise", "Skill", "Demo"). Add 🔒 to the label for links that need a World Bank login (internal repos, mAI).
 
 ## Publish a deck to Teams
 
