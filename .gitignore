@@ -114,6 +114,10 @@
 # using different names and then you must edit the lines below accordingly.
 password.*
 passwords.*
+
+# Jekyll local build output
+_site/
+.jekyll-cache/
 password/
 passwords/
 .Rproj.user
