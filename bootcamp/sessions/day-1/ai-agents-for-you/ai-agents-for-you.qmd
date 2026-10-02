@@ -28,11 +28,12 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Scope of This Session
 
+- Prompting vs. Skills
 - Introduction to skills
   - What are skills?
   - What are their formats?
   - How do I install and use them?
-- Prompting
+
 
 # Recap and Introduction {background-color="#530153"}
 
@@ -59,6 +60,16 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
   - household demographics. Main variables: household ID and income. 
   - Full codebook: `data/raw/census_2011_codebook.csv`.
 ```
+
+# When should a well-crafted prompt become skills {background-color="#530153"}
+
+## Well-Crafted Prompts vs. Skills
+
+ - Writing a well-crafted prompt takes time - we as regular humans will eventually take shortcuts and don't do it
+ - For a one-time task, writing a well-crafted prompt is our best approach to get a well-crafted context-specific answer from the agent
+ - For recurring tasks, investing that time in a skill is more efficient as it is automatically reused when relevant
+ - If you make skills part of your project folder, anyone else in your team will also benefit from the instructions in the skill
+ - If you are a TTL who want your team members to follow consistent procedures, creating skills ensures that everyone has access to the same instructions.
 
 # Skills: Purpose {background-color="#530153"}
 
@@ -204,11 +215,6 @@ Manual installation is always available. Use it until a tool you trust becomes a
 - Stata usage is much smaller than R and especially Python, so Stata is less represented in an agent's generic knowledge.
 - Adding a Stata skill to a project with Stata code can make a big difference.
 - Example: <https://github.com/dylantmoore/stata-skill>
-
-## mAI Skills
-
-- mAI is not a code agent with access to your code files, so the use case is different, but it is a great place to experiment.
-- Go to <https://ai.worldbank.org/mai/skills/> and use the **Create Skill** wizard.
 
 # Thank You! {background-color="#530153"}
 
