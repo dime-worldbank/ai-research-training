@@ -90,6 +90,9 @@
 # Powershell script
 !/**/*.ps1
 
+# Bash scripts
+!/**/*.sh
+
 # Mermaid
 !/**/*.mmd
 !/**/mermaid-config.json
