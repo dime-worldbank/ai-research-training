@@ -164,7 +164,7 @@ is the best fit, ask the user. Then populate it by [...]
 
 ## Skills Folder Location
 
-- While the skill folder has a standardized open-source format, but where to save it differs by agent.
+- While the skill folder has a standardized open-source format, where to save it differs by agent.
 - Similar to memory files, agents will eventually find and use skills even when the location is not their native one.
 
 | Skill folder location | Agent | Cross-agent compatibility |
