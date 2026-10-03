@@ -1,5 +1,5 @@
 ---
-title: "Create a Memory File"
+title: "Create a Memory File and Install a Skill"
 subtitle: "Day 1 · Intro to Agentic AI at the WBG"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
@@ -85,22 +85,102 @@ The examples in the `example-library` folder are mature memory files specific to
 
 ## Which Skill?
 
-- If you know of a skill you want to use for your project you should use that skill
-- If you do not have a skill in mind, we recommend using Impact Analytics skill for [preparing reproducibility packages](TODO: add url)
-  - This skill helps you set up a reproducibility package following the standards for the [World Bank's Reproducibility Initiative](https://reproducibility.worldbank.org) #TODO: Check URL
+- If you know which skill you want to use for your project, use that skill.
+- If you do not have a particular skill in mind, we recommend using the Impact Analytics skill for [preparing reproducibility packages](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill).
+  - This skill helps you set up a reproducibility package that follows the standards of the [World Bank's Reproducibility Initiative](https://reproducibility.worldbank.org).
 
 ## How to Install
 
-1. Open your project in a workspace in VS Code
-1. Locate or create your skills folder 
-  - We recommend that you use the general open-source location `.agents/skills/`. If you do not have a skills folder already, create that folder at the root (top folder) of your workspace.
-1. Download the skills folder to your computer. 
-1. Copy the full skill folder, including all its content, into your workspace's skills folder.
+1. Open your project in a VS Code workspace.
+1. Locate _or_ create your skills folder.
+  - We recommend using the general open-source location `.agents/skills/`. If you do not already have a skills folder, create one at the root (top-level folder) of your workspace.
+1. Download the complete folder for the skill you want to use to your computer.
+1. Copy the complete skill folder, including all its contents, into your workspace's skills folder.
 
-This is all that is needed to install the skill. 
+That is all you need to install the skill.
 
-## Verify the Skill Installation and Use it
+## Verify the Skill Installation
 
-TODO: check all installed skills, use slash command, use slash command with custom instructions
+:::: {.columns .v-center-container}
+::: {.column width="70%" }
 
-Type `/skills` in the Agent and confirm that your skill is there.
+- Type `/skills` in the Agent chat, press Enter, and confirm that your skill is listed.
+- As you can see, agents come with pre-installed slash commands. Test and explore them at some point!
+- See whether any of those skills can help you with something you were not sure how to do manually.
+
+:::
+::: {.column width="30%" }
+![](./img/see-installed-skills.png)
+:::
+::::
+
+
+## Using the Skill
+
+Three different ways, each with its own nuances, to trigger and use the skill with the agent:
+
+<div style="height: 1em;"></div>
+
+:::: {.columns style="align-items: flex-start;" }
+::: {.column width="33%" }
+<span style="display: block; text-align: center; line-height: 1;">**Trust agent to detect skill**</span>
+:::
+
+::: {.column width="33%" }
+<span style="display: block; text-align: center; line-height: 1;">**Force skill without context**</span>
+:::
+
+::: {.column width="33%" }
+<span style="display: block; text-align: center; line-height: 1;">**Force skill with context**</span>
+:::
+::::
+
+:::: {.columns style="align-items: flex-start;" }
+
+::: {.column width="33%" }
+
+```markdown
+Can you help me review the 
+reproducibility package in 
+this folder?
+
+```
+
+:::
+
+::: {.column width="33%" }
+
+```markdown
+/wb-reproducibility-package
+
+```
+
+:::
+
+::: {.column width="33%" }
+
+```markdown
+/wb-reproducibility-package In my 
+project the "code" folder is called
+"magic-files" and my data folder 
+is called "bytes". 
+```
+
+:::
+::::
+
+<div style="height: 1em;"></div>
+
+:::: {.columns style="align-items: flex-start;" }
+::: {.column width="33%" }
+<span style="display: block; text-align: center; line-height: 1; font-size: 0.8em;">The agent will use skill descriptions to determine whether any appropriate skills are installed.</span>
+:::
+
+::: {.column width="33%" }
+<span style="display: block; text-align: center; line-height: 1; font-size: 0.8em;">This forces the agent to use that skill. All instructions for the task are expected to be in the skill.</span>
+:::
+
+::: {.column width="33%" }
+<span style="display: block; text-align: center; line-height: 1; font-size: 0.8em;">This forces the agent to use that skill, while you add project-specific instructions to the general instructions in the skill.</span>
+:::
+::::
