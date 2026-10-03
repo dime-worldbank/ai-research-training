@@ -25,6 +25,20 @@ source("../../../_extensions/bootcamp/setup_palettes.R")
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
+## Project and Objective
+
+### Project to use
+
+- We recommend you to start using your own project for this and the following hands-on session
+- If you do not have a project for this bootcamp, then you can download and use [this project](TODO: Add url to project)
+
+### Objective
+
+- Set up a memory file - [jump to section](#set-up-a-memory-file)
+- Install a skill - [jump to section](#install-a-skill)
+
+# Set Up a Memory File
+
 ## Starting fresh or using a template?
 
 - For this exercise, we recommend starting with an empty memory file and filling in everything manually.
@@ -67,3 +81,26 @@ We have started a resource hub at <https://github.com/dime-worldbank/coding-agen
 
 The examples in the `example-library` folder are mature memory files specific to the projects they were created for. It is very unlikely that they will be a good fit for your project as-is. Still, you can use them as references and draw inspiration from them.
 
+# Install a Skill
+
+## Which Skill?
+
+- If you know of a skill you want to use for your project you should use that skill
+- If you do not have a skill in mind, we recommend using Impact Analytics skill for [preparing reproducibility packages](TODO: add url)
+  - This skill helps you set up a reproducibility package following the standards for the [World Bank's Reproducibility Initiative](https://reproducibility.worldbank.org) #TODO: Check URL
+
+## How to Install
+
+1. Open your project in a workspace in VS Code
+1. Locate or create your skills folder 
+  - We recommend that you use the general open-source location `.agents/skills/`. If you do not have a skills folder already, create that folder at the root (top folder) of your workspace.
+1. Download the skills folder to your computer. 
+1. Copy the full skill folder, including all its content, into your workspace's skills folder.
+
+This is all that is needed to install the skill. 
+
+## Verify the Skill Installation and Use it
+
+TODO: check all installed skills, use slash command, use slash command with custom instructions
+
+Type `/skills` in the Agent and confirm that your skill is there.
