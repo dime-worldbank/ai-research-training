@@ -1,5 +1,5 @@
 ---
-title: "Making AI Agents Work for You - Skills and Prompts"
+title: "Making AI Agents Work for You - Good Prompts and Skills"
 subtitle: "Day 1 · Intro to Agentic AI at the WBG"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
@@ -14,6 +14,7 @@ format:
   bootcamp-revealjs:
     embed-resources: true
     output-file: index.html
+    fragments: true
 ---
 
 ```{r}
@@ -28,7 +29,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Scope of This Session
 
-- Prompting vs. Skills
+- Good Prompts
+- Good Prompts vs. Memory Files vs. Skills
 - Introduction to skills
   - What are skills?
   - What are their formats?
@@ -48,20 +50,85 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
   - Cramming every use case into the memory file makes it dominate the context window.
   - Irrelevant information in the context window competes for and distracts the AI's attention from the specific task.
 
-## Progressive Disclosure
 
-- Instructions can be loaded only when the agent deems them relevant.
-- This is called **progressive disclosure**. It is central to skills, but not unique to them.
-- In the last session, we used progressive disclosure to point to codebooks from the memory file.
 
-```markdown
-### Input Datasets
-- `data/raw/census_2011.csv`: 
-  - household demographics. Main variables: household ID and income. 
-  - Full codebook: `data/raw/census_2011_codebook.csv`.
-```
+# Good prompting {background-color="#530153"}
 
-# When Should Prompts Become Skills {background-color="#530153"}
+## Vague Prompts
+
+:::: {.columns .v-center-container}
+
+::: {.column width="30%" }
+  ![](./img/vague-prompt.png)
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="65%" }
+
+**Prompt:** “Can you write R code to estimate the effect of a treatment on employment?”
+
+::: {.fragment}
+
+* **What’s Missing:** No variable names, statistical method or package
+* **What you’ll get:** Likely a generic regression and most likely incorrect model for intended analysis. Can be used as general boilerplate code (similar on what you’d find on forums).
+:::
+
+:::
+::::
+
+## Good Prompts
+
+:::: {.columns .v-center-container}
+
+::: {.column width="30%" }
+  ![](./img/good-prompt.png)
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="65%" }
+
+**Prompt:** "How do I estimate the effect of `treatment` on `employment_status` in R, controlling for `age` and `gender`, with fixed effects for `district`?"
+
+
+::: {.fragment}
+
+* **What’s Missing:** No packages and context
+* **What you’ll get:** A regression setup that’s more specific to your case, but will most likely require tweaks. 
+
+:::
+
+:::
+::::
+
+## Expert Prompts
+
+:::: {.columns .v-center-container}
+
+::: {.column width="30%" }
+  ![](./img/expert-prompt.png)
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="65%" }
+
+**Prompt:** “I am running an analysis in R. My data is in a dataframe called `df`. I'd like you to help me write code that estimate the effect of `treatment` on `employment_status`, controlling for `age` and `gender`, with fixed effects for `district` and SEs clustered by `village`. Please use the `fixest` package."
+
+
+::: {.fragment}
+
+* **What you’ll get:** Highly accurate code using a widely established R package for regressions using the exact research design you had intended.
+:::
+
+:::
+::::
+
+# When Should Prompts Become Memory files or Skills  {background-color="#530153"}
 
 ## Well-Crafted Prompts vs. Skills
 
@@ -82,6 +149,19 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 
 # Skills: Format {background-color="#530153"}
+
+## Progressive Disclosure
+
+- Instructions can be loaded only when the agent deems them relevant.
+- This is called **progressive disclosure**. It is central to skills, but not unique to them.
+- In the last session, we used progressive disclosure to point to codebooks from the memory file.
+
+```markdown
+### Input Datasets
+- `data/raw/census_2011.csv`: 
+  - household demographics. Main variables: household ID and income. 
+  - Full codebook: `data/raw/census_2011_codebook.csv`.
+```
 
 ## Skills Format - Technical Requirements
 
