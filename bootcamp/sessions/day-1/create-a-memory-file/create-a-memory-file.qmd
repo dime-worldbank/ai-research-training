@@ -37,7 +37,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 - Set up a memory file - [jump to section](#set-up-a-memory-file)
 - Install a skill - [jump to section](#install-a-skill)
 
-# Set Up a Memory File
+# Set Up a Memory File {background-color="#530153"}
 
 ## Starting fresh or using a template?
 
@@ -58,13 +58,13 @@ At the end of this slide deck, you will see a link to some example memory files.
 
 ## Set up a new AGENTS.md
 
-In the root folder (the top folder) of your project folder, create a new file called `AGENTS.md`.
+In the root folder (the top folder) of your project folder, create a new file called `AGENTS.md`. Then go through the next slides and follow the suggested content.
 
-Then go through the slides from the `2-onboarding-ai-agents-memory-files` session and follow the suggested content in that session.
+No one gets an `AGENTS.md` file perfect the first time, so do not make that your worry for this session. The memory file should be a living document where, throughout the project, you add details that the agent needs to perform tasks as you want it to.
 
-Remember that the suggested content is just a guideline. Compare it with an RA onboarding document: there are some sections that RA onboarding documents typically include. However, every project is unique, and you should tailor your memory file to fit your specific project's needs.
+Remember that every project is unique, and you should tailor your memory file to fit your specific project's needs. The suggested content is just a guideline. Compare it to RA onboarding documents: there are some sections that RA onboarding documents typically include, but the exact content is different.
 
-Also, no one gets an `AGENTS.md` file perfect the first time, so do not worry about that for now. The memory file should be a living document where, throughout the project, you add details that the agent needs to perform tasks as you want it to.
+{{< include ../_memory_content_slides/_memory_content_slides.qmd >}}
 
 ## Keep Memory Files Concise
 
@@ -81,7 +81,7 @@ We have started a resource hub at <https://github.com/dime-worldbank/coding-agen
 
 The examples in the `example-library` folder are mature memory files specific to the projects they were created for. It is very unlikely that they will be a good fit for your project as-is. Still, you can use them as references and draw inspiration from them.
 
-# Install a Skill
+# Install a Skill {background-color="#530153"}
 
 ## Which Skill?
 
