@@ -87,8 +87,14 @@
 # png
 !/**/*.png
 
+# png
+!/**/*.jpg
+
 # Powershell script
 !/**/*.ps1
+
+# Bash scripts
+!/**/*.sh
 
 # Mermaid
 !/**/*.mmd
