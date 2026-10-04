@@ -2,8 +2,8 @@ name: Release AI Skills
 
 # Fires when a push to main touches a skill folder (`skills/<skill-name>/`
 # anywhere in the repo). Each changed skill gets its OWN release, tagged
-# `<skill-name>-latest`, with a single `<skill-name>.zip` attached. The release
-# is replaced on every change, so this URL never changes:
+# `<skill-name>-latest`, with a single `<skill-name>.zip` attached. The tag is
+# moved and the zip replaced on every change, so this URL never changes:
 #
 #   https://github.com/<org>/<repo>/releases/download/<skill-name>-latest/<skill-name>.zip
 #
@@ -20,8 +20,10 @@ permissions:
   contents: write
 
 jobs:
-  release:
+  find:
     runs-on: ubuntu-latest
+    outputs:
+      skills: ${{ steps.find.outputs.skills }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -49,31 +51,57 @@ jobs:
           fi
 
           echo "Skills to release:"; printf '%s' "$todo"
-          {
-            echo "dirs<<EOF"
-            printf '%s' "$todo"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
+          json=$(printf '%s' "$todo" | python3 -c 'import sys,json; print(json.dumps([l for l in sys.stdin.read().split("\n") if l]))')
+          echo "skills=$json" >> "$GITHUB_OUTPUT"
 
-      - name: Zip and release each skill
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  release:
+    needs: find
+    if: needs.find.outputs.skills != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        skill_dir: ${{ fromJson(needs.find.outputs.skills) }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Name the skill, zip it, move the tag
+        id: skill
         run: |
+          dir="${{ matrix.skill_dir }}"
+          name=$(basename "$dir")
+          tag="${name}-latest"
+
           mkdir -p "$RUNNER_TEMP/dist"
-          while IFS= read -r dir; do
-            [ -z "$dir" ] && continue
-            name=$(basename "$dir")
-            tag="${name}-latest"
+          (cd "$(dirname "$dir")" && zip -qr "$RUNNER_TEMP/dist/$name.zip" "$name" -x '*.DS_Store')
 
-            (cd "$(dirname "$dir")" && zip -qr "$RUNNER_TEMP/dist/$name.zip" "$name" -x '*.DS_Store')
+          # Point the stable tag at this commit.
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -f "$tag" "${{ github.sha }}"
+          git push -f origin "refs/tags/$tag"
 
-            # Replace the previous release (and move the tag) so the URL is stable.
-            gh release delete "$tag" --cleanup-tag --yes 2>/dev/null || true
-            gh release create "$tag" "$RUNNER_TEMP/dist/$name.zip" \
-              --target "${{ github.sha }}" \
-              --title "$name (latest)" \
-              --notes "Latest version of the \`$name\` skill, built from \`$dir\` at ${GITHUB_SHA::7}.
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
 
-          Download \`$name.zip\`, unzip it, and drop the \`$name\` folder into your project's skills directory (for example \`.agents/skills/\`)." \
-              --latest=false
-          done <<< "${{ steps.find.outputs.dirs }}"
+      # Same action the original skill release used. It updates the release
+      # for an existing tag and replaces the attached zip.
+      - name: Create or update the release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.skill.outputs.tag }}
+          name: "${{ steps.skill.outputs.name }} (latest)"
+          body: |
+            Latest version of the `${{ steps.skill.outputs.name }}` skill, built from
+            `${{ matrix.skill_dir }}` at ${{ github.sha }}.
+
+            Download `${{ steps.skill.outputs.name }}.zip`, unzip it, and drop the
+            `${{ steps.skill.outputs.name }}` folder into your project's skills
+            directory (for example `.agents/skills/`).
+          files: ${{ runner.temp }}/dist/${{ steps.skill.outputs.name }}.zip
+          make_latest: false
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
