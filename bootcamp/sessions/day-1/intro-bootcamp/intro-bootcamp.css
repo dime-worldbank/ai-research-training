@@ -1,0 +1,47 @@
+.reveal .welcome-slide .welcome-intro {
+  max-width: 1000px;
+  margin: 22px 0 26px;
+  font-size: 25px;
+  line-height: 1.4;
+}
+
+.reveal .welcome-slide .welcome-intro p {
+  margin: 0;
+}
+
+.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+}
+
+.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-card {
+  padding: 20px 24px;
+  border: 1px solid #e6dce9;
+  border-left: 4px solid #6d397f;
+  border-radius: 8px;
+  background: #faf7fb;
+}
+
+.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-card h3 {
+  margin: 0 0 10px;
+  font-size: 27px;
+  line-height: 1.2;
+}
+
+.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-card p {
+  margin: 0;
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-takeaway {
+  margin-top: 24px;
+  color: #530153;
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-takeaway p {
+  margin: 0;
+}

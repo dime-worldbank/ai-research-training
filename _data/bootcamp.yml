@@ -94,6 +94,7 @@ days:
   - time: 9:00 – 9:10
     title: Welcome
     kind: welcome
+    link: "/bootcamp/sessions/day-1/intro-bootcamp/"
   - time: 9:10 – 9:45
     title: Introduction to AI Agents
     lead: Impact Analytics

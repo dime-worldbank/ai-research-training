@@ -7,6 +7,7 @@ day-0:
   - setup-python-r/setup-python-r.qmd
   - setup-vscode/setup-vscode.qmd
 day-1:
+  - intro-bootcamp/intro-bootcamp.qmd
   - ai-agents-for-you/ai-agents-for-you.qmd
   - cost-effective-ai/cost-effective-ai.qmd
   - create-a-memory-file/create-a-memory-file.qmd

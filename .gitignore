@@ -87,6 +87,11 @@
 # png
 !/**/*.png
 
+# AI bootcamp intro slide visuals
+!/bootcamp/sessions/day-1/intro-bootcamp/images/*.jpg
+!/bootcamp/sessions/day-1/intro-bootcamp/images/*.svg
+!/bootcamp/sessions/day-1/intro-bootcamp/baseline-render.lua
+
 # Powershell script
 !/**/*.ps1
 
