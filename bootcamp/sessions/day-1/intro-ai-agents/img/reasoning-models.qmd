@@ -22,9 +22,9 @@ flowchart TB
     tool:::tool
     generate:::llmGen
     reviewAnswer:::llmEmbed
-    classDef llmEmbed fill:#70C2E7,stroke:#707070
-    classDef llmGen fill:#81D089,stroke:#707070
-    classDef tool fill:#A5A5A5,stroke:#707070
+    classDef llmEmbed fill:#70C2E7,stroke:#707070,color:#000
+    classDef llmGen fill:#81D089,stroke:#707070,color:#000
+    classDef tool fill:#A5A5A5,stroke:#707070,color:#000
     style reviewBox fill:#D0CECE,stroke:#707070,stroke-width:2px,color:#222
     style generateBox fill:#D0CECE,stroke:#707070,stroke-width:2px,color:#222
     classDef whiteBox fill:#FFFFFF,stroke:#707070,stroke-width:2px,color:#222
