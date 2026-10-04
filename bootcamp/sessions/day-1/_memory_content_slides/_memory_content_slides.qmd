@@ -1,0 +1,145 @@
+## Memory File Content
+
+:::: {.columns .v-center-container}
+
+::: {.column width="50%" }
+
+- Making these agents work for your specific field is not only a technical question; it is also a domain-knowledge question.
+- Each field still has a lot to learn before fully understanding how to best onboard AI agents for their specific needs.
+- There is no universal best practice yet for these files - but we will offer several examples commonly used.
+:::
+
+::: {.column width="30%" }
+
+### Common Sections
+
+1. Project description
+2. Folder structure
+3. Data descriptions
+4. Software preferences
+5. Research design
+6. Rules
+
+:::
+::::
+
+## 1. Memory File - Project Description
+
+- For each request, the LLM looks at your project for the first time.
+- Use LLMs to draft an initial description, by asking them to summarize your concept note or analysis plan.
+- Focus on details important to someone implementing your project, not details important to someone approving or funding it.
+
+### What Sets Your Research Apart from a generic example
+
+What makes your project different from textbook examples or private-sector data science.
+
+| Probably better | Probably worse |
+|---|---|
+| Developing-country context | The specific country |
+| The novel research question | Just the general research topic |
+| The type of data sources | A generic description of the topic |
+
+## 2. Memory File - Folder Structure and Important Files
+
+:::: {.columns}
+
+::: {.column width="40%" }
+
+### File Structure
+
+- Tell the agent where to find what and where to save what.
+- Do not just list folders; also explain their intended usage.
+
+:::
+
+::: {.column width="60%" }
+
+```markdown
+project/
+├── data/
+│   ├── raw/          Raw datasets - do not save any processed data here
+│   └── processed/    Modified datasets ready for analysis
+├── code/
+│   ├── clean/        Data cleaning scripts
+│   └── analysis/     Statistical analysis scripts
+└── paper/            Manuscript and related documents
+
+```
+
+:::
+::::
+
+### File paths to specific files
+
+Agents can also follow specific file paths. For example, if you have a file describing your treatment assignment in an RCT, you can point to that file directly and add a description where that file is:
+
+```markdown
+Treatment assignment strategy file: `paper/research-design/treatment_assignment.md`
+```
+
+## 3. Memory File - Data Descriptions
+
+- Describe the location of input datasets.
+- Describe the main variables in each dataset.
+- Point to a codebook for full documentation.
+
+### Input Datasets
+
+```markdown
+- `data/raw/census_2011.csv`: 
+  - household demographics. Main variables: household ID and income. 
+  - Full codebook: `data/raw/census_2011_codebook.csv`.
+- `data/raw/firm_panel.dta`: 
+  - firm-level output. Main variables: firm ID and sales. 
+  - Full codebook: `data/raw/firm_panel_codebook.csv`.
+- `data/raw/prices_monthly.csv`: 
+  - monthly commodity prices. Main variables: commodity, region, month, and price. 
+  - Full codebook: `data/raw/prices_monthly_codebook.csv`.
+```
+
+## 4. Memory File - Software Preferences
+
+- List the tools you want to use.
+- Specify the programming language and packages.
+- Specify data packages, such as `dplyr` versus `data.table`.
+- Specify output formats for tables and visualizations.
+- Specify the dynamic document type.
+
+### Example
+
+```markdown
+- Write data-cleaning and analysis code in Stata.
+- Use Python or R only for data visualization.
+- Use LaTeX for the report and export all tables in `.tex` format.
+```
+
+## 5. Memory File - Programming Preferences
+
+- Include preferred best practices, such as using a main do-file that runs all other code.
+- Include naming conventions.
+
+### Code Writing Guidelines
+
+```markdown
+- Make sure all code can be run through a single script called `code/main.do`.
+- Each time you create a new script, add it to the workflow in `main.do`.
+- Write clean and well-commented code; human readability is important.
+```
+
+## 6. Memory File - Research Design and Preferences
+
+- This is an area where you will always know better than the agent what is valid in your context.
+- The next session will provide a more specific tool, skills, for detailed steps. For now, list a high-level description of the research design.
+- Include the identification strategy, units of randomization, treatment modality, and so on.
+- Include preferences such as "always use OLS."
+
+## 7. Memory File - Rules
+
+Telling the agent what not to do is just as important as telling it what to do.
+
+### Examples:
+
+- Packages and tools not to use
+- Files not to edit
+- Anything else you have ever told an RA not to do
+- Do not execute R code using the command line command `R`, always use `R.exe` <- WB Windows computer requirement
