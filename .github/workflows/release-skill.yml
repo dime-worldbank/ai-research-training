@@ -1,19 +1,20 @@
-name: Release AI Skill
+name: Release AI Skills
 
-# Fires automatically whenever a merge/push to main touches the
-# prepare-slides skill folder. Also runnable manually from the Actions tab.
+# Fires when a push to main touches a skill folder (`skills/<skill-name>/`
+# anywhere in the repo). Each changed skill gets its OWN release, tagged
+# `<skill-name>-latest`, with a single `<skill-name>.zip` attached. The release
+# is replaced on every change, so this URL never changes:
+#
+#   https://github.com/<org>/<repo>/releases/download/<skill-name>-latest/<skill-name>.zip
+#
+# Run manually from the Actions tab to (re)publish every skill.
 on:
   push:
     branches:
       - main
     paths:
-      - "sessions/ai-skills-slides/skills/prepare-slides/**"
+      - "**/skills/*/**"
   workflow_dispatch:
-    inputs:
-      tag_name:
-        description: "Override tag name (leave blank to auto-increment)"
-        required: false
-        default: ""
 
 permissions:
   contents: write
@@ -25,48 +26,54 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # need full tag history to compute the next version
+          fetch-depth: 0
 
-      - name: Compute next tag
-        id: tag
-        run: |
-          if [ -n "${{ github.event.inputs.tag_name }}" ]; then
-            echo "tag=${{ github.event.inputs.tag_name }}" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          # Find the latest skill-vX.Y.Z tag, default to skill-v1.0.0 if none exist
-          latest=$(git tag --list 'skill-v*.*.*' --sort=-v:refname | head -n 1)
-          if [ -z "$latest" ]; then
-            next="skill-v1.0.0"
-          else
-            ver="${latest#skill-v}"
-            major=$(echo "$ver" | cut -d. -f1)
-            minor=$(echo "$ver" | cut -d. -f2)
-            patch=$(echo "$ver" | cut -d. -f3)
-            next="skill-v${major}.${minor}.$((patch + 1))"
-          fi
-          echo "tag=$next" >> "$GITHUB_OUTPUT"
-
-      - name: Zip the prepare-slides skill
-        run: |
-          cd sessions/ai-skills-slides/skills
-          zip -r "$GITHUB_WORKSPACE/prepare-slides.zip" prepare-slides
-
-      - name: Create release with zip attached
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.tag.outputs.tag }}
-          name: "Prepare Slides AI Skill – ${{ steps.tag.outputs.tag }}"
-          body: |
-            Auto-generated release: the `prepare-slides` skill changed on `main`.
-
-            Download `prepare-slides.zip` below, unzip it, and drop the
-            `prepare-slides` folder into your Claude skills directory
-            to install the "Prepare Slides" skill.
-          files: prepare-slides.zip
-          draft: false
-          prerelease: false
-          target_commitish: ${{ github.sha }}
+      # A skill is a folder with a SKILL.md directly inside a `skills/` folder.
+      - name: Find skills to release
+        id: find
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          all=$(find . -path ./.git -prune -o -path '*/skills/*/SKILL.md' -print \
+                | sed 's#^\./##; s#/SKILL.md$##' | sort)
+
+          zeros="0000000000000000000000000000000000000000"
+          if [ "${{ github.event_name }}" = "push" ] && [ -n "$BEFORE" ] && [ "$BEFORE" != "$zeros" ]; then
+            changed=$(git diff --name-only "$BEFORE" "${{ github.sha }}")
+            todo=""
+            for dir in $all; do
+              if echo "$changed" | grep -q "^$dir/"; then todo="$todo$dir"$'\n'; fi
+            done
+          else
+            todo="$all"
+          fi
+
+          echo "Skills to release:"; printf '%s' "$todo"
+          {
+            echo "dirs<<EOF"
+            printf '%s' "$todo"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Zip and release each skill
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/dist"
+          while IFS= read -r dir; do
+            [ -z "$dir" ] && continue
+            name=$(basename "$dir")
+            tag="${name}-latest"
+
+            (cd "$(dirname "$dir")" && zip -qr "$RUNNER_TEMP/dist/$name.zip" "$name" -x '*.DS_Store')
+
+            # Replace the previous release (and move the tag) so the URL is stable.
+            gh release delete "$tag" --cleanup-tag --yes 2>/dev/null || true
+            gh release create "$tag" "$RUNNER_TEMP/dist/$name.zip" \
+              --target "${{ github.sha }}" \
+              --title "$name (latest)" \
+              --notes "Latest version of the \`$name\` skill, built from \`$dir\` at ${GITHUB_SHA::7}.
+
+          Download \`$name.zip\`, unzip it, and drop the \`$name\` folder into your project's skills directory (for example \`.agents/skills/\`)." \
+              --latest=false
+          done <<< "${{ steps.find.outputs.dirs }}"
