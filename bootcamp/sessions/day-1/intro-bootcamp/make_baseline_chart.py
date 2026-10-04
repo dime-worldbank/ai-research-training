@@ -1,6 +1,7 @@
 import argparse
 import csv
 import json
+import math
 from html import escape
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -66,18 +67,20 @@ def selected_count(responses, field):
     return sum(response.get(field, "").strip() == "1" for response in responses)
 
 
+def format_percent(count, denominator):
+    percent = count / denominator * 100
+    if 0 < percent < 0.5:
+        return "<1%"
+    if 99.5 <= percent < 100:
+        return ">99%"
+    return f"{math.floor(percent + 0.5)}%"
+
+
 def build_chart(responses):
     work_ai_users = [response for response in responses if response.get("q1_1", "").strip() == "1"]
-    any_ai_users = [
-        response
-        for response in responses
-        if response.get("q1_1", "").strip() in {"1", "2"}
-    ]
     denominator = len(work_ai_users)
-    cohort_size = len(responses)
 
     common = [
-        ("Any AI use (work or personal)", len(any_ai_users), cohort_size, "all-ai"),
         ("Writing / editing documents", selected_count(work_ai_users, "q1_5_3"), denominator, "current"),
         ("Background research", selected_count(work_ai_users, "q1_5_4"), denominator, "current"),
         ("Third-party chat AI", selected_count(work_ai_users, "q1_3_2"), denominator, "current"),
@@ -87,37 +90,61 @@ def build_chart(responses):
         ("Survey workflows", selected_count(work_ai_users, "q1_5_6"), denominator, "current"),
         ("Dashboards / web apps", selected_count(work_ai_users, "q1_5_8"), denominator, "current"),
         ("Reproducibility packages", selected_count(work_ai_users, "q1_5_9"), denominator, "current"),
+        ("Ever tried a coding agent", selected_count(work_ai_users, "q1_3_5"), denominator, "coding"),
     ]
     return common, research
 
 
+def workflow_title(common, research):
+    rate = lambda metric: metric[1] / metric[2]
+    workflows = [metric for metric in research if metric[3] == "current"]
+    if max(map(rate, workflows)) < min(map(rate, common)):
+        return "…who don't use AI for code much (yet)"
+    return "…and how you use AI for research workflows"
+
+
+def cohort_title(any_ai_count, cohort_size):
+    if any_ai_count == cohort_size:
+        return "Who you are: AI enthusiasts"
+    if any_ai_count > cohort_size / 2:
+        return "Who you are: mostly AI enthusiasts"
+    return "Who you are: AI-curious"
+
+
 def svg_chart(metrics, title, note):
-    width, height = 1200, 350
     label_x, bar_x, bar_width = 16, 445, 570
-    first_y, row_gap, bar_height = 48, 64, 26
+    first_y, row_gap, bar_height, coding_gap = 44, 54, 26, 18
+    offset = lambda category: coding_gap if category == "coding" else 0
+    grid_bottom = first_y + (len(metrics) - 1) * row_gap + offset(metrics[-1][3]) + 26
+    note_lines = note.split("\n")
+    width, height = 1200, grid_bottom + 72 + 26 * (len(note_lines) - 1)
     colors = {
-        "all-ai": "#9b83a7",
         "current": "#6d397f",
+        "coding": "#c2410c",
     }
     output = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         f'<title id="title">{escape(title)}</title>',
-        '<desc id="desc">Four horizontal bars show self-reported baseline use as percentages.</desc>',
-        '<style>text{font-family:Arial,Helvetica,sans-serif;fill:#25212a}.label{font-size:27px}.value{font-size:25px;font-weight:700}.axis{font-size:20px;fill:#666}.note{font-size:20px;fill:#555}</style>',
+        f'<desc id="desc">{len(metrics)} horizontal bars show self-reported baseline use as percentages.</desc>',
+        '<style>text{font-family:Arial,Helvetica,sans-serif;fill:#25212a}.label{font-size:27px}.value{font-size:25px;font-weight:700}.axis{font-size:20px;fill:#666}.note{font-size:20px;fill:#555}.emphasis{font-weight:700}</style>',
     ]
     for tick in range(0, 101, 20):
         x = bar_x + bar_width * tick / 100
         output.append(
-            f'<line x1="{x:.1f}" y1="20" x2="{x:.1f}" y2="266" stroke="#e7e2e9" stroke-width="1"/>'
+            f'<line x1="{x:.1f}" y1="20" x2="{x:.1f}" y2="{grid_bottom}" stroke="#e7e2e9" stroke-width="1"/>'
         )
-        output.append(f'<text class="axis" x="{x:.1f}" y="296" text-anchor="middle">{tick}%</text>')
+        output.append(f'<text class="axis" x="{x:.1f}" y="{grid_bottom + 30}" text-anchor="middle">{tick}%</text>')
 
     for index, (label, count, denominator, category) in enumerate(metrics):
-        y = first_y + index * row_gap
+        y = first_y + index * row_gap + offset(category)
+        if category == "coding":
+            output.append(
+                f'<line x1="{label_x}" y1="{y - 39}" x2="{bar_x + bar_width}" y2="{y - 39}" stroke="#c9bfcd" stroke-width="1.5" stroke-dasharray="6 6"/>'
+            )
         percent = count / denominator * 100
-        percent_label = f"{percent:.1f}".rstrip("0").rstrip(".") + "%"
+        percent_label = format_percent(count, denominator)
         color = colors[category]
-        output.append(f'<text class="label" x="{label_x}" y="{y + 7}">{escape(label)}</text>')
+        output.append(f'<text class="label{" emphasis" if category == "coding" else ""}" x="{label_x}" y="{y + 7}">{escape(label)}</text>')
         output.append(
             f'<rect x="{bar_x}" y="{y - bar_height + 4}" width="{bar_width}" height="{bar_height}" rx="8" fill="#f1eef2"/>'
         )
@@ -128,12 +155,10 @@ def svg_chart(metrics, title, note):
             f'<text class="value" x="{bar_x + bar_width + 18}" y="{y + 7}">{percent_label}</text>'
         )
 
-    output.extend(
-        [
-            f'<text class="note" x="16" y="337">{escape(note)}</text>',
-            "</svg>",
-        ]
-    )
+    for index, line in enumerate(note_lines):
+        y = height - 13 - 26 * (len(note_lines) - 1 - index)
+        output.append(f'<text class="note" x="16" y="{y}">{escape(line)}</text>')
+    output.append("</svg>")
     return "\n".join(output)
 
 
@@ -168,37 +193,34 @@ def main():
             parser.error(f"Expected a binary response from every work-AI user for {field}.")
 
     common, research = build_chart(responses)
+    any_ai_count = sum(row["q1_1"].strip() in {"1", "2"} for row in responses)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     charts = [
         (
             "baseline-common-uses.svg",
             common,
-            "What we are doing now",
-            f"Baseline: any AI n={len(responses)}; other measures n={len(work_ai_users)} work-AI users.",
+            cohort_title(any_ai_count, len(responses)),
+            f"Baseline: {len(work_ai_users)} work-AI users. Tasks: last four weeks; chat AI: ever used.\n"
+            f"Any AI use (work or personal): {format_percent(any_ai_count, len(responses))} "
+            f"of {len(responses)} respondents.",
         ),
         (
             "baseline-research-workflows.svg",
             research,
-            "What we are doing less of",
-            f"Baseline: {len(work_ai_users)} work-AI users. Tasks refer to the last four weeks; multiple responses allowed.",
+            workflow_title(common, research),
+            f"Baseline: {len(work_ai_users)} work-AI users. Tasks: last four weeks; coding agent: ever used.",
         ),
     ]
     for filename, metrics, title, note in charts:
         path = args.output_dir / filename
         path.write_text(svg_chart(metrics, title, note), encoding="utf-8")
     count = selected_count(work_ai_users, "q1_3_5")
-    any_ai_count = sum(row["q1_1"].strip() in {"1", "2"} for row in responses)
     print(json.dumps({
-        "BASELINE_CODING_PERCENT": f"{100 * count / len(work_ai_users):.1f}%",
+        "BASELINE_CODING_PERCENT": format_percent(count, len(work_ai_users)),
         "BASELINE_TOTAL": str(len(responses)),
         "BASELINE_WORK_USERS": str(len(work_ai_users)),
-        "BASELINE_TITLE": (
-            "Everyone is experimenting with AI"
-            if any_ai_count == len(responses)
-            else "Most participants are experimenting with AI"
-            if any_ai_count > len(responses) / 2
-            else "Participants are experimenting with AI"
-        ),
+        "BASELINE_WORKFLOW_TITLE": workflow_title(common, research),
+        "BASELINE_TITLE": cohort_title(any_ai_count, len(responses)),
     }))
 
 

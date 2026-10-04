@@ -9,13 +9,13 @@
   margin: 0;
 }
 
-.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-grid {
+.reveal :is(.welcome-slide, .day-overview, .how-slide) .welcome-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px 22px;
 }
 
-.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-card {
+.reveal :is(.welcome-slide, .day-overview, .how-slide) .welcome-card {
   padding: 20px 24px;
   border: 1px solid #e6dce9;
   border-left: 4px solid #6d397f;
@@ -23,25 +23,113 @@
   background: #faf7fb;
 }
 
-.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-card h3 {
+.reveal :is(.welcome-slide, .day-overview, .how-slide) .welcome-card h3 {
   margin: 0 0 10px;
   font-size: 27px;
   line-height: 1.2;
 }
 
-.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-card p {
+.reveal :is(.welcome-slide, .day-overview, .how-slide) .welcome-card p {
   margin: 0;
   font-size: 23px;
   line-height: 1.4;
 }
 
-.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-takeaway {
+.reveal :is(.welcome-slide, .day-overview, .how-slide) .welcome-takeaway {
   margin-top: 24px;
   color: #530153;
   font-size: 23px;
   line-height: 1.4;
 }
 
-.reveal :is(.welcome-slide, .day-overview, .outcomes-slide) .welcome-takeaway p {
+.reveal :is(.welcome-slide, .day-overview, .how-slide) .welcome-takeaway p {
   margin: 0;
+}
+
+.reveal .day-overview .welcome-card {
+  padding: 16px 22px;
+}
+
+.reveal .day-overview .welcome-card p {
+  font-size: 20px;
+}
+
+.reveal .day-overview .welcome-card .card-output {
+  display: block;
+  margin-top: 8px;
+  color: #530153;
+}
+
+.reveal .team-slide .instructor-row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  margin: 40px 0 40px;
+  text-align: center;
+}
+
+.reveal .team-slide .instructor-row img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 10px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.reveal .team-slide .instructor-row p {
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.reveal .how-slide .welcome-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 40px;
+}
+
+.reveal .next-steps-slide .qr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px 32px;
+  margin-top: 28px;
+}
+
+.reveal .next-steps-slide .qr-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.reveal .next-steps-slide .qr-item > p {
+  flex: none;
+  margin: 0;
+}
+
+.reveal .next-steps-slide .qr-item img {
+  display: block;
+  width: 190px;
+  max-width: none;
+  height: 190px;
+  margin: 0;
+}
+
+.reveal .next-steps-slide .qr-text h3 {
+  margin: 4px 0 10px;
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.reveal .next-steps-slide .qr-text p {
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.35;
+}
+
+.reveal .next-steps-slide .qr-text h3 a {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
 }

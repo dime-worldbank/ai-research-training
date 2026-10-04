@@ -1,34 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="350" viewBox="0 0 1200 350" role="img" aria-labelledby="title desc">
-<title id="title">What we are doing now</title>
-<desc id="desc">Four horizontal bars show self-reported baseline use as percentages.</desc>
-<style>text{font-family:Arial,Helvetica,sans-serif;fill:#25212a}.label{font-size:27px}.value{font-size:25px;font-weight:700}.axis{font-size:20px;fill:#666}.note{font-size:20px;fill:#555}</style>
-<line x1="445.0" y1="20" x2="445.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="445.0" y="296" text-anchor="middle">0%</text>
-<line x1="559.0" y1="20" x2="559.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="559.0" y="296" text-anchor="middle">20%</text>
-<line x1="673.0" y1="20" x2="673.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="673.0" y="296" text-anchor="middle">40%</text>
-<line x1="787.0" y1="20" x2="787.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="787.0" y="296" text-anchor="middle">60%</text>
-<line x1="901.0" y1="20" x2="901.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="901.0" y="296" text-anchor="middle">80%</text>
-<line x1="1015.0" y1="20" x2="1015.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="1015.0" y="296" text-anchor="middle">100%</text>
-<text class="label" x="16" y="55">Any AI use (work or personal)</text>
-<rect x="445" y="26" width="570" height="26" rx="8" fill="#f1eef2"/>
-<rect x="445" y="26" width="570.0" height="26" rx="8" fill="#9b83a7"/>
-<text class="value" x="1033" y="55">100%</text>
-<text class="label" x="16" y="119">Writing / editing documents</text>
-<rect x="445" y="90" width="570" height="26" rx="8" fill="#f1eef2"/>
-<rect x="445" y="90" width="484.0" height="26" rx="8" fill="#6d397f"/>
-<text class="value" x="1033" y="119">84.9%</text>
-<text class="label" x="16" y="183">Background research</text>
-<rect x="445" y="154" width="570" height="26" rx="8" fill="#f1eef2"/>
-<rect x="445" y="154" width="473.2" height="26" rx="8" fill="#6d397f"/>
-<text class="value" x="1033" y="183">83%</text>
-<text class="label" x="16" y="247">Third-party chat AI</text>
-<rect x="445" y="218" width="570" height="26" rx="8" fill="#f1eef2"/>
-<rect x="445" y="218" width="462.5" height="26" rx="8" fill="#6d397f"/>
-<text class="value" x="1033" y="247">81.1%</text>
-<text class="note" x="16" y="337">Baseline: any AI n=54; other measures n=53 work-AI users.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="276" viewBox="0 0 1200 276" role="img" aria-labelledby="title desc">
+<title id="title">Who you are: AI enthusiasts</title>
+<desc id="desc">3 horizontal bars show self-reported baseline use as percentages.</desc>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#25212a}.label{font-size:27px}.value{font-size:25px;font-weight:700}.axis{font-size:20px;fill:#666}.note{font-size:20px;fill:#555}.emphasis{font-weight:700}</style>
+<line x1="445.0" y1="20" x2="445.0" y2="178" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="445.0" y="208" text-anchor="middle">0%</text>
+<line x1="559.0" y1="20" x2="559.0" y2="178" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="559.0" y="208" text-anchor="middle">20%</text>
+<line x1="673.0" y1="20" x2="673.0" y2="178" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="673.0" y="208" text-anchor="middle">40%</text>
+<line x1="787.0" y1="20" x2="787.0" y2="178" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="787.0" y="208" text-anchor="middle">60%</text>
+<line x1="901.0" y1="20" x2="901.0" y2="178" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="901.0" y="208" text-anchor="middle">80%</text>
+<line x1="1015.0" y1="20" x2="1015.0" y2="178" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="1015.0" y="208" text-anchor="middle">100%</text>
+<text class="label" x="16" y="51">Writing / editing documents</text>
+<rect x="445" y="22" width="570" height="26" rx="8" fill="#f1eef2"/>
+<rect x="445" y="22" width="484.0" height="26" rx="8" fill="#6d397f"/>
+<text class="value" x="1033" y="51">85%</text>
+<text class="label" x="16" y="105">Background research</text>
+<rect x="445" y="76" width="570" height="26" rx="8" fill="#f1eef2"/>
+<rect x="445" y="76" width="473.2" height="26" rx="8" fill="#6d397f"/>
+<text class="value" x="1033" y="105">83%</text>
+<text class="label" x="16" y="159">Third-party chat AI</text>
+<rect x="445" y="130" width="570" height="26" rx="8" fill="#f1eef2"/>
+<rect x="445" y="130" width="462.5" height="26" rx="8" fill="#6d397f"/>
+<text class="value" x="1033" y="159">81%</text>
+<text class="note" x="16" y="237">Baseline: 53 work-AI users. Tasks: last four weeks; chat AI: ever used.</text>
+<text class="note" x="16" y="263">Any AI use (work or personal): 100% of 54 respondents.</text>
 </svg>

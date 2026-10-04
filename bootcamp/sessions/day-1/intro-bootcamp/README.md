@@ -2,9 +2,20 @@
 
 Every Quarto render runs `baseline-render.lua`, which calls
 `make_baseline_chart.py` before embedding the two baseline charts.
-The coding-agent percentage, sample sizes in speaker notes, and baseline
-title are populated from the same data. Chart bar labels show percentages only;
-footnotes retain sample sizes to clarify the denominators.
+The coding-agent percentage, sample sizes in speaker notes, and both baseline
+slide titles are populated from the same data. Chart bar labels show whole-number
+percentages only (`<1%`/`>99%` at the extremes); footnotes retain sample sizes to
+clarify the denominators.
+
+- **Common uses chart:** writing, background research, and third-party chat AI
+  among work-AI users. Any AI use (work or personal) appears in the footnote and
+  drives the slide title ("Who you are: AI enthusiasts" when everyone uses AI,
+  "mostly AI enthusiasts" for a majority, otherwise "AI-curious").
+- **Research workflows chart:** four last-four-weeks workflow tasks plus a
+  highlighted "Ever tried a coding agent" bar, separated by a dashed line. The
+  title continues the first slide's ("…who don't use AI for code much (yet)") only
+  while every workflow rate is below every common-use rate; otherwise it falls
+  back to "…and how you use AI for research workflows".
 
 ## Input
 
@@ -49,3 +60,14 @@ python -m unittest discover -s 'bootcamp\sessions\day-1\intro-bootcamp' -p 'test
 The tests check percentage labels, denominators, CSV/XLSX parity, invalid
 inputs, and ordinary Quarto renders after changing a temporary response export.
 The render test restores the presentation using your configured real input.
+
+## QR codes
+
+The four QR codes on the "Before the next session" slide are static SVGs in
+`images/qr-*.svg`, so renders do not need any extra package. If a link changes,
+update it in both the slide and `make_qr_codes.py`, then regenerate (requires
+`pip install segno`):
+
+```powershell
+python 'bootcamp\sessions\day-1\intro-bootcamp\make_qr_codes.py'
+```

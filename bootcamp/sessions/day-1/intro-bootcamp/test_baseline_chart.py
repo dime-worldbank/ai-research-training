@@ -11,7 +11,7 @@ import unittest
 from xml.etree import ElementTree as ET
 from zipfile import ZipFile
 
-from make_baseline_chart import read_responses
+from make_baseline_chart import build_chart, cohort_title, format_percent, read_responses, workflow_title
 
 
 FOLDER = Path(__file__).resolve().parent
@@ -57,17 +57,40 @@ class BaselineChartTests(unittest.TestCase):
         result = self.generate()
         self.assertEqual(result.returncode, 0, result.stderr)
         stats = json.loads(result.stdout)
-        self.assertEqual(stats["BASELINE_CODING_PERCENT"], "50.0%")
+        self.assertEqual(stats["BASELINE_CODING_PERCENT"], "50%")
         self.assertEqual(stats["BASELINE_TOTAL"], "3")
         self.assertEqual(stats["BASELINE_WORK_USERS"], "2")
         self.assertEqual(
             chart_values((self.folder / "baseline-common-uses.svg").read_text()),
-            ["100%", "50%", "50%", "50%"],
+            ["50%"] * 3,
         )
-        self.assertEqual(
-            chart_values((self.folder / "baseline-research-workflows.svg").read_text()),
-            ["50%"] * 4,
-        )
+        common_svg = (self.folder / "baseline-common-uses.svg").read_text()
+        self.assertIn("Tasks: last four weeks; chat AI: ever used.", common_svg)
+        self.assertIn("Any AI use (work or personal): 100% of 3 respondents", common_svg)
+        research_svg = (self.folder / "baseline-research-workflows.svg").read_text()
+        self.assertEqual(chart_values(research_svg), ["50%"] * 5)
+        self.assertIn("Ever tried a coding agent", research_svg)
+
+    def test_percentages_round_to_whole_numbers(self):
+        for count, denominator, expected in (
+            (1, 3, "33%"), (2, 3, "67%"), (1, 8, "13%"), (0, 5, "0%"),
+            (1, 400, "<1%"), (399, 400, ">99%"), (5, 5, "100%"),
+        ):
+            with self.subTest(count=count, denominator=denominator):
+                self.assertEqual(format_percent(count, denominator), expected)
+
+    def test_workflow_title_reflects_gap(self):
+        rows = [dict.fromkeys(FIELDS, "1") for _ in range(4)]
+        for row in rows[1:]:
+            for field in ("q1_5_6", "q1_5_7", "q1_5_8", "q1_5_9"):
+                row[field] = "0"
+        self.assertEqual(workflow_title(*build_chart(rows)), "…who don't use AI for code much (yet)")
+        self.assertEqual(workflow_title(*build_chart(sample_rows())), "…and how you use AI for research workflows")
+
+    def test_cohort_title_reflects_any_ai_share(self):
+        self.assertEqual(cohort_title(5, 5), "Who you are: AI enthusiasts")
+        self.assertEqual(cohort_title(3, 5), "Who you are: mostly AI enthusiasts")
+        self.assertEqual(cohort_title(2, 5), "Who you are: AI-curious")
 
     def test_invalid_responses_fail(self):
         for field, value, message in (
@@ -137,14 +160,15 @@ class BaselineChartTests(unittest.TestCase):
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
                 html = (FOLDER / "index.html").read_text(encoding="utf-8")
                 self.assertNotRegex(html, r"BASELINE_[A-Z_]+")
-                self.assertIn(f'<strong>{"50.0%" if coding == "1" else "0.0%"}</strong>', html)
-                self.assertIn("Most participants are experimenting with AI", html)
+                self.assertIn(f'<strong>{"50%" if coding == "1" else "0%"}</strong>', html)
+                self.assertIn("Who you are: mostly AI enthusiasts", html)
+                self.assertIn("and how you use AI for research workflows", html)
                 self.assertIn("(n = 3)", html)
                 svgs = [
                     base64.b64decode(value).decode("utf-8")
                     for value in re.findall(r'data:image/svg\+xml;base64,([^"]+)', html)
                 ]
-                expected = ["66.7%", "50%" if writing == "1" else "0%", "50%", "50%"]
+                expected = ["50%" if writing == "1" else "0%", "50%", "50%"]
                 self.assertTrue(any(chart_values(svg) == expected for svg in svgs))
             environment["AI_BOOTCAMP_BASELINE_DATA"] = str(self.folder / "missing.csv")
             result = subprocess.run(command, env=environment, capture_output=True, text=True)

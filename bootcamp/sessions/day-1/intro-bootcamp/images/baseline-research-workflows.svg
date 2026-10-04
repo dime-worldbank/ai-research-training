@@ -1,34 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="350" viewBox="0 0 1200 350" role="img" aria-labelledby="title desc">
-<title id="title">What we are doing less of</title>
-<desc id="desc">Four horizontal bars show self-reported baseline use as percentages.</desc>
-<style>text{font-family:Arial,Helvetica,sans-serif;fill:#25212a}.label{font-size:27px}.value{font-size:25px;font-weight:700}.axis{font-size:20px;fill:#666}.note{font-size:20px;fill:#555}</style>
-<line x1="445.0" y1="20" x2="445.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="445.0" y="296" text-anchor="middle">0%</text>
-<line x1="559.0" y1="20" x2="559.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="559.0" y="296" text-anchor="middle">20%</text>
-<line x1="673.0" y1="20" x2="673.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="673.0" y="296" text-anchor="middle">40%</text>
-<line x1="787.0" y1="20" x2="787.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="787.0" y="296" text-anchor="middle">60%</text>
-<line x1="901.0" y1="20" x2="901.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="901.0" y="296" text-anchor="middle">80%</text>
-<line x1="1015.0" y1="20" x2="1015.0" y2="266" stroke="#e7e2e9" stroke-width="1"/>
-<text class="axis" x="1015.0" y="296" text-anchor="middle">100%</text>
-<text class="label" x="16" y="55">Data analysis / visualization</text>
-<rect x="445" y="26" width="570" height="26" rx="8" fill="#f1eef2"/>
-<rect x="445" y="26" width="290.4" height="26" rx="8" fill="#6d397f"/>
-<text class="value" x="1033" y="55">50.9%</text>
-<text class="label" x="16" y="119">Survey workflows</text>
-<rect x="445" y="90" width="570" height="26" rx="8" fill="#f1eef2"/>
-<rect x="445" y="90" width="129.1" height="26" rx="8" fill="#6d397f"/>
-<text class="value" x="1033" y="119">22.6%</text>
-<text class="label" x="16" y="183">Dashboards / web apps</text>
-<rect x="445" y="154" width="570" height="26" rx="8" fill="#f1eef2"/>
-<rect x="445" y="154" width="96.8" height="26" rx="8" fill="#6d397f"/>
-<text class="value" x="1033" y="183">17%</text>
-<text class="label" x="16" y="247">Reproducibility packages</text>
-<rect x="445" y="218" width="570" height="26" rx="8" fill="#f1eef2"/>
-<rect x="445" y="218" width="64.5" height="26" rx="8" fill="#6d397f"/>
-<text class="value" x="1033" y="247">11.3%</text>
-<text class="note" x="16" y="337">Baseline: 53 work-AI users. Tasks refer to the last four weeks; multiple responses allowed.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="376" viewBox="0 0 1200 376" role="img" aria-labelledby="title desc">
+<title id="title">…who don&#x27;t use AI for code much (yet)</title>
+<desc id="desc">5 horizontal bars show self-reported baseline use as percentages.</desc>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#25212a}.label{font-size:27px}.value{font-size:25px;font-weight:700}.axis{font-size:20px;fill:#666}.note{font-size:20px;fill:#555}.emphasis{font-weight:700}</style>
+<line x1="445.0" y1="20" x2="445.0" y2="304" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="445.0" y="334" text-anchor="middle">0%</text>
+<line x1="559.0" y1="20" x2="559.0" y2="304" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="559.0" y="334" text-anchor="middle">20%</text>
+<line x1="673.0" y1="20" x2="673.0" y2="304" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="673.0" y="334" text-anchor="middle">40%</text>
+<line x1="787.0" y1="20" x2="787.0" y2="304" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="787.0" y="334" text-anchor="middle">60%</text>
+<line x1="901.0" y1="20" x2="901.0" y2="304" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="901.0" y="334" text-anchor="middle">80%</text>
+<line x1="1015.0" y1="20" x2="1015.0" y2="304" stroke="#e7e2e9" stroke-width="1"/>
+<text class="axis" x="1015.0" y="334" text-anchor="middle">100%</text>
+<text class="label" x="16" y="51">Data analysis / visualization</text>
+<rect x="445" y="22" width="570" height="26" rx="8" fill="#f1eef2"/>
+<rect x="445" y="22" width="290.4" height="26" rx="8" fill="#6d397f"/>
+<text class="value" x="1033" y="51">51%</text>
+<text class="label" x="16" y="105">Survey workflows</text>
+<rect x="445" y="76" width="570" height="26" rx="8" fill="#f1eef2"/>
+<rect x="445" y="76" width="129.1" height="26" rx="8" fill="#6d397f"/>
+<text class="value" x="1033" y="105">23%</text>
+<text class="label" x="16" y="159">Dashboards / web apps</text>
+<rect x="445" y="130" width="570" height="26" rx="8" fill="#f1eef2"/>
+<rect x="445" y="130" width="96.8" height="26" rx="8" fill="#6d397f"/>
+<text class="value" x="1033" y="159">17%</text>
+<text class="label" x="16" y="213">Reproducibility packages</text>
+<rect x="445" y="184" width="570" height="26" rx="8" fill="#f1eef2"/>
+<rect x="445" y="184" width="64.5" height="26" rx="8" fill="#6d397f"/>
+<text class="value" x="1033" y="213">11%</text>
+<line x1="16" y1="239" x2="1015" y2="239" stroke="#c9bfcd" stroke-width="1.5" stroke-dasharray="6 6"/>
+<text class="label emphasis" x="16" y="285">Ever tried a coding agent</text>
+<rect x="445" y="256" width="570" height="26" rx="8" fill="#f1eef2"/>
+<rect x="445" y="256" width="139.8" height="26" rx="8" fill="#c2410c"/>
+<text class="value" x="1033" y="285">25%</text>
+<text class="note" x="16" y="363">Baseline: 53 work-AI users. Tasks: last four weeks; coding agent: ever used.</text>
 </svg>
