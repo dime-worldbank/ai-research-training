@@ -29,7 +29,12 @@ This is a **hands-on bootcamp** about applying AI to real analytical work—with
 
 ::: {.welcome-card}
 <h3>Bring your work</h3>
-Try AI workflows on your own project, with guidance and technical support from instructors.
+More than half of the sessions are hands-on. Work on your own project, or practice with the demo materials.
+:::
+
+::: {.welcome-card}
+<h3>Get dedicated support</h3>
+Instructors sit at your tables and support you throughout. You can also post in the Teams channel.
 :::
 
 ::: {.welcome-card}
@@ -38,23 +43,18 @@ Start with the foundations, then choose topics that fit your experience, interes
 :::
 
 ::: {.welcome-card}
-<h3>Explore the research cycle</h3>
-Work with practical examples spanning data and surveys, analysis, research outputs, and reproducibility.
-:::
-
-::: {.welcome-card}
-<h3>Leave ready to apply</h3>
-Build confidence with useful workflows you can adapt and reuse in your day-to-day work.
+<h3>Use AI responsibly</h3>
+Apply AI ethically and cost-effectively at every stage of the research cycle, from data collection to publication.
 :::
 
 ::::
 
 ::: {.welcome-takeaway}
-**Bring a real task—we'll help you find where AI makes it faster or better.**
+**Bring a real task—we'll help you find where AI can make your workflows faster or better.**
 :::
 
 ::: {.notes}
-~1 minute 30 seconds. Open with: "Welcome. This is not another lecture on the potential of AI." Then set the practical tone. This bootcamp is not just about AI capabilities: it is about applying tools and workflows in the World Bank environment. Encourage participants to bring a real task or project. They will have opportunities to work on their own projects with instructor guidance and technical support. The program progresses from foundational to advanced sessions, so participants can shape a pathway around their experience, interests, and work programs. Sessions span different stages of analytical work, from data and surveys through research outputs and reproducibility.
+~1 minute 45 seconds. Open with: "Welcome. This is not another lecture on the potential of AI." Then set the practical tone and expectations for the format. This bootcamp is about applying tools and workflows in the World Bank environment. Hands-on time is where most of the learning happens: encourage participants to bring a real task or project; those without a suitable project can use the demo materials. Instructors sit at tables with participants and provide dedicated support throughout the course, and the Teams channel is the place for questions between sessions. The program progresses from foundational to advanced sessions, so participants can shape a pathway around their experience, interests, and work programs. Throughout the bootcamp, we emphasize using AI ethically and cost-effectively at every stage of the research cycle: knowing which tools are cleared for which data, keeping a human in the loop, and choosing the right model for the task. Today's sessions on cost-effective use and on ethics, governance, and safe use go into detail.
 :::
 
 ## Who we are {.team-slide}
@@ -142,29 +142,47 @@ Explore advanced tools: dashboards, multi-agent workflows, geospatial analysis, 
 ~1 minute 30 seconds. Give the arc, not a session-by-session tour: agent foundations, data work, research products, then advanced/scalable workflows. For each day, name the tangible output, not a promise of identical products for every participant. Day 1: a project memory file and a skill installed and used. Day 2: an AI-programmed survey, reusable data-quality checks, reviewed/improved code, and a table or chart; the survey and data checks can use demo materials. Day 3: a presentation or policy brief, reproducibility package, and adoption plan with 6-week and 3-month targets. Day 4 is optional and geared toward people ready for more advanced practice: a MEGA workspace and successful World Bank AI API query, AI outputs reviewed through GitHub, and a multi-agent workflow. Encourage participants to leave with workflows they can apply to their own projects.
 :::
 
-## How this works {.how-slide}
+## Today: understand agents, then put them to work {.day1-slide}
 
-:::: {.welcome-grid}
+:::: {.day1-grid}
 
-::: {.welcome-card}
-<h3>Learn by doing</h3>
-More than half of the sessions are hands-on. Work on your own project, or practice with the demo materials.
+::: {.day1-phase}
+<h3>1 · Understand agents</h3>
+
+- Introduction to AI agents
+- Onboarding agents: memory files
 :::
 
-::: {.welcome-card}
-<h3>Ask for help anytime</h3>
-Instructors sit at your tables and provide dedicated support throughout. You can also post in the Teams channel.
+::: {.day1-phase}
+<h3>2 · Explore AI at the WBG</h3>
+
+- WBG GitHub and Open Source Catalog
+- AI Tools Bazaar
+- AI at the WBG: landscape and ambitions
 :::
 
-::: {.welcome-card}
-<h3>Protect your data</h3>
-Share data only with tools cleared for its classification. Today's session *How We Use AI Matters* covers the rules.
+::: {.day1-phase}
+<h3>3 · Put agents to work</h3>
+
+- Using agents efficiently and cost-effectively
+- Good prompts and reusable skills
+- [Hands-on]{.hands-on-badge} Create a memory file and install a skill
+:::
+
+::: {.day1-phase}
+<h3>4 · Use AI responsibly</h3>
+
+- How We Use AI Matters: ethics, governance, and safe use
 :::
 
 ::::
 
+::: {.welcome-takeaway}
+**By the end of today:** a memory file for your project and one skill installed and used.
+:::
+
 ::: {.notes}
-~1 minute. Set expectations for the format. Hands-on time is where most of the learning happens; participants without a suitable project can use the demo materials. Instructors sit at tables with participants and provide dedicated support throughout the course, and the Teams channel is the place for questions between sessions. Before anyone uploads project files to an AI tool, they should know the file's information classification and which tools are cleared for it; the Day 1 ethics session walks through the classification and tool-clearance rules in detail.
+~1 minute. Walk the arc, not every session: this morning we explain what agents are and how to onboard them to a project with memory files; late morning and after lunch we look at what is already available at the WBG (Open Source Program Office, the AI Tools Bazaar with impactAI, AVA, ScoreSight, Knowledger, and Translate, and the ITSAE AI Literacy Team); in the afternoon we put agents to work with efficient use, prompts, and skills, ending in the hands-on session where everyone creates a memory file and installs a skill; we close with ethics, governance, and safe use. Agenda source: the Day 1 schedule on the bootcamp website (_data/bootcamp.yml).
 :::
 
 ## Before the next session {.next-steps-slide}
