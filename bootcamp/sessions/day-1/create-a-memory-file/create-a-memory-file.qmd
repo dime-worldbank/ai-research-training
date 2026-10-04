@@ -91,13 +91,22 @@ The examples in the `example-library` folder are mature memory files specific to
 
 ## How to Install
 
+:::: {.columns .v-center-container}
+::: {.column width="80%" }
+
 1. Open your project in a VS Code workspace.
-1. Locate _or_ create your skills folder.
+2. Locate _or_ create your skills folder.
    - We recommend using the general open-source location `.agents/skills/`. If you do not already have a skills folder, create one at the root (top-level folder) of your workspace.
-1. Download the complete folder for the skill you want to use to your computer.
-1. Copy the complete skill folder, including all its contents, into your workspace's skills folder.
+3. Download the complete folder for the skill you want to use to your computer.
+4. Copy the complete skill folder, including all its contents, into your workspace's skills folder.
 
 That is all you need to install the skill.
+
+:::
+::: {.column width="20%" }
+![](./img/workspace.png)
+:::
+::::
 
 ## Verify the Skill Installation
 
