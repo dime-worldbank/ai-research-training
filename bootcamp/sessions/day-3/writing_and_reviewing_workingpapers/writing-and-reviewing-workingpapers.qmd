@@ -13,6 +13,7 @@ logos:
 format:
   bootcamp-revealjs:
     embed-resources: true
+    output-file: index.html
     # the bootcamp theme turns fragments off; the error slide reveals its answers
     fragments: true
 ---
