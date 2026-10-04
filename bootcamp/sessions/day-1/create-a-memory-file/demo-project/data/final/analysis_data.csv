@@ -1,0 +1,31 @@
+household_id,district,hh_size,monthly_income,has_electricity,survey_date,region,population,urban,area_type,income_per_person,income_group
+1001,North Hills,4,320.0,1,2026-03-02,North,45200,0,Rural,80.0,Middle
+1002,North Hills,6,210.0,0,2026-03-02,North,45200,0,Rural,35.0,Low
+1003,North Hills,3,450.0,1,2026-03-03,North,45200,0,Rural,150.0,Middle
+1004,North Hills,5,,0,2026-03-03,North,45200,0,Rural,,
+1005,North Hills,2,380.0,1,2026-03-04,North,45200,0,Rural,190.0,High
+1006,North Hills,7,190.0,0,2026-03-04,North,45200,0,Rural,27.1,Low
+1007,Riverside,4,520.0,1,2026-03-05,South,88150,1,Urban,130.0,Middle
+1008,Riverside,3,610.0,1,2026-03-05,South,88150,1,Urban,203.3,High
+1009,Riverside,5,480.0,1,2026-03-06,South,88150,1,Urban,96.0,Middle
+1010,Riverside,2,,1,2026-03-06,South,88150,1,Urban,,
+1011,Riverside,6,350.0,0,2026-03-07,South,88150,1,Urban,58.3,Low
+1012,Riverside,4,575.0,1,2026-03-07,South,88150,1,Urban,143.8,Middle
+1013,Lakeview,5,280.0,0,2026-03-09,North,31900,0,Rural,56.0,Low
+1014,Lakeview,8,240.0,0,2026-03-09,North,31900,0,Rural,30.0,Low
+1015,Lakeview,3,330.0,1,2026-03-10,North,31900,0,Rural,110.0,Middle
+1016,Lakeview,4,,0,2026-03-10,North,31900,0,Rural,,
+1017,Lakeview,6,260.0,0,2026-03-11,North,31900,0,Rural,43.3,Low
+1018,Lakeview,2,410.0,1,2026-03-11,North,31900,0,Rural,205.0,High
+1019,Central,3,890.0,1,2026-03-12,South,152300,1,Urban,296.7,High
+1020,Central,4,760.0,1,2026-03-12,South,152300,1,Urban,190.0,High
+1021,Central,2,1020.0,1,2026-03-13,South,152300,1,Urban,510.0,High
+1022,Central,5,680.0,1,2026-03-13,South,152300,1,Urban,136.0,Middle
+1023,Central,3,,1,2026-03-14,South,152300,1,Urban,,
+1024,Central,4,840.0,1,2026-03-14,South,152300,1,Urban,210.0,High
+1025,Eastfield,6,300.0,0,2026-03-16,East,56700,0,Rural,50.0,Low
+1026,Eastfield,5,360.0,1,2026-03-16,East,56700,0,Rural,72.0,Low
+1027,Eastfield,4,420.0,1,2026-03-17,East,56700,0,Rural,105.0,Middle
+1028,Eastfield,7,230.0,0,2026-03-17,East,56700,0,Rural,32.9,Low
+1029,Eastfield,3,390.0,1,2026-03-18,East,56700,0,Rural,130.0,Middle
+1030,Eastfield,5,,0,2026-03-18,East,56700,0,Rural,,

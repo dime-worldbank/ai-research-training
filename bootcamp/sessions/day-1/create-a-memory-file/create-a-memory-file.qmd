@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ### Project to use
 
 - We recommend that you use your own project for this (and all the following hands-on sessions)
-- If you do not have a project for this bootcamp, we will have a demonstration example available for each hands-on session. For this session, you can download and use [this demo project](TODO: Add url to project)
+- If you do not have a project for this bootcamp, we will have a demonstration example available for each hands-on session. For this session, you can download and use [this demo project](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-1/create-a-memory-file/memory-skill-demo-project.zip)
 
 ### Objective
 
