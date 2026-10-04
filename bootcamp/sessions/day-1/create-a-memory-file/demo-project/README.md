@@ -88,9 +88,6 @@ Then activate it:
 You should now see `(.venv)` at the start of the line in the terminal.
 You need to activate it again each time you open a new terminal.
 
-> **Windows tip:** If PowerShell says "running scripts is disabled on this system", run
-> `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, answer `Y`, and try activating again.
-
 ### Step 4: Install the required packages
 
 ```
