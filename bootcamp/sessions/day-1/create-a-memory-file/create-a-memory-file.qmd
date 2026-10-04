@@ -72,7 +72,7 @@ After you set up your memory file, take some time to review it and see if it can
 
 - Since the memory file is included in every request you make, keeping it concise helps you use tokens efficiently and preserve your token budget.
 - Adding all onboarding information to the memory file would soon leave little space for the actual task in the context window.
-- Use targeted ways to load context only when needed. For example, move a verbose section to a separate file in your project and link to it in the memory file. Include a description next to that link that tells the agent when to load that file into context.
+- Use targeted ways to load context only when needed. For example, move a verbose analysis plan to a separate file in your project and link to it in the memory file. Include a description next to that link that tells the agent when to load that file into context.
 - If you are unsure, it is still better to add relevant context to the memory file than to omit it, even if it is not the most token optimized option. This is an art more than a science.
 
 ## Templates and Adaptation
@@ -85,7 +85,7 @@ The examples in the `example-library` folder are mature memory files specific to
 
 ## Which Skill?
 
-- If you know which skill you want to use for your project, use that skill.
+- If you already have a skill in mind that you want to use for your project, but haven't yet installed it, use it for this exercise.
 - If you do not have a particular skill in mind, we recommend using the Impact Analytics skill for [preparing reproducibility packages](https://github.com/worldbank/wb-reproducible-research-repository/tree/main/ai-skills/reproducibility-skill).
   - This skill helps you set up a reproducibility package that follows the standards of the [World Bank's Reproducibility Initiative](https://reproducibility.worldbank.org).
 
@@ -114,7 +114,7 @@ That is all you need to install the skill.
 ::: {.column width="70%" }
 
 - Type `/skills` in the Agent chat, press Enter, and confirm that your skill is listed.
-- As you can see, agents come with pre-installed slash commands. Test and explore them at some point!
+- As you can see, agents come with pre-installed skills - called slash commands. Test and explore them at some point!
 - See whether any of those skills can help you with something you were not sure how to do manually.
 
 :::
@@ -122,7 +122,6 @@ That is all you need to install the skill.
 ![](./img/see-installed-skills.png)
 :::
 ::::
-
 
 ## Using the Skill
 
