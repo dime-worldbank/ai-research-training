@@ -1,0 +1,672 @@
+---
+title: "AI to Draft and Review Working Papers"
+subtitle: "Day 3 · Hands-on: Use AI to draft and get feedback on Working Papers"
+author: "Jonas Weinert"
+institute: "Impact Analytics"
+date: 7 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+
+format:
+  bootcamp-revealjs:
+    embed-resources: true
+    output-file: index.html
+    # the bootcamp theme turns fragments off; the error slide reveals its answers
+    fragments: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../../../_extensions/bootcamp/setup_palettes.R")
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+
+## Objective
+
+```{=html}
+<style>
+/* ---------- shared tokens (bootcamp palette) ---------- */
+:root { --navy:#530153; --blue:#800280; --cyan:#B974B9; --pale:#F4EAF4; --red:#C0392B; --green:#1E8F5B; --grey:#6B6B6B; }
+.ic { width: 1.6em; height: 1.6em; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+.big-ic .ic { width: 2.2em; height: 2.2em; }
+.reveal .muted { color: var(--grey); }
+
+/* ---------- cards ---------- */
+.cards { display: grid; gap: 18px; margin-top: 0.6em; }
+.cards.c2 { grid-template-columns: 1fr 1fr; }
+.cards.c3 { grid-template-columns: repeat(3, 1fr); }
+.cards.c4 { grid-template-columns: repeat(4, 1fr); }
+.cards.c5 { grid-template-columns: repeat(5, 1fr); }
+.card { background: var(--pale); border-radius: 12px; padding: 22px 22px; color: var(--navy); display: flex; flex-direction: column; gap: 10px; font-size: 0.95em; line-height: 1.35; }
+.card p { margin: 0; }
+.card.dark { background: var(--blue); color: #fff; }
+.card.line { background: #fff; border: 2px solid var(--cyan); }
+.card h4, .card .ct { display: block; margin: 0; font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 1.2em; color: inherit; text-transform: none; }
+.card .ex { font-style: italic; display: block; font-size: 1.05em; margin: 8px 0; }
+.card .foot { display: block; margin-top: auto; font-size: 0.85em; opacity: 0.8; }
+.cards.c5 .ct { font-size: 1em; }
+.cards.c5 .card { padding: 18px 14px; }
+.reveal .card.dark strong, .reveal .card.dark code { color: #fff; }
+.card code { font-size: 0.9em; }
+
+/* ---------- flows ---------- */
+.flow { display: flex; align-items: stretch; gap: 8px; margin: 0.3em 0; }
+.step { flex: 1 1 0; border-radius: 10px; padding: 20px 12px; font-size: 0.92em; line-height: 1.25; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; }
+.step.you { background: var(--blue); color: #fff; }
+.step.ai { background: var(--pale); color: var(--navy); border: 2px solid var(--cyan); }
+.step small { font-size: 0.8em; opacity: 0.85; }
+.arrow { align-self: center; color: var(--blue); font-weight: 700; font-size: 1.1em; }
+.flow-label { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); font-size: 0.9em; margin: 0.8em 0 0.3em; }
+.key { display: flex; gap: 8px; justify-content: flex-end; font-size: 0.6em; margin-top: 0.4em; }
+.key span { padding: 3px 10px; border-radius: 4px; }
+.key .you { background: var(--blue); color: #fff; }
+.key .ai { background: var(--pale); color: var(--navy); border: 1px solid var(--cyan); }
+
+/* ---------- big statement ---------- */
+.punch { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); font-size: 1.1em; text-align: center; margin-top: 1.2em; }
+
+/* ---------- timeline ---------- */
+.timeline { display: flex; height: 200px; border-radius: 10px; overflow: hidden; margin: 1em 0 0.4em; }
+.timeline div { display: flex; flex-direction: column; justify-content: center; padding: 0 22px; color: #fff; font-size: 0.9em; line-height: 1.25; }
+.timeline b { font-family: "Montserrat", sans-serif; font-size: 1.1em; }
+
+/* ---------- chat ---------- */
+.chat { display: flex; flex-direction: column; gap: 10px; font-size: 0.78em; line-height: 1.3; }
+.bubble { max-width: 82%; padding: 9px 14px; border-radius: 14px; }
+.bubble.agent { background: var(--pale); color: var(--navy); align-self: flex-start; border-bottom-left-radius: 3px; }
+.bubble.me { background: var(--blue); color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
+.who { font-size: 0.75em; font-weight: 700; opacity: 0.7; display: block; }
+
+/* ---------- chips ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0.35em 0; font-size: 0.72em; }
+.chips .lbl { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); width: 5.5em; }
+.chip { padding: 4px 11px; border-radius: 999px; border: 1.5px solid var(--cyan); color: var(--navy); background: #fff; }
+.chip.on { background: var(--blue); border-color: var(--blue); color: #fff; font-weight: 700; }
+
+/* ---------- comment card ---------- */
+.comment { border-left: 6px solid var(--red); background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.12); border-radius: 6px; padding: 14px 18px; font-size: 0.75em; line-height: 1.35; }
+.comment .hdr { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--red); margin-bottom: 4px; }
+.comment p { margin: 3px 0; }
+.btns { display: flex; gap: 8px; margin-top: 10px; }
+.btn { padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.95em; border: 2px solid var(--blue); color: var(--blue); }
+.btn.hot { background: var(--blue); color: #fff; }
+
+/* ---------- folder tree ---------- */
+.tree { font-family: "Fira Code", monospace; font-size: 0.72em; line-height: 1.55; background: var(--pale); border-radius: 10px; padding: 14px 20px; color: var(--navy); white-space: pre; }
+.tree em { font-family: "Lato", sans-serif; font-style: normal; color: var(--grey); }
+
+/* ---------- prompt box ---------- */
+.prompt { background: #1E1E1E; color: #F4EAF4; border-radius: 8px; padding: 14px 18px; font-family: "Fira Code", monospace; font-size: 0.72em; line-height: 1.35; }
+.reveal .column > .card + .card, .reveal .column > .card + div > .card, .reveal .column > * + .card { margin-top: 18px; }
+</style>
+```
+
+Use an AI agent on a working paper, **without handing it the thinking**.
+
+::: {.cards .c2}
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+
+[Draft]{.ct}
+
+You have tables and notes. The agent drafts a section from **your** claim and **your** numbers.
+:::
+
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+
+[Comment]{.ct}
+
+You have a draft. The agent comments like a referee. **You** decide what changes.
+:::
+:::
+
+## How this session works
+
+```{=html}
+<div class="timeline">
+  <div style="flex:10;background:#530153"><b>Why writing is different</b>10 min</div>
+  <div style="flex:10;background:#800280"><b>The workflow</b>10 min</div>
+  <div style="flex:25;background:#B974B9"><b>Your turn: draft or comment</b>25 min, hands-on</div>
+</div>
+```
+
+::: {.punch}
+Set up while we talk: next slide.
+:::
+
+## Are we ready?
+
+::: {.cards .c3}
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+
+[VS Code + an agent]{.ct}
+
+GitHub Copilot (any strong model) or the Claude Code extension
+:::
+
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+
+[(Optional) demo project]{.ct}
+
+[Comment track](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-with-draft.zip) or [draft track](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-no-draft.zip) (.zip, skills included)
+:::
+
+::: {.card .line .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+
+[Or: your paper]{.ct}
+
+Quarto, LaTeX or Markdown, with its output tables
+:::
+Skills for your own paper: [skills.zip](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/skills.zip) - See the teams channel for this file.
+
+:::
+
+::: {.notes}
+Word files: the agent edits .docx badly (tracked changes break, formatting drifts). If someone only has Word, convert with pandoc first and render back to Word at the end.
+:::
+
+# Why Writing Is Different {background-color="#530153"}
+
+## The paper is where the thinking happens
+
+::: {.cards .c2}
+::: {.card .line}
+[Yesterday: implementation]{.ct}
+
+Code · tables · charts · slides
+
+<span class="muted">Check it by **running** it.</span>
+:::
+
+::: {.card .dark}
+[Today: the paper]{.ct}
+
+What the estimates **mean** · which claim they carry · what to leave out
+
+Check it by **thinking**. There is nothing to run.
+:::
+:::
+
+::: {.punch}
+Your name is on it. You vouch for every sentence, including the agent's.
+:::
+
+::: {.notes}
+Writing is not typing up results: it is where you decide what the evidence means, which caveats it needs, and what to leave out. If the agent writes the argument, the agent made the decisions the paper exists to make.
+Journals already say this: AI cannot be an author, and authors are solely accountable for what it produced (AEA policy, covered in the Day 1 ethics session).
+:::
+
+## Human in the loop vs AI in the loop
+
+```{=html}
+<div class="flow-label">Human in the loop</div>
+<div class="flow">
+  <div class="step ai">AI drafts</div><span class="arrow">→</span>
+  <div class="step ai">AI polishes</div><span class="arrow">→</span>
+  <div class="step you">You approve</div>
+</div>
+<div class="flow-label">AI in the loop</div>
+<div class="flow">
+  <div class="step you">You state the claim</div><span class="arrow">→</span>
+  <div class="step you">You write the brief</div><span class="arrow">→</span>
+  <div class="step ai">AI drafts or comments</div><span class="arrow">→</span>
+  <div class="step you">You decide</div>
+</div>
+<div class="key"><span class="you">you</span><span class="ai">agent</span></div>
+```
+
+::: {.punch}
+Judgement **before** the draft, not only after it.
+:::
+
+::: {.notes}
+In the first row your judgement arrives after the thinking is done: you are reviewing someone else's argument. In the second, the agent works inside decisions you already made, and you still rule on what it produces.
+:::
+
+## Why approving a finished draft fails
+
+::: {.cards .c4}
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+
+[Fluent feels right]{.ct}
+
+Polished prose invites a yes
+:::
+
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+
+[Reading ≠ deciding]{.ct}
+
+You stop seeing what is missing
+:::
+
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+
+[Voice drifts]{.ct}
+
+Twenty small edits later, it sounds like the model
+:::
+
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+
+[Errors hide]{.ct}
+
+In sentences that read well. Next slide.
+:::
+:::
+
+::: {.notes}
+Fluent text reads as correct, so checking slides into skimming. Approving an argument is easier than building one, so you stop noticing what is missing. Each accepted edit is small, but they add up to a paper in someone else's voice.
+Line to land: this is why the workflow starts by interviewing you, and ends with you ruling on every comment and every change.
+:::
+
+## Spot the problems
+
+:::: {.columns}
+
+::: {.column width="56%"}
+From the demo draft:
+
+> The program increased student attendance by **5.2 percentage points** in our preferred specification (Table 2, column 2) [...]. The estimate is stable across specifications [...], which **supports a causal interpretation**. The program also **reduced dropout by 11 percent** over the study period.
+:::
+
+::: {.column width="44%"}
+Table 2, attendance rate:
+
+| | (1) | (2) | (3) |
+|---|---|---|---|
+| FSMP × Post | 0.045 | **0.042** | 0.039 |
+| | (0.012) | (0.011) | (0.013) |
+
+Column 2 is preferred. Rollout was **not random**: poorer districts went first.
+:::
+
+::::
+
+::: {.callout-note-custom .fragment}
+**Three errors.** 5.2 should be 4.2 · stability across columns does not make a non-random rollout causal · no dropout result exists anywhere in the outputs.
+:::
+
+::: {.notes}
+Give the room 30 seconds before revealing. Most people find 5.2 vs 4.2. Fewer find the dropout claim, because it reads like every other results sentence. This is D1, D3 and D6 in the instructor key.
+:::
+
+## The demo draft has 12 planted errors
+
+::: {.cards .c5}
+::: {.card}
+[Wrong number]{.ct}
+<span class="ex">"5.2 pp"</span>
+<span class="foot">Table says 4.2</span>
+:::
+
+::: {.card}
+[Invented result]{.ct}
+<span class="ex">"reduced dropout by 11%"</span>
+<span class="foot">No such output</span>
+:::
+
+::: {.card}
+[Fake citation]{.ct}
+<span class="ex">Johnson (2020)</span>
+<span class="foot">Journal does not exist</span>
+:::
+
+::: {.card}
+[Overclaim]{.ct}
+<span class="ex">"most cost-effective … worldwide"</span>
+<span class="foot">No cost data</span>
+:::
+
+::: {.card}
+[AI prose]{.ct}
+<span class="ex">"delve" ×3<br>"landscape" ×3</span>
+<span class="foot">Not the author's voice</span>
+:::
+:::
+
+::: {.punch}
+A wrong table looks wrong. A wrong paragraph looks finished.
+:::
+
+::: {.notes}
+Each of these is caught by a specific check: numbers are traced to outputs/, citations to the .bib, claims to the study population, prose to a word and pattern list. Full list in INSTRUCTOR-seeded-defects.md.
+:::
+
+# The Workflow {background-color="#530153"}
+
+## Where you decide
+
+```{=html}
+<div class="flow" style="margin-top:0.8em">
+  <div class="step you"><svg class="ic" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><b>Interview</b><small>you state the claim</small></div><span class="arrow">→</span>
+  <div class="step you"><svg class="ic" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><b>Guides</b><small>you edit the briefs</small></div><span class="arrow">→</span>
+  <div class="step ai"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 8V4M8 14h.01M16 14h.01"/></svg><b>Draft / comment</b><small>the agent works</small></div><span class="arrow">→</span>
+  <div class="step you"><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><b>Triage</b><small>you accept, reject, challenge</small></div><span class="arrow">→</span>
+  <div class="step you"><svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><b>Changes</b><small>you see each one first</small></div>
+</div>
+<div class="key"><span class="you">you</span><span class="ai">agent</span></div>
+```
+
+::: {.punch}
+The agent drafts, checks, challenges you and suggests based on that.
+:::
+
+::: {.notes}
+Walk the row left to right: four of the five boxes are decisions that stay with the author. Everything is written to a log, which is where the AI-use disclosure comes from (last slide of this section).
+:::
+
+## Three skills
+
+::: {.cards .c3}
+::: {.card .dark .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+
+[setup]{.ct}
+
+Interviews you
+
+<span class="foot">→ `profile.md` + guides</span>
+:::
+
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+
+[write]{.ct}
+
+Drafts one section at a time
+
+<span class="foot">→ the paper, after you see the change</span>
+:::
+
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+
+[review]{.ct}
+
+Comments against the guides
+
+<span class="foot">→ comment files, never the paper</span>
+:::
+:::
+
+
+::: {.notes}
+Baselines: econ-writing-skill and econ-paper-review-skill by Lu Han (github.com/hanlulong). They hold the general rules of good economics writing and refereeing. The WB skills add the author's preferences, the grounding in the project's own tables, and the approval steps.
+:::
+
+## Setup: the agent interviews you
+
+:::: {.columns}
+
+::: {.column width="62%"}
+```{=html}
+<div class="chat">
+  <div class="bubble agent"><span class="who">Agent</span>In one sentence, what is the main finding?</div>
+  <div class="bubble me"><span class="who">You</span>Free school meals raised attendance by about 4 points, most for girls and rural schools.</div>
+  <div class="bubble agent"><span class="who">Agent</span>What do you fear a referee will say?</div>
+  <div class="bubble me"><span class="who">You</span>That parallel trends is untested.</div>
+  <div class="bubble agent"><span class="who">Agent</span>Anything you want in every draft?</div>
+  <div class="bubble me"><span class="who">You</span>The number on page one.</div>
+</div>
+```
+:::
+
+::: {.column width="38%"}
+```{=html}
+<div class="card dark" style="margin-top:1.2em">
+  <h4>profile.md</h4>
+  <div>✓ claim, <b>in your words</b></div>
+  <div>✓ your biggest fear</div>
+  <div>✓ your conventions</div>
+  <div class="foot">~10–15 min</div>
+</div>
+```
+:::
+
+::::
+
+::: {.notes}
+Answers taken from the demo's pre-baked profile. The agent also asks who the paper is for, which papers you admire or dislike, and for outlet rules and old referee reports. The main finding is always typed by the author: the agent may sharpen it, never invent it.
+:::
+
+## A guide: one brief, two uses
+
+```{=html}
+<div class="flow" style="margin-top:0.6em">
+  <div class="step ai" style="flex:0.8"><svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><b>Drafting</b><small>follows it</small></div>
+  <span class="arrow">←</span>
+  <div class="card dark" style="flex:1.6;font-size:0.62em">
+    <h4>Methodologist · Zambia paper</h4>
+    <div>1 · Is parallel trends <b>shown</b>, or only assumed?</div>
+    <div>2 · "About 4 pp", and nothing stronger?</div>
+    <div>3 · Every number traced to the tables</div>
+  </div>
+  <span class="arrow">→</span>
+  <div class="step ai" style="flex:0.8"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><b>Comments</b><small>check against it</small></div>
+</div>
+```
+
+::: {.punch}
+All preferences are saved in plain text files. Edit them after the interview.
+:::
+
+::: {.notes}
+Setup writes a few guides: typically Methodologist, Policy Reviewer, Writing Critic. Priority 1 here is the author's own fear from the interview: that is the personalisation.
+:::
+
+## Comments: you pick the lens
+
+```{=html}
+<div class="chips"><span class="lbl">Guide</span><span class="chip on">Methodologist</span><span class="chip">Policy Reviewer</span><span class="chip">Writing Critic</span></div>
+<div class="chips"><span class="lbl">Domain</span><span class="chip on">accuracy</span><span class="chip">design</span><span class="chip">argument</span><span class="chip">presentation</span><span class="chip">language</span><span class="chip">policy</span><span class="chip">outlet</span></div>
+<div class="chips"><span class="lbl">Section</span><span class="chip">Intro</span><span class="chip">Strategy</span><span class="chip on">Results</span><span class="chip">Conclusion</span><span class="chip">Full draft</span></div>
+<div class="comment" style="margin-top:0.8em">
+  <div class="hdr">C-01 · Methodologist · accuracy · Results · P0</div>
+  <p><b>Basis:</b> text says 5.2 pp; Table 2, col. 2 says 0.042</p>
+  <p><b>Concern:</b> the headline number is wrong</p>
+  <p><b>Fix:</b> change to 4.2 pp</p>
+</div>
+```
+
+::: {.notes}
+Each run is guide × domain × section. accuracy: does the text say what the tables and citations say. design: would the identification survive a methods seminar. argument: is the result in the intro, does the logic hold. presentation: are exhibits self-contained. language: concrete prose, in your voice. policy and outlet: audience fit and outlet rules.
+Every comment has the same shape: quote or basis, concern, smallest fix, severity P0–P2.
+:::
+
+## You triage every comment
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{=html}
+<div class="comment">
+  <div class="hdr">C-04 · Methodologist · design · P0</div>
+  <p>Parallel trends is asserted, never shown.</p>
+  <div class="btns"><span class="btn">Accept</span><span class="btn">Reject</span><span class="btn">Defer</span><span class="btn hot">Challenge</span></div>
+</div>
+<div class="bubble me" style="margin-top:14px;font-size:0.62em;max-width:100%"><span class="who">You</span>Everyone assumes parallel trends.</div>
+```
+:::
+
+::: {.column width="50%"}
+```{=html}
+<div style="display:flex;flex-direction:column;gap:10px;margin-top:0.2em">
+  <div class="card line"><h4>Withdrawn</h4>You were right</div>
+  <div class="card line"><h4>Sharpened</h4>Partly right: a narrower comment</div>
+  <div class="card dark"><h4>Upheld</h4>Rollout was not random, so it matters more here. You still decide.</div>
+</div>
+```
+:::
+
+::::
+
+::: {.notes}
+A challenge is your objection in your own words. The agent rechecks the evidence only (no new sweep, no doubling down) and rules withdrawn, sharpened or upheld, with reasons. In the demo, challenging the parallel-trends comment should come back upheld: Table 1 shows poorer districts went first.
+Only accepted comments go to the drafting skill, and each resulting change is shown to you before it lands.
+:::
+
+## Drafting from your project
+
+```{=html}
+<div class="flow" style="margin-top:0.4em">
+  <div class="step ai"><b>Outline</b><small>two options, you pick</small></div><span class="arrow">→</span>
+  <div class="step ai"><b>Bullets</b><small>you check the logic</small></div><span class="arrow">→</span>
+  <div class="step ai"><b>Prose</b><small>one section at a time</small></div>
+</div>
+<div class="prompt" style="margin-top:0.9em">Attendance rose by <span style="color:#7EE2A8">4.2 percentage points</span> (Table 2, col. 2),<br><span style="background:#800280;color:#fff;padding:0 4px;border-radius:3px">[AUTHOR: which benchmark does the Ministry use?]</span></div>
+```
+
+::: {.punch}
+Numbers only from your tables. Anything else is a question for you.
+:::
+
+::: {.notes}
+wb-paper-write takes numbers only from the output files named in the profile. Anything it cannot source becomes an [AUTHOR: ...] marker. A marker is a question for you, not a gap for the agent to fill.
+:::
+
+## Every AI action is on the record
+
+```{=html}
+<div class="flow" style="margin-top:0.6em;align-items:center">
+  <div class="tree" style="flex:2;white-space:normal"><b>wb-paper/log.md</b><br>10:31 · setup · interview<br>&nbsp;&nbsp;offered: A lean | B full → <b>you chose B</b><br>11:02 · review · accuracy · Results<br>&nbsp;&nbsp;3 comments → <b>2 accepted, 1 challenged</b></div>
+  <span class="arrow">→</span>
+  <div class="step you" style="flex:1"><svg class="ic" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg><b>AI-use disclosure</b><small>generated at submission</small></div>
+</div>
+```
+
+::: {.punch}
+The skill produces a decision record you can build a disclosure list from.
+:::
+
+::: {.notes}
+The log records what the agent was given, the options it offered and what you chose. Each AI change is also saved separately from your own edits, so you can see and undo it. The first entry is from the demo log; the second is illustrative.
+:::
+
+# Hands-on: Draft or Comment {background-color="#530153"}
+
+## Pick your track
+
+::: {.cards .c2}
+::: {.card .dark .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+
+[A · Comment]{.ct}
+
+`zambia-attendance-with-draft/`
+
+Draft with 12 planted errors. Guides already set up.
+
+<span class="foot">Accept one, reject one, **challenge** one</span>
+:::
+
+::: {.card .big-ic}
+<svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+
+[B · Draft]{.ct}
+
+`zambia-attendance-no-draft/`
+
+Tables and a concept note. No draft yet.
+
+<span class="foot">Run setup, then draft the **Results**</span>
+:::
+:::
+
+::: {.notes}
+Both are the same fictional study: school meals and attendance in Zambia, 1,840 schools, 2021–2023. Participants with their own draft can use it instead.
+:::
+
+## Set up
+
+```{=html}
+<div class="flow" style="margin-top:0.4em">
+  <div class="step ai"><b>1 · Unzip</b><small>your track's .zip</small></div><span class="arrow">→</span>
+  <div class="step ai"><b>2 · Open</b><small>that folder in VS Code</small></div><span class="arrow">→</span>
+  <div class="step you"><b>3 · Paste</b><small>the first message</small></div>
+</div>
+<div class="flow-label">A · Comment</div>
+<div class="prompt">Follow skills/wb-paper-review/SKILL.md. Scope: Methodologist · accuracy · Results.</div>
+<div class="flow-label">B · Draft</div>
+<div class="prompt">Follow skills/wb-paper-setup/SKILL.md on the Quick route. I am the author. Lets draft this paper</div>
+```
+
+::: {.notes}
+Most common issue: opening a file instead of the folder. Each demo zip already contains skills/; if the agent cannot find SKILL.md, the folder opened is probably one level too high or too low.
+:::
+
+## What to watch for
+
+::: {.cards .c2}
+::: {.card}
+[A · Comment]{.ct}
+
+☐ Catches **5.2 vs 4.2**?<br>
+☐ Catches the dropout claim?<br>
+☐ Challenge parallel trends: upheld or withdrawn?
+:::
+
+::: {.card}
+[B · Draft]{.ct}
+
+☐ Asks before it writes?<br>
+☐ Every number in `outputs/`?<br>
+☐ Where are the `[AUTHOR:]` markers?
+:::
+:::
+
+::: {.punch}
+After each step, open `wb-paper/log.md`.
+:::
+
+::: {.notes}
+Track A, if time: run Methodologist · design · full draft. It should put the parallel-trends problem first, because that is the author's fear in the profile. Track B: read each change before accepting it.
+:::
+
+## Use it on your own paper
+
+:::: {.columns}
+
+::: {.column width="55%"}
+```{=html}
+<div class="tree">your-paper/
+├── skills/            <em>← unzip skills.zip here</em>
+└── wb-paper/references/
+    ├── positive/      <em>papers you admire</em>
+    ├── negative/      <em>writing you dislike</em>
+    ├── guidelines/    <em>outlet rules</em>
+    └── feedback/      <em>old referee reports</em></div>
+```
+:::
+
+::: {.column width="45%"}
+1. Drop in what you have. Empty is fine.
+2. Run setup once. Edit the guides.
+3. Before the next draft goes to a coauthor: **one** comment pass, triaged by you.
+:::
+
+::::
+
+::: {.notes}
+Setup creates the four folders if they are missing and asks you to add files; empty folders fall back to defaults. Work in Quarto, LaTeX or Markdown while the agent is involved and render to Word at the end if someone needs it.
+:::
+
+## Thank you {.closing}
+
+Skills for your own paper: [skills.zip](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/skills.zip)
+
+Everything else: [github.com/dime-worldbank/ai-research-training](https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers)

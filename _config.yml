@@ -17,3 +17,8 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
+  - bootcamp/sessions/day-0/README.md
+  - bootcamp/sessions/day-1/README.md
+  - bootcamp/sessions/day-2/README.md
+  - bootcamp/sessions/day-3/README.md
+  - bootcamp/sessions/day-4/README.md

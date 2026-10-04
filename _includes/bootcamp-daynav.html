@@ -1,0 +1,6 @@
+<nav class="day-nav" aria-label="Bootcamp days">
+<a class="day-pill{% if include.current == 'overview' %} active{% endif %}" href="{{ '/bootcamp/' | relative_url }}"><strong>Full agenda</strong><span>All days</span></a>
+{%- for d in site.data.bootcamp.days -%}
+<a class="day-pill{% if include.current == d.id %} active{% endif %}" href="{{ '/bootcamp/day-' | append: d.id | append: '/' | relative_url }}"><strong>Day {{ d.id }}</strong><span>{{ d.date }}</span></a>
+{%- endfor -%}
+</nav>

@@ -3,93 +3,26 @@ layout: default
 title: "DECDI AI Roadmap — Training Materials"
 ---
 
-This site hosts materials for the **DECDI AI for Research** training series: practical sessions on using AI tools across the research lifecycle — from coding agents and reusable skills through reproducibility, output generation, and responsible use.
+Practical training on using AI across the research lifecycle, from coding agents and reusable skills to data, reproducibility, research outputs, and responsible use. Choose a program.
 
-Materials for each session — slides, demo packages, setup instructions — are published here as the series runs.
+<div class="home-cards">
 
-<div class="note" markdown="1">
-**New to the series?** Start with the session that's live below. Each session folder is self-contained: overview, setup steps, slides, and any demo files.
-</div>
-
-## Sessions
-
-<div class="card-container">
-
-<a href="./sessions/ai-skills-reproducibility/">
-  <div class="card">
-    <span class="pill pill-available">Available</span>
-    <h3>1 &middot; AI Skills to Facilitate Reproducible Research</h3>
-    <p class="card-meta">Jul 16 &middot; led by Impact Analytics</p>
-    <p>Turn a project never built for reproducibility into a package that passes verification on the first submission.</p>
-  </div>
+<a class="home-card" href="{{ '/roadmap/' | relative_url }}">
+  <span class="home-card-icon">👾️</span>
+  <span class="home-card-kicker">Series &middot; May&ndash;Dec 2026</span>
+  <h2>AI for Research Roadmap</h2>
+  <p>Ten stand-alone sessions on AI for research. Follow along one session at a time, with slides and materials for each.</p>
+  <span class="home-card-cta">Open the roadmap &rarr;</span>
 </a>
 
-<div class="card upcoming">
-  <span class="pill pill-upcoming">Upcoming</span>
-  <h3>2 &middot; Using AI to Automate Research Outputs</h3>
-  <p class="card-meta">Jul 30</p>
-  <p>AI-assisted Quarto presentations and LaTeX / Markdown documents.</p>
-</div>
-
-<div class="card upcoming">
-  <span class="pill pill-upcoming">Upcoming</span>
-  <h3>3 &middot; Using AI to Review Code &amp; Verify Reproducibility</h3>
-  <p class="card-meta">Sep 8</p>
-  <p>AI-assisted code review and stress-testing reproducibility packages.</p>
-</div>
-
-<a href="./sessions/ai-ethics-governance/">
-  <div class="card">
-    <span class="pill pill-available">Available</span>
-    <h3>4 &middot; AI Ethics, Governance &amp; Safe Use</h3>
-    <p class="card-meta">Sep 17</p>
-    <p>Data sensitivity tiers, permissible uses, disclosure, and escalation paths.</p>
-  </div>
+<a class="home-card home-card-bootcamp" href="{{ '/bootcamp/' | relative_url }}">
+  <span class="home-card-icon">🤖️</span>
+  <span class="home-card-kicker">Oct 1 &amp; Oct 5&ndash;8, 2026</span>
+  <h2>AI-Enabled Research Bootcamp</h2>
+  <p>Five days, mostly hands-on, across the full research lifecycle. A page for each day with the agenda and every session's slides.</p>
+  <span class="home-card-cta">Open the bootcamp &rarr;</span>
 </a>
 
 </div>
 
-### Full schedule
-
-**Onboarding series (delivered)**
-
-| Session | Date | Status |
-|---------|------|--------|
-| Intuitive Introduction to AI Coding Agents | May 18 | Delivered |
-| AI Onboarding Part 1: Memory Files | Jun 22 | Delivered |
-| AI Onboarding Part 2: Skills | Jul 2 | Delivered |
-
-**AI for Research series**
-
-| # | Session | Date | Status |
-|---|---------|------|--------|
-| 1 | [AI Skills to Facilitate Reproducible Research](./sessions/ai-skills-reproducibility/) | Jul 16 | **Available** &middot; [Slides →](./sessions/ai-skills-reproducibility/slides/) |
-| 2 | Using AI to Automate Research Outputs | Jul 30 | Upcoming |
-| 3 | Using AI to Review Code and Verify Research Reproducibility | Sep 8 | Upcoming |
-| 4 | [AI Ethics, Governance, and Safe Use at the World Bank](./sessions/ai-ethics-governance/) | Sep 17 | **Available** &middot; [Slides →](./sessions/ai-ethics-governance/) |
-| 5 | Using AI for Feedback on Your Research | Oct 1 | Upcoming |
-| 6 | Using the World Bank AI API in MEGA | Oct 15 | Upcoming |
-| 7 | AI for Survey Instrument Design | Oct 29 | Upcoming |
-| 8 | AI for Transcribing Data | Nov 12 | Upcoming |
-| 9 | AI for Data Quality Checks | Nov 19 | Upcoming |
-| 10 | Creating Custom Coding Agents | Dec 3 | Upcoming |
-
-*The onboarding series introduced AI coding agents, memory files, and skills. Materials for those sessions are held by Impact Analytics; contact the team if you need them.*
-
----
-
-## About this repository
-
-Each session lives in its own numbered folder under `sessions/`:
-
-```
-sessions/
-└── 01-reproducibility-packages/
-    ├── README.md      session overview + setup prerequisites
-    ├── slides/        the session deck
-    └── materials/     demo package and other files
-```
-
-To add a session, copy an existing folder, give it the next number, add a card and a table row above.
-
-Questions: **reproducibility@worldbank.org**
+<p class="home-footer">Questions: <a href="mailto:reproducibility@worldbank.org">reproducibility@worldbank.org</a></p>

@@ -1,0 +1,367 @@
+# Bootcamp agenda — single source for /bootcamp/ and each day page.
+# Session fields: time, title, lead, hands_on, kind (break|lunch|welcome), link (site path or https URL), external,
+# materials (list of {label, url}: files and repos participants use in the session; shown as small buttons in the Materials column,
+# so keep each label to 1–2 short words, and add 🔒 when it needs a World Bank login;
+# url is a full https URL or a site path like /bootcamp/...; .zip files are not published on the site, so link them via github.com/.../raw/...).
+name: AI-Enabled Research Bootcamp
+dates: Oct 1 & Oct 5–8, 2026
+agenda_url: "https://www.canva.com/design/DAHT37UVp3k/MqhtbPu8GPBX2F0ywXmRaQ/view?utm_content=DAHT37UVp3k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h232f439bda"
+intro:
+- 'Artificial intelligence is changing how research is done. This bootcamp puts AI
+  capabilities directly into the hands of WBG researchers. Over four days, participants
+  move through the full research lifecycle: building confidence with agentic AI and
+  directing it responsibly; transforming how they collect, clean, and analyze data;
+  producing polished, reproducible, publication-ready research outputs; and, for those
+  ready to go further, designing advanced workflows that scale across teams.'
+- Every session is grounded in tools already available at the WBG, and more than half
+  are hands-on. Participants leave with reusable workflows, memory files, and AI skills
+  configured for their own research. No prior AI experience is required.
+days:
+- id: 0
+  theme: Setup for AI-enabled research
+  sessions:
+  - time: 9:30 – 10:00
+    title: Set up GitHub account and install GitHub Desktop
+    hands_on: true
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-0/setup-github/"
+    materials:
+    - label: "Desktop"
+      url: "https://desktop.github.com/"
+    - label: "Guide"
+      url: "https://github.com/worldbank/dime-github-trainings/blob/master/GitHub-resources/DIME-GitHub-Guides/Creating-GitHub-account.md"
+  - time: 10:00 – 11:30
+    title: Intuitive Introduction to Git/GitHub
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-0/intro-git-github/"
+    materials:
+    - label: "Practice repo"
+      url: "https://github.com/dime-wb-trainings/lyrics-aibc"
+  - time: 11:30 – 12:30
+    title: Migrating an existing project to GitHub (hands-on during lunch)
+    hands_on: true
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-0/migrate-to-github/"
+    materials:
+    - label: ".gitignore"
+      url: "https://raw.githubusercontent.com/worldbank/dime-github-trainings/refs/heads/main/GitHub-resources/DIME-GitHub-Templates/gitignore_template.txt"
+  - time: 12:30 – 1:45
+    title: Lunch
+    kind: lunch
+  - time: 1:45 – 2:15
+    title: Intro to Integrated Development Environments (VS Code)
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-0/intro-ide-vscode/"
+  - time: 2:15 – 2:45
+    title: Set up VS Code and open your project folder
+    hands_on: true
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-0/setup-vscode/"
+    materials:
+    - label: "VS Code"
+      url: "https://code.visualstudio.com/"
+  - time: 2:45 – 3:15
+    title: Set up command line software for agentic workflows
+    hands_on: true
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-0/setup-python-r/"
+  - time: 3:15 – 4:00
+    title: Set up a coding agent on your computer
+    hands_on: true
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-0/setup-coding-agent/"
+    materials:
+    - label: "Copilot guide 🔒"
+      url: "https://github.com/worldbank/ospo/blob/main/docs/copilot/README.md"
+  weekday: Thursday
+  date: Oct 1
+  track: Optional prerequisite
+  tag: setup
+  short: Accounts, GitHub, VS Code and a coding agent on your laptop.
+  note: Prerequisite for Days 1–3. Optional if you already use GitHub, VS Code and
+    a coding agent.
+  objective: Participants gain the foundational skills for reproducible workflows.
+    They understand and set up the accounts and software required to use coding agents
+    on WBG laptops. The main course (Oct 5–8) has these foundations as prerequisites;
+    staff who already have these skills do not need to attend.
+  outcomes:
+  - A GitHub repository for a current project, with at least one commit
+  - VS Code set up and used for at least one interaction with GitHub Copilot or Claude
+    Code
+- id: 1
+  theme: Intro to agentic AI at the WBG
+  sessions:
+  - time: 9:00 – 9:10
+    title: Welcome
+    kind: welcome
+  - time: 9:10 – 9:45
+    title: Introduction to AI Agents
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-1/intro-ai-agents/"
+  - time: 9:45 – 10:15
+    title: 'Onboarding AI Agents: Memory Files'
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-1/onboarding-ai-agents/"
+  - time: 10:15 – 10:30
+    title: Break
+    kind: break
+  - time: 10:30 – 11:00
+    title: Intro to the World Bank's GitHub and Open Source Catalog
+    lead: Open Source Program Office
+  - time: 11:00 – 12:00
+    title: AI Tools Bazaar (impactAI, AVA, ScoreSight, Knowledger, Translate)
+    lead: Renos Vakis, Linxi Wang, Alexander Lehner, Kentaro Florian Mayr, Sabri Tahir
+  - time: 12:00 – 1:15
+    title: Lunch
+    kind: lunch
+  - time: 1:15 – 2:00
+    title: 'AI at the WBG: Current Landscape and Future Ambitions'
+    lead: Arianna Legovini & Raman Pugalumperumal
+  - time: 2:00 – 2:30
+    title: Using AI agents efficiently and cost-effectively
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-1/cost-effective-ai/"
+  - time: 2:30 – 3:00
+    title: 'Making AI agents work for you: good prompts and reusable skills'
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-1/ai-agents-for-you/"
+  - time: 3:00 – 3:10
+    title: Break
+    kind: break
+  - time: 3:15 – 4:10
+    title: Create a memory file for your project and install a skill
+    hands_on: true
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-1/create-a-memory-file/"
+    materials:
+    - label: "Demo project"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-1/create-a-memory-file/memory-skill-demo-project.zip"
+    - label: "Examples"
+      url: "https://github.com/dime-worldbank/coding-agents-hub/tree/main/memory-files"
+  - time: 4:10 – 5:00
+    title: AI ethics, governance, and safe use
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-1/ai-ethics/"
+  weekday: Monday
+  date: Oct 5
+  track: Core
+  tag: core
+  short: What AI agents are, memory files, skills, cost, and safe use.
+  objective: 'Participants develop a solid foundation in agentic AI: what it is, what
+    is already possible at the WBG, and how to put it to work immediately. They learn
+    to onboard agents to a research project using memory files and reusable skills,
+    direct them with effective prompting, and use them responsibly: cost and efficiency
+    trade-offs, WBG ethics and governance requirements, and human-in-the-loop evaluation
+    of outputs.'
+  outcomes:
+  - An AI readme (memory file) for at least one of your projects
+  - One skill installed and used on one of your projects
+- id: 2
+  theme: AI tools for data acquisition and analysis
+  sessions:
+  - time: 9:00 – 9:10
+    title: Welcome
+    kind: welcome
+  - time: 9:10 – 9:45
+    title: AI for Quantitative Surveys
+    lead: DECSU, Impact Analytics
+  - time: 9:45 – 10:30
+    title: Using AI for Transcription & Data Quality Assurance
+    lead: DECSU
+  - time: 10:30 – 10:45
+    title: Break
+    kind: break
+  - time: 10:45 – 12:45
+    title: Using AI agents in Survey Solutions | SurveyCTO (parallel sessions)
+    hands_on: true
+    lead: DECSU | Dobility
+  - time: 12:45 – 1:45
+    title: Lunch
+    kind: lunch
+  - time: 1:45 – 2:00
+    title: AI skills to review and improve data processing, cleaning, and analysis
+    lead: Impact Analytics
+  - time: 2:00 – 2:45
+    title: Using AI skills to improve code
+    hands_on: true
+    lead: Impact Analytics
+  - time: 2:45 – 3:00
+    title: Break
+    kind: break
+  - time: 3:00 – 3:30
+    title: AI skills to create reproducible, publication-ready charts and tables
+    lead: Impact Analytics
+    span: 2
+    link: "/bootcamp/sessions/day-2/reproducible-exhibits/"
+    materials:
+    - label: "Skill"
+      url: "https://github.com/dime-worldbank/ai-research-training/releases/download/reproduce-manual-exhibit-latest/reproduce-manual-exhibit.zip"
+    - label: "Demos"
+      url: "https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-2/reproducible-exhibits/materials"
+  - time: 3:30 – 4:15
+    title: AI skills for automating tables and charts
+    hands_on: true
+    lead: Impact Analytics
+    merged: true
+  - time: 4:15 – 4:25
+    title: Preview of the AI Output Verification Procedure
+    lead: OPCS
+  - time: 4:25 – 5:00
+    title: 'Human-in-the-loop: evaluating AI outputs'
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-2/human-in-the-loop/"
+  weekday: Tuesday
+  date: Oct 6
+  track: Core
+  tag: core
+  short: Surveys, transcription, data quality, code review, tables and charts.
+  objective: Participants learn how AI can transform every stage of the data pipeline,
+    from survey design and data collection through cleaning, analysis, and the production
+    of publication-ready outputs, with hands-on work in Survey Solutions and SurveyCTO,
+    data quality checks, code improvement, and reproducible tables and charts.
+  outcomes:
+  - An AI-programmed survey instrument (your own questionnaire or a demo)
+  - Reusable AI workflows for data quality checks on your own data (or a demo dataset)
+  - One existing code file reviewed and improved with AI skills
+  - At least one table or chart created from your own data with AI skills
+- id: 3
+  theme: AI tools for reproducible research products
+  sessions:
+  - time: 9:00 – 9:10
+    title: Welcome
+    kind: welcome
+  - time: 9:10 – 10:00
+    title: AI tools for evidence aggregation and literature review
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-3/literature-session/"
+  - time: 10:00 – 10:15
+    title: Break
+    kind: break
+  - time: 10:15 – 10:45
+    title: AI skills for presentations
+    lead: Impact Analytics
+    span: 2
+    link: "/sessions/ai-skills-slides/slides/"
+    materials:
+    - label: "Demos"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip"
+    - label: "Skill"
+      url: "https://github.com/dime-worldbank/ai-research-training/tree/main/sessions/ai-skills-slides/skills/prepare-slides"
+  - time: 10:45 – 11:30
+    title: Create a dynamic presentation
+    hands_on: true
+    lead: Impact Analytics
+    merged: true
+  - time: 11:30 – 12:15
+    title: Use AI to draft and get feedback on working papers
+    hands_on: true
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/"
+    materials:
+    - label: "Skills"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/skills.zip"
+    - label: "Comment track"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-with-draft.zip"
+    - label: "Draft track"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-no-draft.zip"
+  - time: 12:15 – 1:15
+    title: Lunch
+    kind: lunch
+  - time: 1:15 – 1:45
+    title: Reproducible research standards
+    lead: Impact Analytics
+    span: 3
+    link: "/bootcamp/sessions/day-3/reproducibility-skill/"
+    materials:
+    - label: "Demo"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip"
+    - label: "Skill"
+      url: "https://github.com/worldbank/wb-reproducible-research-repository/releases/latest/download/reproducibility-skill.zip"
+  - time: 1:45 – 2:15
+    title: How AI can facilitate reproducible workflows
+    lead: Impact Analytics
+    merged: true
+  - time: 2:15 – 3:00
+    title: Use AI to create a reproducibility package
+    hands_on: true
+    lead: Impact Analytics
+    merged: true
+  - time: 3:00 – 3:15
+    title: Break
+    kind: break
+  - time: 3:15 – 4:00
+    title: Create an AI adoption plan for your project
+    hands_on: true
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-3/ai-adoption-plan/"
+  - time: 4:00 – 5:00
+    title: AI tools for data documentation and publication
+    lead: Data Group
+  weekday: Wednesday
+  date: Oct 7
+  track: Core
+  tag: core
+  short: Literature, presentations, working papers, reproducibility packages, adoption
+    plan.
+  objective: 'Participants use AI across the research production pipeline: synthesizing
+    literature, drafting reports, creating dynamic presentations, and building reproducibility
+    packages others can verify. The day ends with a reflection on how you will use
+    AI going forward, and specific adoption targets for your project that we will
+    follow up on in a survey.'
+  outcomes:
+  - A presentation or policy brief for your own project, made with AI skills
+  - A reproducibility package for your own project
+  - An AI adoption plan with specific 6-week and 3-month targets
+- id: 4
+  theme: AI-enabled workflows for advanced users
+  sessions:
+  - time: 9:00 – 9:10
+    title: Welcome
+    kind: welcome
+  - time: 9:10 – 10:45
+    title: Using the World Bank AI API in MEGA
+    hands_on: true
+    lead: MEGA
+  - time: 10:45 – 11:00
+    title: Break
+    kind: break
+  - time: 11:00 – 12:15
+    title: AI-assisted dashboards and web apps with Replit
+    hands_on: true
+    lead: ITS
+  - time: 12:15 – 1:15
+    title: Lunch
+    kind: lunch
+  - time: 1:15 – 1:45
+    title: 'Trustworthy AI: intro to Model Context Protocols (MCPs)'
+    lead: Data Group
+  - time: 1:45 – 2:30
+    title: Why and how to use multi-agentic workflows
+    lead: WBG Institute
+  - time: 2:30 – 3:00
+    title: Embeddings in geospatial analysis
+    lead: GOST
+  - time: 3:00 – 3:15
+    title: Break
+    kind: break
+  - time: 3:15 – 4:15
+    title: Git workflows for verifying AI outputs
+    hands_on: true
+    lead: Impact Analytics
+    link: "/bootcamp/sessions/day-4/git-verify-ai-output/"
+  - time: 4:15 – 4:45
+    title: Closing session
+  weekday: Thursday
+  date: Oct 8
+  track: Optional · advanced
+  tag: advanced
+  short: World Bank AI API in MEGA, web apps, MCPs, multi-agent workflows, Git verification.
+  note: A deeper dive for staff with experience using AI workflows.
+  objective: 'Participants gain hands-on experience with advanced AI-enabled research
+    workflows at the WBG: using the WBG AI API for custom applications, AI for geospatial
+    analysis, Git-based workflows to verify AI outputs, multi-agentic systems for
+    complex research tasks, and AI-assisted dashboards and web applications.'
+  outcomes:
+  - A MEGA workspace set up and a successful query to the World Bank AI API
+  - AI outputs for your projects reviewed and verified through your own GitHub repos
+  - One multi-agentic workflow set up for your project

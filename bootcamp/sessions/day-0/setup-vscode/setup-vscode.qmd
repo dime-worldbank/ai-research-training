@@ -13,6 +13,7 @@ logos:
 format:
   bootcamp-revealjs:
     embed-resources: true
+    output-file: index.html
 ---
 
 ```{r}
@@ -26,8 +27,9 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ## Objective
 
 - Install VS Code
-- Open your project folder
+- Open your project folder in VS Code's so called _workspace_.
 - Optionally install common extensions
+- Familiarize yourself with VS Code's interface and features
 
 ## Installing VS Code - WB Computer
 
