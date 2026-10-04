@@ -125,11 +125,6 @@ days:
     title: 'Making AI agents work for you: good prompts and reusable skills'
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-1/ai-agents-for-you/"
-    materials:
-    - label: "Exercise"
-      url: "https://github.com/dime-worldbank/coding-agent-exercise"
-    - label: "mAI skills 🔒"
-      url: "https://ai.worldbank.org/mai/skills/"
   - time: 3:00 – 3:10
     title: Break
     kind: break
@@ -139,7 +134,9 @@ days:
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-1/create-a-memory-file/"
     materials:
-    - label: "Examples 🔒"
+    - label: "Demo project"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-1/create-a-memory-file/memory-skill-demo-project.zip"
+    - label: "Examples"
       url: "https://github.com/dime-worldbank/coding-agents-hub/tree/main/memory-files"
   - time: 4:10 – 5:00
     title: AI ethics, governance, and safe use
