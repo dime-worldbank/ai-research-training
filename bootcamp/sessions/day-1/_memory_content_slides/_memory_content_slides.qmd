@@ -35,7 +35,7 @@ What makes your project different from textbook examples or private-sector data 
 
 | Probably better | Probably worse |
 |---|---|
-| Developing-country context | Exact country context |
+| Developing-country context | The specific country |
 | The novel research question | Just the general research topic |
 | The type of data sources | A generic description of the topic |
 

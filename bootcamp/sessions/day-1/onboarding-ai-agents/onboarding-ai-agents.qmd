@@ -122,23 +122,21 @@ LLMs do not retain your project context between requests. We get better results 
 
 :::
 
-
 ::: {.column width="30%" }
   ![](../img/model-cosmos.png)
 :::
 
 ::::
 
-
 ## What Do LLMs Know?
 
-- LLMs do store facts in their neural-network memory; they only generate text by predicting likely sequences of words.
+- LLMs do not store facts in their neural-network memory; they only generate text by predicting likely sequences of words.
 - They can produce factually correct answers when facts are statistically very common in their training data.
 - Research questions typically lack universally valid correct answers that are commonly repeated online.
 
 :::: {.columns}
 
-::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 1em;"}
+::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 0.5em;"}
 **General Factual Question:**
 
 _Prompt:_ What is the capital of France?
@@ -146,7 +144,7 @@ _Prompt:_ What is the capital of France?
 _AI Answer:_ The capital of France is ...
 :::
 
-::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 1em;"}
+::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 0.5em;"}
 **Specific Research Question:**
 
 _Prompt:_ What control variables are needed to make my regression valid?
@@ -242,7 +240,7 @@ Raw files are saved in data/raw.
 
 ## Content Format
 
-- Again, think of a memory file as project-specific prefix added to your prompts.
+- Again, think of a memory file as a project-specific prefix added to your prompts.
 - This is project onboarding that the LLM needs to provide project-relevant answers.
 - Prompts are natural-language instructions without technical requirements, and so are memory files - so it is really just an extension of your prompt.
 - Since memory files are added to each context window, they tend to be less verbose and use bullet points and other formatting that makes them concise.
@@ -252,9 +250,9 @@ Raw files are saved in data/raw.
 :::: {.columns .v-center-container}
 
 ::: {.column width="70%" }
-- Just create a file named `AGENTS.md` in your root folder of your project.
+- Just create a file named `AGENTS.md` in the root folder of your project.
   - If you have multiple projects in your workspace, create an `AGENTS.md` file in each root to describe that part of the workspace.
-- We recommend you using that file name to make your project agent-agnostic.
+- We recommend using that file name to make your project agent-agnostic.
 :::
 
 ::: {.column width="30%" }
@@ -264,9 +262,4 @@ Raw files are saved in data/raw.
 
 {{< include ../_memory_content_slides/_memory_content_slides.qmd >}}
 
-# Thank You! {background-color="#530153"}
-
-## Questions?
-
-
---- 
+# Thank You! - Questions? {background-color="#530153"}
