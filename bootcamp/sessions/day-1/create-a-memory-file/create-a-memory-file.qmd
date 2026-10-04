@@ -193,3 +193,5 @@ is called "bytes".
 <span style="display: block; text-align: center; line-height: 1; font-size: 0.8em;">This forces the agent to use that skill, while you add project-specific instructions to the general instructions in the skill.</span>
 :::
 ::::
+
+How do you know if you can force a skill and not provide context? Most skills has README files that describes intended usage. Forcing without context like this is quite rare.
