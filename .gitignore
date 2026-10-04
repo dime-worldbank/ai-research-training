@@ -27,6 +27,10 @@
 !CONTRIBUTING.md
 !LICENSE*
 
+# Netlify / Jekyll build files
+!Gemfile
+!netlify.toml
+
 #######################
 # For performance reasons, if a folder is already ignored, then
 # GitHub does not check the content for that folder for matches
