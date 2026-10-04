@@ -29,8 +29,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ### Project to use
 
-- We recommend you to start using your own project for this (and all the following hands-on sessions)
-- If you do not have a project for this bootcamp, we will have demonstration example available for each hands-on session. For this session, you can download and use [this demo project](TODO: Add url to project)
+- We recommend that you use your own project for this (and all the following hands-on sessions)
+- If you do not have a project for this bootcamp, we will have a demonstration example available for each hands-on session. For this session, you can download and use [this demo project](TODO: Add url to project)
 
 ### Objective
 
@@ -93,7 +93,7 @@ The examples in the `example-library` folder are mature memory files specific to
 
 1. Open your project in a VS Code workspace.
 1. Locate _or_ create your skills folder.
-  - We recommend using the general open-source location `.agents/skills/`. If you do not already have a skills folder, create one at the root (top-level folder) of your workspace.
+   - We recommend using the general open-source location `.agents/skills/`. If you do not already have a skills folder, create one at the root (top-level folder) of your workspace.
 1. Download the complete folder for the skill you want to use to your computer.
 1. Copy the complete skill folder, including all its contents, into your workspace's skills folder.
 

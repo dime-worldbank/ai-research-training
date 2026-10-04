@@ -72,7 +72,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ::: {.fragment}
 
 * **What’s Missing:** No variable names, statistical method or package
-* **What you’ll get:** Likely a generic regression and most likely incorrect model for intended analysis. Can be used as general boilerplate code (similar on what you’d find on forums).
+* **What you’ll get:** Likely a generic regression and most likely incorrect model for intended analysis. Can be used as general boilerplate code (similar to what you’d find on forums).
 :::
 
 :::
@@ -117,7 +117,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ::: {.column width="65%" }
 
-**Prompt:** “I am running an analysis in R. My data is in a dataframe called `df`. I'd like you to help me write code that estimate the effect of `treatment` on `employment_status`, controlling for `age` and `gender`, with fixed effects for `district` and SEs clustered by `village`. Please use the `fixest` package."
+**Prompt:** “I am running an analysis in R. My data is in a dataframe called `df`. I'd like you to help me write code that estimates the effect of `treatment` on `employment_status`, controlling for `age` and `gender`, with fixed effects for `district` and SEs clustered by `village`. Please use the `fixest` package."
 
 
 ::: {.fragment}
@@ -132,11 +132,11 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Well-Crafted Prompts vs. Skills
 
- - Writing a well-crafted prompt takes time - we as regular humans will eventually take shortcuts and don't do it
+ - Writing a well-crafted prompt takes time - we as regular humans will eventually take shortcuts and not do it
  - For a one-time task, writing a well-crafted prompt is our best approach to get a well-crafted context-specific answer from the agent
  - For recurring tasks, investing that time in a skill is more efficient as it is automatically reused when relevant
  - If you make skills part of your project folder, anyone else in your team will also benefit from the instructions in the skill
- - If you are a TTL who want your team members to follow consistent procedures, creating skills ensures that everyone has access to the same instructions.
+ - If you are a TTL who wants your team members to follow consistent procedures, creating skills ensures that everyone has access to the same instructions.
 
 ## Memory Files vs. Skills
 
@@ -166,9 +166,9 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ## Skills Format - Technical Requirements
 
 - Skills are also files with natural-language content, similar to prompts and memory files.
-- A skill requires "_frontmatter"_ with at least a name and a description.
+- A skill requires "_frontmatter_" with at least a name and a description.
 - The description should not include how the skill solves a task. 
-- The description purpose is only to tell the agent when to use it and when not to use it.
+- The description's purpose is only to tell the agent when to use it and when not to use it.
 - The content (everything but the frontmatter) contains the actual instructions and details for the skill.
 
 ```markdown
@@ -189,7 +189,7 @@ Then populate it by [...]
 
 ::: {.column width="65%" }
 
-- All available skill's frontmatter are loaded into each new context window.
+- The frontmatter of all available skills is loaded into each new context window.
 - Only when the agent thinks a skill is needed is its full content loaded.
 - Therefore, skills can contain extensive details such as:
   - Step-by-step instructions for a task
@@ -280,8 +280,6 @@ is the best fit, ask the user. Then populate it by [...]
 
 There are ways to automatically install skills. However, those are not straightforward to set up on a WB computer, and not all skills are shared in a format where this is possible.
 
-## Demo: Manual Installation
-
 # Skills: Library and Examples {background-color="#530153"}
 
 ## Skills Library
@@ -309,7 +307,7 @@ There are ways to automatically install skills. However, those are not straightf
 - Adding a Stata skill to a project with Stata code can make a big difference.
 - Example: [https://github.com/dylantmoore/stata-skill](https://github.com/dylantmoore/stata-skill)
   - This repository is set up for automatic installation, which makes finding the relevant folder harder. 
-  - Find the `Skills.md` file, then copy that file's parent folder into your project's skills folder.
+  - Find the `SKILL.md` file, then copy that file's parent folder into your project's skills folder.
 
 :::
 
@@ -318,6 +316,4 @@ There are ways to automatically install skills. However, those are not straightf
 :::
 ::::
 
-# Thank You! {background-color="#530153"}
-
-## Questions?
+# Thank You! - Questions? {background-color="#530153"}
