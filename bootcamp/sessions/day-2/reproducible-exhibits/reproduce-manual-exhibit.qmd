@@ -20,7 +20,7 @@ format:
 
 ## Session objective
 
-Turn a manually prepared table or figure into a workflow that:
+Turn a manually prepared table or figure into an automated workflow that:
 
 - starts from the project's source data;
 - performs the calculations and formatting in code;
