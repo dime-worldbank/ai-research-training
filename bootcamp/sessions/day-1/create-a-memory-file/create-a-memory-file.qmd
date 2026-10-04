@@ -29,8 +29,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ### Project to use
 
-- We recommend you to start using your own project for this and the following hands-on session
-- If you do not have a project for this bootcamp, then you can download and use [this project](TODO: Add url to project)
+- We recommend you to start using your own project for this (and all the following hands-on sessions)
+- If you do not have a project for this bootcamp, we will have demonstration example available for each hands-on session. For this session, you can download and use [this demo project](TODO: Add url to project)
 
 ### Objective
 
@@ -41,9 +41,9 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Starting fresh or using a template?
 
-- For this exercise, we recommend starting with an empty memory file and filling in everything manually.
+- For this exercise, we will create a memory file from scratch
 - This will help you to practice and consider each piece of information you include.
-- This is typically not done in a real-life scenario, where it is common to start with a template or a memory file from another project.
+- Going forward, you're more likely to start with a template or a memory file from another project.
 
 At the end of this slide deck, you will see a link to some example memory files. Feel free to look at them if you feel stuck during this exercise, but try to create your own without looking at the templates first.
 
