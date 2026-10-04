@@ -1,0 +1,60 @@
+---
+title: "AI Tools for Data Acquisition and Analysis"
+subtitle: "Day 2 · AI-Enabled Research Bootcamp"
+author: "Impact Analytics"
+institute: "World Bank Group"
+date: 6 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+format:
+  bootcamp-revealjs:
+    embed-resources: true
+    output-file: index.html
+    css: intro-day-2.css
+    slide-level: 2
+---
+
+## Today: from data collection to publication-ready outputs {.day-preview-slide}
+
+:::: {.day-preview-grid}
+
+::: {.day-preview-phase}
+<h3>1 · Collect better data</h3>
+
+- AI for quantitative surveys
+- AI for transcription and data quality assurance
+- [Hands-on]{.hands-on-badge} AI agents in Survey Solutions or SurveyCTO
+:::
+
+::: {.day-preview-phase}
+<h3>2 · Improve your code</h3>
+
+- AI skills to review data processing, cleaning, and analysis
+- [Hands-on]{.hands-on-badge} Use AI skills to improve existing code
+:::
+
+::: {.day-preview-phase}
+<h3>3 · Produce outputs</h3>
+
+- AI skills for reproducible, publication-ready charts and tables
+- [Hands-on]{.hands-on-badge} Automate tables and charts
+:::
+
+::: {.day-preview-phase}
+<h3>4 · Check the work</h3>
+
+- Human-in-the-loop: evaluating AI outputs
+:::
+
+::::
+
+::: {.day-outcome}
+**By the end of today:** an AI-programmed survey, skills to review and improve code, and reusable workflows toautomate tables and charts from your own data.
+:::
+
+::: {.notes}
+~1 minute. Walk the arc, not every session: this morning we use AI to design surveys and to transcribe and quality-check data (DECSU), then program a survey with an AI agent in parallel hands-on sessions: Survey Solutions (DECSU) or SurveyCTO (Dobility); participants pick one. After lunch we use AI skills to review and improve data-processing code, then to create reproducible, publication-ready tables and charts, each followed by hands-on practice. We close by evaluating AI outputs with a human in the loop. Participants without suitable data can use the demo questionnaire and dataset. Agenda source: the Day 2 schedule on the bootcamp website (_data/bootcamp.yml).
+:::

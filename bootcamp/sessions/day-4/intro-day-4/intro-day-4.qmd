@@ -1,0 +1,53 @@
+---
+title: "AI-Enabled Workflows for Advanced Users"
+subtitle: "Day 4 · AI-Enabled Research Bootcamp"
+author: "Impact Analytics"
+institute: "World Bank Group"
+date: 8 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+format:
+  bootcamp-revealjs:
+    embed-resources: true
+    output-file: index.html
+    css: intro-day-4.css
+    slide-level: 2
+---
+
+## Today: build, scale, and verify advanced AI workflows {.day-preview-slide}
+
+:::: {.day-preview-grid}
+
+::: {.day-preview-phase}
+<h3>1 · Build with AI</h3>
+
+- [Hands-on]{.hands-on-badge} Use the World Bank AI API in MEGA
+- [Hands-on]{.hands-on-badge} AI-assisted dashboards and web apps with Replit
+:::
+
+::: {.day-preview-phase}
+<h3>2 · Connect and scale</h3>
+
+- Trustworthy AI: intro to Model Context Protocols (MCPs)
+- Why and how to use multi-agentic workflows
+- Embeddings in geospatial analysis
+:::
+
+::: {.day-preview-phase}
+<h3>3 · Verify the outputs</h3>
+
+- [Hands-on]{.hands-on-badge} Git workflows for verifying AI outputs
+:::
+
+::::
+
+::: {.day-outcome}
+**By the end of today:** a MEGA workspace with a working World Bank AI API query, AI outputs verified through your own GitHub repos, and a multi-agent workflow for your project.
+:::
+
+::: {.notes}
+~1 minute. Day 4 is optional and geared toward participants with experience using AI workflows. Walk the arc: this morning is hands-on building, first with the World Bank AI API in MEGA (MEGA team), then AI-assisted dashboards and web apps with Replit (ITS). After lunch we look at connecting and scaling AI: Model Context Protocols (Data Group), multi-agentic workflows (WBG Institute), and embeddings in geospatial analysis (GOST). The last hands-on session uses Git workflows to verify AI outputs. Agenda source: the Day 4 schedule on the bootcamp website (_data/bootcamp.yml).
+:::

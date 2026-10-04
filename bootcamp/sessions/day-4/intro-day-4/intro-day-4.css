@@ -1,0 +1,54 @@
+.reveal .day-preview-slide .day-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.reveal .day-preview-slide .day-preview-phase {
+  padding: 18px 20px;
+  border: 1px solid #e6dce9;
+  border-top: 4px solid #6d397f;
+  border-radius: 8px;
+  background: #faf7fb;
+}
+
+.reveal .day-preview-slide .day-preview-phase h3 {
+  margin: 0 0 12px;
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.reveal .day-preview-slide .day-preview-phase ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal .day-preview-slide .day-preview-phase li {
+  margin: 0 0 14px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.reveal .day-preview-slide .hands-on-badge {
+  display: inline-block;
+  margin: 2px 6px 2px 0;
+  padding: 1px 8px;
+  border-radius: 10px;
+  background: #c2410c;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.reveal .day-preview-slide .day-outcome {
+  margin-top: 28px;
+  color: #530153;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.reveal .day-preview-slide .day-outcome p {
+  margin: 0;
+}
