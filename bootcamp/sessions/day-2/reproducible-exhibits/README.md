@@ -15,7 +15,7 @@ produces from the source data.
 
 ## Try it
 
-1. Download the [skill](skills/reproduce-manual-exhibit.zip) and unzip it.
+1. Download the [skill](https://github.com/dime-worldbank/ai-research-training/releases/download/reproduce-manual-exhibit-latest/reproduce-manual-exhibit.zip) and unzip it.
 2. Choose a project:
    - **Your own project:** follow the steps in
      [skills/README.md](skills/README.md).

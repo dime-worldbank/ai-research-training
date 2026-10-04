@@ -13,7 +13,7 @@ hand, and the task is to make code produce it instead.
 ## Set up
 
 1. Download one project and unzip it.
-2. Download the skill, [reproduce-manual-exhibit.zip](../skills/reproduce-manual-exhibit.zip), and unzip it.
+2. Download the skill, [reproduce-manual-exhibit.zip](https://github.com/dime-worldbank/ai-research-training/releases/download/reproduce-manual-exhibit-latest/reproduce-manual-exhibit.zip), and unzip it.
 3. Inside the project folder, create `.agents/skills/` and move the
    `reproduce-manual-exhibit/` folder into it.
 4. Open the project folder in VS Code.

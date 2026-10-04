@@ -192,6 +192,12 @@ days:
     title: AI skills to create reproducible, publication-ready charts and tables
     lead: Impact Analytics
     span: 2
+    link: "/bootcamp/sessions/day-2/reproducible-exhibits/"
+    materials:
+    - label: "Skill"
+      url: "https://github.com/dime-worldbank/ai-research-training/releases/download/reproduce-manual-exhibit-latest/reproduce-manual-exhibit.zip"
+    - label: "Demos"
+      url: "https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-2/reproducible-exhibits/materials"
   - time: 3:30 – 4:15
     title: AI skills for automating tables and charts
     hands_on: true
