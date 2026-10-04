@@ -13,20 +13,20 @@
 
 ### Common Sections
 
-- Project description
-- Folder structure
-- Data descriptions
-- Software preferences
-- Research design
-- Rules
+1. Project description
+2. Folder structure
+3. Data descriptions
+4. Software preferences
+5. Research design
+6. Rules
 
 :::
 ::::
 
-## Project Description
+## 1. Memory File - Project Description
 
 - For each request, the LLM looks at your project for the first time.
-- Use LLMs to make a short summary of your concept note or analysis plan.
+- Use LLMs to draft an initial description, by asking them to summarize your concept note or analysis plan.
 - Focus on details important to someone implementing your project, not details important to someone approving or funding it.
 
 ### What Sets Your Research Apart from a generic example
@@ -39,7 +39,7 @@ What makes your project different from textbook examples or private-sector data 
 | The novel research question | Just the general research topic |
 | The type of data sources | A generic description of the topic |
 
-## Folder Structure and Important Files
+## 2. Memory File - Folder Structure and Important Files
 
 :::: {.columns}
 
@@ -77,7 +77,7 @@ Agents can also follow specific file paths. For example, if you have a file desc
 Treatment assignment strategy file: `paper/research-design/treatment_assignment.md`
 ```
 
-## Data Descriptions
+## 3. Memory File - Data Descriptions
 
 - Describe the location of input datasets.
 - Describe the main variables in each dataset.
@@ -97,7 +97,7 @@ Treatment assignment strategy file: `paper/research-design/treatment_assignment.
   - Full codebook: `data/raw/prices_monthly_codebook.csv`.
 ```
 
-## Software Preferences
+## 4. Memory File - Software Preferences
 
 - List the tools you want to use.
 - Specify the programming language and packages.
@@ -113,7 +113,7 @@ Treatment assignment strategy file: `paper/research-design/treatment_assignment.
 - Use LaTeX for the report and export all tables in `.tex` format.
 ```
 
-## Programming Preferences
+## 5. Memory File - Programming Preferences
 
 - Include preferred best practices, such as using a main do-file that runs all other code.
 - Include naming conventions.
@@ -126,14 +126,14 @@ Treatment assignment strategy file: `paper/research-design/treatment_assignment.
 - Write clean and well-commented code; human readability is important.
 ```
 
-## Research Design and Preferences
+## 6. Memory File - Research Design and Preferences
 
 - This is an area where you will always know better than the agent what is valid in your context.
 - The next session will provide a more specific tool, skills, for detailed steps. For now, list a high-level description of the research design.
-- Include the randomization strategy, units of randomization, treatment modality, and so on.
+- Include the identification strategy, units of randomization, treatment modality, and so on.
 - Include preferences such as "always use OLS."
 
-## Rules
+## 7. Memory File - Rules
 
 Telling the agent what not to do is just as important as telling it what to do.
 
