@@ -39,7 +39,7 @@ Create an `.agents/skills/` folder at the root of your project if one does not a
 
 - You can clone the entire repository and copy the complete `prepare-slides/`
   folder into your project.
-- [Download `prepare-slides.zip`](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip),
+- [Download `prepare-slides.zip`](https://github.com/dime-worldbank/ai-research-training/releases/download/prepare-slides-latest/prepare-slides.zip),
   unzip it, and place the `prepare-slides/` folder in your project's
   `.agents/skills/` folder.
 

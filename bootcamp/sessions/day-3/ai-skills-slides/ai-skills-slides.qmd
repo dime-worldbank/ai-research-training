@@ -1,19 +1,30 @@
 ---
 title: "AI Skills in Action: From Research Files to Presentation-ready Slides"
-subtitle: "A hands-on session using an AI skill developed with DECDI branding guidelines"
+subtitle: "Day 3 · AI Tools for Reproducible Research Products"
 author: "Ankriti Singh"
 institute: "DECDI, The World Bank"
-date: today
+date: 7 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+
 format:
-  decdi-revealjs:
+  bootcamp-revealjs:
+    embed-resources: true
     output-file: index.html
-    self-contained: true
-    slide-number: true
-    toc: false
-    logo: "_extensions/decdi/logos/COLOR_WB_DEC.png"
-    footer: "Using AI to Automate Research Outputs"
-    transition: fade
+    include-in-header:
+      text: "<style>.reveal pre { font-size: 0.85em; } .reveal pre code { white-space: pre-wrap !important; overflow-x: hidden !important; } .reveal .slides a { color: #0F7C8C; text-decoration: underline; text-underline-offset: 0.15em; white-space: nowrap; } .reveal .slides a:hover { color: #0A5A66; }</style>"
 ---
+
+```{r}
+#| label: setup
+#| include: false
+source("../../../_extensions/bootcamp/setup_palettes.R")
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
 
 ## Objective
 
@@ -34,20 +45,20 @@ Exercise 2 improves an existing deck.
 
 ## Before we begin: prerequisites
 
-- **Training slides:** [https://bit.ly/ai-slide-skills](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-slides/slides/)
+- **Training slides:** [view online](https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-3/ai-skills-slides/)
 - **Visual Studio Code** installed from the Software Center
 - One AI assistant signed in within VS Code:
   - GitHub Copilot with the Copilot Chat extension and a Claude model
   - Claude Code extension linked to a personal or team account
-- Your own existing project, or the demo project: download [here](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip)
-- The **prepare-slides AI skill:** download [here](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
+- Your own existing project, or the [demo project](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/ai-skills-slides/materials/demo-projects.zip) (ZIP)
+- The **prepare-slides AI skill:** [download the ZIP](https://github.com/dime-worldbank/ai-research-training/releases/download/prepare-slides-latest/prepare-slides.zip)
 
 ::: {.notes}
 Participants can follow the demonstration if they cannot complete the setup.
-The links can be added when the session materials and skill ZIP are published.
+The materials and the skill are also linked from the Day 3 agenda.
 :::
 
-# Why use a skill? {background-color="#002A4F"}
+# Why use a skill? {background-color="#530153"}
 
 ## What is an AI skill?
 
@@ -77,7 +88,7 @@ The skill does not replace the prompt. The prompt provides the task, audience,
 and source paths. The skill provides the repeatable method and resources.
 :::
 
-# Why use the `prepare-slides` skill? {background-color="#002A4F"}
+# Why use the `prepare-slides` skill? {background-color="#530153"}
 
 ## The same research often becomes several different presentations
 
@@ -177,7 +188,7 @@ The agent copies or uses the selected starter during production.
 
 ::::
 
-# How the skill works {background-color="#002A4F"}
+# How the skill works {background-color="#530153"}
 
 ## Start with project materials or an existing deck
 
@@ -354,7 +365,7 @@ You'll see this file appear in your exercise folder after Phase 2. It's
 expected, not a build artifact to delete.
 :::
 
-# Limitations {background-color="#002A4F"}
+# Limitations {background-color="#530153"}
 
 ## Less source material means more uncertainty and more review
 
@@ -391,7 +402,7 @@ regenerate the deck, but the author still needs to review every recreated
 exhibit.
 :::
 
-# Hands-on exercise {background-color="#002A4F"}
+# Hands-on exercise {background-color="#530153"}
 
 ## Choose your starting point
 
@@ -402,15 +413,15 @@ project already on your computer.
 
 ### Option 2: Use the demo project
 
-Download the prepared exercise folder:
+Use the prepared exercise folder:
 
-**[Download the demo project](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip)**
+**[Download the demo project](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/ai-skills-slides/materials/demo-projects.zip)** and unzip it without changing the folder structure.
 
 Both routes use the same skill and approval workflow.
 
 ## If you are using your own project
 
-1. Download and unzip the [prepare-slides skill](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
+1. [Download the `prepare-slides` skill](https://github.com/dime-worldbank/ai-research-training/releases/download/prepare-slides-latest/prepare-slides.zip) and unzip it
 2. Create `.agents/skills/` at the project root
 3. Copy the complete `prepare-slides/` folder into it
 
@@ -430,8 +441,8 @@ your-project/
 
 ## If you are using the demo project
 
-1. Download and unzip the demo project. The demo-project folder has 2 sub-folders: `exercise-1` and `exercise-2`. We will use the `exercise-1` to create slides from scratch.  
-2. Download and unzip the [prepare-slides skill](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
+1. Download and unzip the [demo project](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/ai-skills-slides/materials/demo-projects.zip). It has 2 sub-folders: `exercise-1` and `exercise-2`. We will use `exercise-1` to create slides from scratch.
+2. [Download the `prepare-slides` skill](https://github.com/dime-worldbank/ai-research-training/releases/download/prepare-slides-latest/prepare-slides.zip) and unzip it
 3. Copy `prepare-slides/` into the exercise-1's `.agents/skills/` folder
 
 ```text
@@ -468,8 +479,8 @@ selected.
 
 ## Ask the agent to prepare the slides
 
-```text
-Read prepare-slides/SKILL.md and use it to preapre a 30-minute beamer 
+```md
+Read prepare-slides/SKILL.md and use it to prepare a 30-minute beamer 
 presentation using the relevant research materials in this project.
 The audience is government policymakers. Focus on the main findings and policy
 implications. 
@@ -491,7 +502,7 @@ Correct the inventory or narrative before approving production.
 
 ## Approve the outline or ask for alternatives
 
-```text
+```md
 Outline: Approve with changes
 
 Slide changes:
@@ -519,12 +530,12 @@ alternatives before choosing.
 
 Ask for corrections before accepting the output.
 
-# Optional exercise 2: Improve an existing deck {background-color="#002A4F"}
+# Optional exercise 2: Improve an existing deck {background-color="#530153"}
 
 ## This deck has slides, but it is not presentation-ready
 
 1. We will use `exercise-2` for this session. 
-2. Copy `prepare-slides/` into the exercise-1's `.agents/skills/` folder
+2. Copy `prepare-slides/` into the exercise-2's `.agents/skills/` folder
 
 ```text
 exercise-2/
@@ -535,7 +546,7 @@ exercise-2/
 └── sms-project/
 ```
 
-::: {.visual-note}
+::: {.source-note}
 **Notes:** The  exercise deck is intentionally inconsistent and
 text-heavy. 
 :::
@@ -543,7 +554,7 @@ text-heavy.
 ## Ask for improvement and review the proposal
 
 
-```text
+```md
 Read the prepare-slides SKILL.md and follow it.
 Improve the existing slide deck using the materials in the folder. 
 The resulting slides should be in the latex-beamer format.
@@ -563,11 +574,11 @@ Before production:
 After production, check that the deck was improved rather than merely
 recolored and that every approved change was implemented.
 
-# Apply it to your project {background-color="#002A4F"}
+# Apply it to your project {background-color="#530153"}
 
 ## Install the complete folder once per project
 
-1. Download and unzip the [prepare-slides skill](https://github.com/dime-worldbank/ai-research-training/releases/latest/download/prepare-slides.zip)
+1. [Download the `prepare-slides` skill](https://github.com/dime-worldbank/ai-research-training/releases/download/prepare-slides-latest/prepare-slides.zip) and unzip it
 2. Create `.agents/skills/` at the project root if needed
 3. Copy the complete `prepare-slides/` folder into it
 
@@ -589,17 +600,21 @@ if it has one.
 
 **Create**
 
-> Create a 30-minute presentation using the relevant files in
-> `[YOUR PROJECT FOLDER]`.
+```md
+Read prepare-slides/SKILL.md and use it to create a 30-minute presentation using the relevant files in [YOUR PROJECT FOLDER].
+```
 
 **Improve**
 
-> Improve `[YOUR DECK]` using `[SUPPORTING MATERIALS]` to check the content.
+```md
+Read prepare-slides/SKILL.md and use it to improve [YOUR DECK] using [SUPPORTING MATERIALS] to check the content.
+```
 
 **Rebrand**
 
-> Rebrand `[YOUR DECK]` using the bundled DECDI template and branding
-> guidance. Preserve its content arrangement and order.
+```md
+Read prepare-slides/SKILL.md and use it to rebrand [YOUR DECK] using the bundled DECDI template and branding guidance. Preserve its content arrangement and order.
+```
 
 ## The author approves; the agent produces and checks
 
