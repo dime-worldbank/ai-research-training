@@ -24,8 +24,11 @@ Turn a manually prepared table or figure into an automated workflow that:
 
 - starts from the project's source data;
 - performs the calculations and formatting in code;
-- regenerates the exhibit without manual editing;
-- records how to run and check the result.
+- lets any team member regenerate the exhibit in one run, with no manual
+  editing;
+- records how to run and check the result;
+- passes reproducibility checks for publication, with a clear record of the
+  data and steps behind it.
 
 # Why automate exhibits {background-color="#530153"}
 
@@ -43,8 +46,8 @@ and colors adjusted by hand.
 ::: {.column width="32%" .fragment}
 ### 2023, midline
 
-Some records are corrected. Figure 1 is rebuilt by hand, and nobody writes down
-which version of the numbers it used.
+Some records are corrected. Figure 1 is rebuilt by hand, again, taking an
+afternoon, and nobody writes down which version of the numbers it used.
 :::
 
 ::: {.column width="32%" .fragment}
@@ -63,14 +66,62 @@ matter how clean the code is.
 
 ## Why automate the exhibit
 
-- **The data will change.** Corrections, new survey rounds, new years. With
-  code, you rerun. By hand, you rebuild.
+- **Slower to set up, faster by the end.** Corrections, new survey rounds, and
+  spec changes mean rerunning, not rebuilding. Automation takes longer up
+  front but saves time by the end of a project.
 - **Copying introduces errors.** Every retyped number is a chance for a typo.
-  
+- **Journals expect it.** Reproducibility checks are increasingly required, and
+  figures built by hand are a common reason packages fail.
 - **Others can check the work.** Code shows how every number was made. An
   Excel chart doesn't.
 - **It looks the same every time.** Labels, colors, and formats don't drift
   between versions.
+
+## Not just for papers: the Excel report {.smaller}
+
+A common workflow for monitoring reports, client briefs, and dashboards:
+
+:::: {.columns}
+
+::: {.column width="24%"}
+**1. Download**
+
+New data exported each month or quarter
+:::
+
+::: {.column width="24%"}
+**2. Paste**
+
+Into a raw data sheet
+:::
+
+::: {.column width="24%"}
+**3. Calculate**
+
+Formulas, pivots, and some cells filled in by hand
+:::
+
+::: {.column width="24%"}
+**4. Copy**
+
+Table and chart pasted into Word or PowerPoint
+:::
+
+::::
+
+. . .
+
+**What goes wrong, quietly:**
+
+- Some numbers have no formula at all: pasted as values or typed in, with no
+  record of where they came from.
+- New rows fall outside formula ranges and drop out of the totals.
+- Every cycle repeats the same manual steps, and nobody notices a mistake.
+
+::: {.callout-note-custom}
+The same skill works here: start from the source data, and the code rebuilds
+the table every cycle.
+:::
 
 ## What an automated exhibit looks like
 
@@ -134,7 +185,7 @@ same steps and checks and ends with the same handoff.
 
 ## When to use the skill
 
-Use it when:
+Use it to reverse engineer a manually constructed table or figure, when:
 
 1. A table or figure already exists, in Excel, Word, PDF, or as an image, and
    shows the result you want.
@@ -142,10 +193,16 @@ Use it when:
 
 . . .
 
-**Not for:** exploratory analysis with no reference exhibit.
-
 If the exhibit contains pasted numbers with no traceable source, the agent says
 what is missing and asks for it instead of guessing.
+
+**Not for:** exploratory analysis with no reference exhibit.
+
+**Starting a new exhibit?** Ask the agent to produce it entirely in code and
+write the output file directly, so there is nothing to reconstruct later.
+
+**Preparing a full reproducibility package?** Use the
+[Day 3 reproducibility skill](https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-3/reproducibility-skill).
 
 ## Skill structure
 
@@ -160,7 +217,10 @@ reproduce-manual-exhibit/
 The agent reads only what the task needs: the table or figure guide, plus one
 language guide.
 
-## Reconstruction workflow
+## What the skill does, step by step
+
+The agent follows these steps. You don't need to do them yourself. You review
+the result.
 
 1. **Inspect the evidence**
    Review the project, reference exhibit, data, and existing code.
@@ -235,7 +295,7 @@ the data behind it, and any existing code.
 ::: {.column width="48%"}
 ### Your own project
 
-1. [Download the skill](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/reproducible-exhibits/skills/reproduce-manual-exhibit.zip) and unzip it.
+1. [Download the skill](https://github.com/dime-worldbank/ai-research-training/releases/download/reproduce-manual-exhibit-latest/reproduce-manual-exhibit.zip) and unzip it.
 2. In your project folder, create a folder named `.agents/skills/`.
 3. Move the unzipped `reproduce-manual-exhibit/` folder into `.agents/skills/`.
 4. Open your project folder in VS Code.
@@ -248,7 +308,7 @@ the data behind it, and any existing code.
    [r-demo](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/reproducible-exhibits/materials/r-demo.zip),
    [excel-demo](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/reproducible-exhibits/materials/excel-demo.zip), or
    [stata-demo](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/reproducible-exhibits/materials/stata-demo.zip).
-2. [Download the skill](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/reproducible-exhibits/skills/reproduce-manual-exhibit.zip) and unzip it.
+2. [Download the skill](https://github.com/dime-worldbank/ai-research-training/releases/download/reproduce-manual-exhibit-latest/reproduce-manual-exhibit.zip) and unzip it.
 3. Inside the demo folder, create `.agents/skills/` and move
    `reproduce-manual-exhibit/` into it.
 4. Open the demo folder in VS Code.
@@ -279,14 +339,7 @@ your-project/
 ::: {.column width="48%"}
 ### A demo project
 
-```text
-r-demo/
-├── .agents/skills/
-│   └── reproduce-manual-exhibit/
-├── 01-clean-data.R
-├── data/
-└── output/manual-figure.xlsx
-```
+![](images/file-tree.png){width="90%"}
 :::
 
 ::::
@@ -410,4 +463,4 @@ R and Python are usually on the path, so the agent runs those itself.
 
 ## Thank you {.closing}
 
-Questions?
+The skill is a work in progress. We welcome any feedback.
