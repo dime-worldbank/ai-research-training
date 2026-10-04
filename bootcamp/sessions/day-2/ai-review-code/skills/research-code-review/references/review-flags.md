@@ -162,11 +162,11 @@ available instrument metadata establishes that the check is applicable.
 
 ## Sources
 
-- DIME peer code-review guidance and checklists:
+- DECDI peer code-review guidance and checklists:
   https://github.com/worldbank/dime-standards/tree/master/dime-coding-standards/checklists
-- DIME research reproducibility standards:
+- DECDI research reproducibility standards (DIME Standards):
   https://github.com/worldbank/dime-standards/tree/master/dime-research-standards/pillar-3-research-reproducibility
-- DIME data security standards:
+- DECDI data security standards (DIME Standards):
   https://github.com/worldbank/dime-standards/tree/master/dime-research-standards/pillar-4-data-security
-- DIME Data Map:
+- DECDI Data Map (DIME Data Map):
   https://github.com/worldbank/dime-standards/tree/master/dime-coding-standards/data-map

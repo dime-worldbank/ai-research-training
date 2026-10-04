@@ -80,9 +80,9 @@ effect can be explained from the code and the shared research-code principles.
 
 ## Sources
 
-- DIME Analytics Coding Guide and Stata Style Guide:
+- DECDI coding guide and Stata style guide (DIME Analytics Data Handbook):
   https://worldbank.github.io/dime-data-handbook/coding.html
-- DIME Stata Peer Code Review Checklist:
+- DECDI Stata peer code review checklist (DIME Standards):
   https://github.com/worldbank/dime-standards/blob/master/dime-coding-standards/checklists/Stata%20Code%20Review%20Checklist.md
 - Tidyverse Style Guide: https://style.tidyverse.org/
 - `data.table` reference semantics and documentation:
