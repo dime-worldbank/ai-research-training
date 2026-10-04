@@ -1,0 +1,11 @@
+# Python cache files (created automatically when code runs)
+__pycache__/
+*.pyc
+
+# Virtual environment folder (each person creates their own)
+.venv/
+venv/
+
+# Operating system files
+.DS_Store
+Thumbs.db

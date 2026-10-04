@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ## Do I Really Need to Worry About Token Efficiency?
 
 ::: {.fragment}
-- Maybe not now, but eventually. AI tokens will never again be as subsidized by the AI giants as they are today.
+- Maybe not now, but eventually. AI tokens will never again be as subsidized by the AI giants as they are today. And setups with data privacy are not subsidized.
 :::
 ::: {.fragment}
 - We live in the AI-token equivalent of a pre-1973 oil crisis - the era of cheap and abundant tokens.
@@ -69,16 +69,16 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 * **Question:** If the biggest model is the most advanced model, why should I not always use it?
 
 ::: {.fragment}
-* It is like asking: if my 18-wheel semi-truck is my most powerful vehicle, why should I not use it when driving to the convenience store for a gallon of milk?
+* It is like asking: if my 18-wheel semi-truck is my most capable vehicle, why should I not use it when driving to the convenience store for a gallon of milk?
 
-Using a semi-truck for this will work, but if this is your habit, it will not mainly be the current gas prices' fault if you max out your household's fuel budget.
+Using a semi-truck for this will work -- but if this is your habit, it will not mainly be the current gas prices' fault if you max out your household's fuel budget.
 :::
 
 :::
 ::: {.column width="35%" }
 
 ::: {.fragment}
-![](./img/truck-milk.png)
+![](./img/truck-milk.jpg)
 :::
 
 :::
@@ -98,7 +98,7 @@ Using a semi-truck for this will work, but if this is your habit, it will not ma
 - Example: a small model can be just as effective for proofreading a short paragraph. Using a larger model for this task is like taking a semi-truck to the convenience store.
 :::
 ::: {.fragment}
-- AI giants want us to develop the habit of using big models for every task, regardless of size. Since this will make their shareholders richer the day token subsidies end.
+- AI giants want us to develop the habit of using big models for every task, regardless of size, since this will make their shareholders richer the day token subsidies end.
 :::
 
 # Use Memory Files {background-color="#530153"}
@@ -111,16 +111,16 @@ Using a semi-truck for this will work, but if this is your habit, it will not ma
 * **Question:** Why do I need a memory file? My agent is really good at fetching all information in the project folder to find all relevant information on its own.
 
 ::: {.fragment}
-* It is like going to the grocery store and buying everything in the store "just in case," instead of using a shopping list and getting only what you need.
+* It is like going to the grocery store and buying everything in the store "_just in case_", instead of using a shopping list and getting only what you need.
 
-Buying a whole store "just in case" and then throwing out what you did not use for dinner is wasteful and inefficient. If you do that, it is not the current grocery prices' fault if you max out your household's grocery budget.
+Buying a whole store "_just in case_" and then throwing out what you did not use for dinner is wasteful and inefficient. If you do that, it is not the current grocery prices' fault if you max out your household's grocery budget.
 :::
 
 :::
 ::: {.column width="35%" }
 
 ::: {.fragment}
-![](./img/just-in-case-groceries.png)
+![](./img/just-in-case-groceries.jpg)
 :::
 
 :::
@@ -144,7 +144,7 @@ Buying a whole store "just in case" and then throwing out what you did not use f
 :::: {.columns .v-center-container}
 ::: {.column width="65%" }
 
-* **Question:** Why can't I keep using the same chat? It is faster and easier than constantly starting new chat sessions.
+* **Question:** Why can't I keep using the same chat for multiple tasks? It is faster and easier than constantly starting new chat sessions.
 
 ::: {.fragment}
 * It is like going to the hardware store in an appropriate vehicle, but with several trailers, each carrying everything you bought on previous trips to that store.
@@ -156,7 +156,7 @@ Even if you tell the agent to forget the previous part of the conversation, it w
 ::: {.column width="35%" }
 
 ::: {.fragment}
-![](./img/line-of-trailers.png)
+![](./img/line-of-trailers.jpg)
 :::
 
 :::
@@ -182,21 +182,21 @@ Even if you tell the agent to forget the previous part of the conversation, it w
 
 ::: {.column width="33%" }
 
-![](./img/truck-milk.png)
+![](./img/truck-milk.jpg)
 
 <span style="display: block; text-align: center; line-height: 1;">Use the smallest model sufficient for the task.</span>
 :::
 
 ::: {.column width="33%" }
 
-![](./img/just-in-case-groceries.png)
+![](./img/just-in-case-groceries.jpg)
 
 <span style="display: block; text-align: center; line-height: 1;">Use memory files so the agent starts with what always matters.</span>
 :::
 
 ::: {.column width="33%" }
 
-![](./img/line-of-trailers.png)
+![](./img/line-of-trailers.jpg)
 
 <span style="display: block; text-align: center; line-height: 1;">Start a new session for each new task.</span>
 :::
@@ -225,7 +225,7 @@ Even if you tell the agent to forget the previous part of the conversation, it w
 ::: {.column width="75%" }
 
 - You can see how full your current context window is in GitHub Copilot's extension in VS Code.
-- This can help you determine whether you used an appropriate sized model at the end of a session:
+- This can help you determine whether you used an appropriately sized model at the end of a session:
   - `< 5%` could suggest you used a too big model - cost inefficient
   - `> 95%` could suggest you used a too small model - details were probably lost
 - But this also shows you how much payload you would submit again if you reused the session for a new task.

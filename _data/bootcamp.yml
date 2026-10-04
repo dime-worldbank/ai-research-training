@@ -110,38 +110,35 @@ days:
     lead: Open Source Program Office
   - time: 11:00 – 12:00
     title: AI Tools Bazaar (impactAI, AVA, ScoreSight, Knowledger, Translate)
-    lead: Tool teams
-  - time: 12:00 – 1:00
+    lead: Renos Vakis, Linxi Wang, Alexander Lehner, Kentaro Florian Mayr, Sabri Tahir
+  - time: 12:00 – 1:15
     title: Lunch
     kind: lunch
-  - time: 1:00 – 1:45
+  - time: 1:15 – 2:00
     title: 'AI at the WBG: Current Landscape and Future Ambitions'
-    lead: ITSAE AI Literacy Team
-  - time: 1:45 – 2:15
+    lead: Arianna Legovini & Raman Pugalumperumal
+  - time: 2:00 – 2:30
     title: Using AI agents efficiently and cost-effectively
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-1/cost-effective-ai/"
-  - time: 2:15 – 3:00
+  - time: 2:30 – 3:00
     title: 'Making AI agents work for you: good prompts and reusable skills'
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-1/ai-agents-for-you/"
-    materials:
-    - label: "Exercise"
-      url: "https://github.com/dime-worldbank/coding-agent-exercise"
-    - label: "mAI skills 🔒"
-      url: "https://ai.worldbank.org/mai/skills/"
-  - time: 3:00 – 3:15
+  - time: 3:00 – 3:10
     title: Break
     kind: break
-  - time: 3:15 – 4:00
+  - time: 3:15 – 4:10
     title: Create a memory file for your project and install a skill
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-1/create-a-memory-file/"
     materials:
-    - label: "Examples 🔒"
+    - label: "Demo project"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-1/create-a-memory-file/memory-skill-demo-project.zip"
+    - label: "Examples"
       url: "https://github.com/dime-worldbank/coding-agents-hub/tree/main/memory-files"
-  - time: 4:00 – 5:00
+  - time: 4:10 – 5:00
     title: AI ethics, governance, and safe use
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-1/ai-ethics/"
@@ -194,11 +191,16 @@ days:
   - time: 3:00 – 3:30
     title: AI skills to create reproducible, publication-ready charts and tables
     lead: Impact Analytics
+    span: 2
   - time: 3:30 – 4:15
     title: AI skills for automating tables and charts
     hands_on: true
     lead: Impact Analytics
-  - time: 4:15 – 5:00
+    merged: true
+  - time: 4:15 – 4:25
+    title: Preview of the AI Output Verification Procedure
+    lead: OPCS
+  - time: 4:25 – 5:00
     title: 'Human-in-the-loop: evaluating AI outputs'
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-2/human-in-the-loop/"
@@ -229,16 +231,21 @@ days:
   - time: 10:00 – 10:15
     title: Break
     kind: break
-  - time: 10:15 – 11:30
-    title: 'AI skills for presentations: create a dynamic presentation'
-    hands_on: true
+  - time: 10:15 – 10:45
+    title: AI skills for presentations
     lead: Impact Analytics
+    span: 2
     link: "/sessions/ai-skills-slides/slides/"
     materials:
     - label: "Demos"
       url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip"
     - label: "Skill"
       url: "https://github.com/dime-worldbank/ai-research-training/tree/main/sessions/ai-skills-slides/skills/prepare-slides"
+  - time: 10:45 – 11:30
+    title: Create a dynamic presentation
+    hands_on: true
+    lead: Impact Analytics
+    merged: true
   - time: 11:30 – 12:15
     title: Use AI to draft and get feedback on working papers
     hands_on: true
@@ -254,16 +261,25 @@ days:
   - time: 12:15 – 1:15
     title: Lunch
     kind: lunch
-  - time: 1:15 – 3:00
-    title: Reproducible research standards and AI reproducibility packages
-    hands_on: true
+  - time: 1:15 – 1:45
+    title: Reproducible research standards
     lead: Impact Analytics
+    span: 3
     link: "/bootcamp/sessions/day-3/reproducibility-skill/"
     materials:
     - label: "Demo"
       url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip"
     - label: "Skill"
       url: "https://github.com/worldbank/wb-reproducible-research-repository/releases/latest/download/reproducibility-skill.zip"
+  - time: 1:45 – 2:15
+    title: How AI can facilitate reproducible workflows
+    lead: Impact Analytics
+    merged: true
+  - time: 2:15 – 3:00
+    title: Use AI to create a reproducibility package
+    hands_on: true
+    lead: Impact Analytics
+    merged: true
   - time: 3:00 – 3:15
     title: Break
     kind: break
