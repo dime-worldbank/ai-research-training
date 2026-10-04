@@ -241,12 +241,12 @@ days:
     title: AI skills for presentations
     lead: Impact Analytics
     span: 2
-    link: "/sessions/ai-skills-slides/slides/"
+    link: "/bootcamp/sessions/day-3/ai-skills-slides/"
     materials:
     - label: "Demos"
-      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-slides/materials/demo-projects.zip"
+      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/ai-skills-slides/materials/demo-projects.zip"
     - label: "Skill"
-      url: "https://github.com/dime-worldbank/ai-research-training/tree/main/sessions/ai-skills-slides/skills/prepare-slides"
+      url: "https://github.com/dime-worldbank/ai-research-training/releases/download/prepare-slides-latest/prepare-slides.zip"
   - time: 10:45 – 11:30
     title: Create a dynamic presentation
     hands_on: true
