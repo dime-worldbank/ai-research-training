@@ -24,7 +24,7 @@ permalink: /bootcamp/
 {%- assign dm = d.date | split: ' ' -%}
 {%- assign n = 0 -%}{%- assign h = 0 -%}
 {%- for s in d.sessions -%}
-{%- unless s.kind -%}{%- assign n = n | plus: 1 -%}{%- if s.hands_on -%}{%- assign h = h | plus: 1 -%}{%- endif -%}{%- endunless -%}
+{%- unless s.kind or s.parallel -%}{%- assign n = n | plus: 1 -%}{%- if s.hands_on -%}{%- assign h = h | plus: 1 -%}{%- endif -%}{%- endunless -%}
 {%- endfor -%}
 <a class="day-row day-{{ d.tag }}" href="{{ '/bootcamp/day-' | append: d.id | append: '/' | relative_url }}">
 <span class="day-date"><small>{{ dm[0] }}</small><b>{{ dm[1] }}</b><em>{{ d.weekday | slice: 0, 3 }}</em></span>
