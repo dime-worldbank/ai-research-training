@@ -662,3 +662,5 @@ html { scroll-behavior: smooth; }
   border: 1px solid var(--decdi-line);
   background: var(--decdi-surface);
 }
+
+.agenda .room { font-size: 0.82rem; font-weight: 600; color: var(--bc-dark); white-space: nowrap; margin-left: 0.4rem; }

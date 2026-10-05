@@ -6,7 +6,7 @@
 {%- if s.kind == 'break' or s.kind == 'lunch' -%}
 <tr class="agenda-break"><td class="t">{{ s.time }}</td><td colspan="4">{% if s.kind == 'lunch' %}🍽️ Lunch{% else %}☕ Break{% endif %}</td></tr>
 {%- else -%}
-<tr class="{% if s.hands_on %}agenda-hands{% endif %}{% if s.kind == 'welcome' %} agenda-welcome{% endif %}"><td class="t">{{ s.time }}</td><td class="title">{{ s.title }}{% if s.hands_on %} <span class="tag-hands">Hands-on</span>{% endif %}</td><td class="lead">{{ s.lead }}</td>{% unless s.merged %}<td class="link"{% if s.span %} rowspan="{{ s.span }}"{% endif %}>
+<tr class="{% if s.hands_on %}agenda-hands{% endif %}{% if s.kind == 'welcome' %} agenda-welcome{% endif %}"><td class="t">{{ s.time }}</td><td class="title">{{ s.title }}{% if s.room %} <span class="room">📍 {{ s.room }}</span>{% endif %}{% if s.hands_on %} <span class="tag-hands">Hands-on</span>{% endif %}</td><td class="lead">{{ s.lead }}</td>{% unless s.merged %}<td class="link"{% if s.span %} rowspan="{{ s.span }}"{% endif %}>
 {%- if s.link -%}
 {%- if s.external -%}<a target="_blank" rel="noopener" class="btn-slides" href="{{ s.link }}">Open ↗</a>{%- else -%}<a target="_blank" rel="noopener" class="btn-slides" href="{{ s.link | relative_url }}">Slides</a>{%- endif -%}
 {%- elsif s.kind -%}

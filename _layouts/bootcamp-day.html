@@ -28,6 +28,16 @@ layout: default
 <h2>Schedule</h2>
 <p class="legend"><span class="tag-hands">Hands-on</span> sessions are where you work on your own project. Slide links open the session deck; materials are the files and repos you use in the session (🔒 needs a World Bank login).</p>
 {% include bootcamp-schedule.html day=page.day %}
+{%- if day.side_track %}
+<h3>{{ day.side_track.title }}</h3>
+<div class="agenda-wrap"><table class="agenda">
+<thead><tr><th>Time</th><th>Block</th><th>Room</th></tr></thead>
+<tbody>
+{%- for b in day.side_track.blocks %}
+<tr><td class="t">{{ b.time }}</td><td class="title">{{ b.name }}{% if b.note %}<br><span class="lead">{{ b.note }}</span>{% endif %}</td><td class="lead">{{ b.room }}</td></tr>
+{%- endfor %}
+</tbody></table></div>
+{%- endif %}
 
 {{ content }}
 
