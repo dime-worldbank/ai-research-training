@@ -225,15 +225,20 @@ The Governance GP's **Reimagining Public Finance** initiative is updating approa
 ::: {.card}
 **Workspace**
 
-A list of folders where you can organize your code scripts and notebooks.
+Your team space, where you and your colleagues can collaborate on projects.
+Contains folders where you can organize your code scripts and notebooks.
 :::
 ::: {.card}
 **Volume**
 
 A space where you can store documents, which you can then access from scripts and notebooks in the Workspace.
 :::
-:::
+::: {.card}
+**Compute**
 
+The processing power, memory, and virtualized resources. Every Workspace has their own compute
+:::
+:::
 
 ## The example workflow we will try to replicate: Summarizing and coding interviews in a foreign language
 
