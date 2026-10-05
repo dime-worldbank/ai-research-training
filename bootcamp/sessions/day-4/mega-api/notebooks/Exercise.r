@@ -9,8 +9,6 @@
 # MAGIC
 # MAGIC We use two real (MS Teams-transcribed) interviews conducted in Italian about data processes, guided by a shared questionnaire with five thematic sections.
 # MAGIC
-# MAGIC `Coding-Rubric.R` defines 20 comparable variables derived from the questionnaire's five sections. This exercise loads that rubric and applies it.
-# MAGIC
 # MAGIC
 
 # COMMAND ----------
@@ -29,14 +27,8 @@
 
 # MAGIC %md
 # MAGIC ## 0. Setup
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC Load the packages the notebook uses:
-# MAGIC - `httr2` builds and sends the HTTP requests to the API, and `jsonlite` reads the JSON the model returns
-# MAGIC - `dplyr`, `purrr`, `stringr`, `tibble` and `tidyr` handle the data wrangling and text processing
-# MAGIC - `ggplot2` is there in case you want to plot the coded results at the end
+# MAGIC
+# MAGIC First, make sure you selected the right compute. 
 
 # COMMAND ----------
 
@@ -47,7 +39,6 @@ library(purrr)
 library(stringr)
 library(tibble)
 library(tidyr)
-library(ggplot2)
 
 # COMMAND ----------
 
@@ -56,15 +47,15 @@ library(ggplot2)
 # MAGIC - `api_base_url` is the MAI Factory gateway. MEGA stores it in the environment variable
 # MAGIC   `CONVERSATIONALAI_BASE_URL`, so we read it from there instead of typing it out.
 # MAGIC - `CLAUDE_ENDPOINT` names the model we want behind that gateway, in this case Claude Sonnet 4.6.
-# MAGIC   To try a different model, swap in another endpoint from the MAI Factory catalog.
+# MAGIC   To try a different model, swap in another endpoint from the MAI Factory catalog. You can see the catalog [here](https://ai.worldbankgroup.org/maifactory/)
 
 # COMMAND ----------
 
 # The API base URL is available as an environment variable in MEGA
 api_base_url <- Sys.getenv("CONVERSATIONALAI_BASE_URL")
 
-# For this exercise we will use Clause Sonnet 4.6. You can select any other endpoint of your choice here: https://ai.worldbankgroup.org/maifactory/
-CLAUDE_ENDPOINT <- "https://azapim.worldbank.org/maifactory/bedrock/model/us.anthropic.claude-sonnet-4-6/converse"
+# For this exercise we will use Claude Haiku 4.5. 
+CLAUDE_ENDPOINT <- "https://azapim.worldbank.org/maifactory/bedrock/model/us.anthropic.claude-haiku-4-5-20251001-v1:0/converse"
 
 # COMMAND ----------
 
@@ -80,44 +71,9 @@ int2_path <- "/Volumes/prd_mega/spytho27/vpytho27/Workspace/mai_exercise/Intervi
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC `%run` executes the `Coding_Rubric` notebook inside this session, as if its code were pasted
-# MAGIC here. Afterwards we have a data frame called `coding_rubric` with one row per variable (20 in
-# MAGIC total) and these columns: `theme_code`, `theme_label`, `variable_id`, `guide_question`
-# MAGIC and `category_options` (the allowed answers, separated by `|`).
-
-# COMMAND ----------
-
-# Load the Coding Rubric
-%run "./Coding_Rubric"
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC Two settings used later on:
-# MAGIC - `interviewers` lists the people who asked the questions. Any turn spoken by them is dropped, so
-# MAGIC   only the interviewee's answers get translated and coded.
-# MAGIC - `DEMO_CHUNKS` caps how many chunks we send to the API while we test each step on Interview 1.
-# MAGIC   This keeps the demo quick and cheap; the final run at the end processes everything.
-
-# COMMAND ----------
-
-# These are the names of the colleagues who carried out the interviews. Their words will be excluded from coding.
-interviewers <- c("Marina Visintini", "Elda Celislami")
-
-# We will run the exercise first on a subset of chunks from one interview, and end with both transcripts in full
-DEMO_CHUNKS <- 3
-
-# COMMAND ----------
-
-# MAGIC %md
+# MAGIC
 # MAGIC ## 1. Conversational AI gateway
 # MAGIC
-# MAGIC Every model is reached through the same gateway URL, with the
-# MAGIC actual model chosen via the `mai-endpoint` query parameter. `call_conversational_ai()` wraps that pattern once
-
-# COMMAND ----------
-
-# MAGIC %md
 # MAGIC `call_conversational_ai()` sends one request to the gateway and returns the response as an R list.
 # MAGIC Step by step, it:
 # MAGIC 1. adds `mai-endpoint` (which model to use), plus any extra parameters, to the URL as query parameters
@@ -168,7 +124,22 @@ call_claude <- function(prompt, max_tokens = 2048, temperature = NULL) {
   if (!is.null(temperature)) extra_params$temperature <- temperature
 
   result <- call_conversational_ai(CLAUDE_ENDPOINT, payload, extra_params)
-  result$output$message$content[[1]]$text
+
+  # Extract text and check for gateway refusals
+  text <- result$output$message$content[[1]]$text
+  stop_reason <- result$stopReason %||% "unknown"
+
+  if (is.null(text) || grepl("^Sorry, the model cannot", text)) {
+    detail <- paste0(
+      "Gateway refused the request.",
+      "\n  stopReason: ", stop_reason,
+      "\n  response text: ", substr(text %||% "<NULL>", 1, 200),
+      "\n  endpoint: ", CLAUDE_ENDPOINT
+    )
+    stop(detail, call. = FALSE)
+  }
+
+  text
 }
 
 # COMMAND ----------
@@ -267,35 +238,25 @@ parse_turns <- function(paragraphs) {
 # MAGIC Now we run both functions on Interview 1: read the paragraphs, parse them into turns, and
 # MAGIC filter out every turn spoken by one of the `interviewers`. The result, `int1_turns`, holds only
 # MAGIC the interviewee's answers.
-# MAGIC
-# MAGIC `display()` shows the table, and `count()` lists the speakers left with their number of turns.
-# MAGIC Check that no interviewer names appear in that count. If one does, their name is spelled
-# MAGIC differently in the transcript than in `interviewers`.
 
 # COMMAND ----------
 
 # Run it on one of the interview transcripts, and immediately drop every turn from known `interviewers`
+
+interviewers <- c("Marina Visintini", "Elda Celislami")
 
 int1_turns <- read_transcript_paragraphs(int1_path) %>%
   parse_turns() %>%
   filter(!speaker %in% interviewers)
 
 display(int1_turns)
-count(int1_turns, speaker)
+
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC ## 3. Chunk turns for the API
 # MAGIC
-# MAGIC Sending one turn per API call would be slow and would strip away
-# MAGIC conversational context (a short "Ok." only makes sense next to the question
-# MAGIC that prompted it). Instead we group consecutive turns into chunks up to a
-# MAGIC character budget to stay comfortably inside the model's context window.
-
-# COMMAND ----------
-
-# MAGIC %md
 # MAGIC `chunk_turns()` adds a `chunk_id` column that assigns every turn to a chunk. It:
 # MAGIC 1. estimates the size of each turn: the length of the text, plus the speaker name, plus 10
 # MAGIC    characters for the timestamp and separators
@@ -304,6 +265,12 @@ count(int1_turns, speaker)
 # MAGIC    characters by default)
 # MAGIC
 # MAGIC Turns are never split or reordered. A single turn longer than `max_chars` becomes a chunk on its own.
+# MAGIC
+# MAGIC **Why not just send each turn?**
+# MAGIC Sending one turn per API call would be slow and would strip away
+# MAGIC conversational context (a short "Ok." only makes sense next to the question
+# MAGIC that prompted it). Instead we group consecutive turns into chunks up to a
+# MAGIC character budget to stay comfortably inside the model's context window.
 
 # COMMAND ----------
 
@@ -327,32 +294,20 @@ chunk_turns <- function(turns, max_chars = 3000) {
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC `format_turns_block()` turns a table of turns into the plain text we paste into a prompt, with
-# MAGIC one line per turn in the form `Speaker | Timestamp | Text`. The `text_col` argument picks which
-# MAGIC text to use: `"text_it"` for the Italian original when we translate, `"text_en"` for the English
-# MAGIC translation when we code.
-
-# COMMAND ----------
-
-# Render a set of turns into the plain-text block we hand to the model, and
-# back again once the model returns the same shape translated.
-format_turns_block <- function(turns_df, text_col) {
-  paste0(turns_df$speaker, " | ", turns_df$timestamp, " | ", turns_df[[text_col]],
-         collapse = "\n")
-}
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC Apply `chunk_turns()` to Interview 1, then count the turns in each chunk. The number of rows in
-# MAGIC this count is the number of translation calls the full interview needs.
+# MAGIC Apply `chunk_turns()` to Interview 1, then count the turns in each chunk.
 
 # COMMAND ----------
 
 # Assign each turn of the first interview to a chunk
 int1_turns <- chunk_turns(int1_turns)
 
-count(int1_turns, chunk_id)
+display(int1_turns)
+
+
+# COMMAND ----------
+
+#this is the amount of calls we will need to make to process our interview
+max(int1_turns$chunk_id)
 
 # COMMAND ----------
 
@@ -377,12 +332,26 @@ count(int1_turns, chunk_id)
 # COMMAND ----------
 
 # MAGIC %md
+# MAGIC First, we need to take the "rows" in our table, and transform them into plain text. For that we use the `format_turns_block` function. The `text_col` argument picks which
+# MAGIC text to use: `"text_it"` for the Italian original when we translate, `"text_en"` for the English
+# MAGIC translation when we code.
+
+# COMMAND ----------
+
+format_turns_block <- function(turns_df, text_col) {
+  paste0(turns_df$speaker, " | ", turns_df$timestamp, " | ", turns_df[[text_col]],
+         collapse = "\n")
+}
+
+# COMMAND ----------
+
+# MAGIC %md
 # MAGIC `build_translation_prompt()` writes the instructions for one chunk. The prompt has three parts:
 # MAGIC 1. **context:** what the text is (an auto-transcribed Italian interview about EU-funded programme
 # MAGIC    monitoring) and what the translation is for
 # MAGIC 2. **rules:** keep names and timestamps unchanged, translate literally without summarizing,
 # MAGIC    handle transcription errors sensibly, and return only the translated lines
-# MAGIC 3. **the chunk itself**, formatted by `format_turns_block()` using the Italian text
+# MAGIC 3. **the chunk itself**
 # MAGIC
 # MAGIC Asking for the same `Speaker | Timestamp | Text` format we send is what lets the next function
 # MAGIC read the answer back into the table.
@@ -412,15 +381,7 @@ build_translation_prompt <- function(chunk_df) {
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC `parse_translation_response()` reads the model's reply back into the chunk's table. It:
-# MAGIC 1. splits the reply into lines and drops blank ones
-# MAGIC 2. splits each line on `|` into speaker, timestamp and text
-# MAGIC 3. checks that the reply has exactly one line per turn we sent
-# MAGIC
-# MAGIC If the counts match, the third part of each line becomes a new `text_en` column, matched to the
-# MAGIC turns by position. If they don't match (the model merged or skipped a line), it shows a warning
-# MAGIC and copies the Italian text into `text_en` for that chunk, rather than risk attaching a
-# MAGIC translation to the wrong turn.
+# MAGIC `parse_translation_response()` reads the model's reply back into the chunk's table.
 
 # COMMAND ----------
 
@@ -446,7 +407,7 @@ parse_translation_response <- function(response_text, chunk_df) {
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC `translate_chunk()` chains the three translation steps for one chunk: build the prompt, send it
+# MAGIC `translate_chunk()` performs the actual translation, using the three functions we built before: build the prompt, send it
 # MAGIC to Claude with `temperature = 0` and room for up to 3,000 tokens of output, and parse the reply.
 # MAGIC It returns the chunk's table with the `text_en` column added.
 
@@ -461,18 +422,12 @@ translate_chunk <- function(chunk_df) {
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC Now we translate the first few chunks of Interview 1:
-# MAGIC 1. `split()` turns `int1_turns` into a list with one table per `chunk_id`
-# MAGIC 2. `head(..., DEMO_CHUNKS)` keeps the first 3 chunks
-# MAGIC 3. `map_dfr()` runs `translate_chunk()` on each chunk (one API call each) and stacks the results
-# MAGIC    into one table, `int1_demo`
-# MAGIC
-# MAGIC The table shows the Italian and English text side by side, so you can check the translation
-# MAGIC line by line.
+# MAGIC Now we are ready to translate the first chunk of Interview 1!
 
 # COMMAND ----------
 
-#Let's try it on some chunks!
+# We will run the exercise first on a subset of chunks from one interview, and end with both transcripts in full
+DEMO_CHUNKS <- 3
 
 int1_demo <- map_dfr(
   head(split(int1_turns, int1_turns$chunk_id), DEMO_CHUNKS),
@@ -484,16 +439,62 @@ int1_demo %>% select(speaker, timestamp, text_it, text_en) %>% display()
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 5. Step 2 - Code against the rubric
+# MAGIC Now that we have translated our interview, we need to code it. When we code an interview, we normally want to map the answers to a series of predetermined labels. 
 # MAGIC
-# MAGIC `coding_rubric` (loaded from `Coding-Rubric.R` in step 0) defines 20
-# MAGIC variables across the questionnaire's five themes. For each one, the model
-# MAGIC returns:
-# MAGIC - `category_value`:exactly one option from that variable's fixed list
-# MAGIC - `text_value`: a verbatim quote from the transcript (or several,
-# MAGIC   joined with `[...]`), never a paraphrase
+# MAGIC For example, these interviews were about data processes followed by civil servants. 
+# MAGIC - The first section of our questionnaire was about Data Collection.
+# MAGIC - The first question was about the extent to which data collection processes are manual vs automated.
+# MAGIC - Therefore, we want to map the answer to one of the following: Fully manual, Fully automated or Hybrid
 # MAGIC
-# MAGIC The rule that makes this comparable rather than just quote-tagging. If the transcript never addresses a variable, both fields will come back "Not stated".
+# MAGIC Every questions will have their own set of labels for coding. We define those in the `coding_rubric`
+
+# COMMAND ----------
+
+# DBTITLE 1, 
+coding_rubric <- tribble(
+  ~variable_id, ~guide_question, ~category_options,
+  
+  "data_entry_automation", "Which steps of end to end data collection and validation are manual, and which are automated?", "Fully manual | Fully automated | Hybrid (some manual, some automated)",
+  
+  "validation_responsibility", "Who does what (roles and responsibilities) across the different validation handoffs?", "Single role/unit | Multiple roles within one authority | Multiple external and internal actors",
+  
+  "collection_channel", "What channels, templates and tools are used to collect data from beneficiaries/implementers?", "Single IT system or portal | Multiple systems/channels | Manual or offline (email, paper, spreadsheets)",
+  
+  "delay_hotspot", "Where do delays most often concentrate, and how are they escalated or supported?", "At beneficiary/implementer submission | At validation/review | At handoff between units | No delays reported",
+  
+  "access_control_model", "How are permissions and access managed, covering roles, profiling, onboarding/offboarding?", "Role based access control | Open/shared access | Not formally managed",
+  
+  "data_storage_location", "Where are data entered and maintained: regional system, portals, or elsewhere?", "Regional/local system | National system directly | Mixed (local and national)",
+  
+  "extraction_source", "From which system(s) do you extract data for reporting?", "Same system as entry | Separate reporting/BI system | Manual export or compilation",
+  
+  "duplication_reentry", "At which points do duplications or repeat entries happen, and why?", "Duplication or repeat entry reported | No duplication reported",
+  
+  "analytic_use", "Which analyses do you use the data for, such as progress monitoring, performance, or outcomes?", "Progress monitoring only | Progress + performance | Progress + outcomes/evaluation",
+  
+  "responsible_unit", "Which unit is responsible for analysis, including an evaluation unit if one exists?", "Monitoring unit only | Dedicated evaluation unit exists | Split across multiple offices",
+  
+  "external_microdata", "Which external microdata (e.g. firms, labour, procurement) are or would be integrated, and how?", "Already integrated | Attempted, not achieved | Desired, not attempted | None mentioned",
+  
+  "compliance_vs_analytic_value","Which elements of required data collection are analytically useful vs. mainly driven by compliance?", "Mostly analytically useful | Mostly driven by compliance | Mixed view given",
+  
+  "anomaly_detection_method", "How are inconsistencies or issues in the data detected and handled?", "Automated system checks/alerts | Manual review | Combination of automated and manual",
+  
+  "quality_kpi_tracking", "Are there dashboards, periodic lists, or internal KPIs (update times, error rates, backlog, etc.)?", "Formal KPIs/dashboard in place | Informal/ad hoc tracking only | No tracking reported",
+  
+  "recurrent_error_type", "What types of errors/anomalies are most recurrent, and what do they typically depend on?", "Missing/incomplete data | Miscoding/misclassification | Timing/deadline issues | Multiple types reported",
+  
+  "recent_standard_change", "In the last 12 months, were there updates to standards/codifications/controls requiring action?", "Change reported, high impact | Change reported, low impact | No change reported",
+  
+  "data_freeze_practice", "Are there moments when data are frozen/consolidated for official reporting or audit?", "Formal freeze/consolidation process exists | No formal freeze process",
+  
+  "effort_hotspot", "Which process steps require the most effort, or become most demanding/complex?", "Names a specific step | General/diffuse difficulty | No hotspot reported",
+  
+  "external_requirement_burden", "Which external (EU or national) requirements require the most resources to implement?", "EU level requirement named | National level requirement named | Both named | None named",
+  
+  "simplification_opportunity", "Looking ahead, are there opportunities to simplify the process while staying compliant?", "Opportunity identified | No opportunity identified"
+)
+
 
 # COMMAND ----------
 
@@ -522,14 +523,11 @@ build_rubric_coding_prompt <- function(translated_turns, rubric) {
 
   paste0(
     "You are coding an English-translated interview transcript against a ",
-    "fixed rubric of ", nrow(rubric), " comparable variables. The interview ",
-    "is with a regional Managing Authority about EU-funded programme data ",
-    "and reporting processes.\n\n",
+    "fixed rubric of ", nrow(rubric), " comparable variables. ",
     "RUBRIC:\n", rubric_block, "\n\n",
     "The transcript below has already had the interviewer's questions removed ",
-    "-- every line is the interviewee speaking. It will read as fragmented in ",
-    "places because of that; treat consecutive lines as one continuous answer ",
-    "where that seems to be the case.\n\n",
+    "-- every line is the interviewee speaking. Treat consecutive lines ",
+    "as one continuous answer where that seems to be the case.\n\n",
     "TASK: For every variable_id listed above (all ", nrow(rubric),
     " of them, no more, no fewer), determine its value strictly from what ",
     "the interviewee explicitly says below.\n\n",
@@ -557,69 +555,55 @@ build_rubric_coding_prompt <- function(translated_turns, rubric) {
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC `strip_code_fences()` cleans up the reply before we parse it. Even when told not to, models
-# MAGIC sometimes wrap JSON in markdown fences (```` ```json ... ``` ````), which would make the JSON
-# MAGIC parser fail. This function removes an opening and a closing fence if they are there, and leaves
-# MAGIC the text unchanged otherwise.
-
-# COMMAND ----------
-
-# Models sometimes wrap JSON in ```json fences despite instructions not to.
-# We can strip those defensively.
-strip_code_fences <- function(text) {
-  text <- str_trim(text)
-  text <- str_remove(text, "^```(json)?\\s*")
-  text <- str_remove(text, "```\\s*$")
-  str_trim(text)
-}
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC `verify_quotes_are_correct()` checks the model's quotes against the source. It:
-# MAGIC 1. joins all the English turns into one long string
-# MAGIC 2. for every coded variable, splits `text_value` on `[...]` into separate quotes, skipping
-# MAGIC    "Not stated" and missing values
-# MAGIC 3. checks that each quote appears **exactly** in that string
-# MAGIC
+# MAGIC `verify_quotes_are_correct()` checks the model's quotes against the source.
 # MAGIC If any quote isn't found, it shows a warning listing the `variable_id`s to review by hand. A failed
 # MAGIC check usually means the model paraphrased or tidied up the wording. The function only warns; it
 # MAGIC doesn't change the coded table.
 
 # COMMAND ----------
 
-# Validation: Checks that every returned quote is a real substring of what was actually
-# sent to the model. This catches a paraphrase or a fabricated quote.
+
+normalize_for_match <- function(x) {
+  x <- str_replace_all(x, "[‘’]", "'")
+  x <- str_replace_all(x, "[“”]", "\"")
+  x <- str_replace_all(x, "…", "...")
+  str_squish(str_to_lower(x))
+}
 
 verify_quotes_are_correct <- function(coded, translated_turns, interview_label) {
-  source_text <- paste(translated_turns$text_en, collapse = " ")
+  source_text <- normalize_for_match(paste(translated_turns$text_en, collapse = " "))
 
-  is_correct<- function(text_value) {
-    if (is.na(text_value) || text_value == "Not stated") return(TRUE)
-    quotes <- str_trim(str_split(text_value, "\\s*\\[\\.\\.\\.\\]\\s*")[[1]])
-    all(str_detect(source_text, fixed(quotes)))
+  is_correct <- function(text_value) {
+    if (is.na(text_value) || text_value == "Not stated") return(NA)
+    quotes <- str_split(text_value, "\\s*\\[\\.\\.\\.\\]\\s*")[[1]]
+    quotes <- normalize_for_match(quotes)
+    quotes <- str_remove_all(quotes, "^[[:punct:]\\s]+|[[:punct:]\\s]+$")
+    quotes <- quotes[nzchar(quotes)]
+    length(quotes) > 0 && all(str_detect(source_text, fixed(quotes)))
   }
 
-  flagged <- coded %>% filter(!map_lgl(text_value, is_correct))
+  coded <- coded %>% mutate(quote_verified = map_lgl(text_value, is_correct))
+  flagged <- coded %>% filter(quote_verified %in% FALSE)
 
   if (nrow(flagged) > 0) {
     warning(sprintf(
-      "'%s': %d quote(s) not found verbatim in the transcript text. Check variable_id(s): %s",
+      "'%s': %d quote(s) not found in the transcript text. Check variable_id(s): %s",
       interview_label, nrow(flagged), paste(flagged$variable_id, collapse = ", ")
     ))
   }
-}
 
+  coded
+}
 
 
 # COMMAND ----------
 
+# DBTITLE 1, 
 # MAGIC %md
-# MAGIC `code_interview()` runs the whole coding step for one interview and returns one row per rubric
-# MAGIC variable. It:
-# MAGIC 1. builds the prompt and sends it to Claude with `temperature = 0` and room for up to 4,000 tokens
-# MAGIC 2. strips any code fences and parses the JSON reply into a table. If the JSON can't be parsed, it
-# MAGIC    shows a warning and returns an empty table instead of stopping the notebook.
+# MAGIC `code_interview()`:
+# MAGIC 1. Builds the prompt and sends it to Claude 
+# MAGIC 2. parses the JSON reply into a table (stripping markdown fences if present). If the JSON can't be
+# MAGIC    parsed, it shows a warning and returns an empty table instead of stopping the notebook.
 # MAGIC 3. warns if the model returned more or fewer than 20 variables
 # MAGIC 4. joins the answers onto the rubric by `variable_id`, so the result always has all 20 variables
 # MAGIC    in rubric order, with their theme and guide question. A variable the model skipped shows up as `NA`.
@@ -627,14 +611,15 @@ verify_quotes_are_correct <- function(coded, translated_turns, interview_label) 
 
 # COMMAND ----------
 
-# Now we can bring all of these functions together in one, so we can handle errors gracefully
+# DBTITLE 1, 
+# Bring all coding functions together, with graceful error handling
 
 code_interview <- function(translated_turns, rubric, interview_label) {
   prompt <- build_rubric_coding_prompt(translated_turns, rubric)
-  response <- call_claude(prompt, max_tokens = 4000, temperature = 0)
+  response <- call_claude(prompt, max_tokens = 3000, temperature = 0)
 
   parsed <- tryCatch(
-    jsonlite::fromJSON(strip_code_fences(response), simplifyDataFrame = TRUE),
+    jsonlite::fromJSON(gsub("^```(json)?\\s*|```\\s*$", "", str_trim(response)), simplifyDataFrame = TRUE),
     error = function(e) {
       warning(sprintf("Could not parse coding JSON for '%s': %s", interview_label, e$message))
       NULL
@@ -653,7 +638,7 @@ code_interview <- function(translated_turns, rubric, interview_label) {
   }
 
   coded <- rubric %>%
-    select(theme_code, theme_label, variable_id, guide_question) %>%
+    select(variable_id, guide_question) %>%
     left_join(as_tibble(parsed), by = "variable_id")
 
   verify_quotes_are_correct(coded, translated_turns, interview_label)
@@ -670,15 +655,93 @@ code_interview <- function(translated_turns, rubric, interview_label) {
 
 # COMMAND ----------
 
-#Let's try on our interview subset - the one we translated before!
-
+# DBTITLE 1, 
 int1_demo_coded <- code_interview(int1_demo, coding_rubric, "Interview 1 (demo)")
-display(int1_demo_coded)
+
+display(int1_demo_coded %>% mutate(across(where(is.list), as.character)))
+
+# COMMAND ----------
+
+# DBTITLE 1, 
+# MAGIC %md
+# MAGIC ## 6. Temperature sensitivity and reproducibility
+# MAGIC
+# MAGIC Before running the full pipeline, let's check how robust the coding step is.
+# MAGIC 1. **Sensitivity:** do answers change when we raise the temperature?
+# MAGIC 2. **Reproducibility:** does the same temperature give the same answer every time?
+# MAGIC
+# MAGIC We re-code the demo translation (`int1_demo`) at several temperatures (0, 0.3, 0.7, 1.0),
+# MAGIC running each one multiple times.
+
+# COMMAND ----------
+
+# DBTITLE 1, 
+# Code the demo translation at several temperatures, with multiple reps each
+temperatures <- c(0, 0.3, 0.7, 1.0)
+N_REPS <- 5   # repetitions per temperature
+
+prompt <- build_rubric_coding_prompt(int1_demo, coding_rubric)
+
+code_at_temp <- function(temp, rep) {
+  tryCatch({
+    response <- call_claude(prompt, max_tokens = 4000, temperature = temp)
+    parsed  <- jsonlite::fromJSON(gsub("^```(json)?\\s*|```\\s*$", "", str_trim(response)), simplifyDataFrame = TRUE)
+    as_tibble(parsed) %>%
+      select(variable_id, category_value) %>%
+      mutate(temperature = temp, rep = rep, .before = 1)
+  }, error = function(e) {
+    warning(sprintf("temp=%s rep=%d failed: %s", temp, rep, e$message))
+    tibble(temperature = temp, rep = rep,
+           variable_id = coding_rubric$variable_id,
+           category_value = NA_character_)
+  })
+}
+
+# Build the grid of (temperature, rep) pairs and run each with a short pause
+runs <- expand.grid(temp = temperatures, rep = seq_len(N_REPS))
+
+temp_results <- bind_rows(Map(function(t, r) {
+  Sys.sleep(2)
+  code_at_temp(t, r)
+}, runs$temp, runs$rep))
+
+cat(sprintf("Collected %d rows across %d runs.\n", nrow(temp_results), nrow(runs)))
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 6. Run the pipeline on both transcripts
+# MAGIC For each temperature, we check how consistently the model coded each variable across repetitions.
+# MAGIC A variable "matches every run" if all reps returned the same category; otherwise we report how
+# MAGIC many reps agreed on the most common answer.
+
+# COMMAND ----------
+
+# DBTITLE 1, 
+# For each (variable, temperature), find how many reps agreed on the answer
+agreement <- temp_results %>%
+  filter(!is.na(category_value)) %>%
+  count(temperature, variable_id, category_value) %>%
+  group_by(temperature, variable_id) %>%
+  summarise(n_reps = sum(n), max_agree = max(n), .groups = "drop")
+
+# Summarise per temperature: what share of variables matched in all reps, all-1, etc.
+for (tmp in sort(unique(agreement$temperature))) {
+  sub <- agreement %>% filter(temperature == tmp)
+  total <- nrow(sub)
+  cat(sprintf("\nTemperature %.1f:\n", tmp))
+  for (k in sort(unique(sub$n_reps):1)) {
+    n_vars <- sum(sub$max_agree == k)
+    if (n_vars > 0) {
+      cat(sprintf("Matched %d/%d times: %d variables (%.0f%%)\n",
+                  k, sub$n_reps[1], n_vars, 100 * n_vars / total))
+    }
+  }
+}
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## 7. Run the pipeline on both transcripts
 # MAGIC
 # MAGIC First we will consolidate the entire pipeline in a single function,
 # MAGIC and then we will run it on the two sample transcripts provided
@@ -724,11 +787,11 @@ process_transcript <- function(path, region, rubric, interviewers, max_chunks = 
 
 # COMMAND ----------
 
-transcript_paths <- c(int1_path, int2_path)
+# transcript_paths <- c(int1_path, int2_path)
 
-all_coded <- bind_rows(lapply(transcript_paths, function(p) {
-  label <- tools::file_path_sans_ext(basename(p))
-  process_transcript(p, label, coding_rubric, interviewers = interviewers)
-}))
+# all_coded <- bind_rows(lapply(transcript_paths, function(p) {
+#   label <- tools::file_path_sans_ext(basename(p))
+#   process_transcript(p, label, coding_rubric, interviewers = interviewers)
+# }))
 
-display(all_coded)
+# display(all_coded)
