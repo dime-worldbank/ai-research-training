@@ -40,4 +40,11 @@ permalink: /bootcamp/
 
 <p class="legend"><strong>New to AI?</strong> Start with Day 0 (setup), then attend Days 1&ndash;3. <strong>Already using AI tools?</strong> Skip Day 0, and add Day 4 for advanced workflows. Timing changes are always reflected first in the <a href="{{ site.data.bootcamp.agenda_url }}">live Canva agenda</a>.</p>
 
+<aside class="ai-disclosure">
+<h2 id="ai-disclosure">{{ site.data.bootcamp.ai_disclosure.title }}</h2>
+{% for p in site.data.bootcamp.ai_disclosure.paragraphs %}
+<p>{{ p }}</p>
+{% endfor %}
+</aside>
+
 </div>

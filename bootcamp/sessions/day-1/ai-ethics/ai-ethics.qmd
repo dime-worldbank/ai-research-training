@@ -584,7 +584,7 @@ Whatever you raised your hand for, you weren't the only one. That's not a coinci
 ```{=html}
 <div class="stat-grid">
   <div class="stat-card"><span class="stat-num">64%</span>have had AI-assisted work included in reports, papers, presentations, or other outputs.</div>
-  <div class="stat-card"><span class="stat-num">32.4%</span>of those (n=34) included a clear disclosure of how AI contributed. Another <strong style="display:inline">32.4%</strong> did not disclose it.</div>
+  <div class="stat-card"><span class="stat-num">32.4%</span>of those (n=34) included a clear disclosure of how AI contributed.</div>
   <div class="stat-wide">When asked about using AI to clean data:</div>
   <div class="stat-card"><span class="stat-num">40.7%</span>said mAI or Copilot, since they are cleared for Confidential files.</div>
   <div class="stat-card"><span class="stat-num">40.7%</span>said they would use synthetic data; the rest were not sure..</div>
@@ -1344,9 +1344,6 @@ The stages overlap: transcription may occur during collection or processing. App
 | OIS | Unexpected AI behaviour or unauthorised data access |
 | ai@worldbankgroup.org | AI questions, use cases, and guidance |
 
-**This presentation was developed with AI assistance and reviewed by the author for accuracy.**
-
-
 ## Parting gift: three book recommendations
 
 ```{=html}
@@ -1385,6 +1382,8 @@ The stages overlap: transcription may occur during collection or processing. App
 </div>
 ```
 
+**This presentation was developed with AI assistance (Claude Sonnet 5.5 and Claude Opus 5.5, Anthropic) and reviewed by the author for accuracy.**
+
 
 ## References
 
@@ -1415,4 +1414,3 @@ The stages overlap: transcription may occur during collection or processing. App
 <li><strong>Provider terms</strong> &mdash; <a href="https://www.anthropic.com/legal/privacy">Anthropic privacy policy</a> &middot; <a href="https://code.claude.com/docs/en/data-usage">Claude Code data usage</a> &middot; <a href="https://openai.com/enterprise-privacy/">OpenAI enterprise privacy</a> &middot; <a href="https://support.google.com/gemini/answer/13594961">Gemini Apps privacy hub</a> &middot; <a href="https://knowledge.workspace.google.com/admin/gemini/gemini-for-google-workspace-faq">Workspace Gemini FAQ</a> &middot; <a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/">GitHub Copilot data usage update</a>. All accessed September 2026.</li>
 </ul>
 ```
-

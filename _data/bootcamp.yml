@@ -16,6 +16,16 @@ intro:
 - Every session is grounded in tools already available at the WBG, and more than half
   are hands-on. Participants leave with reusable workflows, memory files, and AI skills
   configured for their own research. No prior AI experience is required.
+ai_disclosure:
+  title: AI disclosure
+  paragraphs:
+  - 'These materials were developed with assistance from generative AI tools, specifically
+    Claude (Anthropic), including Claude Sonnet 5.5, Claude Opus 5.5, and Claude Sonnet 5,
+    and potentially other AI models. AI supported drafting, editing, restructuring,
+    example creation, and testing. The Impact Analytics team reviewed and revised all
+    materials and is responsible for the final content. Each skill lists its relevant sources.'
+  - 'Some of the materials and skills shown in this training are work in progress and rapidly evolving. To share feedback, please open a GitHub issue
+    or email <a href="mailto:dimeanalytics@worldbank.org">dimeanalytics@worldbank.org</a>.'
 days:
 - id: 0
   theme: Setup for AI-enabled research
