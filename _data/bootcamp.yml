@@ -210,7 +210,7 @@ days:
     link: "/bootcamp/sessions/day-2/ai-review-code/"
     materials:
     - label: "Skill"
-      url: "https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-2/ai-review-code/skills"
+      url: "https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip"
     - label: "Demo"
       url: "https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-2/ai-review-code/materials"
   - time: 2:00 – 2:45
