@@ -3,7 +3,7 @@ title: "Human-in-the-Loop: Evaluating AI Outputs"
 subtitle: "Day 2 · Intro to Agentic AI at the WBG"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
-date: 5 Oct, 2026
+date: 6 Oct, 2026
 date-format: "D MMMM YYYY"
 footer: "AI-Enabled Research Bootcamp"
 logos:
@@ -28,8 +28,9 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ## Agenda
 
 - Why human review remains essential
-- Techniques for evaluating AI-generated outputs
-- Building a validation checklist
+- Understanding what AI workflows requires different human review
+- Break down your AI workflow into smaller components
+- Advanced: What is required to give AI autonomy over final output
 
 # The Challenge is Not New {background-color="#530153"}
 
@@ -41,11 +42,12 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 - The reason is that the human owner of a product is always responsible for it, regardless of whether it was created by:
   - the human owner
   - a more junior human
+  - a vendor
   - a robot
 :::
 
 ::: {.fragment}
-- _**If the product is static**_, such as reports or code scripts, then the methods needed are not new.
+- _**If the product is static**_, reports or code scripts, then the methods needed are not new.
 - _**If the product is a robot making qualitative decisions for us**_, that is new and requires new methods.
 :::
 
@@ -81,10 +83,10 @@ This distinction is crucial to understanding what type of human-in-the-loop revi
 - No human reviews your internet banking transactions before they are completed.
 
 ::: {.fragment}
-### So, what is different about AI-powered computers?
+### So, what is different when computers use AI?
 :::
 ::: {.fragment}
-- AI is non-deterministic: it uses a random process, so its output can vary and may be generated with creativity.
+- AI is non-deterministic: it uses a random process, so its output can vary and may be generated with "_creative freedom_".
 - While banks develop code using AI today, no bank will let a non-deterministic AI handle your transaction.
 - If AI handled your financial transactions, banks would need a human-in-the-loop checkpoint to review each transaction before any money was transferred.
 :::
@@ -99,8 +101,11 @@ This distinction is crucial to understanding what type of human-in-the-loop revi
 
 - Many of you have brought complex workflows to this training, such as the multi-step process visualized on this slide.
 - Today's AI systems can most likely handle very complex workflows and generate results that _are correct in most cases_.
+
+::: {.fragment}
 - Sometimes, "_in most cases_" is good enough; if not, we need to review the output.
 - But if we need to review all the steps or the full final output, has the system saved us any time or effort?
+:::
 
 :::
 ::: {.column width="25%" }
@@ -122,7 +127,7 @@ This distinction is crucial to understanding what type of human-in-the-loop revi
 
 - Break up your workflow into smaller workflows and ask yourself which parts can be handled deterministically with human-reviewed code.
   - Reduces the need for human-in-the-loop review
-  - Increases the quality of your workflow's output
+  - Increases the predictability of your workflow's output
 
 :::
 ::: {.column width="25%" }
@@ -154,7 +159,7 @@ This distinction is crucial to understanding what type of human-in-the-loop revi
 ::: {.column width="75%" }
 
 - Hopefully, you can now see natural locations for human checkpoints in your workflow.
-- Make sure that both code and AI steps document what they have done; this will support human review.
+- Make sure that both code and AI steps document _efficiently_ what they have done; this will support human review.
 - What is a human-in-the-loop checkpoint in practice? It depends on what you have used for your workflow.
   - _Skills_: each skill includes all the steps between checkpoints. Do not run the next skill until after human review.
   - _Multi-agent workflow_: do not approve the next agent taking over until after human review.
@@ -168,9 +173,9 @@ This distinction is crucial to understanding what type of human-in-the-loop revi
 :::
 ::::
 
-# Removing the Human-in-the-Loop {background-color="#530153"}
+# Removing the Human-in-the-Loop - Advanced {background-color="#530153"}
 
-## When can I remove human checkpoints?
+## When can I remove human checkpoints? - Advanced
 
 You probably have more intuition for this than you think. If you have ever managed a junior team member, you already have a sense of what to review and when to give them autonomy.
 
@@ -181,7 +186,7 @@ You probably have more intuition for this than you think. If you have ever manag
  - If you need perfect or near-perfect accuracy, human checkpoints are likely necessary, or at least take a lot of work to eliminate
 :::
 
-## Thoroughly Test and/or Set Up Review Agents
+## Thoroughly Test and/or Set Up Review Agents - Advanced
 
 ### Can you thoroughly test the AI's performance?
 
