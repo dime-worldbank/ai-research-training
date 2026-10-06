@@ -1254,6 +1254,17 @@ margin-right: 0; }
 .lb a { font-family: "Montserrat", sans-serif; font-size: 18px; font-weight: 600; color: #fff; background: var(--blue); padding: 8px 18px; border-radius: 20px; text-decoration: none; cursor: pointer; }
 .lb a:hover { background: var(--navy); }
 .reveal .shot2 > a { cursor: zoom-in; }
+
+.cwhy { display: flex; flex-direction: column; gap: 8px; margin-top: 0.7em; font-size: 0.6em; }
+.cw { display: grid; grid-template-columns: 1.1fr 1fr 1fr 1.7fr 0.9fr; gap: 14px; align-items: center; background: var(--pale); border-radius: 10px; padding: 12px 16px; color: #1A1A1A; }
+.cw.head { background: none; padding: 0 16px; color: var(--grey); font-size: 0.85em; line-height: 1.25; }
+.cw b { color: var(--navy); }
+.cw .bar { display: block; height: 10px; border-radius: 5px; background: var(--cyan); margin-bottom: 4px; }
+.cw .bar.hot { background: var(--red); }
+.cw .bar.good { background: var(--green); }
+.cw .bar.warn { background: #E0A100; }
+.cw .rule { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); background: #fff; border: 2px solid var(--navy); border-radius: 8px; padding: 6px 8px; text-align: center; }
+.cw .rule.dark { background: var(--navy); color: #fff; }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -1947,6 +1958,35 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
+<section id="why-one-rule-does-not-fit-every-criterion" class="slide level2">
+<h2>Why one rule does not fit every criterion</h2>
+<div class="tracker"><span class="done">1 · Bootstrap</span><span class="done">2 · Inconsistency</span><span class="done">3 · Criteria</span><span class="done">4 · Reference</span><span class="done">5 · How Nos behave</span><span class="on">6 · Strategies</span><span class>7 · Choose</span></div>
+<div class="cwhy">
+  <div class="cw head"><span>Criterion</span><span>Answer flips between runs</span><span>A correct No is still No after 3 rechecks</span><span>What a No tells you</span><span>So the rule is</span></div>
+  <div class="cw"><span><b>Population, Intervention</b></span><span><i class="bar" style="width:8%"></i>1–2%</span><span><i class="bar good" style="width:99%"></i>almost always</span><span>Nearly always right. A rare slip shows up on one recheck</span><span class="rule">Recheck once</span></div>
+  <div class="cw"><span><b>Design</b></span><span><i class="bar hot" style="width:90%"></i>18%</span><span><i class="bar good" style="width:94%"></i>94%</span><span>Wrong Nos flip, correct Nos repeat: rechecks separate them</span><span class="rule">Confirm 3×</span></div>
+  <div class="cw"><span><b>Outcome</b></span><span><i class="bar hot" style="width:60%"></i>12%</span><span><i class="bar warn" style="width:51%"></i>51%</span><span>Correct Nos flip too: rechecks cannot tell right from wrong</span><span class="rule dark">Send to a human</span></div>
+</div>
+<div class="punch">
+<p>Criteria stay inconsistent in different ways. Give each the rule its errors call for.</p>
+</div>
+<div class="source-note">
+<p>Flip rates from Step 2; survival of correct Nos from Step 5. Invented numbers for the made-up review.</p>
+</div>
+<aside class="notes">
+<p>Even after rewriting the criteria (Step 3), some stay noisier than others, and they are noisy in different ways. For Population and Intervention a No is almost always right, so one recheck is enough. For Design the noise is in the wrong Nos: correct Nos repeat, so asking three times filters out the errors while keeping real exclusions. For Outcome even correct Nos wobble: half would fail three checks anyway, so rechecking just burns LLM calls before the paper lands with a human. A single rule for all criteria is either too lax on Design or too wasteful on Outcome.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
 <section id="strategy-5-a-different-rule-per-criterion" class="slide level2">
 <h2>Strategy 5 · A different rule per criterion</h2>
 <div class="tracker"><span class="done">1 · Bootstrap</span><span class="done">2 · Inconsistency</span><span class="done">3 · Criteria</span><span class="done">4 · Reference</span><span class="done">5 · How Nos behave</span><span class="on">6 · Strategies</span><span class>7 · Choose</span></div>
@@ -1956,8 +1996,8 @@ display:block!important;
 </figure>
 </div>
 <div class="cards c4">
-  <div class="card compact"><span class="ct">Easy criteria</span><div>one recheck</div></div>
-  <div class="card compact"><span class="ct">Design</span><div>confirm 3×</div></div>
+  <div class="card compact"><span class="ct">Population, Intervention</span><div>one recheck: a No is nearly always right</div></div>
+  <div class="card compact"><span class="ct">Design</span><div>confirm 3×: correct Nos repeat, wrong ones flip</div></div>
   <div class="card compact"><span class="ct">Outcome</span><div>to a human: correct Nos wobble anyway</div></div>
   <div class="card compact dark"><span class="ct">Result</span><div>0.1 of 100 lost · 100 reviews / 1,000</div></div>
 </div>
