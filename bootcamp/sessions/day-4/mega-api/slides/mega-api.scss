@@ -1,0 +1,235 @@
+/*-- scss:defaults --*/
+
+// MEGA palette, overrides the bootcamp defaults
+$analytics-dark:  #02375A;
+$analytics-base:  #00558E;
+$analytics-light: #9BC8E8;
+$analytics-tint:  #D7E9F6;
+
+$code-block-bg: #F5F9FC;
+
+/*-- scss:rules --*/
+
+// section dividers: use {background-color="#02375A"}
+.reveal .slides section[data-background-color="#02375A"] {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  h1, h2 {
+    color: #FFFFFF;
+    border-bottom: 4px solid $analytics-light;
+    padding-bottom: 0.2em;
+    display: inline-block;
+  }
+}
+
+// ---------- flow diagrams: ::: {.flow} with .step and .arrow children ----------
+.reveal .flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0.35em;
+  margin: 0.8em 0;
+  font-size: 0.68em;
+  line-height: 1.3;
+
+  .step {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    background: $analytics-tint;
+    border-radius: 6px;
+    padding: 1em 0.7em;
+
+    p { margin: 0 0 0.4em 0; }
+
+    img {
+      height: 84px;
+      width: auto;
+      margin-bottom: 0.5em;
+      background: #FFFFFF;
+      border-radius: 6px;
+      padding: 4px;
+    }
+  }
+
+  .step.mega {
+    background: $analytics-dark;
+    color: #FFFFFF;
+
+    strong { color: #FFFFFF; }
+  }
+
+  .arrow {
+    flex: 0 0 auto;
+    align-self: center;
+    color: $analytics-base;
+    font-size: 1.8em;
+    font-weight: 700;
+
+    p { margin: 0; }
+  }
+}
+
+// vertically centred step labels: ::: {.flow .centered}
+.reveal .flow.centered .step {
+  justify-content: center;
+
+  p:last-child { margin-bottom: 0; }
+}
+
+// extra space above and below a flow: ::: {.flow .spaced}
+.reveal .flow.spaced {
+  margin: 70px 0 60px 0;
+}
+
+// one step fanning out to several: ::: {.fan} of ::: {.branch} (arrow + step)
+.reveal .flow .fan {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+
+  .branch {
+    display: flex;
+    align-items: stretch;
+    gap: 0.35em;
+  }
+
+  .step {
+    padding: 0.5em 0.7em;
+    justify-content: center;
+  }
+}
+
+// role badge, e.g. [PI]{.role}
+.reveal .role {
+  display: inline-block;
+  background: $analytics-base;
+  color: #FFFFFF;
+  border-radius: 999px;
+  padding: 0 0.55em;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+// side-by-side cards
+.reveal .cards {
+  display: flex;
+  gap: 0.8em;
+  margin-top: 0.6em;
+
+  .card {
+    flex: 1 1 0;
+    background: $analytics-tint;
+    border-radius: 6px;
+    padding: 0.9em 1.1em;
+    font-size: 0.9em;
+
+    p { margin: 0 0 0.4em 0; }
+  }
+}
+
+// phased pipeline: ::: {.pipeline} of ::: {.phase} ([label]{.phase-label} + a .flow), joined by ::: {.phase-arrow}
+.reveal .pipeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0.3em;
+  margin-top: 2.2em;
+
+  .phase {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid $analytics-light;
+    border-radius: 8px;
+    padding: 0.5em 0.5em 0.6em;
+
+    > p { margin: 0 0 0.3em 0; text-align: center; }
+
+    .flow {
+      flex: 1 1 auto;
+      margin: 0;
+      font-size: 0.52em;
+    }
+
+    .step {
+      min-width: 0;
+      min-height: 9em;
+      padding: 0.8em 0.4em;
+    }
+  }
+
+  // phase width follows its number of steps (3, 3, 2) so all steps are equal
+  .phase { flex: 3 1 0; min-width: 0; }
+  .phase:last-child { flex: 2 1 0; }
+
+  .phase-label {
+    display: inline-block;
+    background: $analytics-dark;
+    color: #FFFFFF;
+    border-radius: 999px;
+    padding: 0.05em 0.8em;
+    font-weight: 700;
+    font-size: 0.6em;
+  }
+
+  .phase-arrow {
+    flex: 0 0 auto;
+    align-self: center;
+    color: $analytics-dark;
+    font-size: 1.4em;
+    font-weight: 700;
+
+    p { margin: 0; }
+  }
+}
+
+// legend under a pipeline: ::: {.pipeline-legend} with a [ ]{.swatch}
+.reveal .pipeline-legend {
+  margin-top: 1em;
+  font-size: 0.6em;
+  color: $analytics-dark;
+
+  .swatch {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    margin-right: 0.4em;
+    border-radius: 3px;
+    background: $analytics-dark;
+  }
+}
+
+// ---------- team photos on the closing slide: ::: {.team} with .member children ----------
+.reveal .team {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2.2em;
+  margin: 0.4em 0 0.8em;
+
+  .member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.6em;
+    color: $analytics-dark;
+
+    p {
+      margin: 0.3em 0 0;
+    }
+
+    img {
+      width: 5.5em;
+      height: 5.5em;
+      margin: 0;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid $analytics-light;
+    }
+  }
+}
