@@ -16,6 +16,8 @@ logos:
 format:
   bootcamp-revealjs:
     theme: [mega-api.scss]
+    embed-resources: true
+    output-file: index.html
 ---
 
 ```{r}
