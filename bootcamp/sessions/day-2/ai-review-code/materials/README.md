@@ -11,7 +11,7 @@ find them with the skill and fix the ones you approve.
 ## Set up
 
 1. Download the project and unzip it.
-2. Download the skill, [research-code-review.zip](../skills/research-code-review.zip), and unzip it.
+2. Download the skill, [research-code-review.zip](https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip), and unzip it.
 3. Inside the `water-pilot/` folder, create `.agents/skills/` and move the
    `research-code-review/` folder into it.
 4. Open the `water-pilot/` folder in VS Code.

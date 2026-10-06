@@ -15,7 +15,7 @@ issues they approve.
 
 ## Try it
 
-1. Download the [skill](skills/research-code-review.zip) and unzip it.
+1. Download the [skill](https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip) and unzip it.
 2. Choose a project:
    - **Your own project:** follow the steps in
      [skills/README.md](skills/README.md).

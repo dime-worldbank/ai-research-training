@@ -49,6 +49,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 .reveal .ba-columns pre, .reveal .ba-columns div.sourceCode { overflow: hidden; }
 .reveal table.cost-table { width: 100%; }
 .reveal .big-tree, .reveal .big-tree code { font-size: 0.75em !important; line-height: 1.5 !important; }
+.reveal pre.mid-tree code, .reveal .mid-tree pre code { font-size: 1.6em !important; line-height: 1.45 !important; }
 .reveal .slides a { text-decoration: underline; text-underline-offset: 0.15em; }
 .reveal div.sourceCode, .reveal pre.sourceCode { overflow: hidden !important; }
 .reveal pre.sourceCode.markdown code { font-size: 1.35em !important; line-height: 1.5 !important; }
@@ -58,7 +59,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 By the end of this session, you will have:
 
 - Reviewed one existing code file or code package with an AI skill
-- Triaged the findings: what to fix, what to decide, what to leave for later
+- Triaged the findings: decided which proposed changes to accept as they are, which to modify or discuss further, and which to set aside for now
 - Let the agent implement a few approved fixes and checked the diff
 
 ## Agenda
@@ -69,6 +70,23 @@ By the end of this session, you will have:
 - Hands-on: review and improve your own code, or the demo project
 
 # Why review code with AI? {background-color="#530153"}
+
+## Your name is on code you didn't write
+
+- Most TTLs don't write all their own code: research assistants and consultants write much of it
+- The final product carries the TTL's name, so they need to know the code is right and free of issues
+- Reviewing every line by hand takes time, and is often not feasible
+- AI makes this harder: coding agents write more code, faster, and no one has read all of it closely
+
+## Research code fails quietly
+
+Most errors in research code do not crash. They change results.
+
+- Combining two datasets can quietly create extra copies of rows *(many-to-many merges)*
+- Removing duplicates can keep the wrong record *(no rule for which copy to keep)*
+- A random draw can come out differently every time the code runs *(no seed set)*
+- Codes for "refused" or "don't know" get treated as real numbers *(e.g., −99, −88)*
+- Code only runs on the author's computer *(hard-coded paths)*
 
 ## Mistakes are found late, and late is expensive
 
@@ -88,23 +106,43 @@ By the end of this session, you will have:
 
 ::: {.fragment}
 Most review happens in the last two rows.
+:::
+
+## Reproducible is not the same as correct
 
 ::: {.callout-note-custom}
-In our work as the reproducibility team, only **1 in 5** packages are reproducible as-is.
+Only **1 in 5** packages we receive reproduce as-is.
 :::
+
+:::: {.columns .ba-columns}
+
+::: {.column width="50%"}
+**What our check asks**
+
+- Does the code run from start to finish?
+- Does it produce the same tables and figures?
 :::
 
-## Research code fails quietly
+::: {.column width="50%"}
+**What it doesn't ask**
 
-Most errors in research code do not crash. They change results.
+- Does the merge keep the right rows?
+- Are "don't know" codes treated as missing?
+- Are dropped observations documented?
+:::
 
-- Combining two datasets can quietly create extra copies of rows *(many-to-many merges)*
-- Removing duplicates can keep the wrong record *(no rule for which copy to keep)*
-- A random draw can come out differently every time the code runs *(no seed set)*
-- Codes for "refused" or "don't know" get treated as real numbers *(e.g., −99, −88)*
-- Code only runs on the author's computer *(hard-coded paths)*
+::::
 
-A skill makes it cheap to catch these right after you write the code, not months later.
+Code can reproduce perfectly and still be wrong. The code review looks for both kinds of problem, before the code goes public.
+
+## From peer code review to an AI skill
+
+Before AI coding tools, DEC ran [peer code reviews](https://github.com/worldbank/dime-standards/blob/master/dime-coding-standards/guidance_note_peer_code_review.md): colleagues were paired up and reviewed each other's code against standard checklists. It was useful, but code was often at different stages, and people weren't always ready to share work in progress.
+
+Now that AI writes more of our code, we've turned those checklists into a skill:
+
+- Review your code at any stage, whenever you want
+- No need to share unfinished code with a colleague
 
 ## Why a skill, not just a prompt?
 
@@ -112,12 +150,12 @@ Asking an agent to "review my code" works, but it checks different things each t
 
 The skill gives every review the same foundation:
 
-- A curated list of checks based on DECDI standards and other coding best practices
+- A curated list of checks built from DEC's peer code review checklists
 - The same checks and severity levels every time, so reviews can be compared across projects and team members
-- Built-in guardrails: privacy first, and read-only until you approve changes
+- Built-in guardrails: it reads your code but never runs it or opens your data, checks privacy first, and changes nothing until you approve
 - A standard report you can act on
 
-## Three skills for improving research code
+## Three complementary skills for improving research code
 
 | Skill | When to use it | Session |
 |---|---|---|
@@ -125,9 +163,11 @@ The skill gives every review the same foundation:
 | **Automate outputs** | During analysis, to automate the production of outputs such as tables and figures | Next session |
 | **Reproducibility** | To prepare and validate a complete reproducibility package | Day 3 |
 
+: {tbl-colwidths="[22,58,20]"}
+
 ## What is in the skill
 
-```text
+```{.text .mid-tree}
 research-code-review/
 ├── SKILL.md                    # the workflow and guardrails
 ├── references/
@@ -138,7 +178,7 @@ research-code-review/
     ├── main.do  main.R  main.py   # entry-point script templates
 ```
 
-The flags are based on DECDI coding and research standards, and on the mistakes we see most often in the research-code packages we review.
+The flags draw on the checklists developed for peer review of code within DEC, and on the reproducibility failures we see most often in the packages we review.
 
 # How the skill works {background-color="#530153"}
 
@@ -176,9 +216,16 @@ The flags are based on DECDI coding and research standards, and on the mistakes 
 ## Guardrails built in
 
 - **Privacy gate:** the agent asks you to confirm the folder has no private, confidential, or personally identifying data *before* it lists a single file. "Probably fine" counts as no.
-- **No silent execution:** Phase 1 is a static review, even if the data are public.
-- **No edits without Git:** before changing anything, the agent asks whether the project is under version control, and offers a new branch so you can review the full diff.
-- **Research decisions stay with you:** sampling, exclusions, imputation, winsorization, and model specification are never "quick fixes."
+- **Doesn't run your code:** Phase 1 only reads code and documentation, even if the data are public.
+- **No edits without Git:** before changing anything, the agent asks whether the project is under version control and offers a new branch, so every change shows up as a diff you can review (example later).
+    - No Git? Ask the agent to copy the original files to a backup folder first, and to keep a change log of every edit.
+- **Research choices stay with you:** the agent won't decide which observations to drop, how to fill in missing values, how to treat outliers, or which model to run. It flags these as **No** findings for you to decide.
+
+::: {.notes}
+The privacy gate is the skill's own check. It is separate from Claude Code's permission prompts, which ask before running commands or editing files.
+
+Git is what makes coding agents safe to use: every change is visible, reviewable line by line, and reversible.
+:::
 
 ## What it checks
 
@@ -194,6 +241,8 @@ The flags are based on DECDI coding and research standards, and on the mistakes 
 | Analysis and outputs | Hard-coded choices, manual copying of tables |
 | High-frequency checks | Survey tracking, durations, enumerator summaries |
 
+: {tbl-colwidths="[32,68]"}
+
 ## Severity reflects consequences
 
 | Severity | Meaning |
@@ -203,7 +252,9 @@ The flags are based on DECDI coding and research standards, and on the mistakes 
 | **Medium** | Risky or hard to rerun (no checks, only works on one computer), but no sign it changed your results |
 | **Low** | Local readability or consistency issues |
 
-Severity reflects the risk to your results, not how hard the fix is or how often an issue appears.
+: {tbl-colwidths="[20,80]"}
+
+Severity is about risk to your results, not how hard the fix is.
 
 ## Reading the report
 
@@ -228,6 +279,8 @@ Example rows from a review of the demo project.
 | **No** | A research or privacy decision only you can make | Decide, document, then optionally ask the agent to implement *your* decision |
 
 "Do the straightforward ones" approves only the **Yes** items.
+
+Don't agree a change is needed, or not now? Answer `defer`: nothing changes, and the item stays on the "still open" list.
 
 ## Answering Conditional findings
 
@@ -292,7 +345,7 @@ After making the changes, the agent reports:
 Nothing is committed until you have reviewed the diff.
 :::
 
-## Before and after: the randomization
+## Review randomization code before fieldwork
 
 Example from a test project.
 
@@ -333,7 +386,7 @@ gen treatment = _n <= 6
 
 ::::
 
-The comment now matches what was actually done in the field (RAND-001); the seed, version, and stable sort make the draw reproducible (STAB-001).
+The comment now matches the method the code uses (RAND-001); the seed, version, and stable sort make the draw reproducible (STAB-001). Do this before anything happens in the field: after fieldwork, a new seed won't recreate the assignment that was actually used.
 
 ## What the review does not tell you
 
@@ -408,11 +461,11 @@ your-project/
 :::: {.columns}
 
 ::: {.column width="55%"}
-1. Download the skill: [research-code-review.zip](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/ai-review-code/skills/research-code-review.zip)
+1. Download the skill: [research-code-review.zip](https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip)
 2. Open your project in VS Code
 3. In the project's top folder, create `.agents`, and inside it, `skills`
 4. Unzip the skill into `skills`, keeping the whole `research-code-review` folder
-5. Remove or exclude any data that is not public
+5. Move any non-public data out of the project folder
 
 Using the demo? Download [water-pilot.zip](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/ai-review-code/materials/water-pilot.zip), unzip it, open the `water-pilot` folder, and follow steps 2–4.
 :::

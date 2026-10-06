@@ -40,8 +40,8 @@ Read .agents/skills/research-code-review/SKILL.md and review only:
 Treat this as a selected-files review.
 ```
 
-Before starting, remove or exclude any private, confidential, restricted, or
-personally identifying data. The agent must obtain your explicit privacy
+Before starting, move any private, confidential, restricted, or
+personally identifying data out of the project folder. The agent must obtain your explicit privacy
 confirmation before listing or opening project files.
 
 ## How the review works

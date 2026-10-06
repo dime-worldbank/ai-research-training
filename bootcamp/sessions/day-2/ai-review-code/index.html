@@ -1246,6 +1246,7 @@ margin-right: 0; }
 .reveal .ba-columns pre, .reveal .ba-columns div.sourceCode { overflow: hidden; }
 .reveal table.cost-table { width: 100%; }
 .reveal .big-tree, .reveal .big-tree code { font-size: 0.75em !important; line-height: 1.5 !important; }
+.reveal pre.mid-tree code, .reveal .mid-tree pre code { font-size: 1.6em !important; line-height: 1.45 !important; }
 .reveal .slides a { text-decoration: underline; text-underline-offset: 0.15em; }
 .reveal div.sourceCode, .reveal pre.sourceCode { overflow: hidden !important; }
 .reveal pre.sourceCode.markdown code { font-size: 1.35em !important; line-height: 1.5 !important; }
@@ -1253,7 +1254,7 @@ margin-right: 0; }
 <p>By the end of this session, you will have:</p>
 <ul>
 <li>Reviewed one existing code file or code package with an AI skill</li>
-<li>Triaged the findings: what to fix, what to decide, what to leave for later</li>
+<li>Triaged the findings: decided which proposed changes to accept as they are, which to modify or discuss further, and which to set aside for now</li>
 <li>Let the agent implement a few approved fixes and checked the diff</li>
 </ul>
 </section>
@@ -1270,6 +1271,26 @@ margin-right: 0; }
 <section id="why-review-code-with-ai" class="title-slide slide level1 center" data-background-color="#530153">
 <h1>Why review code with AI?</h1>
 
+</section>
+<section id="your-name-is-on-code-you-didnt-write" class="slide level2">
+<h2>Your name is on code you didn’t write</h2>
+<ul>
+<li>Most TTLs don’t write all their own code: research assistants and consultants write much of it</li>
+<li>The final product carries the TTL’s name, so they need to know the code is right and free of issues</li>
+<li>Reviewing every line by hand takes time, and is often not feasible</li>
+<li>AI makes this harder: coding agents write more code, faster, and no one has read all of it closely</li>
+</ul>
+</section>
+<section id="research-code-fails-quietly" class="slide level2">
+<h2>Research code fails quietly</h2>
+<p>Most errors in research code do not crash. They change results.</p>
+<ul>
+<li>Combining two datasets can quietly create extra copies of rows <em>(many-to-many merges)</em></li>
+<li>Removing duplicates can keep the wrong record <em>(no rule for which copy to keep)</em></li>
+<li>A random draw can come out differently every time the code runs <em>(no seed set)</em></li>
+<li>Codes for “refused” or “don’t know” get treated as real numbers <em>(e.g., −99, −88)</em></li>
+<li>Code only runs on the author’s computer <em>(hard-coded paths)</em></li>
+</ul>
 </section>
 <section id="mistakes-are-found-late-and-late-is-expensive" class="slide level2">
 <h2>Mistakes are found late, and late is expensive</h2>
@@ -1301,41 +1322,57 @@ margin-right: 0; }
 </table>
 <div class="fragment">
 <p>Most review happens in the last two rows.</p>
-<div class="callout-note-custom">
-<p>In our work as the reproducibility team, only <strong>1 in 5</strong> packages are reproducible as-is.</p>
-</div>
 </div>
 </section>
-<section id="research-code-fails-quietly" class="slide level2">
-<h2>Research code fails quietly</h2>
-<p>Most errors in research code do not crash. They change results.</p>
+<section id="reproducible-is-not-the-same-as-correct" class="slide level2">
+<h2>Reproducible is not the same as correct</h2>
+<div class="callout-note-custom">
+<p>Only <strong>1 in 5</strong> packages we receive reproduce as-is.</p>
+</div>
+<div class="columns ba-columns">
+<div class="column" style="width:50%;">
+<p><strong>What our check asks</strong></p>
 <ul>
-<li>Combining two datasets can quietly create extra copies of rows <em>(many-to-many merges)</em></li>
-<li>Removing duplicates can keep the wrong record <em>(no rule for which copy to keep)</em></li>
-<li>A random draw can come out differently every time the code runs <em>(no seed set)</em></li>
-<li>Codes for “refused” or “don’t know” get treated as real numbers <em>(e.g., −99, −88)</em></li>
-<li>Code only runs on the author’s computer <em>(hard-coded paths)</em></li>
+<li>Does the code run from start to finish?</li>
+<li>Does it produce the same tables and figures?</li>
 </ul>
-<p>A skill makes it cheap to catch these right after you write the code, not months later.</p>
+</div><div class="column" style="width:50%;">
+<p><strong>What it doesn’t ask</strong></p>
+<ul>
+<li>Does the merge keep the right rows?</li>
+<li>Are “don’t know” codes treated as missing?</li>
+<li>Are dropped observations documented?</li>
+</ul>
+</div></div>
+<p>Code can reproduce perfectly and still be wrong. The code review looks for both kinds of problem, before the code goes public.</p>
+</section>
+<section id="from-peer-code-review-to-an-ai-skill" class="slide level2">
+<h2>From peer code review to an AI skill</h2>
+<p>Before AI coding tools, DEC ran <a href="https://github.com/worldbank/dime-standards/blob/master/dime-coding-standards/guidance_note_peer_code_review.md">peer code reviews</a>: colleagues were paired up and reviewed each other’s code against standard checklists. It was useful, but code was often at different stages, and people weren’t always ready to share work in progress.</p>
+<p>Now that AI writes more of our code, we’ve turned those checklists into a skill:</p>
+<ul>
+<li>Review your code at any stage, whenever you want</li>
+<li>No need to share unfinished code with a colleague</li>
+</ul>
 </section>
 <section id="why-a-skill-not-just-a-prompt" class="slide level2">
 <h2>Why a skill, not just a prompt?</h2>
 <p>Asking an agent to “review my code” works, but it checks different things each time, at a different depth, and may start opening data or editing files right away.</p>
 <p>The skill gives every review the same foundation:</p>
 <ul>
-<li>A curated list of checks based on DECDI standards and other coding best practices</li>
+<li>A curated list of checks built from DEC’s peer code review checklists</li>
 <li>The same checks and severity levels every time, so reviews can be compared across projects and team members</li>
-<li>Built-in guardrails: privacy first, and read-only until you approve changes</li>
+<li>Built-in guardrails: it reads your code but never runs it or opens your data, checks privacy first, and changes nothing until you approve</li>
 <li>A standard report you can act on</li>
 </ul>
 </section>
-<section id="three-skills-for-improving-research-code" class="slide level2">
-<h2>Three skills for improving research code</h2>
+<section id="three-complementary-skills-for-improving-research-code" class="slide level2">
+<h2>Three complementary skills for improving research code</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 22%">
+<col style="width: 57%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1365,7 +1402,7 @@ margin-right: 0; }
 </section>
 <section id="what-is-in-the-skill" class="slide level2">
 <h2>What is in the skill</h2>
-<pre class="text"><code>research-code-review/
+<pre class="text mid-tree"><code>research-code-review/
 ├── SKILL.md                    # the workflow and guardrails
 ├── references/
 │   ├── review-flags.md         # what to check: 60+ flags with severity
@@ -1373,7 +1410,7 @@ margin-right: 0; }
 │   └── phase-one-report.md     # how to write the report
 └── assets/
     ├── main.do  main.R  main.py   # entry-point script templates</code></pre>
-<p>The flags are based on DECDI coding and research standards, and on the mistakes we see most often in the research-code packages we review.</p>
+<p>The flags draw on the checklists developed for peer review of code within DEC, and on the reproducibility failures we see most often in the packages we review.</p>
 </section></section>
 <section>
 <section id="how-the-skill-works" class="title-slide slide level1 center" data-background-color="#530153">
@@ -1414,17 +1451,34 @@ margin-right: 0; }
 <h2>Guardrails built in</h2>
 <ul>
 <li><strong>Privacy gate:</strong> the agent asks you to confirm the folder has no private, confidential, or personally identifying data <em>before</em> it lists a single file. “Probably fine” counts as no.</li>
-<li><strong>No silent execution:</strong> Phase 1 is a static review, even if the data are public.</li>
-<li><strong>No edits without Git:</strong> before changing anything, the agent asks whether the project is under version control, and offers a new branch so you can review the full diff.</li>
-<li><strong>Research decisions stay with you:</strong> sampling, exclusions, imputation, winsorization, and model specification are never “quick fixes.”</li>
+<li><strong>Doesn’t run your code:</strong> Phase 1 only reads code and documentation, even if the data are public.</li>
+<li><strong>No edits without Git:</strong> before changing anything, the agent asks whether the project is under version control and offers a new branch, so every change shows up as a diff you can review (example later).
+<ul>
+<li>No Git? Ask the agent to copy the original files to a backup folder first, and to keep a change log of every edit.</li>
+</ul></li>
+<li><strong>Research choices stay with you:</strong> the agent won’t decide which observations to drop, how to fill in missing values, how to treat outliers, or which model to run. It flags these as <strong>No</strong> findings for you to decide.</li>
 </ul>
+<aside class="notes">
+<p>The privacy gate is the skill’s own check. It is separate from Claude Code’s permission prompts, which ask before running commands or editing files.</p>
+<p>Git is what makes coding agents safe to use: every change is visible, reviewable line by line, and reversible.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="what-it-checks" class="slide level2">
 <h2>What it checks</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 32%">
+<col style="width: 68%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1476,8 +1530,8 @@ margin-right: 0; }
 <h2>Severity reflects consequences</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 20%">
+<col style="width: 80%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1504,7 +1558,7 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>Severity reflects the risk to your results, not how hard the fix is or how often an issue appears.</p>
+<p>Severity is about risk to your results, not how hard the fix is.</p>
 </section>
 <section id="reading-the-report" class="slide level2">
 <h2>Reading the report</h2>
@@ -1593,6 +1647,7 @@ margin-right: 0; }
 </tbody>
 </table>
 <p>“Do the straightforward ones” approves only the <strong>Yes</strong> items.</p>
+<p>Don’t agree a change is needed, or not now? Answer <code>defer</code>: nothing changes, and the item stays on the “still open” list.</p>
 </section>
 <section id="answering-conditional-findings" class="slide level2">
 <h2>Answering Conditional findings</h2>
@@ -1649,8 +1704,8 @@ Your response: provide: seed = 20261006</code></pre>
 <p>Nothing is committed until you have reviewed the diff.</p>
 </div>
 </section>
-<section id="before-and-after-the-randomization" class="slide level2">
-<h2>Before and after: the randomization</h2>
+<section id="review-randomization-code-before-fieldwork" class="slide level2">
+<h2>Review randomization code before fieldwork</h2>
 <p>Example from a test project.</p>
 <div class="columns ba-columns">
 <div class="column" style="width:48%;">
@@ -1676,7 +1731,7 @@ Your response: provide: seed = 20261006</code></pre>
 <span id="cb4-10"><a href aria-hidden="true" tabindex="-1"></a><span class="kw">sort</span> random_order, stable</span>
 <span id="cb4-11"><a href aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> treatment = <span class="dt">_n</span> &lt;= 6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
-<p>The comment now matches what was actually done in the field (RAND-001); the seed, version, and stable sort make the draw reproducible (STAB-001).</p>
+<p>The comment now matches the method the code uses (RAND-001); the seed, version, and stable sort make the draw reproducible (STAB-001). Do this before anything happens in the field: after fieldwork, a new seed won’t recreate the assignment that was actually used.</p>
 </section>
 <section id="what-the-review-does-not-tell-you" class="slide level2">
 <h2>What the review does not tell you</h2>
@@ -1767,11 +1822,11 @@ Your response: provide: seed = 20261006</code></pre>
 <div class="columns">
 <div class="column" style="width:55%;">
 <ol type="1">
-<li>Download the skill: <a href="https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/ai-review-code/skills/research-code-review.zip">research-code-review.zip</a></li>
+<li>Download the skill: <a href="https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip">research-code-review.zip</a></li>
 <li>Open your project in VS Code</li>
 <li>In the project’s top folder, create <code>.agents</code>, and inside it, <code>skills</code></li>
 <li>Unzip the skill into <code>skills</code>, keeping the whole <code>research-code-review</code> folder</li>
-<li>Remove or exclude any data that is not public</li>
+<li>Move any non-public data out of the project folder</li>
 </ol>
 <p>Using the demo? Download <a href="https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/ai-review-code/materials/water-pilot.zip">water-pilot.zip</a>, unzip it, open the <code>water-pilot</code> folder, and follow steps 2–4.</p>
 </div><div class="column" style="width:45%;">

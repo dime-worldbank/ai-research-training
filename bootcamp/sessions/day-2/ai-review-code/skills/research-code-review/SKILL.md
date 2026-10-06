@@ -16,16 +16,16 @@ Before reading or listing filenames, code, documentation, configuration, or data
 
 > Before I inspect this code or package, please confirm that it contains no
 > private, confidential, restricted, or personally identifying data and that I
-> may proceed. If you are uncertain, remove or exclude the data files and I can
+> may proceed. If you are uncertain, move the data files out of this folder and I can
 > perform a code-only review.
 
 Treat only an unambiguous affirmative ("yes," "confirmed," "no private data")
 as consent. Treat a hedge such as "probably fine," "should be okay," or "I
-think so" the same as a "no": do not proceed, and repeat the offer to exclude
-data files or move to a code-only review.
+think so" the same as a "no": do not proceed, and repeat the offer to move
+data files out of the folder for a code-only review.
 
 Wait for explicit confirmation. If the user cannot confirm, do not inspect the
-package. Explain how to exclude data and offer to resume with code and
+package. Explain how to move data files out of the review folder and offer to resume with code and
 documentation only. The confirmation permits inspection, not execution or
 modification.
 
