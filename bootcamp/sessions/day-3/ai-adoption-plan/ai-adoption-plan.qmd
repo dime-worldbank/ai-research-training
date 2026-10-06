@@ -1,10 +1,9 @@
 ---
-title: "Your Presentation Title"
-subtitle: "Subtitle or one line description"
-author: "Author Name"
-institute: "Team or Unit"
-# Update to date for this session
-date: 6 Oct, 2026
+title: "Create an AI Adoption Plan for Your Project"
+subtitle: "From three days of bootcamp to the next six weeks of project work"
+author: "Kristoffer Bjärkefur"
+institute: "Impact Analytics"
+date: 7 Oct, 2026
 date-format: "D MMMM YYYY"
 footer: "AI-Enabled Research Bootcamp"
 # Three horizontal logos on the title slide.
@@ -25,89 +24,293 @@ format:
 #| include: false
 
 # ../../../ matches the relative path from a qmd file saved
-# in the location: sessions/<day>/<topic>/presentation.qmd. 
+# in the location: sessions/<day>/<topic>/presentation.qmd.
 # Update the file path for presentations elsewhere
 source("../../../_extensions/bootcamp/setup_palettes.R")
 
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-## Agenda
+## Objective
 
-- Context
-- Approach
-- Results
-- Next steps
+By the end of this session you have a written **AI adoption plan** for your own project, saved in the project repository:
 
-# Section {background-color="#530153"}
-
-## Content slide
-
-Main idea
-
-- First point
-- Second point
-- Third point
-
-## Key message slide
+- What you have already set up during the bootcamp
+- Where AI fits in each stage of your project, and what data goes in and comes out
+- What has to happen before your project is *AI ready*
+- Concrete targets for the **next 6 weeks** and the **next 3 months**
+- Who on the team needs access and training
+- The main risks and how you will reduce them
 
 ::: {.callout-note-custom}
-Use this box for the one thing you want to highlight.
+We will follow up on your plan in the post-bootcamp survey. Write targets you can actually report on.
 :::
 
-Space for more content
+::: {.notes}
+Time: 1 minute. The session is 45 minutes: about 12 minutes of slides, 28 minutes writing the plan, 5 minutes sharing.
 
+Say: this is the session where the last three days turn into something you will still be doing in November.
+:::
 
+## The plan in six steps
 
-## Image + text slide
+| | Step | Output in your plan |
+|---|---|---|
+| **1** | Take stock | Checklist of what is already set up |
+| **2** | Map AI to your workflow | AI data map: stage, task, data in, data out |
+| **3** | Make the project AI ready | Data safeguards and memory-file rules |
+| **4** | Set priorities | Targets for now, 6 weeks, 3 months |
+| **5** | People and tools | Who needs access, who needs training |
+| **6** | Risks | Risks and mitigations |
 
-<!--
-HOW TO ADD AN IMAGE
-1. Put the file in the images/ folder next to this .qmd
-2. Use the line below, keeping the path relative
-3. Anything in [] before the path is the caption; leave [] empty for none
+**Template:** [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md). Copy it into the root of your project repository.
 
-Some image options:
-- `{.r-stretch}` fills the free height, best for one image on a slide
-- `{width="70%"}` sets width against the slide
-- `{height="420px"}` sets an exact height
-- `{fig-align="center"}` centres a narrow image
--->
+::: {.notes}
+Point participants to the template now so they can download it while you talk. Each section of the deck maps to one section of the template.
+:::
+
+# 1 · Take stock {background-color="#530153"}
+
+## What did you set up this week?
 
 :::: {.columns}
 
-::: {.column width="55%"}
-![](images/your-image.png){fig-alt="image-alt-text"}
+::: {.column width="50%"}
+**Setup (Day 0)**
+
+- [ ] Project in a GitHub repository
+- [ ] Project opened in VS Code
+- [ ] Coding agent installed and signed in with an approved account
+
+**Onboarding (Day 1)**
+
+- [ ] Memory file (`AGENTS.md` / `CLAUDE.md`) in the project
+- [ ] At least one skill installed and tested
 :::
 
-::: {.column width="45%"}
-- Content bullet
-- Content bullet
-- Content bullet
+::: {.column width="50%"}
+**Analysis (Day 2)**
+
+- [ ] AI review of data processing or analysis code
+- [ ] Reproducible chart or table produced with a skill
+- [ ] AI output checked by a human, with a record of the check
+
+**Research products (Day 3)**
+
+- [ ] Presentation or brief from project materials
+- [ ] Draft reproducibility package
 :::
 
 ::::
 
+::: {.notes}
+Time: 2 minutes. Ask for a show of hands: who has a memory file in their real project, not only the demo project? That number is often lower than the number who completed the exercise.
 
-## Slide with table
+Unchecked boxes are not a failure. They become "now" targets in step 4.
+:::
 
-Table description
+# 2 · Map AI to your workflow {background-color="#530153"}
 
-```{r}
-knitr::kable(head(mtcars[, c("mpg", "cyl", "wt")], 5))
+## Start with a data map, then add AI
+
+A data map shows how data moves through a project. Add the AI tool to that map to see where AI is used and which data it receives.
+
+For each stage of your project, answer:
+
+1. **Task:** What would AI do here?
+2. **Data in:** Which files, code or documents would the tool see?
+3. **Classification:** What is the label on that information?
+4. **Data out:** What do we expect back, and who checks it?
+
+::: {.callout-note-custom}
+If you cannot say which data goes into the tool, you are not ready to use AI at that stage.
+:::
+
+::: {.notes}
+This builds on the data map from the Reproducible Research Fundamentals course and on the lifecycle stages from the Day 1 ethics session (Design, Acquisition, Processing, Analysis, Publication).
+
+The point of the exercise is the "data in" column. Most participants have thought about what AI produces. Fewer have written down what the tool can see.
+:::
+
+## Example: an AI data map {.smaller}
+
+| Stage | AI task | Data in | Classification | Data out | Checked by |
+|---|---|---|---|---|---|
+| **Design** | Literature search, concept note feedback | Concept note, published papers | Official Use Only | Summary, cited sources | PI verifies every citation |
+| **Acquisition** | Program survey form, translate questions | Questionnaire, codebook | Official Use Only | Form code, translations | Field team pilots, local-language review |
+| **Processing** | Write and review cleaning code | Code, variable names, **synthetic** data | Official Use Only | Cleaning scripts | RA compares counts before and after |
+| **Analysis** | Write and review analysis code, exhibits | Code, **de-identified** data | Confidential | Tables, figures | Analyst inspects every exhibit |
+| **Publication** | Slides, brief, reproducibility package | Paper draft, exhibits | Official Use Only | Drafts, package | Author owns every claim; AI use disclosed |
+
+::: {.notes}
+Illustrative only. Classifications depend on the project's data agreements. Emphasize that identified data does not appear in the "data in" column at any stage.
+:::
+
+# 3 · Make the project AI ready {background-color="#530153"}
+
+## The biggest roadblock is confidential data
+
+Many teams cannot use AI on the most useful parts of the work, because the agent would see confidential data.
+
+Prepare the data **before** an AI tool reaches the project folder:
+
+- **Remove PII.** Run a de-identification script on the raw data, outside any AI tool.
+- **Create synthetic data.** If you cannot remove PII safely, generate a synthetic dataset with the same structure, so the agent can write and test code against it.
+- **Separate folders.** Keep identified data in a location the agent never opens.
+
+::: {.callout-note-custom}
+De-identification is a human responsibility. An agent can help write the script from the codebook, but it should never see the raw data while doing so.
+:::
+
+::: {.notes}
+Credit: suggestion from Ankriti Singh.
+
+Removing names alone does not make a dataset safe to share (see Day 1 ethics session). Indirect identifiers such as village, exact dates and rare combinations of characteristics matter too.
+
+This topic deserves its own session. Say that it will come back in the AI roadmap series, and that for today the target is to write down which datasets need de-identification or synthetic versions.
+:::
+
+## Write the rules into your memory file
+
+The agent reads the memory file at the start of every session. Use it to list the checks the agent must follow.
+
+``` markdown
+## Data rules (read before any task)
+
+- Never open files in `data/raw/` or `data/identified/`.
+- Work only with `data/deidentified/` or `data/synthetic/`.
+- If a task seems to need identified data, stop and ask.
+- Refer to variables by name. Do not copy data values into output.
+- Record AI-assisted changes in the commit message.
 ```
 
-## Slide with Code
+A memory file guides the agent, but it does not enforce anything. Where the tool supports it, also block those folders in the agent's permission settings, and keep identified data out of the repository.
 
-```r
-library(dplyr)
+::: {.notes}
+Builds on the Day 1 memory-file session and on Aidan's comment in the ethics session about a checklist in the memory file.
 
-data |>
-  filter(year > 2020) |>
-  summarise(mean_value = mean(metric), .by = country)
+The last bullet in the slide is the important nuance: instructions reduce the chance of a mistake, but only access controls prevent it.
+:::
+
+# 4 · Set priorities {background-color="#530153"}
+
+## Three time horizons
+
+| Horizon | What fits here | Examples |
+|---|---|---|
+| **Now** (this week) | Already works, low risk | Memory file in the real project; coding agent for cleaning and analysis code; finish anything unchecked from step 1 |
+| **6 weeks** | Needs some setup or team agreement | De-identified or synthetic data; data rules in the memory file; AI code review as a routine step; team members onboarded |
+| **3 months** | Not plug-and-play yet. Start defining the need now | Review and quality-control workflows; skills that do not exist yet; reproducibility package for a paper |
+
+::: {.notes}
+The 6-week and 3-month targets are the ones in the follow-up survey. Encourage participants to write a few specific targets rather than many general ones. "Use AI more" is not a target. "Every pull request to the cleaning code gets an AI review before merge" is.
+:::
+
+## Which skills does your project need?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Known skills**
+
+Skills you saw this week that fit a recurring task in your project:
+
+- Code review
+- Reproducible charts and tables
+- Presentations
+- Working-paper feedback
+- Reproducibility packages
+:::
+
+::: {.column width="50%"}
+**Skills not yet found**
+
+Recurring tasks with no skill yet. Write them down anyway:
+
+- What is the task?
+- How often does it recur?
+- What does a good result look like?
+- Who could build it, or ask Impact Analytics?
+:::
+
+::::
+
+::: {.notes}
+Good skill candidates are tasks the team repeats with the same steps every time. The "not yet found" list is useful for us too: it tells Impact Analytics which skills to build next.
+:::
+
+# 5 · People and tools {background-color="#530153"}
+
+## Who needs access, and to what?
+
+AI adoption fails when only one person on the team uses the tools. For each team member, write down:
+
+| Team member | Role | Needs access to | Trained on | Next step |
+|---|---|---|---|---|
+| *Name* | PI | Approved chat tool | Ethics, verifying outputs | Review AI-assisted drafts |
+| *Name* | RA | Coding agent, GitHub repo | Memory files, skills, code review | Onboard by end of month |
+| *Name* | Field coordinator | Approved chat tool | Data classification | Ethics session recording |
+
+::: {.notes}
+Not everyone needs a coding agent. Everyone who touches project data needs the data classification rules from Day 1.
+
+A memory file in the repository helps here: it is the shared set of rules that applies to every team member's agent.
+:::
+
+# 6 · Risks {background-color="#530153"}
+
+## Risks and how to reduce them {.smaller}
+
+| Risk | Mitigation |
+|---|---|
+| Confidential data reaches an AI tool | Classify first; de-identified or synthetic data only; data rules in the memory file; block folders in agent settings |
+| AI output is wrong but looks right | Human review of every exhibit and number; Git diffs to see what changed |
+| Only one person uses the tools | Shared memory file and skills in the repository; onboarding target in the plan |
+| Costs or token limits run out | Use cheaper models for routine tasks (Day 1 cost session) |
+| AI use is not documented | Record AI use in commits and in the reproducibility package; disclose meaningful assistance |
+| The plan is forgotten | Save the plan in the repository; follow-up survey on the 6-week targets |
+
+::: {.notes}
+Ask participants to add at least one risk that is specific to their project, for example a data agreement that restricts processing by third parties.
+:::
+
+# Write your plan {background-color="#530153"}
+
+## Hands-on: draft your plan (25 minutes)
+
+1. Copy [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md) into the root of your project repository.
+2. Fill in sections 1, 4, 5 and 6 yourself. These are your judgment.
+3. Use your agent to draft section 2, the AI data map:
+
+```text
+Read README.md, AGENTS.md and the folder structure of this
+project. Do not open any data files. Draft section 2 of
+AI-ADOPTION-PLAN.md: for each project stage, suggest an AI task,
+the files the tool would need, and the expected output. Mark
+anything you are unsure about with TODO.
 ```
+
+4. Review the draft. Fill in the classification column and remove what you do not agree with.
+5. Commit the plan.
+
+::: {.notes}
+Walk around and check that people are working in their real project, not the demo project.
+
+The prompt explicitly tells the agent not to open data files. Point this out: it is step 3 of the plan in practice.
+
+At 5 minutes before the end, stop and ask two or three people to share one 6-week target.
+:::
+
+## Before you leave
+
+::: {.callout-note-custom}
+**Share one 6-week target with the person next to you.** We will ask about it in the follow-up survey.
+:::
+
+- Plan saved in your repository: `AI-ADOPTION-PLAN.md`
+- Link the plan from your memory file so the agent knows the team's priorities
+- Come back to the plan when the survey arrives, and update it
 
 ## Thank you {.closing}
 
-[your.name@example.org](mailto:your.name@example.org)
-
+[kbjarkefur@worldbank.org](mailto:kbjarkefur@worldbank.org)
