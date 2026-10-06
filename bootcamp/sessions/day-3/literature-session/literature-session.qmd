@@ -300,6 +300,21 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 .cw .bar.warn { background: #E0A100; }
 .cw .rule { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); background: #fff; border: 2px solid var(--navy); border-radius: 8px; padding: 6px 8px; text-align: center; }
 .cw .rule.dark { background: var(--navy); color: #fff; }
+
+/* ---------- coding-agent bonus ---------- */
+.chat { display: flex; flex-direction: column; gap: 10px; font-size: 0.52em; line-height: 1.4; }
+.chat .cu { align-self: flex-end; max-width: 82%; background: var(--navy); color: #fff; padding: 9px 14px; border-radius: 14px 14px 4px 14px; }
+.chat .ca { align-self: flex-start; max-width: 92%; background: var(--pale); color: #1A1A1A; padding: 9px 14px; border-radius: 14px 14px 14px 4px; }
+.chat .ca.bad { background: #FBE9E7; }
+.chat .ca.bad b { color: var(--red); }
+.chat .chip { display: table; font-size: 0.78em; color: var(--blue); font-weight: 700; margin-bottom: 5px; padding: 1px 8px; border: 1px solid var(--cyan); border-radius: 10px; background: #fff; }
+.chat .doi { display: block; font-size: 0.8em; color: var(--grey); margin-top: 4px; }
+.lscmds { display: flex; flex-direction: column; gap: 6px; font-size: 0.56em; }
+.lscmds div { background: var(--pale); border-radius: 8px; padding: 6px 12px; color: var(--navy); }
+.lscmds div.lh { background: none; padding: 0 2px; color: var(--grey); font-weight: 700; }
+.reveal a.dl { display: block; margin-top: 14px; text-align: center; background: var(--navy); color: #fff; font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 0.55em; padding: 10px 14px; border-radius: 8px; text-decoration: none; }
+.reveal a.dl:hover { background: var(--blue); }
+.dlnote { font-size: 0.45em; color: var(--grey); margin-top: 8px; line-height: 1.35; }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -530,6 +545,46 @@ Use the lists to find papers. Then read the papers.
 The Day 1 ethics session showed a fabricated citation that nobody could spot by reading it. Popularity bias is the other quiet one: citation-ranked results favour old, highly cited papers over the recent study that matters.
 :::
 
+## Bonus: Finding literature using your coding agent
+
+:::: {.columns}
+
+::: {.column width="56%"}
+```{=html}
+<div class="chat">
+  <div class="cu">Has anyone already done something like the SMARThealth Pregnancy trial?</div>
+  <div class="ca"><span class="chip">literature-search skill · OpenAlex + Semantic Scholar</span>Closest match: a 2026 <b>protocol</b> for the process evaluation of the SMARThealth Pregnancy hybrid cluster RCT (Votruba et al.), sharing 6 of its 54 references. Also close: a 2026 scoping review of digital health for hypertension in pregnancy in LMICs. <span class="doi">doi.org/10.1177/17455057261425789</span></div>
+  <div class="cu">Is “Thompson &amp; Raman (2023), Research Synthesis Methods” a real paper?</div>
+  <div class="ca bad"><span class="chip">literature-search skill</span><b>Not found</b> in either database. Treat it as unverified and don’t cite it.</div>
+</div>
+```
+:::
+
+::: {.column width="44%"}
+```{=html}
+<div class="lscmds">
+  <div class="lh">What you can ask your agent</div>
+  <div>“Find recent papers on …”</div>
+  <div>“Which papers does everyone in this field cite?”</div>
+  <div>“Has someone already done this?”</div>
+  <div>“Who has built on this paper?”</div>
+  <div>“Is every reference in my draft real?”</div>
+</div>
+<a class="dl" href="https://github.com/dime-worldbank/ai-research-training/releases/download/literature-search-latest/literature-search.zip" target="_blank" rel="noopener">Download the literature-search skill (ZIP)</a>
+<div class="dlnote">Unzip into <code>.agents/skills/</code> in your project. Works with Claude Code, Codex and other coding agents; uses the free OpenAlex and Semantic Scholar APIs, no account needed.</div>
+```
+:::
+
+::::
+
+::: {.punch}
+Same keyword engines underneath: read the abstracts, and verify every reference.
+:::
+
+::: {.notes}
+Bonus, about 2 minutes. The same three jobs as before (search, what everyone cites, has someone done this), but asked in plain language to your coding agent. The skill tells the agent how to search OpenAlex and Semantic Scholar (it bundles a small script the agent runs) and to return a DOI for every paper. Same caveat as the search tools: keyword matching and citation counts, so read the abstracts. The verify command is the habit to take away: check every reference an AI hands you.
+:::
+
 # Systematic Review / Meta-Analysis {background-color="#530153"}
 
 ## What is at stake in screening
@@ -565,7 +620,7 @@ The asymmetry drives everything that follows: a false inclusion costs a few minu
 ```
 
 ::: {.source-note}
-Our systematic review / meta-analysis of AI tools for frontline health workers in LMICs. By hand: 68,049 abstracts × 2 screeners × 2 min ≈ 4,500 hours. One LLM pass: about $11 per 1,000 papers.
+Sautmann &amp; Weinert (2026), <i>Artificial Intelligence Interventions to Support Frontline Healthcare Workers in Low-Resource Settings: A Review</i>. By hand: 68,049 abstracts × 2 screeners × 2 min ≈ 4,500 hours. One LLM pass: about $11 per 1,000 papers.
 :::
 
 ::: {.punch}
