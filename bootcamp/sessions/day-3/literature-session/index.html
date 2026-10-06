@@ -1331,12 +1331,6 @@ display:block!important;
 <td>Depends on your starting papers</td>
 </tr>
 <tr class="odd">
-<td><strong>Both</strong></td>
-<td>AI assistant + literature connector</td>
-<td>Repeatable searches where you work</td>
-<td>Keyword matching</td>
-</tr>
-<tr class="even">
 <td><strong>Review</strong></td>
 <td>MetaScreener</td>
 <td>Per-criterion screening, audit trail</td>
@@ -1387,42 +1381,13 @@ display:block!important;
 <p>Each searches a different index. Run the same question in two and compare.</p>
 </div>
 <aside class="notes">
-<p>Use the same question as on the previous slides in all three tools. No single index covers everything; the differences are the point.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section>
-<section id="searching-from-inside-your-ai-assistant" class="slide level2">
-<h2>Searching from inside your AI assistant</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<p>Three requests to a literature-search connector in Claude, all on <em>AI decision support for community health workers in LMICs</em>:</p>
-<div class="asks">
-  <div class="ask"><b>Search the literature</b><span>35,551 hits. Top 20 by citations: 2–3 on topic, plus low-back pain and antibiotics in farming</span></div>
-  <div class="ask"><b>Which papers does everyone cite?</b><span>29 recent papers, mostly commentaries. 1 squarely on topic</span></div>
-  <div class="ask"><b>Has someone already done this?</b><span>9 of 10 &quot;closest&quot; papers off topic. 1 real find: a 2026 trial protocol in rural Kenya on almost exactly this question</span></div>
-</div>
-</div><div class="column" style="width:40%;">
-<div class="card">
-<p><span class="ct">Useful for</span> Running the same searches again, from where you already work</p>
-</div>
-<div class="card line">
-<p><span class="ct">Watch for</span> Keyword matching and citation-count ranking. Read before you trust a result.</p>
-</div>
-</div></div>
-<div class="source-note">
-<p>Real output, 30 Sep 2026. Dedicated citation-map tools (Connected Papers, ResearchRabbit, Litmaps) do the “who cites whom” job more directly.</p>
-</div>
-<aside class="notes">
-<p>This is a connector (an add-on) for Claude that searches OpenAlex and Semantic Scholar. The point is not this particular connector: it is that your AI assistant can now run literature searches inside your normal workflow, and that those searches are only as good as a keyword engine. The one real find, a 2026 cluster-RCT protocol on CHWs using AI decision support in Kenya, is exactly what a referee would point to.</p>
+<p>Live demo, one topic throughout: AI decision support for community health workers (CHWs) in low- and middle-income countries. Run each step in Elicit and Consensus side by side. No single index covers everything; the differences are the point.</p>
+<ol type="1">
+<li><p>Search the literature. Elicit: “Does AI-based decision support improve the quality of care delivered by community health workers in low- and middle-income countries?” Consensus: “Does AI decision support improve community health worker care in low- and middle-income countries?” (a yes/no question, so the Consensus Meter appears) Point out: how many results are actually on topic, and how little the two top-10 lists overlap.</p></li>
+<li><p>Which papers does everyone cite? Elicit: “What are the key studies on digital clinical decision support tools for community health workers?” then sort by citations. Consensus: same question with the “Highly cited” filter on. Point out: the most-cited papers are often reviews or commentaries, and about mHealth in general rather than AI.</p></li>
+<li><p>Has someone already done this? Elicit: “Randomized trials testing AI decision support for community health workers in sub-Saharan Africa” Consensus: “Has a randomized trial tested AI decision support for community health workers?” with the RCT study-design filter on. Point out: whether either tool finds recent trial protocols (a 2026 cluster-RCT protocol in rural Kenya exists). A referee would point to it, so you want to find it first.</p></li>
+</ol>
+<p>Run these before the session: results change, and Consensus filters may need a login.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
