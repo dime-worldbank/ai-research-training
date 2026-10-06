@@ -1,9 +1,9 @@
 ---
 title: "Human-in-the-Loop: Evaluating AI Outputs"
-subtitle: "Day 1 · Intro to Agentic AI at the WBG"
+subtitle: "Day 2 · Intro to Agentic AI at the WBG"
 author: "Kristoffer Bjärkefur"
 institute: "Impact Analytics"
-date: 5 Oct, 2026
+date: 6 Oct, 2026
 date-format: "D MMMM YYYY"
 footer: "AI-Enabled Research Bootcamp"
 logos:
@@ -14,6 +14,7 @@ format:
   bootcamp-revealjs:
     embed-resources: true
     output-file: index.html
+    fragments: true
 ---
 
 ```{r}
@@ -24,16 +25,186 @@ source("../../../_extensions/bootcamp/setup_palettes.R")
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-## Objective
-
-- Apply human-in-the-loop practices to evaluate and validate AI outputs with confidence.
-
 ## Agenda
 
 - Why human review remains essential
-- Techniques for evaluating AI-generated outputs
-- Building a validation checklist
+- Understanding what AI workflows requires different human review
+- Break down your AI workflow into smaller components
+- Advanced: What is required to give AI autonomy over final output
 
-## Key Takeaways
+# The Challenge is Not New {background-color="#530153"}
 
-- Placeholder — fill in with session content.
+## Human-in-the-loop review is not new
+
+- The underlying reason for keeping a human in the loop is not new. We have always done "TTL-in-the-loop" or, more commonly, simply old-fashioned _human review_.
+
+::: {.fragment}
+- The reason is that the human owner of a product is always responsible for it, regardless of whether it was created by:
+  - the human owner
+  - a more junior human
+  - a vendor
+  - a robot
+:::
+
+::: {.fragment}
+- _**If the product is static**_, reports or code scripts, then the methods needed are not new.
+- _**If the product is a robot making qualitative decisions for us**_, that is new and requires new methods.
+:::
+
+## Static Products vs. Decision-Making Products
+
+This distinction is crucial to understanding what type of human-in-the-loop review is needed. Raise questions if it is not clear.
+
+:::: {.columns}
+::: {.column style="border: 3px solid #D6BED8; border-radius: 8px; padding: 0.5em;"}
+
+### Static Tools
+
+- Examples: reports, presentation decks, code, etc.
+- Created by team members, vendors, or AI tools
+- The product owner reviews the finalized output before the product is used or published. This is old-fashioned "human-in-the-loop" review.
+
+:::
+
+::: {.column style="border: 3px solid #F2AA84; border-radius: 8px; padding: 0.5em;"}
+
+### Decision Making Products
+
+- Examples: review bots and interactive bots such as chatbots
+- Set up by team members, vendors, or AI tools
+- Output is generated in real time. We can do a final review of the setup, but not of the output, unless we have a "human-in-the-loop" checkpoint.
+
+:::
+::::
+
+## Why are these distinctions important?
+
+- Computers have been handling important tasks for decades. Such as financial transactions. 
+- No human reviews your internet banking transactions before they are completed.
+
+::: {.fragment}
+### So, what is different when computers use AI?
+:::
+::: {.fragment}
+- AI is non-deterministic: it uses a random process, so its output can vary and may be generated with "_creative freedom_".
+- While banks develop code using AI today, no bank will let a non-deterministic AI handle your transaction.
+- If AI handled your financial transactions, banks would need a human-in-the-loop checkpoint to review each transaction before any money was transferred.
+:::
+
+
+# Reduce the Need for Human-in-the-Loop {background-color="#530153"}
+
+## In Practice: AI-Only Workflows
+
+:::: {.columns .v-center-container}
+::: {.column width="75%" }
+
+- Many of you have brought complex workflows to this training, such as the multi-step process visualized on this slide.
+- Today's AI systems can most likely handle very complex workflows and generate results that _are correct in most cases_.
+
+::: {.fragment}
+- Sometimes, "_in most cases_" is good enough; if not, we need to review the output.
+- But if we need to review all the steps or the full final output, has the system saved us any time or effort?
+:::
+
+:::
+::: {.column width="25%" }
+
+![](./img/workflow-all-ai.png)
+
+:::
+::::
+
+
+## Not everything has to involve non-deterministic AI
+
+:::: {.columns .v-center-container}
+::: {.column width="75%" }
+
+- Before adding a human-in-the-loop system that will require many hours of manual work, can we reduce the need for it?
+
+- When a computer can adequately handle a task deterministically through code, it should; financial transactions are one example.
+
+- Break up your workflow into smaller workflows and ask yourself which parts can be handled deterministically with human-reviewed code.
+  - Reduces the need for human-in-the-loop review
+  - Increases the predictability of your workflow's output
+
+:::
+::: {.column width="25%" }
+
+![](./img/workflows-ai-and-static.png)
+
+:::
+::::
+
+
+## But I can't code!?
+
+- Maybe you cannot code, but the agent can do it for you!
+
+- Create the code with human review. Validate that it performs the tasks as intended.
+
+::: {.fragment}
+- How can I verify code if I can't code?
+
+  - After the agent generates the code, ask it to explain what the code does. Use a different model to check that the explanation is consistent and accurate.
+  - Ask the agent to explain in a language you understand. Keep asking questions until you are confident.
+  - Ask the agent which edge cases might cause the code to fail, and address them if necessary.
+  - Give the agent test cases, including tricky ones that check how it handles edge cases. Do not use only easy or obvious examples; real-world examples are not always easy or obvious.
+:::
+
+## Add human-in-the-loop checkpoints
+
+:::: {.columns .v-center-container}
+::: {.column width="75%" }
+
+- Hopefully, you can now see natural locations for human checkpoints in your workflow.
+- Make sure that both code and AI steps document _efficiently_ what they have done; this will support human review.
+- What is a human-in-the-loop checkpoint in practice? It depends on what you have used for your workflow.
+  - _Skills_: each skill includes all the steps between checkpoints. Do not run the next skill until after human review.
+  - _Multi-agent workflow_: do not approve the next agent taking over until after human review.
+  - _Dashboard or monitoring system_: review and then approve moving to the next step.
+
+:::
+::: {.column width="25%" }
+
+![](./img/workflow-human-loop.png)
+
+:::
+::::
+
+# Removing the Human-in-the-Loop - Advanced {background-color="#530153"}
+
+## When can I remove human checkpoints? - Advanced
+
+You probably have more intuition for this than you think. If you have ever managed a junior team member, you already have a sense of what to review and when to give them autonomy.
+
+::: {.fragment}
+### What level of accuracy do you need?
+ - Is a 20% error rate acceptable? It could be acceptable if the system is only performing an initial check.
+ - What would the consequences be if the AI makes an error?
+ - If you need perfect or near-perfect accuracy, human checkpoints are likely necessary, or at least take a lot of work to eliminate
+:::
+
+## Thoroughly Test and/or Set Up Review Agents - Advanced
+
+### Can you thoroughly test the AI's performance?
+
+- Do you have hundreds of old cases that you know should pass or fail? If so, run them through your system and check its accuracy.
+- Can you thoroughly evaluate the AI's performance? Have 100 TTLs use the tool and provide feedback.
+
+::: {.fragment}
+### Review Agents
+
+- Create an agent that generates a "confidence score". Give it instructions about specific things that you and your team know to look for as warning signs.
+- How does the AI workflow handle self-identified failures, and how will humans address them?
+- Optional: Use a different model to review the output from the one that generated it.
+:::
+
+
+
+
+
+
+
+
