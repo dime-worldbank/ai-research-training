@@ -372,6 +372,7 @@ days:
     title: AI-assisted dashboards and web apps with Replit
     hands_on: true
     lead: ITS
+    link: "https://worldbankgroup.sharepoint.com/:b:/r/teams/AI-EnabledResearchBootcamp-WBGroup/Shared%20Documents/Announcements/Session%20Materials/day-4/2-replit/World-Bank-Replit-AI-Boot-Camp.pdf?d=wa0cabd8d0f804ae2aac19b64c66fd88a&csf=1&web=1&e=WfBc46"
   - time: 12:15 – 1:15
     title: Lunch
     kind: lunch
@@ -380,7 +381,7 @@ days:
     lead: Data Group
   - time: 1:45 – 2:30
     title: Why and how to use multi-agentic workflows
-    lead: WBG Institute
+    lead: Institute for Economic Development
   - time: 2:30 – 3:00
     title: Embeddings in geospatial analysis
     lead: GOST
