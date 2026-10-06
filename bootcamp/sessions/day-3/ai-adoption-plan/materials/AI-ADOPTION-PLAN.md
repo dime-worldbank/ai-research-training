@@ -7,9 +7,16 @@
 
 Save this file in the root of your project repository and link it from your memory file (`AGENTS.md` / `CLAUDE.md`).
 
+Keep [`AI-ADOPTION-GUIDE.md`](AI-ADOPTION-GUIDE.md) next to this file. It has examples and reference material for each section, and instructions so your coding agent can walk you through the plan.
+
+The plan follows two questions:
+
+- **What could AI do for me, and do I want it to?** Sections 2–4 use the 3A model: **Activities** (which work), **Actors** (who does each step), **Artefacts** (what goes in and what comes out).
+- **What do I need to do, and what is in the way?** Sections 5–6: targets and roadblocks.
+
 ## 1. Take stock: what is already set up
 
-Check what is done **in this project** (not the demo project). Anything unchecked becomes a "Now" target in section 4.
+Check what is done **in this project** (not the demo project). Anything unchecked is a candidate for a "Now" target in section 5.
 
 - [ ] Project in a GitHub repository
 - [ ] Project opened in VS Code
@@ -22,21 +29,45 @@ Check what is done **in this project** (not the demo project). Anything unchecke
 - [ ] Presentation or brief made from project materials
 - [ ] Draft reproducibility package
 
-## 2. AI data map
+## 2. Activities: which work could AI help with?
 
-For each stage, describe what AI would do, which data the tool would see, and what comes out. Leave identified data out of the "Data in" column. If a stage needs it, the data must be prepared first (section 3).
+List the work you repeat: every month, every survey round, every mission. Good candidates have the same steps each time, an output you can check quickly, and data you are allowed to share with the tool.
 
-| Stage | AI task | Data in | Classification | Data out | Checked by |
+| # | Task | How often | Main steps | What starts it (I ask, a colleague's request, a file arrives, a date) | AI here? (yes / no / not sure) |
 |---|---|---|---|---|---|
-| Design | | | | | |
-| Acquisition | | | | | |
-| Processing | | | | | |
-| Analysis | | | | | |
-| Publication | | | | | |
+| A | | | | | |
+| B | | | | | |
+| C | | | | | |
 
-## 3. Make the project AI ready
+**Where I do not want AI involved, and why:**
 
-### Data that needs preparation
+## 3. Actors: who does each step?
+
+For each task marked *yes* or *not sure*: which steps need your judgment, and which could happen without you, with the agent preparing something for you to check? Keep judgment calls, relationships and sign-off for yourself.
+
+| # | Steps that need me | Steps that could happen without me | Others involved (team, counterparts) |
+|---|---|---|---|
+| A | | | |
+| B | | | |
+
+### Team access
+
+AI adoption fails when only one person on the team uses the tools.
+
+| Team member | Role | Needs access to | Needs training on | By when |
+|---|---|---|---|---|
+| | | | | |
+
+## 4. Artefacts: what goes in, what comes out?
+
+For each task: what would the tool see, and what would it hand back? Leave identified data out of "Data in". If a step needs it, the data must be prepared first (below).
+
+| # | Data in (files, code, documents) | Classification | Output the agent hands back | Who checks it, and how |
+|---|---|---|---|---|
+| A | | | | |
+| B | | | | |
+
+### Data preparation
 
 | Dataset | Contains PII? | Plan (de-identify / synthetic / keep out of AI tools) | Who | By when |
 |---|---|---|---|---|
@@ -44,12 +75,11 @@ For each stage, describe what AI would do, which data the tool would see, and wh
 
 ### Data rules in the memory file
 
-- [ ] The memory file lists folders the agent must never open
-- [ ] The memory file lists the folders the agent may use
+- [ ] The memory file lists folders the agent must never open, and the folders it may use
 - [ ] The memory file tells the agent to stop and ask if a task needs identified data
 - [ ] Identified data is outside the repository, or blocked in the agent's permission settings
 
-## 4. Priorities
+## 5. What I will do
 
 Write targets that you can report on in the follow-up survey. "Use AI more" is not a target. "Every change to the cleaning code gets an AI review before merge" is.
 
@@ -71,22 +101,39 @@ Write targets that you can report on in the follow-up survey. "Use AI more" is n
 |---|---|---|---|
 | | | | |
 
-## 5. People and tools
+## 6. Roadblocks and worries
 
-| Team member | Role | Needs access to | Needs training on | Next step | By when |
-|---|---|---|---|---|---|
-| | | | | | |
+What could stop this plan, or worries you about it? Include things you are not sure how to resolve. Common ones:
 
-## 6. Risks and mitigations
+- [ ] A data agreement may not allow processing by an AI tool
+- [ ] Confidential data could reach an AI tool
+- [ ] AI output could be wrong but look right
+- [ ] Tool access or approvals for me or the team
+- [ ] Costs or usage limits
+- [ ] Only one person on the team uses the tools
+- [ ] A skill I need does not exist yet
 
-| Risk | Likelihood (low/medium/high) | Mitigation | Owner |
+| Roadblock or worry | Why it matters for this project | Can I resolve it myself? (yes / with help / no) | Who could help |
 |---|---|---|---|
-| Confidential data reaches an AI tool | | | |
-| AI output is wrong but looks right | | | |
-| Only one person on the team uses the tools | | | |
+| | | | |
 | | | | |
 
-## 7. Progress log
+## 7. Optional: full 3A matrix for one workflow
+
+Sections 2–4 look at tasks one A at a time. To redesign one workflow end to end, map it stage by stage. This usually takes longer than the bootcamp session: start it now and finish it with your agent later. See "A 3A matrix, step by step" in `AI-ADOPTION-GUIDE.md`.
+
+**Workflow:**
+
+| | Stage 1 | Stage 2 | Stage 3 | Stage 4 | Stage 5 |
+|---|---|---|---|---|---|
+| **Activity**: what happens | | | | | |
+| **What starts it** | | | | | |
+| **My role**: I'm in it / without me | | | | | |
+| **Who**: me, colleague, agent | | | | | |
+| **Data in**: files, code, documents, and their classification | | | | | |
+| **Output**: what comes out, and who checks it | | | | | |
+
+## 8. Progress log
 
 Update this section when you review the plan, for example when the follow-up survey arrives.
 

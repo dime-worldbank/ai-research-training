@@ -1,7 +1,7 @@
 ---
 title: "Create an AI Adoption Plan for Your Project"
 subtitle: "From three days of bootcamp to the next six weeks of project work"
-author: "Kristoffer Bjärkefur"
+author: "Jonas Weinert"
 institute: "Impact Analytics"
 date: 7 Oct, 2026
 date-format: "D MMMM YYYY"
@@ -31,49 +31,812 @@ source("../../../_extensions/bootcamp/setup_palettes.R")
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-## Objective
+## Two questions for the next 45 minutes
 
-By the end of this session you have a written **AI adoption plan** for your own project, saved in the project folder (commit it to GitHub if you are using Git):
+```{=html}
+<style>
+/* ---------- shared tokens (bootcamp palette) ---------- */
+:root { --navy:#530153; --blue:#800280; --cyan:#B974B9; --pale:#F4EAF4; --grey:#6B6B6B; --rule:#E2E2E2; }
+.reveal .lead { font-size: 0.8em; color: var(--grey); margin: -0.2em 0 0.9em; }
 
-- What you have already set up during the bootcamp
-- Where AI fits in each stage of your project, and what data goes in and comes out
-- What has to happen before your project is *AI ready*
-- Concrete targets for the **next 6 weeks** and the **next 3 months**
-- Who on the team needs access and training
-- The main risks and how you will reduce them
+/* ---------- cards ---------- */
+.cards { display: grid; gap: 18px; }
+.cards.c3 { grid-template-columns: repeat(3, 1fr); }
+.card { background: var(--pale); border-radius: 12px; padding: 20px 22px; color: var(--navy); display: flex; flex-direction: column; gap: 8px; font-size: 0.72em; line-height: 1.35; }
+.card .ct { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 1.45em; color: var(--blue); }
+.card .q { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 1.05em; }
+.card .n { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 0.8em; letter-spacing: .08em; color: var(--cyan); }
+
+/* ---------- contrast rows ---------- */
+.contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; font-size: 0.68em; line-height: 1.35; }
+.contrast > div { border-radius: 12px; padding: 16px 20px; }
+.contrast .old { border: 2px dashed var(--rule); color: var(--grey); }
+.contrast .new { background: var(--blue); color: #fff; }
+.contrast b { display: block; font-family: "Montserrat", sans-serif; font-size: 1.1em; margin-bottom: 4px; }
+.reveal .contrast .new b { color: #fff; }
+
+/* ---------- actor chips (used on every slide) ---------- */
+.ch { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 999px; font-size: 0.92em; line-height: 1.5; white-space: nowrap; }
+.ch.me { background: var(--blue); color: #fff; font-weight: 700; }
+.ch.agent { background: #fff; color: var(--blue); border: 1.5px dashed var(--blue); font-weight: 700; }
+.ch.ppl { background: #fff; color: var(--grey); border: 1.5px solid var(--rule); }
+.ch.art { background: var(--pale); color: var(--navy); border-radius: 4px; }
+.ch svg { width: 1em; height: 1em; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- role badges ---------- */
+.role { display: inline-block; font-size: 0.85em; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.role.with { background: var(--blue); color: #fff; }
+.role.without { background: #fff; color: var(--grey); border: 1.5px dashed var(--cyan); }
+
+/* ---------- slide 2: anatomy matrix ---------- */
+.a3 { display: grid; grid-template-columns: 30px 118px repeat(6, 1fr); font-size: 0.51em; line-height: 1.3; color: #1A1A1A; }
+.a3 > div { padding: 6px 8px; border-bottom: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 4px; align-content: center; transition: opacity .35s ease, background-color .35s ease; }
+.a3 > div.hd { display: block; align-self: end; }
+.a3 .hd { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); border-bottom: 2px solid var(--blue); font-size: 1.05em; }
+.a3 .hd i { font-style: normal; color: var(--cyan); margin-right: 4px; }
+.a3 .rl { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); }
+.a3 .grp { grid-row: span var(--span); writing-mode: vertical-rl; transform: rotate(180deg); justify-content: center; align-items: center; font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 0.95em; letter-spacing: .06em; color: #fff; background: var(--blue); border-radius: 0 6px 6px 0; border-bottom: 2px solid #fff; padding: 0; }
+.a3 .grp.g2 { background: var(--navy); }
+.a3 .grp.g3 { background: var(--cyan); }
+.a3 .sp { border-bottom: 2px solid var(--blue); }
+.a3-note { margin-top: 14px; min-height: 2.6em; position: relative; font-size: 0.62em; }
+.a3-note > div { position: absolute; inset: 0; display: flex; align-items: center; gap: 14px; opacity: 0; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease; color: var(--navy); }
+.a3-note > div b { font-family: "Montserrat", sans-serif; color: var(--blue); white-space: nowrap; }
+.a3-note .n0 { opacity: 1; transform: none; color: var(--grey); }
+.mk { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* highlight one stage (column) at a time, driven by the hidden fragment markers */
+.a3wrap:has(.mk.current-fragment) .a3 > div[class*=" c"] { opacity: .2; }
+.a3wrap:has(.m1.current-fragment) .a3 > div.c1,
+.a3wrap:has(.m2.current-fragment) .a3 > div.c2,
+.a3wrap:has(.m3.current-fragment) .a3 > div.c3,
+.a3wrap:has(.m4.current-fragment) .a3 > div.c4,
+.a3wrap:has(.m5.current-fragment) .a3 > div.c5,
+.a3wrap:has(.m6.current-fragment) .a3 > div.c6 { opacity: 1; background-color: #FBF6FB; }
+.a3wrap:has(.m1.current-fragment) .a3 > div.hd.c1,
+.a3wrap:has(.m2.current-fragment) .a3 > div.hd.c2,
+.a3wrap:has(.m3.current-fragment) .a3 > div.hd.c3,
+.a3wrap:has(.m4.current-fragment) .a3 > div.hd.c4,
+.a3wrap:has(.m5.current-fragment) .a3 > div.hd.c5,
+.a3wrap:has(.m6.current-fragment) .a3 > div.hd.c6 { background-color: var(--blue); color: #fff; border-radius: 6px 6px 0 0; }
+.a3wrap:has(.mk.current-fragment) .a3 > div.hd i { color: inherit; }
+.a3wrap:has(.mk.current-fragment) .a3-note .n0 { opacity: 0; }
+.a3wrap:has(.m1.current-fragment) .a3-note .n1,
+.a3wrap:has(.m2.current-fragment) .a3-note .n2,
+.a3wrap:has(.m3.current-fragment) .a3-note .n3,
+.a3wrap:has(.m4.current-fragment) .a3-note .n4,
+.a3wrap:has(.m5.current-fragment) .a3-note .n5,
+.a3wrap:has(.m6.current-fragment) .a3-note .n6 { opacity: 1; transform: none; }
+
+/* ---------- slide 3: redesign ---------- */
+.qs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.qs .card { font-size: 0.74em; padding: 24px 24px; }
+.qs .card .q { font-size: 1.2em; color: var(--blue); }
+.qs .card .num { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 2em; color: var(--cyan); line-height: 1; }
+.chain { display: flex; align-items: center; gap: 0; margin-top: 44px; font-size: 0.66em; }
+.chain .st { flex: 1 1 0; border-radius: 10px; padding: 16px 10px; text-align: center; line-height: 1.25; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.chain .st.ai { background: #fff; color: var(--blue); border: 2px dashed var(--blue); }
+.chain .st.you { background: var(--blue); color: #fff; }
+.chain .st small { font-size: 0.85em; opacity: .85; }
+.chain .st b { font-family: "Montserrat", sans-serif; }
+.reveal .chain .st.you b { color: #fff; }
+.chain .ho { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; padding: 0 6px; color: var(--navy); font-size: 0.85em; }
+.chain .ho span { background: var(--pale); border-radius: 4px; padding: 2px 8px; white-space: nowrap; }
+.chain .ho i { font-style: normal; color: var(--blue); font-weight: 700; font-size: 1.3em; line-height: 1; }
+.keep { margin-top: 30px; font-size: 0.7em; color: var(--navy); text-align: center; }
+.keep b { font-family: "Montserrat", sans-serif; color: var(--blue); }
+
+/* ---------- consolidated session ---------- */
+.two-q { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.two-q .card { font-size: 0.78em; padding: 24px 26px; }
+.two-q .card .num { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 2.2em; color: var(--cyan); line-height: 1; }
+.two-q .card .q { font-size: 1.2em; color: var(--blue); }
+.two-q .card ul { margin: 0; padding-left: 1.1em; }
+.two-q .card li { margin-bottom: 0.2em; }
+.timebar { display: flex; height: 68px; border-radius: 10px; overflow: hidden; margin-top: 26px; font-size: 0.64em; }
+.timebar div { display: flex; flex-direction: column; justify-content: center; padding: 0 16px; line-height: 1.2; }
+.timebar b { font-family: "Montserrat", sans-serif; }
+.timebar .t1 { flex: 10; background: var(--pale); color: var(--navy); }
+.timebar .t2 { flex: 30; background: var(--blue); color: #fff; }
+.timebar .t3 { flex: 5; background: var(--navy); color: #fff; }
+.reveal .timebar .t2 b, .reveal .timebar .t3 b { color: #fff; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+.split .card { font-size: 0.68em; }
+.split .card ul { margin: 0; padding-left: 1.1em; }
+.split .card li { margin-bottom: 0.25em; }
+.a3mini { display: grid; grid-template-columns: 9.5em 1fr; row-gap: 8px; column-gap: 12px; align-items: center; }
+.a3mini b { font-family: "Montserrat", sans-serif; color: #fff; background: var(--blue); border-radius: 6px; padding: 4px 10px; text-align: center; }
+.a3mini b.g2 { background: var(--navy); }
+.a3mini b.g3 { background: var(--cyan); }
+.lookup { margin-top: 16px; font-size: 0.6em; color: var(--grey); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.lookup a { background: var(--pale); border-radius: 999px; padding: 3px 12px; text-decoration: none; }
+.cards.c3 .card ul { margin: 0; padding-left: 1.1em; }
+.cards.c3 .card li { margin-bottom: 0.25em; }
+.card.road { background: #fff; border: 2px dashed var(--blue); }
+.blocks { display: grid; grid-template-columns: 6.5em 1fr 9em; font-size: 0.64em; line-height: 1.35; }
+.blocks > div { padding: 10px 12px; border-bottom: 1px solid var(--rule); }
+.blocks .tm { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--blue); }
+.blocks .sec { color: var(--grey); font-size: 0.9em; }
+.blocks .q1, .blocks .q2 { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 0.8em; padding: 1px 7px; border-radius: 4px; color: #fff; background: var(--blue); margin-right: 6px; }
+.blocks .q2 { background: var(--navy); }
+.look .card { font-size: 0.6em; gap: 6px; }
+.look dl { margin: 4px 0 0; }
+.look dt { font-weight: 700; margin-top: 8px; }
+.look dt a { text-decoration: none; }
+.look dd { margin: 0; color: var(--grey); }
+.opt { font-size: 0.92em; color: var(--navy); background: #fff; border-left: 3px solid var(--cyan); padding: 6px 10px; border-radius: 0 6px 6px 0; }
+.reveal .opt b { color: var(--blue); }
+.opt .zm-link { display: inline-block; margin-top: 6px; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 0.95em; color: #fff; background: var(--blue); border-radius: 999px; padding: 3px 12px; text-decoration: none; }
+.opt .zm-link:hover { filter: brightness(1.15); }
+
+/* ---------- zoom preview of reference slides ---------- */
+.zm { position: absolute; inset: -40% -25%; z-index: 60; display: flex; align-items: center; justify-content: center; background: rgba(40, 0, 40, .45); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+.zm.open { opacity: 1; pointer-events: auto; }
+.zm-panel { width: 1080px; background: #fff; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.35); overflow: hidden; transform: scale(.9) translateY(14px); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.zm.open .zm-panel { transform: none; }
+.zm-view { position: relative; width: 1080px; height: 618px; overflow: hidden; border-bottom: 1px solid var(--rule); }
+.zm-frame { position: absolute; top: 0; left: 0; width: 1256px; height: 719px; padding: 22px 28px; box-sizing: border-box; transform: scale(.86); transform-origin: top left; text-align: left; pointer-events: none; }
+.zm-frame.smaller { font-size: 0.7em; }
+.zm-bar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; font-size: 16px; }
+.zm-bar .zm-t { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); margin-right: auto; }
+.zm-btn { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 14px; padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--blue); color: var(--blue); background: #fff; cursor: pointer; }
+.zm-btn.go { background: var(--blue); color: #fff; }
+.zm-btn:hover { filter: brightness(1.1); }
+.ref-back { position: absolute; left: 56px; bottom: 10px; z-index: 40; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1.5px solid #800280; color: #800280; background: #fff; cursor: pointer; display: none; }
+.ref-back.show { display: block; }
+.ref-back:hover { background: #F4EAF4; }
+</style>
+```
+
+```{=html}
+<div class="two-q">
+  <div class="card"><span class="num">1</span><span class="q">What could AI do for me, and do I want it to?</span>
+    <span>Pick one or two workflows from your real project where an agent would help, and decide where it should <i>not</i> be involved.</span></div>
+  <div class="card"><span class="num">2</span><span class="q">What do I need to do, and what is in the way?</span>
+    <span>What you can start this week, what needs preparation, and the roadblocks you cannot resolve on your own.</span></div>
+</div>
+<div class="timebar">
+  <div class="t1"><b>10 min</b>framing</div>
+  <div class="t2"><b>30 min</b>write your plan in <code style="color:#fff;background:none">AI-ADOPTION-PLAN.md</code></div>
+  <div class="t3"><b>5 min</b>share</div>
+</div>
+```
 
 ::: {.callout-note-custom}
-We will follow up on your plan in the post-bootcamp survey. Write targets you can actually report on.
+The plan stays in your project folder. We follow up on your targets, and your roadblocks, in the post-bootcamp survey.
 :::
 
 ::: {.notes}
-Time: 1 minute. The session is 45 minutes: about 12 minutes of slides, 28 minutes writing the plan, 5 minutes sharing.
+Time: 1 minute. The session is 45 minutes: about 10 minutes of framing, 30 minutes writing the plan, 5 minutes sharing.
 
-Say: this is the session where the last three days turn into something you will still be doing in November.
+Say: this is the session where the last three days turn into something you will still be doing in November. Everything else in the deck is reference material at the end, to look up during the hands-on.
 :::
 
-## The plan in six steps
+## 1 · What could AI do for me?
 
-| | Step | Output in your plan |
-| --- | ------- | -------- |
-| **1** | Take stock | Checklist of what is already set up |
-| **2** | Map AI to your workflow | AI data map: stage, task, data in, data out |
-| **3** | Make the project AI ready | Data safeguards and memory-file rules |
-| **4** | Set priorities | Targets for now, 6 weeks, 3 months |
-| **5** | People and tools | Who needs access, who needs training |
-| **6** | Risks | Risks and mitigations |
+<p class="lead">Start from work you already do, not from a tool. Use the 3A questions as a thinking aid, not a form to fill in.</p>
 
-**Template:** [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md). Copy it into the root of your project folder.
-
-::: {.callout-note-custom}
-This is suggested format for an AI adoption plan. It is possible that some sections does not fit your context, and you need to add or modify sections as appropriate.
-:::
+```{=html}
+<div class="split">
+  <div class="card"><span class="ct">Good candidates</span>
+    <ul>
+      <li><b>Recurring</b>: every month, every survey round, every mission</li>
+      <li><b>Same steps</b> each time</li>
+      <li>An <b>output you can check</b> in minutes</li>
+      <li><b>Data you may share</b> with the tool</li>
+    </ul>
+    <span style="color:var(--grey)">Keep for yourself: judgment calls, relationships, sign-off. "Not here" is a valid answer.</span>
+  </div>
+  <div class="card line"><span class="ct">Think each one through in 3A</span>
+    <div class="a3mini">
+      <b>Activities</b><span>What are the steps?</span>
+      <b class="g2">Actors</b><span>Which steps need me? Which could run without me?</span>
+      <b class="g3">Artefacts</b><span>What would the tool see, and what would it hand back for me to check?</span>
+    </div>
+    <span class="opt" style="display:flex;flex-direction:column;align-items:flex-start"><span><b>Optional:</b> map one workflow fully as a 3A matrix. It takes longer than today, so start it now and finish it with your agent later.</span><a class="zm-link" href="#/anatomy-of-a-3a-matrix-answering-a-ministry-data-request">See an example matrix →</a></span>
+  </div>
+</div>
+<div class="lookup">Look up: <a href="#/the-3a-design-model">The 3A design model</a><a href="#/three-workflows-redesigned">Three workflows, redesigned</a><a href="#/anatomy-of-a-3a-matrix-answering-a-ministry-data-request">A 3A matrix, step by step</a><a href="#/example-an-ai-data-map">An AI data map</a></div>
+```
 
 ::: {.notes}
-Point participants to the template now so they can download it while you talk. Each section of the deck maps to one section of the template.
+Time: 3 minutes. The 3A model (Activities, Actors, Artefacts) is a thinking aid here, not a deliverable. For each candidate task, three quick questions: what are the steps, which need me, and what would the tool see and hand back. Steps that do not need you and end in something checkable are where an agent fits.
+
+A full 3A matrix for one workflow is optional. It usually takes longer than the 30 minutes, so encourage people to start one and finish it with their agent after the session.
+
+If the room needs a concrete example, jump to "Three workflows, redesigned" in the reference section (monthly welfare nowcast, stakeholder presentation, survey cleaning), then come back.
 :::
 
-# 1 · Take stock {background-color="#530153"}
+## Redesign it one stage at a time
+
+```{=html}
+<div class="qs">
+  <div class="card"><span class="num">1</span><span class="q">Does this stage need my judgment?</span><span>No: it can happen without you. Yes: keep it, but let the agent prepare it.</span></div>
+  <div class="card"><span class="num">2</span><span class="q">What does the agent hand back?</span><span>An artefact you can check in minutes: a memo, a diff, a flag list. No artefact, no handoff.</span></div>
+  <div class="card"><span class="num">3</span><span class="q">What starts it?</span><span>You asking in a chat, a colleague's request, a file arriving, a date. Name it, so everyone knows when the handoff happens.</span></div>
+</div>
+<div class="chain">
+  <div class="st ai"><b>Pull &amp; check</b><small>agent, when you ask</small></div>
+  <div class="ho"><span>memo</span><i>→</i></div>
+  <div class="st you"><b>Decide</b><small>you</small></div>
+  <div class="ho"><span>assumptions</span><i>→</i></div>
+  <div class="st ai"><b>Run</b><small>agent, after your sign-off</small></div>
+  <div class="ho"><span>tables</span><i>→</i></div>
+  <div class="st you"><b>Interpret</b><small>you, with the agent</small></div>
+  <div class="ho"><span>draft</span><i>→</i></div>
+  <div class="st ai" style="border-style:solid;border-color:var(--rule);color:var(--grey)"><b>Clear</b><small>reviewers</small></div>
+</div>
+<p class="keep">Keep for yourself: <b>decisions</b>, <b>relationships</b>, <b>sign-off</b>. Everything between them is a candidate for the agent.</p>
+```
+
+::: {.notes}
+Time: 2 minutes. Ask these three questions of each step in a candidate task. Most Bank workflows start with someone asking, in a chat or by email, and that is fine. The point of question 3 is to name the handoff, not to automate it.
+
+The chain at the bottom is the monthly welfare nowcast from the reference section, in five steps.
+:::
+
+## 2 · What do I need to do, and what is in the way?
+
+```{=html}
+<div class="cards c3">
+  <div class="card"><span class="n">THIS WEEK</span><span class="ct">Now</span>
+    <ul><li>Memory file in the real project, not the demo</li><li>Agent on cleaning or analysis code</li><li>Anything unchecked from the bootcamp</li></ul></div>
+  <div class="card"><span class="n">6 WEEKS · 3 MONTHS</span><span class="ct">Prepare</span>
+    <ul><li>De-identified or synthetic data</li><li>Data rules in the memory file</li><li>Team members onboarded</li><li>A skill for a recurring task</li></ul></div>
+  <div class="card road"><span class="n">CANNOT SOLVE ALONE</span><span class="ct">Roadblocks</span>
+    <ul><li>A data agreement that may not allow it</li><li>Tool access or approvals</li><li>Cost, team buy-in, a skill that does not exist</li></ul>
+    <span style="color:var(--grey)">Write them down anyway. That is how we know what to fix.</span></div>
+</div>
+```
+
+::: {.callout-note-custom}
+If you cannot say which data goes into the tool at a stage, that stage is not ready yet.
+:::
+
+```{=html}
+<div class="lookup">Look up: <a href="#/the-biggest-roadblock-is-confidential-data">Confidential data</a><a href="#/write-the-rules-into-your-memory-file">Data rules for the memory file</a><a href="#/three-time-horizons">Example targets</a><a href="#/which-skills-does-your-project-need">Skills</a><a href="#/who-needs-access-and-to-what">Team access</a><a href="#/risks-and-how-to-reduce-them">Risks</a></div>
+```
+
+::: {.notes}
+Time: 3 minutes. "Use AI more" is not a target. "Every change to the cleaning code gets an AI review before merge" is.
+
+Roadblocks are the most useful output of this session for us. Encourage people to write down the worry even if it is vague, for example "not sure our data agreement allows this".
+:::
+
+## What to look up, and when
+
+Click a topic for a preview. Everything is also in [`AI-ADOPTION-GUIDE.md`](materials/AI-ADOPTION-GUIDE.md), so your agent can walk you through it.
+
+```{=html}
+<div class="cards c3 look">
+  <div class="card"><span class="n">Q1 · ACTIVITIES, ACTORS, ARTEFACTS</span><span class="ct">Where AI fits</span>
+    <dl>
+      <dt><a href="#/the-3a-design-model">The 3A design model</a></dt><dd>Activities, Actors, Artefacts</dd>
+      <dt><a href="#/anatomy-of-a-3a-matrix-answering-a-ministry-data-request">A 3A matrix, step by step</a></dt><dd>A ministry data request, stage by stage</dd>
+      <dt><a href="#/three-workflows-redesigned">Three workflows, redesigned</a></dt><dd>Nowcast, presentation, survey cleaning</dd>
+      <dt><a href="#/example-an-ai-data-map">An AI data map</a></dt><dd>What the tool sees at each project stage</dd>
+    </dl></div>
+  <div class="card"><span class="n">Q2 · WHAT I WILL DO</span><span class="ct">What I will do</span>
+    <dl>
+      <dt><a href="#/what-did-you-set-up-this-week-check-those-that-applied">Setup checklist</a></dt><dd>What the bootcamp set up</dd>
+      <dt><a href="#/three-time-horizons">Example targets</a></dt><dd>Now, 6 weeks, 3 months</dd>
+      <dt><a href="#/which-skills-does-your-project-need">Skills</a></dt><dd>Known skills, and ones to ask for</dd>
+      <dt><a href="#/who-needs-access-and-to-what">Team access</a></dt><dd>Who needs which tools and training</dd>
+      <dt><a href="#/write-the-rules-into-your-memory-file">Data rules for the memory file</a></dt><dd>A block to paste into your memory file</dd>
+    </dl></div>
+  <div class="card road"><span class="n">Q2 · WHAT IS IN THE WAY</span><span class="ct">Roadblocks</span>
+    <dl>
+      <dt><a href="#/the-biggest-roadblock-is-confidential-data">Confidential data</a></dt><dd>De-identify, synthesize, separate</dd>
+      <dt><a href="#/risks-and-how-to-reduce-them">Risks and mitigations</a></dt><dd>Common risks and how to reduce them</dd>
+    </dl></div>
+</div>
+
+<script>
+(function () {
+  var REF = ['the-3a-design-model', 'anatomy-of-a-3a-matrix-answering-a-ministry-data-request', 'three-workflows-redesigned',
+    'example-an-ai-data-map', 'what-did-you-set-up-this-week-check-those-that-applied', 'three-time-horizons',
+    'which-skills-does-your-project-need', 'who-needs-access-and-to-what', 'write-the-rules-into-your-memory-file',
+    'the-biggest-roadblock-is-confidential-data', 'risks-and-how-to-reduce-them'];
+  var OVERVIEW = 'what-to-look-up-and-when';
+  var zm, frame, title, target, backBtn;
+
+  function build() {
+    var slides = document.querySelector('.reveal .slides');
+    zm = document.createElement('div');
+    zm.className = 'zm';
+    zm.innerHTML = '<div class="zm-panel"><div class="zm-view"><div class="zm-frame"></div></div>' +
+      '<div class="zm-bar"><span class="zm-t"></span><button class="zm-btn" data-a="close">Close</button>' +
+      '<button class="zm-btn go" data-a="go">Go to slide →</button></div></div>';
+    slides.appendChild(zm);
+    frame = zm.querySelector('.zm-frame');
+    title = zm.querySelector('.zm-t');
+    zm.addEventListener('click', function (e) {
+      var a = e.target.getAttribute && e.target.getAttribute('data-a');
+      if (a === 'go') { go(target); }
+      else if (a === 'close' || e.target === zm) { close(); }
+    });
+    backBtn = document.createElement('button');
+    backBtn.className = 'ref-back';
+    backBtn.textContent = '← Back to overview';
+    backBtn.addEventListener('click', function () { go(OVERVIEW); });
+    document.querySelector('.reveal').appendChild(backBtn);
+  }
+
+  function open(id) {
+    var sec = document.getElementById(id);
+    if (!sec) return;
+    target = id;
+    var c = sec.cloneNode(true);
+    c.querySelectorAll('aside.notes, .notes, .mk, script').forEach(function (n) { n.remove(); });
+    c.querySelectorAll('[id]').forEach(function (n) { n.removeAttribute('id'); });
+    c.querySelectorAll('.fragment').forEach(function (n) { n.classList.remove('fragment', 'visible', 'current-fragment'); });
+    frame.className = 'zm-frame' + (sec.classList.contains('smaller') ? ' smaller' : '');
+    frame.innerHTML = '';
+    while (c.firstChild) frame.appendChild(c.firstChild);
+    var h = sec.querySelector('h2');
+    title.textContent = h ? h.textContent : '';
+    zm.classList.add('open');
+  }
+  function close() { zm.classList.remove('open'); }
+  function go(id) {
+    close();
+    var sec = document.getElementById(id);
+    if (!sec) return;
+    var i = Reveal.getIndices(sec);
+    Reveal.slide(i.h, i.v, -1);
+  }
+
+  // keep the arrow keys from moving the deck while the preview is open
+  document.addEventListener('keydown', function (e) {
+    if (!zm || !zm.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    e.stopPropagation(); e.preventDefault();
+  }, true);
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.look a, .lookup a, a.zm-link');
+    if (!a) return;
+    var id = (a.getAttribute('href') || '').replace(/^#\//, '');
+    if (REF.indexOf(id) < 0) return;
+    e.preventDefault(); e.stopPropagation();
+    open(id);
+  }, true);
+
+  function sync() {
+    var cur = Reveal.getCurrentSlide();
+    backBtn.classList.toggle('show', !!cur && REF.indexOf(cur.id) >= 0);
+    if (zm.classList.contains('open')) close();
+  }
+  function init() { build(); Reveal.on('slidechanged', sync); sync(); }
+  if (window.Reveal && Reveal.isReady && Reveal.isReady()) init();
+  else window.addEventListener('load', function () { if (Reveal.isReady()) init(); else Reveal.on('ready', init); });
+})();
+</script>
+```
+
+::: {.notes}
+Time: 1 minute. Do not present the reference slides. Say: when you get stuck on a section of the plan, this is where to look, and your agent can read the same material from the guide file.
+:::
+
+## Hands-on: write your plan (30 minutes)
+
+Copy [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md) and [`AI-ADOPTION-GUIDE.md`](materials/AI-ADOPTION-GUIDE.md) into the root of your project folder.
+
+```{=html}
+<div class="blocks">
+  <div class="tm">0–5</div><div>Tick what is already set up <b>in this project</b></div><div class="sec">Section 1</div>
+  <div class="tm">5–17</div><div><span class="q1">Q1</span>In 3A: which recurring tasks (<b>Activities</b>), which steps need you (<b>Actors</b>), what the tool sees and hands back (<b>Artefacts</b>). <i>Optional: a full 3A matrix for one</i></div><div class="sec">Sections 2–4</div>
+  <div class="tm">17–27</div><div><span class="q2">Q2</span>Targets for now, 6 weeks and 3 months. Roadblocks: what worries you, and can you resolve it yourself?</div><div class="sec">Sections 5–6</div>
+  <div class="tm">27–30</div><div>Commit the plan. Pick one target and one roadblock to share</div><div class="sec"></div>
+</div>
+```
+
+```markdown
+Read AI-ADOPTION-GUIDE.md, then walk me through AI-ADOPTION-PLAN.md
+one section at a time. Ask me questions and draft text for me to
+edit, but leave the judgment calls to me. Use README.md, AGENTS.md
+and the folder structure for context. Do not open any data files.
+```
+
+
+::: {.notes}
+Leave this slide up during the hands-on. Walk around and check that people are working in their real project, not the demo project.
+
+The prompt tells the agent not to open data files. Point this out: it is the data rule in practice.
+
+Call the time at 17 minutes (move to Q2) and at 27 minutes (commit).
+:::
+
+## Before you leave
+
+::: {.callout-note-custom}
+**Share one target and one roadblock with the person next to you.** We will ask about both in the follow-up survey.
+:::
+
+- Plan saved in your repository: `AI-ADOPTION-PLAN.md`
+- Link the plan from your memory file, so the agent knows the team's priorities
+- Come back to the plan when the survey arrives, and update the progress log
+
+::: {.notes}
+Ask two or three people to share a roadblock with the room. If several people raise the same one, note it: that is input for the AI roadmap series.
+:::
+
+# Thank You! - Questions? {background-color="#530153"}
+
+# Reference: look it up when you need it {background-color="#530153"}
+
+## The 3A design model
+
+
+<p class="lead">Most AI use today is a chat window next to a workflow that stays the same. The 3A design model starts from the workflow instead, and asks three things of every stage.</p>
+
+```{=html}
+<div class="cards c3">
+  <div class="card"><span class="n">A1</span><span class="ct">Activities</span><span class="q">What happens, in what order?</span><span>Split the workflow into 5–7 stages, each a verb: pull, check, decide, draft, sign off.</span></div>
+  <div class="card"><span class="n">A2</span><span class="ct">Actors</span><span class="q">Who does each stage?</span><span>You, colleagues, counterparts, or an agent. Mark each stage: <i>I am part of this</i>, or <i>it happens without me</i>.</span></div>
+  <div class="card"><span class="n">A3</span><span class="ct">Artefacts</span><span class="q">What goes in, what comes out?</span><span>Each stage uses tools and inputs, and hands an output to the next stage: a file, a memo, a decision.</span></div>
+</div>
+<div class="contrast">
+  <div class="old"><b>AI on the side</b>You still do every step yourself, and ask a chatbot for help along the way.</div>
+  <div class="new"><b>Agent in the loop</b>The workflow is built around handoffs. The agent owns whole stages; you own the decisions between them.</div>
+</div>
+```
+
+::: {.notes}
+The concept behind the Q1 slide. Activities, Actors, Artefacts. The contrast at the bottom is the key idea: an agent that owns whole stages, with the person owning the decisions in between.
+
+For each stage, ask: does it need my judgment, what does the agent hand back, and what starts it?
+:::
+
+## Anatomy of a 3A matrix: answering a ministry data request
+
+```{=html}
+<div class="a3wrap">
+  <span class="mk m1 fragment"></span><span class="mk m2 fragment"></span><span class="mk m3 fragment"></span><span class="mk m4 fragment"></span><span class="mk m5 fragment"></span><span class="mk m6 fragment"></span>
+  <div class="a3">
+    <div class="sp"></div><div class="hd">Stage →</div>
+    <div class="hd c1"><i>1</i>Request arrives</div><div class="hd c2"><i>2</i>Scope it</div><div class="hd c3"><i>3</i>Disclosure check</div><div class="hd c4"><i>4</i>Produce tables</div><div class="hd c5"><i>5</i>Package &amp; document</div><div class="hd c6"><i>6</i>Clear &amp; send</div>
+
+    <div class="grp g1 r1" style="--span:3">Activities</div>
+    <div class="rl r1">Activity</div>
+    <div class="r1 c1">Ministry asks for attendance by district and gender</div><div class="r1 c2">Agree indicators, years, breakdowns, deadline</div><div class="r1 c3">Check the spec against the data-sharing agreement</div><div class="r1 c4">Agent writes the code; I review code and numbers</div><div class="r1 c5">Format tables, write notes on definitions and sample</div><div class="r1 c6">TTL clears the reply and sends it</div>
+    <div class="rl r1">Where / when</div>
+    <div class="r1 c1">Email, any day</div><div class="r1 c2">15-minute call</div><div class="r1 c3">Once the spec is agreed</div><div class="r1 c4">Same day</div><div class="r1 c5">When I ask, after my review</div><div class="r1 c6">Email, async</div>
+    <div class="rl r1">Outcome</div>
+    <div class="r1 c1">Request on our desk</div><div class="r1 c2">Everyone wants the same table</div><div class="r1 c3">Small cells and identifiers flagged</div><div class="r1 c4">Numbers I'd stand behind</div><div class="r1 c5">Readable without us in the room</div><div class="r1 c6">Request answered and logged</div>
+
+    <div class="grp g2 r2" style="--span:2">Actors</div>
+    <div class="rl r2">My role</div>
+    <div class="r2 c1"><span class="role without">without me</span></div><div class="r2 c2"><span class="role with">I'm in it</span></div><div class="r2 c3"><span class="role without">without me</span></div><div class="r2 c4"><span class="role with">I'm in it</span></div><div class="r2 c5"><span class="role without">without me</span></div><div class="r2 c6"><span class="role without">without me</span></div>
+    <div class="rl r2">Who</div>
+    <div class="r2 c1"><span class="ch ppl">Ministry</span><span class="ch ppl">TTL</span></div>
+    <div class="r2 c2"><span class="ch me">Me</span><span class="ch ppl">Ministry</span></div>
+    <div class="r2 c3"><span class="ch agent">Agent</span></div>
+    <div class="r2 c4"><span class="ch me">Me</span><span class="ch agent">Agent</span></div>
+    <div class="r2 c5"><span class="ch agent">Agent</span></div>
+    <div class="r2 c6"><span class="ch ppl">TTL</span></div>
+
+    <div class="grp g3 r3" style="--span:2">Artefacts</div>
+    <div class="rl r3">Tools in</div>
+    <div class="r3 c1">Email</div><div class="r3 c2">Call, notes</div><div class="r3 c3">Agent, data agreement</div><div class="r3 c4">Agent, clean data, Git</div><div class="r3 c5">Agent, table template</div><div class="r3 c6">Email, request log</div>
+    <div class="rl r3">Output</div>
+    <div class="r3 c1"><span class="ch art">Request email</span></div><div class="r3 c2"><span class="ch art">Request spec</span></div><div class="r3 c3"><span class="ch art">Disclosure memo</span></div><div class="r3 c4"><span class="ch art">Tables</span><span class="ch art">Code</span></div><div class="r3 c5"><span class="ch art">Excel file</span><span class="ch art">Data note</span></div><div class="r3 c6"><span class="ch art">Sent reply</span><span class="ch art">Log entry</span></div>
+  </div>
+  <div class="a3-note">
+    <div class="n0">A ministry asks for attendance figures by district and gender. One column per stage, one row per question.</div>
+    <div class="n1"><b>1 · Request arrives</b> Happens without me. The ministry and the TTL start it; the artefact is the request email.</div>
+    <div class="n2"><b>2 · Scope it</b> I'm in it. A 15-minute call turns a vague ask into a spec everyone agrees on.</div>
+    <div class="n3"><b>3 · Disclosure check</b> Runs without me. The agent checks the spec against the data agreement and hands back a memo.</div>
+    <div class="n4"><b>4 · Produce tables</b> I'm in it. The agent writes the code; I own the numbers. Output: tables plus the code that made them.</div>
+    <div class="n5"><b>5 · Package &amp; document</b> When I ask, after my review. The agent formats and documents, so the reply stands on its own.</div>
+    <div class="n6"><b>6 · Clear &amp; send</b> Happens without me. The TTL clears and sends; the log entry closes the loop.</div>
+  </div>
+</div>
+```
+
+::: {.notes}
+Click through the six stages. For each, say the three A's out loud: what happens, who is in it, what gets handed on.
+
+Point out that only stages 2 and 4 need the economist. The agent runs 3 and 5 alone, and every agent stage ends in an artefact someone can check.
+:::
+
+## Three workflows, redesigned
+
+```{=html}
+<style>
+.x3 { position: relative; color: #1A1A1A; margin-top: -6px; }
+.x3 .mk { position: absolute; width: 0; height: 0; overflow: hidden; }
+.x3-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.x3-tab { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 0.5em; padding: 7px 16px; border-radius: 999px; border: 1.5px solid var(--cyan); color: var(--navy); background: #fff; cursor: pointer; transition: background-color .3s ease, color .3s ease, border-color .3s ease; user-select: none; }
+.x3-tab:hover { border-color: var(--blue); }
+.x3-tab.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.x3-hint { margin-left: auto; font-size: 0.4em; color: var(--grey); }
+.x3-sub { font-size: 0.55em; color: var(--grey); margin: 0 0 10px; transition: opacity .3s ease; }
+.x3-sub b { color: var(--navy); font-family: "Montserrat", sans-serif; }
+
+.x3-grid { display: grid; grid-template-columns: 74px repeat(6, 1fr); column-gap: 16px; font-size: 0.47em; line-height: 1.3; }
+.x3-lab { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--grey); font-size: 0.85em; display: flex; align-items: center; letter-spacing: .03em; }
+.x3-col { display: contents; }
+.x3-cell { padding: 6px 8px; transition: opacity .4s ease, background-color .4s ease, box-shadow .4s ease, transform .4s ease; cursor: pointer; display: flex; flex-wrap: wrap; gap: 4px; align-content: center; }
+.x3-cell.h { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); font-size: 1.08em; border-radius: 8px 8px 0 0; background: var(--pale); flex-direction: column; flex-wrap: nowrap; align-items: flex-start; gap: 2px; min-height: 52px; justify-content: center; }
+.x3-cell.h i { font-style: normal; color: var(--blue); }
+.x3-cell.h small { font-family: "Lato", sans-serif; font-weight: 400; color: var(--grey); font-size: 0.82em; }
+.x3-cell.r { background: var(--pale); padding-top: 2px; }
+.x3-cell.w { background: var(--pale); min-height: 48px; }
+.x3-cell.o { background: var(--pale); border-radius: 0 0 8px 8px; min-height: 42px; position: relative; }
+.x3-cell.o::after { content: "→"; position: absolute; right: -8px; top: 50%; transform: translate(50%, -50%); color: var(--blue); font-weight: 700; font-size: 1.2em; }
+.x3-cell.o.last::after { content: none; }
+.x3-cell.ag { background: #fff; box-shadow: inset 2px 0 0 0 var(--blue), inset -2px 0 0 0 var(--blue); background-image: none; }
+.x3-cell.h.ag { box-shadow: inset 2px 0 0 0 var(--blue), inset -2px 0 0 0 var(--blue), inset 0 2px 0 0 var(--blue); }
+.x3-cell.o.ag { box-shadow: inset 2px 0 0 0 var(--blue), inset -2px 0 0 0 var(--blue), inset 0 -2px 0 0 var(--blue); }
+/* dim the rest when one stage is in focus */
+.x3.focus .x3-cell { opacity: .3; }
+.x3.focus .x3-cell.cur { opacity: 1; }
+.x3.focus .x3-cell.h.cur { background: var(--blue); color: #fff; }
+.x3.focus .x3-cell.h.cur i, .x3.focus .x3-cell.h.cur small { color: #fff; }
+
+.x3-detail { position: relative; margin-top: 16px; height: 178px; }
+.x3-pane { position: absolute; inset: 0; border-radius: 12px; background: #FBF6FB; border-left: 5px solid var(--blue); padding: 14px 20px; display: grid; grid-template-columns: 230px 1fr 1fr; column-gap: 22px; row-gap: 10px; font-size: 0.54em; line-height: 1.35; animation: x3in .45s ease both; }
+.x3-pane.out { animation: x3out .25s ease both; pointer-events: none; }
+@keyframes x3in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes x3out { from { opacity: 1; } to { opacity: 0; transform: translateY(-4px); } }
+.x3-pane .nm { grid-row: span 2; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid var(--rule); padding-right: 16px; }
+.x3-pane .nm .big { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--blue); font-size: 2.1em; line-height: 1; }
+.x3-pane .nm .t { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); font-size: 1.15em; line-height: 1.2; }
+.x3-pane .f b { display: block; font-family: "Montserrat", sans-serif; font-size: 0.78em; letter-spacing: .06em; text-transform: uppercase; color: var(--cyan); margin-bottom: 2px; }
+.x3-pane .f { color: var(--navy); }
+.x3-pane.ov { grid-template-columns: 1fr 300px; }
+.x3-pane.ov .tag { font-family: "Montserrat", sans-serif; font-weight: 600; color: var(--navy); font-size: 1.2em; line-height: 1.35; align-self: center; }
+.x3-pane.ov .legend { display: flex; flex-direction: column; gap: 7px; align-self: center; font-size: 0.92em; color: var(--grey); }
+.x3-pane.ov .legend div { display: flex; align-items: center; gap: 8px; }
+.x3-pane.ov .count { grid-column: 1 / -1; color: var(--grey); }
+.x3-pane.ov .count b { color: var(--blue); }
+.x3-dots { position: absolute; right: 0; bottom: -22px; display: flex; gap: 6px; }
+.x3-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--rule); transition: background-color .3s ease, transform .3s ease; }
+.x3-dots span.on { background: var(--blue); transform: scale(1.3); }
+</style>
+
+<div class="x3" id="x3">
+  <div class="x3-marks"></div>
+  <div class="x3-top">
+    <div class="x3-tab" data-e="0">Monthly welfare nowcast</div>
+    <div class="x3-tab" data-e="1">Stakeholder results presentation</div>
+    <div class="x3-tab" data-e="2">Cleaning a survey round</div>
+    <div class="x3-hint">→ to step through · click a tab or stage</div>
+  </div>
+  <p class="x3-sub"></p>
+  <div class="x3-grid"></div>
+  <div class="x3-detail"></div>
+  <div class="x3-dots"></div>
+</div>
+
+<script>
+(function () {
+  var ICON_AGENT = '<svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6"/></svg>';
+  var me = function () { return { t: 'me', n: 'Me' }; };
+  var ag = function () { return { t: 'agent', n: 'Agent' }; };
+  var p = function (n) { return { t: 'ppl', n: n }; };
+
+  var EX = [
+    {
+      title: 'Monthly welfare nowcast',
+      sub: 'Updating poverty projections for one country, every month, with the same code',
+      tag: 'Same steps, same code, every month. You keep the two judgment calls: which data to trust, and what the new numbers mean.',
+      stages: [
+        { n: 'Pull new data', when: '1st working day, I ask', role: 'without', who: [ag()],
+          act: 'Download the latest CPI, GDP growth projections, remittances and exchange rates.',
+          how: 'I ask the agent to run the download. Every series is saved with its source and download date.',
+          tools: 'Download script, statistics office and WB / IMF APIs', outc: "This month's inputs are in place.", out: ['Data vintage', 'Source log'] },
+        { n: 'Check what changed', when: 'Same session, right after', role: 'without', who: [ag()],
+          act: "Compare the new vintage with last month's: revisions, gaps, unit or base-year changes.",
+          how: 'Runs without me. Anything above a threshold is flagged, never fixed.',
+          tools: "Validation script, last month's vintage", outc: 'A short list of what moved and why it matters.', out: ['"What changed" memo'] },
+        { n: 'Decide assumptions', when: 'Same day, 30 minutes', role: 'with', who: [me(), ag()],
+          act: 'Go through the flags: accept the revision, override it, or ask the statistics office.',
+          how: 'I decide. The agent writes each decision and my reason into the assumptions file.',
+          tools: 'Memo, assumptions file, Git', outc: 'Signed-off assumptions for this run.', out: ['Assumptions (committed)'] },
+        { n: 'Run the projection', when: 'Once I commit the assumptions', role: 'without', who: [ag()],
+          act: 'Rerun the microsimulation on the latest household survey: poverty at $3.00, $4.20 and $8.30 a day.',
+          how: 'Same code every month. The agent also decomposes the change since last month.',
+          tools: 'Microsimulation code, household survey', outc: 'New projections, and why they moved.', out: ['Tables', 'Decomposition'] },
+        { n: 'Interpret & draft', when: 'Next day', role: 'with', who: [me(), ag()],
+          act: 'Check the numbers make sense, then draft the one-page monthly note.',
+          how: "The agent drafts from the decomposition. I rewrite until I'd defend every sentence.",
+          tools: 'Agent, note template', outc: 'A note I can put my name on.', out: ['Draft note'] },
+        { n: 'Clear & publish', when: 'Email, async', role: 'without', who: [p('Peer reviewer'), p('Manager')],
+          act: 'Peer review and clearance. Cleared numbers go to the country dashboard.',
+          how: 'Reviewers comment in the shared doc; the dashboard owner picks up the release.',
+          tools: 'Email, shared doc', outc: 'Cleared numbers the country team can use.', out: ['Cleared note', 'Dashboard'] }
+      ]
+    },
+    {
+      title: 'Stakeholder results presentation',
+      sub: 'Presenting midline evaluation results at a Ministry of Education workshop',
+      tag: 'The agent does the assembly and the checking. You own the conversation with the counterpart, and the messages.',
+      stages: [
+        { n: 'Agree the brief', when: 'Call, 3 weeks out', role: 'with', who: [me(), p('TTL'), p('Ministry')],
+          act: 'Agree the audience, the time slot, and the three questions the Ministry wants answered.',
+          how: 'Everyone on the call. The counterpart decides what matters to them; I take notes.',
+          tools: 'Video call, shared notes', outc: 'We know what the deck has to answer.', out: ['One-page brief'] },
+        { n: 'Map the evidence', when: 'Once the brief is agreed', role: 'without', who: [ag()],
+          act: 'Match each question to the tables and figures that answer it. List the gaps.',
+          how: 'The agent reads the brief and the results repo. It never re-estimates anything.',
+          tools: 'Results repo, past mission notes', outc: 'Every question has evidence, or a flagged gap.', out: ['Evidence map'] },
+        { n: 'Write the storyline', when: '1 hour', role: 'with', who: [me(), ag()],
+          act: 'Pick the three messages, and the one exhibit that carries each.',
+          how: 'The agent proposes messages in plain language. I rewrite them and choose the exhibits.',
+          tools: 'Evidence map, agent', outc: 'A storyline the TTL would sign.', out: ['Storyline'] },
+        { n: 'Build the deck', when: 'When I ask; runs while I do other work', role: 'without', who: [ag()],
+          act: 'Build slides from the template, redraw charts with plain labels, add speaker notes and a handout.',
+          how: 'Works only from the storyline and the repo, so every chart traces back to code.',
+          tools: 'Deck template, plotting code', outc: 'A complete draft deck.', out: ['Draft deck', 'Handout'] },
+        { n: 'Check every claim', when: 'Right after stage 4', role: 'without', who: [ag()],
+          act: 'Check every number against the results tables. Flag claims stronger than the evidence.',
+          how: 'Runs without me. It flags, it does not edit.',
+          tools: 'Results tables, draft deck', outc: 'Numbers match; causal language checked.', out: ['Check report'] },
+        { n: 'Rehearse & finalise', when: 'Week before', role: 'with', who: [me(), p('TTL'), ag()],
+          act: 'Fix the flags, do a dry run with the TTL, prepare for the hard questions.',
+          how: 'The agent drafts the ten questions the Ministry is most likely to ask; we practise answers.',
+          tools: 'Check report, dry run', outc: 'Ready for the room.', out: ['Final deck', 'Q&A sheet'] }
+      ]
+    },
+    {
+      title: 'Cleaning a survey round',
+      sub: 'Weekly batches from a phone survey, run by a survey firm',
+      tag: 'The agent never touches raw data and never decides what counts as an error. It finds, records and rebuilds.',
+      stages: [
+        { n: 'Batch arrives', when: 'Every Monday', role: 'without', who: [p('Survey firm')],
+          act: "The survey firm uploads the week's interviews.",
+          how: 'Their own process. Encrypted upload to the project server.',
+          tools: 'Survey server', outc: 'Raw data is on the server.', out: ['Raw batch'] },
+        { n: 'Run checks', when: 'When the batch lands, I ask', role: 'without', who: [ag()],
+          act: 'High-frequency checks: duplicates, outliers, skip logic, interview length, enumerator patterns.',
+          how: 'Runs without me. Raw data is read-only.',
+          tools: 'Check scripts, agent', outc: 'Every problem listed, with its ID.', out: ['Flag list', 'Check report'] },
+        { n: 'Triage flags', when: 'Monday, 1 hour', role: 'with', who: [me(), ag()],
+          act: 'Sort each flag: real error, plausible, or ask the field team.',
+          how: 'The agent proposes a category and a reason for each flag. I decide.',
+          tools: 'Flag list', outc: 'A clear instruction for every flag.', out: ['Decision log'] },
+        { n: 'Field follow-up', when: 'Tuesday to Thursday', role: 'without', who: [p('Field coordinator'), p('Survey firm')],
+          act: 'Call back respondents and enumerators about the open queries.',
+          how: 'The field team records answers in the tracking sheet.',
+          tools: 'Tracking sheet, phone', outc: 'Open queries are resolved.', out: ['Resolved queries'] },
+        { n: 'Apply corrections', when: 'Once the sheet is filled in', role: 'without', who: [ag()],
+          act: 'Write each correction into the cleaning script, rerun the pipeline, update the codebook.',
+          how: 'Corrections live in code, never in the raw data.',
+          tools: 'Cleaning script, Git', outc: 'Clean data that can be rebuilt from raw.', out: ['Clean data', 'Changelog'] },
+        { n: 'Approve & lock', when: 'Friday', role: 'with', who: [me()],
+          act: 'Review the changelog, spot-check ten records, tag the version.',
+          how: 'Nothing reaches the analysis folder without my tag.',
+          tools: 'Changelog, Git', outc: 'A versioned dataset the team can trust.', out: ['Tagged release'] }
+      ]
+    }
+  ];
+
+  var PER = 7;                       // overview + 6 stages
+  var TOTAL = EX.length * PER;       // states 0 .. TOTAL-1
+  var root = document.getElementById('x3');
+  var marks = root.querySelector('.x3-marks');
+  var tabs = root.querySelectorAll('.x3-tab');
+  var subEl = root.querySelector('.x3-sub');
+  var grid = root.querySelector('.x3-grid');
+  var detail = root.querySelector('.x3-detail');
+  var dots = root.querySelector('.x3-dots');
+  var shownE = -1, shownS = -1;
+
+  for (var i = 0; i < TOTAL - 1; i++) {
+    var m = document.createElement('span');
+    m.className = 'mk fragment';
+    m.setAttribute('data-fragment-index', i);
+    marks.appendChild(m);
+  }
+  for (var d = 0; d < PER; d++) dots.appendChild(document.createElement('span'));
+
+  function chip(a) {
+    return '<span class="ch ' + a.t + '">' + (a.t === 'agent' ? ICON_AGENT : '') + a.n + '</span>';
+  }
+  function roleBadge(r) {
+    return r === 'with' ? '<span class="role with">I\'m in it</span>' : '<span class="role without">without me</span>';
+  }
+
+  function buildGrid(e) {
+    var st = EX[e].stages, h = '';
+    var rows = [['h', 'Stage'], ['r', 'My role'], ['w', 'Who'], ['o', 'Output']];
+    rows.forEach(function (row) {
+      h += '<div class="x3-lab">' + row[1] + '</div>';
+      st.forEach(function (s, k) {
+        var agentOnly = s.who.length === 1 && s.who[0].t === 'agent';
+        var cls = 'x3-cell ' + row[0] + (agentOnly ? ' ag' : '') + (row[0] === 'o' && k === st.length - 1 ? ' last' : '');
+        var inner = '';
+        if (row[0] === 'h') inner = '<span><i>' + (k + 1) + '</i> ' + s.n + '</span><small>' + s.when + '</small>';
+        if (row[0] === 'r') inner = roleBadge(s.role);
+        if (row[0] === 'w') inner = s.who.map(chip).join('');
+        if (row[0] === 'o') inner = s.out.map(function (o) { return '<span class="ch art">' + o + '</span>'; }).join('');
+        h += '<div class="' + cls + '" data-k="' + k + '">' + inner + '</div>';
+      });
+    });
+    grid.innerHTML = h;
+    grid.querySelectorAll('.x3-cell').forEach(function (c) {
+      c.addEventListener('click', function () { go(e * PER + 1 + (+c.getAttribute('data-k'))); });
+    });
+    subEl.innerHTML = '<b>' + EX[e].title + ':</b> ' + EX[e].sub;
+  }
+
+  function paneHTML(e, s) {
+    var ex = EX[e];
+    if (s === 0) {
+      var w = ex.stages.filter(function (x) { return x.role === 'with'; }).length;
+      var a = ex.stages.filter(function (x) { return x.who.some(function (y) { return y.t === 'agent'; }); }).length;
+      return '<div class="x3-pane ov"><div class="tag">' + ex.tag + '</div>' +
+        '<div class="legend"><div>' + chip(me()) + ' you</div><div>' + chip(ag()) + ' runs a whole stage</div><div>' + chip(p('Colleague')) + ' other people</div></div>' +
+        '<div class="count">You are in <b>' + w + ' of 6</b> stages. The agent works in <b>' + a + '</b>, and runs ' +
+        ex.stages.filter(function (x) { return x.who.length === 1 && x.who[0].t === 'agent'; }).length + ' of them on its own.</div></div>';
+    }
+    var st = ex.stages[s - 1];
+    return '<div class="x3-pane"><div class="nm"><span class="big">' + s + '</span><span class="t">' + st.n + '</span>' +
+      '<span>' + roleBadge(st.role) + '</span><span style="display:flex;flex-wrap:wrap;gap:4px">' + st.who.map(chip).join('') + '</span></div>' +
+      '<div class="f"><b>Activity</b>' + st.act + '</div><div class="f"><b>How</b>' + st.how + '</div>' +
+      '<div class="f"><b>Tools in</b>' + st.tools + '</div><div class="f"><b>Outcome</b>' + st.outc + '</div></div>';
+  }
+
+  function render(state) {
+    var e = Math.floor(state / PER), s = state % PER;
+    if (e === shownE && s === shownS) return;
+    if (e !== shownE) buildGrid(e);
+    tabs.forEach(function (t, k) { t.classList.toggle('on', k === e); });
+    root.classList.toggle('focus', s > 0);
+    grid.querySelectorAll('.x3-cell').forEach(function (c) { c.classList.toggle('cur', +c.getAttribute('data-k') === s - 1); });
+    dots.querySelectorAll('span').forEach(function (dd, k) { dd.classList.toggle('on', k === s); });
+    detail.querySelectorAll('.x3-pane').forEach(function (old) {
+      old.classList.add('out');
+      setTimeout(function () { old.remove(); }, 260);
+    });
+    detail.insertAdjacentHTML('beforeend', paneHTML(e, s));
+    shownE = e; shownS = s;
+  }
+
+  function slideEl() { return root.closest('section'); }
+  function currentState() { return slideEl().querySelectorAll('.x3-marks .fragment.visible').length; }
+  function go(state) {
+    var idx = Reveal.getIndices(slideEl());
+    Reveal.slide(idx.h, idx.v, state - 1);
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { go(+t.getAttribute('data-e') * PER); });
+  });
+
+  function sync() { render(currentState()); }
+  function init() {
+    ['slidechanged', 'fragmentshown', 'fragmenthidden', 'ready'].forEach(function (ev) { Reveal.on(ev, sync); });
+    sync();
+  }
+  render(0);
+  if (window.Reveal && Reveal.isReady && Reveal.isReady()) init();
+  else window.addEventListener('load', function () { if (window.Reveal) { if (Reveal.isReady()) init(); else Reveal.on('ready', init); } });
+})();
+</script>
+```
+
+::: {.notes}
+Use the arrow keys or clicker: each example opens on an overview, then steps through its six stages. Click a tab to jump to an example, or a column to jump to a stage.
+
+Ask the room which of the three is closest to a workflow in their own project. That workflow is a good candidate for section 2 of the plan.
+:::
+
+## Example: an AI data map {.smaller}
+
+| Stage | AI task | Data in | Classification | Data out | Checked by |
+|---|---|---|---|---|---|
+| **Design** | Literature search, concept note feedback | Concept note, published papers | Official Use Only | Summary, cited sources | PI verifies every citation |
+| **Acquisition** | Program survey form, translate questions | Questionnaire, codebook | Official Use Only | Form code, translations | Field team pilots, local-language review |
+| **Processing** | Write and review cleaning code | Code, variable names, **synthetic** data | Official Use Only | Cleaning scripts | RA compares counts before and after |
+| **Analysis** | Write and review analysis code, exhibits | Code, **de-identified** data | Confidential | Tables, figures | Analyst inspects every exhibit |
+| **Publication** | Slides, brief, reproducibility package | Paper draft, exhibits | Official Use Only | Drafts, package | Author owns every claim; AI use disclosed |
+
+::: {.notes}
+Illustrative only. Classifications depend on the project's data agreements. Emphasize that identified data does not appear in the "data in" column at any stage.
+:::
 
 ## What did you set up this week? (Check those that applied)
 
@@ -112,91 +875,6 @@ Time: 2 minutes. Ask for a show of hands: who has a memory file in their real pr
 
 Unchecked boxes are not a failure. They become "now" targets in step 4.
 :::
-
-# 2 · Map AI to your workflow {background-color="#530153"}
-
-## Start with a data map, then add AI
-
-A data map shows how data moves through a project. Add the AI tool to that map to see where AI is used and which data it receives.
-
-For each stage of your project, answer:
-
-1. **Task:** What would AI do here?
-2. **Data in:** Which files, code or documents would the tool see?
-3. **Classification:** What is the label on that information?
-4. **Data out:** What do we expect back, and who checks it?
-
-::: {.callout-note-custom}
-If you cannot say which data goes into the tool, you are not ready to use AI at that stage.
-:::
-
-::: {.notes}
-This builds on the data map from the Reproducible Research Fundamentals course and on the lifecycle stages from the Day 1 ethics session (Design, Acquisition, Processing, Analysis, Publication).
-
-The point of the exercise is the "data in" column. Most participants have thought about what AI produces. Fewer have written down what the tool can see.
-:::
-
-## Example: an AI data map {.smaller}
-
-| Stage | AI task | Data in | Classification | Data out | Checked by |
-|---|---|---|---|---|---|
-| **Design** | Literature search, concept note feedback | Concept note, published papers | Official Use Only | Summary, cited sources | PI verifies every citation |
-| **Acquisition** | Program survey form, translate questions | Questionnaire, codebook | Official Use Only | Form code, translations | Field team pilots, local-language review |
-| **Processing** | Write and review cleaning code | Code, variable names, **synthetic** data | Official Use Only | Cleaning scripts | RA compares counts before and after |
-| **Analysis** | Write and review analysis code, exhibits | Code, **de-identified** data | Confidential | Tables, figures | Analyst inspects every exhibit |
-| **Publication** | Slides, brief, reproducibility package | Paper draft, exhibits | Official Use Only | Drafts, package | Author owns every claim; AI use disclosed |
-
-::: {.notes}
-Illustrative only. Classifications depend on the project's data agreements. Emphasize that identified data does not appear in the "data in" column at any stage.
-:::
-
-# 3 · Make the project AI ready {background-color="#530153"}
-
-## The biggest roadblock is confidential data
-
-Many teams cannot use AI on the most useful parts of the work, because the agent would see confidential data.
-
-Prepare the data **before** an AI tool reaches the project folder:
-
-- **Remove PII.** Run a de-identification script on the raw data, outside any AI tool.
-- **Create synthetic data.** If you cannot remove PII safely, generate a synthetic dataset with the same structure, so the agent can write and test code against it.
-- **Separate folders.** Keep identified data in a location the agent never opens.
-
-::: {.callout-note-custom}
-De-identification is a human responsibility. An agent can help write the script from the codebook, but it should never see the raw data while doing so.
-:::
-
-::: {.notes}
-Credit: suggestion from Ankriti Singh.
-
-Removing names alone does not make a dataset safe to share (see Day 1 ethics session). Indirect identifiers such as village, exact dates and rare combinations of characteristics matter too.
-
-This topic deserves its own session. Say that it will come back in the AI roadmap series, and that for today the target is to write down which datasets need de-identification or synthetic versions.
-:::
-
-## Write the rules into your memory file
-
-The agent reads the memory file at the start of every session. Use it to list the checks the agent must follow.
-
-``` markdown
-## Data rules (read before any task)
-
-- Never open files in `data/raw/` or `data/identified/`.
-- Work only with `data/deidentified/` or `data/synthetic/`.
-- If a task seems to need identified data, stop and ask.
-- Refer to variables by name. Do not copy data values into output.
-- Record AI-assisted changes in the commit message.
-```
-
-A memory file guides the agent, but it does not enforce anything. Where the tool supports it, also block those folders in the agent's permission settings, and keep identified data out of the repository.
-
-::: {.notes}
-Builds on the Day 1 memory-file session and on Aidan's comment in the ethics session about a checklist in the memory file.
-
-The last bullet in the slide is the important nuance: instructions reduce the chance of a mistake, but only access controls prevent it.
-:::
-
-# 4 · Set priorities {background-color="#530153"}
 
 ## Three time horizons
 
@@ -243,8 +921,6 @@ Recurring tasks with no skill yet. Write them down anyway:
 Good skill candidates are tasks the team repeats with the same steps every time. The "not yet found" list is useful for us too: it tells Impact Analytics which skills to build next.
 :::
 
-# 5 · People and tools {background-color="#530153"}
-
 ## Who needs access, and to what?
 
 AI adoption fails when only one person on the team uses the tools. For each team member, write down:
@@ -261,7 +937,49 @@ Not everyone needs a coding agent. Everyone who touches project data needs the d
 A memory file in the repository helps here: it is the shared set of rules that applies to every team member's agent.
 :::
 
-# 6 · Risks {background-color="#530153"}
+## Write the rules into your memory file
+
+The agent reads the memory file at the start of every session. Use it to list the checks the agent must follow.
+
+``` markdown
+## Data rules (read before any task)
+
+- Never open files in `data/raw/` or `data/identified/`.
+- Work only with `data/deidentified/` or `data/synthetic/`.
+- If a task seems to need identified data, stop and ask.
+- Refer to variables by name. Do not copy data values into output.
+- Record AI-assisted changes in the commit message.
+```
+
+A memory file guides the agent, but it does not enforce anything. Where the tool supports it, also block those folders in the agent's permission settings, and keep identified data out of the repository.
+
+::: {.notes}
+Builds on the Day 1 memory-file session and on Aidan's comment in the ethics session about a checklist in the memory file.
+
+The last bullet in the slide is the important nuance: instructions reduce the chance of a mistake, but only access controls prevent it.
+:::
+
+## The biggest roadblock is confidential data
+
+Many teams cannot use AI on the most useful parts of the work, because the agent would see confidential data.
+
+Prepare the data **before** an AI tool reaches the project folder:
+
+- **Remove PII.** Run a de-identification script on the raw data, outside any AI tool.
+- **Create synthetic data.** If you cannot remove PII safely, generate a synthetic dataset with the same structure, so the agent can write and test code against it.
+- **Separate folders.** Keep identified data in a location the agent never opens.
+
+::: {.callout-note-custom}
+De-identification is a human responsibility. An agent can help write the script from the codebook, but it should never see the raw data while doing so.
+:::
+
+::: {.notes}
+Credit: suggestion from Ankriti Singh.
+
+Removing names alone does not make a dataset safe to share (see Day 1 ethics session). Indirect identifiers such as village, exact dates and rare combinations of characteristics matter too.
+
+This topic deserves its own session. Say that it will come back in the AI roadmap series, and that for today the target is to write down which datasets need de-identification or synthetic versions.
+:::
 
 ## Risks and how to reduce them {.smaller}
 
@@ -278,41 +996,3 @@ A memory file in the repository helps here: it is the shared set of rules that a
 Ask participants to add at least one risk that is specific to their project, for example a data agreement that restricts processing by third parties.
 :::
 
-# Write your plan {background-color="#530153"}
-
-## Hands-on: draft your plan (25 minutes)
-
-1. Copy [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md) into the root of your project folder.
-2. Fill in sections 1, 4, 5 and 6 yourself. These are your judgment.
-3. Use your agent to draft section 2, the AI data map:
-
-```markdown
-Read README.md, AGENTS.md and the folder structure of this
-project. Do not open any data files. Draft section 2 of
-AI-ADOPTION-PLAN.md: for each project stage, suggest an AI task,
-the files the tool would need, and the expected output. Mark
-anything you are unsure about with TODO.
-```
-
-4. Review the draft. Fill in the classification column and remove what you do not agree with.
-5. Commit the plan.
-
-::: {.notes}
-Walk around and check that people are working in their real project, not the demo project.
-
-The prompt explicitly tells the agent not to open data files. Point this out: it is step 3 of the plan in practice.
-
-At 5 minutes before the end, stop and ask two or three people to share one 6-week target.
-:::
-
-## Before you leave
-
-::: {.callout-note-custom}
-**Share one 6-week target with the person next to you.** We will ask about it in the follow-up survey.
-:::
-
-- Plan saved in your repository: `AI-ADOPTION-PLAN.md`
-- Link the plan from your memory file so the agent knows the team's priorities
-- Come back to the plan when the survey arrives, and update it
-
-# Thank You! - Questions? {background-color="#530153"}
