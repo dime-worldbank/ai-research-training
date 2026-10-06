@@ -27,6 +27,10 @@
 !CONTRIBUTING.md
 !LICENSE*
 
+# Netlify / Jekyll build files
+!Gemfile
+!netlify.toml
+
 #######################
 # For performance reasons, if a folder is already ignored, then
 # GitHub does not check the content for that folder for matches
@@ -87,8 +91,14 @@
 # png
 !/**/*.png
 
+# png
+!/**/*.jpg
+
 # Powershell script
 !/**/*.ps1
+
+# Bash scripts
+!/**/*.sh
 
 # Mermaid
 !/**/*.mmd
@@ -106,6 +116,10 @@
 !/**/Output/**/*.svg
 # PowerPoint
 !/**/*.pptx
+
+# Demo projects for hands-on sessions only contain fictional data,
+# so all their files (including data and requirements) are tracked
+!/bootcamp/sessions/**/demo-project/**
 #######################
 # Include all the files with passwords or tokens here. All files named
 # password or passwords are with this template ignored no matter which

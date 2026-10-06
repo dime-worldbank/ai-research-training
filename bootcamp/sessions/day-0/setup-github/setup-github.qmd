@@ -13,6 +13,7 @@ logos:
 format:
   bootcamp-revealjs:
     embed-resources: true
+    output-file: index.html
 ---
 
 ```{r}
@@ -31,7 +32,6 @@ login_update_ghd <- "2. After installing GitHub Desktop, open it and go to *File
 1. Create a GitHub account
 2. Get access to the Intro to Git/GitHub materials
 3. Install a Git client: GitHub Desktop
-4. Request to become a member of a WB GitHub organization account
 
 ## GitHub Account - Best Practices
 
@@ -97,7 +97,6 @@ You are done when the following objectives are completed:
 1. Create a GitHub account
 2. Get access to the Training Repository we will use in the next session
 3. Install a Git client: GitHub Desktop
-4. Have requested to become a member of a WB GitHub organization account
 
 ### GitHub Copilot License
 

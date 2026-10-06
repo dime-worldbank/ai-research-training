@@ -122,23 +122,21 @@ LLMs do not retain your project context between requests. We get better results 
 
 :::
 
-
 ::: {.column width="30%" }
   ![](../img/model-cosmos.png)
 :::
 
 ::::
 
-
 ## What Do LLMs Know?
 
-- LLMs do store facts in their neural-network memory; they only generate text by predicting likely sequences of words.
+- LLMs do not store facts in their neural-network memory; they only generate text by predicting likely sequences of words.
 - They can produce factually correct answers when facts are statistically very common in their training data.
 - Research questions typically lack universally valid correct answers that are commonly repeated online.
 
 :::: {.columns}
 
-::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 1em;"}
+::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 0.5em;"}
 **General Factual Question:**
 
 _Prompt:_ What is the capital of France?
@@ -146,7 +144,7 @@ _Prompt:_ What is the capital of France?
 _AI Answer:_ The capital of France is ...
 :::
 
-::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 1em;"}
+::: {.column style="border: 1px solid #999; border-radius: 8px; padding: 0.5em;"}
 **Specific Research Question:**
 
 _Prompt:_ What control variables are needed to make my regression valid?
@@ -242,7 +240,7 @@ Raw files are saved in data/raw.
 
 ## Content Format
 
-- Again, think of a memory file as project-specific prefix added to your prompts.
+- Again, think of a memory file as a project-specific prefix added to your prompts.
 - This is project onboarding that the LLM needs to provide project-relevant answers.
 - Prompts are natural-language instructions without technical requirements, and so are memory files - so it is really just an extension of your prompt.
 - Since memory files are added to each context window, they tend to be less verbose and use bullet points and other formatting that makes them concise.
@@ -252,9 +250,9 @@ Raw files are saved in data/raw.
 :::: {.columns .v-center-container}
 
 ::: {.column width="70%" }
-- Just create a file named `AGENTS.md` in your root folder of your project.
+- Just create a file named `AGENTS.md` in the root folder of your project.
   - If you have multiple projects in your workspace, create an `AGENTS.md` file in each root to describe that part of the workspace.
-- We recommend you using that file name to make your project agent-agnostic.
+- We recommend using that file name to make your project agent-agnostic.
 :::
 
 ::: {.column width="30%" }
@@ -262,155 +260,6 @@ Raw files are saved in data/raw.
 :::
 ::::
 
-## Memory File Content
+{{< include ../_memory_content_slides/_memory_content_slides.qmd >}}
 
-:::: {.columns .v-center-container}
-
-::: {.column width="50%" }
-
-- Making these agents work for your specific field is not only a technical question; it is also a domain-knowledge question.
-- Each field still has a lot to learn before fully understanding how to best onboard AI agents for their specific needs.
-- There is no universal best practice yet for these files - but we will offer several examples commonly used.
-:::
-
-::: {.column width="30%" }
-
-### Common Sections
-
-- Project description
-- Folder structure
-- Data descriptions
-- Software preferences
-- Research design
-- Rules
-
-:::
-::::
-
-## Project Description
-
-- For each request, the LLM looks at your project for the first time.
-- Use LLMs to make a short summary of your concept note or analysis plan.
-- Focus on details important to someone implementing your project, not details important to someone approving or funding it.
-
-### What Sets Your Research Apart from a generic example
-
-What makes your project different from textbook examples or private-sector data science.
-
-| Probably better | Probably worse |
-|---|---|
-| Developing-country context | Exact country context |
-| The novel research question | Just the general research topic |
-| The type of data sources | A generic description of the topic |
-
-## Folder Structure and Important Files
-
-:::: {.columns}
-
-::: {.column width="40%" }
-
-### File Structure
-
-- Tell the agent where to find what and where to save what.
-- Do not just list folders; also explain their intended usage.
-
-:::
-
-::: {.column width="60%" }
-
-```markdown
-project/
-├── data/
-│   ├── raw/          Raw datasets - do not save any processed data here
-│   └── processed/    Modified datasets ready for analysis
-├── code/
-│   ├── clean/        Data cleaning scripts
-│   └── analysis/     Statistical analysis scripts
-└── paper/            Manuscript and related documents
-
-```
-
-:::
-::::
-
-### File paths to specific files
-
-Agents can also follow specific file paths. For example, if you have a file describing your treatment assignment in an RCT, you can point to that file directly and add a description where that file is:
-
-```markdown
-Treatment assignment strategy file: `paper/research-design/treatment_assignment.md`
-```
-
-## Data Descriptions
-
-- Describe the location of input datasets.
-- Describe the main variables in each dataset.
-- Point to a codebook for full documentation.
-
-### Input Datasets
-
-```markdown
-- `data/raw/census_2011.csv`: 
-  - household demographics. Main variables: household ID and income. 
-  - Full codebook: `data/raw/census_2011_codebook.csv`.
-- `data/raw/firm_panel.dta`: 
-  - firm-level output. Main variables: firm ID and sales. 
-  - Full codebook: `data/raw/firm_panel_codebook.csv`.
-- `data/raw/prices_monthly.csv`: 
-  - monthly commodity prices. Main variables: commodity, region, month, and price. 
-  - Full codebook: `data/raw/prices_monthly_codebook.csv`.
-```
-
-## Software Preferences
-
-- List the tools you want to use.
-- Specify the programming language and packages.
-- Specify data packages, such as `dplyr` versus `data.table`.
-- Specify output formats for tables and visualizations.
-- Specify the dynamic document type.
-
-### Example
-
-```markdown
-- Write data-cleaning and analysis code in Stata.
-- Use Python or R only for data visualization.
-- Use LaTeX for the report and export all tables in `.tex` format.
-```
-
-## Programming Preferences
-
-- Include preferred best practices, such as using a main do-file that runs all other code.
-- Include naming conventions.
-
-### Code Writing Guidelines
-
-```markdown
-- Make sure all code can be run through a single script called `code/main.do`.
-- Each time you create a new script, add it to the workflow in `main.do`.
-- Write clean and well-commented code; human readability is important.
-```
-
-## Research Design and Preferences
-
-- This is an area where you will always know better than the agent what is valid in your context.
-- The next session will provide a more specific tool, skills, for detailed steps. For now, list a high-level description of the research design.
-- Include the randomization strategy, units of randomization, treatment modality, and so on.
-- Include preferences such as "always use OLS."
-
-## Rules
-
-Telling the agent what not to do is just as important as telling it what to do.
-
-### Examples:
-
-- Packages and tools not to use
-- Files not to edit
-- Anything else you have ever told an RA not to do
-- Do not execute R code using the command line command `R`, always use `R.exe` <- WB Windows computer requirement
-
-# Thank You! {background-color="#530153"}
-
-## Questions?
-
-
---- 
+# Thank You! - Questions? {background-color="#530153"}

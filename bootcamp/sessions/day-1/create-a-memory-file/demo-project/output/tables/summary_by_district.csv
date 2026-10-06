@@ -1,0 +1,6 @@
+region,district,households,avg_hh_size,avg_monthly_income,share_with_electricity
+East,Eastfield,6,5.0,340.0,0.5
+North,Lakeview,6,4.67,304.0,0.33
+North,North Hills,6,4.5,310.0,0.5
+South,Central,6,3.5,838.0,1.0
+South,Riverside,6,4.0,507.0,0.83

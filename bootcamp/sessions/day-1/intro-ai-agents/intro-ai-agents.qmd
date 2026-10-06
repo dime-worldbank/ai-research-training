@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ::: { .column width="100%" }
 
-- Overview of Large Language Models (LLMs) and how Agents fits in to the LLM evolution
+- Overview of Large Language Models (LLMs) and how agents fit into the LLM evolution
 - Introduction to agents, with an emphasis on coding agents
 - Tools and context windows: how agents gather additional information relevant to your prompt
 
@@ -45,25 +45,25 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ## Two Types of AI Models
 
 No matter how amazed we are with new AI capabilities the last year, 
-the Large Language Models (LLMs) that is the technology behind text based AI, 
+the Large Language Models (LLMs) that are the technology behind text based AI, 
 can only do these two things. 
 And that has not changed since the publication of ChatGPT changed the world forever.
 
 :::: {.columns}
 
-::: { .column width="50%" }
+::: {.column style="border: 3px solid #70C2E7; border-radius: 8px; padding: 0.5em;"}
 
 ### Embedding Models
 
 - Represent the meaning of text as numbers, which is useful for:
   - Comparing text for similarity
-  - Finding relevant tasks or documents
-  - Identifying gaps in available information
+  - Finding tasks in texts
+  - Identifying missing information
 - Do not generate text by themselves
 
 :::
 
-::: {.column width="50%"}
+::: {.column style="border: 3px solid #81D089; border-radius: 8px; padding: 0.5em;"}
 
 ### Generative Models
 
@@ -72,7 +72,6 @@ And that has not changed since the publication of ChatGPT changed the world fore
 - Can perform common language tasks
 
 :::
-
 ::::
 
 ## But What About Reasoning Models?
@@ -101,13 +100,18 @@ And that has not changed since the publication of ChatGPT changed the world fore
 
 ::: { .column width="100%" }
 
+::: {.fragment}
 - Despite rapid advances in AI in recent years, there has been no major breakthrough in the underlying technologies.
-
+:::
+::: {.fragment}
 - Instead, people have found ingenious ways to combine these technologies, creating more capable and versatile AI products.
-
+:::
+::: {.fragment}
 - Recognizing that the underlying technologies have not fundamentally changed—and are unlikely to undergo a major breakthrough in the immediate future—may help us feel less overwhelmed.
-
+:::
+::: {.fragment}
 - The core skills needed to excel with today's AI products are likely to remain relevant for tomorrow's, since both are built on the same underlying technologies, whatever new fancy names the AI giants come up with.
+:::
 
 :::
 
@@ -142,8 +146,6 @@ AI products like ChatGPT or mAI are more than just language models. They can con
 
 ::: {.fragment}
 The model recognizes the prompt as a math question, extracts the numbers and operator, and sends them to a calculator. The calculator's answer is added to the context. The updated prompt becomes:
-:::
-::: {.fragment}
 ```json
 {
   "human_prompt": "What is 35 x 22?",
@@ -200,24 +202,24 @@ Bob, Alice, and Tom each have 7 apples. How many apples do they have altogether?
 - While the details differ and the features are called different things, how to use AI, including agentic AI, comes down to managing the context window. 
 - **_Prediction:_** Skill sets for managing context windows will remain essential for effective AI use, even if they look different and are called something else.
   - _"Don't give the AI user a fish, teach the AI user to fish."_
-- Currently, ITS provisions licenses for GitHub Copilot, so that is what we will use in this training.
+- While this training was being prepared, only GitHub Copilot licenses were provisioned by ITS.
 
 ## Common Confusions Related to Data Privacy and AI Agents
 
 ::: {.fragment}
-- mAI and GitHub Copilot provides access to Claude models. This is **NOT** the same as using Claude Code. 
+- mAI and GitHub Copilot provide access to Claude models. This is **NOT** the same as using Claude Code. 
 :::
 ::: {.fragment}
-- Claude Code is an agent: agents combine models and tools -- Claude Code is an agent that exclusively use Claude models.
+- Claude Code is an agent: agents combine models and tools -- Claude Code is an agent that exclusively uses Claude models.
 :::
 ::: {.fragment}
 - mAI sends your request to a more secure server, which protects sensitive information. 
 :::
 ::: {.fragment}
-- Requests made using the same Claude models elsewhere (e.g. VS Code) are NOT routed through the secure server
+- Requests made using non-approved tools with the same Claude models cannot be assumed to be routed through the secure server
 :::
 ::: {.fragment}
-- A personal Claude Code license has less data privacy restrictions compared to WB enterprise GitHub Copilot license -- this explains part of why Claude Code performs better. It simply sends more to the Claude servers for processing.
+- Claude Code is now approved for strictly confidential data, but this _**does not apply**_ to personal licenses - it only applies if you are using a WB enterprise license.
 :::
 
 # Context window  {background-color="#530153"}
@@ -253,7 +255,7 @@ Bob, Alice, and Tom each have 7 apples. How many apples do they have altogether?
 :::: {.columns .v-center-container}
 ::: {.column width="75%" }
 
-The more information included in the context window, the better responses, right? - **NO!!**
+The more information included in the context window, the better the responses, right? - **NO!!**
 
 * Every context window has a maximum capacity. Its size depends on the model. If you approach or exceed that limit, the AI will summarize earlier content to avoid errors.
 
@@ -266,7 +268,7 @@ The more information included in the context window, the better responses, right
 
 ![](../img/context-window.png)
 
-<span style="display: block; text-align: center; font-size: 0.7em; line-height: 1;">This is how we will represent context window from now on.</span>
+<span style="display: block; text-align: center; font-size: 0.7em; line-height: 1;">This is how we will represent the context window from now on.</span>
 
 :::
 ::::
@@ -306,7 +308,7 @@ Prompt engineering was a popular buzzword two years ago - it was all about makin
 
 ## Planning Mode
 
-- Use "_planning mode_" when starting a new non-trivial task - this will enusre a well curated context window before starting execution of the tasl.
+- Use "_planning mode_" when starting a new non-trivial task - this will ensure a well curated context window before starting execution of the task.
 - In planning mode:
   - The agent stays in context gathering mode, until you indicate it should proceed.
   - The agent gathers relevant context and asks for human input instead of guessing when it cannot find relevant context 
