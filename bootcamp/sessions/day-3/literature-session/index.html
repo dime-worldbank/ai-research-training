@@ -1269,7 +1269,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tool = fig.querySelector('figcaption b')?.textContent || new URL(a.href).hostname;
     img.src = src.src; img.alt = src.alt;
     link.href = a.href;
-    link.textContent = (fig.classList.contains('demo') ? 'Open this example in ' : 'Open ') + tool + ' ↗';
+    link.textContent = tool + ' ↗';
     lb.classList.add('open');
   }));
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
