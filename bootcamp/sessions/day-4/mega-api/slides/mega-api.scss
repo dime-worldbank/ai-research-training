@@ -204,3 +204,32 @@ $code-block-bg: #F5F9FC;
     background: $analytics-dark;
   }
 }
+
+// ---------- team photos on the closing slide: ::: {.team} with .member children ----------
+.reveal .team {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2.2em;
+  margin: 0.4em 0 0.8em;
+
+  .member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.6em;
+    color: $analytics-dark;
+
+    p {
+      margin: 0.3em 0 0;
+    }
+
+    img {
+      width: 5.5em;
+      height: 5.5em;
+      margin: 0;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid $analytics-light;
+    }
+  }
+}

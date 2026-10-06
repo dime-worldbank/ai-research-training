@@ -363,5 +363,23 @@ Patterns across interviews
 
 ## Thank you {.closing}
 
+::: {.team}
+::: {.member}
+![](images/team/yukiko.png){fig-alt="Yukiko Suzuki"}
+
+**Yukiko Suzuki**
+:::
+::: {.member}
+![](images/team/marina.png){fig-alt="Marina Visintini"}
+
+**Marina Visintini**
+:::
+::: {.member}
+![](images/team/wei.png){fig-alt="Wei Lu"}
+
+**Wei Lu**
+:::
+:::
+
 [mega@worldbank.org](mailto:mega@worldbank.org)
 
