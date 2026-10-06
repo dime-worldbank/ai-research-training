@@ -1100,6 +1100,53 @@ Switch to the live demo, about 4 minutes: upload a small CSV, define two criteri
 <figure class="shot2" style="align-items:center"><a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img style="max-height:440px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"></a><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
 ```
 
+# Bonus: Decision Models {background-color="#530153"}
+
+## The new kid on the block: decision models
+
+```{=html}
+<div class="cards c2" style="margin-top:0.4em">
+  <div class="card"><span class="ct">An LLM</span><div>Writes its answer token by token, as text.</div><div>Its confidence is hidden or poorly calibrated, so to see uncertainty you <b>rerun it many times</b> (our Step 1).</div></div>
+  <div class="card dark"><span class="ct">A decision model</span><div>Returns a typed answer directly: yes/no, one option from a list, or a score.</div><div>Each answer comes with a <b>probability</b> in a single pass: act when confident, send to a human when not.</div></div>
+</div>
+<div class="card line" style="margin-top:16px"><span class="ct">Example: Jev (TypeSafe AI, September 2026)</span><div>Trained with “reinforcement learning for calibrated decisions”. Vendor claims: 70–500 ms per decision, $42 per <i>billion</i> input tokens, up to 194× faster and 444× cheaper than LLMs on its own workflows. No independent tests yet, and none on screening.</div></div>
+```
+
+::: {.punch}
+Screening is a set of yes/no questions. That is exactly what these models are built for.
+:::
+
+::: {.source-note}
+typesafe.ai and launch coverage, Sept 2026. Early access only. Not to be confused with JEPA “world models” (LeCun, AMI Labs), which predict states for planning.
+:::
+
+::: {.notes}
+Bonus, about 3 minutes. Decision models drop text generation and score the possible answers directly, which is faster, cheaper and, if the calibration holds, gives you the per-paper error probability that our strategy currently estimates by rerunning the LLM 20 times. Everything about Jev is vendor-reported: treat it as a direction, not a result.
+:::
+
+## Decision models and their older relatives
+
+::: {.tooltable}
+| Family | Example | Gives you | Watch for |
+|---|---|---|---|
+| **Decision model** | Jev (TypeSafe AI, 2026) | A probability per answer, in one fast, cheap call | Brand new, closed, vendor benchmarks only |
+| **LLM token probabilities** | Compare P(“Yes”) with P(“No”), set a threshold for a target recall | Works with open models you already use | Raw probabilities are poorly calibrated: tune on seed papers |
+| **Small zero-shot classifiers** | GLiClass, NLI models (~150M parameters) | Run on a laptop, one pass per paper | Weaker on nuanced criteria like study design |
+| **Active learning** | ASReview | Learns from your labels, shows likely includes first | A human labels throughout, and needs a stopping rule |
+:::
+
+::: {.punch}
+Whatever the model, the strategy stays: check its probabilities on your pilot before you trust them.
+:::
+
+::: {.source-note}
+Token probabilities: Wang et al. (2024), zero-shot generative LLMs for screening, ECIR. ASReview: van de Schoot et al. (2021), Nature Machine Intelligence. GLiClass: Knowledgator, Hugging Face.
+:::
+
+::: {.notes}
+The older relatives already give you probabilities: an LLM's own token probabilities (calibrated against papers you know are included), small encoder classifiers, and active-learning tools such as ASReview that rank papers as you label them. A decision model promises the speed of the small models with the understanding of an LLM. Whichever you use, Steps 4 to 7 still apply: a reference answer, measured miss rates, and an audit.
+:::
+
 ## Thank you {.closing}
 
 :::: {.columns}
