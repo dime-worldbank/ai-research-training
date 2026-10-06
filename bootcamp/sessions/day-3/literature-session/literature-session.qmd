@@ -262,6 +262,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 .crowx.dark { background: var(--blue); color: #fff; }
 .reveal .crowx.dark b, .reveal .crowx.dark small { color: #fff; }
 .shot2 { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.shot2 > a { display: block; line-height: 0; }
 .shot2 img { width: 100%; border-radius: 8px; border: 1px solid #E2E2E2; box-shadow: 0 3px 12px rgba(0,0,0,.12); }
 .shot2 figcaption { font-size: 0.55em; line-height: 1.35; color: var(--grey); text-align: left; }
 .reveal .shot2 figcaption b { color: var(--navy); }
@@ -347,7 +348,7 @@ Literature is public, but search strategies, unpublished drafts and review corpo
 
 ::: {.column width="62%"}
 ```{=html}
-<figure class="shot2"><img src="images/deep-research-plan.jpg" alt="Gemini Deep Research proposing a research plan before it starts searching"><figcaption>Gemini Deep Research: it proposes a plan you can edit, then searches and writes a cited report. ChatGPT and Claude work similarly.</figcaption></figure>
+<figure class="shot2"><a href="https://gemini.google.com/app" target="_blank" rel="noopener"><img src="images/deep-research-plan.jpg" alt="Gemini Deep Research proposing a research plan before it starts searching"></a><figcaption>Gemini Deep Research: it proposes a plan you can edit, then searches and writes a cited report. ChatGPT and Claude work similarly.</figcaption></figure>
 ```
 :::
 
@@ -369,9 +370,9 @@ Open every cited source. Is it a paper or a blog? Does it say what the report sa
 
 ```{=html}
 <div class="cards c3">
-  <figure class="shot2"><img src="images/elicit-search.jpg" alt="Elicit search results"><figcaption><b>Elicit</b> · semantic search, then tables of extracted details</figcaption></figure>
-  <figure class="shot2"><img src="images/consensus.jpg" alt="Consensus search page"><figcaption><b>Consensus</b> · asks the literature a question, summarises where papers agree</figcaption></figure>
-  <figure class="shot2"><img src="images/undermind.jpg" alt="How Undermind works"><figcaption><b>Undermind</b> · an agent that follows citation trails over many rounds</figcaption></figure>
+  <figure class="shot2"><a href="https://elicit.com" target="_blank" rel="noopener"><img src="images/elicit-search.jpg" alt="Elicit search results"></a><figcaption><b>Elicit</b> · semantic search, then tables of extracted details</figcaption></figure>
+  <figure class="shot2"><a href="https://consensus.app" target="_blank" rel="noopener"><img src="images/consensus.jpg" alt="Consensus search page"></a><figcaption><b>Consensus</b> · asks the literature a question, summarises where papers agree</figcaption></figure>
+  <figure class="shot2"><a href="https://www.undermind.ai" target="_blank" rel="noopener"><img src="images/undermind.jpg" alt="How Undermind works"></a><figcaption><b>Undermind</b> · an agent that follows citation trails over many rounds</figcaption></figure>
 </div>
 ```
 
@@ -427,13 +428,13 @@ This is a connector (an add-on) for Claude that searches OpenAlex and Semantic S
 
 ::: {.column width="50%"}
 ```{=html}
-<figure class="shot2"><img src="images/elicit-extraction.jpg" alt="Elicit extracting a column of values across papers"><figcaption><b>Elicit</b> · one row per paper, one column per detail you ask for</figcaption></figure>
+<figure class="shot2"><a href="https://elicit.com" target="_blank" rel="noopener"><img src="images/elicit-extraction.jpg" alt="Elicit extracting a column of values across papers"></a><figcaption><b>Elicit</b> · one row per paper, one column per detail you ask for</figcaption></figure>
 ```
 :::
 
 ::: {.column width="50%"}
 ```{=html}
-<figure class="shot2"><img src="images/notebooklm.jpg" alt="Gemini Notebook: many sources feeding grounded answers"><figcaption><b>Gemini Notebook</b> (formerly NotebookLM) · answers only from the sources you upload</figcaption></figure>
+<figure class="shot2"><a href="https://notebooklm.google.com" target="_blank" rel="noopener"><img src="images/notebooklm.jpg" alt="Gemini Notebook: many sources feeding grounded answers"></a><figcaption><b>Gemini Notebook</b> (formerly NotebookLM) · answers only from the sources you upload</figcaption></figure>
 ```
 :::
 
@@ -539,7 +540,7 @@ Switch to the live demo, about 4 minutes: upload a small CSV, define two criteri
 ## Demo: MetaScreener
 
 ```{=html}
-<figure class="shot2" style="align-items:center"><img style="max-height:440px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
+<figure class="shot2" style="align-items:center"><a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img style="max-height:440px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"></a><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
 ```
 
 # How Much Screening Can an LLM Do? {background-color="#530153"}
@@ -1054,7 +1055,7 @@ Method: *How much can we automate? Quantifying uncertainty to choose hybrid LLM�
 :::
 
 ::: {.column width="35%"}
-![](images/metascreener-qr.png){width="200px" fig-alt="QR code linking to MetaScreener"}
+[![](images/metascreener-qr.png){width="200px" fig-alt="QR code linking to MetaScreener"}](https://sautmann.github.io/MetaScreener/){target="_blank" rel="noopener"}
 :::
 
 ::::
