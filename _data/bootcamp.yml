@@ -365,6 +365,7 @@ days:
     title: Using the World Bank AI API in MEGA
     hands_on: true
     lead: MEGA
+    link: "/bootcamp/sessions/day-4/mega-api/slides"
   - time: 10:45 – 11:00
     title: Break
     kind: break
