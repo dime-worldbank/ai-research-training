@@ -345,7 +345,7 @@ Patterns across interviews
 
 ## Exercise: log in to the MEGA workspace
 
-1. Go to [the exercise workspace](https://adb-6102124407836814.14.azuredatabricks.net/browse/folders/4413675519955135?)
+1. Go to [the exercise workspace](https://adb-6102124407836814.14.azuredatabricks.net/browse/folders/4413675519955135?o=6102124407836814)
 2. You should be prompted to log in with your **Microsoft Entra ID**
 3. Follow along with the exercise steps
 
