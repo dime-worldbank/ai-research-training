@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Objective
 
-By the end of this session you have a written **AI adoption plan** for your own project, saved in the project repository:
+By the end of this session you have a written **AI adoption plan** for your own project, saved in the project folder (commit it to GitHub if you are using Git):
 
 - What you have already set up during the bootcamp
 - Where AI fits in each stage of your project, and what data goes in and comes out
@@ -55,7 +55,7 @@ Say: this is the session where the last three days turn into something you will 
 ## The plan in six steps
 
 | | Step | Output in your plan |
-|---|---|---|
+| --- | ------- | -------- |
 | **1** | Take stock | Checklist of what is already set up |
 | **2** | Map AI to your workflow | AI data map: stage, task, data in, data out |
 | **3** | Make the project AI ready | Data safeguards and memory-file rules |
@@ -63,7 +63,11 @@ Say: this is the session where the last three days turn into something you will 
 | **5** | People and tools | Who needs access, who needs training |
 | **6** | Risks | Risks and mitigations |
 
-**Template:** [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md). Copy it into the root of your project repository.
+**Template:** [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md). Copy it into the root of your project folder.
+
+::: {.callout-note-custom}
+This is suggested format for an AI adoption plan. It is possible that some sections does not fit your context, and you need to add or modify sections as appropriate.
+:::
 
 ::: {.notes}
 Point participants to the template now so they can download it while you talk. Each section of the deck maps to one section of the template.
@@ -71,7 +75,7 @@ Point participants to the template now so they can download it while you talk. E
 
 # 1 · Take stock {background-color="#530153"}
 
-## What did you set up this week?
+## What did you set up this week? (Check those that applied)
 
 :::: {.columns}
 
@@ -84,7 +88,7 @@ Point participants to the template now so they can download it while you talk. E
 
 **Onboarding (Day 1)**
 
-- [ ] Memory file (`AGENTS.md` / `CLAUDE.md`) in the project
+- [ ] Memory file (`AGENTS.md`) in the project
 - [ ] At least one skill installed and tested
 :::
 
@@ -278,11 +282,11 @@ Ask participants to add at least one risk that is specific to their project, for
 
 ## Hands-on: draft your plan (25 minutes)
 
-1. Copy [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md) into the root of your project repository.
+1. Copy [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md) into the root of your project folder.
 2. Fill in sections 1, 4, 5 and 6 yourself. These are your judgment.
 3. Use your agent to draft section 2, the AI data map:
 
-```text
+```markdown
 Read README.md, AGENTS.md and the folder structure of this
 project. Do not open any data files. Draft section 2 of
 AI-ADOPTION-PLAN.md: for each project stage, suggest an AI task,
@@ -311,6 +315,4 @@ At 5 minutes before the end, stop and ask two or three people to share one 6-wee
 - Link the plan from your memory file so the agent knows the team's priorities
 - Come back to the plan when the survey arrives, and update it
 
-## Thank you {.closing}
-
-[kbjarkefur@worldbank.org](mailto:kbjarkefur@worldbank.org)
+# Thank You! - Questions? {background-color="#530153"}
