@@ -1199,9 +1199,9 @@ Method: *How much can we automate? Quantifying uncertainty to choose hybrid LLM�
 
 ::::
 
-# Appendix {background-color="#530153"}
+# Appendix: Calculating screening uncertainty for SLRs & MAs {background-color="#530153"}
 
-## A0 · The procedure, step by step {.smaller}
+## A0 · Overview {.smaller}
 
 1. **Decompose** eligibility into criteria; a paper is excluded if any criterion is No
 2. **Pilot:** screen J papers R times each (e.g. 100 × 100)
