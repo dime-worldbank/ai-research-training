@@ -266,6 +266,12 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 .shot2 img { width: 100%; border-radius: 8px; border: 1px solid #E2E2E2; box-shadow: 0 3px 12px rgba(0,0,0,.12); }
 .shot2 figcaption { font-size: 0.55em; line-height: 1.35; color: var(--grey); text-align: left; }
 .reveal .shot2 figcaption b { color: var(--navy); }
+.shot2.demo img { max-height: 230px; object-fit: cover; object-position: top left; }
+.shot2.demo figcaption { font-size: 0.46em; }
+.shot2.demo figcaption .q { margin-bottom: 4px; }
+.shot2.demo figcaption i { color: var(--navy); }
+.shot2.demo figcaption span { display: block; padding-left: 10px; border-left: 2px solid #E2E2E2; margin-bottom: 3px; }
+.reveal .shot2.demo figcaption a.src { font-size: 0.9em; color: var(--grey); }
 .source-shots { font-size: 0.45em; color: var(--grey); }
 .asks { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
 .ask { background: var(--pale); border-radius: 10px; padding: 10px 14px; font-size: 0.66em; line-height: 1.35; color: var(--navy); display: flex; flex-direction: column; gap: 3px; }
@@ -380,46 +386,68 @@ Each searches a different index. Run the same question in two and compare.
 :::
 
 ::: {.notes}
-Live demo, one topic throughout: AI decision support for community health workers (CHWs) in low- and middle-income countries. Run each step in Elicit and Consensus side by side. No single index covers everything; the differences are the point.
+One topic for the whole demo: AI decision support for community health workers (CHWs) in low- and middle-income countries. The next three slides show real output from Elicit, Consensus and Gemini Notebook (6 Oct 2026); re-run the searches live if time allows. No single index covers everything; the differences are the point.
 
-1. Search the literature.
-   Elicit: "Does AI-based decision support improve the quality of care delivered by community health workers in low- and middle-income countries?"
-   Consensus: "Does AI decision support improve community health worker care in low- and middle-income countries?" (a yes/no question, so the Consensus Meter appears)
-   Point out: how many results are actually on topic, and how little the two top-10 lists overlap.
+Optional extra search, "Which papers does everyone cite?": in Elicit, "What are the key studies on digital clinical decision support tools for community health workers?" and sort by citations; in Consensus, the same question with the "Highly cited" filter. The most-cited papers tend to be reviews or general mHealth papers, not AI.
+:::
 
-2. Which papers does everyone cite?
-   Elicit: "What are the key studies on digital clinical decision support tools for community health workers?" then sort by citations.
-   Consensus: same question with the "Highly cited" filter on.
-   Point out: the most-cited papers are often reviews or commentaries, and about mHealth in general rather than AI.
+## Demo · One question, two tools
 
-3. Has someone already done this?
-   Elicit: "Randomized trials testing AI decision support for community health workers in sub-Saharan Africa"
-   Consensus: "Has a randomized trial tested AI decision support for community health workers?" with the RCT study-design filter on.
-   Point out: whether either tool finds recent trial protocols (a 2026 cluster-RCT protocol in rural Kenya exists). A referee would point to it, so you want to find it first.
+```{=html}
+<div class="cards c2">
+  <figure class="shot2 demo"><a href="https://elicit.com" target="_blank" rel="noopener"><img src="images/demo-elicit-overview.jpg" alt="Elicit Find papers: 8-paper table with an AI scope column"></a><figcaption><div class="q"><b>Elicit</b> · <i>Does AI-based decision support improve the quality of care delivered by community health workers in low- and middle-income countries?</i></div><span>8 papers. Its own <b>AI scope</b> column flags most of them as rule-based or general mHealth, not AI</span><span>Its summary says so too: the set does not support treating digital decision-support effects as effects of AI</span><a class="src" href="https://elicit.com/agent/add91450-6003-47d5-ba36-f30fd49308f9" target="_blank" rel="noopener">elicit.com/agent/add91450-6003-47d5-ba36-f30fd…</a></figcaption></figure>
+  <figure class="shot2 demo"><a href="https://consensus.app" target="_blank" rel="noopener"><img src="images/demo-consensus-overview.jpg" alt="Consensus answer with Consensus Meter and ranked results"></a><figcaption><div class="q"><b>Consensus</b> · <i>Does AI decision support improve community health worker care in low- and middle-income countries?</i></div><span>“Shows promise … but rigorous evidence remains preliminary.” Meter: 2 Yes, 3 Possibly (N = 5)</span><span>Top hit: a 2026 Campbell review <b>protocol</b> on AI tools used by CHWs in LMICs. Elicit did not return it</span><a class="src" href="https://consensus.app/search/ai-decision-support-community-health/r2ApyCWtTvWFKv5N-fOfXQ/" target="_blank" rel="noopener">consensus.app/search/ai-decision-support-commu…</a></figcaption></figure>
+</div>
+```
 
-Run these before the session: results change, and Consensus filters may need a login.
+::: {.punch}
+Same question, different papers. Look at what each answer rests on.
+:::
+
+::: {.source-note}
+Real output, 6 Oct 2026. Click a screenshot to open the tool.
+:::
+
+::: {.notes}
+Run live if time allows; results change between runs. Point out: Elicit separates "AI" from "algorithmic" decision support on its own, Consensus gives a confident one-liner from five papers. The Campbell protocol is exactly the kind of paper you must find before writing a review on this topic.
+:::
+
+## Demo · Has someone already done this?
+
+```{=html}
+<div class="cards c2">
+  <figure class="shot2 demo"><a href="https://elicit.com" target="_blank" rel="noopener"><img src="images/demo-elicit-nn.jpg" alt="Elicit: no randomized trial found that combines AI, CHWs and an LMIC setting; table of five near matches"></a><figcaption><div class="q"><b>Elicit</b> · <i>Has anyone run a randomized trial of AI decision support for community health workers in low- and middle-income countries?</i></div><span><b>No.</b> 23 papers screened, 5 near matches. None is a randomized trial of AI used by CHWs</span><span>Closest: a quasi-experiment with 200 ASHA workers in India (Kashyap et al. 2026)</span><a class="src" href="https://elicit.com/agent/a49002df-fdf7-4833-8b16-b7bd3077322a" target="_blank" rel="noopener">elicit.com/agent/a49002df-fdf7-4833-8b16-b7bd3…</a></figcaption></figure>
+  <figure class="shot2 demo"><a href="https://consensus.app" target="_blank" rel="noopener"><img src="images/demo-consensus-nn.jpg" alt="Consensus: Yes, randomized trials have evaluated algorithmic and AI decision support; top results are rule-based CHW trials"></a><figcaption><div class="q"><b>Consensus</b> · <i>the same question, word for word</i></div><span><b>Yes</b>, RCTs exist. Top hits: a CHW diabetes trial in Lesotho (2026) and a CHW pregnancy-screening pilot in India: both rule-based, not AI</span><span>Its AI trials (e.g. an LLM trial in Kenya) involve clinical officers, not CHWs</span><a class="src" href="https://consensus.app/search/ai-decision-support-community-health/4YqTUBl3TqGz1GdmAYH8vQ/" target="_blank" rel="noopener">consensus.app/search/ai-decision-support-commu…</a></figcaption></figure>
+</div>
+```
+
+::: {.punch}
+Yes and no to the same question. Read the nearest papers yourself.
+:::
+
+::: {.source-note}
+Real output, 6 Oct 2026. Click a screenshot to open the tool.
+:::
+
+::: {.notes}
+The disagreement comes from what counts as "AI" and as a "community health worker". Consensus relaxes both to find trials; Elicit keeps both strict. Neither is wrong, but only reading the closest papers tells you whether your study is new.
 :::
 
 ## Comparing papers side by side
 
-:::: {.columns}
-
-::: {.column width="50%"}
 ```{=html}
-<figure class="shot2"><a href="https://elicit.com" target="_blank" rel="noopener"><img src="images/elicit-extraction.jpg" alt="Elicit extracting a column of values across papers"></a><figcaption><b>Elicit</b> · one row per paper, one column per detail you ask for</figcaption></figure>
+<div class="cards c2">
+  <figure class="shot2 demo"><a href="https://elicit.com" target="_blank" rel="noopener"><img src="images/demo-elicit-extraction.jpg" alt="Elicit table with a custom Main outcome and effect column"></a><figcaption><div class="q"><b>Elicit</b> · <i>add a column: “Main outcome and effect”</i></div><span>Filled for all 8 papers from the first search, e.g. IMCI guideline adherence 30.7% → 72.4%; HbA1c down 1.0–1.5 points</span><span>Also notes when there is <b>no comparison group</b></span><a class="src" href="https://elicit.com/agent/add91450-6003-47d5-ba36-f30fd49308f9" target="_blank" rel="noopener">elicit.com/agent/add91450-6003-47d5-ba36-f30fd…</a></figcaption></figure>
+  <figure class="shot2 demo"><a href="https://notebook.google.com" target="_blank" rel="noopener"><img src="images/demo-gemini-table.jpg" alt="Gemini Notebook data table comparing four CHW decision-support studies"></a><figcaption><div class="q"><b>Gemini Notebook</b> · <i>4 open-access papers from that table → Data table</i></div><span>One row per study, each with a source number back to the paper</span><span>3 of 4 tools are fixed rules. It reads one as “Bayesian logic” from the full text; Elicit’s abstract-based column said not AI</span><a class="src" href="https://notebook.google.com/notebook/b7742dc0-c337-4f5e-ab47-b4cb4dd5e5a6" target="_blank" rel="noopener">notebook.google.com/notebook/b7742dc0-c337-4f5…</a></figcaption></figure>
+</div>
 ```
-:::
-
-::: {.column width="50%"}
-```{=html}
-<figure class="shot2"><a href="https://notebooklm.google.com" target="_blank" rel="noopener"><img src="images/notebooklm.jpg" alt="Gemini Notebook: many sources feeding grounded answers"></a><figcaption><b>Gemini Notebook</b> (formerly NotebookLM) · answers only from the sources you upload</figcaption></figure>
-```
-:::
-
-::::
 
 ::: {.punch}
 Check every row you cite against the paper.
+:::
+
+::: {.source-note}
+Real output, 6 Oct 2026. Gemini Notebook was formerly NotebookLM.
 :::
 
 ## Where these tools go wrong
