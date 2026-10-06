@@ -319,17 +319,17 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="jobs">
   <div class="job"><span class="jn">1</span><b>Get an overview</b><i>What is the conversation on this topic?</i><div class="jq"><span>Good means</span>balanced, the main camps and landmark papers</div><div class="jq"><span>A miss costs</span>little: you will meet it later</div></div>
   <div class="job"><span class="jn">2</span><b>Check what's been done</b><i>What is closest to my question, and what is new in mine?</i><div class="jq"><span>Good means</span>the nearest neighbours, read closely</div><div class="jq"><span>A miss costs</span>a referee finds the paper you missed</div></div>
-  <div class="job dark"><span class="jn">3</span><b>Systematic review</b><i>What does all the evidence say?</i><div class="jq"><span>Good means</span>every eligible study, reproducibly</div><div class="jq"><span>A miss costs</span>a biased answer that nobody can see</div></div>
+  <div class="job dark"><span class="jn">3</span><b>Systematic review / meta-analysis</b><i>What does all the evidence say?</i><div class="jq"><span>Good means</span>every eligible study, reproducibly</div><div class="jq"><span>A miss costs</span>a biased answer that nobody can see</div></div>
 </div>
 ```
 
 ::: {.punch}
-A missed paper costs little in an overview, and a lot in a systematic review.
+A missed paper costs little in an overview, and a lot in a systematic review / meta-analysis.
 :::
 
 ::: {.notes}
 Timing: intro is 5 minutes.
-Hands up: which of the three do you do most? Most people will say 1 and 2; far fewer run full systematic reviews. The first half of the session serves all three; the second half goes deep on 3, because that is where AI can be measured most precisely.
+Hands up: which of the three do you do most? Most people will say 1 and 2; far fewer run full systematic reviews / meta-analyses. The first half of the session serves all three; the second half goes deep on 3, because that is where AI can be measured most precisely.
 :::
 
 ## Pulling data out of papers
@@ -344,7 +344,7 @@ A comparison table of the 10–20 closest papers: question, data, method, findin
 :::
 
 ::: {.card .dark}
-[Systematic review]{.ct}
+[Systematic review / meta-analysis]{.ct}
 
 A fixed coding form for every included study: effect sizes, samples, risk of bias.
 
@@ -353,7 +353,7 @@ A fixed coding form for every included study: effect sizes, samples, risk of bia
 :::
 
 ::: {.punch}
-A rough table is fine for an overview. A review needs every value checked.
+A rough table is fine for an overview. A systematic review / meta-analysis needs every value checked.
 :::
 
 # Overviews and Related Work {background-color="#530153"}
@@ -367,7 +367,7 @@ A rough table is fine for an overview. A review needs every value checked.
 | **Overview** | Gemini Notebook (NotebookLM) | Answers from your own sources | Only as good as what you upload |
 | **Related work** | Elicit · Consensus · Undermind | Semantic search, comparison tables | Only what they index |
 | **Related work** | Connected Papers · ResearchRabbit · Litmaps | Citation maps | Depends on your starting papers |
-| **Review** | MetaScreener | Per-criterion screening, audit trail | You decide what humans check |
+| **Systematic review / meta-analysis** | MetaScreener | Per-criterion screening, audit trail | You decide what humans check |
 :::
 
 ::: {.source-note}
@@ -518,9 +518,28 @@ Use the lists to find papers. Then read the papers.
 The Day 1 ethics session showed a fabricated citation that nobody could spot by reading it. Popularity bias is the other quiet one: citation-ranked results favour old, highly cited papers over the recent study that matters.
 :::
 
-# Systematic Reviews {background-color="#530153"}
+# Systematic Review / Meta-Analysis {background-color="#530153"}
 
-## One review: 284,525 records, 17 studies
+## What is at stake in screening
+
+```{=html}
+<div class="cards c2" style="margin-top:0.6em">
+  <div class="card err"><span class="ct">False exclusion</span><div>An eligible study is dropped and no human checks it.</div><div><b>Lost for good, and invisible.</b> The pooled effect is biased and nobody can tell.</div></div>
+  <div class="card"><span class="ct">False inclusion</span><div>An ineligible study goes on to a human or to full text.</div><div><b>Costs time, but recoverable.</b> Someone reads it and drops it.</div></div>
+</div>
+<div class="card line" style="margin-top:16px"><span class="ct">And before screening starts</span><div>A study the search never finds is lost too. No screener can rescue it, so a systematic review / meta-analysis needs a broad search.</div></div>
+```
+
+::: {.punch}
+Screening rules exist to make false exclusions rare.
+:::
+
+::: {.notes}
+Timing: the systematic review / meta-analysis part is about 30 minutes.
+The asymmetry drives everything that follows: a false inclusion costs a few minutes of reading, a false exclusion silently changes the answer.
+:::
+
+## One real review: 284,525 records, 17 studies
 
 ```{=html}
 <div class="funnel">
@@ -534,108 +553,60 @@ The Day 1 ethics session showed a fabricated citation that nobody could spot by 
 ```
 
 ::: {.source-note}
-Our review of AI tools for frontline health workers in LMICs. By hand: 68,049 abstracts × 2 screeners × 2 min ≈ 4,500 hours. One LLM pass: about $11 per 1,000 papers.
+Our systematic review / meta-analysis of AI tools for frontline health workers in LMICs. By hand: 68,049 abstracts × 2 screeners × 2 min ≈ 4,500 hours. One LLM pass: about $11 per 1,000 papers.
+:::
+
+::: {.punch}
+Most of the work is saying No, tens of thousands of times.
 :::
 
 ::: {.notes}
-At 2 minutes per abstract with two screeners, 68,049 abstracts is roughly 4,500 hours of human screening. An LLM pass costs on the order of $11 per 1,000 papers. The question for the rest of the session: how much of that can you hand over, and how sure can you be?
+At 2 minutes per abstract with two screeners, 68,049 abstracts is roughly 4,500 hours of human screening. An LLM pass costs on the order of $11 per 1,000 papers. A typical narrower PICOS search (4,291 records) would have found only 5 of the 13 studies the broad search had included at that point: a broad search is what makes the volume unavoidable.
 :::
 
-## Screening with MetaScreener
+## Too much to do by hand, and too risky
 
 ```{=html}
-<div class="flow" style="margin-top:0.4em">
-  <div class="step ai"><b>Upload</b><small>deduplicated CSV: title, abstract, DOI</small></div><span class="arrow">→</span>
-  <div class="step you"><b>Criteria</b><small>you write yes/no/maybe per criterion</small></div><span class="arrow">→</span>
-  <div class="step ai"><b>LLM passes</b><small>1–3 full runs, or a bootstrap sample</small></div><span class="arrow">→</span>
-  <div class="step you"><b>Moderate</b><small>you check boundary cases and disagreements</small></div><span class="arrow">→</span>
-  <div class="step ai"><b>Audit trail</b><small>labels, prompts, model, parameters</small></div>
+<div class="bignums" style="margin-top:0.4em">
+  <div><b>≈4,500 h</b><span>to screen 68,049 abstracts twice by hand, at 2 minutes each</span></div>
+  <div><b>13%</b><span>of eligible studies missed by a single human screener</span></div>
+  <div><b>3%</b><span>still missed with two independent screeners</span></div>
 </div>
-<div class="key"><span class="you">you</span><span class="ai">tool</span></div>
-```
-
-::: {.cards .c3}
-::: {.card}
-[Private]{.ct}
-Runs in the browser; bibliographies stay local
-:::
-
-::: {.card}
-[Per criterion]{.ct}
-A No names the criterion that failed
-:::
-
-::: {.card}
-[Auditable]{.ct}
-Disagreements become review tasks
-:::
-:::
-
-::: {.notes}
-Switch to the live demo, about 4 minutes: upload a small CSV, define two criteria, run one pass, open a disagreement. Backup screenshot on the next slide.
-:::
-
-## Demo: MetaScreener
-
-```{=html}
-<figure class="shot2" style="align-items:center"><a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img style="max-height:440px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"></a><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
-```
-
-# How Much Screening Can an LLM Do? {background-color="#530153"}
-
-## Papers can be lost before screening starts
-
-:::: {.columns}
-
-::: {.column width="55%"}
-```{=html}
-<div class="dots">
-  <span class="dot hit"></span><span class="dot hit"></span><span class="dot hit"></span><span class="dot hit"></span><span class="dot hit"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span>
+<div class="cards c2" style="margin-top:18px">
+  <div class="card"><span class="ct">Too costly</span><div>Dual screening at this scale is months of skilled time, so teams narrow the search instead, and lose studies there.</div></div>
+  <div class="card err"><span class="ct">Too risky</span><div>Humans are not a perfect gold standard: <b>10.8%</b> of abstract decisions were wrong even in experienced review teams. Abstract 40,000 looks like abstract 39,999: fatigue makes errors likelier late in the pile.</div></div>
 </div>
-<div class="key" style="justify-content:flex-start"><span class="you">found</span><span class="ai">missed</span></div>
 ```
-A narrower, typical PICOS search (4,291 records) would have found **5 of 13** studies our broad search included.
+
+::: {.punch}
+The bar for a machine: miss no more than two human screeners, for far less work.
+:::
 
 ::: {.source-note}
-Our LMIC review, retrospective comparison. The last real numbers: from here on, all numbers are invented.
+Gartlehner et al. (2020), J Clin Epidemiol, RCT of single vs dual screening. Wang et al. (2020), PLoS ONE: 10.8% false inclusions plus exclusions after dual abstract screening. Waffenschmidt et al. (2019): median 5% missed by single screeners (range 0–58%).
 :::
-:::
-
-::: {.column width="45%"}
-::: {.card .dark}
-[Potential]{.ct}
-Cheap screening makes a broad search affordable.
-:::
-
-::: {.card .line}
-[Pitfall]{.ct}
-No screener can rescue a paper the search never found.
-:::
-:::
-
-::::
 
 ::: {.notes}
-Timing: this section is about 25 minutes.
-The last real number from our LMIC review. From here on, every number is made up for a fictional review, so the logic is easy to follow.
+Two separate problems. Cost: dual human screening at this scale is not affordable, and the usual workaround, a narrower search, loses studies before screening even starts. Risk: human screening is itself error-prone, and the errors are false exclusions you never see. Fatigue is the plausible mechanism; the cited studies measure the error rates, not fatigue itself.
 :::
 
-## Two ways screening goes wrong
+# How to Trust the Machine {background-color="#530153"}
+
+## Trusting the machine, without vibe screening
 
 ```{=html}
 <div class="cards c2" style="margin-top:0.6em">
-  <div class="card err"><span class="ct">False exclusion</span><div>An eligible paper is dropped with no human check.</div><div><b>Lost for good, and invisible.</b></div></div>
-  <div class="card"><span class="ct">False inclusion</span><div>An ineligible paper goes to a human or to full text.</div><div><b>Costs time, but recoverable.</b></div></div>
-</div>
-<div class="bignums" style="margin-top:18px">
-  <div><b>13%</b><span>missed by a single human screener</span></div>
-  <div><b>3%</b><span>missed with two independent screeners</span></div>
-  <div><b>?</b><span>LLM + human: match this, for less work</span></div>
+  <div class="card err"><span class="ct">Vibe screening</span><div>“Is this paper relevant to my review?” One prompt, one pass, accept the answer.</div><div><b>You cannot say how many studies you lost, or which ones.</b></div></div>
+  <div class="card dark"><span class="ct">A screening strategy</span><div>Each criterion answered separately, the same paper asked several times, a rule chosen from the measured error rates, then an audit.</div><div><b>You can report recall, and defend it.</b></div></div>
 </div>
 ```
 
-::: {.source-note}
-Gartlehner et al. (2020), RCT of single vs dual screening; Waffenschmidt et al. (2019) find a median of 5% missed (range 0–58%).
+::: {.punch}
+Measure how the model fails before you let it exclude anything.
+:::
+
+::: {.notes}
+"Vibe screening" is what most people do first: paste abstracts into a chat and ask whether they are relevant. It often looks fine on the papers you check, which is exactly the problem: the losses are the papers you do not check. The next slides build the alternative on a made-up review.
 :::
 
 ## A made-up review to work through
@@ -657,7 +628,7 @@ Would you let an LLM exclude papers on its own? At what error rate?
 :::
 
 ::: {.notes}
-Ask the room and take a few answers. Most people say "only if it is as good as a human", which is the bar from the previous slide. All numbers from here on are invented for this review.
+Ask the room and take a few answers. Most people say "only if it is as good as a human", which is the bar from the human-error slide. All numbers from here on are invented for this review.
 :::
 
 ## Seven steps to a screening rule
@@ -1080,6 +1051,53 @@ Zero events in n trials gives a 95% upper bound of roughly 3/n. A random pilot o
   <div><b>5</b>Fix your trade-off before comparing strategies</div>
   <div><b>6</b>Validate on fresh papers, audit the borderline, report recall honestly</div>
 </div>
+```
+
+# MetaScreener {background-color="#530153"}
+
+## MetaScreener: reproducible bulk screening
+
+```{=html}
+<div class="flow" style="margin-top:0.4em">
+  <div class="step ai"><b>Upload</b><small>deduplicated CSV: title, abstract, DOI</small></div><span class="arrow">→</span>
+  <div class="step you"><b>Criteria</b><small>you write yes/no/maybe per criterion</small></div><span class="arrow">→</span>
+  <div class="step ai"><b>LLM passes</b><small>1–3 full runs, or a bootstrap sample</small></div><span class="arrow">→</span>
+  <div class="step you"><b>Moderate</b><small>you check boundary cases and disagreements</small></div><span class="arrow">→</span>
+  <div class="step ai"><b>Audit trail</b><small>labels, prompts, model, parameters</small></div>
+</div>
+<div class="key"><span class="you">you</span><span class="ai">tool</span></div>
+```
+
+::: {.cards .c4}
+::: {.card .compact}
+[Per criterion]{.ct}
+A No names the criterion that failed
+:::
+
+::: {.card .compact}
+[Repeated runs]{.ct}
+The strategy from the last section, built in
+:::
+
+::: {.card .compact}
+[Reproducible]{.ct}
+Prompts, model and parameters saved with every label
+:::
+
+::: {.card .compact}
+[Private]{.ct}
+Runs in the browser; bibliographies stay local
+:::
+:::
+
+::: {.notes}
+Switch to the live demo, about 4 minutes: upload a small CSV, define two criteria, run one pass, open a disagreement. Backup screenshot on the next slide.
+:::
+
+## Demo: MetaScreener
+
+```{=html}
+<figure class="shot2" style="align-items:center"><a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img style="max-height:440px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"></a><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
 ```
 
 ## Thank you {.closing}
