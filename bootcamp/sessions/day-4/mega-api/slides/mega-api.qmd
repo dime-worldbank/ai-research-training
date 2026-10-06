@@ -23,7 +23,7 @@ format:
 #| include: false
 
 # ../../../ matches the relative path from a qmd file saved
-# in the location: sessions/<day>/<topic>/presentation.qmd. 
+# in the location: sessions/<day>/<topic>/presentation.qmd.
 # Update the file path for presentations elsewhere
 source("../../../../_extensions/bootcamp/setup_palettes.R")
 
@@ -53,8 +53,10 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 - Data platform powered by **Databricks**, with built-in integration with WB data, ITS systems and governance policies
 - Launched in 2023 through a collaboration between ITS and DECDI
+- Used by 70+ project teams across research and operations
+- Now the self-service compute layer of the Bank's Development Data Roadmap
 - Motivated by:
-  - the drastic increase in government microdata, and a huge underutilization of that data
+  - Growing availability of government microdata, much of it still underused
   - fragmented data and computational infrastructure within the Bank
 
 ::: {.notes}
@@ -134,7 +136,7 @@ Distributed computing lets you process datasets that are not feasible on a local
 ::: {.card}
 **AI model API access**
 
-Built-in APIs for popular large language models (LLMs), including GPT-5 and Gemini.
+Built-in APIs for popular large language models (LLMs), including GPT, Claude, and Gemini.
 :::
 :::
 
@@ -218,26 +220,37 @@ The Governance GP's **Reimagining Public Finance** initiative is updating approa
 
 ## Quick concepts that will facilitate your understanding
 
-1. **Databricks:** Think of it as a shared computer in the cloud. More storage, more power, better collaboration.
-2. Databricks is a platform with lots of different features: it takes a long time to learn. I will just cover some concepts needed for the exercise.
+**MEGA workspace:** Your project environment — bringing together Databricks, connected SharePoint storage, governed data storage, and compute.
+
+**Databricks:** The main environment in MEGA where you work with data, code, and AI.
+For today's exercise, you only need three concepts:
 
 ::: {.cards}
-::: {.card}
-**Workspace**
 
-Your team space, where you and your colleagues can collaborate on projects.
-Contains folders where you can organize your code scripts and notebooks.
+::: {.card}
+**Databricks Workspace**
+
+Your team's working area for *notebooks, scripts, and analysis*.
+
+This is where you will spend most of your time today.
 :::
+
 ::: {.card}
 **Volume**
 
-A space where you can store documents, which you can then access from scripts and notebooks in the Workspace.
+A place to store files that can be *accessed directly from your notebooks and scripts*.
+
+Think datasets, documents, inputs, and outputs.
 :::
+
 ::: {.card}
 **Compute**
 
-The processing power, memory, and virtualized resources. Every Workspace has their own compute
+The *processing power and memory* that run your code.
+
+MEGA provides project compute so you are not limited by your laptop.
 :::
+
 :::
 
 ## The example workflow we will try to replicate: Summarizing and coding interviews in a foreign language
@@ -349,6 +362,24 @@ Patterns across interviews
 - **Questions:** reach out at [mega@worldbank.org](mailto:mega@worldbank.org)
 
 ## Thank you {.closing}
+
+::: {.team}
+::: {.member}
+![](images/team/yukiko.png){fig-alt="Yukiko Suzuki"}
+
+**Yukiko Suzuki**
+:::
+::: {.member}
+![](images/team/marina.png){fig-alt="Marina Visintini"}
+
+**Marina Visintini**
+:::
+::: {.member}
+![](images/team/wei.png){fig-alt="Wei Lu"}
+
+**Wei Lu**
+:::
+:::
 
 [mega@worldbank.org](mailto:mega@worldbank.org)
 
