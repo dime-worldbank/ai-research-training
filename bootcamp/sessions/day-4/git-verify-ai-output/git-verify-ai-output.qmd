@@ -36,17 +36,14 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 - Results
 - Next steps
 
-# Section {background-color="#530153"}
-
-## Content slide
-
+# Which workflow is this for? {background-color="#530153"}
 
 ## Recap from human-in-the-loop
 
 The content of this session is how to Git and GitHub can help you very verify what we refer to as Static Tools below.
 
 :::: {.columns}
-::: {.column style="border: 3px solid #D6BED8; border-radius: 8px; padding: 0.5em;"}
+::: {.column style="border: 3px solid #D6BED8; border-radius: 8px; padding: 0.3em;"}
 
 ### Static Tools
 
@@ -67,18 +64,40 @@ The content of this session is how to Git and GitHub can help you very verify wh
 :::
 ::::
 
+# Unleash the Creativity of AI, but Stay in Control with Git {background-color="#530153"}
+
 ## Let the agent finish, then review with Git
 
 When an AI agent modifies files in a repository tracked by Git:
 
 1. **Let the agent work** until the task is complete -- no need to approve every small edit along the way
-2. **Review the final result with Git** -- use `git status` and `git diff`, or the *Source Control* panel in VS Code, to see exactly what changed
+2. **Review the final result with Git** -- use GitHub Desktop to review the edits before pushing them to your project repository
+   - Other Git clients work too, but a GUI client (i.e., not Git on the command line) makes this much easier
 3. **Commit only what you approve** -- stage and commit the edits you have reviewed
-4. **Not happy?** Ask the agent to fix it, or discard the changes with `git restore`
+4. **Not happy?** Ask the agent to fix it, or discard the changes.
 
-. . .
+## Git Shows You Every AI Edit -- No Matter How Small
 
-Git gives you a complete, line-by-line record of what the agent did -- you review the outcome, not the process.
+- Git gives you a complete, line-by-line record of what the agent did -- you review the outcome, not the process.
+- Ask the agent to explain any edit you do not understand or do not see the need for before committing it.
+
+ ![](./img/gh-desktop-review.png)
+
+## Commit Piece by Piece in Understandable Chunks
+
+- GUI Git clients let you select what to include in each commit. A commit does not have to include -- _and probably should not include_ -- all changes at once.
+- Committing in understandable chunks lets you document and preserve the understanding you gain during the review.
+
+![](./img/gh-desktop-selective-commit.png)
+
+## Discard What You Do Not Need
+
+- Agents are verbose. Do not commit unnecessary verbosity to your repository, as it makes the repository hard for humans to follow.
+- Update the memory file with instructions that prevent the agent from repeating the same verbosity.
+
+![](./img/gh-desktop-discard.png)
+
+# Use Worktrees to Give the Agent Its Own Space{background-color="#530153"}
 
 ## Worktrees: parallel tasks without collisions
 
@@ -109,6 +128,8 @@ git worktree add .claude/worktrees/login -b feature/login
 - Add `.claude/worktrees/` to your `.gitignore`
 
 Docs: <https://code.claude.com/docs/en/worktrees.md>
+
+# Use GitHub's Built-in Review Tools{background-color="#530153"}
 
 ## Review your changes in a Pull Request
 
