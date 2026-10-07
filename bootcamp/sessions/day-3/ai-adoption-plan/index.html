@@ -1197,6 +1197,11 @@ margin-right: 0; }
 .hz .card .ct { font-size: 1.35em; }
 .hz .card .q { color: var(--navy); font-size: 1em; }
 .hz .card .eg { margin-top: auto; color: var(--grey); font-style: italic; }
+.sk .card { font-size: 0.72em; }
+.reveal .slides section:not(.smaller) table { font-size: 0.82em; }
+.sk .card .num { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 2em; color: var(--cyan); line-height: 1; }
+.sk .card ul { margin: 0; padding-left: 1.1em; }
+.sk .card li { margin-bottom: 0.1em; }
 .opt { font-size: 0.92em; color: var(--navy); background: #fff; border-left: 3px solid var(--cyan); padding: 6px 10px; border-radius: 0 6px 6px 0; }
 .reveal .opt b { color: var(--blue); }
 .opt .zm-link { display: inline-block; margin-top: 6px; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 0.95em; color: #fff; background: var(--blue); border-radius: 999px; padding: 3px 12px; text-decoration: none; }
@@ -1214,7 +1219,7 @@ margin-right: 0; }
 .zm-btn { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 14px; padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--blue); color: var(--blue); background: #fff; cursor: pointer; }
 .zm-btn.go { background: var(--blue); color: #fff; }
 .zm-btn:hover { filter: brightness(1.1); }
-.ref-back { position: absolute; left: 56px; bottom: 10px; z-index: 40; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1.5px solid #800280; color: #800280; background: #fff; cursor: pointer; display: none; }
+.ref-back { position: absolute; left: 16px; bottom: 46px; z-index: 40; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1.5px solid #800280; color: #800280; background: #fff; cursor: pointer; display: none; }
 .ref-back.show { display: block; }
 .ref-back:hover { background: #F4EAF4; }
 </style>
@@ -1271,7 +1276,7 @@ Start from work you already do, not from a tool. Use the 3A questions as a think
     <span class="opt" style="display:flex;flex-direction:column;align-items:flex-start"><span><b>Optional:</b> map one workflow fully as a 3A matrix. It takes longer than today, so start it now and finish it with your agent later.</span><a class="zm-link" href="#/anatomy-of-a-3a-matrix-answering-a-ministry-data-request">See an example matrix →</a></span>
   </div>
 </div>
-<div class="lookup">Look up: <a href="#/the-3a-design-model">The 3A design model</a><a href="#/three-workflows-redesigned">Three workflows, redesigned</a><a href="#/anatomy-of-a-3a-matrix-answering-a-ministry-data-request">A 3A matrix, step by step</a><a href="#/example-an-ai-data-map">An AI data map</a></div>
+<div class="lookup">Look up: <a href="#/the-3a-design-model">The 3A design model</a><a href="#/three-workflows-redesigned">Three workflows, redesigned</a><a href="#/anatomy-of-a-3a-matrix-answering-a-ministry-data-request">A 3A matrix, step by step</a><a href="#/example-an-ai-data-map">An AI data map</a><a href="#/example-an-ai-data-map-for-a-dashboard">A dashboard data map</a></div>
 <aside class="notes">
 <p>Time: 3 minutes. The 3A model (Activities, Actors, Artefacts) is a thinking aid here, not a deliverable. For each candidate task, three quick questions: what are the steps, which need me, and what would the tool see and hand back. Steps that do not need you and end in something checkable are where an agent fits.</p>
 <p>A full 3A matrix for one workflow is optional. It usually takes longer than the 30 minutes, so encourage people to start one and finish it with their agent after the session.</p>
@@ -1340,7 +1345,7 @@ Sort your next steps by how ready they are. The examples are illustrations, not 
 <div class="callout-note-custom">
 <p>For most teams the biggest step is a <strong>de-identified or synthetic version of sensitive data</strong>, so the agent can work on the real pipeline. Public data can stay in your project folder as it is.</p>
 </div>
-<div class="lookup">Look up: <a href="#/three-time-horizons">Example targets</a><a href="#/sensitive-data">Sensitive data</a><a href="#/skills">Skills</a><a href="#/who-needs-access-and-to-what">Team access</a><a href="#/risks-and-how-to-reduce-them">Risks</a></div>
+<div class="lookup">Look up: <a href="#/plan-your-tasks">Plan your tasks</a><a href="#/sensitive-data">Prepare sensitive data</a><a href="#/skills">Skills</a><a href="#/who-needs-access-and-to-what">Team access</a><a href="#/risks-and-how-to-reduce-them">Risks</a></div>
 <aside class="notes">
 <p>Time: 3 minutes. Stress that the examples are illustrations: people should write targets that fit their own work. “Use AI more” is not a target. “Every change to the cleaning code gets an AI review before merge” is.</p>
 <p>Roadblocks are the most useful output of this session for us. Encourage people to write down the worry even if it is vague, for example “not sure our data agreement allows this”. Missing skills go here too: we do not expect people to build their own yet.</p>
@@ -1365,18 +1370,19 @@ display:block!important;
       <dt><a href="#/the-3a-design-model">The 3A design model</a></dt><dd>Activities, Actors, Artefacts</dd>
       <dt><a href="#/anatomy-of-a-3a-matrix-answering-a-ministry-data-request">A 3A matrix, step by step</a></dt><dd>A ministry data request, stage by stage</dd>
       <dt><a href="#/three-workflows-redesigned">Three workflows, redesigned</a></dt><dd>Nowcast, presentation, survey cleaning</dd>
-      <dt><a href="#/example-an-ai-data-map">An AI data map</a></dt><dd>What the tool sees at each project stage</dd>
+      <dt><a href="#/example-an-ai-data-map">An AI data map</a></dt><dd>What the tool sees at each stage: a research project</dd>
+      <dt><a href="#/example-an-ai-data-map-for-a-dashboard">An AI data map: dashboard</a></dt><dd>From Excel and PDF files to a dashboard</dd>
     </dl></div>
   <div class="card"><span class="n">Q2 · WHAT I WILL DO</span><span class="ct">What I will do</span>
     <dl>
       <dt><a href="#/what-did-you-set-up-this-week-check-those-that-applied">Setup checklist</a></dt><dd>What the bootcamp set up</dd>
-      <dt><a href="#/three-time-horizons">Example targets</a></dt><dd>Now, 6 weeks, 3 months</dd>
-      <dt><a href="#/skills">Skills</a></dt><dd>Known skills, and telling us what is missing</dd>
+      <dt><a href="#/plan-your-tasks">Plan your tasks</a></dt><dd>Now, 6 weeks, 3 months</dd>
+      <dt><a href="#/skills">Skills</a></dt><dd>Find repetitive tasks, check existing skills, note what is missing</dd>
       <dt><a href="#/who-needs-access-and-to-what">Team access</a></dt><dd>Who needs which tools and training</dd>
     </dl></div>
   <div class="card road"><span class="n">Q2 · WHAT IS IN THE WAY</span><span class="ct">Roadblocks</span>
     <dl>
-      <dt><a href="#/sensitive-data">Sensitive data</a></dt><dd>Public is fine; de-identify, synthesize, or keep it away</dd>
+      <dt><a href="#/sensitive-data">Prepare sensitive data</a></dt><dd>Public is fine; de-identify, synthesize, or keep it away</dd>
       <dt><a href="#/risks-and-how-to-reduce-them">Risks and mitigations</a></dt><dd>Common risks and how to reduce them</dd>
     </dl></div>
 </div>
@@ -1384,7 +1390,7 @@ display:block!important;
 <script>
 (function () {
   var REF = ['the-3a-design-model', 'anatomy-of-a-3a-matrix-answering-a-ministry-data-request', 'three-workflows-redesigned',
-    'example-an-ai-data-map', 'what-did-you-set-up-this-week-check-those-that-applied', 'three-time-horizons',
+    'example-an-ai-data-map', 'example-an-ai-data-map-for-a-dashboard', 'what-did-you-set-up-this-week-check-those-that-applied', 'plan-your-tasks',
     'skills', 'who-needs-access-and-to-what', 'sensitive-data', 'risks-and-how-to-reduce-them'];
   var OVERVIEW = 'what-to-look-up-and-when';
   var zm, frame, title, target, backBtn;
@@ -1513,7 +1519,7 @@ display:block!important;
 <li>Plan saved in your project folder (ideally your GitHub repository): <code>AI-ADOPTION-PLAN.md</code></li>
 <li><strong>Share your plan with us:</strong> email it to Impact Analytics at <a href="mailto:dimeanalytics@worldbank.org">dimeanalytics@worldbank.org</a>. It helps us see what people need</li>
 <li>Link the plan from your memory file, so the agent knows the team’s priorities</li>
-<li>Come back to the plan when the survey arrives, and update the progress log</li>
+<li>When the follow-up survey arrives, open your plan, note your progress in its progress log (section 8), and use it to answer the survey</li>
 </ul>
 <aside class="notes">
 <p>Ask two or three people to share a roadblock with the room. If several people raise the same one, note it: that is input for the AI roadmap series.</p>
@@ -1992,6 +1998,85 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
+<section id="example-an-ai-data-map-for-a-dashboard" class="slide level2 smaller">
+<h2>Example: an AI data map for a dashboard</h2>
+<p>Many teams work like this: data arrives in Excel files and PDF reports, gets analysed, and ends up in a dashboard.</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>AI task</th>
+<th>Data in</th>
+<th>Classification</th>
+<th>Data out</th>
+<th>Checked by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Collect</strong></td>
+<td>Extract tables from Excel files and PDF reports into one format</td>
+<td>Excel files, PDF reports</td>
+<td>Depends on source: often Official Use Only</td>
+<td>One combined dataset, extraction log</td>
+<td>Analyst spot-checks against the source files</td>
+</tr>
+<tr class="even">
+<td><strong>Clean</strong></td>
+<td>Write cleaning and validation code; flag inconsistencies</td>
+<td>Combined dataset, codebook</td>
+<td>Same as source</td>
+<td>Clean dataset, issue list</td>
+<td>Analyst reviews every flag</td>
+</tr>
+<tr class="odd">
+<td><strong>Analyse</strong></td>
+<td>Write code for the indicators</td>
+<td>Clean dataset</td>
+<td>Same as source</td>
+<td>Indicator tables</td>
+<td>Analyst compares with the last update</td>
+</tr>
+<tr class="even">
+<td><strong>Dashboard</strong></td>
+<td>Build or update the dashboard code</td>
+<td>Indicator tables</td>
+<td>Same as source</td>
+<td>Updated dashboard</td>
+<td>Team lead reviews before sharing</td>
+</tr>
+<tr class="odd">
+<td><strong>Share</strong></td>
+<td>Draft a short note on what changed</td>
+<td>Indicator tables, dashboard</td>
+<td>Official Use Only</td>
+<td>Draft note</td>
+<td>Author owns every claim</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>Added because many participants’ projects look like this rather than a classic research pipeline. Classifications are illustrative: they follow the source files. If a source has personal or restricted data, it needs a plan first (see “Prepare sensitive data”).</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
 <section id="what-did-you-set-up-this-week-check-those-that-applied" class="slide level2">
 <h2>What did you set up this week? (Check those that applied)</h2>
 <div class="columns">
@@ -2035,9 +2120,9 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="three-time-horizons" class="slide level2">
-<h2>Three time horizons</h2>
-<p>The examples are illustrations, not expectations. Pick what fits your work.</p>
+<section id="plan-your-tasks" class="slide level2">
+<h2>Plan your tasks</h2>
+<p>Sort each task in your plan by how ready it is. The examples are illustrations, not a checklist.</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -2046,31 +2131,31 @@ display:block!important;
 </colgroup>
 <thead>
 <tr class="header">
-<th>Horizon</th>
-<th>What fits here</th>
+<th>When</th>
+<th>Tasks that fit here</th>
 <th>Examples</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>Now</strong> (this week)</td>
-<td>Already works, low risk</td>
-<td>The coding agent on one recurring task in your real work: cleaning code, a monthly update, a data request</td>
+<td>Already work, low risk</td>
+<td>Adjust your memory file to your real project; use the agent on one recurring task, such as cleaning code, a monthly update or a data request</td>
 </tr>
 <tr class="even">
-<td><strong>6 weeks</strong></td>
-<td>Needs some setup or team agreement</td>
+<td><strong>Next 6 weeks</strong></td>
+<td>Need some setup or team agreement</td>
 <td>A de-identified or synthetic version of sensitive data; AI review as a routine step; team members onboarded</td>
 </tr>
 <tr class="odd">
-<td><strong>3 months</strong></td>
-<td>Not plug-and-play yet. Start defining the need now</td>
+<td><strong>Next 3 months</strong></td>
+<td>Not plug-and-play yet: start defining the need now</td>
 <td>Review and quality-control routines; one workflow redesigned end to end; a reproducibility package for a paper</td>
 </tr>
 </tbody>
 </table>
 <aside class="notes">
-<p>The 6-week and 3-month targets are the ones in the follow-up survey. Encourage participants to write a few specific targets rather than many general ones.</p>
+<p>This slide should explain itself: people read it during the hands-on. The 6-week and 3-month targets are the ones in the follow-up survey. A few specific targets beat many general ones.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2084,30 +2169,18 @@ display:block!important;
 }</style></aside>
 </section>
 <section id="skills" class="slide level2">
-<h2>Which skills could help?</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Known skills</strong></p>
-<p>Skills you saw this week. Use the ones that fit a recurring task:</p>
-<ul>
-<li>Code review</li>
-<li>Reproducible charts and tables</li>
-<li>Presentations</li>
-<li>Working-paper feedback</li>
-<li>Reproducibility packages</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><strong>Missing a skill? Tell us</strong></p>
-<p>Write it down as a roadblock:</p>
-<ul>
-<li>What is the task?</li>
-<li>How often does it recur?</li>
-<li>What does a good result look like?</li>
-</ul>
-<p>This helps us plan a follow-on session on building skills.</p>
-</div></div>
+<h2>Which skills does your project need?</h2>
+<div class="cards c3 sk">
+  <div class="card"><span class="num">1</span><span class="ct">Find the tasks</span>
+    <span>Look for repetitive, structured tasks in your work: the same steps every time, and a clear idea of what a good result looks like.</span></div>
+  <div class="card"><span class="num">2</span><span class="ct">Check existing skills</span>
+    <span>Some are covered by skills from this week:</span>
+    <ul><li>Code review</li><li>Reproducible charts and tables</li><li>Presentations</li><li>Working-paper feedback</li><li>Reproducibility packages</li></ul></div>
+  <div class="card road"><span class="num">3</span><span class="ct">Note what is missing</span>
+    <span>No skill yet? Write down the task, how often it recurs, and what a good result looks like. Add it to your roadblocks and tell us: it helps us plan a follow-on session on building skills.</span></div>
+</div>
 <aside class="notes">
-<p>We did not teach skill-building in this bootcamp, so do not suggest that people write their own yet. Collect the missing ones: they are input for a follow-on session.</p>
+<p>Start from tasks, not from skills. We did not teach skill-building this week, so do not suggest that people write their own yet; collect the missing ones.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2135,38 +2208,37 @@ display:block!important;
 <tr class="header">
 <th>Team member</th>
 <th>Role</th>
+<th>Responsible for</th>
 <th>Needs access to</th>
-<th>Trained on</th>
-<th>Next step</th>
+<th>Needs training on</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><em>Name</em></td>
 <td>Team lead</td>
+<td>Reviewing and signing off outputs</td>
 <td>Approved chat tool</td>
-<td>Ethics, verifying outputs</td>
-<td>Review AI-assisted drafts</td>
+<td>Ethics, verifying AI outputs</td>
 </tr>
 <tr class="even">
 <td><em>Name</em></td>
 <td>Analyst or RA</td>
-<td>Coding agent, GitHub repo</td>
+<td>Cleaning and analysis code, dashboards</td>
+<td>Coding agent, GitHub repository</td>
 <td>Memory files, skills, code review</td>
-<td>Onboard by end of month</td>
 </tr>
 <tr class="odd">
 <td><em>Name</em></td>
 <td>Field or operations coordinator</td>
+<td>Data collection, partner communication</td>
 <td>Approved chat tool</td>
 <td>Data classification</td>
-<td>Ethics session recording</td>
 </tr>
 </tbody>
 </table>
 <aside class="notes">
-<p>Not everyone needs a coding agent. Everyone who handles sensitive data needs the data classification rules from Day 1.</p>
-<p>A memory file in the project folder helps here: it is the shared set of rules that applies to every team member’s agent.</p>
+<p>“Responsible for” is what the person does in the workflow; “Needs training on” is what they still need to learn to do it with AI. Not everyone needs a coding agent. Everyone who handles sensitive data needs the data classification rules from Day 1.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2180,7 +2252,7 @@ display:block!important;
 }</style></aside>
 </section>
 <section id="sensitive-data" class="slide level2">
-<h2>Sensitive data: the biggest roadblock</h2>
+<h2>Prepare sensitive data before the agent sees it</h2>
 <p><strong>Public and non-sensitive data can live in your project folder.</strong> Sensitive data, such as personal information, confidential documents or restricted government data, needs a plan <strong>before</strong> the agent works on that step:</p>
 <ul>
 <li><strong>De-identify.</strong> Run a de-identification script on the raw data, outside any AI tool.</li>
@@ -2206,7 +2278,7 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="risks-and-how-to-reduce-them" class="slide level2 smaller">
+<section id="risks-and-how-to-reduce-them" class="slide level2">
 <h2>Risks and how to reduce them</h2>
 <table class="caption-top">
 <colgroup>

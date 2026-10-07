@@ -54,9 +54,9 @@ For each task marked *yes* or *not sure*: which steps need your judgment, and wh
 
 AI adoption fails when only one person on the team uses the tools.
 
-| Team member | Role | Needs access to | Needs training on | By when |
-|---|---|---|---|---|
-| | | | | |
+| Team member | Role | Responsible for | Needs access to | Needs training on | By when |
+|---|---|---|---|---|---|
+| | | | | | |
 
 ## 4. Artefacts: what goes in, what comes out?
 
@@ -96,9 +96,9 @@ Write targets that you can report on in the follow-up survey. "Use AI more" is n
 
 ### Skills
 
-Known skills from the bootcamp that fit a recurring task, and skills you are missing. Missing skills help us plan a follow-on session on building them.
+Start from repetitive, structured tasks in your work (the same steps every time, a clear idea of a good result). Then check whether a skill from the bootcamp covers it. Note the ones that are missing: they help us plan a follow-on session on building skills.
 
-| Task | Known skill that fits | If none: what would the skill need to do? |
+| Repetitive task | Existing skill that covers it | If none: what would the skill need to do? |
 |---|---|---|
 | | | |
 

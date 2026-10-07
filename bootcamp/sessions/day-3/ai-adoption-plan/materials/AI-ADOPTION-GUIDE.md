@@ -10,11 +10,11 @@ The plan answers two questions:
 | If you are working on… | Look at |
 |---|---|
 | Plan section 1: take stock | [Setup checklist](#setup-checklist) |
-| Plan sections 2–4: Activities, Actors, Artefacts | [The 3A design model](#the-3a-design-model), [A 3A matrix, step by step](#a-3a-matrix-step-by-step), [Three workflows, redesigned](#three-workflows-redesigned), [An AI data map](#an-ai-data-map) |
+| Plan sections 2–4: Activities, Actors, Artefacts | [The 3A design model](#the-3a-design-model), [A 3A matrix, step by step](#a-3a-matrix-step-by-step), [Three workflows, redesigned](#three-workflows-redesigned), [An AI data map](#an-ai-data-map), [An AI data map for a dashboard](#an-ai-data-map-for-a-dashboard) |
 | Plan section 3: team access | [Team access](#team-access) |
-| Plan section 4: sensitive data | [Sensitive data](#sensitive-data) |
-| Plan section 5: targets | [Example targets](#example-targets), [Skills](#skills) |
-| Plan section 6: roadblocks | [Sensitive data](#sensitive-data), [Risks and mitigations](#risks-and-mitigations) |
+| Plan section 4: sensitive data | [Prepare sensitive data before the agent sees it](#prepare-sensitive-data-before-the-agent-sees-it) |
+| Plan section 5: targets | [Plan your tasks](#plan-your-tasks), [Which skills does your project need?](#which-skills-does-your-project-need) |
+| Plan section 6: roadblocks | [Prepare sensitive data before the agent sees it](#prepare-sensitive-data-before-the-agent-sees-it), [Risks and mitigations](#risks-and-mitigations) |
 | Plan section 7 (optional): full 3A matrix | [A 3A matrix, step by step](#a-3a-matrix-step-by-step), [Three workflows, redesigned](#three-workflows-redesigned) |
 
 ---
@@ -130,6 +130,20 @@ A data map shows how data moves through a project. Adding the AI tool shows wher
 
 Illustrative only: classifications depend on the project's data agreements. Identified data does not appear in the "Data in" column at any stage.
 
+### An AI data map for a dashboard
+
+Many teams work like this: data arrives in Excel files and PDF reports, gets analysed, and ends up in a dashboard.
+
+| Stage | AI task | Data in | Classification | Data out | Checked by |
+|---|---|---|---|---|---|
+| Collect | Extract tables from Excel files and PDF reports into one format | Excel files, PDF reports | Depends on source: often Official Use Only | One combined dataset, extraction log | Analyst spot-checks against the source files |
+| Clean | Write cleaning and validation code; flag inconsistencies | Combined dataset, codebook | Same as source | Clean dataset, issue list | Analyst reviews every flag |
+| Analyse | Write code for the indicators | Clean dataset | Same as source | Indicator tables | Analyst compares with the last update |
+| Dashboard | Build or update the dashboard code | Indicator tables | Same as source | Updated dashboard | Team lead reviews before sharing |
+| Share | Draft a short note on what changed | Indicator tables, dashboard | Official Use Only | Draft note | Author owns every claim |
+
+If a source file holds personal or restricted data, it needs a plan first: see [Prepare sensitive data before the agent sees it](#prepare-sensitive-data-before-the-agent-sees-it).
+
 ---
 
 ## Q2 · What do I need to do?
@@ -143,38 +157,39 @@ What the bootcamp covered. Check what is done **in your real work**, not the dem
 - **Analysis (Day 2):** AI review of data processing or analysis code; reproducible chart or table produced with a skill; AI output checked by a human, with a record of the check
 - **Research products (Day 3):** presentation or brief from your materials; draft reproducibility package
 
-### Example targets
+### Plan your tasks
 
-The examples are illustrations, not expectations. Pick what fits your work.
+Sort each task in your plan by how ready it is. The examples are illustrations, not a checklist.
 
-| Horizon | What fits here | Examples |
+| When | Tasks that fit here | Examples |
 |---|---|---|
-| **Now** (this week) | Already works, low risk | The coding agent on one recurring task in your real work: cleaning code, a monthly update, a data request; finish anything unchecked from the setup checklist |
-| **6 weeks** | Needs some setup or team agreement | A de-identified or synthetic version of sensitive data; AI review as a routine step; team members onboarded |
-| **3 months** | Not plug-and-play yet. Start defining the need now | Review and quality-control routines; one workflow redesigned end to end; a reproducibility package for a paper |
+| **Now** (this week) | Already work, low risk | Adjust your memory file to your real project; use the agent on one recurring task, such as cleaning code, a monthly update or a data request; finish anything unchecked from the setup checklist |
+| **Next 6 weeks** | Need some setup or team agreement | A de-identified or synthetic version of sensitive data; AI review as a routine step; team members onboarded |
+| **Next 3 months** | Not plug-and-play yet: start defining the need now | Review and quality-control routines; one workflow redesigned end to end; a reproducibility package for a paper |
 
 Write a few specific targets rather than many general ones. The 6-week and 3-month targets are the ones in the follow-up survey.
 
-### Skills
+### Which skills does your project need?
 
-- **Known skills** from the bootcamp: code review; reproducible charts and tables; presentations; working-paper feedback; reproducibility packages. Use the ones that fit a recurring task.
-- **Missing a skill?** Write it down: what is the task, how often does it recur, and what does a good result look like? Tell the bootcamp team. This helps plan a follow-on session on building skills.
+1. **Find the tasks.** Look for repetitive, structured tasks in your work: the same steps every time, and a clear idea of what a good result looks like.
+2. **Check existing skills.** Some are covered by skills from the bootcamp: code review; reproducible charts and tables; presentations; working-paper feedback; reproducibility packages.
+3. **Note what is missing.** No skill yet? Write down the task, how often it recurs, and what a good result looks like. Add it to your roadblocks and tell the bootcamp team: it helps plan a follow-on session on building skills.
 
 ### Team access
 
 AI adoption fails when only one person on the team uses the tools. Not everyone needs a coding agent, but everyone who handles sensitive data needs the data classification rules.
 
-| Team member | Role | Needs access to | Trained on | Next step |
+| Team member | Role | Responsible for | Needs access to | Needs training on |
 |---|---|---|---|---|
-| *Name* | Team lead | Approved chat tool | Ethics, verifying outputs | Review AI-assisted drafts |
-| *Name* | Analyst or RA | Coding agent, GitHub repo | Memory files, skills, code review | Onboard by end of month |
-| *Name* | Field or operations coordinator | Approved chat tool | Data classification | Ethics session recording |
+| *Name* | Team lead | Reviewing and signing off outputs | Approved chat tool | Ethics, verifying AI outputs |
+| *Name* | Analyst or RA | Cleaning and analysis code, dashboards | Coding agent, GitHub repository | Memory files, skills, code review |
+| *Name* | Field or operations coordinator | Data collection, partner communication | Approved chat tool | Data classification |
 
 ---
 
 ## Roadblocks · What is in the way?
 
-### Sensitive data
+### Prepare sensitive data before the agent sees it
 
 The biggest roadblock for most teams: the most useful parts of the work would let the agent see sensitive data, such as personal information, confidential documents or restricted government data.
 
