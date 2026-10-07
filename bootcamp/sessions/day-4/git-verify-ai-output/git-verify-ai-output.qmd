@@ -137,33 +137,67 @@ Copilot **assists** the review -- it does not replace it. You are still the prod
 
 ## Worktrees: parallel tasks without collisions
 
-A **worktree** is an extra working directory with its own branch, connected to the same repository.
+- So far in this presentation, we have created a separate branch for each agent task.
+- But our clone still needs to have that branch checked out while the agent works on it.
 
-- Each task gets its own folder and branch, e.g. `.claude/worktrees/login`
-- An agent session in one worktree only sees that worktree's files
+::: {.fragment}
+- This prevents us from going back to the branch where we want to do our own work until the agent's task is finished and its branch is merged.
+- It also prevents us from having agents work on different tasks in different branches simultaneously.
+- Is there a solution to this problem?
+:::
+
+::: {.fragment}
+- Yes, and it is called worktrees. A **worktree** is an extra working directory with its own branch in the same repository -- once the task is completed, it can be PRed and reviewed.
+- It is a more advanced workflow that exists in both agents we have used, but WB GitHub Copilot lacks one permission required for how it uses worktrees.
+:::
+
+## Worktrees: What they are
+
+::: {.callout-warning}
+Disclaimer: Claude is new at the WB and we have not yet been able to test this thoroughly.
+:::
+
+- Each worktree is like a separate branch saved in its own folder -- for Claude, it is `.claude/worktrees/<worktree-name>`
+- An agent session in one worktree only sees that worktree's files, i.e. what is visible on that branch -- Edits made in a worktree only appear in that worktree's branch
 - Run several sessions in parallel -- a feature, a bugfix, new tests -- without them overwriting each other's edits
-- All worktrees share the same Git history, but **not** installed packages or virtual environments (`renv`, `venv`), so you may need to reinstall dependencies
-
-. . .
-
-**Which to pick?** Plain branch switching for one task at a time. Worktrees when you want parallel sessions, or don't want to disturb your current working state.
+- All worktrees share the same Git history, but untracked files are **not** there initially. A common example is packages installed in virtual environments (`renv`, `venv`), which you may need to reinstall
 
 ## Worktrees: how to use them
 
-**With Claude Code:** start a session with `claude --worktree`. The desktop app can create a worktree for each new session automatically.
+::: {.callout-warning}
+Before doing anything, make sure that `.claude/worktrees/` or `**/worktrees/` is added to your `.gitignore`. Otherwise this folder will be committed as part of the branch checked out in you clone.
+:::
 
-**Manual route (works anywhere, including VS Code):**
+:::: {.columns }
+::: {.column width="40%" }
+
+**With Claude Code in the command line:** start a session with `claude --worktree`. The Claude Desktop app can create a worktree for each new session automatically.
+
+:::
+::: {.column width="60%" }
+
+**Command line route using Git client:** Replace `<branchname>` with the name of the branch you want to create for the worktree. This only works for branch names that are not already used.
 
 ```bash
-git worktree add .claude/worktrees/login -b feature/login
+git worktree add .claude/worktrees/<branchname> -b <branchname>
 ```
 
-- Open that folder in a new VS Code window (*File → Open Folder*) and start the agent there
-- List worktrees: `git worktree list`
-- Remove one when done: `git worktree remove .claude/worktrees/login`
-- Add `.claude/worktrees/` to your `.gitignore`
+:::
+::::
 
-Docs: <https://code.claude.com/docs/en/worktrees.md>
+Open that folder in a new VS Code workspace (*File → Open Folder*) and start the agent there
+
+Docs: [https://code.claude.com/docs/en/worktrees.md](https://code.claude.com/docs/en/worktrees.md)
+
+## Worktrees: pushing and opening a PR
+
+A worktree branch is a regular branch in the same repository -- **no special steps are needed**. Push it and open a PR exactly as you would for any other branch.
+
+- Commit the agent's work **inside the worktree folder** -- uncommitted changes stay in that folder only
+   - If you want the agent to commit its edits, instruct it to do so in the memory file or in the prompt for this task
+- A branch can only be checked out in one place at a time, so you cannot switch to it in your main clone (e.g. in GitHub Desktop) while the worktree exists. Test and commit the new edits from withing the worktree folder.
+   - Ask the agent to do this for you if you get stuck
+- Once the PR is merged, remember to remove the worktree with `git worktree remove`
 
 # Thank You! - Questions? {background-color="#530153"}
 
