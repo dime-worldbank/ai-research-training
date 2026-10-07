@@ -337,6 +337,11 @@ days:
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-3/ai-adoption-plan/"
+    materials:
+    - label: "Plan"
+      url: "https://github.com/dime-worldbank/ai-research-training/blob/main/bootcamp/sessions/day-3/ai-adoption-plan/materials/AI-ADOPTION-PLAN.md"
+    - label: "Guide"
+      url: "https://github.com/dime-worldbank/ai-research-training/blob/main/bootcamp/sessions/day-3/ai-adoption-plan/materials/AI-ADOPTION-GUIDE.md"
   - time: 4:00 – 5:00
     title: AI tools for data documentation and publication
     lead: Data Group
