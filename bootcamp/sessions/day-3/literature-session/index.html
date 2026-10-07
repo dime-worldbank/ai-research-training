@@ -1516,6 +1516,47 @@ display:block!important;
 </section>
 <section id="finding-literature-with-your-coding-agent" class="slide level2">
 <h2>Finding literature with your coding agent</h2>
+<style>
+.lscmds div.q { cursor: pointer; border: 1.5px solid transparent; }
+.lscmds div.q:hover { border-color: var(--cyan); }
+.lscmds div.q.on { background: var(--navy); color: #fff; }
+.lscmds .hint { font-size: 0.85em; color: var(--grey); padding: 0 2px; }
+.lsflow { display: none; flex-direction: column; gap: 7px; font-size: 0.52em; line-height: 1.35; }
+.lsflow.on { display: flex; }
+.lsflow .fh { display: flex; flex-direction: column; gap: 2px; font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); font-size: 1.05em; padding: 0 2px 3px; border-bottom: 2px solid var(--cyan); }
+.lsflow .fh .cmd { font-weight: 400; font-size: 0.88em; color: var(--grey); }
+.lsflow .fh code { color: var(--blue); }
+.lsflow .fr { display: grid; grid-template-columns: 5.2em 1fr; gap: 10px; align-items: start; background: var(--pale); border-radius: 8px; padding: 7px 10px; color: #1A1A1A; }
+.lsflow .fr b { font-family: "Montserrat", sans-serif; font-size: 0.82em; text-transform: uppercase; letter-spacing: .04em; padding: 2px 6px; border-radius: 4px; text-align: center; margin-top: 2px; }
+.lsflow .fr.agent b { background: var(--navy); color: #fff; }
+.lsflow .fr.api b { background: #fff; color: var(--blue); border: 1.5px solid var(--blue); }
+.lsflow .fr.script b { background: var(--cyan); color: #fff; }
+.lsflow .fr.api { background: #fff; border: 1.5px solid var(--pale); }
+.lsflow code { font-size: 0.92em; color: var(--navy); }
+.lsflow .back { align-self: flex-start; font-size: 0.9em; color: var(--grey); cursor: pointer; margin-top: 2px; }
+.lsflow .back:hover { color: var(--blue); }
+</style>
+<script>
+(function attachFlows() {
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', attachFlows); return; }
+  const slide = document.getElementById('finding-literature-with-your-coding-agent');
+  if (!slide) return;
+  const chat = slide.querySelector('.chat');
+  const flows = slide.querySelectorAll('.lsflow');
+  const qs = slide.querySelectorAll('.lscmds .q');
+  const reset = () => { flows.forEach(f => f.classList.remove('on')); qs.forEach(q => q.classList.remove('on')); chat.style.display = ''; };
+  qs.forEach(q => q.addEventListener('click', e => {
+    e.stopPropagation();
+    const was = q.classList.contains('on');
+    reset();
+    if (was) return;
+    q.classList.add('on');
+    chat.style.display = 'none';
+    slide.querySelector('.lsflow[data-flow="' + q.dataset.flow + '"]').classList.add('on');
+  }));
+  slide.querySelectorAll('.lsflow .back').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); reset(); }));
+})();
+</script>
 <div class="columns">
 <div class="column" style="width:56%;">
 <div class="chat">
@@ -1524,14 +1565,59 @@ display:block!important;
   <div class="cu">Is “Thompson &amp; Raman (2023), Research Synthesis Methods” a real paper?</div>
   <div class="ca bad"><span class="chip">literature-search skill</span><b>Not found</b> in either database. Treat it as unverified and don’t cite it.</div>
 </div>
+
+<div class="lsflow" data-flow="search">
+  <div class="fh"><span>Find recent papers on …</span><span class="cmd"><code>lit.py search &quot;…&quot; --since 2022 --sort recent</code></span></div>
+  <div class="fr agent"><b>agent</b><span>Turns the question into 3–6 key terms, e.g. <code>community health workers decision support</code>. A long sentence returns almost nothing: OpenAlex needs every word to match.</span></div>
+  <div class="fr api"><b>API</b><span>OpenAlex <code>/works</code>, words matched in title and abstract · Semantic Scholar <code>/paper/search</code>, its own ranking. Two calls.</span></div>
+  <div class="fr script"><b>script</b><span>Merges both lists, removes duplicates by DOI, marks where each paper was found (OA, S2, both), prints the hit counts.</span></div>
+  <div class="fr agent"><b>agent</b><span>Reads the abstracts before calling anything relevant. Reruns with synonyms (<i>lay health workers</i>, <i>mHealth</i>) and reports how the counts change.</span></div>
+  <span class="back">← back to the example</span>
+</div>
+
+<div class="lsflow" data-flow="core">
+  <div class="fh"><span>Which papers does everyone cite?</span><span class="cmd"><code>lit.py core &quot;…&quot; --pool 200</code></span></div>
+  <div class="fr agent"><b>agent</b><span>Same key terms as a search.</span></div>
+  <div class="fr api"><b>API</b><span>OpenAlex: the 200 best-matching papers on the topic, with only their reference lists (<code>select=referenced_works</code>). Two calls of 100.</span></div>
+  <div class="fr script"><b>script</b><span>Counts which works those 200 papers reference most, then fetches the top 15 by ID. One more call.</span></div>
+  <div class="fr agent"><b>agent</b><span>Reports each paper with &quot;cited by N of the 200&quot;. Says that these are often older reviews and methods papers, so the newest study on the topic is unlikely to be here.</span></div>
+  <span class="back">← back to the example</span>
+</div>
+
+<div class="lsflow" data-flow="similar">
+  <div class="fh"><span>Has someone already done this?</span><span class="cmd"><code>lit.py similar DOI</code>, plus <code>search --sort recent</code> and <code>citing</code> on the same paper</span></div>
+  <div class="fr agent"><b>agent</b><span>Picks the closest paper it already knows and takes its DOI as the seed.</span></div>
+  <div class="fr api"><b>API</b><span>OpenAlex: the seed&#39;s reference list → how often each reference is cited → papers that cite the seed&#39;s 40 least-cited references. Semantic Scholar: <code>/recommendations</code> for the seed, from text embeddings.</span></div>
+  <div class="fr script"><b>script</b><span>Scores candidates by the references they share with the seed; sharing a niche trial counts far more than sharing a famous methods paper. Merges with the S2 list, which favours recent papers.</span></div>
+  <div class="fr agent"><b>agent</b><span>Reads the top matches and says how each differs: setting, population, method, outcome. Flags protocols and registrations: that is what a referee will point to.</span></div>
+  <span class="back">← back to the example</span>
+</div>
+
+<div class="lsflow" data-flow="citing">
+  <div class="fh"><span>Who has built on this paper?</span><span class="cmd"><code>lit.py citing DOI --sort recent</code></span></div>
+  <div class="fr agent"><b>agent</b><span>Takes the DOI the user gives, or the one it found in an earlier step.</span></div>
+  <div class="fr api"><b>API</b><span>OpenAlex: resolve the DOI to a work ID, then <code>/works?filter=cites:W…</code>, sorted by date or by citations. Two calls.</span></div>
+  <div class="fr script"><b>script</b><span>Prints the table with the total number of citing papers.</span></div>
+  <div class="fr agent"><b>agent</b><span>Points out the newest follow-ups and any that look like replications or extensions of the user&#39;s own idea.</span></div>
+  <span class="back">← back to the example</span>
+</div>
+
+<div class="lsflow" data-flow="verify">
+  <div class="fh"><span>Is every reference in my draft real?</span><span class="cmd"><code>lit.py verify &quot;full reference&quot;</code>, once per reference</span></div>
+  <div class="fr agent"><b>agent</b><span>Runs the command on every reference in the draft, passing the full reference as written.</span></div>
+  <div class="fr api"><b>API</b><span>With a DOI: OpenAlex <code>/works/doi:…</code>. Without: guesses the title from the text, then OpenAlex <code>title.search</code> and Semantic Scholar <code>/paper/search/match</code>.</span></div>
+  <div class="fr script"><b>script</b><span>Compares titles: ≥ 0.9 FOUND, ≥ 0.7 UNCERTAIN, else NOT FOUND. For a found paper it also checks year, first author and volume/pages against the record (✓/✗).</span></div>
+  <div class="fr agent"><b>agent</b><span>Reports UNCERTAIN and NOT FOUND instead of fixing them silently. Tries the bare title or the DOI once more before calling a reference fabricated.</span></div>
+  <span class="back">← back to the example</span>
+</div>
 </div><div class="column" style="width:44%;">
 <div class="lscmds">
-  <div class="lh">What you can ask your agent</div>
-  <div>“Find recent papers on …”</div>
-  <div>“Which papers does everyone in this field cite?”</div>
-  <div>“Has someone already done this?”</div>
-  <div>“Who has built on this paper?”</div>
-  <div>“Is every reference in my draft real?”</div>
+  <div class="lh">What you can ask your agent <span class="hint">· click one to see what happens</span></div>
+  <div class="q" data-flow="search">“Find recent papers on …”</div>
+  <div class="q" data-flow="core">“Which papers does everyone in this field cite?”</div>
+  <div class="q" data-flow="similar">“Has someone already done this?”</div>
+  <div class="q" data-flow="citing">“Who has built on this paper?”</div>
+  <div class="q" data-flow="verify">“Is every reference in my draft real?”</div>
 </div>
 <a class="dl" href="https://github.com/dime-worldbank/ai-research-training/releases/download/literature-search-latest/literature-search.zip" target="_blank" rel="noopener">Download the literature-search skill (ZIP)</a>
 <div class="dlnote">Unzip into <code>.agents/skills/</code> in your project. Works with Claude Code, Codex and other coding agents; uses the free OpenAlex and Semantic Scholar APIs, no account needed.</div>
