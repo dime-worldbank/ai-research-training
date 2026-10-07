@@ -317,7 +317,7 @@ days:
     link: "/bootcamp/sessions/day-3/reproducibility-skill/"
     materials:
     - label: "Demo"
-      url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-reproducibility/materials/demo-project.zip"
+      url: "https://wb-ai-research-training.netlify.app/sessions/ai-skills-reproducibility/materials/demo-project.zip"
     - label: "Skill"
       url: "https://github.com/worldbank/wb-reproducible-research-repository/releases/latest/download/reproducibility-skill.zip"
   - time: 1:45 – 2:15
