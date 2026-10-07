@@ -157,7 +157,7 @@ GitHub Copilot (any strong model) or the Claude Code extension
 
 [(Optional) demo project]{.ct}
 
-[Comment track](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-with-draft.zip) or [draft track](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-no-draft.zip) (.zip, skills included)
+[with draft](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-with-draft.zip) or [no draft](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/zambia-attendance-no-draft.zip) (.zip, skills included)
 :::
 
 ::: {.card .line .big-ic}
@@ -265,77 +265,7 @@ Twenty small edits later, it sounds like the model
 
 [Errors hide]{.ct}
 
-In sentences that read well. Next slide.
-:::
-:::
-
-::: {.notes}
-Fluent text reads as correct, so checking slides into skimming. Approving an argument is easier than building one, so you stop noticing what is missing. Each accepted edit is small, but they add up to a paper in someone else's voice.
-Line to land: this is why the workflow starts by interviewing you, and ends with you ruling on every comment and every change.
-:::
-
-## Spot the problems
-
-:::: {.columns}
-
-::: {.column width="56%"}
-From the demo draft:
-
-> The program increased student attendance by **5.2 percentage points** in our preferred specification (Table 2, column 2) [...]. The estimate is stable across specifications [...], which **supports a causal interpretation**. The program also **reduced dropout by 11 percent** over the study period.
-:::
-
-::: {.column width="44%"}
-Table 2, attendance rate:
-
-| | (1) | (2) | (3) |
-|---|---|---|---|
-| FSMP × Post | 0.045 | **0.042** | 0.039 |
-| | (0.012) | (0.011) | (0.013) |
-
-Column 2 is preferred. Rollout was **not random**: poorer districts went first.
-:::
-
-::::
-
-::: {.callout-note-custom .fragment}
-**Three errors.** 5.2 should be 4.2 · stability across columns does not make a non-random rollout causal · no dropout result exists anywhere in the outputs.
-:::
-
-::: {.notes}
-Give the room 30 seconds before revealing. Most people find 5.2 vs 4.2. Fewer find the dropout claim, because it reads like every other results sentence. This is D1, D3 and D6 in the instructor key.
-:::
-
-## The demo draft has 12 planted errors
-
-::: {.cards .c5}
-::: {.card}
-[Wrong number]{.ct}
-<span class="ex">"5.2 pp"</span>
-<span class="foot">Table says 4.2</span>
-:::
-
-::: {.card}
-[Invented result]{.ct}
-<span class="ex">"reduced dropout by 11%"</span>
-<span class="foot">No such output</span>
-:::
-
-::: {.card}
-[Fake citation]{.ct}
-<span class="ex">Johnson (2020)</span>
-<span class="foot">Journal does not exist</span>
-:::
-
-::: {.card}
-[Overclaim]{.ct}
-<span class="ex">"most cost-effective … worldwide"</span>
-<span class="foot">No cost data</span>
-:::
-
-::: {.card}
-[AI prose]{.ct}
-<span class="ex">"delve" ×3<br>"landscape" ×3</span>
-<span class="foot">Not the author's voice</span>
+In sentences that read well
 :::
 :::
 
@@ -344,7 +274,9 @@ A wrong table looks wrong. A wrong paragraph looks finished.
 :::
 
 ::: {.notes}
-Each of these is caught by a specific check: numbers are traced to outputs/, citations to the .bib, claims to the study population, prose to a word and pattern list. Full list in INSTRUCTOR-seeded-defects.md.
+Fluent text reads as correct, so checking slides into skimming. Approving an argument is easier than building one, so you stop noticing what is missing. Each accepted edit is small, but they add up to a paper in someone else's voice.
+Line to land: this is why the workflow starts by interviewing you, and ends with you ruling on every comment and every change.
+The demo draft used in the hands-on has 12 planted errors of exactly these kinds: a wrong number (5.2 vs 4.2 in the table), an invented dropout result, a fabricated citation, an overclaim with no cost data, and AI prose ("delve" three times). Each is caught by one specific check. Full list in INSTRUCTOR-seeded-defects.md.
 :::
 
 # The Workflow {background-color="#530153"}
@@ -363,7 +295,7 @@ Each of these is caught by a specific check: numbers are traced to outputs/, cit
 ```
 
 ::: {.punch}
-The agent drafts, checks, challenges you and suggests based on that.
+Four of the five steps are yours.
 :::
 
 ::: {.notes}
@@ -444,99 +376,95 @@ Baselines: econ-writing-skill and econ-paper-review-skill by Lu Han (github.com/
 Answers taken from the demo's pre-baked profile. The agent also asks who the paper is for, which papers you admire or dislike, and for outlet rules and old referee reports. The main finding is always typed by the author: the agent may sharpen it, never invent it.
 :::
 
-## A guide: one brief, two uses
+## Before the interview: four folders
+
+::: {.cards .c4}
+::: {.card .dark}
+[`positive/`]{.ct}
+
+Papers you admire
+
+<span class="ex">A PRWP with an intro you like</span>
+
+<span class="foot">Setup asks: what is it great **for**?</span>
+:::
+
+::: {.card}
+[`negative/`]{.ct}
+
+Writing you dislike
+
+<span class="ex">A paper that buries its result on page 9</span>
+
+<span class="foot">Setup asks: what puts you off, **exactly**?</span>
+:::
+
+::: {.card}
+[`guidelines/`]{.ct}
+
+Rules of the target outlet
+
+<span class="ex">PRWP author note · journal guide · a report template</span>
+
+<span class="foot">Setup asks: **binding** or aspirational?</span>
+:::
+
+::: {.card}
+[`feedback/`]{.ct}
+
+Old referee reports, seminar notes
+
+<span class="ex">The report on your last paper</span>
+
+<span class="foot">Setup asks: which were **fair**?</span>
+:::
+:::
+
+::: {.punch}
+PDF, Markdown or text. Empty folders are fine.
+:::
+
+::: {.notes}
+This is `wb-paper/references/`. Setup creates the four folders and asks you to drop files in before the questions start. The interview then walks them folder by folder, one file per question. Each folder has one question that matters: what a good paper is good for, scopes what gets copied from it; the exact dislike turns into a "never" rule; bindingness decides whether a guideline is a hard check or a style to lean toward; the fairness call on old criticism decides whether the draft must comply with it or merely preempt the misreading.
+An empty folder costs one line ("no outlet rules, I'll use PRWP defaults") and the skill falls back to the baseline. Files you add later are picked up when you rerun setup.
+:::
+
+## What setup does with them
 
 ```{=html}
-<div class="flow" style="margin-top:0.6em">
-  <div class="step ai" style="flex:0.8"><svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><b>Drafting</b><small>follows it</small></div>
-  <span class="arrow">←</span>
-  <div class="card dark" style="flex:1.6;font-size:0.62em">
-    <h4>Methodologist · Zambia paper</h4>
-    <div>1 · Is parallel trends <b>shown</b>, or only assumed?</div>
-    <div>2 · "About 4 pp", and nothing stronger?</div>
-    <div>3 · Every number traced to the tables</div>
-  </div>
-  <span class="arrow">→</span>
-  <div class="step ai" style="flex:0.8"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><b>Comments</b><small>check against it</small></div>
+<style>
+.xt { display: grid; grid-template-columns: 1.1fr 2fr 1.7fr; gap: 6px 14px; font-size: 0.72em; line-height: 1.3; margin-top: 0.5em; align-items: stretch; }
+.xt .h { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); font-size: 0.95em; padding: 0 6px 4px; border-bottom: 2px solid var(--cyan); }
+.xt .f { background: var(--blue); color: #fff; border-radius: 8px; padding: 10px 12px; font-family: "Fira Code", monospace; font-size: 0.95em; display: flex; align-items: center; }
+.xt .e, .xt .u { background: var(--pale); color: var(--navy); border-radius: 8px; padding: 10px 12px; }
+.xt .e i { display: block; font-style: italic; opacity: 0.85; margin-top: 3px; font-size: 0.95em; }
+.reveal .xt .e code { font-size: 0.9em; }
+</style>
+<div class="xt">
+  <div class="h">You drop in</div><div class="h">Setup extracts</div><div class="h">Then: drafting follows · comments check</div>
+  <div class="f">positive/</div>
+  <div class="e">Craft patterns, not text<i>"each intro paragraph opens with a claim sentence; evidence follows"</i></div>
+  <div class="u">A convention the draft follows and a comment pass can mark pass/fail</div>
+  <div class="f">negative/</div>
+  <div class="e">A "never" rule<i>"never three pages before the first number"</i></div>
+  <div class="u">Same. Often the most useful entries</div>
+  <div class="f">guidelines/</div>
+  <div class="e">Binding constraints<i>abstract ≤ 150 words · disclaimer footnote · AI-disclosure policy</i></div>
+  <div class="u">Hard checks. Outrank the baseline and your own preferences</div>
+  <div class="f">feedback/</div>
+  <div class="e">Recurring criticisms, fair vs misread<i>"generalises far beyond its setting"</i></div>
+  <div class="u">Top priority in the guides. Optional guide: <b>The Referee You Keep Getting</b></div>
 </div>
 ```
 
 ::: {.punch}
-All preferences are saved in plain text files. Edit them after the interview.
+Every entry names its source and how to check it.
 :::
 
 ::: {.notes}
-Setup writes a few guides: typically Methodologist, Policy Reviewer, Writing Critic. Priority 1 here is the author's own fear from the interview: that is the personalisation.
-:::
-
-## Comments: you pick the lens
-
-```{=html}
-<div class="chips"><span class="lbl">Guide</span><span class="chip on">Methodologist</span><span class="chip">Policy Reviewer</span><span class="chip">Writing Critic</span></div>
-<div class="chips"><span class="lbl">Domain</span><span class="chip on">accuracy</span><span class="chip">design</span><span class="chip">argument</span><span class="chip">presentation</span><span class="chip">language</span><span class="chip">policy</span><span class="chip">outlet</span></div>
-<div class="chips"><span class="lbl">Section</span><span class="chip">Intro</span><span class="chip">Strategy</span><span class="chip on">Results</span><span class="chip">Conclusion</span><span class="chip">Full draft</span></div>
-<div class="comment" style="margin-top:0.8em">
-  <div class="hdr">C-01 · Methodologist · accuracy · Results · P0</div>
-  <p><b>Basis:</b> text says 5.2 pp; Table 2, col. 2 says 0.042</p>
-  <p><b>Concern:</b> the headline number is wrong</p>
-  <p><b>Fix:</b> change to 4.2 pp</p>
-</div>
-```
-
-::: {.notes}
-Each run is guide × domain × section. accuracy: does the text say what the tables and citations say. design: would the identification survive a methods seminar. argument: is the result in the intro, does the logic hold. presentation: are exhibits self-contained. language: concrete prose, in your voice. policy and outlet: audience fit and outlet rules.
-Every comment has the same shape: quote or basis, concern, smallest fix, severity P0–P2.
-:::
-
-## You triage every comment
-
-:::: {.columns}
-
-::: {.column width="50%"}
-```{=html}
-<div class="comment">
-  <div class="hdr">C-04 · Methodologist · design · P0</div>
-  <p>Parallel trends is asserted, never shown.</p>
-  <div class="btns"><span class="btn">Accept</span><span class="btn">Reject</span><span class="btn">Defer</span><span class="btn hot">Challenge</span></div>
-</div>
-<div class="bubble me" style="margin-top:14px;font-size:0.62em;max-width:100%"><span class="who">You</span>Everyone assumes parallel trends.</div>
-```
-:::
-
-::: {.column width="50%"}
-```{=html}
-<div style="display:flex;flex-direction:column;gap:10px;margin-top:0.2em">
-  <div class="card line"><h4>Withdrawn</h4>You were right</div>
-  <div class="card line"><h4>Sharpened</h4>Partly right: a narrower comment</div>
-  <div class="card dark"><h4>Upheld</h4>Rollout was not random, so it matters more here. You still decide.</div>
-</div>
-```
-:::
-
-::::
-
-::: {.notes}
-A challenge is your objection in your own words. The agent rechecks the evidence only (no new sweep, no doubling down) and rules withdrawn, sharpened or upheld, with reasons. In the demo, challenging the parallel-trends comment should come back upheld: Table 1 shows poorer districts went first.
-Only accepted comments go to the drafting skill, and each resulting change is shown to you before it lands.
-:::
-
-## Drafting from your project
-
-```{=html}
-<div class="flow" style="margin-top:0.4em">
-  <div class="step ai"><b>Outline</b><small>two options, you pick</small></div><span class="arrow">→</span>
-  <div class="step ai"><b>Bullets</b><small>you check the logic</small></div><span class="arrow">→</span>
-  <div class="step ai"><b>Prose</b><small>one section at a time</small></div>
-</div>
-<div class="prompt" style="margin-top:0.9em">Attendance rose by <span style="color:#7EE2A8">4.2 percentage points</span> (Table 2, col. 2),<br><span style="background:#800280;color:#fff;padding:0 4px;border-radius:3px">[AUTHOR: which benchmark does the Ministry use?]</span></div>
-```
-
-::: {.punch}
-Numbers only from your tables. Anything else is a question for you.
-:::
-
-::: {.notes}
-wb-paper-write takes numbers only from the output files named in the profile. Anything it cannot source becomes an [AUTHOR: ...] marker. A marker is a question for you, not a gap for the agent to fill.
+The unit of extraction is a convention entry: an imperative rule, a one-pass check, a quoted fragment of at most 25 words as evidence, and the sections it applies to. Three tests: could the drafting skill follow it without asking, could the review skill mark pass/fail without a judgement call, and does it point at a specific passage. "The intro flows well" fails all three.
+Two more rules. Delta: anything the baseline already enforces is not recorded again; if your materials show it matters unusually much to you, it becomes a priority pointer instead. Imitation boundary: the skill extracts how a paper is built, never its sentences.
+Referee reports are the highest-signal source: criticism you received predicts criticism to come. Identities and the outlet's decision are stripped; only the content is used. Fair criticism becomes a compliance check, a misreading becomes a defensibility check (does the draft preempt it).
 :::
 
 ## Every AI action is on the record
@@ -550,7 +478,7 @@ wb-paper-write takes numbers only from the output files named in the profile. An
 ```
 
 ::: {.punch}
-The skill produces a decision record you can build a disclosure list from.
+The log is what the disclosure statement is written from.
 :::
 
 ::: {.notes}
@@ -559,54 +487,100 @@ The log records what the agent was given, the options it offered and what you ch
 
 # Hands-on: Draft or Comment {background-color="#530153"}
 
-## Pick your track
+## Pick a task and a project
 
-::: {.cards .c2}
-::: {.card .dark .big-ic}
-<svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+```{=html}
+<div class="flow-label">1 · What do you want to do?</div>
+<div class="flow">
+  <div class="step you"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><b>Comment</b><small>needs a draft</small></div>
+  <div class="step you"><svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><b>Draft</b><small>needs tables and notes</small></div>
+</div>
+<div class="flow-label">2 · Which project?</div>
+<div class="flow">
+  <div class="step ai"><b>Demo · with draft</b><small><code>zambia-attendance-with-draft/</code><br>12 planted errors, guides set up</small></div>
+  <div class="step ai"><b>Demo · no draft</b><small><code>zambia-attendance-no-draft/</code><br>tables + concept note, no paper</small></div>
+  <div class="step ai"><b>Your own paper</b><small>Quarto, LaTeX or Markdown<br>+ <code>skills.zip</code></small></div>
+</div>
+```
 
-[A · Comment]{.ct}
-
-`zambia-attendance-with-draft/`
-
-Draft with 12 planted errors. Guides already set up.
-
-<span class="foot">Accept one, reject one, **challenge** one</span>
-:::
-
-::: {.card .big-ic}
-<svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-
-[B · Draft]{.ct}
-
-`zambia-attendance-no-draft/`
-
-Tables and a concept note. No draft yet.
-
-<span class="foot">Run setup, then draft the **Results**</span>
-:::
+::: {.punch}
+Any combination works. Setup asks what you want to do.
 :::
 
 ::: {.notes}
-Both are the same fictional study: school meals and attendance in Zambia, 1,840 schools, 2021–2023. Participants with their own draft can use it instead.
+Both demo folders are the same fictional study: school meals and attendance in Zambia, 1,840 schools, 2021–2023. The natural pairings are comment on the with-draft demo and draft on the no-draft demo, but nothing prevents drafting a new section in the with-draft project or commenting on a section you just drafted in the no-draft project. On your own paper you can do either, or both, in the same folder: a comment pass on what exists, then draft the missing section.
+Only one real constraint: comments need a draft. If there is none, setup says so and offers drafting.
+:::
+
+## Flow A · Comment
+
+```{=html}
+<div class="flow" style="margin-top:0.4em">
+  <div class="step ai"><b>1 · Open</b><small>the project folder in VS Code</small></div><span class="arrow">→</span>
+  <div class="step you"><b>2 · Paste</b><small>the first message</small></div><span class="arrow">→</span>
+  <div class="step you"><b>3 · Pick the scope</b><small>guide × domain × section</small></div><span class="arrow">→</span>
+  <div class="step you"><b>4 · Triage</b><small>accept · reject · challenge · defer</small></div>
+</div>
+<div class="flow-label">Demo (guides already set up)</div>
+<div class="prompt">Follow skills/wb-paper-review/SKILL.md. Scope: Methodologist · accuracy · Results.</div>
+<div class="flow-label">Your own draft (no guides yet)</div>
+<div class="prompt">Follow skills/wb-paper-setup/SKILL.md on the Quick route. I am the author. I want comments on my draft.</div>
+```
+
+::: {.callout-note-custom}
+On your own paper, setup runs first (~10–15 min), then hands off to comments. Point it at your draft and your tables when asked.
+:::
+
+::: {.notes}
+The with-draft demo ships profile and guides, so review starts immediately. On a participant's own draft the review skill needs a profile and will offer setup; starting with setup saves a round trip. The scope question is the same either way: pick one guide, one domain, one section. Accuracy on Results is the fastest first pass because every comment can be checked against a table.
+:::
+
+## Flow B · Draft
+
+```{=html}
+<div class="flow" style="margin-top:0.4em">
+  <div class="step ai"><b>1 · Open</b><small>the project folder in VS Code</small></div><span class="arrow">→</span>
+  <div class="step you"><b>2 · Paste</b><small>the first message</small></div><span class="arrow">→</span>
+  <div class="step you"><b>3 · Interview</b><small>claim, fear, conventions · ~10 min</small></div><span class="arrow">→</span>
+  <div class="step you"><b>4 · Outline → bullets → prose</b><small>you approve each step</small></div>
+</div>
+<div class="flow-label">Demo (no draft) and your own project</div>
+<div class="prompt">Follow skills/wb-paper-setup/SKILL.md on the Quick route. I am the author. I want to draft the Results section.</div>
+```
+
+::: {.callout-note-custom}
+Already have a draft? Drafting still works: ask for a missing section, or **Rewrite** mode on a paragraph you wrote. Numbers come from your tables only.
+:::
+
+::: {.notes}
+Same first message for the demo and for a participant's own project: setup, then it offers drafting. On their own paper the interview asks where the tables are (grounding pointers) and the agent will not write a number it cannot find there; everything else becomes an [AUTHOR:] marker.
+If they already have a full draft, suggest Results or a section they have been putting off, or Rewrite mode on an existing paragraph: meaning preserved, voice kept, before/after shown.
 :::
 
 ## Set up
 
 ```{=html}
 <div class="flow" style="margin-top:0.4em">
-  <div class="step ai"><b>1 · Unzip</b><small>your track's .zip</small></div><span class="arrow">→</span>
-  <div class="step ai"><b>2 · Open</b><small>that folder in VS Code</small></div><span class="arrow">→</span>
-  <div class="step you"><b>3 · Paste</b><small>the first message</small></div>
+  <div class="step ai"><b>Demo</b><small>unzip the .zip → open that folder</small></div>
+  <div class="step ai"><b>Your paper</b><small>unzip <code>skills.zip</code> into your paper folder → open that folder</small></div>
 </div>
-<div class="flow-label">A · Comment</div>
-<div class="prompt">Follow skills/wb-paper-review/SKILL.md. Scope: Methodologist · accuracy · Results.</div>
-<div class="flow-label">B · Draft</div>
-<div class="prompt">Follow skills/wb-paper-setup/SKILL.md on the Quick route. I am the author. Lets draft this paper</div>
+```
+
+```{=html}
+<div class="tree" style="margin-top:0.6em">your-paper/
+├── skills/            <em>← from skills.zip</em>
+├── paper/             <em>your draft, if any</em>
+├── outputs/           <em>your tables and figures</em>
+└── wb-paper/references/   <em>created by setup, empty is fine</em>
+    ├── positive/      <em>papers you admire</em>
+    ├── negative/      <em>writing you dislike</em>
+    ├── guidelines/    <em>outlet rules</em>
+    └── feedback/      <em>old referee reports</em></div>
 ```
 
 ::: {.notes}
-Most common issue: opening a file instead of the folder. Each demo zip already contains skills/; if the agent cannot find SKILL.md, the folder opened is probably one level too high or too low.
+Most common issue: opening a file instead of the folder. Each demo zip already contains skills/; if the agent cannot find SKILL.md, the folder opened is probably one level too high or too low. Folder names in your own project do not have to match: setup asks where the draft and the tables are.
+Word files: the agent edits .docx badly. Convert with pandoc first and render back to Word at the end.
 :::
 
 ## What to watch for
@@ -615,16 +589,16 @@ Most common issue: opening a file instead of the folder. Each demo zip already c
 ::: {.card}
 [A · Comment]{.ct}
 
-☐ Catches **5.2 vs 4.2**?<br>
-☐ Catches the dropout claim?<br>
-☐ Challenge parallel trends: upheld or withdrawn?
+☐ Demo: catches **5.2 vs 4.2**? The dropout claim?<br>
+☐ Every comment points at a table or a sentence?<br>
+☐ Challenge one: upheld or withdrawn, with reasons?
 :::
 
 ::: {.card}
 [B · Draft]{.ct}
 
 ☐ Asks before it writes?<br>
-☐ Every number in `outputs/`?<br>
+☐ Every number in your `outputs/`?<br>
 ☐ Where are the `[AUTHOR:]` markers?
 :::
 :::
@@ -634,35 +608,54 @@ After each step, open `wb-paper/log.md`.
 :::
 
 ::: {.notes}
-Track A, if time: run Methodologist · design · full draft. It should put the parallel-trends problem first, because that is the author's fear in the profile. Track B: read each change before accepting it.
+Demo comment track, if time: run Methodologist · design · full draft. It should put the parallel-trends problem first, because that is the author's fear in the profile. Draft track: read each change before accepting it.
+On their own paper the checks are the same minus the planted errors: does each comment quote the draft and name the table, and does the draft refuse to invent numbers.
 :::
 
-## Use it on your own paper
+## Only for Working Papers?
 
-:::: {.columns}
+::: {.cards .c3 style="font-size:0.85em"}
+::: {.card .dark}
+[Working papers · journal articles]{.ct}
 
-::: {.column width="55%"}
-```{=html}
-<div class="tree">your-paper/
-├── skills/            <em>← unzip skills.zip here</em>
-└── wb-paper/references/
-    ├── positive/      <em>papers you admire</em>
-    ├── negative/      <em>writing you dislike</em>
-    ├── guidelines/    <em>outlet rules</em>
-    └── feedback/      <em>old referee reports</em></div>
-```
+The default. The baseline is economics writing: structure, claims, exhibits, identification.
+
+<span class="foot">PRWP defaults if you add nothing</span>
 :::
 
-::: {.column width="45%"}
+::: {.card}
+[Reports · policy notes · briefs]{.ct}
+
+Yes. Tell setup the outlet and put its rules in `guidelines/`. Length limits, required sections and audience become checks.
+
+<span class="foot">Policy guide + `outlet` checks</span>
+:::
+
+::: {.card .line}
+[What stays the same]{.ct}
+
+Numbers only from your tables · claims checked against your evidence · you triage every comment · everything logged
+
+:::
+:::
+
+::: {.punch}
+The guides are text files. Edit them if the defaults do not fit.
+:::
+
+::: {.notes}
+This question will come up. The honest answer: the skills were built around working papers, and the vendored baseline (econ-write) is economics-paper craft, so a report or a policy note gets some advice that does not apply, such as intro structure or the 35–45 page target. Setup handles the difference in three places: the target-outlet question, the guidelines/ folder (a report template or a GP's style rules become binding outlet constraints), and the policy guide, whose brief is audience and how far the recommendations may go. The grounding and triage rules do not depend on the output type at all.
+What it is not for: Word-native workflows (convert first) and outputs with no underlying tables, where there is nothing to ground the numbers in.
+:::
+
+## Use it after today
+
 1. Drop in what you have. Empty is fine.
 2. Run setup once. Edit the guides.
 3. Before the next draft goes to a coauthor: **one** comment pass, triaged by you.
-:::
-
-::::
 
 ::: {.notes}
-Setup creates the four folders if they are missing and asks you to add files; empty folders fall back to defaults. Work in Quarto, LaTeX or Markdown while the agent is involved and render to Word at the end if someone needs it.
+Setup creates the four reference folders if they are missing and asks you to add files; empty folders fall back to defaults. Work in Quarto, LaTeX or Markdown while the agent is involved and render to Word at the end if someone needs it.
 :::
 
 ## Thank you {.closing}
