@@ -1349,9 +1349,25 @@ Switch to the live demo, about 4 minutes: upload a small CSV, define two criteri
 
 ## Demo: MetaScreener
 
+:::: {.columns}
+
+::: {.column width="64%"}
 ```{=html}
-<figure class="shot2" style="align-items:center"><a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img style="max-height:440px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"></a><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
+<figure class="shot2" style="align-items:center"><a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img style="max-height:400px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"></a><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
 ```
+:::
+
+::: {.column width="36%"}
+```{=html}
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:0.4em">
+  <a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img src="images/metascreener-qr.png" alt="QR code linking to MetaScreener" style="width:170px;margin:0"></a>
+  <div class="card" style="font-size:0.72em;padding:14px 16px;gap:6px"><span class="ct" style="font-size:1.05em">Try it on your own review</span><div>Share your disagreements with us: we are validating across domains.</div></div>
+  <div class="source-note" style="font-size:0.5em;text-align:left">Method: Weinert et al. (forthcoming), <i>How much can we automate? Quantifying uncertainty to choose hybrid LLM–human screening strategies.</i></div>
+</div>
+```
+:::
+
+::::
 
 ## Next: decision models
 
@@ -1373,19 +1389,7 @@ About 3 minutes. Vendor claims for Jev (typesafe.ai and launch coverage, Sept 20
 
 ## Thank you {.closing}
 
-:::: {.columns}
-
-::: {.column width="65%"}
-Try MetaScreener on your own review, and share your disagreements with us: we are validating across domains.
-
-Method: *How much can we automate? Quantifying uncertainty to choose hybrid LLM–human screening strategies.*
-:::
-
-::: {.column width="35%"}
-[![](images/metascreener-qr.png){width="200px" fig-alt="QR code linking to MetaScreener"}](https://sautmann.github.io/MetaScreener/){target="_blank" rel="noopener"}
-:::
-
-::::
+This presentation was made using AI tools (Anthropic Claude Opus 5.5 & Fable 5.1) for design, layout, and content A/B testing.
 
 # Appendix: Calculating screening uncertainty for SLRs & MAs {background-color="#530153"}
 
