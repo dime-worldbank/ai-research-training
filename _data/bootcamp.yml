@@ -391,15 +391,18 @@ days:
   - time: 2:30 – 3:00
     title: Embeddings in geospatial analysis
     lead: GOST
-  - time: 3:00 – 3:15
-    title: Break
+  - time: 3:00 – 3:30
+    title: Intro to the World Bank's GitHub and Open Source Catalog
+    lead: Open Source Program Office
+  - time: 3:30 – 3:45
+    title: Coffee break
     kind: break
-  - time: 3:15 – 4:15
+  - time: 3:45 – 4:30
     title: Git workflows for verifying AI outputs
     hands_on: true
     lead: Impact Analytics
     link: "/bootcamp/sessions/day-4/git-verify-ai-output/"
-  - time: 4:15 – 4:45
+  - time: 4:30 – 5:00
     title: Closing session
   weekday: Thursday
   date: Oct 8
