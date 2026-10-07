@@ -355,8 +355,11 @@ The more a missed paper costs, the more care the process needs.
 :::
 
 ::: {.notes}
-Timing: intro is 5 minutes.
-Hands up: which of the three do you do most? Most people will say 1 and 2; far fewer run full systematic reviews / meta-analyses. The first half of the session serves all three; the second half goes deep on 3, because that is where AI can be measured most precisely.
+- 5 minutes for the intro.
+- Hands up: which of the three do you do most? Most will say 1 and 2.
+- The rule for the whole session: how careful you need to be depends on what a missed paper costs.
+- Overview: a miss is cheap, you will run into the paper later. Related work: a referee finds it for you. Systematic review: the answer is biased and nobody can see it.
+- First half of the session serves all three jobs. Second half goes deep on job 3, where we can measure the AI.
 :::
 
 ## Pulling data out of papers
@@ -383,6 +386,13 @@ A fixed coding form for every included study: effect sizes, samples, risk of bia
 A rough table is fine for an overview. A systematic review / meta-analysis needs every value checked.
 :::
 
+::: {.notes}
+- Same split for extraction.
+- Overview: a rough comparison table of the 10–20 closest papers is enough. Check the rows you cite.
+- Systematic review: a fixed coding form, every value verified, ideally by two people.
+- Elicit and Gemini Notebook both build these tables. The later demo shows what they get right and wrong.
+:::
+
 # Overviews and Related Work {background-color="#530153"}
 
 ## Which tool for what
@@ -402,8 +412,10 @@ Not all of these are Bank-approved. Check the approved-tools list before using o
 :::
 
 ::: {.notes}
-Timing: this section is about 10 minutes, the review tools another 5.
-Literature is public, but search strategies, unpublished drafts and review corpora may not be: check the Day 1 classification rules before uploading anything that is not public.
+- About 10 minutes for this section, plus 5 for the review tools later.
+- Read the table by job, not by tool. Each row is a different kind of index.
+- Not all of these are Bank-approved. The literature itself is public; search strategies, unpublished drafts and review corpora may not be. Day 1 classification rules apply before uploading anything.
+- ImpactAI was at the Day 1 Bazaar.
 :::
 
 ## General agent or a tool built for papers?
@@ -423,7 +435,11 @@ Start with a general agent. Switch when you have to trust the list.
 :::
 
 ::: {.notes}
-About 2 minutes. The question to ask is the one from slide 2: what does a miss cost, and will anyone need to check how the list was made. A general agent with web search is good for the first hour on a topic. Once the list goes into a paper, a protocol or a pooled estimate, use a tool that searches a paper index and saves how it got there. The coding agent with the literature-search skill (two slides on) sits in between: a paper index, asked in plain language.
+- 2 minutes. This is the question people have not heard answered yet.
+- Two things decide it: what a miss costs, and whether anyone will need to check how the list was made.
+- General agent with web search: fine for the first hour on a topic.
+- Once the list goes into a paper, a protocol or a pooled estimate: use a tool that searches a paper index and records how it got there.
+- The coding agent with the literature-search skill sits in between: a paper index, asked in plain language. Two slides on.
 :::
 
 ## How to ask, and how to check
@@ -460,7 +476,11 @@ About 2 minutes. The question to ask is the one from slide 2: what does a miss c
 ```
 
 ::: {.notes}
-About 3 minutes. Two prompts people can copy. The overview prompt tells the model what you already know so it does not spend its answer on that, and asks for its search terms and its gaps so you can see where it looked. The related-work prompt gives the study in four parts so the model has to match on all four. Check 1 is the one that catches invented references: a DOI either resolves or it does not. The next slide shows a skill that does that check for you.
+- 3 minutes. Two prompts people can copy.
+- Overview prompt: tell it what you already know so it does not spend the answer on that. Ask for its search terms and its gaps so you can see where it looked.
+- Related-work prompt: give the study in four parts so it has to match on all four.
+- Check 1 catches invented references: a DOI either resolves or it does not.
+- Next slide: a skill that runs that check for you.
 :::
 
 ## Finding literature with your coding agent
@@ -589,7 +609,12 @@ Same keyword engines underneath: read the abstracts, and verify every reference.
 :::
 
 ::: {.notes}
-About 2 minutes. The same three jobs as before (search, what everyone cites, has someone done this), but asked in plain language to your coding agent. The skill tells the agent how to search OpenAlex and Semantic Scholar (it bundles a small script the agent runs) and to return a DOI for every paper. Same caveat as the search tools: keyword matching and citation counts, so read the abstracts. The verify command is the habit to take away: check every reference an AI hands you.
+- 2 minutes. The same jobs, asked in plain language to Claude Code or Codex.
+- Click a question: the left side shows what the skill does for it, which API calls and what the agent does with the results.
+- Worth clicking live: "Has someone already done this?" and "Is every reference real?".
+- Underneath it is keyword search and citation counts, so the agent still has to read the abstracts.
+- The verify command is the habit to take away: every reference an AI hands you gets checked.
+- Free APIs, no account. Keys are optional and make it faster.
 :::
 
 ## Getting an overview with deep research
@@ -616,6 +641,13 @@ Open every cited source. Is it a paper or a blog? Does it say what the report sa
 
 ::::
 
+::: {.notes}
+- Deep research proposes a plan first. Edit it: that is the one place you steer it.
+- Good for the main camps, the key debates, and search terms you had not thought of.
+- Open every cited source. Is it a paper or a blog? Does it say what the report says?
+- Many sources will be web pages, not papers. That is fine for orientation, not for citing.
+:::
+
 ## Search tools built for papers
 
 ```{=html}
@@ -631,9 +663,12 @@ Each searches a different index. Run the same question in two and compare.
 :::
 
 ::: {.notes}
-One topic for the whole demo: AI decision support for community health workers (CHWs) in low- and middle-income countries. The next three slides show real output from Elicit, Consensus and Gemini Notebook (6 Oct 2026); re-run the searches live if time allows. No single index covers everything; the differences are the point.
-
-Optional extra search, "Which papers does everyone cite?": in Elicit, "What are the key studies on digital clinical decision support tools for community health workers?" and sort by citations; in Consensus, the same question with the "Highly cited" filter. The most-cited papers tend to be reviews or general mHealth papers, not AI.
+- One topic for the whole demo: AI decision support for community health workers in LMICs.
+- Elicit: semantic search, then a table with columns it fills from the papers.
+- Consensus: asks the literature a yes/no question, summarises where papers agree.
+- Undermind: an agent that follows citation trails over several rounds.
+- Each searches a different index. Run the same question in two and compare. The differences are the point.
+- Optional: "which papers does everyone cite?" In Elicit sort by citations, in Consensus use the Highly cited filter. Top hits tend to be general mHealth reviews, not AI.
 :::
 
 ## Demo · One question, two tools
@@ -654,7 +689,11 @@ Real output, 6 Oct 2026. Click a screenshot to enlarge it.
 :::
 
 ::: {.notes}
-Run live if time allows; results change between runs. Point out: Elicit separates "AI" from "algorithmic" decision support on its own, Consensus gives a confident one-liner from five papers. The Campbell protocol is exactly the kind of paper you must find before writing a review on this topic.
+- Real output, 6 Oct 2026. Rerun live if there is time; results change between runs.
+- Elicit found 8 papers and flagged most of them itself as rule-based, not AI. Its summary says the set does not support claims about AI.
+- Consensus gives a confident one-liner from five papers.
+- Consensus found the 2026 Campbell review protocol. Elicit did not. That protocol is exactly what you need to know about before writing a review on this topic.
+- Click a screenshot to enlarge it.
 :::
 
 ## Demo · Has someone already done this?
@@ -675,7 +714,10 @@ Real output, 6 Oct 2026. Click a screenshot to enlarge it.
 :::
 
 ::: {.notes}
-The disagreement comes from what counts as "AI" and as a "community health worker". Consensus relaxes both to find trials; Elicit keeps both strict. Neither is wrong, but only reading the closest papers tells you whether your study is new.
+- Same question, word for word. Elicit says no, Consensus says yes.
+- The difference is definitions: what counts as "AI" and as a "community health worker". Consensus relaxes both, Elicit keeps both strict.
+- Neither is wrong. Only reading the closest papers tells you whether your study is new.
+- Elicit's closest match: a quasi-experiment with 200 ASHA workers in India. Consensus's AI trials involve clinical officers, not CHWs.
 :::
 
 ## Comparing papers side by side
@@ -693,6 +735,13 @@ Check every row you cite against the paper.
 
 ::: {.source-note}
 Real output, 6 Oct 2026. Gemini Notebook was formerly NotebookLM.
+:::
+
+::: {.notes}
+- Elicit: add a column, it fills it for all 8 papers from the text, and notes when there is no comparison group.
+- Gemini Notebook: 4 open-access PDFs, one row per study, each cell linked back to the source.
+- They disagree on one paper: Notebook reads it as Bayesian logic from the full text, Elicit's abstract-based column said not AI.
+- So: check every row you will cite against the paper. Gemini Notebook was NotebookLM until recently.
 :::
 
 ## Where these tools go wrong
@@ -734,7 +783,11 @@ Use the lists to find papers. Then read the papers.
 :::
 
 ::: {.notes}
-The Day 1 ethics session showed a fabricated citation that nobody could spot by reading it. Popularity bias is the other quiet one: citation-ranked results favour old, highly cited papers over the recent study that matters.
+- Invented sources: the Day 1 ethics session showed a fabricated citation nobody could spot by reading it. Ask for DOIs and check each.
+- Coverage gaps: paywalls, grey literature, non-English work, LMIC journals. Run a second tool and search Google Scholar yourself.
+- Moving models: same prompt, new model version, different list. Record tool, model and date, keep the export.
+- Popularity bias is the quiet one: citation-ranked results favour old papers over the recent study that matters.
+- Use the lists to find papers. Then read the papers.
 :::
 
 # Systematic Review / Meta-Analysis {background-color="#530153"}
@@ -754,8 +807,11 @@ Screening rules exist to make false exclusions rare.
 :::
 
 ::: {.notes}
-Timing: the systematic review / meta-analysis part is about 30 minutes.
-The asymmetry drives everything that follows: a false inclusion costs a few minutes of reading, a false exclusion silently changes the answer.
+- About 30 minutes for the systematic review part.
+- The asymmetry drives everything that follows.
+- False inclusion: someone reads the paper and drops it. Minutes lost.
+- False exclusion: the paper is gone, nobody sees it, the pooled effect moves. Invisible.
+- And a paper the search never finds is lost before screening starts. No screener can rescue it, so the search has to be broad.
 :::
 
 ## One real review: 284,525 records, 17 studies
@@ -792,7 +848,11 @@ Most of the work is saying No, tens of thousands of times.
 :::
 
 ::: {.notes}
-At 2 minutes per abstract with two screeners, 68,049 abstracts is roughly 4,500 hours of human screening. An LLM pass costs on the order of $11 per 1,000 papers. A typical narrower PICOS search (4,291 records) would have found only 5 of the 13 studies the broad search had included at that point: a broad search is what makes the volume unavoidable.
+- Our own review (Sautmann & Weinert 2026): AI interventions for frontline health workers in low-resource settings.
+- 284,525 records, 68,049 abstracts screened, 17 studies in.
+- By hand: 68,049 abstracts, two screeners, 2 minutes each, roughly 4,500 hours. One LLM pass: about $11 per 1,000 papers.
+- A narrower search (4,291 records) would have found only 5 of the 13 studies included at that point. The broad search is what makes the volume unavoidable.
+- Most of the work is saying No, tens of thousands of times.
 :::
 
 ## Too much to do by hand, and too risky
@@ -814,8 +874,12 @@ The bar for a machine: miss no more than two human screeners, for far less work.
 :::
 
 ::: {.notes}
-Sources: Gartlehner et al. (2020), J Clin Epidemiol, RCT of single vs dual screening. Wang et al. (2020), PLoS ONE: 10.8% false inclusions plus exclusions after dual abstract screening. Waffenschmidt et al. (2019): median 5% missed by single screeners (range 0–58%).
-Two separate problems. Cost: dual human screening at this scale is not affordable, and the usual workaround, a narrower search, loses studies before screening even starts. Risk: human screening is itself error-prone, and the errors are false exclusions you never see. Fatigue is the plausible mechanism; the cited studies measure the error rates, not fatigue itself.
+- Two separate problems.
+- Cost: dual screening at this scale is months of skilled time. The usual workaround is a narrower search, which loses studies before screening starts.
+- Risk: humans miss too. A single screener misses 13% of eligible studies, two independent screeners still miss 3%. 10.8% of abstract decisions were wrong in experienced teams.
+- Fatigue is the likely mechanism: abstract 40,000 looks like abstract 39,999. The studies measure the error rates, not fatigue itself.
+- So the bar for a machine: miss no more than two human screeners, for far less work.
+- Sources: Gartlehner et al. 2020 (RCT single vs dual screening); Wang et al. 2020 (10.8%); Waffenschmidt et al. 2019 (median 5% missed by single screeners, range 0–58%).
 :::
 
 # How to Trust the Machine {background-color="#530153"}
@@ -835,7 +899,10 @@ Measure how the model fails before you let it exclude anything.
 :::
 
 ::: {.notes}
-"Vibe screening" is what most people do first: paste abstracts into a chat and ask whether they are relevant. It often looks fine on the papers you check, which is exactly the problem: the losses are the papers you do not check. The next slides build the alternative on a made-up review.
+- Vibe screening is what most people do first: paste abstracts into a chat, ask if they are relevant, accept the answer.
+- It looks fine on the papers you check. The losses are the papers you do not check.
+- Same rule as slide 2: for an overview one prompt is fine; here a miss costs a lot, so the workflow has to be tested before it runs.
+- The next slides build that workflow on a made-up review.
 :::
 
 ## A made-up review to work through
@@ -857,7 +924,10 @@ Would you let an LLM exclude papers on its own? At what error rate?
 :::
 
 ::: {.notes}
-Ask the room and take a few answers. Most people say "only if it is as good as a human", which is the bar from the human-error slide. All numbers from here on are invented for this review.
+- Cash transfers and school attendance. 1,000 papers, 100 truly eligible. Invented numbers, chosen to make the logic easy to follow.
+- Four criteria, answered separately. Any No excludes.
+- Population and intervention are easy. Design and outcome are where the LLM wobbles.
+- Ask the room: would you let an LLM exclude papers on its own? At what error rate? Most say "only if it is as good as a human", which is the bar from the last slide.
 :::
 
 ## Seven steps to a screening rule
@@ -877,6 +947,12 @@ Ask the room and take a few answers. Most people say "only if it is as good as a
 
 ::: {.punch}
 A small pilot tells you how often the LLM is wrong, and on which criteria.
+:::
+
+::: {.notes}
+- The map for the next 15 minutes. Dark boxes are human decisions, light ones are computed from the pilot.
+- A small pilot tells you how often the LLM is wrong, and on which criteria.
+- Steps 1–2 measure, 3 fixes, 4 sets the reference, 5 looks at how errors behave, 6 compares rules, 7 chooses and checks.
 :::
 
 ## Step 1 · Ask the same question many times
@@ -914,7 +990,11 @@ Same prompt, same abstract, different answers. So not one label per paper, but a
 ::::
 
 ::: {.notes}
-Same prompt, same model, same abstract: the answer varies from run to run. That variation is information. Paper B is the dangerous one: eligible, but the LLM says No one time in four.
+- Same prompt, same model, same abstract: the answer varies between runs. That variation is information.
+- Paper A always Yes, paper D always No. Paper C is a genuine borderline.
+- Paper B is the dangerous one: eligible, but the LLM says No one time in four.
+- The pilot: 100 papers × 20 runs, about the cost of screening 2,000 papers once.
+- What you get is a share of No answers per paper, not one label.
 :::
 
 ## Step 2 · See which criteria flip
@@ -956,6 +1036,13 @@ When the decision flips, 9 times in 10 only **one** criterion changed
 Most flips come from two criteria and a few papers.
 :::
 
+::: {.notes}
+- Flip rate: how often a criterion's answer changes between runs of the same paper.
+- Population and intervention almost never flip. Design 18%, outcome 12%.
+- 80 of 100 papers get the same decision in all 20 runs.
+- When a decision flips, 9 times in 10 only one criterion changed. So the noise is in two criteria and a few papers, and you can go after it.
+:::
+
 ## Step 3 · Fix the criteria that flip
 
 ```{=html}
@@ -970,6 +1057,13 @@ If the LLM can't decide on a criterion, your co-screeners probably can't either.
 
 ::: {.source-note}
 Rewrite, rerun the pilot, repeat until the flip rates are low. Human screening gets more consistent too.
+:::
+
+::: {.notes}
+- Read the flipping papers. Usually the criterion is ambiguous, not the paper.
+- Rewrite the criterion, rerun the pilot, repeat until flip rates are low.
+- Side effect: human screeners get more consistent too, because the criteria got clearer.
+- If the LLM cannot decide on a criterion, your co-screeners probably cannot either.
 :::
 
 ## Step 4 · What counts as the right answer?
@@ -993,6 +1087,13 @@ Free once you have the runs. Gives a probability per paper, not just a label.
 ```{=html}
 <div class="card err" style="margin-top:16px"><span class="ct">If the LLM is consistently wrong, so is the majority</span><div>If the LLM says No on an eligible paper in 15 of 20 runs, the majority says "ineligible" too. Only human labels catch those papers.</div></div>
 ```
+
+::: {.notes}
+- Human labels on the pilot: closest to the truth, costs reviewer time, and humans err too, so adjudicate disagreements.
+- The LLM's majority answer: free once you have the runs, gives a probability per paper.
+- The catch: if the LLM is consistently wrong on a paper, the majority is wrong too. 15 Nos out of 20 on an eligible paper looks like a correct exclusion.
+- Only human labels catch those. Label at least part of the pilot by hand.
+:::
 
 ## Step 5 · Where do wrong Nos come from?
 
@@ -1025,7 +1126,10 @@ One pass: 32 × ¼ = **8 wrong Nos**.
 ::::
 
 ::: {.notes}
-On average the LLM wrongly says No 8% of the time. But those Nos are not spread evenly: they all come from the confusing third. That one fact drives everything that follows.
+- On average the LLM wrongly says No 8% of the time. But not evenly.
+- 68 eligible papers are clear: never a No. 32 are confusing: No one time in four.
+- One pass: 32 × ¼ = 8 wrong Nos. 8 of 100 eligible lost, worse than a single human.
+- That one fact, errors cluster in confusing papers, drives everything that follows.
 :::
 
 ## Step 5 · Asking again catches most wrong Nos
@@ -1052,7 +1156,11 @@ On average the LLM wrongly says No 8% of the time. But those Nos are not spread 
 ```
 
 ::: {.notes}
-This is the key intuition. Errors cluster in confusing papers, so a No that has already happened once is much more likely to happen again than the average error rate suggests. And confusion varies: after two Nos in a row, the paper is probably one of the most confusing ones, so the repeat chance rises again (here from 25% to about 30%). Each extra confirmation helps, but less than independence would promise.
+- The key intuition of the session.
+- Naive view: wrong 8% of the time, so a repeat is 8% × 8%, 0.6 left.
+- Reality: a paper that got a wrong No is probably a confusing one, so it repeats 1 time in 4. 2 left, not 0.6.
+- After two Nos in a row the paper is likely among the most confusing, so the repeat chance rises again, to about 30%.
+- Each extra check helps, but less than independence promises.
 :::
 
 ## Step 5 · Correct Nos usually repeat
@@ -1075,7 +1183,10 @@ Three checks catch 97% of wrong Nos and keep 94% of correct Design Nos. Outcome 
 :::
 
 ::: {.notes}
-Ask three times and demand No every time: 97% of wrong Nos are caught, while 94% of correct Design Nos still exclude on their own. For Outcome, correct Nos wobble too: half would end up with a human anyway, so it is cheaper to send Outcome Nos straight to a person.
+- Now the other side: does a correct No survive rechecks?
+- Design: 94% of correct Nos still say No after three checks. Wrong Nos survive only 3%. Rechecks separate them.
+- Outcome: even correct Nos wobble, half would fail three checks. Rechecking just burns calls before the paper lands with a human anyway.
+- So three checks catch 97% of wrong Nos on design. For outcome, send Nos straight to a person.
 :::
 
 ## Step 6 · Rules for what to do with a No
@@ -1113,7 +1224,10 @@ Ask three times and demand No every time: 97% of wrong Nos are caught, while 94%
 ```
 
 ::: {.notes}
-Numbers on the branches are papers per 100 after the first pass: 12 get no No, 40 get exactly one, 48 get two or more. The two extremes: trust the LLM completely, or check every paper with a single No. Everything in between asks the LLM again before asking a human.
+- A strategy is a rule for every pattern of Nos after the first pass: full text, exclude, ask a human, or ask the LLM again.
+- Numbers on the branches are papers per 100 after the first pass: 12 get no No, 40 exactly one, 48 two or more.
+- Two extremes. Strategy 1: trust one pass, 8 of 100 eligible lost, zero reviews. Strategy 6: a human checks every single No, nothing lost, 400 reviews per 1,000 papers.
+- Everything in between asks the LLM again before asking a human.
 :::
 
 ## Strategy 3 · Ask once more
@@ -1139,6 +1253,12 @@ Numbers on the branches are papers per 100 after the first pass: 12 get no No, 4
 ::::
 
 :::::
+
+::: {.notes}
+- Single Nos are asked once more. Still No: exclude. Flips to Yes: human review.
+- 2 of 100 eligible lost (8 wrong Nos × ¼). 28 reviews per 1,000, only the papers that flip.
+- Cheap, but still loses 1 in 50. That is the price of one recheck.
+:::
 
 ## Strategy 4 · Confirm three times
 
@@ -1169,7 +1289,10 @@ Stops at the first Yes, so most papers need only 1–2 extra LLM calls.
 :::::
 
 ::: {.notes}
-Stop early: as soon as one answer is Yes, the paper goes to a human, so most papers need only one or two extra calls. Voting (exclude if 2 of 3 are No) is a much weaker test than "No every time".
+- Single Nos are asked up to three more times. No every time: exclude. Any Yes: human review.
+- Stops at the first Yes, so most papers need only one or two extra calls.
+- 0.2 of 100 lost. 66 reviews per 1,000, many of them outcome Nos that wobble.
+- Why "every time" and not a vote: 2 of 3 would lose 1.6. Voting is a much weaker test.
 :::
 
 ## Why one rule does not fit every criterion
@@ -1193,7 +1316,11 @@ Flip rates from Step 2; survival of correct Nos from Step 5. Invented numbers fo
 :::
 
 ::: {.notes}
-Even after rewriting the criteria (Step 3), some stay noisier than others, and they are noisy in different ways. For Population and Intervention a No is almost always right, so one recheck is enough. For Design the noise is in the wrong Nos: correct Nos repeat, so asking three times filters out the errors while keeping real exclusions. For Outcome even correct Nos wobble: half would fail three checks anyway, so rechecking just burns LLM calls before the paper lands with a human. A single rule for all criteria is either too lax on Design or too wasteful on Outcome.
+- Even after rewriting, criteria stay noisy in different ways.
+- Population and intervention: a No is almost always right. One recheck catches the rare slip.
+- Design: wrong Nos flip, correct Nos repeat. Confirm three times.
+- Outcome: correct Nos flip too, so rechecks cannot tell right from wrong. Send to a human.
+- One rule for all is either too lax on design or too wasteful on outcome.
 :::
 
 ## Strategy 5 · A different rule per criterion
@@ -1214,7 +1341,9 @@ Even after rewriting the criteria (Step 3), some stay noisier than others, and t
 ```
 
 ::: {.notes}
-This is what the error profiles buy you: each criterion gets the treatment its behaviour deserves. 0.1 of 100 eligible lost, 100 human reviews per 1,000.
+- Each criterion gets the rule its errors call for.
+- Result: 0.1 of 100 eligible lost, 100 reviews per 1,000 papers.
+- This is what the pilot buys you: you know where the errors are, so you spend human time only there.
 :::
 
 ## Papers lost vs. human reviews
@@ -1237,6 +1366,14 @@ This is what the error profiles buy you: each criterion gets the treatment its b
 
 ::: {.punch}
 Each extra review saves fewer papers than the last.
+:::
+
+::: {.notes}
+- All six strategies on one chart. Left: eligible papers lost of 100. Right: human reviews per 1,000.
+- From one pass to a vote: 8 lost down to 1.6 for 15 reviews. Almost free.
+- From confirm 3× to by criterion: 0.2 down to 0.1 for 34 more reviews.
+- From by criterion to human-every-No: 0.1 down to 0 for 300 more reviews.
+- Each extra review saves fewer papers than the last.
 :::
 
 ## Step 7 · Extra screens per paper saved
@@ -1263,7 +1400,10 @@ Per 1,000 papers screened (100 eligible). A miss is an eligible paper excluded w
 :::
 
 ::: {.notes}
-Per 1,000 papers screened (100 eligible). Strategy 3 is left out: strategy 2 loses fewer papers with fewer reviews. The first steps are almost free; the last ones cost thousands of reviews per saved paper. Fix the exchange rate, or a recall floor such as "no worse than dual human screening", before comparing, so the choice is not driven by the numbers you happen to see.
+- Same numbers as a price: how many extra screens does one averted miss cost?
+- 1 → 2: 2 screens per miss. 2 → 4: 36. 4 → 5: 340. 5 → 6: 3,000.
+- Strategy 3 is left out: strategy 2 loses fewer papers for fewer reviews.
+- Decide the exchange rate before you look at the numbers, or set a floor: "miss no more than dual human screening, 3%". Otherwise the numbers you happen to see drive the choice.
 :::
 
 ## Step 7 · Finding no errors does not mean there are none
@@ -1290,7 +1430,10 @@ So: enrich the pilot with likely includes, and audit the borderline (flips, spli
 :::
 
 ::: {.notes}
-Zero events in n trials gives a 95% upper bound of roughly 3/n. A random pilot of 100 papers with 10% eligible gives you only 10 eligible papers, so "we lost none" is compatible with losing up to 30%. Enrich the pilot by oversampling papers the LLM includes, then reweight. For audits, check the borderline (flips, split votes, single Nos on tricky criteria) rather than random exclusions: that is where the lost papers are.
+- Rule of three: zero problems in n checks means the true rate could still be about 3/n.
+- A random pilot of 100 papers with 10% eligible gives you 10 eligible papers. "We lost none" is compatible with losing 30%.
+- So enrich the pilot: oversample papers the LLM includes, then reweight. 50 eligible brings the bound to 6%.
+- Audits: check the borderline, flips, split votes, single Nos on tricky criteria, not random exclusions. That is where the lost papers are.
 :::
 
 ## Before you let an LLM screen
@@ -1305,6 +1448,14 @@ Zero events in n trials gives a 95% upper bound of roughly 3/n. A random pilot o
   <div><b>6</b>Validate on fresh papers, audit the borderline, report recall honestly</div>
 </div>
 ```
+
+::: {.notes}
+- The checklist. Six things, in order.
+- Search broadly: screening cannot fix recall lost at the search.
+- Pilot with repeated runs, enriched for likely includes. Rewrite what flips. Label part of it by hand.
+- Fix your trade-off before comparing strategies.
+- Validate on fresh papers, audit the borderline, report recall honestly.
+:::
 
 # MetaScreener {background-color="#530153"}
 
@@ -1344,14 +1495,40 @@ Runs in the browser; bibliographies stay local
 :::
 
 ::: {.notes}
-Switch to the live demo, about 4 minutes: upload a small CSV, define two criteria, run one pass, open a disagreement. Backup screenshot on the next slide.
+- The tool that runs the strategy from the last section.
+- Upload a deduplicated CSV, write yes/no/maybe criteria, run one to three passes or a bootstrap sample, moderate the disagreements.
+- Every label is saved with the prompt, model and parameters, so the screening can be reported and rerun.
+- Runs in the browser; bibliographies stay on your machine.
+- Switch to the live demo, about 4 minutes: small CSV, two criteria, one pass, open a disagreement. Next slide is the backup screenshot.
 :::
 
 ## Demo: MetaScreener
 
+:::: {.columns}
+
+::: {.column width="64%"}
 ```{=html}
-<figure class="shot2" style="align-items:center"><a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img style="max-height:440px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"></a><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
+<figure class="shot2" style="align-items:center"><a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img style="max-height:400px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"></a><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
 ```
+:::
+
+::: {.column width="36%"}
+```{=html}
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:0.4em">
+  <a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img src="images/metascreener-qr.png" alt="QR code linking to MetaScreener" style="width:170px;margin:0"></a>
+  <div class="card" style="font-size:0.72em;padding:14px 16px;gap:6px"><span class="ct" style="font-size:1.05em">Try it on your own review</span><div>Share your disagreements with us: we are validating across domains.</div></div>
+  <div class="source-note" style="font-size:0.5em;text-align:left">Method: Weinert et al. (forthcoming), <i>How much can we automate? Quantifying uncertainty to choose hybrid LLM–human screening strategies.</i></div>
+</div>
+```
+:::
+
+::::
+
+::: {.notes}
+- Backup if the live demo fails: the setup screen. Upload, pick fields, add criteria, start.
+- QR code goes to the tool. Ask people to try it on their own review and send us the disagreements: we are validating across domains.
+- The method paper: Weinert et al., forthcoming.
+:::
 
 ## Next: decision models
 
@@ -1368,24 +1545,22 @@ Screening is a set of yes/no questions. That is exactly what these models are bu
 :::
 
 ::: {.notes}
-About 3 minutes. Vendor claims for Jev (typesafe.ai and launch coverage, Sept 2026, early access only): 70–500 ms per decision, $42 per billion input tokens, up to 194× faster and 444× cheaper than LLMs on its own workflows. Not the same thing as JEPA "world models" (LeCun, AMI Labs), which predict states for planning. Decision models drop text generation and score the possible answers directly, which is faster, cheaper and, if the calibration holds, gives you the per-paper error probability that our strategy currently estimates by rerunning the LLM 20 times. Everything about Jev is vendor-reported: treat it as a direction, not a result.
+- About 3 minutes.
+- An LLM writes its answer as text and hides its confidence, so we reran it 20 times to see uncertainty.
+- A decision model returns a typed answer with a probability in one pass. Act when confident, send to a human when not.
+- Jev (TypeSafe AI, Sept 2026): vendor claims 70–500 ms per decision, $42 per billion input tokens, up to 194× faster and 444× cheaper than LLMs on its own workflows. Early access only, no independent tests, none on screening.
+- Not the same thing as JEPA world models (LeCun, AMI Labs).
+- Treat it as a direction, not a result. Steps 4–7 still apply: reference answer, measured miss rates, audit.
 :::
 
 ## Thank you {.closing}
 
-:::: {.columns}
+This presentation was made using AI tools (Anthropic Claude Opus 5.5 & Fable 5.1) for design, layout, and content A/B testing.
 
-::: {.column width="65%"}
-Try MetaScreener on your own review, and share your disagreements with us: we are validating across domains.
-
-Method: *How much can we automate? Quantifying uncertainty to choose hybrid LLM–human screening strategies.*
+::: {.notes}
+- Disclaimer stays on screen.
+- If there is time: questions on the method go to the appendix; questions on tools go back to slide 5.
 :::
-
-::: {.column width="35%"}
-[![](images/metascreener-qr.png){width="200px" fig-alt="QR code linking to MetaScreener"}](https://sautmann.github.io/MetaScreener/){target="_blank" rel="noopener"}
-:::
-
-::::
 
 # Appendix: Calculating screening uncertainty for SLRs & MAs {background-color="#530153"}
 
@@ -1404,6 +1579,11 @@ Method: *How much can we automate? Quantifying uncertainty to choose hybrid LLM�
 Full derivations, notation and scenarios: `presentation1/screening-uncertainty.qmd`.
 :::
 
+::: {.notes}
+- The method in eight lines. Walk it only if someone asks how the numbers were produced.
+- Full derivations in presentation1/screening-uncertainty.qmd.
+:::
+
 ## A1 · Notation {.smaller}
 
 - **Papers and runs.** Papers $j = 1,\dots,J$ in the pilot, each screened $R$ times ($r = 1,\dots,R$). Criteria $c = 1,\dots,C$.
@@ -1414,6 +1594,12 @@ Full derivations, notation and scenarios: `presentation1/screening-uncertainty.q
 
 ::: {.source-note}
 In the fictional review: $J = 100$, $R = 20$, $C = 4$, and $|\mathcal E| = 10$ in a random pilot.
+:::
+
+::: {.notes}
+- Papers j, runs r, criteria c. A No-set is which criteria said No in one run.
+- Two error rates per paper and criterion: wrong-No rate for papers that truly meet the criterion, correct-No rate for papers that truly fail it.
+- A strategy maps each first-pass No-set to an action.
 :::
 
 ## A2 · What happens to one first run {.smaller}
@@ -1438,6 +1624,11 @@ $$
 \mathbb E[\text{calls}_{jr}] \;=\; \sum_{i=0}^{k-1} \binom{m_{jr}}{i} \Big/ \binom{R-1}{i}
 $$
 
+::: {.notes}
+- Reruns are drawn from the paper's other runs in the pilot, so everything is a hypergeometric count, no simulation.
+- Early stopping: the loop ends at the first rerun that is not No, which is why expected calls are low.
+:::
+
 ## A3 · From runs to strategy figures {.smaller}
 
 In production each paper is screened once, so each of its $R$ runs is an equally likely first pass. Average over them:
@@ -1460,6 +1651,12 @@ $$
 - **Uncertainty:** resample the $J$ papers with replacement (e.g. 3,000 times) and recompute. The paper, not the run, is the unit of uncertainty.
 - **Enriched pilots:** weight each paper by the inverse of its sampling probability before averaging.
 
+::: {.notes}
+- Each of a paper's runs is an equally likely first pass in production. Average over them.
+- The three figures on the main slides fall out directly: wrong exclusions, reviews per 1,000, lost per 1,000.
+- Uncertainty comes from resampling papers, not runs. Enriched pilots are reweighted.
+:::
+
 ## A4 · Why a repeat is likelier than the average error {.smaller}
 
 For an eligible paper with wrong-No rate $\theta$, two runs are independent **given** $\theta$. But $\theta$ differs across papers. Across papers with mean $\bar p = \mathbb E[\theta]$:
@@ -1473,6 +1670,12 @@ The naive calculation uses $\bar p$. The extra term is large when errors concent
 ::: {.card}
 [Fictional review]{.ct}
 68% of eligible papers have $\theta = 0$, 32% have $\theta = 0.25$. Then $\bar p = 0.08$, $\operatorname{Var}(\theta) = 0.32 \cdot 0.25^2 - 0.08^2 = 0.0136$, and $s_1 = 0.08 + 0.0136/0.08 = 0.25$: **a wrong No repeats 1 time in 4, not 8%.**
+:::
+
+::: {.notes}
+- The algebra behind "1 in 4, not 8%".
+- Runs are independent given a paper's error rate, but error rates differ across papers. The repeat probability picks up a variance term.
+- In the fictional review: 68% at zero, 32% at 0.25, so the repeat chance is 0.25.
 :::
 
 ## A5 · Why each extra check buys less {.smaller}
@@ -1494,6 +1697,13 @@ $$
 Latent-class models that assume conditional independence between runs run into the same problem.
 :::
 
+::: {.notes}
+- The repeat chance after i Nos in a row is a ratio of moments, estimated from the pilot counts.
+- If confusion varies continuously (Beta), the repeat chance rises with every No: after a streak the paper is probably one of the most confusing.
+- Same formula for correct Nos; criteria with low survival send many correctly excluded papers to humans.
+- Latent-class models that assume runs are independent hit the same problem.
+:::
+
 ## A6 · Choosing, and how sure you are {.smaller}
 
 **Exchange rate.** With $\lambda$ = reviews you would spend to save one eligible paper:
@@ -1504,6 +1714,11 @@ $$\min_{a} \;\; \text{Reviews}(a) \quad \text{s.t.} \quad \text{WrongExcl}^{\tex
 
 **Rule of three.** If $n$ independent checks find zero problems, the largest rate $p$ still consistent with that at 95% solves
 $$(1 - p)^n = 0.05 \;\;\Rightarrow\;\; p = 1 - 0.05^{1/n} \;\approx\; \frac{\ln 20}{n} \;\approx\; \frac{3}{n}$$
+
+::: {.notes}
+- Two ways to choose: an exchange rate (reviews per saved paper) or a recall floor with a 95% upper bound.
+- Rule of three derived: (1 − p)^n = 0.05 gives p ≈ 3/n.
+:::
 
 ## A7 · What the method cannot see {.smaller}
 
@@ -1529,6 +1744,13 @@ Single-question reruns may behave differently from full-prompt runs, and the cor
 :::
 :::
 
+::: {.notes}
+- Consistent errors are invisible if the reference is the LLM's own majority. Human labels bound them.
+- Tuning and evaluating on the same pilot is optimistic. Validate on fresh papers.
+- Few eligible papers in the pilot means a handful dominate the rate. Enrich.
+- Single-question reruns may behave differently from full-prompt runs.
+:::
+
 ## A8 · Decision models and their older relatives {.smaller}
 
 ::: {.tooltable}
@@ -1549,5 +1771,8 @@ Token probabilities: Wang et al. (2024), zero-shot generative LLMs for screening
 :::
 
 ::: {.notes}
-The older relatives already give you probabilities: an LLM's own token probabilities (calibrated against papers you know are included), small encoder classifiers, and active-learning tools such as ASReview that rank papers as you label them. A decision model promises the speed of the small models with the understanding of an LLM. Whichever you use, Steps 4 to 7 still apply: a reference answer, measured miss rates, and an audit.
+- Three families already give you probabilities: an LLM's own token probabilities (calibrate on seed papers), small zero-shot classifiers that run on a laptop, and active learning like ASReview that ranks as you label.
+- A decision model promises the speed of the small models with the understanding of an LLM.
+- Whichever you use, the strategy stays: check its probabilities on your pilot before you trust them.
+- Sources: Wang et al. 2024 (ECIR), van de Schoot et al. 2021 (Nature MI), GLiClass on Hugging Face.
 :::
