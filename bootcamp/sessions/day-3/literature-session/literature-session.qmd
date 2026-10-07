@@ -262,9 +262,16 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 .crowx.dark { background: var(--blue); color: #fff; }
 .reveal .crowx.dark b, .reveal .crowx.dark small { color: #fff; }
 .shot2 { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.shot2 > a { display: block; line-height: 0; }
 .shot2 img { width: 100%; border-radius: 8px; border: 1px solid #E2E2E2; box-shadow: 0 3px 12px rgba(0,0,0,.12); }
 .shot2 figcaption { font-size: 0.55em; line-height: 1.35; color: var(--grey); text-align: left; }
 .reveal .shot2 figcaption b { color: var(--navy); }
+.shot2.demo img { max-height: 190px; object-fit: cover; object-position: top left; }
+.shot2.demo figcaption { font-size: 0.46em; }
+.shot2.demo figcaption .q { margin-bottom: 4px; }
+.shot2.demo figcaption i { color: var(--navy); }
+.shot2.demo figcaption span { display: block; padding-left: 10px; border-left: 2px solid #E2E2E2; margin-bottom: 3px; }
+.reveal .shot2.demo figcaption a.src { font-size: 0.9em; color: var(--grey); }
 .source-shots { font-size: 0.45em; color: var(--grey); }
 .asks { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
 .ask { background: var(--pale); border-radius: 10px; padding: 10px 14px; font-size: 0.66em; line-height: 1.35; color: var(--navy); display: flex; flex-direction: column; gap: 3px; }
@@ -273,24 +280,83 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 .reveal .tooltable table td, .reveal .tooltable table th { padding: 7px 10px; }
 .reveal .column > .card { padding: 16px 20px; }
 .reveal .column > .card + .card, .reveal .column > .card + div > .card, .reveal .column > * + .card { margin-top: 14px; }
+
+/* ---------- screenshot lightbox ---------- */
+.lb { position: fixed; inset: 0; z-index: 9999; background: rgba(20,0,20,.92); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 3vh 3vw; box-sizing: border-box; cursor: zoom-out; }
+.lb.open { display: flex; }
+.lb img { max-width: 94vw; max-height: 84vh; border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,.5); background: #fff; cursor: default; }
+.lb a { font-family: "Montserrat", sans-serif; font-size: 18px; font-weight: 600; color: #fff; background: var(--blue); padding: 8px 18px; border-radius: 20px; text-decoration: none; cursor: pointer; }
+.lb a:hover { background: var(--navy); }
+.reveal .shot2 > a { cursor: zoom-in; }
+
+/* ---------- why a rule per criterion ---------- */
+.cwhy { display: flex; flex-direction: column; gap: 8px; margin-top: 0.7em; font-size: 0.6em; }
+.cw { display: grid; grid-template-columns: 1.1fr 1fr 1fr 1.7fr 0.9fr; gap: 14px; align-items: center; background: var(--pale); border-radius: 10px; padding: 12px 16px; color: #1A1A1A; }
+.cw.head { background: none; padding: 0 16px; color: var(--grey); font-size: 0.85em; line-height: 1.25; }
+.cw b { color: var(--navy); }
+.cw .bar { display: block; height: 10px; border-radius: 5px; background: var(--cyan); margin-bottom: 4px; }
+.cw .bar.hot { background: var(--red); }
+.cw .bar.good { background: var(--green); }
+.cw .bar.warn { background: #E0A100; }
+.cw .rule { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--navy); background: #fff; border: 2px solid var(--navy); border-radius: 8px; padding: 6px 8px; text-align: center; }
+.cw .rule.dark { background: var(--navy); color: #fff; }
+
+/* ---------- coding-agent bonus ---------- */
+.chat { display: flex; flex-direction: column; gap: 10px; font-size: 0.52em; line-height: 1.4; }
+.chat .cu { align-self: flex-end; max-width: 82%; background: var(--navy); color: #fff; padding: 9px 14px; border-radius: 14px 14px 4px 14px; }
+.chat .ca { align-self: flex-start; max-width: 92%; background: var(--pale); color: #1A1A1A; padding: 9px 14px; border-radius: 14px 14px 14px 4px; }
+.chat .ca.bad { background: #FBE9E7; }
+.chat .ca.bad b { color: var(--red); }
+.chat .chip { display: table; font-size: 0.78em; color: var(--blue); font-weight: 700; margin-bottom: 5px; padding: 1px 8px; border: 1px solid var(--cyan); border-radius: 10px; background: #fff; }
+.chat .doi { display: block; font-size: 0.8em; color: var(--grey); margin-top: 4px; }
+.lscmds { display: flex; flex-direction: column; gap: 6px; font-size: 0.56em; }
+.lscmds div { background: var(--pale); border-radius: 8px; padding: 6px 12px; color: var(--navy); }
+.lscmds div.lh { background: none; padding: 0 2px; color: var(--grey); font-weight: 700; }
+.reveal a.dl { display: block; margin-top: 14px; text-align: center; background: var(--navy); color: #fff; font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 0.55em; padding: 10px 14px; border-radius: 8px; text-decoration: none; }
+.reveal a.dl:hover { background: var(--blue); }
+.dlnote { font-size: 0.45em; color: var(--grey); margin-top: 8px; line-height: 1.35; }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lb = document.createElement('div');
+  lb.className = 'lb';
+  lb.innerHTML = '<img alt=""><a target="_blank" rel="noopener"></a>';
+  document.body.appendChild(lb);
+  const img = lb.querySelector('img'), link = lb.querySelector('a');
+  const close = () => lb.classList.remove('open');
+  document.querySelectorAll('.shot2 > a').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    const fig = a.closest('figure'), src = a.querySelector('img');
+    const tool = fig.querySelector('figcaption b')?.textContent || new URL(a.href).hostname;
+    img.src = src.src; img.alt = src.alt;
+    link.href = a.href;
+    link.textContent = tool + ' ↗';
+    lb.classList.add('open');
+  }));
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  link.addEventListener('click', close);
+  window.addEventListener('keydown', e => {
+    if (lb.classList.contains('open')) { e.stopImmediatePropagation(); e.preventDefault(); if (e.key === 'Escape') close(); }
+  }, true);
+});
+</script>
 ```
 
 ```{=html}
 <div class="jobs">
-  <div class="job"><span class="jn">1</span><b>Get an overview</b><i>What is the conversation on this topic?</i><div class="jq"><span>Good means</span>balanced, the main camps and landmark papers</div><div class="jq"><span>A miss costs</span>little: you will meet it later</div></div>
-  <div class="job"><span class="jn">2</span><b>Check what's been done</b><i>What is closest to my question, and what is new in mine?</i><div class="jq"><span>Good means</span>the nearest neighbours, read closely</div><div class="jq"><span>A miss costs</span>a referee finds the paper you missed</div></div>
-  <div class="job dark"><span class="jn">3</span><b>Systematic review</b><i>What does all the evidence say?</i><div class="jq"><span>Good means</span>every eligible study, reproducibly</div><div class="jq"><span>A miss costs</span>a biased answer that nobody can see</div></div>
+  <div class="job"><span class="jn">1</span><b>Get an overview</b><i>What is the conversation on this topic?</i><div class="jq"><span>Good means</span>balanced, the main camps and landmark papers</div><div class="jq"><span>A miss costs</span>little: you will meet it later</div><div class="jq"><span>So</span>any tool. Skim, move on</div></div>
+  <div class="job"><span class="jn">2</span><b>Check what's been done</b><i>What is closest to my question, and what is new in mine?</i><div class="jq"><span>Good means</span>the nearest neighbours, read closely</div><div class="jq"><span>A miss costs</span>a referee finds the paper you missed</div><div class="jq"><span>So</span>two tools, then read the nearest papers yourself</div></div>
+  <div class="job dark"><span class="jn">3</span><b>Systematic review / meta-analysis</b><i>What does all the evidence say?</i><div class="jq"><span>Good means</span>every eligible study, reproducibly</div><div class="jq"><span>A miss costs</span>a biased answer that nobody can see</div><div class="jq"><span>So</span>a tested workflow with a measured miss rate</div></div>
 </div>
 ```
 
 ::: {.punch}
-A missed paper costs little in an overview, and a lot in a systematic review.
+The more a missed paper costs, the more care the process needs.
 :::
 
 ::: {.notes}
 Timing: intro is 5 minutes.
-Hands up: which of the three do you do most? Most people will say 1 and 2; far fewer run full systematic reviews. The first half of the session serves all three; the second half goes deep on 3, because that is where AI can be measured most precisely.
+Hands up: which of the three do you do most? Most people will say 1 and 2; far fewer run full systematic reviews / meta-analyses. The first half of the session serves all three; the second half goes deep on 3, because that is where AI can be measured most precisely.
 :::
 
 ## Pulling data out of papers
@@ -305,7 +371,7 @@ A comparison table of the 10–20 closest papers: question, data, method, findin
 :::
 
 ::: {.card .dark}
-[Systematic review]{.ct}
+[Systematic review / meta-analysis]{.ct}
 
 A fixed coding form for every included study: effect sizes, samples, risk of bias.
 
@@ -314,7 +380,7 @@ A fixed coding form for every included study: effect sizes, samples, risk of bia
 :::
 
 ::: {.punch}
-A rough table is fine for an overview. A review needs every value checked.
+A rough table is fine for an overview. A systematic review / meta-analysis needs every value checked.
 :::
 
 # Overviews and Related Work {background-color="#530153"}
@@ -328,17 +394,113 @@ A rough table is fine for an overview. A review needs every value checked.
 | **Overview** | Gemini Notebook (NotebookLM) | Answers from your own sources | Only as good as what you upload |
 | **Related work** | Elicit · Consensus · Undermind | Semantic search, comparison tables | Only what they index |
 | **Related work** | Connected Papers · ResearchRabbit · Litmaps | Citation maps | Depends on your starting papers |
-| **Both** | AI assistant + literature connector | Repeatable searches where you work | Keyword matching |
-| **Review** | MetaScreener | Per-criterion screening, audit trail | You decide what humans check |
+| **Systematic review / meta-analysis** | MetaScreener | Per-criterion screening, audit trail | You decide what humans check |
 :::
 
 ::: {.source-note}
-ImpactAI (World Bank) was at the Day 1 Bazaar. Check the Day 1 classification rules before uploading anything non-public.
+Not all of these are Bank-approved. Check the approved-tools list before using one for work, and the Day 1 classification rules before uploading anything non-public (drafts, search strategies, review corpora). ImpactAI (World Bank) was at the Day 1 Bazaar.
 :::
 
 ::: {.notes}
 Timing: this section is about 10 minutes, the review tools another 5.
 Literature is public, but search strategies, unpublished drafts and review corpora may not be: check the Day 1 classification rules before uploading anything that is not public.
+:::
+
+## General agent or a tool built for papers?
+
+::: {.tooltable}
+| | General agent (ChatGPT, Gemini, Claude, Copilot) | Tool built for papers (Elicit, Consensus, MetaScreener) |
+|---|---|---|
+| **The question** | One-off: "what are the main camps?" | The same search or screen, run on hundreds of papers |
+| **What it searches** | The web | A paper index with abstracts and metadata |
+| **What you do with the list** | Read it, then read the papers | Cite it, pool it, or report it as your method |
+| **A missed paper** | Costs little | Costs a lot |
+| **What is saved** | A chat transcript | Prompts, model and settings with every result |
+:::
+
+::: {.punch}
+Start with a general agent. Switch when you have to trust the list.
+:::
+
+::: {.notes}
+About 2 minutes. The question to ask is the one from slide 2: what does a miss cost, and will anyone need to check how the list was made. A general agent with web search is good for the first hour on a topic. Once the list goes into a paper, a protocol or a pooled estimate, use a tool that searches a paper index and saves how it got there. The coding agent with the literature-search skill (two slides on) sits in between: a paper index, asked in plain language.
+:::
+
+## How to ask, and how to check
+
+::: {.cards .c2 style="font-size:0.85em;gap:14px"}
+::: {.card}
+[Get an overview]{.ct}
+
+```{=html}
+<div class="prompt">I am studying [topic]. I already know [papers or camps]. What are the main positions on [question]? Give 2–3 landmark papers for each, a DOI for every paper, the search terms you used, and anything you looked for and could not find.</div>
+```
+
+<span class="foot">Asking for the search terms and the gaps shows you where it looked.</span>
+:::
+
+::: {.card}
+[Check what's been done]{.ct}
+
+```{=html}
+<div class="prompt">My study: [population], [intervention], [design], [outcome]. Find the 5 closest papers. For each, say in one line what differs from mine. DOI for every paper.</div>
+```
+
+<span class="foot">Run the same question in a second tool. The demos show why.</span>
+:::
+:::
+
+```{=html}
+<div class="checks" style="margin-top:10px;gap:10px;font-size:0.95em">
+  <div><b>1</b>Ask for a DOI for every paper. Check each one before it goes in a draft</div>
+  <div><b>2</b>Open the paper before you use a quote or a number from it</div>
+  <div><b>3</b>Ask what it could not find. An empty answer there is a warning</div>
+  <div><b>4</b>Save the export with tool, model and date</div>
+</div>
+```
+
+::: {.notes}
+About 3 minutes. Two prompts people can copy. The overview prompt tells the model what you already know so it does not spend its answer on that, and asks for its search terms and its gaps so you can see where it looked. The related-work prompt gives the study in four parts so the model has to match on all four. Check 1 is the one that catches invented references: a DOI either resolves or it does not. The next slide shows a skill that does that check for you.
+:::
+
+## Finding literature with your coding agent
+
+:::: {.columns}
+
+::: {.column width="56%"}
+```{=html}
+<div class="chat">
+  <div class="cu">Has anyone already done something like the SMARThealth Pregnancy trial?</div>
+  <div class="ca"><span class="chip">literature-search skill · OpenAlex + Semantic Scholar</span>Closest match: a 2026 <b>protocol</b> for the process evaluation of the SMARThealth Pregnancy hybrid cluster RCT (Votruba et al.), sharing 6 of its 54 references. Also close: a 2026 scoping review of digital health for hypertension in pregnancy in LMICs. <span class="doi">doi.org/10.1177/17455057261425789</span></div>
+  <div class="cu">Is “Thompson &amp; Raman (2023), Research Synthesis Methods” a real paper?</div>
+  <div class="ca bad"><span class="chip">literature-search skill</span><b>Not found</b> in either database. Treat it as unverified and don’t cite it.</div>
+</div>
+```
+:::
+
+::: {.column width="44%"}
+```{=html}
+<div class="lscmds">
+  <div class="lh">What you can ask your agent</div>
+  <div>“Find recent papers on …”</div>
+  <div>“Which papers does everyone in this field cite?”</div>
+  <div>“Has someone already done this?”</div>
+  <div>“Who has built on this paper?”</div>
+  <div>“Is every reference in my draft real?”</div>
+</div>
+<a class="dl" href="https://github.com/dime-worldbank/ai-research-training/releases/download/literature-search-latest/literature-search.zip" target="_blank" rel="noopener">Download the literature-search skill (ZIP)</a>
+<div class="dlnote">Unzip into <code>.agents/skills/</code> in your project. Works with Claude Code, Codex and other coding agents; uses the free OpenAlex and Semantic Scholar APIs, no account needed.</div>
+```
+:::
+
+::::
+
+::: {.punch}
+Same keyword engines underneath: read the abstracts, and verify every reference.
+:::
+
+::: {.notes}
+About 2 minutes. The same three jobs as before (search, what everyone cites, has someone done this), but asked in plain language to your coding agent. The skill tells the agent how to search OpenAlex and Semantic Scholar (it bundles a small script the agent runs) and to return a DOI for every paper. Same caveat as the search tools: keyword matching and citation counts, so read the abstracts. The verify command is the habit to take away: check every reference an AI hands you.
 :::
 
 ## Getting an overview with deep research
@@ -347,7 +509,7 @@ Literature is public, but search strategies, unpublished drafts and review corpo
 
 ::: {.column width="62%"}
 ```{=html}
-<figure class="shot2"><img src="images/deep-research-plan.jpg" alt="Gemini Deep Research proposing a research plan before it starts searching"><figcaption>Gemini Deep Research: it proposes a plan you can edit, then searches and writes a cited report. ChatGPT and Claude work similarly.</figcaption></figure>
+<figure class="shot2"><a href="https://gemini.google.com/app" target="_blank" rel="noopener"><img src="images/deep-research-plan.jpg" alt="Gemini Deep Research proposing a research plan before it starts searching"></a><figcaption>Gemini Deep Research: it proposes a plan you can edit, then searches and writes a cited report. ChatGPT and Claude work similarly.</figcaption></figure>
 ```
 :::
 
@@ -369,9 +531,9 @@ Open every cited source. Is it a paper or a blog? Does it say what the report sa
 
 ```{=html}
 <div class="cards c3">
-  <figure class="shot2"><img src="images/elicit-search.jpg" alt="Elicit search results"><figcaption><b>Elicit</b> · semantic search, then tables of extracted details</figcaption></figure>
-  <figure class="shot2"><img src="images/consensus.jpg" alt="Consensus search page"><figcaption><b>Consensus</b> · asks the literature a question, summarises where papers agree</figcaption></figure>
-  <figure class="shot2"><img src="images/undermind.jpg" alt="How Undermind works"><figcaption><b>Undermind</b> · an agent that follows citation trails over many rounds</figcaption></figure>
+  <figure class="shot2"><a href="https://elicit.com" target="_blank" rel="noopener"><img src="images/elicit-search.jpg" alt="Elicit search results"></a><figcaption><b>Elicit</b> · semantic search, then tables of extracted details</figcaption></figure>
+  <figure class="shot2"><a href="https://consensus.app" target="_blank" rel="noopener"><img src="images/consensus.jpg" alt="Consensus search page"></a><figcaption><b>Consensus</b> · asks the literature a question, summarises where papers agree</figcaption></figure>
+  <figure class="shot2"><a href="https://www.undermind.ai" target="_blank" rel="noopener"><img src="images/undermind.jpg" alt="How Undermind works"></a><figcaption><b>Undermind</b> · an agent that follows citation trails over many rounds</figcaption></figure>
 </div>
 ```
 
@@ -380,67 +542,68 @@ Each searches a different index. Run the same question in two and compare.
 :::
 
 ::: {.notes}
-Use the same question as on the previous slides in all three tools. No single index covers everything; the differences are the point.
+One topic for the whole demo: AI decision support for community health workers (CHWs) in low- and middle-income countries. The next three slides show real output from Elicit, Consensus and Gemini Notebook (6 Oct 2026); re-run the searches live if time allows. No single index covers everything; the differences are the point.
+
+Optional extra search, "Which papers does everyone cite?": in Elicit, "What are the key studies on digital clinical decision support tools for community health workers?" and sort by citations; in Consensus, the same question with the "Highly cited" filter. The most-cited papers tend to be reviews or general mHealth papers, not AI.
 :::
 
-## Searching from inside your AI assistant
-
-:::: {.columns}
-
-::: {.column width="60%"}
-Three requests to a literature-search connector in Claude, all on *AI decision support for community health workers in LMICs*:
+## Demo · One question, two tools
 
 ```{=html}
-<div class="asks">
-  <div class="ask"><b>Search the literature</b><span>35,551 hits. Top 20 by citations: 2–3 on topic, plus low-back pain and antibiotics in farming</span></div>
-  <div class="ask"><b>Which papers does everyone cite?</b><span>29 recent papers, mostly commentaries. 1 squarely on topic</span></div>
-  <div class="ask"><b>Has someone already done this?</b><span>9 of 10 "closest" papers off topic. 1 real find: a 2026 trial protocol in rural Kenya on almost exactly this question</span></div>
+<div class="cards c2">
+  <figure class="shot2 demo"><a href="https://elicit.com/agent/add91450-6003-47d5-ba36-f30fd49308f9" target="_blank" rel="noopener"><img src="images/demo-elicit-overview.jpg" alt="Elicit Find papers: 8-paper table with an AI scope column"></a><figcaption><div class="q"><b>Elicit</b> · <i>Does AI-based decision support improve the quality of care delivered by community health workers in low- and middle-income countries?</i></div><span>8 papers. Its own <b>AI scope</b> column flags most of them as rule-based or general mHealth, not AI</span><span>Its summary says so too: the set does not support treating digital decision-support effects as effects of AI</span><a class="src" href="https://elicit.com/agent/add91450-6003-47d5-ba36-f30fd49308f9" target="_blank" rel="noopener">elicit.com/agent/add91450-6003-47d5-ba36-f30fd…</a></figcaption></figure>
+  <figure class="shot2 demo"><a href="https://consensus.app/search/ai-decision-support-community-health/r2ApyCWtTvWFKv5N-fOfXQ/" target="_blank" rel="noopener"><img src="images/demo-consensus-overview.jpg" alt="Consensus answer with Consensus Meter and ranked results"></a><figcaption><div class="q"><b>Consensus</b> · <i>Does AI decision support improve community health worker care in low- and middle-income countries?</i></div><span>“Shows promise … but rigorous evidence remains preliminary.” Meter: 2 Yes, 3 Possibly (N = 5)</span><span>Top hit: a 2026 Campbell review <b>protocol</b> on AI tools used by CHWs in LMICs. Elicit did not return it</span><a class="src" href="https://consensus.app/search/ai-decision-support-community-health/r2ApyCWtTvWFKv5N-fOfXQ/" target="_blank" rel="noopener">consensus.app/search/ai-decision-support-commu…</a></figcaption></figure>
 </div>
 ```
-:::
 
-::: {.column width="40%"}
-::: {.card}
-[Useful for]{.ct}
-Running the same searches again, from where you already work
+::: {.punch style="margin-top:0.5em"}
+Same question, different papers. Look at what each answer rests on.
 :::
-
-::: {.card .line}
-[Watch for]{.ct}
-Keyword matching and citation-count ranking. Read before you trust a result.
-:::
-:::
-
-::::
 
 ::: {.source-note}
-Real output, 30 Sep 2026. Dedicated citation-map tools (Connected Papers, ResearchRabbit, Litmaps) do the "who cites whom" job more directly.
+Real output, 6 Oct 2026. Click a screenshot to enlarge it.
 :::
 
 ::: {.notes}
-This is a connector (an add-on) for Claude that searches OpenAlex and Semantic Scholar. The point is not this particular connector: it is that your AI assistant can now run literature searches inside your normal workflow, and that those searches are only as good as a keyword engine. The one real find, a 2026 cluster-RCT protocol on CHWs using AI decision support in Kenya, is exactly what a referee would point to.
+Run live if time allows; results change between runs. Point out: Elicit separates "AI" from "algorithmic" decision support on its own, Consensus gives a confident one-liner from five papers. The Campbell protocol is exactly the kind of paper you must find before writing a review on this topic.
+:::
+
+## Demo · Has someone already done this?
+
+```{=html}
+<div class="cards c2">
+  <figure class="shot2 demo"><a href="https://elicit.com/agent/a49002df-fdf7-4833-8b16-b7bd3077322a" target="_blank" rel="noopener"><img src="images/demo-elicit-nn.jpg" alt="Elicit: no randomized trial found that combines AI, CHWs and an LMIC setting; table of five near matches"></a><figcaption><div class="q"><b>Elicit</b> · <i>Has anyone run a randomized trial of AI decision support for community health workers in low- and middle-income countries?</i></div><span><b>No.</b> 23 papers screened, 5 near matches. None is a randomized trial of AI used by CHWs</span><span>Closest: a quasi-experiment with 200 ASHA workers in India (Kashyap et al. 2026)</span><a class="src" href="https://elicit.com/agent/a49002df-fdf7-4833-8b16-b7bd3077322a" target="_blank" rel="noopener">elicit.com/agent/a49002df-fdf7-4833-8b16-b7bd3…</a></figcaption></figure>
+  <figure class="shot2 demo"><a href="https://consensus.app/search/ai-decision-support-community-health/4YqTUBl3TqGz1GdmAYH8vQ/" target="_blank" rel="noopener"><img src="images/demo-consensus-nn.jpg" alt="Consensus: Yes, randomized trials have evaluated algorithmic and AI decision support; top results are rule-based CHW trials"></a><figcaption><div class="q"><b>Consensus</b> · <i>the same question, word for word</i></div><span><b>Yes</b>, RCTs exist. Top hits: a CHW diabetes trial in Lesotho (2026) and a CHW pregnancy-screening pilot in India: both rule-based, not AI</span><span>Its AI trials (e.g. an LLM trial in Kenya) involve clinical officers, not CHWs</span><a class="src" href="https://consensus.app/search/ai-decision-support-community-health/4YqTUBl3TqGz1GdmAYH8vQ/" target="_blank" rel="noopener">consensus.app/search/ai-decision-support-commu…</a></figcaption></figure>
+</div>
+```
+
+::: {.punch style="margin-top:0.5em"}
+Yes and no to the same question. Read the nearest papers yourself.
+:::
+
+::: {.source-note}
+Real output, 6 Oct 2026. Click a screenshot to enlarge it.
+:::
+
+::: {.notes}
+The disagreement comes from what counts as "AI" and as a "community health worker". Consensus relaxes both to find trials; Elicit keeps both strict. Neither is wrong, but only reading the closest papers tells you whether your study is new.
 :::
 
 ## Comparing papers side by side
 
-:::: {.columns}
-
-::: {.column width="50%"}
 ```{=html}
-<figure class="shot2"><img src="images/elicit-extraction.jpg" alt="Elicit extracting a column of values across papers"><figcaption><b>Elicit</b> · one row per paper, one column per detail you ask for</figcaption></figure>
+<div class="cards c2">
+  <figure class="shot2 demo"><a href="https://elicit.com/agent/add91450-6003-47d5-ba36-f30fd49308f9" target="_blank" rel="noopener"><img src="images/demo-elicit-extraction.jpg" alt="Elicit table with a custom Main outcome and effect column"></a><figcaption><div class="q"><b>Elicit</b> · <i>add a column: “Main outcome and effect”</i></div><span>Filled for all 8 papers from the first search, e.g. IMCI guideline adherence 30.7% → 72.4%; HbA1c down 1.0–1.5 points</span><span>Also notes when there is <b>no comparison group</b></span><a class="src" href="https://elicit.com/agent/add91450-6003-47d5-ba36-f30fd49308f9" target="_blank" rel="noopener">elicit.com/agent/add91450-6003-47d5-ba36-f30fd…</a></figcaption></figure>
+  <figure class="shot2 demo"><a href="https://notebook.google.com/notebook/b7742dc0-c337-4f5e-ab47-b4cb4dd5e5a6" target="_blank" rel="noopener"><img src="images/demo-gemini-table.jpg" alt="Gemini Notebook data table comparing four CHW decision-support studies"></a><figcaption><div class="q"><b>Gemini Notebook</b> · <i>4 open-access papers from that table → Data table</i></div><span>One row per study, each with a source number back to the paper</span><span>3 of 4 tools are fixed rules. It reads one as “Bayesian logic” from the full text; Elicit’s abstract-based column said not AI</span><a class="src" href="https://notebook.google.com/notebook/b7742dc0-c337-4f5e-ab47-b4cb4dd5e5a6" target="_blank" rel="noopener">notebook.google.com/notebook/b7742dc0-c337-4f5…</a></figcaption></figure>
+</div>
 ```
-:::
 
-::: {.column width="50%"}
-```{=html}
-<figure class="shot2"><img src="images/notebooklm.jpg" alt="Gemini Notebook: many sources feeding grounded answers"><figcaption><b>Gemini Notebook</b> (formerly NotebookLM) · answers only from the sources you upload</figcaption></figure>
-```
-:::
-
-::::
-
-::: {.punch}
+::: {.punch style="margin-top:0.5em"}
 Check every row you cite against the paper.
+:::
+
+::: {.source-note}
+Real output, 6 Oct 2026. Gemini Notebook was formerly NotebookLM.
 :::
 
 ## Where these tools go wrong
@@ -452,6 +615,8 @@ Check every row you cite against the paper.
 [Invented sources]{.ct}
 
 Citations that look real but do not exist, or do not say what is claimed
+
+<span class="foot">Ask for DOIs. Check each one</span>
 :::
 
 ::: {.card .big-ic}
@@ -460,6 +625,8 @@ Citations that look real but do not exist, or do not say what is claimed
 [Coverage gaps]{.ct}
 
 Paywalls, grey literature, non-English work, LMIC evidence
+
+<span class="foot">Run a second tool. Search Google Scholar and grey literature yourself</span>
 :::
 
 ::: {.card .big-ic}
@@ -467,7 +634,9 @@ Paywalls, grey literature, non-English work, LMIC evidence
 
 [Moving models]{.ct}
 
-Same prompt, new model version, different list. Record tool, model and date
+Same prompt, new model version, different list
+
+<span class="foot">Record tool, model and date. Keep the export</span>
 :::
 :::
 
@@ -479,10 +648,32 @@ Use the lists to find papers. Then read the papers.
 The Day 1 ethics session showed a fabricated citation that nobody could spot by reading it. Popularity bias is the other quiet one: citation-ranked results favour old, highly cited papers over the recent study that matters.
 :::
 
-# Systematic Reviews {background-color="#530153"}
+# Systematic Review / Meta-Analysis {background-color="#530153"}
 
-## One review: 284,525 records, 17 studies
+## What is at stake in screening
 
+```{=html}
+<div class="cards c2" style="margin-top:0.6em">
+  <div class="card err"><span class="ct">False exclusion</span><div>An eligible study is dropped and no human checks it.</div><div><b>Lost for good, and invisible.</b> The pooled effect is biased and nobody can tell.</div></div>
+  <div class="card"><span class="ct">False inclusion</span><div>An ineligible study goes on to a human or to full text.</div><div><b>Costs time, but recoverable.</b> Someone reads it and drops it.</div></div>
+</div>
+<div class="card line" style="margin-top:16px"><span class="ct">And before screening starts</span><div>A study the search never finds is lost too. No screener can rescue it, so a systematic review / meta-analysis needs a broad search.</div></div>
+```
+
+::: {.punch}
+Screening rules exist to make false exclusions rare.
+:::
+
+::: {.notes}
+Timing: the systematic review / meta-analysis part is about 30 minutes.
+The asymmetry drives everything that follows: a false inclusion costs a few minutes of reading, a false exclusion silently changes the answer.
+:::
+
+## One real review: 284,525 records, 17 studies
+
+:::: {.columns}
+
+::: {.column width="60%"}
 ```{=html}
 <div class="funnel">
   <div class="fbar" style="width:100%"><span>284,525</span> records found</div>
@@ -493,110 +684,69 @@ The Day 1 ethics session showed a fabricated citation that nobody could spot by 
   <div class="fbar dark" style="width:14%"><span>17</span> included</div>
 </div>
 ```
-
-::: {.source-note}
-Our review of AI tools for frontline health workers in LMICs. By hand: 68,049 abstracts × 2 screeners × 2 min ≈ 4,500 hours. One LLM pass: about $11 per 1,000 papers.
 :::
 
-::: {.notes}
-At 2 minutes per abstract with two screeners, 68,049 abstracts is roughly 4,500 hours of human screening. An LLM pass costs on the order of $11 per 1,000 papers. The question for the rest of the session: how much of that can you hand over, and how sure can you be?
-:::
-
-## Screening with MetaScreener
-
+::: {.column width="40%"}
 ```{=html}
-<div class="flow" style="margin-top:0.4em">
-  <div class="step ai"><b>Upload</b><small>deduplicated CSV: title, abstract, DOI</small></div><span class="arrow">→</span>
-  <div class="step you"><b>Criteria</b><small>you write yes/no/maybe per criterion</small></div><span class="arrow">→</span>
-  <div class="step ai"><b>LLM passes</b><small>1–3 full runs, or a bootstrap sample</small></div><span class="arrow">→</span>
-  <div class="step you"><b>Moderate</b><small>you check boundary cases and disagreements</small></div><span class="arrow">→</span>
-  <div class="step ai"><b>Audit trail</b><small>labels, prompts, model, parameters</small></div>
-</div>
-<div class="key"><span class="you">you</span><span class="ai">tool</span></div>
+<img src="https://media.giphy.com/media/LKTTAzGboJGzC/giphy.gif" alt="The Office: Kevin saying I can't" style="width:96%;border-radius:10px;margin-top:0.6em">
 ```
-
-::: {.cards .c3}
-::: {.card}
-[Private]{.ct}
-Runs in the browser; bibliographies stay local
-:::
-
-::: {.card}
-[Per criterion]{.ct}
-A No names the criterion that failed
-:::
-
-::: {.card}
-[Auditable]{.ct}
-Disagreements become review tasks
-:::
-:::
-
-::: {.notes}
-Switch to the live demo, about 4 minutes: upload a small CSV, define two criteria, run one pass, open a disagreement. Backup screenshot on the next slide.
-:::
-
-## Demo: MetaScreener
-
-```{=html}
-<figure class="shot2" style="align-items:center"><img style="max-height:440px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
-```
-
-# How Much Screening Can an LLM Do? {background-color="#530153"}
-
-## Papers can be lost before screening starts
-
-:::: {.columns}
-
-::: {.column width="55%"}
-```{=html}
-<div class="dots">
-  <span class="dot hit"></span><span class="dot hit"></span><span class="dot hit"></span><span class="dot hit"></span><span class="dot hit"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span><span class="dot miss"></span>
-</div>
-<div class="key" style="justify-content:flex-start"><span class="you">found</span><span class="ai">missed</span></div>
-```
-A narrower, typical PICOS search (4,291 records) would have found **5 of 13** studies our broad search included.
-
-::: {.source-note}
-Our LMIC review, retrospective comparison. The last real numbers: from here on, all numbers are invented.
-:::
-:::
-
-::: {.column width="45%"}
-::: {.card .dark}
-[Potential]{.ct}
-Cheap screening makes a broad search affordable.
-:::
-
-::: {.card .line}
-[Pitfall]{.ct}
-No screener can rescue a paper the search never found.
-:::
 :::
 
 ::::
 
-::: {.notes}
-Timing: this section is about 25 minutes.
-The last real number from our LMIC review. From here on, every number is made up for a fictional review, so the logic is easy to follow.
+::: {.source-note}
+Sautmann &amp; Weinert (2026), <i>Artificial Intelligence Interventions to Support Frontline Healthcare Workers in Low-Resource Settings: A Review</i>. By hand: 68,049 abstracts × 2 screeners × 2 min ≈ 4,500 hours. One LLM pass: about $11 per 1,000 papers.
 :::
 
-## Two ways screening goes wrong
+::: {.punch}
+Most of the work is saying No, tens of thousands of times.
+:::
+
+::: {.notes}
+At 2 minutes per abstract with two screeners, 68,049 abstracts is roughly 4,500 hours of human screening. An LLM pass costs on the order of $11 per 1,000 papers. A typical narrower PICOS search (4,291 records) would have found only 5 of the 13 studies the broad search had included at that point: a broad search is what makes the volume unavoidable.
+:::
+
+## Too much to do by hand, and too risky
 
 ```{=html}
-<div class="cards c2" style="margin-top:0.6em">
-  <div class="card err"><span class="ct">False exclusion</span><div>An eligible paper is dropped with no human check.</div><div><b>Lost for good, and invisible.</b></div></div>
-  <div class="card"><span class="ct">False inclusion</span><div>An ineligible paper goes to a human or to full text.</div><div><b>Costs time, but recoverable.</b></div></div>
+<div class="bignums" style="margin-top:0.3em">
+  <div style="padding:14px"><b>≈4,500 h</b><span>to screen 68,049 abstracts twice by hand, at 2 minutes each</span></div>
+  <div style="padding:14px"><b>13%</b><span>of eligible studies missed by a single human screener</span></div>
+  <div style="padding:14px"><b>3%</b><span>still missed with two independent screeners</span></div>
 </div>
-<div class="bignums" style="margin-top:18px">
-  <div><b>13%</b><span>missed by a single human screener</span></div>
-  <div><b>3%</b><span>missed with two independent screeners</span></div>
-  <div><b>?</b><span>LLM + human: match this, for less work</span></div>
+<div class="cards c2" style="margin-top:14px;font-size:0.85em">
+  <div class="card"><span class="ct">Too costly</span><div>Dual screening at this scale is months of skilled time, so teams narrow the search instead, and lose studies there.</div></div>
+  <div class="card err"><span class="ct">Too risky</span><div>Humans miss too: <b>10.8%</b> of abstract decisions were wrong in experienced review teams. Abstract 40,000 looks like abstract 39,999.</div></div>
 </div>
 ```
 
-::: {.source-note}
-Gartlehner et al. (2020), RCT of single vs dual screening; Waffenschmidt et al. (2019) find a median of 5% missed (range 0–58%).
+::: {.punch style="margin-top:0.6em"}
+The bar for a machine: miss no more than two human screeners, for far less work.
+:::
+
+::: {.notes}
+Sources: Gartlehner et al. (2020), J Clin Epidemiol, RCT of single vs dual screening. Wang et al. (2020), PLoS ONE: 10.8% false inclusions plus exclusions after dual abstract screening. Waffenschmidt et al. (2019): median 5% missed by single screeners (range 0–58%).
+Two separate problems. Cost: dual human screening at this scale is not affordable, and the usual workaround, a narrower search, loses studies before screening even starts. Risk: human screening is itself error-prone, and the errors are false exclusions you never see. Fatigue is the plausible mechanism; the cited studies measure the error rates, not fatigue itself.
+:::
+
+# How to Trust the Machine {background-color="#530153"}
+
+## Trusting the machine, without vibe screening
+
+```{=html}
+<div class="cards c2" style="margin-top:0.6em">
+  <div class="card err"><span class="ct">Vibe screening</span><div>“Is this paper relevant to my review?” One prompt, one pass, accept the answer.</div><div><b>You cannot say how many studies you lost, or which ones.</b></div></div>
+  <div class="card dark"><span class="ct">A screening strategy</span><div>Each criterion answered separately, the same paper asked several times, a rule chosen from the measured error rates, then an audit.</div><div><b>You can report recall, and defend it.</b></div></div>
+</div>
+<div class="card line" style="margin-top:14px;font-size:0.85em">Same rule as slide 2. For an overview, one prompt is fine. In a systematic review a missed paper costs a lot, so the workflow has to be tested before it runs.</div>
+```
+
+::: {.punch}
+Measure how the model fails before you let it exclude anything.
+:::
+
+::: {.notes}
+"Vibe screening" is what most people do first: paste abstracts into a chat and ask whether they are relevant. It often looks fine on the papers you check, which is exactly the problem: the losses are the papers you do not check. The next slides build the alternative on a made-up review.
 :::
 
 ## A made-up review to work through
@@ -618,7 +768,7 @@ Would you let an LLM exclude papers on its own? At what error rate?
 :::
 
 ::: {.notes}
-Ask the room and take a few answers. Most people say "only if it is as good as a human", which is the bar from the previous slide. All numbers from here on are invented for this review.
+Ask the room and take a few answers. Most people say "only if it is as good as a human", which is the bar from the human-error slide. All numbers from here on are invented for this review.
 :::
 
 ## Seven steps to a screening rule
@@ -933,6 +1083,30 @@ Stops at the first Yes, so most papers need only 1–2 extra LLM calls.
 Stop early: as soon as one answer is Yes, the paper goes to a human, so most papers need only one or two extra calls. Voting (exclude if 2 of 3 are No) is a much weaker test than "No every time".
 :::
 
+## Why one rule does not fit every criterion
+
+```{=html}
+<div class="tracker"><span class="done">1 · Bootstrap</span><span class="done">2 · Inconsistency</span><span class="done">3 · Criteria</span><span class="done">4 · Reference</span><span class="done">5 · How Nos behave</span><span class="on">6 · Strategies</span><span class="">7 · Choose</span></div>
+<div class="cwhy">
+  <div class="cw head"><span>Criterion</span><span>Answer flips between runs</span><span>A correct No is still No after 3 rechecks</span><span>What a No tells you</span><span>So the rule is</span></div>
+  <div class="cw"><span><b>Population, Intervention</b></span><span><i class="bar" style="width:8%"></i>1–2%</span><span><i class="bar good" style="width:99%"></i>almost always</span><span>Nearly always right. A rare slip shows up on one recheck</span><span class="rule">Recheck once</span></div>
+  <div class="cw"><span><b>Design</b></span><span><i class="bar hot" style="width:90%"></i>18%</span><span><i class="bar good" style="width:94%"></i>94%</span><span>Wrong Nos flip, correct Nos repeat: rechecks separate them</span><span class="rule">Confirm 3×</span></div>
+  <div class="cw"><span><b>Outcome</b></span><span><i class="bar hot" style="width:60%"></i>12%</span><span><i class="bar warn" style="width:51%"></i>51%</span><span>Correct Nos flip too: rechecks cannot tell right from wrong</span><span class="rule dark">Send to a human</span></div>
+</div>
+```
+
+::: {.punch}
+Criteria stay inconsistent in different ways. Give each the rule its errors call for.
+:::
+
+::: {.source-note}
+Flip rates from Step 2; survival of correct Nos from Step 5. Invented numbers for the made-up review.
+:::
+
+::: {.notes}
+Even after rewriting the criteria (Step 3), some stay noisier than others, and they are noisy in different ways. For Population and Intervention a No is almost always right, so one recheck is enough. For Design the noise is in the wrong Nos: correct Nos repeat, so asking three times filters out the errors while keeping real exclusions. For Outcome even correct Nos wobble: half would fail three checks anyway, so rechecking just burns LLM calls before the paper lands with a human. A single rule for all criteria is either too lax on Design or too wasteful on Outcome.
+:::
+
 ## Strategy 5 · A different rule per criterion
 
 ```{=html}
@@ -943,8 +1117,8 @@ Stop early: as soon as one answer is Yes, the paper goes to a human, so most pap
 
 ```{=html}
 <div class="cards c4">
-  <div class="card compact"><span class="ct">Easy criteria</span><div>one recheck</div></div>
-  <div class="card compact"><span class="ct">Design</span><div>confirm 3×</div></div>
+  <div class="card compact"><span class="ct">Population, Intervention</span><div>one recheck: a No is nearly always right</div></div>
+  <div class="card compact"><span class="ct">Design</span><div>confirm 3×: correct Nos repeat, wrong ones flip</div></div>
   <div class="card compact"><span class="ct">Outcome</span><div>to a human: correct Nos wobble anyway</div></div>
   <div class="card compact dark"><span class="ct">Result</span><div>0.1 of 100 lost · 100 reviews / 1,000</div></div>
 </div>
@@ -1043,6 +1217,71 @@ Zero events in n trials gives a 95% upper bound of roughly 3/n. A random pilot o
 </div>
 ```
 
+# MetaScreener {background-color="#530153"}
+
+## MetaScreener: reproducible bulk screening
+
+```{=html}
+<div class="flow" style="margin-top:0.4em">
+  <div class="step ai"><b>Upload</b><small>deduplicated CSV: title, abstract, DOI</small></div><span class="arrow">→</span>
+  <div class="step you"><b>Criteria</b><small>you write yes/no/maybe per criterion</small></div><span class="arrow">→</span>
+  <div class="step ai"><b>LLM passes</b><small>1–3 full runs, or a bootstrap sample</small></div><span class="arrow">→</span>
+  <div class="step you"><b>Moderate</b><small>you check boundary cases and disagreements</small></div><span class="arrow">→</span>
+  <div class="step ai"><b>Audit trail</b><small>labels, prompts, model, parameters</small></div>
+</div>
+<div class="key"><span class="you">you</span><span class="ai">tool</span></div>
+```
+
+::: {.cards .c4}
+::: {.card .compact}
+[Per criterion]{.ct}
+A No names the criterion that failed
+:::
+
+::: {.card .compact}
+[Repeated runs]{.ct}
+The strategy from the last section, built in
+:::
+
+::: {.card .compact}
+[Reproducible]{.ct}
+Prompts, model and parameters saved with every label
+:::
+
+::: {.card .compact}
+[Private]{.ct}
+Runs in the browser; bibliographies stay local
+:::
+:::
+
+::: {.notes}
+Switch to the live demo, about 4 minutes: upload a small CSV, define two criteria, run one pass, open a disagreement. Backup screenshot on the next slide.
+:::
+
+## Demo: MetaScreener
+
+```{=html}
+<figure class="shot2" style="align-items:center"><a href="https://sautmann.github.io/MetaScreener/" target="_blank" rel="noopener"><img style="max-height:440px;width:auto" src="images/metascreener.png" alt="MetaScreener setup screen: upload a CSV of papers, choose default fields and add custom screening criteria"></a><figcaption><b>MetaScreener</b> · upload your papers as a CSV, pick the fields to screen on, add your own criteria, start screening</figcaption></figure>
+```
+
+## Next: decision models
+
+```{=html}
+<div class="cards c2" style="margin-top:0.4em">
+  <div class="card"><span class="ct">An LLM</span><div>Writes its answer token by token, as text.</div><div>Its confidence is hidden or poorly calibrated, so to see uncertainty you <b>rerun it many times</b> (our Step 1).</div></div>
+  <div class="card dark"><span class="ct">A decision model</span><div>Returns a typed answer directly: yes/no, one option from a list, or a score.</div><div>Each answer comes with a <b>probability</b> in a single pass: act when confident, send to a human when not.</div></div>
+</div>
+<div class="card line compact" style="margin-top:14px"><span class="ct">Example: Jev (TypeSafe AI, September 2026)</span><div>Trained for calibrated yes/no decisions. Vendor figures only so far, none on screening.</div></div>
+```
+
+::: {.punch}
+Screening is a set of yes/no questions. That is exactly what these models are built for.
+:::
+
+::: {.notes}
+About 3 minutes. Vendor claims for Jev (typesafe.ai and launch coverage, Sept 2026, early access only): 70–500 ms per decision, $42 per billion input tokens, up to 194× faster and 444× cheaper than LLMs on its own workflows. Not the same thing as JEPA "world models" (LeCun, AMI Labs), which predict states for planning. Decision models drop text generation and score the possible answers directly, which is faster, cheaper and, if the calibration holds, gives you the per-paper error probability that our strategy currently estimates by rerunning the LLM 20 times. Everything about Jev is vendor-reported: treat it as a direction, not a result.
+:::
+
 ## Thank you {.closing}
 
 :::: {.columns}
@@ -1054,14 +1293,14 @@ Method: *How much can we automate? Quantifying uncertainty to choose hybrid LLM�
 :::
 
 ::: {.column width="35%"}
-![](images/metascreener-qr.png){width="200px" fig-alt="QR code linking to MetaScreener"}
+[![](images/metascreener-qr.png){width="200px" fig-alt="QR code linking to MetaScreener"}](https://sautmann.github.io/MetaScreener/){target="_blank" rel="noopener"}
 :::
 
 ::::
 
-# Appendix {background-color="#530153"}
+# Appendix: Calculating screening uncertainty for SLRs & MAs {background-color="#530153"}
 
-## The method in one slide {.smaller}
+## A0 · Overview {.smaller}
 
 1. **Decompose** eligibility into criteria; a paper is excluded if any criterion is No
 2. **Pilot:** screen J papers R times each (e.g. 100 × 100)
@@ -1199,4 +1438,27 @@ Wrong-exclusion rates rest on the eligible papers in the pilot: a handful can do
 [Pilot ≠ production]{.ct}
 Single-question reruns may behave differently from full-prompt runs, and the corpus may have a different share of eligible papers.
 :::
+:::
+
+## A8 · Decision models and their older relatives {.smaller}
+
+::: {.tooltable}
+| Family | Example | Gives you | Watch for |
+|---|---|---|---|
+| **Decision model** | Jev (TypeSafe AI, 2026) | A probability per answer, in one fast, cheap call | Brand new, closed, vendor benchmarks only |
+| **LLM token probabilities** | Compare P(“Yes”) with P(“No”), set a threshold for a target recall | Works with open models you already use | Raw probabilities are poorly calibrated: tune on seed papers |
+| **Small zero-shot classifiers** | GLiClass, NLI models (~150M parameters) | Run on a laptop, one pass per paper | Weaker on nuanced criteria like study design |
+| **Active learning** | ASReview | Learns from your labels, shows likely includes first | A human labels throughout, and needs a stopping rule |
+:::
+
+::: {.punch}
+Whatever the model, the strategy stays: check its probabilities on your pilot before you trust them.
+:::
+
+::: {.source-note}
+Token probabilities: Wang et al. (2024), zero-shot generative LLMs for screening, ECIR. ASReview: van de Schoot et al. (2021), Nature Machine Intelligence. GLiClass: Knowledgator, Hugging Face.
+:::
+
+::: {.notes}
+The older relatives already give you probabilities: an LLM's own token probabilities (calibrated against papers you know are included), small encoder classifiers, and active-learning tools such as ASReview that rank papers as you label them. A decision model promises the speed of the small models with the understanding of an LLM. Whichever you use, Steps 4 to 7 still apply: a reference answer, measured miss rates, and an audit.
 :::
