@@ -5,7 +5,7 @@
 - **Date written:**
 - **Last updated:**
 
-This plan works for a research project or for other recurring work, such as data requests, monthly updates or stakeholder briefings. Save it in your project folder (ideally your GitHub repository) and link it from your memory file (`AGENTS.md` / `CLAUDE.md`).
+This plan works for a research project or for other recurring work, such as data requests, monthly updates or stakeholder briefings. Save it in your project folder (ideally your GitHub repository) and link it from your memory file (`AGENTS.md` / `CLAUDE.md`). Please also share it with the bootcamp team, in the Teams channel or by email: it helps us see what people need.
 
 Keep [`AI-ADOPTION-GUIDE.md`](AI-ADOPTION-GUIDE.md) next to this file. It has examples and reference material for each section, and instructions so your coding agent can walk you through the plan.
 
