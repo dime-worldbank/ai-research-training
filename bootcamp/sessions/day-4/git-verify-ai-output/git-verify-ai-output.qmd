@@ -105,8 +105,8 @@ When an AI agent modifies files in a repository tracked by Git:
 - Ask the agent to perform the task, using the steps described in the previous section.
 - Push the agent's branch to GitHub and open a **Pull Request (PR)** into `main`.
 - The PR shows the complete diff of all changes in one place.
-- Comment on specific lines, ask colleagues to review, and require approval before merging.
-- The PR keeps a permanent record of what was changed, why, and who approved it.
+- Comment on specific lines or ask colleagues to review. Resolve all conversations before merging.
+- The PR keeps a permanent record of what was changed, why (all the conversations), and who approved it.
 
 
 For a full introduction to PRs and more detail on the review features, see the slides from the Impact Analytics PR training:[https://osf.io/e54gy/files/umqzn](https://osf.io/e54gy/files/umqzn)
@@ -132,7 +132,6 @@ Copilot **assists** the review -- it does not replace it. You are still the prod
 
 :::
 ::::
-
 
 # Give the Agent Its Own Parallel Space - Advanced {background-color="#530153"}
 
