@@ -164,6 +164,11 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 .look dt { font-weight: 700; margin-top: 8px; }
 .look dt a { text-decoration: none; }
 .look dd { margin: 0; color: var(--grey); }
+.cards.c4 { grid-template-columns: repeat(4, 1fr); }
+.hz .card { font-size: 0.66em; gap: 8px; }
+.hz .card .ct { font-size: 1.35em; }
+.hz .card .q { color: var(--navy); font-size: 1em; }
+.hz .card .eg { margin-top: auto; color: var(--grey); font-style: italic; }
 .opt { font-size: 0.92em; color: var(--navy); background: #fff; border-left: 3px solid var(--cyan); padding: 6px 10px; border-radius: 0 6px 6px 0; }
 .reveal .opt b { color: var(--blue); }
 .opt .zm-link { display: inline-block; margin-top: 6px; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 0.95em; color: #fff; background: var(--blue); border-radius: 999px; padding: 3px 12px; text-decoration: none; }
@@ -277,30 +282,33 @@ The chain at the bottom is the monthly welfare nowcast from the reference sectio
 
 ## 2 · What do I need to do, and what is in the way?
 
+<p class="lead">Sort your next steps by how ready they are. The examples are illustrations, not a checklist for everyone.</p>
+
 ```{=html}
-<div class="cards c3">
-  <div class="card"><span class="n">THIS WEEK</span><span class="ct">Now</span>
-    <ul><li>Memory file in the real project, not the demo</li><li>Agent on cleaning or analysis code</li><li>Anything unchecked from the bootcamp</li></ul></div>
-  <div class="card"><span class="n">6 WEEKS · 3 MONTHS</span><span class="ct">Prepare</span>
-    <ul><li>De-identified or synthetic data</li><li>Data rules in the memory file</li><li>Team members onboarded</li><li>A skill for a recurring task</li></ul></div>
-  <div class="card road"><span class="n">CANNOT SOLVE ALONE</span><span class="ct">Roadblocks</span>
-    <ul><li>A data agreement that may not allow it</li><li>Tool access or approvals</li><li>Cost, team buy-in, a skill that does not exist</li></ul>
-    <span style="color:var(--grey)">Write them down anyway. That is how we know what to fix.</span></div>
+<div class="cards c4 hz">
+  <div class="card"><span class="n">THIS WEEK</span><span class="ct">Now</span><span class="q">Already works, low risk</span>
+    <span class="eg">e.g. the agent on one recurring task in your real work</span></div>
+  <div class="card"><span class="n">NEXT 6 WEEKS</span><span class="ct">Set up</span><span class="q">Needs some setup or team agreement</span>
+    <span class="eg">e.g. a de-identified or synthetic version of sensitive data</span></div>
+  <div class="card"><span class="n">NEXT 3 MONTHS</span><span class="ct">Define</span><span class="q">Not plug-and-play yet. Start defining the need now</span>
+    <span class="eg">e.g. a review routine for the team's outputs</span></div>
+  <div class="card road"><span class="n">CANNOT SOLVE ALONE</span><span class="ct">Roadblocks</span><span class="q">Write them down anyway</span>
+    <span class="eg">e.g. a data agreement that may not allow it, tool access, a skill that does not exist yet</span></div>
 </div>
 ```
 
 ::: {.callout-note-custom}
-If you cannot say which data goes into the tool at a stage, that stage is not ready yet.
+For most teams the biggest step is a **de-identified or synthetic version of sensitive data**, so the agent can work on the real pipeline. Public data can live in the repository as it is.
 :::
 
 ```{=html}
-<div class="lookup">Look up: <a href="#/the-biggest-roadblock-is-confidential-data">Confidential data</a><a href="#/write-the-rules-into-your-memory-file">Data rules for the memory file</a><a href="#/three-time-horizons">Example targets</a><a href="#/which-skills-does-your-project-need">Skills</a><a href="#/who-needs-access-and-to-what">Team access</a><a href="#/risks-and-how-to-reduce-them">Risks</a></div>
+<div class="lookup">Look up: <a href="#/three-time-horizons">Example targets</a><a href="#/sensitive-data">Sensitive data</a><a href="#/skills">Skills</a><a href="#/who-needs-access-and-to-what">Team access</a><a href="#/risks-and-how-to-reduce-them">Risks</a></div>
 ```
 
 ::: {.notes}
-Time: 3 minutes. "Use AI more" is not a target. "Every change to the cleaning code gets an AI review before merge" is.
+Time: 3 minutes. Stress that the examples are illustrations: people should write targets that fit their own work. "Use AI more" is not a target. "Every change to the cleaning code gets an AI review before merge" is.
 
-Roadblocks are the most useful output of this session for us. Encourage people to write down the worry even if it is vague, for example "not sure our data agreement allows this".
+Roadblocks are the most useful output of this session for us. Encourage people to write down the worry even if it is vague, for example "not sure our data agreement allows this". Missing skills go here too: we do not expect people to build their own yet.
 :::
 
 ## What to look up, and when
@@ -320,13 +328,12 @@ Click a topic for a preview. Everything is also in [`AI-ADOPTION-GUIDE.md`](mate
     <dl>
       <dt><a href="#/what-did-you-set-up-this-week-check-those-that-applied">Setup checklist</a></dt><dd>What the bootcamp set up</dd>
       <dt><a href="#/three-time-horizons">Example targets</a></dt><dd>Now, 6 weeks, 3 months</dd>
-      <dt><a href="#/which-skills-does-your-project-need">Skills</a></dt><dd>Known skills, and ones to ask for</dd>
+      <dt><a href="#/skills">Skills</a></dt><dd>Known skills, and telling us what is missing</dd>
       <dt><a href="#/who-needs-access-and-to-what">Team access</a></dt><dd>Who needs which tools and training</dd>
-      <dt><a href="#/write-the-rules-into-your-memory-file">Data rules for the memory file</a></dt><dd>A block to paste into your memory file</dd>
     </dl></div>
   <div class="card road"><span class="n">Q2 · WHAT IS IN THE WAY</span><span class="ct">Roadblocks</span>
     <dl>
-      <dt><a href="#/the-biggest-roadblock-is-confidential-data">Confidential data</a></dt><dd>De-identify, synthesize, separate</dd>
+      <dt><a href="#/sensitive-data">Sensitive data</a></dt><dd>Public is fine; de-identify, synthesize, or keep it away</dd>
       <dt><a href="#/risks-and-how-to-reduce-them">Risks and mitigations</a></dt><dd>Common risks and how to reduce them</dd>
     </dl></div>
 </div>
@@ -335,8 +342,7 @@ Click a topic for a preview. Everything is also in [`AI-ADOPTION-GUIDE.md`](mate
 (function () {
   var REF = ['the-3a-design-model', 'anatomy-of-a-3a-matrix-answering-a-ministry-data-request', 'three-workflows-redesigned',
     'example-an-ai-data-map', 'what-did-you-set-up-this-week-check-those-that-applied', 'three-time-horizons',
-    'which-skills-does-your-project-need', 'who-needs-access-and-to-what', 'write-the-rules-into-your-memory-file',
-    'the-biggest-roadblock-is-confidential-data', 'risks-and-how-to-reduce-them'];
+    'skills', 'who-needs-access-and-to-what', 'sensitive-data', 'risks-and-how-to-reduce-them'];
   var OVERVIEW = 'what-to-look-up-and-when';
   var zm, frame, title, target, backBtn;
 
@@ -424,7 +430,7 @@ Copy [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md) and [`AI-ADOPTION-GU
 
 ```{=html}
 <div class="blocks">
-  <div class="tm">0–5</div><div>Tick what is already set up <b>in this project</b></div><div class="sec">Section 1</div>
+  <div class="tm">0–5</div><div>Tick what is already set up <b>in your real work</b></div><div class="sec">Section 1</div>
   <div class="tm">5–17</div><div><span class="q1">Q1</span>In 3A: which recurring tasks (<b>Activities</b>), which steps need you (<b>Actors</b>), what the tool sees and hands back (<b>Artefacts</b>). <i>Optional: a full 3A matrix for one</i></div><div class="sec">Sections 2–4</div>
   <div class="tm">17–27</div><div><span class="q2">Q2</span>Targets for now, 6 weeks and 3 months. Roadblocks: what worries you, and can you resolve it yourself?</div><div class="sec">Sections 5–6</div>
   <div class="tm">27–30</div><div>Commit the plan. Pick one target and one roadblock to share</div><div class="sec"></div>
@@ -878,24 +884,26 @@ Unchecked boxes are not a failure. They become "now" targets in step 4.
 
 ## Three time horizons
 
+The examples are illustrations, not expectations. Pick what fits your work.
+
 | Horizon | What fits here | Examples |
 |---|---|---|
-| **Now** (this week) | Already works, low risk | Memory file in the real project; coding agent for cleaning and analysis code; finish anything unchecked from step 1 |
-| **6 weeks** | Needs some setup or team agreement | De-identified or synthetic data; data rules in the memory file; AI code review as a routine step; team members onboarded |
-| **3 months** | Not plug-and-play yet. Start defining the need now | Review and quality-control workflows; skills that do not exist yet; reproducibility package for a paper |
+| **Now** (this week) | Already works, low risk | The coding agent on one recurring task in your real work: cleaning code, a monthly update, a data request |
+| **6 weeks** | Needs some setup or team agreement | A de-identified or synthetic version of sensitive data; AI review as a routine step; team members onboarded |
+| **3 months** | Not plug-and-play yet. Start defining the need now | Review and quality-control routines; one workflow redesigned end to end; a reproducibility package for a paper |
 
 ::: {.notes}
-The 6-week and 3-month targets are the ones in the follow-up survey. Encourage participants to write a few specific targets rather than many general ones. "Use AI more" is not a target. "Every pull request to the cleaning code gets an AI review before merge" is.
+The 6-week and 3-month targets are the ones in the follow-up survey. Encourage participants to write a few specific targets rather than many general ones.
 :::
 
-## Which skills does your project need?
+## Which skills could help? {#skills}
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 **Known skills**
 
-Skills you saw this week that fit a recurring task in your project:
+Skills you saw this week. Use the ones that fit a recurring task:
 
 - Code review
 - Reproducible charts and tables
@@ -905,20 +913,21 @@ Skills you saw this week that fit a recurring task in your project:
 :::
 
 ::: {.column width="50%"}
-**Skills not yet found**
+**Missing a skill? Tell us**
 
-Recurring tasks with no skill yet. Write them down anyway:
+Write it down as a roadblock:
 
 - What is the task?
 - How often does it recur?
 - What does a good result look like?
-- Who could build it, or ask Impact Analytics?
+
+This helps us plan a follow-on session on building skills.
 :::
 
 ::::
 
 ::: {.notes}
-Good skill candidates are tasks the team repeats with the same steps every time. The "not yet found" list is useful for us too: it tells Impact Analytics which skills to build next.
+We did not teach skill-building in this bootcamp, so do not suggest that people write their own yet. Collect the missing ones: they are input for a follow-on session.
 :::
 
 ## Who needs access, and to what?
@@ -927,50 +936,26 @@ AI adoption fails when only one person on the team uses the tools. For each team
 
 | Team member | Role | Needs access to | Trained on | Next step |
 |---|---|---|---|---|
-| *Name* | PI | Approved chat tool | Ethics, verifying outputs | Review AI-assisted drafts |
-| *Name* | RA | Coding agent, GitHub repo | Memory files, skills, code review | Onboard by end of month |
-| *Name* | Field coordinator | Approved chat tool | Data classification | Ethics session recording |
+| *Name* | Team lead | Approved chat tool | Ethics, verifying outputs | Review AI-assisted drafts |
+| *Name* | Analyst or RA | Coding agent, GitHub repo | Memory files, skills, code review | Onboard by end of month |
+| *Name* | Field or operations coordinator | Approved chat tool | Data classification | Ethics session recording |
 
 ::: {.notes}
-Not everyone needs a coding agent. Everyone who touches project data needs the data classification rules from Day 1.
+Not everyone needs a coding agent. Everyone who handles sensitive data needs the data classification rules from Day 1.
 
 A memory file in the repository helps here: it is the shared set of rules that applies to every team member's agent.
 :::
 
-## Write the rules into your memory file
+## Sensitive data: the biggest roadblock {#sensitive-data}
 
-The agent reads the memory file at the start of every session. Use it to list the checks the agent must follow.
+**Public and non-sensitive data can live in the repository.** Sensitive data, such as personal information, confidential documents or restricted government data, needs a plan **before** the agent works on that step:
 
-``` markdown
-## Data rules (read before any task)
-
-- Never open files in `data/raw/` or `data/identified/`.
-- Work only with `data/deidentified/` or `data/synthetic/`.
-- If a task seems to need identified data, stop and ask.
-- Refer to variables by name. Do not copy data values into output.
-- Record AI-assisted changes in the commit message.
-```
-
-A memory file guides the agent, but it does not enforce anything. Where the tool supports it, also block those folders in the agent's permission settings, and keep identified data out of the repository.
-
-::: {.notes}
-Builds on the Day 1 memory-file session and on Aidan's comment in the ethics session about a checklist in the memory file.
-
-The last bullet in the slide is the important nuance: instructions reduce the chance of a mistake, but only access controls prevent it.
-:::
-
-## The biggest roadblock is confidential data
-
-Many teams cannot use AI on the most useful parts of the work, because the agent would see confidential data.
-
-Prepare the data **before** an AI tool reaches the project folder:
-
-- **Remove PII.** Run a de-identification script on the raw data, outside any AI tool.
-- **Create synthetic data.** If you cannot remove PII safely, generate a synthetic dataset with the same structure, so the agent can write and test code against it.
-- **Separate folders.** Keep identified data in a location the agent never opens.
+- **De-identify.** Run a de-identification script on the raw data, outside any AI tool.
+- **Use synthetic data.** If you cannot de-identify safely, generate a synthetic dataset with the same structure, so the agent can write and test code against it.
+- **Keep it away from the agent.** Store it outside the repository, or in folders blocked in the agent's permission settings.
 
 ::: {.callout-note-custom}
-De-identification is a human responsibility. An agent can help write the script from the codebook, but it should never see the raw data while doing so.
+De-identification is a human responsibility. An agent can help write the script from the codebook, but it should never see the sensitive data while doing so.
 :::
 
 ::: {.notes}
@@ -978,14 +963,14 @@ Credit: suggestion from Ankriti Singh.
 
 Removing names alone does not make a dataset safe to share (see Day 1 ethics session). Indirect identifiers such as village, exact dates and rare combinations of characteristics matter too.
 
-This topic deserves its own session. Say that it will come back in the AI roadmap series, and that for today the target is to write down which datasets need de-identification or synthetic versions.
+Listing allowed and forbidden folders in the memory file is an optional extra; the guide has a short example. Permission settings are what actually enforce it.
 :::
 
 ## Risks and how to reduce them {.smaller}
 
 | Risk | Mitigation |
 |---|---|
-| Confidential data reaches an AI tool | Classify first; de-identified or synthetic data only; data rules in the memory file; block folders in agent settings |
+| Sensitive data reaches an AI tool | Classify first; de-identified or synthetic versions; sensitive data outside the repository or in blocked folders |
 | AI output is wrong but looks right | Human review of every exhibit and number; Git diffs to see what changed |
 | Only one person uses the tools | Shared memory file and skills in the repository; onboarding target in the plan |
 | Costs or token limits run out | Use cheaper models for routine tasks (Day 1 cost session) |

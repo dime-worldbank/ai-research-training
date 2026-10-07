@@ -1,11 +1,11 @@
 # AI Adoption Plan
 
-- **Project:**
+- **Project or team:**
 - **Team lead:**
 - **Date written:**
 - **Last updated:**
 
-Save this file in the root of your project repository and link it from your memory file (`AGENTS.md` / `CLAUDE.md`).
+This plan works for a research project or for other recurring work, such as data requests, monthly updates or stakeholder briefings. Save it in the root of your repository and link it from your memory file (`AGENTS.md` / `CLAUDE.md`).
 
 Keep [`AI-ADOPTION-GUIDE.md`](AI-ADOPTION-GUIDE.md) next to this file. It has examples and reference material for each section, and instructions so your coding agent can walk you through the plan.
 
@@ -16,22 +16,22 @@ The plan follows two questions:
 
 ## 1. Take stock: what is already set up
 
-Check what is done **in this project** (not the demo project). Anything unchecked is a candidate for a "Now" target in section 5.
+Check what is done **in your real work** (not the demo project). Skip items that do not apply. Anything unchecked is a candidate for a "Now" target in section 5.
 
-- [ ] Project in a GitHub repository
-- [ ] Project opened in VS Code
+- [ ] Work in a GitHub repository
+- [ ] Repository opened in VS Code
 - [ ] Coding agent installed and signed in with an approved account
-- [ ] Memory file in the project
+- [ ] Memory file in the repository
 - [ ] At least one skill installed and tested
 - [ ] AI review of data processing or analysis code
 - [ ] Reproducible chart or table produced with a skill
 - [ ] AI output checked by a human, with a record of the check
-- [ ] Presentation or brief made from project materials
+- [ ] Presentation or brief made from your materials
 - [ ] Draft reproducibility package
 
 ## 2. Activities: which work could AI help with?
 
-List the work you repeat: every month, every survey round, every mission. Good candidates have the same steps each time, an output you can check quickly, and data you are allowed to share with the tool.
+List the work you repeat: every month, every survey round, every mission, every data request. Good candidates have the same steps each time, an output you can check quickly, and data that is public, non-sensitive, or can be de-identified.
 
 | # | Task | How often | Main steps | What starts it (I ask, a colleague's request, a file arrives, a date) | AI here? (yes / no / not sure) |
 |---|---|---|---|---|---|
@@ -60,24 +60,23 @@ AI adoption fails when only one person on the team uses the tools.
 
 ## 4. Artefacts: what goes in, what comes out?
 
-For each task: what would the tool see, and what would it hand back? Leave identified data out of "Data in". If a step needs it, the data must be prepared first (below).
+For each task: what would the tool see, and what would it hand back? Public and non-sensitive data is fine. If a step needs sensitive data, plan for it below first.
 
 | # | Data in (files, code, documents) | Classification | Output the agent hands back | Who checks it, and how |
 |---|---|---|---|---|
 | A | | | | |
 | B | | | | |
 
-### Data preparation
+### Sensitive data
 
-| Dataset | Contains PII? | Plan (de-identify / synthetic / keep out of AI tools) | Who | By when |
+Sensitive data includes personal information, confidential documents and restricted government data. Public and non-sensitive data can live in the repository.
+
+| Data or documents | Why sensitive (PII, confidential, restricted) | Plan (de-identify / synthetic / keep away from the agent) | Who | By when |
 |---|---|---|---|---|
 | | | | | |
 
-### Data rules in the memory file
-
-- [ ] The memory file lists folders the agent must never open, and the folders it may use
-- [ ] The memory file tells the agent to stop and ask if a task needs identified data
-- [ ] Identified data is outside the repository, or blocked in the agent's permission settings
+- [ ] Sensitive data is outside the repository, or in folders blocked in the agent's permission settings
+- [ ] Optional: the memory file lists the folders the agent may and may not use
 
 ## 5. What I will do
 
@@ -97,23 +96,25 @@ Write targets that you can report on in the follow-up survey. "Use AI more" is n
 
 ### Skills
 
-| Task | Known skill or not yet found? | How often does it recur? | Next step |
-|---|---|---|---|
-| | | | |
+Known skills from the bootcamp that fit a recurring task, and skills you are missing. Missing skills help us plan a follow-on session on building them.
+
+| Task | Known skill that fits | If none: what would the skill need to do? |
+|---|---|---|
+| | | |
 
 ## 6. Roadblocks and worries
 
 What could stop this plan, or worries you about it? Include things you are not sure how to resolve. Common ones:
 
 - [ ] A data agreement may not allow processing by an AI tool
-- [ ] Confidential data could reach an AI tool
+- [ ] Sensitive data could reach an AI tool
 - [ ] AI output could be wrong but look right
 - [ ] Tool access or approvals for me or the team
 - [ ] Costs or usage limits
 - [ ] Only one person on the team uses the tools
 - [ ] A skill I need does not exist yet
 
-| Roadblock or worry | Why it matters for this project | Can I resolve it myself? (yes / with help / no) | Who could help |
+| Roadblock or worry | Why it matters for this work | Can I resolve it myself? (yes / with help / no) | Who could help |
 |---|---|---|---|
 | | | | |
 | | | | |
