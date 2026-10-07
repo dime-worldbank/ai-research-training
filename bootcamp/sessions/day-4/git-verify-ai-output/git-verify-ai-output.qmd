@@ -101,15 +101,15 @@ When an AI agent modifies files in a repository tracked by Git:
 
 ## Review your changes in a Pull Request
 
-- For each task that you want to hand over to the Agent, create a branch for that task, and check out that branch in your clone.
-- Ask the agent to perform the task. Use the steps described in the previous section.
-- Push the agent's branch to GitHub and open a **Pull Request (PR)** into `main`
-- The PR shows the complete diff of all changes in one place
-- Comment on specific lines, ask colleagues to review, and require approval before merging
-- The PR keeps a permanent record of what was changed, why, and who approved it
+- For each task you want to hand over to the agent, create a branch for that task and check out that branch in your clone.
+- Ask the agent to perform the task, using the steps described in the previous section.
+- Push the agent's branch to GitHub and open a **Pull Request (PR)** into `main`.
+- The PR shows the complete diff of all changes in one place.
+- Comment on specific lines, ask colleagues to review, and require approval before merging.
+- The PR keeps a permanent record of what was changed, why, and who approved it.
 
 
-For a full introduction to PRs and many details on the review features, see the slides from the Impact Analytics PR training: [https://osf.io/e54gy/files/umqzn](https://osf.io/e54gy/files/umqzn)
+For a full introduction to PRs and more detail on the review features, see the slides from the Impact Analytics PR training:[https://osf.io/e54gy/files/umqzn](https://osf.io/e54gy/files/umqzn)
 
 ## GitHub Copilot as a PR reviewer
 
@@ -119,11 +119,11 @@ For a full introduction to PRs and many details on the review features, see the 
 If you also have a GitHub Copilot license:
 
 - Request **Copilot** as a reviewer on your PR
-- Copilot leaves review comments, often with suggested changes you can apply directly
-- A second AI reviewing the first AI's work _can_ catch issues the authoring agent missed. 
-- We know an agent reviewing another agent is no guarantee. But the task is different, Copilot review does not follow your initial prompt, only review if the final set of commits makes sense.
+- Copilot leaves review comments, often with suggested changes you can apply directly.
+- A second AI reviewing the first AI's work _can_ catch issues the authoring agent missed.
+- One agent reviewing another is no guarantee, but the task is different: Copilot does not follow your initial prompt; it only reviews whether the final set of commits makes sense.
 
-Copilot **assists** the review -- it does not replace it. You are still the product owner and responsible for what gets merged.
+Copilot **assists** the review -- it does not replace it. You are still the product owner and are responsible for what gets merged.
 
 :::
 ::: {.column width="25%" }
