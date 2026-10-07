@@ -1313,7 +1313,13 @@ document.addEventListener('DOMContentLoaded', () => {
 <p>The more a missed paper costs, the more care the process needs.</p>
 </div>
 <aside class="notes">
-<p>Timing: intro is 5 minutes. Hands up: which of the three do you do most? Most people will say 1 and 2; far fewer run full systematic reviews / meta-analyses. The first half of the session serves all three; the second half goes deep on 3, because that is where AI can be measured most precisely.</p>
+<ul>
+<li>5 minutes for the intro.</li>
+<li>Hands up: which of the three do you do most? Most will say 1 and 2.</li>
+<li>The rule for the whole session: how careful you need to be depends on what a missed paper costs.</li>
+<li>Overview: a miss is cheap, you will run into the paper later. Related work: a referee finds it for you. Systematic review: the answer is biased and nobody can see it.</li>
+<li>First half of the session serves all three jobs. Second half goes deep on job 3, where we can measure the AI.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1343,6 +1349,24 @@ display:block!important;
 <div class="punch">
 <p>A rough table is fine for an overview. A systematic review / meta-analysis needs every value checked.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Same split for extraction.</li>
+<li>Overview: a rough comparison table of the 10–20 closest papers is enough. Check the rows you cite.</li>
+<li>Systematic review: a fixed coding form, every value verified, ideally by two people.</li>
+<li>Elicit and Gemini Notebook both build these tables. The later demo shows what they get right and wrong.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section>
 <section id="overviews-and-related-work" class="title-slide slide level1 center" data-background-color="#530153">
@@ -1405,7 +1429,12 @@ display:block!important;
 <p>Not all of these are Bank-approved. Check the approved-tools list before using one for work, and the Day 1 classification rules before uploading anything non-public (drafts, search strategies, review corpora). ImpactAI (World Bank) was at the Day 1 Bazaar.</p>
 </div>
 <aside class="notes">
-<p>Timing: this section is about 10 minutes, the review tools another 5. Literature is public, but search strategies, unpublished drafts and review corpora may not be: check the Day 1 classification rules before uploading anything that is not public.</p>
+<ul>
+<li>About 10 minutes for this section, plus 5 for the review tools later.</li>
+<li>Read the table by job, not by tool. Each row is a different kind of index.</li>
+<li>Not all of these are Bank-approved. The literature itself is public; search strategies, unpublished drafts and review corpora may not be. Day 1 classification rules apply before uploading anything.</li>
+<li>ImpactAI was at the Day 1 Bazaar.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1467,7 +1496,13 @@ display:block!important;
 <p>Start with a general agent. Switch when you have to trust the list.</p>
 </div>
 <aside class="notes">
-<p>About 2 minutes. The question to ask is the one from slide 2: what does a miss cost, and will anyone need to check how the list was made. A general agent with web search is good for the first hour on a topic. Once the list goes into a paper, a protocol or a pooled estimate, use a tool that searches a paper index and saves how it got there. The coding agent with the literature-search skill (two slides on) sits in between: a paper index, asked in plain language.</p>
+<ul>
+<li>2 minutes. This is the question people have not heard answered yet.</li>
+<li>Two things decide it: what a miss costs, and whether anyone will need to check how the list was made.</li>
+<li>General agent with web search: fine for the first hour on a topic.</li>
+<li>Once the list goes into a paper, a protocol or a pooled estimate: use a tool that searches a paper index and records how it got there.</li>
+<li>The coding agent with the literature-search skill sits in between: a paper index, asked in plain language. Two slides on.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1501,7 +1536,13 @@ display:block!important;
   <div><b>4</b>Save the export with tool, model and date</div>
 </div>
 <aside class="notes">
-<p>About 3 minutes. Two prompts people can copy. The overview prompt tells the model what you already know so it does not spend its answer on that, and asks for its search terms and its gaps so you can see where it looked. The related-work prompt gives the study in four parts so the model has to match on all four. Check 1 is the one that catches invented references: a DOI either resolves or it does not. The next slide shows a skill that does that check for you.</p>
+<ul>
+<li>3 minutes. Two prompts people can copy.</li>
+<li>Overview prompt: tell it what you already know so it does not spend the answer on that. Ask for its search terms and its gaps so you can see where it looked.</li>
+<li>Related-work prompt: give the study in four parts so it has to match on all four.</li>
+<li>Check 1 catches invented references: a DOI either resolves or it does not.</li>
+<li>Next slide: a skill that runs that check for you.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1626,7 +1667,14 @@ display:block!important;
 <p>Same keyword engines underneath: read the abstracts, and verify every reference.</p>
 </div>
 <aside class="notes">
-<p>About 2 minutes. The same three jobs as before (search, what everyone cites, has someone done this), but asked in plain language to your coding agent. The skill tells the agent how to search OpenAlex and Semantic Scholar (it bundles a small script the agent runs) and to return a DOI for every paper. Same caveat as the search tools: keyword matching and citation counts, so read the abstracts. The verify command is the habit to take away: check every reference an AI hands you.</p>
+<ul>
+<li>2 minutes. The same jobs, asked in plain language to Claude Code or Codex.</li>
+<li>Click a question: the left side shows what the skill does for it, which API calls and what the agent does with the results.</li>
+<li>Worth clicking live: “Has someone already done this?” and “Is every reference real?”.</li>
+<li>Underneath it is keyword search and citation counts, so the agent still has to read the abstracts.</li>
+<li>The verify command is the habit to take away: every reference an AI hands you gets checked.</li>
+<li>Free APIs, no account. Keys are optional and make it faster.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1652,6 +1700,24 @@ display:block!important;
 <p><span class="ct">Check</span> Open every cited source. Is it a paper or a blog? Does it say what the report says?</p>
 </div>
 </div></div>
+<aside class="notes">
+<ul>
+<li>Deep research proposes a plan first. Edit it: that is the one place you steer it.</li>
+<li>Good for the main camps, the key debates, and search terms you had not thought of.</li>
+<li>Open every cited source. Is it a paper or a blog? Does it say what the report says?</li>
+<li>Many sources will be web pages, not papers. That is fine for orientation, not for citing.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="search-tools-built-for-papers" class="slide level2">
 <h2>Search tools built for papers</h2>
@@ -1664,8 +1730,14 @@ display:block!important;
 <p>Each searches a different index. Run the same question in two and compare.</p>
 </div>
 <aside class="notes">
-<p>One topic for the whole demo: AI decision support for community health workers (CHWs) in low- and middle-income countries. The next three slides show real output from Elicit, Consensus and Gemini Notebook (6 Oct 2026); re-run the searches live if time allows. No single index covers everything; the differences are the point.</p>
-<p>Optional extra search, “Which papers does everyone cite?”: in Elicit, “What are the key studies on digital clinical decision support tools for community health workers?” and sort by citations; in Consensus, the same question with the “Highly cited” filter. The most-cited papers tend to be reviews or general mHealth papers, not AI.</p>
+<ul>
+<li>One topic for the whole demo: AI decision support for community health workers in LMICs.</li>
+<li>Elicit: semantic search, then a table with columns it fills from the papers.</li>
+<li>Consensus: asks the literature a yes/no question, summarises where papers agree.</li>
+<li>Undermind: an agent that follows citation trails over several rounds.</li>
+<li>Each searches a different index. Run the same question in two and compare. The differences are the point.</li>
+<li>Optional: “which papers does everyone cite?” In Elicit sort by citations, in Consensus use the Highly cited filter. Top hits tend to be general mHealth reviews, not AI.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1691,7 +1763,13 @@ display:block!important;
 <p>Real output, 6 Oct 2026. Click a screenshot to enlarge it.</p>
 </div>
 <aside class="notes">
-<p>Run live if time allows; results change between runs. Point out: Elicit separates “AI” from “algorithmic” decision support on its own, Consensus gives a confident one-liner from five papers. The Campbell protocol is exactly the kind of paper you must find before writing a review on this topic.</p>
+<ul>
+<li>Real output, 6 Oct 2026. Rerun live if there is time; results change between runs.</li>
+<li>Elicit found 8 papers and flagged most of them itself as rule-based, not AI. Its summary says the set does not support claims about AI.</li>
+<li>Consensus gives a confident one-liner from five papers.</li>
+<li>Consensus found the 2026 Campbell review protocol. Elicit did not. That protocol is exactly what you need to know about before writing a review on this topic.</li>
+<li>Click a screenshot to enlarge it.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1717,7 +1795,12 @@ display:block!important;
 <p>Real output, 6 Oct 2026. Click a screenshot to enlarge it.</p>
 </div>
 <aside class="notes">
-<p>The disagreement comes from what counts as “AI” and as a “community health worker”. Consensus relaxes both to find trials; Elicit keeps both strict. Neither is wrong, but only reading the closest papers tells you whether your study is new.</p>
+<ul>
+<li>Same question, word for word. Elicit says no, Consensus says yes.</li>
+<li>The difference is definitions: what counts as “AI” and as a “community health worker”. Consensus relaxes both, Elicit keeps both strict.</li>
+<li>Neither is wrong. Only reading the closest papers tells you whether your study is new.</li>
+<li>Elicit’s closest match: a quasi-experiment with 200 ASHA workers in India. Consensus’s AI trials involve clinical officers, not CHWs.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1742,6 +1825,24 @@ display:block!important;
 <div class="source-note">
 <p>Real output, 6 Oct 2026. Gemini Notebook was formerly NotebookLM.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Elicit: add a column, it fills it for all 8 papers from the text, and notes when there is no comparison group.</li>
+<li>Gemini Notebook: 4 open-access PDFs, one row per study, each cell linked back to the source.</li>
+<li>They disagree on one paper: Notebook reads it as Bayesian logic from the full text, Elicit’s abstract-based column said not AI.</li>
+<li>So: check every row you will cite against the paper. Gemini Notebook was NotebookLM until recently.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="where-these-tools-go-wrong" class="slide level2">
 <h2>Where these tools go wrong</h2>
@@ -1775,7 +1876,13 @@ display:block!important;
 <p>Use the lists to find papers. Then read the papers.</p>
 </div>
 <aside class="notes">
-<p>The Day 1 ethics session showed a fabricated citation that nobody could spot by reading it. Popularity bias is the other quiet one: citation-ranked results favour old, highly cited papers over the recent study that matters.</p>
+<ul>
+<li>Invented sources: the Day 1 ethics session showed a fabricated citation nobody could spot by reading it. Ask for DOIs and check each.</li>
+<li>Coverage gaps: paywalls, grey literature, non-English work, LMIC journals. Run a second tool and search Google Scholar yourself.</li>
+<li>Moving models: same prompt, new model version, different list. Record tool, model and date, keep the export.</li>
+<li>Popularity bias is the quiet one: citation-ranked results favour old papers over the recent study that matters.</li>
+<li>Use the lists to find papers. Then read the papers.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1804,7 +1911,13 @@ display:block!important;
 <p>Screening rules exist to make false exclusions rare.</p>
 </div>
 <aside class="notes">
-<p>Timing: the systematic review / meta-analysis part is about 30 minutes. The asymmetry drives everything that follows: a false inclusion costs a few minutes of reading, a false exclusion silently changes the answer.</p>
+<ul>
+<li>About 30 minutes for the systematic review part.</li>
+<li>The asymmetry drives everything that follows.</li>
+<li>False inclusion: someone reads the paper and drops it. Minutes lost.</li>
+<li>False exclusion: the paper is gone, nobody sees it, the pooled effect moves. Invisible.</li>
+<li>And a paper the search never finds is lost before screening starts. No screener can rescue it, so the search has to be broad.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1839,7 +1952,13 @@ display:block!important;
 <p>Most of the work is saying No, tens of thousands of times.</p>
 </div>
 <aside class="notes">
-<p>At 2 minutes per abstract with two screeners, 68,049 abstracts is roughly 4,500 hours of human screening. An LLM pass costs on the order of $11 per 1,000 papers. A typical narrower PICOS search (4,291 records) would have found only 5 of the 13 studies the broad search had included at that point: a broad search is what makes the volume unavoidable.</p>
+<ul>
+<li>Our own review (Sautmann &amp; Weinert 2026): AI interventions for frontline health workers in low-resource settings.</li>
+<li>284,525 records, 68,049 abstracts screened, 17 studies in.</li>
+<li>By hand: 68,049 abstracts, two screeners, 2 minutes each, roughly 4,500 hours. One LLM pass: about $11 per 1,000 papers.</li>
+<li>A narrower search (4,291 records) would have found only 5 of the 13 studies included at that point. The broad search is what makes the volume unavoidable.</li>
+<li>Most of the work is saying No, tens of thousands of times.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1867,7 +1986,14 @@ display:block!important;
 <p>The bar for a machine: miss no more than two human screeners, for far less work.</p>
 </div>
 <aside class="notes">
-<p>Sources: Gartlehner et al. (2020), J Clin Epidemiol, RCT of single vs dual screening. Wang et al. (2020), PLoS ONE: 10.8% false inclusions plus exclusions after dual abstract screening. Waffenschmidt et al. (2019): median 5% missed by single screeners (range 0–58%). Two separate problems. Cost: dual human screening at this scale is not affordable, and the usual workaround, a narrower search, loses studies before screening even starts. Risk: human screening is itself error-prone, and the errors are false exclusions you never see. Fatigue is the plausible mechanism; the cited studies measure the error rates, not fatigue itself.</p>
+<ul>
+<li>Two separate problems.</li>
+<li>Cost: dual screening at this scale is months of skilled time. The usual workaround is a narrower search, which loses studies before screening starts.</li>
+<li>Risk: humans miss too. A single screener misses 13% of eligible studies, two independent screeners still miss 3%. 10.8% of abstract decisions were wrong in experienced teams.</li>
+<li>Fatigue is the likely mechanism: abstract 40,000 looks like abstract 39,999. The studies measure the error rates, not fatigue itself.</li>
+<li>So the bar for a machine: miss no more than two human screeners, for far less work.</li>
+<li>Sources: Gartlehner et al. 2020 (RCT single vs dual screening); Wang et al. 2020 (10.8%); Waffenschmidt et al. 2019 (median 5% missed by single screeners, range 0–58%).</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1896,7 +2022,12 @@ display:block!important;
 <p>Measure how the model fails before you let it exclude anything.</p>
 </div>
 <aside class="notes">
-<p>“Vibe screening” is what most people do first: paste abstracts into a chat and ask whether they are relevant. It often looks fine on the papers you check, which is exactly the problem: the losses are the papers you do not check. The next slides build the alternative on a made-up review.</p>
+<ul>
+<li>Vibe screening is what most people do first: paste abstracts into a chat, ask if they are relevant, accept the answer.</li>
+<li>It looks fine on the papers you check. The losses are the papers you do not check.</li>
+<li>Same rule as slide 2: for an overview one prompt is fine; here a miss costs a lot, so the workflow has to be tested before it runs.</li>
+<li>The next slides build that workflow on a made-up review.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1924,7 +2055,12 @@ display:block!important;
 <p>Would you let an LLM exclude papers on its own? At what error rate?</p>
 </div>
 <aside class="notes">
-<p>Ask the room and take a few answers. Most people say “only if it is as good as a human”, which is the bar from the human-error slide. All numbers from here on are invented for this review.</p>
+<ul>
+<li>Cash transfers and school attendance. 1,000 papers, 100 truly eligible. Invented numbers, chosen to make the logic easy to follow.</li>
+<li>Four criteria, answered separately. Any No excludes.</li>
+<li>Population and intervention are easy. Design and outcome are where the LLM wobbles.</li>
+<li>Ask the room: would you let an LLM exclude papers on its own? At what error rate? Most say “only if it is as good as a human”, which is the bar from the last slide.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1952,6 +2088,23 @@ display:block!important;
 <div class="punch">
 <p>A small pilot tells you how often the LLM is wrong, and on which criteria.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>The map for the next 15 minutes. Dark boxes are human decisions, light ones are computed from the pilot.</li>
+<li>A small pilot tells you how often the LLM is wrong, and on which criteria.</li>
+<li>Steps 1–2 measure, 3 fixes, 4 sets the reference, 5 looks at how errors behave, 6 compares rules, 7 chooses and checks.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="step-1-ask-the-same-question-many-times" class="slide level2">
 <h2>Step 1 · Ask the same question many times</h2>
@@ -1974,7 +2127,13 @@ display:block!important;
 </div>
 </div></div>
 <aside class="notes">
-<p>Same prompt, same model, same abstract: the answer varies from run to run. That variation is information. Paper B is the dangerous one: eligible, but the LLM says No one time in four.</p>
+<ul>
+<li>Same prompt, same model, same abstract: the answer varies between runs. That variation is information.</li>
+<li>Paper A always Yes, paper D always No. Paper C is a genuine borderline.</li>
+<li>Paper B is the dangerous one: eligible, but the LLM says No one time in four.</li>
+<li>The pilot: 100 papers × 20 runs, about the cost of screening 2,000 papers once.</li>
+<li>What you get is a share of No answers per paper, not one label.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2010,6 +2169,24 @@ display:block!important;
 <div class="punch">
 <p>Most flips come from two criteria and a few papers.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Flip rate: how often a criterion’s answer changes between runs of the same paper.</li>
+<li>Population and intervention almost never flip. Design 18%, outcome 12%.</li>
+<li>80 of 100 papers get the same decision in all 20 runs.</li>
+<li>When a decision flips, 9 times in 10 only one criterion changed. So the noise is in two criteria and a few papers, and you can go after it.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="step-3-fix-the-criteria-that-flip" class="slide level2">
 <h2>Step 3 · Fix the criteria that flip</h2>
@@ -2020,6 +2197,24 @@ display:block!important;
 <div class="source-note">
 <p>Rewrite, rerun the pilot, repeat until the flip rates are low. Human screening gets more consistent too.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Read the flipping papers. Usually the criterion is ambiguous, not the paper.</li>
+<li>Rewrite the criterion, rerun the pilot, repeat until flip rates are low.</li>
+<li>Side effect: human screeners get more consistent too, because the criteria got clearer.</li>
+<li>If the LLM cannot decide on a criterion, your co-screeners probably cannot either.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="step-4-what-counts-as-the-right-answer" class="slide level2">
 <h2>Step 4 · What counts as the right answer?</h2>
@@ -2033,6 +2228,24 @@ display:block!important;
 </div>
 </div>
 <div class="card err" style="margin-top:16px"><span class="ct">If the LLM is consistently wrong, so is the majority</span><div>If the LLM says No on an eligible paper in 15 of 20 runs, the majority says &quot;ineligible&quot; too. Only human labels catch those papers.</div></div>
+<aside class="notes">
+<ul>
+<li>Human labels on the pilot: closest to the truth, costs reviewer time, and humans err too, so adjudicate disagreements.</li>
+<li>The LLM’s majority answer: free once you have the runs, gives a probability per paper.</li>
+<li>The catch: if the LLM is consistently wrong on a paper, the majority is wrong too. 15 Nos out of 20 on an eligible paper looks like a correct exclusion.</li>
+<li>Only human labels catch those. Label at least part of the pilot by hand.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="step-5-where-do-wrong-nos-come-from" class="slide level2">
 <h2>Step 5 · Where do wrong Nos come from?</h2>
@@ -2053,7 +2266,12 @@ display:block!important;
 </div>
 </div></div>
 <aside class="notes">
-<p>On average the LLM wrongly says No 8% of the time. But those Nos are not spread evenly: they all come from the confusing third. That one fact drives everything that follows.</p>
+<ul>
+<li>On average the LLM wrongly says No 8% of the time. But not evenly.</li>
+<li>68 eligible papers are clear: never a No. 32 are confusing: No one time in four.</li>
+<li>One pass: 32 × ¼ = 8 wrong Nos. 8 of 100 eligible lost, worse than a single human.</li>
+<li>That one fact, errors cluster in confusing papers, drives everything that follows.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2084,7 +2302,13 @@ display:block!important;
 </div>
 <div class="source-note" style="margin-top:10px">Confusion also varies between papers: after two Nos in a row, the paper is likely one of the most confusing, so the repeat chance rises to ~30%. Each extra check helps, but less than you would expect.</div>
 <aside class="notes">
-<p>This is the key intuition. Errors cluster in confusing papers, so a No that has already happened once is much more likely to happen again than the average error rate suggests. And confusion varies: after two Nos in a row, the paper is probably one of the most confusing ones, so the repeat chance rises again (here from 25% to about 30%). Each extra confirmation helps, but less than independence would promise.</p>
+<ul>
+<li>The key intuition of the session.</li>
+<li>Naive view: wrong 8% of the time, so a repeat is 8% × 8%, 0.6 left.</li>
+<li>Reality: a paper that got a wrong No is probably a confusing one, so it repeats 1 time in 4. 2 left, not 0.6.</li>
+<li>After two Nos in a row the paper is likely among the most confusing, so the repeat chance rises again, to about 30%.</li>
+<li>Each extra check helps, but less than independence promises.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2110,7 +2334,12 @@ display:block!important;
 <p>Three checks catch 97% of wrong Nos and keep 94% of correct Design Nos. Outcome Nos wobble even when correct.</p>
 </div>
 <aside class="notes">
-<p>Ask three times and demand No every time: 97% of wrong Nos are caught, while 94% of correct Design Nos still exclude on their own. For Outcome, correct Nos wobble too: half would end up with a human anyway, so it is cheaper to send Outcome Nos straight to a person.</p>
+<ul>
+<li>Now the other side: does a correct No survive rechecks?</li>
+<li>Design: 94% of correct Nos still say No after three checks. Wrong Nos survive only 3%. Rechecks separate them.</li>
+<li>Outcome: even correct Nos wobble, half would fail three checks. Rechecking just burns calls before the paper lands with a human anyway.</li>
+<li>So three checks catch 97% of wrong Nos on design. For outcome, send Nos straight to a person.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2142,7 +2371,12 @@ display:block!important;
 </div></div>
 <div class="key" style="justify-content:flex-start;margin-top:12px"><span class="full-k">full text</span><span class="nokey">exclude</span><span class="hum-k">human review</span><span class="rer-k">ask the LLM again</span><span class="muted" style="font-size:.95em">numbers on branches: papers per 100 after the first pass</span></div>
 <aside class="notes">
-<p>Numbers on the branches are papers per 100 after the first pass: 12 get no No, 40 get exactly one, 48 get two or more. The two extremes: trust the LLM completely, or check every paper with a single No. Everything in between asks the LLM again before asking a human.</p>
+<ul>
+<li>A strategy is a rule for every pattern of Nos after the first pass: full text, exclude, ask a human, or ask the LLM again.</li>
+<li>Numbers on the branches are papers per 100 after the first pass: 12 get no No, 40 exactly one, 48 two or more.</li>
+<li>Two extremes. Strategy 1: trust one pass, 8 of 100 eligible lost, zero reviews. Strategy 6: a human checks every single No, nothing lost, 400 reviews per 1,000 papers.</li>
+<li>Everything in between asks the LLM again before asking a human.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2168,6 +2402,23 @@ display:block!important;
   <div class="card line"><span class="ct">Still loses 1 in 50</span><div>cheap, but not safe</div></div>
 </div>
 </div></div>
+<aside class="notes">
+<ul>
+<li>Single Nos are asked once more. Still No: exclude. Flips to Yes: human review.</li>
+<li>2 of 100 eligible lost (8 wrong Nos × ¼). 28 reviews per 1,000, only the papers that flip.</li>
+<li>Cheap, but still loses 1 in 50. That is the price of one recheck.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="strategy-4-confirm-three-times" class="slide level2">
 <h2>Strategy 4 · Confirm three times</h2>
@@ -2186,7 +2437,12 @@ display:block!important;
 </div>
 </div></div>
 <aside class="notes">
-<p>Stop early: as soon as one answer is Yes, the paper goes to a human, so most papers need only one or two extra calls. Voting (exclude if 2 of 3 are No) is a much weaker test than “No every time”.</p>
+<ul>
+<li>Single Nos are asked up to three more times. No every time: exclude. Any Yes: human review.</li>
+<li>Stops at the first Yes, so most papers need only one or two extra calls.</li>
+<li>0.2 of 100 lost. 66 reviews per 1,000, many of them outcome Nos that wobble.</li>
+<li>Why “every time” and not a vote: 2 of 3 would lose 1.6. Voting is a much weaker test.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2215,7 +2471,13 @@ display:block!important;
 <p>Flip rates from Step 2; survival of correct Nos from Step 5. Invented numbers for the made-up review.</p>
 </div>
 <aside class="notes">
-<p>Even after rewriting the criteria (Step 3), some stay noisier than others, and they are noisy in different ways. For Population and Intervention a No is almost always right, so one recheck is enough. For Design the noise is in the wrong Nos: correct Nos repeat, so asking three times filters out the errors while keeping real exclusions. For Outcome even correct Nos wobble: half would fail three checks anyway, so rechecking just burns LLM calls before the paper lands with a human. A single rule for all criteria is either too lax on Design or too wasteful on Outcome.</p>
+<ul>
+<li>Even after rewriting, criteria stay noisy in different ways.</li>
+<li>Population and intervention: a No is almost always right. One recheck catches the rare slip.</li>
+<li>Design: wrong Nos flip, correct Nos repeat. Confirm three times.</li>
+<li>Outcome: correct Nos flip too, so rechecks cannot tell right from wrong. Send to a human.</li>
+<li>One rule for all is either too lax on design or too wasteful on outcome.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2243,7 +2505,11 @@ display:block!important;
   <div class="card compact dark"><span class="ct">Result</span><div>0.1 of 100 lost · 100 reviews / 1,000</div></div>
 </div>
 <aside class="notes">
-<p>This is what the error profiles buy you: each criterion gets the treatment its behaviour deserves. 0.1 of 100 eligible lost, 100 human reviews per 1,000.</p>
+<ul>
+<li>Each criterion gets the rule its errors call for.</li>
+<li>Result: 0.1 of 100 eligible lost, 100 reviews per 1,000 papers.</li>
+<li>This is what the pilot buys you: you know where the errors are, so you spend human time only there.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2271,6 +2537,25 @@ display:block!important;
 <div class="punch">
 <p>Each extra review saves fewer papers than the last.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>All six strategies on one chart. Left: eligible papers lost of 100. Right: human reviews per 1,000.</li>
+<li>From one pass to a vote: 8 lost down to 1.6 for 15 reviews. Almost free.</li>
+<li>From confirm 3× to by criterion: 0.2 down to 0.1 for 34 more reviews.</li>
+<li>From by criterion to human-every-No: 0.1 down to 0 for 300 more reviews.</li>
+<li>Each extra review saves fewer papers than the last.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="step-7-extra-screens-per-paper-saved" class="slide level2">
 <h2>Step 7 · Extra screens per paper saved</h2>
@@ -2288,7 +2573,12 @@ display:block!important;
 <p>Per 1,000 papers screened (100 eligible). A miss is an eligible paper excluded without a human seeing it. Strategy 3 is skipped: strategy 2 misses fewer papers for fewer screens. Or set a floor instead, e.g. “miss no more than dual human screening (3%)”.</p>
 </div>
 <aside class="notes">
-<p>Per 1,000 papers screened (100 eligible). Strategy 3 is left out: strategy 2 loses fewer papers with fewer reviews. The first steps are almost free; the last ones cost thousands of reviews per saved paper. Fix the exchange rate, or a recall floor such as “no worse than dual human screening”, before comparing, so the choice is not driven by the numbers you happen to see.</p>
+<ul>
+<li>Same numbers as a price: how many extra screens does one averted miss cost?</li>
+<li>1 → 2: 2 screens per miss. 2 → 4: 36. 4 → 5: 340. 5 → 6: 3,000.</li>
+<li>Strategy 3 is left out: strategy 2 loses fewer papers for fewer reviews.</li>
+<li>Decide the exchange rate before you look at the numbers, or set a floor: “miss no more than dual human screening, 3%”. Otherwise the numbers you happen to see drive the choice.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2316,7 +2606,12 @@ display:block!important;
 <p>So: enrich the pilot with likely includes, and audit the borderline (flips, split answers, tricky criteria) rather than random exclusions.</p>
 </div>
 <aside class="notes">
-<p>Zero events in n trials gives a 95% upper bound of roughly 3/n. A random pilot of 100 papers with 10% eligible gives you only 10 eligible papers, so “we lost none” is compatible with losing up to 30%. Enrich the pilot by oversampling papers the LLM includes, then reweight. For audits, check the borderline (flips, split votes, single Nos on tricky criteria) rather than random exclusions: that is where the lost papers are.</p>
+<ul>
+<li>Rule of three: zero problems in n checks means the true rate could still be about 3/n.</li>
+<li>A random pilot of 100 papers with 10% eligible gives you 10 eligible papers. “We lost none” is compatible with losing 30%.</li>
+<li>So enrich the pilot: oversample papers the LLM includes, then reweight. 50 eligible brings the bound to 6%.</li>
+<li>Audits: check the borderline, flips, split votes, single Nos on tricky criteria, not random exclusions. That is where the lost papers are.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2339,6 +2634,25 @@ display:block!important;
   <div><b>5</b>Fix your trade-off before comparing strategies</div>
   <div><b>6</b>Validate on fresh papers, audit the borderline, report recall honestly</div>
 </div>
+<aside class="notes">
+<ul>
+<li>The checklist. Six things, in order.</li>
+<li>Search broadly: screening cannot fix recall lost at the search.</li>
+<li>Pilot with repeated runs, enriched for likely includes. Rewrite what flips. Label part of it by hand.</li>
+<li>Fix your trade-off before comparing strategies.</li>
+<li>Validate on fresh papers, audit the borderline, report recall honestly.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section></section>
 <section>
 <section id="metascreener" class="title-slide slide level1 center" data-background-color="#530153">
@@ -2370,7 +2684,13 @@ display:block!important;
 </div>
 </div>
 <aside class="notes">
-<p>Switch to the live demo, about 4 minutes: upload a small CSV, define two criteria, run one pass, open a disagreement. Backup screenshot on the next slide.</p>
+<ul>
+<li>The tool that runs the strategy from the last section.</li>
+<li>Upload a deduplicated CSV, write yes/no/maybe criteria, run one to three passes or a bootstrap sample, moderate the disagreements.</li>
+<li>Every label is saved with the prompt, model and parameters, so the screening can be reported and rerun.</li>
+<li>Runs in the browser; bibliographies stay on your machine.</li>
+<li>Switch to the live demo, about 4 minutes: small CSV, two criteria, one pass, open a disagreement. Next slide is the backup screenshot.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2395,6 +2715,23 @@ display:block!important;
   <div class="source-note" style="font-size:0.5em;text-align:left">Method: Weinert et al. (forthcoming), <i>How much can we automate? Quantifying uncertainty to choose hybrid LLM–human screening strategies.</i></div>
 </div>
 </div></div>
+<aside class="notes">
+<ul>
+<li>Backup if the live demo fails: the setup screen. Upload, pick fields, add criteria, start.</li>
+<li>QR code goes to the tool. Ask people to try it on their own review and send us the disagreements: we are validating across domains.</li>
+<li>The method paper: Weinert et al., forthcoming.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="next-decision-models" class="slide level2">
 <h2>Next: decision models</h2>
@@ -2407,7 +2744,14 @@ display:block!important;
 <p>Screening is a set of yes/no questions. That is exactly what these models are built for.</p>
 </div>
 <aside class="notes">
-<p>About 3 minutes. Vendor claims for Jev (typesafe.ai and launch coverage, Sept 2026, early access only): 70–500 ms per decision, $42 per billion input tokens, up to 194× faster and 444× cheaper than LLMs on its own workflows. Not the same thing as JEPA “world models” (LeCun, AMI Labs), which predict states for planning. Decision models drop text generation and score the possible answers directly, which is faster, cheaper and, if the calibration holds, gives you the per-paper error probability that our strategy currently estimates by rerunning the LLM 20 times. Everything about Jev is vendor-reported: treat it as a direction, not a result.</p>
+<ul>
+<li>About 3 minutes.</li>
+<li>An LLM writes its answer as text and hides its confidence, so we reran it 20 times to see uncertainty.</li>
+<li>A decision model returns a typed answer with a probability in one pass. Act when confident, send to a human when not.</li>
+<li>Jev (TypeSafe AI, Sept 2026): vendor claims 70–500 ms per decision, $42 per billion input tokens, up to 194× faster and 444× cheaper than LLMs on its own workflows. Early access only, no independent tests, none on screening.</li>
+<li>Not the same thing as JEPA world models (LeCun, AMI Labs).</li>
+<li>Treat it as a direction, not a result. Steps 4–7 still apply: reference answer, measured miss rates, audit.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2423,6 +2767,22 @@ display:block!important;
 <section id="thank-you" class="slide level2 closing">
 <h2>Thank you</h2>
 <p>This presentation was made using AI tools (Anthropic Claude Opus 5.5 &amp; Fable 5.1) for design, layout, and content A/B testing.</p>
+<aside class="notes">
+<ul>
+<li>Disclaimer stays on screen.</li>
+<li>If there is time: questions on the method go to the appendix; questions on tools go back to slide 5.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section></section>
 <section>
 <section id="appendix-calculating-screening-uncertainty-for-slrs-mas" class="title-slide slide level1 center" data-background-color="#530153">
@@ -2444,6 +2804,22 @@ display:block!important;
 <div class="source-note">
 <p>Full derivations, notation and scenarios: <code>presentation1/screening-uncertainty.qmd</code>.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>The method in eight lines. Walk it only if someone asks how the numbers were produced.</li>
+<li>Full derivations in presentation1/screening-uncertainty.qmd.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="a1-notation" class="slide level2 smaller">
 <h2>A1 · Notation</h2>
@@ -2457,6 +2833,23 @@ display:block!important;
 <div class="source-note">
 <p>In the fictional review: <span class="math inline">\(J = 100\)</span>, <span class="math inline">\(R = 20\)</span>, <span class="math inline">\(C = 4\)</span>, and <span class="math inline">\(|\mathcal E| = 10\)</span> in a random pilot.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Papers j, runs r, criteria c. A No-set is which criteria said No in one run.</li>
+<li>Two error rates per paper and criterion: wrong-No rate for papers that truly meet the criterion, correct-No rate for papers that truly fail it.</li>
+<li>A strategy maps each first-pass No-set to an action.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="a2-what-happens-to-one-first-run" class="slide level2 smaller">
 <h2>A2 · What happens to one first run</h2>
@@ -2474,6 +2867,22 @@ m_{jr} \;=\; \#\{\, r&#39; \neq r \;:\; N_{jr&#39;c} = 1 \ \text{for all } c \in
 <p><span class="math display">\[
 \mathbb E[\text{calls}_{jr}] \;=\; \sum_{i=0}^{k-1} \binom{m_{jr}}{i} \Big/ \binom{R-1}{i}
 \]</span></p>
+<aside class="notes">
+<ul>
+<li>Reruns are drawn from the paper’s other runs in the pilot, so everything is a hypergeometric count, no simulation.</li>
+<li>Early stopping: the loop ends at the first rerun that is not No, which is why expected calls are low.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="a3-from-runs-to-strategy-figures" class="slide level2 smaller">
 <h2>A3 · From runs to strategy figures</h2>
@@ -2494,6 +2903,23 @@ m_{jr} \;=\; \#\{\, r&#39; \neq r \;:\; N_{jr&#39;c} = 1 \ \text{for all } c \in
 <li><strong>Uncertainty:</strong> resample the <span class="math inline">\(J\)</span> papers with replacement (e.g. 3,000 times) and recompute. The paper, not the run, is the unit of uncertainty.</li>
 <li><strong>Enriched pilots:</strong> weight each paper by the inverse of its sampling probability before averaging.</li>
 </ul>
+<aside class="notes">
+<ul>
+<li>Each of a paper’s runs is an equally likely first pass in production. Average over them.</li>
+<li>The three figures on the main slides fall out directly: wrong exclusions, reviews per 1,000, lost per 1,000.</li>
+<li>Uncertainty comes from resampling papers, not runs. Enriched pilots are reweighted.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="a4-why-a-repeat-is-likelier-than-the-average-error" class="slide level2 smaller">
 <h2>A4 · Why a repeat is likelier than the average error</h2>
@@ -2505,6 +2931,23 @@ s_1 \;=\; P(\text{No on run 2} \mid \text{No on run 1}) \;=\; \frac{\mathbb E[\t
 <div class="card">
 <p><span class="ct">Fictional review</span> 68% of eligible papers have <span class="math inline">\(\theta = 0\)</span>, 32% have <span class="math inline">\(\theta = 0.25\)</span>. Then <span class="math inline">\(\bar p = 0.08\)</span>, <span class="math inline">\(\operatorname{Var}(\theta) = 0.32 \cdot 0.25^2 - 0.08^2 = 0.0136\)</span>, and <span class="math inline">\(s_1 = 0.08 + 0.0136/0.08 = 0.25\)</span>: <strong>a wrong No repeats 1 time in 4, not 8%.</strong></p>
 </div>
+<aside class="notes">
+<ul>
+<li>The algebra behind “1 in 4, not 8%”.</li>
+<li>Runs are independent given a paper’s error rate, but error rates differ across papers. The repeat probability picks up a variance term.</li>
+<li>In the fictional review: 68% at zero, 32% at 0.25, so the repeat chance is 0.25.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="a5-why-each-extra-check-buys-less" class="slide level2 smaller">
 <h2>A5 · Why each extra check buys less</h2>
@@ -2523,12 +2966,46 @@ s_i \;=\; \frac{\mathbb E[\theta^{i+1}]}{\mathbb E[\theta^{i}]}
 <div class="source-note">
 <p>Latent-class models that assume conditional independence between runs run into the same problem.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>The repeat chance after i Nos in a row is a ratio of moments, estimated from the pilot counts.</li>
+<li>If confusion varies continuously (Beta), the repeat chance rises with every No: after a streak the paper is probably one of the most confusing.</li>
+<li>Same formula for correct Nos; criteria with low survival send many correctly excluded papers to humans.</li>
+<li>Latent-class models that assume runs are independent hit the same problem.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="a6-choosing-and-how-sure-you-are" class="slide level2 smaller">
 <h2>A6 · Choosing, and how sure you are</h2>
 <p><strong>Exchange rate.</strong> With <span class="math inline">\(\lambda\)</span> = reviews you would spend to save one eligible paper: <span class="math display">\[\min_{a} \;\; \text{Reviews}(a) + \lambda \cdot \text{Lost}(a)\]</span></p>
 <p><strong>Recall floor.</strong> With <span class="math inline">\(\varepsilon\)</span> = the largest acceptable loss (e.g. dual human screening, 3%): <span class="math display">\[\min_{a} \;\; \text{Reviews}(a) \quad \text{s.t.} \quad \text{WrongExcl}^{\text{upper 95\%}}(a) \le \varepsilon\]</span></p>
 <p><strong>Rule of three.</strong> If <span class="math inline">\(n\)</span> independent checks find zero problems, the largest rate <span class="math inline">\(p\)</span> still consistent with that at 95% solves <span class="math display">\[(1 - p)^n = 0.05 \;\;\Rightarrow\;\; p = 1 - 0.05^{1/n} \;\approx\; \frac{\ln 20}{n} \;\approx\; \frac{3}{n}\]</span></p>
+<aside class="notes">
+<ul>
+<li>Two ways to choose: an exchange rate (reviews per saved paper) or a recall floor with a 95% upper bound.</li>
+<li>Rule of three derived: (1 − p)^n = 0.05 gives p ≈ 3/n.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="a7-what-the-method-cannot-see" class="slide level2 smaller">
 <h2>A7 · What the method cannot see</h2>
@@ -2546,6 +3023,24 @@ s_i \;=\; \frac{\mathbb E[\theta^{i+1}]}{\mathbb E[\theta^{i}]}
 <p><span class="ct">Pilot ≠ production</span> Single-question reruns may behave differently from full-prompt runs, and the corpus may have a different share of eligible papers.</p>
 </div>
 </div>
+<aside class="notes">
+<ul>
+<li>Consistent errors are invisible if the reference is the LLM’s own majority. Human labels bound them.</li>
+<li>Tuning and evaluating on the same pilot is optimistic. Validate on fresh papers.</li>
+<li>Few eligible papers in the pilot means a handful dominate the rate. Enrich.</li>
+<li>Single-question reruns may behave differently from full-prompt runs.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="a8-decision-models-and-their-older-relatives" class="slide level2 smaller">
 <h2>A8 · Decision models and their older relatives</h2>
@@ -2600,7 +3095,12 @@ s_i \;=\; \frac{\mathbb E[\theta^{i+1}]}{\mathbb E[\theta^{i}]}
 <p>Token probabilities: Wang et al. (2024), zero-shot generative LLMs for screening, ECIR. ASReview: van de Schoot et al. (2021), Nature Machine Intelligence. GLiClass: Knowledgator, Hugging Face.</p>
 </div>
 <aside class="notes">
-<p>The older relatives already give you probabilities: an LLM’s own token probabilities (calibrated against papers you know are included), small encoder classifiers, and active-learning tools such as ASReview that rank papers as you label them. A decision model promises the speed of the small models with the understanding of an LLM. Whichever you use, Steps 4 to 7 still apply: a reference answer, measured miss rates, and an audit.</p>
+<ul>
+<li>Three families already give you probabilities: an LLM’s own token probabilities (calibrate on seed papers), small zero-shot classifiers that run on a laptop, and active learning like ASReview that ranks as you label.</li>
+<li>A decision model promises the speed of the small models with the understanding of an LLM.</li>
+<li>Whichever you use, the strategy stays: check its probabilities on your pilot before you trust them.</li>
+<li>Sources: Wang et al. 2024 (ECIR), van de Schoot et al. 2021 (Nature MI), GLiClass on Hugging Face.</li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
