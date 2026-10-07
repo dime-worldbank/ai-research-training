@@ -5,7 +5,7 @@
 - **Date written:**
 - **Last updated:**
 
-This plan works for a research project or for other recurring work, such as data requests, monthly updates or stakeholder briefings. Save it in the root of your repository and link it from your memory file (`AGENTS.md` / `CLAUDE.md`).
+This plan works for a research project or for other recurring work, such as data requests, monthly updates or stakeholder briefings. Save it in your project folder (ideally your GitHub repository) and link it from your memory file (`AGENTS.md` / `CLAUDE.md`).
 
 Keep [`AI-ADOPTION-GUIDE.md`](AI-ADOPTION-GUIDE.md) next to this file. It has examples and reference material for each section, and instructions so your coding agent can walk you through the plan.
 
@@ -21,7 +21,7 @@ Check what is done **in your real work** (not the demo project). Skip items that
 - [ ] Work in a GitHub repository
 - [ ] Repository opened in VS Code
 - [ ] Coding agent installed and signed in with an approved account
-- [ ] Memory file in the repository
+- [ ] Memory file in the project folder
 - [ ] At least one skill installed and tested
 - [ ] AI review of data processing or analysis code
 - [ ] Reproducible chart or table produced with a skill
@@ -69,13 +69,13 @@ For each task: what would the tool see, and what would it hand back? Public and 
 
 ### Sensitive data
 
-Sensitive data includes personal information, confidential documents and restricted government data. Public and non-sensitive data can live in the repository.
+Sensitive data includes personal information, confidential documents and restricted government data. Public and non-sensitive data can live in your project folder.
 
 | Data or documents | Why sensitive (PII, confidential, restricted) | Plan (de-identify / synthetic / keep away from the agent) | Who | By when |
 |---|---|---|---|---|
 | | | | | |
 
-- [ ] Sensitive data is outside the repository, or in folders blocked in the agent's permission settings
+- [ ] Sensitive data is outside the project folder, or in folders blocked in the agent's permission settings
 - [ ] Optional: the memory file lists the folders the agent may and may not use
 
 ## 5. What I will do

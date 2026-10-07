@@ -1338,7 +1338,7 @@ Sort your next steps by how ready they are. The examples are illustrations, not 
     <span class="eg">e.g. a data agreement that may not allow it, tool access, a skill that does not exist yet</span></div>
 </div>
 <div class="callout-note-custom">
-<p>For most teams the biggest step is a <strong>de-identified or synthetic version of sensitive data</strong>, so the agent can work on the real pipeline. Public data can live in the repository as it is.</p>
+<p>For most teams the biggest step is a <strong>de-identified or synthetic version of sensitive data</strong>, so the agent can work on the real pipeline. Public data can stay in your project folder as it is.</p>
 </div>
 <div class="lookup">Look up: <a href="#/three-time-horizons">Example targets</a><a href="#/sensitive-data">Sensitive data</a><a href="#/skills">Skills</a><a href="#/who-needs-access-and-to-what">Team access</a><a href="#/risks-and-how-to-reduce-them">Risks</a></div>
 <aside class="notes">
@@ -1477,12 +1477,12 @@ display:block!important;
 </section>
 <section id="hands-on-write-your-plan-30-minutes" class="slide level2">
 <h2>Hands-on: write your plan (30 minutes)</h2>
-<p>Copy <a href="materials/AI-ADOPTION-PLAN.md"><code>AI-ADOPTION-PLAN.md</code></a> and <a href="materials/AI-ADOPTION-GUIDE.md"><code>AI-ADOPTION-GUIDE.md</code></a> into the root of your project folder.</p>
+<p>Copy <a href="materials/AI-ADOPTION-PLAN.md"><code>AI-ADOPTION-PLAN.md</code></a> and <a href="materials/AI-ADOPTION-GUIDE.md"><code>AI-ADOPTION-GUIDE.md</code></a> into your project folder (ideally your GitHub repository).</p>
 <div class="blocks">
   <div class="tm">0–5</div><div>Tick what is already set up <b>in your real work</b></div><div class="sec">Section 1</div>
   <div class="tm">5–17</div><div><span class="q1">Q1</span>In 3A: which recurring tasks (<b>Activities</b>), which steps need you (<b>Actors</b>), what the tool sees and hands back (<b>Artefacts</b>). <i>Optional: a full 3A matrix for one</i></div><div class="sec">Sections 2–4</div>
   <div class="tm">17–27</div><div><span class="q2">Q2</span>Targets for now, 6 weeks and 3 months. Roadblocks: what worries you, and can you resolve it yourself?</div><div class="sec">Sections 5–6</div>
-  <div class="tm">27–30</div><div>Commit the plan. Pick one target and one roadblock to share</div><div class="sec"></div>
+  <div class="tm">27–30</div><div>Save the plan in your project folder. Pick one target and one roadblock to share</div><div class="sec"></div>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href aria-hidden="true" tabindex="-1"></a>Read AI-ADOPTION-GUIDE.md, then walk me through AI-ADOPTION-PLAN.md</span>
 <span id="cb1-2"><a href aria-hidden="true" tabindex="-1"></a>one section at a time. Ask me questions and draft text for me to</span>
@@ -1491,7 +1491,7 @@ display:block!important;
 <aside class="notes">
 <p>Leave this slide up during the hands-on. Walk around and check that people are working in their real project, not the demo project.</p>
 <p>The prompt tells the agent not to open data files. Point this out: it is the data rule in practice.</p>
-<p>Call the time at 17 minutes (move to Q2) and at 27 minutes (commit).</p>
+<p>Call the time at 17 minutes (move to Q2) and at 27 minutes (save the plan).</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1510,7 +1510,7 @@ display:block!important;
 <p><strong>Share one target and one roadblock with the person next to you.</strong> We will ask about both in the follow-up survey.</p>
 </div>
 <ul>
-<li>Plan saved in your repository: <code>AI-ADOPTION-PLAN.md</code></li>
+<li>Plan saved in your project folder (ideally your GitHub repository): <code>AI-ADOPTION-PLAN.md</code></li>
 <li>Link the plan from your memory file, so the agent knows the team’s priorities</li>
 <li>Come back to the plan when the survey arrives, and update the progress log</li>
 </ul>
@@ -2165,7 +2165,7 @@ display:block!important;
 </table>
 <aside class="notes">
 <p>Not everyone needs a coding agent. Everyone who handles sensitive data needs the data classification rules from Day 1.</p>
-<p>A memory file in the repository helps here: it is the shared set of rules that applies to every team member’s agent.</p>
+<p>A memory file in the project folder helps here: it is the shared set of rules that applies to every team member’s agent.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2180,11 +2180,11 @@ display:block!important;
 </section>
 <section id="sensitive-data" class="slide level2">
 <h2>Sensitive data: the biggest roadblock</h2>
-<p><strong>Public and non-sensitive data can live in the repository.</strong> Sensitive data, such as personal information, confidential documents or restricted government data, needs a plan <strong>before</strong> the agent works on that step:</p>
+<p><strong>Public and non-sensitive data can live in your project folder.</strong> Sensitive data, such as personal information, confidential documents or restricted government data, needs a plan <strong>before</strong> the agent works on that step:</p>
 <ul>
 <li><strong>De-identify.</strong> Run a de-identification script on the raw data, outside any AI tool.</li>
 <li><strong>Use synthetic data.</strong> If you cannot de-identify safely, generate a synthetic dataset with the same structure, so the agent can write and test code against it.</li>
-<li><strong>Keep it away from the agent.</strong> Store it outside the repository, or in folders blocked in the agent’s permission settings.</li>
+<li><strong>Keep it away from the agent.</strong> Store it outside your project folder, or in folders blocked in the agent’s permission settings.</li>
 </ul>
 <div class="callout-note-custom">
 <p>De-identification is a human responsibility. An agent can help write the script from the codebook, but it should never see the sensitive data while doing so.</p>
@@ -2221,7 +2221,7 @@ display:block!important;
 <tbody>
 <tr class="odd">
 <td>Sensitive data reaches an AI tool</td>
-<td>Classify first; de-identified or synthetic versions; sensitive data outside the repository or in blocked folders</td>
+<td>Classify first; de-identified or synthetic versions; sensitive data outside the project folder or in blocked folders</td>
 </tr>
 <tr class="even">
 <td>AI output is wrong but looks right</td>
@@ -2229,7 +2229,7 @@ display:block!important;
 </tr>
 <tr class="odd">
 <td>Only one person uses the tools</td>
-<td>Shared memory file and skills in the repository; onboarding target in the plan</td>
+<td>Shared memory file and skills in the project folder; onboarding target in the plan</td>
 </tr>
 <tr class="even">
 <td>Costs or token limits run out</td>
@@ -2241,7 +2241,7 @@ display:block!important;
 </tr>
 <tr class="even">
 <td>The plan is forgotten</td>
-<td>Save the plan in the repository; follow-up survey on the 6-week targets</td>
+<td>Save the plan in your project folder; follow-up survey on the 6-week targets</td>
 </tr>
 </tbody>
 </table>

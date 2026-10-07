@@ -298,7 +298,7 @@ The chain at the bottom is the monthly welfare nowcast from the reference sectio
 ```
 
 ::: {.callout-note-custom}
-For most teams the biggest step is a **de-identified or synthetic version of sensitive data**, so the agent can work on the real pipeline. Public data can live in the repository as it is.
+For most teams the biggest step is a **de-identified or synthetic version of sensitive data**, so the agent can work on the real pipeline. Public data can stay in your project folder as it is.
 :::
 
 ```{=html}
@@ -426,14 +426,14 @@ Time: 1 minute. Do not present the reference slides. Say: when you get stuck on 
 
 ## Hands-on: write your plan (30 minutes)
 
-Copy [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md) and [`AI-ADOPTION-GUIDE.md`](materials/AI-ADOPTION-GUIDE.md) into the root of your project folder.
+Copy [`AI-ADOPTION-PLAN.md`](materials/AI-ADOPTION-PLAN.md) and [`AI-ADOPTION-GUIDE.md`](materials/AI-ADOPTION-GUIDE.md) into your project folder (ideally your GitHub repository).
 
 ```{=html}
 <div class="blocks">
   <div class="tm">0–5</div><div>Tick what is already set up <b>in your real work</b></div><div class="sec">Section 1</div>
   <div class="tm">5–17</div><div><span class="q1">Q1</span>In 3A: which recurring tasks (<b>Activities</b>), which steps need you (<b>Actors</b>), what the tool sees and hands back (<b>Artefacts</b>). <i>Optional: a full 3A matrix for one</i></div><div class="sec">Sections 2–4</div>
   <div class="tm">17–27</div><div><span class="q2">Q2</span>Targets for now, 6 weeks and 3 months. Roadblocks: what worries you, and can you resolve it yourself?</div><div class="sec">Sections 5–6</div>
-  <div class="tm">27–30</div><div>Commit the plan. Pick one target and one roadblock to share</div><div class="sec"></div>
+  <div class="tm">27–30</div><div>Save the plan in your project folder. Pick one target and one roadblock to share</div><div class="sec"></div>
 </div>
 ```
 
@@ -450,7 +450,7 @@ Leave this slide up during the hands-on. Walk around and check that people are w
 
 The prompt tells the agent not to open data files. Point this out: it is the data rule in practice.
 
-Call the time at 17 minutes (move to Q2) and at 27 minutes (commit).
+Call the time at 17 minutes (move to Q2) and at 27 minutes (save the plan).
 :::
 
 ## Before you leave
@@ -459,7 +459,7 @@ Call the time at 17 minutes (move to Q2) and at 27 minutes (commit).
 **Share one target and one roadblock with the person next to you.** We will ask about both in the follow-up survey.
 :::
 
-- Plan saved in your repository: `AI-ADOPTION-PLAN.md`
+- Plan saved in your project folder (ideally your GitHub repository): `AI-ADOPTION-PLAN.md`
 - Link the plan from your memory file, so the agent knows the team's priorities
 - Come back to the plan when the survey arrives, and update the progress log
 
@@ -943,16 +943,16 @@ AI adoption fails when only one person on the team uses the tools. For each team
 ::: {.notes}
 Not everyone needs a coding agent. Everyone who handles sensitive data needs the data classification rules from Day 1.
 
-A memory file in the repository helps here: it is the shared set of rules that applies to every team member's agent.
+A memory file in the project folder helps here: it is the shared set of rules that applies to every team member's agent.
 :::
 
 ## Sensitive data: the biggest roadblock {#sensitive-data}
 
-**Public and non-sensitive data can live in the repository.** Sensitive data, such as personal information, confidential documents or restricted government data, needs a plan **before** the agent works on that step:
+**Public and non-sensitive data can live in your project folder.** Sensitive data, such as personal information, confidential documents or restricted government data, needs a plan **before** the agent works on that step:
 
 - **De-identify.** Run a de-identification script on the raw data, outside any AI tool.
 - **Use synthetic data.** If you cannot de-identify safely, generate a synthetic dataset with the same structure, so the agent can write and test code against it.
-- **Keep it away from the agent.** Store it outside the repository, or in folders blocked in the agent's permission settings.
+- **Keep it away from the agent.** Store it outside your project folder, or in folders blocked in the agent's permission settings.
 
 ::: {.callout-note-custom}
 De-identification is a human responsibility. An agent can help write the script from the codebook, but it should never see the sensitive data while doing so.
@@ -970,12 +970,12 @@ Listing allowed and forbidden folders in the memory file is an optional extra; t
 
 | Risk | Mitigation |
 |---|---|
-| Sensitive data reaches an AI tool | Classify first; de-identified or synthetic versions; sensitive data outside the repository or in blocked folders |
+| Sensitive data reaches an AI tool | Classify first; de-identified or synthetic versions; sensitive data outside the project folder or in blocked folders |
 | AI output is wrong but looks right | Human review of every exhibit and number; Git diffs to see what changed |
-| Only one person uses the tools | Shared memory file and skills in the repository; onboarding target in the plan |
+| Only one person uses the tools | Shared memory file and skills in the project folder; onboarding target in the plan |
 | Costs or token limits run out | Use cheaper models for routine tasks (Day 1 cost session) |
 | AI use is not documented | Record AI use in commits and in the reproducibility package; disclose meaningful assistance |
-| The plan is forgotten | Save the plan in the repository; follow-up survey on the 6-week targets |
+| The plan is forgotten | Save the plan in your project folder; follow-up survey on the 6-week targets |
 
 ::: {.notes}
 Ask participants to add at least one risk that is specific to their project, for example a data agreement that restricts processing by third parties.

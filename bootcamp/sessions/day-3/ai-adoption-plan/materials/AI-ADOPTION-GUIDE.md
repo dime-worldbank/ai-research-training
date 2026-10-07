@@ -1,6 +1,6 @@
 # AI Adoption Guide
 
-Reference material for writing `AI-ADOPTION-PLAN.md`. Keep this file next to the plan in the root of your project or team folder. The plan works for research projects and for other recurring work, such as data requests, monthly updates or stakeholder briefings. Read it yourself, or ask your coding agent to walk you through it.
+Reference material for writing `AI-ADOPTION-PLAN.md`. Keep this file next to the plan in your project folder (ideally your GitHub repository). The plan works for research projects and for other recurring work, such as data requests, monthly updates or stakeholder briefings. Read it yourself, or ask your coding agent to walk you through it.
 
 The plan answers two questions:
 
@@ -32,7 +32,7 @@ If a user asks you to walk them through their AI adoption plan, follow these rul
 - **Section 5:** the examples in this guide are illustrations, not expectations. Push for targets the user can report on in six weeks. "Use AI more" is not a target. "Every change to the cleaning code gets an AI review before merge" is.
 - **Section 6:** ask what worries them, including vague worries. For each roadblock, ask whether they can resolve it themselves, with help, or not at all, and who could help. Do not talk a worry away.
 - **Section 7 is optional.** Offer the full 3A matrix once sections 2–6 are drafted. It often takes longer than the session, so it is fine to leave it with `TODO`s to finish later.
-- **Keep to time.** The bootcamp session gives 30 minutes: about 5 for section 1, 12 for sections 2–4, 10 for sections 5 and 6, and 3 to commit.
+- **Keep to time.** The bootcamp session gives 30 minutes: about 5 for section 1, 12 for sections 2–4, 10 for sections 5 and 6, and 3 to save the plan.
 
 ---
 
@@ -139,7 +139,7 @@ Illustrative only: classifications depend on the project's data agreements. Iden
 What the bootcamp covered. Check what is done **in your real work**, not the demo project. Anything unchecked is a candidate "Now" target. Skip items that do not apply to your kind of work.
 
 - **Setup (Day 0):** work in a GitHub repository; opened in VS Code; coding agent installed and signed in with an approved account
-- **Onboarding (Day 1):** memory file in the repository; at least one skill installed and tested
+- **Onboarding (Day 1):** memory file in the project folder; at least one skill installed and tested
 - **Analysis (Day 2):** AI review of data processing or analysis code; reproducible chart or table produced with a skill; AI output checked by a human, with a record of the check
 - **Research products (Day 3):** presentation or brief from your materials; draft reproducibility package
 
@@ -178,11 +178,11 @@ AI adoption fails when only one person on the team uses the tools. Not everyone 
 
 The biggest roadblock for most teams: the most useful parts of the work would let the agent see sensitive data, such as personal information, confidential documents or restricted government data.
 
-**Public and non-sensitive data can live in the repository** and the agent can work with it. **Sensitive data needs a plan before the agent works on that step:**
+**Public and non-sensitive data can live in your project folder** and the agent can work with it. **Sensitive data needs a plan before the agent works on that step:**
 
 - **De-identify.** Run a de-identification script on the raw data, outside any AI tool. Removing names is not enough: indirect identifiers such as village, exact dates and rare combinations of characteristics matter too.
 - **Use synthetic data.** If you cannot de-identify safely, generate a synthetic dataset with the same structure, so the agent can write and test code against it.
-- **Keep it away from the agent.** Store sensitive data outside the repository, or in folders blocked in the agent's permission settings.
+- **Keep it away from the agent.** Store sensitive data outside your project folder, or in folders blocked in the agent's permission settings.
 
 De-identification is a human responsibility. An agent can help write the script from the codebook, but it should never see the sensitive data while doing so.
 
@@ -200,11 +200,11 @@ De-identification is a human responsibility. An agent can help write the script 
 
 | Risk | Mitigation |
 |---|---|
-| Sensitive data reaches an AI tool | Classify first; de-identified or synthetic versions; sensitive data outside the repository or in blocked folders |
+| Sensitive data reaches an AI tool | Classify first; de-identified or synthetic versions; sensitive data outside the project folder or in blocked folders |
 | AI output is wrong but looks right | Human review of every exhibit and number; Git diffs to see what changed |
-| Only one person uses the tools | Shared memory file and skills in the repository; onboarding target in the plan |
+| Only one person uses the tools | Shared memory file and skills in the project folder; onboarding target in the plan |
 | Costs or token limits run out | Use cheaper models for routine tasks (Day 1 cost session) |
 | AI use is not documented | Record AI use in commits, and in the reproducibility package for research outputs; disclose meaningful assistance |
-| The plan is forgotten | Save the plan in the repository; follow-up survey on the 6-week targets |
+| The plan is forgotten | Save the plan in your project folder; follow-up survey on the 6-week targets |
 
 Some roadblocks you cannot resolve alone, for example a data agreement that may not allow processing by an AI tool, or tool approvals. Write them in plan section 6 anyway, with who could help. That is how the bootcamp team knows what to fix.
