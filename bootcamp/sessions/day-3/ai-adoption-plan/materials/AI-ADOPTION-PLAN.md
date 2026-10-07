@@ -11,7 +11,7 @@ Keep [`AI-ADOPTION-GUIDE.md`](AI-ADOPTION-GUIDE.md) next to this file. It has ex
 
 The plan follows two questions:
 
-- **What could AI do for me, and do I want it to?** Sections 2–4 use the 3A model: **Activities** (which work), **Actors** (who does each step), **Artefacts** (what goes in and what comes out).
+- **What could AI do for me, and do I want it to?** Sections 2–4 look at your work from three angles: **Activities** (which work), **Actors** (who does each step), **Artefacts** (what goes in and what comes out).
 - **What do I need to do, and what is in the way?** Sections 5–6: targets and roadblocks.
 
 ## 1. Take stock: what is already set up
@@ -119,9 +119,9 @@ What could stop this plan, or worries you about it? Include things you are not s
 | | | | |
 | | | | |
 
-## 7. Optional: full 3A matrix for one workflow
+## 7. Optional: full workflow matrix for one workflow
 
-Sections 2–4 look at tasks one A at a time. To redesign one workflow end to end, map it stage by stage. This usually takes longer than the bootcamp session: start it now and finish it with your agent later. See "A 3A matrix, step by step" in `AI-ADOPTION-GUIDE.md`.
+Sections 2–4 look at tasks one angle at a time. To redesign one workflow end to end, map it stage by stage. This usually takes longer than the bootcamp session: start it now and finish it with your agent later. See "A workflow matrix, step by step" in `AI-ADOPTION-GUIDE.md`.
 
 **Workflow:**
 

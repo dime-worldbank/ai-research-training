@@ -4,18 +4,18 @@ Reference material for writing `AI-ADOPTION-PLAN.md`. Keep this file next to the
 
 The plan answers two questions:
 
-1. **What could AI do for me, and do I want it to?** Plan sections 2–4, one per A of the 3A model: Activities, Actors, Artefacts.
+1. **What could AI do for me, and do I want it to?** Plan sections 2–4, one each for Activities, Actors and Artefacts.
 2. **What do I need to do, and what is in the way?** Plan sections 5 and 6.
 
 | If you are working on… | Look at |
 |---|---|
 | Plan section 1: take stock | [Setup checklist](#setup-checklist) |
-| Plan sections 2–4: Activities, Actors, Artefacts | [The 3A design model](#the-3a-design-model), [A 3A matrix, step by step](#a-3a-matrix-step-by-step), [Three workflows, redesigned](#three-workflows-redesigned), [An AI data map](#an-ai-data-map), [An AI data map for a dashboard](#an-ai-data-map-for-a-dashboard) |
+| Plan sections 2–4: Activities, Actors, Artefacts | [Activities, Actors, Artefacts](#activities-actors-artefacts), [A workflow matrix, step by step](#a-workflow-matrix-step-by-step), [Three workflows, redesigned](#three-workflows-redesigned), [An AI data map](#an-ai-data-map), [An AI data map for a dashboard](#an-ai-data-map-for-a-dashboard) |
 | Plan section 3: team access | [Team access](#team-access) |
 | Plan section 4: sensitive data | [Prepare sensitive data before the agent sees it](#prepare-sensitive-data-before-the-agent-sees-it) |
 | Plan section 5: targets | [Plan your tasks](#plan-your-tasks), [Which skills does your project need?](#which-skills-does-your-project-need) |
 | Plan section 6: roadblocks | [Prepare sensitive data before the agent sees it](#prepare-sensitive-data-before-the-agent-sees-it), [Risks and mitigations](#risks-and-mitigations) |
-| Plan section 7 (optional): full 3A matrix | [A 3A matrix, step by step](#a-3a-matrix-step-by-step), [Three workflows, redesigned](#three-workflows-redesigned) |
+| Plan section 7 (optional): full workflow matrix | [A workflow matrix, step by step](#a-workflow-matrix-step-by-step), [Three workflows, redesigned](#three-workflows-redesigned) |
 
 ---
 
@@ -31,7 +31,7 @@ If a user asks you to walk them through their AI adoption plan, follow these rul
 - **Section 4 (Artefacts):** for each task, ask what the tool would see and what it should hand back, and who checks it. Ask the user for the classification; do not guess it. Public and non-sensitive data is fine. If sensitive data would be needed, add it to the sensitive data table with a plan: de-identify, use synthetic data, or keep it away from the agent.
 - **Section 5:** the examples in this guide are illustrations, not expectations. Push for targets the user can report on in six weeks. "Use AI more" is not a target. "Every change to the cleaning code gets an AI review before merge" is.
 - **Section 6:** ask what worries them, including vague worries. For each roadblock, ask whether they can resolve it themselves, with help, or not at all, and who could help. Do not talk a worry away.
-- **Section 7 is optional.** Offer the full 3A matrix once sections 2–6 are drafted. It often takes longer than the session, so it is fine to leave it with `TODO`s to finish later.
+- **Section 7 is optional.** Offer the full workflow matrix once sections 2–6 are drafted. It often takes longer than the session, so it is fine to leave it with `TODO`s to finish later.
 - **Keep to time.** The bootcamp session gives 30 minutes: about 5 for section 1, 12 for sections 2–4, 10 for sections 5 and 6, and 3 to save the plan.
 
 ---
@@ -47,11 +47,11 @@ Start from work you already do, not from a tool. Good candidates are:
 
 Keep for yourself: judgment calls, relationships with counterparts, and sign-off. Deciding that AI does not belong in a task is a valid answer.
 
-### The 3A design model
+### Activities, Actors, Artefacts
 
-Use it as a thinking aid first: three questions to ask of any task. Plan sections 2–4 take one A each. Mapping a whole workflow as a matrix (plan section 7) is optional and takes longer.
+Use it as a thinking aid first: three questions to ask of any task. Plan sections 2–4 take one each. Mapping a whole workflow as a matrix (plan section 7) is optional and takes longer.
 
-Most AI use today is a chat window next to a workflow that stays the same. The 3A design model starts from the workflow instead, and splits it into stages. For each stage, describe three things:
+Most AI use today is a chat window next to a workflow that stays the same. This model starts from the workflow instead, and splits it into stages. For each stage, describe three things:
 
 | | Question | What to write |
 |---|---|---|
@@ -65,7 +65,7 @@ Most AI use today is a chat window next to a workflow that stays the same. The 3
 2. **What does the agent hand back?** An artefact you can check in minutes: a memo, a diff, a flag list. No artefact, no handoff.
 3. **What starts it?** You asking in a chat, a request from a colleague, a file arriving, a date. Most stages start with someone asking; name who and when, so the handoff is clear.
 
-### A 3A matrix, step by step
+### A workflow matrix, step by step
 
 Example: a ministry asks for school attendance figures by district and gender.
 
