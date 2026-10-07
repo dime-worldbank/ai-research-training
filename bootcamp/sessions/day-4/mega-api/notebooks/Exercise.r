@@ -598,16 +598,43 @@ verify_quotes_are_correct <- function(coded, translated_turns, interview_label) 
 
 # COMMAND ----------
 
-# DBTITLE 1, 
+# MAGIC %md
+# MAGIC Sometimes the gateway's guardrails refuse the coding request because a passage in the transcript
+# MAGIC trips a content filter. Coding sends the whole transcript at once, so one problem passage blocks
+# MAGIC the entire interview. `find_guardrailed_chunks()` finds the culprit(s): it sends the coding prompt
+# MAGIC for **each chunk on its own** and returns the `chunk_id`s that get refused. This costs one extra
+# MAGIC call per chunk, so it only runs when the full request has already been refused.
+
+# COMMAND ----------
+
+find_guardrailed_chunks <- function(translated_turns, rubric) {
+  chunks <- split(translated_turns, translated_turns$chunk_id)
+  refused <- map_lgl(chunks, function(chunk_df) {
+    tryCatch({
+      call_claude(build_rubric_coding_prompt(chunk_df, rubric), max_tokens = 3000, temperature = 0)
+      FALSE
+    }, error = function(e) TRUE)
+  })
+  names(chunks)[refused]
+}
+
+# COMMAND ----------
+
+# DBTITLE 1,
 # MAGIC %md
 # MAGIC `code_interview()`:
-# MAGIC 1. Builds the prompt and sends it to Claude 
+# MAGIC 1. Builds the prompt and sends it to Claude. If the request is refused, it uses
+# MAGIC    `find_guardrailed_chunks()` to find the chunks that trigger the guardrail, drops them with a
+# MAGIC    warning, and tries again with the rest of the transcript. If that also fails, it warns and
+# MAGIC    returns an empty table instead of stopping the notebook.
 # MAGIC 2. parses the JSON reply into a table (stripping markdown fences if present). If the JSON can't be
 # MAGIC    parsed, it shows a warning and returns an empty table instead of stopping the notebook.
 # MAGIC 3. warns if the model returned more or fewer than 20 variables
 # MAGIC 4. joins the answers onto the rubric by `variable_id`, so the result always has all 20 variables
 # MAGIC    in rubric order, with their theme and guide question. A variable the model skipped shows up as `NA`.
 # MAGIC 5. runs `verify_quotes_are_correct()` on the result
+# MAGIC 6. stores the turns it actually coded (without any skipped chunks) as the `turns_used` attribute,
+# MAGIC    so later steps can reuse exactly the same text
 
 # COMMAND ----------
 
@@ -615,8 +642,35 @@ verify_quotes_are_correct <- function(coded, translated_turns, interview_label) 
 # Bring all coding functions together, with graceful error handling
 
 code_interview <- function(translated_turns, rubric, interview_label) {
-  prompt <- build_rubric_coding_prompt(translated_turns, rubric)
-  response <- call_claude(prompt, max_tokens = 3000, temperature = 0)
+  empty_result <- tibble(variable_id = character(), category_value = character(), text_value = character())
+  try_coding <- function(turns) {
+    tryCatch(
+      call_claude(build_rubric_coding_prompt(turns, rubric), max_tokens = 3000, temperature = 0),
+      error = function(e) {
+        warning(sprintf("Coding request refused for '%s': %s", interview_label, conditionMessage(e)),
+                call. = FALSE)
+        NULL
+      }
+    )
+  }
+
+  response <- try_coding(translated_turns)
+
+  # Refused: drop the chunks that trigger the guardrail and try again
+  if (is.null(response)) {
+    bad_chunks <- find_guardrailed_chunks(translated_turns, rubric)
+    if (length(bad_chunks) == 0) {
+      warning(sprintf("'%s': no single chunk is refused on its own -- skipping this interview.",
+                      interview_label), call. = FALSE)
+      return(empty_result)
+    }
+    warning(sprintf("'%s': skipping guardrailed chunk(s) %s and retrying.",
+                    interview_label, paste(bad_chunks, collapse = ", ")), call. = FALSE)
+    translated_turns <- translated_turns %>% filter(!chunk_id %in% bad_chunks)
+    if (nrow(translated_turns) == 0) return(empty_result)
+    response <- try_coding(translated_turns)
+    if (is.null(response)) return(empty_result)
+  }
 
   parsed <- tryCatch(
     jsonlite::fromJSON(gsub("^```(json)?\\s*|```\\s*$", "", str_trim(response)), simplifyDataFrame = TRUE),
@@ -627,7 +681,7 @@ code_interview <- function(translated_turns, rubric, interview_label) {
   )
 
   if (is.null(parsed) || length(parsed) == 0) {
-    return(tibble(variable_id = character(), category_value = character(), text_value = character()))
+    return(empty_result)
   }
 
   if (nrow(parsed) != nrow(rubric)) {
@@ -642,6 +696,8 @@ code_interview <- function(translated_turns, rubric, interview_label) {
     left_join(as_tibble(parsed), by = "variable_id")
 
   verify_quotes_are_correct(coded, translated_turns, interview_label)
+  # Remember which turns were actually coded (guardrailed chunks removed)
+  attr(coded, "turns_used") <- translated_turns
   coded
 }
 
@@ -671,7 +727,8 @@ display(int1_demo_coded %>% mutate(across(where(is.list), as.character)))
 # MAGIC 2. **Reproducibility:** does the same temperature give the same answer every time?
 # MAGIC
 # MAGIC We re-code the demo translation (`int1_demo`) at several temperatures (0, 0.3, 0.7, 1.0),
-# MAGIC running each one multiple times.
+# MAGIC running each one multiple times. We use the turns `code_interview()` actually coded, so any
+# MAGIC guardrailed chunks it skipped are left out here too.
 
 # COMMAND ----------
 
@@ -680,7 +737,8 @@ display(int1_demo_coded %>% mutate(across(where(is.list), as.character)))
 temperatures <- c(0, 0.3, 0.7, 1.0)
 N_REPS <- 5   # repetitions per temperature
 
-prompt <- build_rubric_coding_prompt(int1_demo, coding_rubric)
+int1_demo_used <- attr(int1_demo_coded, "turns_used") %||% int1_demo
+prompt <- build_rubric_coding_prompt(int1_demo_used, coding_rubric)
 
 code_at_temp <- function(temp, rep) {
   tryCatch({
