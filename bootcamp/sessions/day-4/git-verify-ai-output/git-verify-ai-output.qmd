@@ -70,7 +70,7 @@ This session is about how Git and GitHub can help you verify what we refer to as
 
 When an AI agent modifies files in a repository tracked by Git:
 
-1. **Let the agent work** until the task is complete -- no need to approve every small edit along the way.
+1. **Let the agent work** until the task is complete -- no need to use tools in Git to review every edit before the task is done.
 2. **Review the final result with Git** -- use GitHub Desktop to review the edits before pushing them to your project repository.
    - Other Git clients work too, but a GUI client (i.e., not Git on the command line) makes this much easier.
 3. **Commit only what you approve** -- stage and commit the edits you have reviewed.
@@ -87,6 +87,7 @@ When an AI agent modifies files in a repository tracked by Git:
 
 - GUI Git clients let you select what to include in each commit. A commit does not have to include -- _and probably should not include_ -- all changes at once.
 - Committing in understandable chunks lets you document and preserve the understanding you gain during the review.
+- If another user did not commit in understandable chunks, use AI to summarize edits.
 
 ![](./img/gh-desktop-selective-commit.png)
 
@@ -99,6 +100,20 @@ When an AI agent modifies files in a repository tracked by Git:
 
 # Use GitHub's Built-in Review Tools {background-color="#530153"}
 
+## Quick recap
+
+:::: {.columns}
+::: {.column width="18%" }
+:::
+
+::: {.column width="64%" }
+![](./img/pr-cycle.png)
+:::
+
+::: {.column width="18%" }
+:::
+::::
+
 ## Review your changes in a pull request
 
 - For each task you want to hand over to the agent, create a branch for that task and check out that branch in your clone.
@@ -107,7 +122,6 @@ When an AI agent modifies files in a repository tracked by Git:
 - The PR shows the complete diff of all changes in one place.
 - Comment on specific lines or ask colleagues to review. Resolve all conversations before merging.
 - The PR keeps a permanent record of what was changed, why (all the conversations), and who approved it.
-
 
 For a full introduction to PRs and more detail on the review features, see the slides from the Impact Analytics PR training: [https://osf.io/e54gy/files/umqzn](https://osf.io/e54gy/files/umqzn)
 
@@ -132,6 +146,23 @@ Copilot **assists** the review -- it does not replace it. You are still the prod
 
 :::
 ::::
+
+## GitHub Copilot as a PR reviewer - Example
+
+:::: {.columns}
+::: {.column width="50%" }
+
+![](./img/copilot-review-example.png)
+
+:::
+::: {.column width="50%" }
+
+![](./img/copilot-review-fix-example.png)
+
+:::
+::::
+
+Examples from [https://github.com/dime-worldbank/ai-research-training/pull/13](https://github.com/dime-worldbank/ai-research-training/pull/13)
 
 # Give the Agent Its Own Parallel Space -- Advanced {background-color="#530153"}
 
@@ -161,6 +192,20 @@ Disclaimer: Claude is new at the WBG and we have not yet been able to test this 
 - An agent session in one worktree only sees that worktree's files, i.e., what is visible on that branch. Edits made in a worktree only appear in that worktree's branch.
 - Run several sessions in parallel -- a feature, a bugfix, new tests -- without them overwriting each other's edits.
 - All worktrees share the same Git history, but untracked files are **not** there initially. A common example is packages installed in virtual environments (`renv`, `venv`), which you may need to reinstall.
+
+## Worktrees: Diagram with example
+
+:::: {.columns}
+::: {.column width="18%" }
+:::
+
+::: {.column width="64%" }
+![](./img/worktree.png)
+:::
+
+::: {.column width="18%" }
+:::
+::::
 
 ## Worktrees: how to use them
 
