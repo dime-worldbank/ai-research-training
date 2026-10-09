@@ -391,10 +391,8 @@ days:
   - time: 2:30 – 3:00
     title: Embeddings in geospatial analysis
     lead: GOST
-    link: "/bootcamp/sessions/day-4/geospatial-embeddings/Geospatial%20Embeddings.pdf"
+    link: "https://worldbankgroup.sharepoint.com/:b:/r/teams/AI-EnabledResearchBootcamp-WBGroup/Shared%20Documents/Announcements/Session%20Materials/day-4/5-embeddings/Geospatial%20Embeddings.pdf?d=w3afc2682f2394df09fcf528fd69018d2&csf=1&web=1&e=1Ffs6l"
     materials:
-    - label: "Slides"
-      url: "/bootcamp/sessions/day-4/geospatial-embeddings/Geospatial%20Embeddings.pdf"
     - label: "Notebook"
       url: "https://github.com/dime-worldbank/ai-research-training/blob/main/bootcamp/sessions/day-4/geospatial-embeddings/embeddings-demo.ipynb"
   - time: 3:00 – 3:30
