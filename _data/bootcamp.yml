@@ -391,6 +391,12 @@ days:
   - time: 2:30 – 3:00
     title: Embeddings in geospatial analysis
     lead: GOST
+    link: "/bootcamp/sessions/day-4/geospatial-embeddings/Geospatial%20Embeddings.pdf"
+    materials:
+    - label: "Slides"
+      url: "/bootcamp/sessions/day-4/geospatial-embeddings/Geospatial%20Embeddings.pdf"
+    - label: "Notebook"
+      url: "https://github.com/dime-worldbank/ai-research-training/blob/main/bootcamp/sessions/day-4/geospatial-embeddings/embeddings-demo.ipynb"
   - time: 3:00 – 3:30
     title: Intro to the World Bank's GitHub and Open Source Catalog
     lead: Open Source Program Office
