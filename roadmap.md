@@ -9,6 +9,8 @@ permalink: /roadmap/
 
 A series of stand-alone sessions on using AI tools across the research lifecycle. Each session has an overview page, slides, and any demo files. Materials are published here as the series runs.
 
+<p class="faq-cta"><a class="faq-button" href="{{ '/faqs/' | relative_url }}">❓ FAQs</a></p>
+
 ## AI for Research series
 
 | # | Session | Date | Status |
