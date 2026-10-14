@@ -23,6 +23,14 @@ Practical training on using AI across the research lifecycle, from coding agents
   <span class="home-card-cta">Open the bootcamp &rarr;</span>
 </a>
 
+<a class="home-card home-card-faq" href="{{ '/faqs/' | relative_url }}">
+  <span class="home-card-icon">❓</span>
+  <span class="home-card-kicker">Frequently asked questions</span>
+  <h2>FAQs</h2>
+  <p>Answers to common questions about using AI in your research: getting support, tool access, choosing the right tool for your work, skills, and MEGA.</p>
+  <span class="home-card-cta">Read the FAQs &rarr;</span>
+</a>
+
 </div>
 
-<p class="home-footer">Questions: <a href="mailto:reproducibility@worldbank.org">reproducibility@worldbank.org</a></p>
+<p class="home-footer">Questions: <a href="mailto:dimeanalytics@worldbank.org">dimeanalytics@worldbank.org</a></p>
