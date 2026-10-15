@@ -1,7 +1,12 @@
-- id: claude-code-vs-copilot
-  title: "How should I choose between Claude Code and GitHub Copilot for my task?"
-  coming_soon: true
-  answer: ""
+- id: claude-vs-copilot
+  title: "How should I choose between Claude and GitHub Copilot for my task?"
+  answer: |
+    There is no universally objectively correct answer. Choosing between Claude and GitHub Copilot depends on the types of tasks you work on and your personal preferences. However, some general considerations may help you decide:
+
+    * Claude includes several agents with a wider range of capabilities, while GitHub Copilot is a single agent focused primarily on coding tasks. One of Claude's agents, Claude Code, has a use case similar to GitHub Copilot.
+    * GitHub Copilot is developed by GitHub, which is owned by Microsoft. VS Code is also developed by Microsoft, so it integrates closely with GitHub Copilot. Because Copilot is primarily designed for developers coding in VS Code, some integrations are geared toward users enhancing their code developing experience (next edit suggestion (NES), autocomplete etc.). These features might not be as helpful for users with little or no coding experience.
+    * Claude's wider range of use cases may make it more suitable for people with little or no coding experience who want to use AI to enable them to write code.
+    * WB ITS provides enterprise access to Claude for World Bank users, approved for _strictly confidential_ use. However, the setup required for this approval means Anthropic (the company behind Claude) cannot use or see the data we send to their models or our usage data. This means they cannot save our data and train on it. As a result, Anthropic does not subsidize our Claude Enterprise usage, and you may use up your credits more quickly than if you use Claude on a personal license.
 
 - id: mai-tokens
   title: "Does mAI use tokens? Is it free?"
