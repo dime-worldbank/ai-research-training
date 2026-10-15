@@ -16,8 +16,12 @@
 
 - id: skills-repository
   title: "Where can I find a repository of skills?"
-  coming_soon: true
-  answer: ""
+  answer: |
+    Impact Analytics has prepared a skills library at [https://github.com/dime-worldbank/coding-agents-hub](https://github.com/dime-worldbank/coding-agents-hub). It is public, and you are welcome to share the link to it.
+
+    Maintaining an exhaustive list of all the skills World Bankers might need would be difficult, and that is not the goal. Instead, the library is a starting point where people new to skills can find examples of what they can be used for. If you know of a skill that might be useful to include, email [Impact Analytics](mailto:dimeanalytics@worldbank.com). You can also open an issue in the repository if you know how.
+
+    The library is also not intended to be a list of skills everyone must have. No such list exists because the skills you need depend on your workflows and tasks.
 
 - id: skills-on-mai
   title: "Can I upload any skill to mAI and use it there?"
