@@ -22,14 +22,14 @@
 - id: skills-on-mai
   title: "Can I upload any skill to mAI and use it there?"
   answer: |
-    It depends on the skill, and sometimes when it is possible, the skill will still not work as intended.
+    It depends on the skill. Even if you can upload it, it may not work as intended.
 
-    **How to upload a skill**: You simply go to mAI, navigate to the skills section, click the _Create skill_ button, and use the `Import from Markdown` option to upload your skill definition file `Skill.md`. You may do this for skills that comes with additional resources, however, see below for when this is advisable or not.
+    **How to upload a skill**: In mAI, go to the skills section, click _Create skill_, then select `Import from Markdown` and upload the skill definition file, `Skill.md`. You can do this even if the skill includes additional resources, but consider the limitations below.
 
-    **How do I upload additional resources?** Currently, mAI does not support uploading additional resources along with the skill. You can only upload the `Skill.md` definition file, and any extra files required by the skill will not be included. mAI will still allow you to update the skill definition file, but the additional resources will not be uploaded. See below for when this might cause issues.
+    **How do I upload additional resources?**: mAI currently supports uploading only `Skill.md`, not any additional files the skill may require. You can still update the skill definition in mAI, but you cannot upload those extra files. This may affect how well the skill works, see below.
 
     **Cases when uploading a skill to mAI is possible but might not work as intended**:
 
-    * _Uploading skills without additional resources_: Some skills were created with additional resources, such as templates and examples. Sometimes those resources are complimentary and will improve the skill's performance without being strictly necessary. Sometimes those resources are necessary and the skill will not provide a good quality results without them. It depends on the specific skill and the inteded usage by the person creating it. You will have to read the skill defintion and resource to determine whether the skill will work correctly without the additional resources, or simply upload and test yourself.
+    * _Skills with additional resources_: Some skills include resources such as templates and examples. These may improve the skill's performance without being essential, or they may be necessary for good-quality results. Whether they are needed depends on the skill and its creator's intended use. Read the skill definition and its resources to decide whether it can work without them, or upload it and test it yourself. But never assume it should work well without them.
 
-    * _Skills that need access to your file system_: Agents such as Claude, GitHub Copilot, Microsoft Copilot are agents that runs on your computer. The main benefit of such agents is that you can give them access to content on your computer. mAI runs in the cloud and does not have access to your file system. If you upload a skill to mAI that requires access to your local file system, it will not be able to function correctly because mAI does not have access to your computer's file system. It might still generate results, but most likely those results would be incomplete or incorrect.
+    * _Skills that need access to your file system_: Agents such as Claude, GitHub Copilot, and Microsoft Copilot run on your computer, so you can give them access to local files. mAI runs in the cloud and cannot access your file system. A skill that requires local file access therefore will not function correctly in mAI. It may still generate results, but they will likely be incomplete or incorrect as the AI will have to guess the content of your files.
