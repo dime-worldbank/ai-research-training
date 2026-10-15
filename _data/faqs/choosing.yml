@@ -11,6 +11,5 @@
 - id: skills-on-mai
   title: "Then why can't I just upload the skill to mAI and use it there?"
   coming_soon: true
-  coming_soon_position: after
   answer: |
     You can create or add skills in mAI, but skills that include attachments (extra files that come with the skill) do not currently work in mAI.

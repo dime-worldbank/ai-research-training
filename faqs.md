@@ -13,7 +13,7 @@ HOW TO EDIT
 - Write answers as normal Markdown under answer: |, indenting every nonblank answer line by two spaces.
 - Blank lines create paragraphs; Markdown lists and links work normally. Use <br> for a forced line break.
 - Use relative internal links such as ../roadmap/; Liquid expressions inside YAML answers are not evaluated.
-- Set coming_soon: true for unfinished answers; remove it when ready. Optional coming_soon_position: after puts the label after the answer.
+- Set coming_soon: true for unfinished answers; remove it when ready. The label always appears before the answer.
 - New section: create its YAML file and add its file name and title to _config-sections.yml.
 - Add 🔒 to the link text when a link needs a World Bank login.
 -->
@@ -40,13 +40,10 @@ Answers to the questions we hear most often from researchers as they bring AI in
 <details class="faq-item" id="{{ question.id | escape }}">
 <summary>{{ question.title | escape }}</summary>
 <div class="faq-answer">
-{% if question.coming_soon and question.coming_soon_position != 'after' %}
-<p class="faq-soon">Coming soon</p>
+{% if question.coming_soon %}
+<p class="faq-soon">Full answer coming soon</p>
 {% endif %}
 {{ question.answer | default: '' | markdownify }}
-{% if question.coming_soon and question.coming_soon_position == 'after' %}
-<p class="faq-soon">Coming soon</p>
-{% endif %}
 </div>
 </details>
 {% endfor %}

@@ -1,7 +1,6 @@
 - id: adapt-skill
   title: "Can I use a skill for a workflow slightly different from the one you showed?"
   coming_soon: true
-  coming_soon_position: after
   answer: |
     Yes. Skills are just text files. Try the skill on your workflow first. If it does not work well, read the instructions in the skill and edit them to match your workflow.
 
