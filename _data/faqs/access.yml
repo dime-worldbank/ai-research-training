@@ -1,0 +1,10 @@
+- id: replit
+  title: "How can I keep using Replit after the Bootcamp?"
+  coming_soon: true
+  answer: ""
+
+- id: claude-code
+  title: "How can I keep using Claude Code Enterprise after the Bootcamp?"
+  coming_soon: true
+  answer: |
+    The answer will cover two cases: if you already have Claude Code access from the Bootcamp, and if you do not have access yet.
