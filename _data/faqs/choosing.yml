@@ -12,3 +12,10 @@
   title: "Does mAI use tokens? Is it free?"
   answer: |
     mAI consumes tokens just like any other AI service. Currently, ITS is covering all mAI usage costs for World Bank users. So it is free of charge to all users as long as ITS does not change this policy.
+
+- id: gh-copilot-vs-microsoft-copilot
+  title: "Is GitHub Copilot the same as Microsoft Copilot?"
+  answer: |
+    No. While both GitHub Copilot and Microsoft Copilot are agents, they are developed for different use cases. Since both are developed by Microsoft or its subsidiaries, they both are branded as "Copilot", but this has led to more confusion for end users than clarity. Think of these as _"Github Coding Agent"_ and "_Microsoft Office Agent_".
+
+    GitHub Copilot is an agent focused and optimized on working with code, particularly within the VS Code environment.  Microsoft Copilot, on the other hand, is and agent focused and optimized to work with various Microsoft products such as Word, Excel, Teams, Outlook etc.
