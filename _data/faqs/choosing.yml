@@ -7,9 +7,3 @@
   title: "Does mAI use tokens? Is it free?"
   answer: |
     mAI consumes tokens just like any other AI service. Currently, ITS is covering all mAI usage costs for World Bank users. So it is free of charge to all users as long as ITS does not change this policy.
-
-- id: skills-on-mai
-  title: "Then why can't I just upload the skill to mAI and use it there?"
-  coming_soon: true
-  answer: |
-    You can create or add skills in mAI, but skills that include attachments (extra files that come with the skill) do not currently work in mAI.

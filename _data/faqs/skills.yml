@@ -18,3 +18,18 @@
   title: "Where can I find a repository of skills?"
   coming_soon: true
   answer: ""
+
+- id: skills-on-mai
+  title: "Can I upload any skill to mAI and use it there?"
+  answer: |
+    It depends on the skill, and sometimes when it is possible, the skill will still not work as intended.
+
+    **How to upload a skill**: You simply go to mAI, navigate to the skills section, click the _Create skill_ button, and use the `Import from Markdown` option to upload your skill definition file `Skill.md`. You may do this for skills that comes with additional resources, however, see below for when this is advisable or not.
+
+    **How do I upload additional resources?** Currently, mAI does not support uploading additional resources along with the skill. You can only upload the `Skill.md` definition file, and any extra files required by the skill will not be included. mAI will still allow you to update the skill definition file, but the additional resources will not be uploaded. See below for when this might cause issues.
+
+    **Cases when uploading a skill to mAI is possible but might not work as intended**:
+
+    * _Uploading skills without additional resources_: Some skills were created with additional resources, such as templates and examples. Sometimes those resources are complimentary and will improve the skill's performance without being strictly necessary. Sometimes those resources are necessary and the skill will not provide a good quality results without them. It depends on the specific skill and the inteded usage by the person creating it. You will have to read the skill defintion and resource to determine whether the skill will work correctly without the additional resources, or simply upload and test yourself.
+
+    * _Skills that need access to your file system_: Agents such as Claude, GitHub Copilot, Microsoft Copilot are agents that runs on your computer. The main benefit of such agents is that you can give them access to content on your computer. mAI runs in the cloud and does not have access to your file system. If you upload a skill to mAI that requires access to your local file system, it will not be able to function correctly because mAI does not have access to your computer's file system. It might still generate results, but most likely those results would be incomplete or incorrect.
