@@ -103,10 +103,10 @@ format:
 #grid(
   columns: (1fr, 1fr, 1fr, 1fr),
   gutter: 10pt,
-  stat-tile(height: 64pt)[98][participants from 15 Vice-Presidential Units],
-  stat-tile(height: 64pt)[4.45/5][average course rating],
-  stat-tile(height: 64pt)[93.6%][rated the bootcamp above their expectations#super[1]],
-  stat-tile(height: 64pt)[97.9%][expect to use what they learned within six weeks],
+  stat-tile(height: 78pt)[98][participants from 15 Vice-Presidential Units],
+  stat-tile(height: 78pt)[4.45/5][average course rating],
+  stat-tile(height: 78pt)[93.6%][rated the bootcamp above their expectations#super[1]],
+  stat-tile(height: 78pt)[97.9%][expect to use what they learned within six weeks],
 )
 
 #v(3pt)
