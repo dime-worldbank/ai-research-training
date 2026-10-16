@@ -1,0 +1,233 @@
+---
+title: "AI-Enabled Research Bootcamp"
+subtitle: "From AI experimentation to research-ready workflows"
+author: "Impact Analytics"
+institute: "World Bank Group"
+date: 5 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+filters:
+  - baseline-render.lua
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+format:
+  bootcamp-revealjs:
+    embed-resources: true
+    output-file: index.html
+    css: intro-bootcamp.css
+    slide-level: 2
+---
+
+## AI in practice, not in theory {.welcome-slide}
+
+::: {.welcome-intro}
+This is a **hands-on bootcamp** about applying AI to real analytical work—with tools and workflows available in the World Bank environment.
+:::
+
+:::: {.welcome-grid}
+
+::: {.welcome-card}
+<h3>Bring your work</h3>
+More than half of the sessions are hands-on. Work on your own project, or practice with the demo materials.
+:::
+
+::: {.welcome-card}
+<h3>Get dedicated support</h3>
+Instructors sit at your tables and support you throughout. You can also post in the Teams channel.
+:::
+
+::: {.welcome-card}
+<h3>Build your pathway</h3>
+Start with the foundations, then choose topics that fit your experience, interests, and work program.
+:::
+
+::: {.welcome-card}
+<h3>Use AI responsibly</h3>
+Apply AI ethically and cost-effectively at every stage of the research cycle, from data collection to publication.
+:::
+
+::::
+
+::: {.welcome-takeaway}
+**Bring a real task—we'll help you find where AI can make your workflows faster or better.**
+:::
+
+::: {.notes}
+~1 minute 45 seconds. Open with: "Welcome. This is not another lecture on the potential of AI." Then set the practical tone and expectations for the format. This bootcamp is about applying tools and workflows in the World Bank environment. Hands-on time is where most of the learning happens: encourage participants to bring a real task or project; those without a suitable project can use the demo materials. Instructors sit at tables with participants and provide dedicated support throughout the course, and the Teams channel is the place for questions between sessions. The program progresses from foundational to advanced sessions, so participants can shape a pathway around their experience, interests, and work programs. Throughout the bootcamp, we emphasize using AI ethically and cost-effectively at every stage of the research cycle: knowing which tools are cleared for which data, keeping a human in the loop, and choosing the right model for the task. Today's sessions on cost-effective use and on ethics, governance, and safe use go into detail.
+:::
+
+## Who we are {.team-slide}
+
+Impact Analytics is part of the World Bank's Development Impact Group. Its mission is to strengthen the **transparency, credibility, and reproducibility** of research.
+
+<div class="instructor-row">
+<div><img src="images/kristoffer-bjarkefur-portrait.jpg" alt="Kristoffer Bjärkefur"><p><strong>Kristoffer<br>Bjärkefur</strong></p></div>
+<div><img src="images/maria-reyes-retana.png" alt="Maria Reyes Retana"><p><strong>Maria<br>Reyes Retana</strong></p></div>
+<div><img src="images/ankriti-singh-portrait.jpg" alt="Ankriti Singh"><p><strong>Ankriti<br>Singh</strong></p></div>
+<div><img src="images/marina-visintini.png" alt="Marina Visintini"><p><strong>Marina<br>Visintini</strong></p></div>
+<div><img src="images/roshni-khincha-portrait.jpg" alt="Roshni Khincha"><p><strong>Roshni<br>Khincha</strong></p></div>
+<div><img src="images/jonas-weinert.jpg" alt="Jonas Weinert"><p><strong>Jonas<br>Weinert</strong></p></div>
+</div>
+
+::: {.callout-note-custom}
+This Bootcamp brings our practical approach to AI-enabled research workflows.
+:::
+
+::: {.notes}
+~1 minute 15 seconds. Impact Analytics brings concepts from data science and computer science into development research. Over the past decade, the team has developed open-source, open-access tools, processes, and trainings that support the full research production cycle, and partners with the World Bank Group Institute for Economic Development on e-learning that extends these methods globally. Briefly introduce the six instructors; they will sit at tables with participants and provide dedicated support throughout the course. Source: [Impact Analytics](https://www.worldbank.org/en/about/unit/unit-dec/impactevaluation/analytics).
+:::
+
+## BASELINE_TITLE {#who-you-are}
+
+![](images/baseline-common-uses.svg){width="100%" fig-alt="Baseline percentages of work-AI users who use AI for writing or editing documents, for background research, and who have used third-party chat AI."}
+
+::: {.callout-note-custom}
+You mostly use AI for writing and background research, through chat interfaces.
+:::
+
+::: {.notes}
+~1 minute. These percentages come from the raw baseline responses (n = BASELINE_TOTAL). The bars are among the BASELINE_WORK_USERS work-AI users; any AI use (work or personal) is in the chart footnote. Writing and background research refer to the last four weeks; third-party chat AI is an ever-used tool question. Chat-tool use and background research are separate items, not a measured pairing. This is a cohort baseline, not an estimate for all WBG staff, and people who signed up for an AI bootcamp are likely heavier users than average.
+
+Before advancing, ask for a show of hands: "Who has used a coding agent?" The next slide shows the baseline answer.
+:::
+
+## BASELINE_WORKFLOW_TITLE {#research-workflows}
+
+![](images/baseline-research-workflows.svg){width="100%" fig-alt="Baseline percentages of work-AI users who use AI for data analysis, surveys, dashboards or web apps, and reproducibility packages, plus the share who have ever tried a coding agent."}
+
+::: {.callout-note-custom}
+**Coding agents can change this**—they work with your files and code, not just chat. **BASELINE_CODING_PERCENT** have tried one; our goal: **everyone by the end of the Bootcamp**.
+:::
+
+::: {.notes}
+~1 minute 30 seconds. Compare the show of hands with the coding-agent bar (BASELINE_CODING_PERCENT). The less-used workflows are data analysis/visualization, surveys, dashboards/web apps, and reproducibility packages; these refer to AI use in the last four weeks among BASELINE_WORK_USERS work-AI users, while the coding-agent bar is ever used. Coding agents are a practical way to expand how we use AI across research workflows because they work directly with files and code. 100% participation by endline is an aspiration, not an observed result.
+:::
+
+## What we'll do: apply AI workflows across the research cycle {.day-overview}
+
+:::: {.welcome-grid}
+
+::: {.welcome-card}
+<h3>Day 1 · Agentic AI at the WBG</h3>
+Understand agents; onboard them to a project; use prompts, memory files, and skills; work efficiently and safely.
+[**Leave with:** a project memory file and a reusable skill, installed and used.]{.card-output}
+:::
+
+::: {.welcome-card}
+<h3>Day 2 · Data acquisition and analysis</h3>
+Apply AI to surveys, transcription, data quality, code improvement, and reproducible tables and charts.
+[**Leave with:** an AI-programmed survey, data-quality checks, improved code, and a table or chart.]{.card-output}
+:::
+
+::: {.welcome-card}
+<h3>Day 3 · Reproducible research products</h3>
+Use AI for literature, presentations, working papers, reproducibility packages, and an adoption plan.
+[**Leave with:** a presentation or policy brief, a reproducibility package, and an adoption plan.]{.card-output}
+:::
+
+::: {.welcome-card}
+<h3>Day 4 · Advanced workflows (optional)</h3>
+Explore advanced tools: dashboards, multi-agent workflows, geospatial analysis, and more.
+[**Leave with:** hands-on practice with advanced AI tools and workflows.]{.card-output}
+:::
+
+::::
+
+::: {.welcome-takeaway}
+**Bring a real project.** Your outputs will reflect the sessions you attend.
+:::
+
+::: {.notes}
+~1 minute 30 seconds. Give the arc, not a session-by-session tour: agent foundations, data work, research products, then advanced/scalable workflows. For each day, name the tangible output, not a promise of identical products for every participant. Day 1: a project memory file and a skill installed and used. Day 2: an AI-programmed survey, reusable data-quality checks, reviewed/improved code, and a table or chart; the survey and data checks can use demo materials. Day 3: a presentation or policy brief, reproducibility package, and adoption plan with 6-week and 3-month targets. Day 4 is optional and geared toward people ready for more advanced practice: a MEGA workspace and successful World Bank AI API query, AI outputs reviewed through GitHub, and a multi-agent workflow. Encourage participants to leave with workflows they can apply to their own projects.
+:::
+
+## Today: understand agents, then put them to work {.day1-slide}
+
+:::: {.day1-grid}
+
+::: {.day1-phase}
+<h3>1 · Understand agents</h3>
+
+- Introduction to AI agents
+- Onboarding agents: memory files
+:::
+
+::: {.day1-phase}
+<h3>2 · Explore AI at the WBG</h3>
+
+- WBG GitHub and Open Source Catalog
+- AI Tools Bazaar
+- AI at the WBG: landscape and ambitions
+:::
+
+::: {.day1-phase}
+<h3>3 · Put agents to work</h3>
+
+- Using agents efficiently and cost-effectively
+- Good prompts and reusable skills
+- [Hands-on]{.hands-on-badge} Create a memory file and install a skill
+:::
+
+::: {.day1-phase}
+<h3>4 · Use AI responsibly</h3>
+
+- How We Use AI Matters: ethics, governance, and safe use
+:::
+
+::::
+
+::: {.welcome-takeaway}
+**By the end of today:** a memory file for your project and one skill installed and used.
+:::
+
+::: {.notes}
+~1 minute. Walk the arc, not every session: this morning we explain what agents are and how to onboard them to a project with memory files; late morning and after lunch we look at what is already available at the WBG (Open Source Program Office, the AI Tools Bazaar with impactAI, AVA, ScoreSight, Knowledger, and Translate, and the ITSAE AI Literacy Team); in the afternoon we put agents to work with efficient use, prompts, and skills, ending in the hands-on session where everyone creates a memory file and installs a skill; we close with ethics, governance, and safe use. Agenda source: the Day 1 schedule on the bootcamp website (_data/bootcamp.yml).
+:::
+
+## Before the next session {.next-steps-slide}
+
+::::: {.qr-grid}
+
+:::: {.qr-item}
+<img src="images/qr-baseline-survey.svg" alt="QR code for the baseline survey">
+
+::: {.qr-text}
+<h3><a href="https://survey.wb.surveycto.com/collect/ai_bootcamp_pre_survey?caseid=">Take the baseline survey (if you haven't yet)</a></h3>
+:::
+
+::::
+
+:::: {.qr-item}
+<img src="images/qr-teams-channel.svg" alt="QR code for the Teams channel">
+
+::: {.qr-text}
+<h3><a href="https://teams.microsoft.com/l/team/19%3AWSQWckjEYr1wdopHGzlta4n0OUhBgYgBkSPKvZAU2X81%40thread.tacv2/conversations?groupId=c5942f33-8b4c-4896-b91c-c4627e950b69&tenantId=31a2fec0-266b-4c67-b56e-2796d8f59c36">Join the Teams channel</a></h3>
+:::
+
+::::
+
+:::: {.qr-item}
+<img src="images/qr-course-website.svg" alt="QR code for the bootcamp website">
+
+::: {.qr-text}
+<h3><a href="https://dime-worldbank.github.io/ai-research-training/bootcamp/">Open the course materials</a></h3>
+:::
+
+::::
+
+:::: {.qr-item}
+<img src="images/qr-coding-agent-setup.svg" alt="QR code for the coding agent setup guide">
+
+::: {.qr-text}
+<h3><a href="https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-0/setup-coding-agent/">Make sure you have access to a coding agent</a></h3>
+GitHub Copilot in VS Code or Claude Code both work; our examples use VS Code.
+:::
+
+::::
+
+:::::
+
+::: {.notes}
+~1 minute. Ask participants to complete the baseline survey if they haven't yet, join the Teams channel for announcements and questions, bookmark the course website for all materials, and make sure they have access to a coding agent before the first hands-on session. GitHub Copilot in VS Code or Claude Code both work, but our examples use VS Code. Leave this slide up during the transition to the first session.
+:::

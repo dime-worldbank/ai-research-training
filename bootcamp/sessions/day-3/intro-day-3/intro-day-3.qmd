@@ -1,0 +1,58 @@
+---
+title: "AI Tools for Reproducible Research Products"
+subtitle: "Day 3 · AI-Enabled Research Bootcamp"
+author: "Impact Analytics"
+institute: "World Bank Group"
+date: 7 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+format:
+  bootcamp-revealjs:
+    embed-resources: true
+    output-file: index.html
+    css: intro-day-3.css
+    slide-level: 2
+---
+
+## Today: from evidence to research you can share {.day-preview-slide}
+
+:::: {.day-preview-grid}
+
+::: {.day-preview-phase}
+<h3>1 · Review the evidence</h3>
+
+- AI tools for evidence aggregation and literature review
+:::
+
+::: {.day-preview-phase}
+<h3>2 · Communicate your research</h3>
+
+- [Hands-on]{.hands-on-badge} Create a dynamic presentation with AI skills
+- [Hands-on]{.hands-on-badge} Draft and get feedback on working papers
+:::
+
+::: {.day-preview-phase}
+<h3>3 · Make it reproducible</h3>
+
+- [Hands-on]{.hands-on-badge} Reproducible research standards and AI reproducibility packages
+- AI tools for data documentation and publication
+:::
+
+::: {.day-preview-phase}
+<h3>4 · Plan what's next</h3>
+
+- [Hands-on]{.hands-on-badge} Create an AI adoption plan for your project
+:::
+
+::::
+
+::: {.day-outcome}
+**By the end of today:** a presentation or policy brief, a reproducibility package, and an AI adoption plan with [6-week]{style="white-space: nowrap"} and [3-month]{style="white-space: nowrap"} targets.
+:::
+
+::: {.notes}
+~1 minute. Walk the arc, not every session: we start with AI for literature review and evidence aggregation, then turn to communicating research, with hands-on sessions on dynamic presentations and on drafting and getting feedback on working papers. After lunch, participants build a reproducibility package for their own project, and the Data Group presents AI tools for data documentation and publication. The slide groups sessions by theme: in the schedule, the adoption-plan session (3:15) comes before the data documentation session (4:00). The adoption plan sets 6-week and 3-month targets that we will follow up on in a survey. Agenda source: the Day 3 schedule on the bootcamp website (_data/bootcamp.yml).
+:::

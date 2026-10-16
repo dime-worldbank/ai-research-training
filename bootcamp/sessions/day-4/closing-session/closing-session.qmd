@@ -1,0 +1,194 @@
+---
+title: "Closing Session"
+subtitle: "AI-Enabled Research Bootcamp · Where we've been and what comes next"
+author: "Impact Analytics"
+institute: "World Bank Group"
+date: 8 Oct, 2026
+date-format: "D MMMM YYYY"
+footer: "AI-Enabled Research Bootcamp"
+logos:
+  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
+  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
+format:
+  bootcamp-revealjs:
+    embed-resources: true
+    output-file: index.html
+    css: closing-session.css
+    slide-level: 2
+---
+
+## The journey: what you leave with {.built-slide}
+
+::: {.journey-recap}
+Day 0 setup → Day 1 agents & memory → Day 2 data pipeline → Day 3 research products → Day 4 advanced workflows
+:::
+
+:::: {.built-grid}
+
+::: {.built-card}
+<h3>A coding agent, ready to use</h3>
+Access to Claude Code or GitHub Copilot, and the confidence to put it to work on a real task.
+:::
+
+::: {.built-card}
+<h3>Context and memory</h3>
+How and why to give your agent context, and the role of a memory file in making that context last.
+:::
+
+::: {.built-card}
+<h3>Skills, installed and practiced</h3>
+A reusable skill installed and exercised — on code review, an automated output, a reproducibility package, a presentation, or paper feedback.
+:::
+
+::: {.built-card}
+<h3>Visibility into MEGA and AVA</h3>
+What each tool does, and a first sense of how to use it for your own work.
+:::
+
+::::
+
+::: {.notes}
+~1 minute 30 seconds. This is deliberately a minimum, not a tour of every session: whatever path participants took this week, these are the five things everyone should leave with. Walk the arc briefly (Day 0 setup, Day 1 agents and memory, Day 2 data pipeline, Day 3 research products, Day 4 advanced workflows), then land on the floor: access to and comfort with a coding agent, understanding of context and memory files, skills installed and exercised on at least one real task (code review, an automated output, a reproducibility package, a presentation draft, or paper feedback), and new visibility into MEGA and AVA. Close the slide by saying this out loud: "this is the floor, not the ceiling" — everyone leaves with these five, whatever else they built along the way. Anything beyond this (adoption plan, API queries, multi-agent workflows) is a bonus, covered next.
+:::
+
+## Where to go from here {.next-slide}
+
+:::: {.next-grid}
+
+::: {.next-card}
+<h3>Finish your adoption plan</h3>
+If you haven't finished it yet, do it this week. Set concrete **6-week** and **3-month** targets, not aspirations.
+:::
+
+::: {.next-card}
+<h3>Share it with us</h3>
+Attach it to the **feedback survey**, or email it to Impact Analytics: [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org).
+:::
+
+::: {.next-card}
+<h3>Keep the habits</h3>
+Human in the loop on every output. Right tool for the data classification. Right model for the task.
+:::
+
+::::
+
+::: {.callout-note-custom}
+Sharing your adoption plans now helps us understand and communicate the potential impact of a Bootcamp like this.
+
+We will follow up in about 6 weeks to measure AI adoption and productivity impacts.
+:::
+
+::: {.notes}
+~1 minute. This is the main ask of the closing session: finish the Day 3 adoption plan if it isn't done, and send it to us. The feedback survey (next slide) now has a place to attach it; emailing Impact Analytics works just as well. Be concrete: a plan with vague goals isn't useful for follow-up, so push for specific 6-week and 3-month targets. Remind people to share even an unfinished draft rather than skip the step. Repeat the three habits from Day 1 and Day 2: keep a human in the loop, match the tool to the data classification, and choose the model that fits the task and the budget.
+:::
+
+## Announcements {.announce-slide}
+
+:::: {.announce-grid}
+
+::: {.announce-card}
+<h3>Office hours</h3>
+
+- Bi-weekly drop-in sessions with the Impact Analytics team
+- **Sign up:** link revealed at the end of the feedback survey
+- Bring a real task from your project
+:::
+
+::: {.announce-card}
+<h3>FAQs</h3>
+
+- Common questions from the week, collected in one place
+- **Where:** our Bootcamp repo; we will post the link when live
+- Covers questions like: *How do I keep using Claude after the bootcamp?* and *When should I use Claude Code vs. GitHub Copilot vs. mAI?*
+:::
+
+::: {.announce-card}
+<h3>Technical support</h3>
+
+- The Teams channel stays open for questions and resources — post there so others can learn too
+- Or email Impact Analytics: [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org)
+:::
+
+::: {.announce-card}
+<h3>Our skills library</h3>
+
+- Tell us what worked, suggest new skills, or contribute your own back to the library
+- **Library:** [the skills library on GitHub](https://github.com/dime-worldbank/coding-agents-hub/blob/main/skills-library/README.md)
+:::
+
+::::
+
+::: {.notes}
+~1 minute 30 seconds. Office hours are bi-weekly drop-ins with the Impact Analytics team; the sign-up link is revealed at the end of the feedback survey, so complete the survey to register — this is also why we push the survey hard today. The FAQ page will live on the bootcamp GitHub repo but isn't live yet; give a couple of examples of what it will cover, like continuing to use Claude after the bootcamp and choosing between Claude Code, GitHub Copilot, and mAI. For technical support, keep pointing people to the Teams channel first: questions posted there let other participants learn from the answer too, and we'll keep posting resources there; email is the fallback. Close by pointing to the skills library on GitHub: encourage people to leave feedback on the skills used this week, suggest new ones, and contribute their own skills back to the shared library.
+:::
+
+## What would be useful next? {.topics-slide}
+
+::: {.topics-prompt}
+We're planning shorter sessions through our **continuing education seminar series**. What should we cover?
+:::
+
+:::: {.topics-grid}
+
+::: {.topics-card}
+<h3>Go deeper on a tool</h3>
+MEGA, AVA, Survey Solutions, SurveyCTO, or another tool from this week
+:::
+
+::: {.topics-card}
+<h3>Build advanced skills</h3>
+Better prompting, reusable skills, multi-agent workflows
+:::
+
+::: {.topics-card}
+<h3>Strengthen the pipeline</h3>
+Data quality, reproducibility, documentation
+:::
+
+::: {.topics-card}
+<h3>Something else</h3>
+A tool, workflow, or challenge specific to your team
+:::
+
+::::
+
+::: {.topics-repeat}
+<h3>Or: run it again</h3>
+This same bootcamp, or a condensed version, for teammates who couldn't join this week.
+:::
+
+::: {.callout-note-custom}
+Tell us in the feedback survey — look for the question on continuing education topics.
+:::
+
+::: {.notes}
+~45 seconds. This is a deliberate pause before the survey: give people a few seconds to actually think about what they'd want, rather than skipping past the question on the form. The four topic prompts are starting points, not an exhaustive list. Also flag the last option explicitly: if people think this training (or something like it) would be useful for teammates who missed it, that's worth telling us too, not just new topics.
+:::
+
+## Feedback survey {.survey-slide}
+
+:::: {.survey-grid}
+
+::: {.survey-qr}
+![](images/qr-feedback-survey.png){fig-alt="QR code linking to the bootcamp feedback survey"}
+:::
+
+::: {.survey-text}
+<h3>Tell us what worked and what didn't</h3>
+
+The survey takes about 5 minutes. Your answers shape the next bootcamp.
+
+**Link:** [forms.cloud.microsoft/r/Bc0fhqUmGx](https://forms.cloud.microsoft/r/Bc0fhqUmGx)
+:::
+
+::::
+
+::: {.notes}
+~30 seconds. Give participants a few minutes to complete the survey before closing.
+:::
+
+## Thank you {.closing}
+
+The decks, materials, and agenda stay on the [bootcamp site](https://dime-worldbank.github.io/ai-research-training/bootcamp/).
+
+See you at office hours.
