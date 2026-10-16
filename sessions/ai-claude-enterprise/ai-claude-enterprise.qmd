@@ -233,3 +233,10 @@ Why not always use Claude Enterprise?
 * Switching between personal and enterprise licenses can be done, but would be cumbersome and might lead to false security.
   * You are likely to lose track of which account is currently active, as the AI interfaces look the same.
   * It is very hard, if not impossible, to manually control whether Claude shares certain data with Anthropic when using a personal license.
+
+## Claude Enterprise vs GitHub Copilot
+
+* Instead of switching between Claude Enterprise and personal licenses, you might consider using GitHub Copilot for tasks that primarily require coding assistance.
+* Since both GitHub Copilot and VS Code are developed by entities owned by Microsoft, one benefit is that GitHub Copilot has a more limited view of the VS Code workspace (i.e., the files you have open in tabs or the project view). By managing what you have open, you can limit GitHub Copilot's access and set up an environment with no confidential data.
+* Save Claude Code credits for tasks that require the advanced capabilities of Claude Enterprise.
+* Use GitHub Copilot's inline suggestions and next-edit suggestions for simpler tasks. Do not use an extensive context window in Claude for such tasks.
