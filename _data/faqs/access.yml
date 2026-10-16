@@ -1,10 +1,9 @@
 - id: replit
   title: "How can I keep using Replit after the Bootcamp?"
   coming_soon: true
-  answer: ""
+  answer: "Licenses for Replit cost $1200 per year. Licenses can be reassigned to another team member within the same unit once the original user completes their work. Impact Analytics has agreed to aggregate requests for Replit licenses so ITS can process in one batch. If the license cost is cleared by your Manager, email [Impact Analytics](mailto:dimeanalytics@worldbank.org) with email subject "Replit License Request", and a brief description of the use case (2-3 sentences). If you are requesting on behalf of someone else, include the name of the staff member who should receive the license." 
 
 - id: claude-code
   title: "How can I keep using Claude Code Enterprise after the Bootcamp?"
   coming_soon: true
-  answer: |
-    The answer will cover two cases: if you already have Claude Code access from the Bootcamp, and if you do not have access yet.
+  answer: "  answer: "If you have a Claude Code accont and want to increase tokens, or to extend access past the end of October, submit a Claude Credits request through the [eServices form](https://worldbankgroup.service-now.com/wbg/en/productivity-software-license-request?id=wbg_sc_catalog&sys_id=ebfd4d6693065210a2f6fd647aba10d7). The token costs will be charged to BB of your unit. The form includes the required manager approval workflow. Once approved, credits are applicable to all approved Claude products, including Claude Code."
