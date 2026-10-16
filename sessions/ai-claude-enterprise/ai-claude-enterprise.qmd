@@ -1,6 +1,6 @@
 ---
-title: "Understand Claude Enterprise and other WB AI Tools"
-subtitle: "What makes these tools different and what is what in this jungle of often similar names"
+title: "Understand Claude Enterprise and Other WB AI Tools"
+subtitle: "What makes these tools different, and what's what in this jungle of often similar names"
 author: "Kristoffer Bjarkefur"
 institute: "DECDI, The World Bank"
 date: 22-10-2026
@@ -15,9 +15,9 @@ format:
 
 ## Objective
 
-* Understand how the many AI interfaces differ between each other
-* Understand what that difference means in practice and for when you use which tool
-* Understand what is special With Claude Enterprise and why that diffrence has implications
+* Understand how the many AI interfaces differ from one another
+* Understand what those differences mean in practice and when to use each tool
+* Understand what is special about Claude Enterprise and why that difference has implications
 
 
 # Recap on how LLMs work {background-color="#002A4F"}
@@ -26,23 +26,23 @@ format:
 
 * image of context window and neural network 
 
-* The LLMs is the technology behind all AI related to text generation and understanding.
+* LLMs are the technology behind all AI related to text generation and understanding.
 
 * Initially, you had to be really good at crafting prompts to get useful outputs from the AI
 
 * Users had a bad intuition for what was needed to get results
 
-* AI engineers had the idea, lets build an interface that helps users with this. They ended not building one interface, but hundreds of them
+* AI engineers had the idea: let's build an interface that helps users with this. They ended up building not one interface, but hundreds of them
 
 ## Why are there so many AI interfaces?
 
-* Different use cases and tasks require different needs - the AI interfaces are built to optimize for a specific need. 
+* Different use cases and tasks have different requirements - AI interfaces are built to optimize for a specific need.
 
-* Competing interfaces exists for the same use case, with slight differences in features
+* Competing interfaces exist for the same use case, with slight differences in features
 
-* Different interfaces add data to your request in different ways. Many of them, especially all agents, adds data they have access to without your knowledge
+* Different interfaces add data to your request in different ways. Many of them, especially agents, add data they have access to without your knowledge
 
-## There is an great number of models
+## There are a great many models
 
 * AI interfaces are not LLMs themselves; but they make extensive use of them to provide functionality.
 
@@ -52,20 +52,20 @@ format:
 
 ## What runs where?
 
-* You know where the AI interfaces run as it is where you interact with them
-   * In the browser (mAI, ChatGPT etc.) 
-   * A dedicated application on your computer (Claude Desktop or just Claude)
-   * Extensions in IDEs such as VS Code (GitHub Copilot or Claude Code)
-* What is not as obvious but has huge implications are where the models run.
-* When OIS approves an AI tool such as mAI, Claude or GitHub Copilot, this and almost only this, is what matters
-* Unless in what still today is advanced use cases, the location where the model runs is a server
-* The same AI interface can be configured to send your data to private servers where no external party has access, or can be configured to send it to server where third parties are allowed to see, save and use your data
+* You know where the AI interfaces run, as that is where you interact with them
+  * In the browser (mAI, ChatGPT, etc.)
+  * A dedicated application on your computer (Claude Desktop or just Claude)
+  * Extensions in IDEs such as VS Code (GitHub Copilot or Claude Code)
+* What is not as obvious to the user, but has huge implications, is where the models run.
+* When OIS approves an AI tool such as mAI, Claude, or GitHub Copilot, this, and almost only this, is what matters.
+* Except in what are still advanced use cases, the model runs on a server.
+* The same AI interface can be configured to send your data to private servers where no external party has access, or it can be configured to send your data to servers where third parties are allowed to see, save, and use it.
 
 # What differs {background-color="#002A4F"}
 
-## Claude based chat bots
+## Claude-based chatbots
 
-* ChatBots are AI interfaces designed to interact with users through back and forth messages. 
+* Chatbots are AI interfaces designed to interact with users through back-and-forth messages.
 * All modern chatbots have access to tools such as calculators, calendars, and web searches. This allows them to do math, tell you what day it is, and find public information on the web.
 
 ::: {.columns}
@@ -74,10 +74,10 @@ format:
 
 ### mAI
 
-* A ChatBot AI interface developed by WB
-* Have access to WB databases and can attach that information if needed to your prompts
-* Use a large variety of available commercial models
-* These models run on WB controlled servers in the cloud
+* A chatbot AI interface developed by WB
+* Has access to WB databases and can attach that information to your prompts if needed
+* Uses a large variety of available commercial models
+* These models run on WB-controlled servers in the cloud
 
 :::
 
@@ -85,7 +85,7 @@ format:
 
 ### ChatGPT
 
-* A ChatBot AI interface developed by OpenAI
+* A chatbot AI interface developed by OpenAI
 * Does not have access to any WB information that is not publicly available in a web search
 * Uses exclusively models developed by OpenAI
 * These models run on servers controlled by OpenAI
@@ -95,7 +95,7 @@ format:
 
 ## Productivity Agents
 
-* Productivity agents typically runs on your computer - they typically have access to your files and other resources on your computer
+* Productivity agents typically run on your computer - they typically have access to your files and other resources on your computer
 * A common type of productivity agent is a code assistant. It has a lot of extra tools and capabilities needed when browsing your code, finding errors, and suggesting improvements.
 
 ::: {.columns}
@@ -106,9 +106,9 @@ format:
 
 * A coding agent developed by GitHub
 * Typically runs as an extension in VS Code
-* Users provide tasks in a chat window - but GitHub Copilot can also suggest edits as you type
-* Uses models developed by AI giants such as OpenAI, Anthropic etc.
-* These models run on servers controlled by the respective AI providers - but WB use enterprise licenses that restricts most 3rd party access
+* Users provide tasks in a chat window, but GitHub Copilot can also suggest edits as you type
+* Uses models developed by AI giants such as OpenAI, Anthropic, etc.
+* These models run on servers controlled by the respective AI providers, but WB uses enterprise licenses that restrict most third-party access
 * Approved for up to _Business Use Only_ data only at the WB
 
 :::
@@ -121,7 +121,7 @@ format:
 * Typically runs as an extension in VS Code
 * Users provide tasks in a chat window
 * Uses exclusively models developed by Anthropic
-* These models run on servers where WB has extensive enterprise agreement that no data, not even user behavior data, may be collected.
+* These models run on servers covered by an extensive WB enterprise agreement under which no data, not even user behavior data, may be collected.
 * Approved for _Strictly Confidential_ data at the WB
 
 :::
@@ -134,7 +134,7 @@ format:
 * Typically runs as an extension in VS Code
 * Users provide tasks in a chat window
 * Uses exclusively models developed by Anthropic
-* These models run on servers where Anthropic collects and processes user data, and depending on user settings, save payload data for future use.
+* These models run on servers where Anthropic collects and processes user data and, depending on user settings, may save payload data for future use.
 * Approved for _Public_ data only at the WB
 
 :::
@@ -142,9 +142,12 @@ format:
 
 ## Comparison Claude Enterprise vs Personal License
 
-* Image where the user has identical interface but data is being sent to different server
+* Image showing the identical interface being used while data is sent to different servers
 
+## Another example for productivity agents
 
+* Microsoft Copilot
+* Claude Desktop
 
 
 
