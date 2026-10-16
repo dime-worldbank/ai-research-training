@@ -1,7 +1,8 @@
 - id: replit
   title: "How can I keep using Replit after the Bootcamp?"
   coming_soon: true
-  answer: "Licenses for Replit cost $1200 per year. Licenses can be reassigned to another team member within the same unit once the original user completes their work. Impact Analytics has agreed to aggregate requests for Replit licenses so ITS can process in one batch. If the license cost is cleared by your Manager, email [Impact Analytics](mailto:dimeanalytics@worldbank.org) with email subject "Replit License Request", and a brief description of the use case (2-3 sentences). If you are requesting on behalf of someone else, include the name of the staff member who should receive the license." 
+  answer: |
+    Licenses for Replit cost $1200 per year. Licenses can be reassigned to another team member within the same unit once the original user completes their work. Impact Analytics has agreed to aggregate requests for Replit licenses so ITS can process in one batch. If the license cost is cleared by your Manager, email [Impact Analytics](mailto:dimeanalytics@worldbank.org) with email subject "Replit License Request", and a brief description of the use case (2-3 sentences). If you are requesting on behalf of someone else, include the name of the staff member who should receive the license.
 
 - id: claude-code-bootcamp-access
   title: "How can I keep using Claude Code Enterprise after the Bootcamp?"
