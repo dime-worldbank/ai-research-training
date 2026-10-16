@@ -149,7 +149,87 @@ format:
 * Microsoft Copilot
 * Claude Desktop
 
+# How to use Claude Enterprise
+
+## Three AI interfaces available with Claude Enterprise
+
+* Claude Web: https://claude.ai/
+* Claude Desktop: Download from the Company Portal
+* Claude VS Code Extension: Open the VS Code Extensions Marketplace and search for "Claude"
+
+## Claude Web
 
 
+::: {.columns}
+
+::: {.column}
+
+* Once you have been assigned a WB Enterprise license, start by navigating to [Claude Web](https://claude.ai/).
+* On the sign-in page, enter your WB email and then wait until the "Sign in with SSO" option appears.
+  * If you do not see "Sign in with SSO," make sure you are using a WB email domain such as `@worldbankgroup.org` or `@worldbank.org`.
+* Select "Sign in with SSO" and complete the login process.
+
+:::
+
+::: {.column}
+
+![](img/claude-web-login.png)
+
+:::
+
+:::
+
+## Claude Web - Usage
+
+::: {.columns}
+
+::: {.column}
+
+* Before doing anything, expand the left sidebar and look at the very bottom of it.
+* Make sure you are signed in with your WB account - you should see the WB logo and your WB email address.
+* Here you can also find Settings, including the important usage page: https://claude.ai/new#settings/usage
+
+This is your web interface for interacting with Claude. Use it for AI-assisted tasks that do not require access to your files.
+
+:::
+
+::: {.column}
+
+![](img/claude-verify-wb-access.png)
+
+:::
+
+:::
 
 
+## Claude Desktop
+
+* Download Claude Desktop from the Company Portal. You will only be able to find it there if you have already been assigned a WB Enterprise license by ITS.
+* While downloading it, make sure you are signed in to Claude Web with your WB account. See the steps on the previous slides.
+* After installation, launch Claude Desktop and sign in with your WB account. Again, wait for "Sign in with SSO" to appear and complete the login process.
+* Claude Desktop has a very similar interface to Claude Web, but it runs on your computer and has access to your local files.
+* Before doing anything, verify that you are logged in to Claude Desktop with your WB account. You should see the WB logo and your WB email address at the bottom of the left sidebar.
+
+
+## Claude Code VS Code Extension
+
+* Open VS Code and go to the Extensions view in the sidebar, or press `Ctrl/Cmd+Shift+X`.
+* Search for "Claude" in the Extensions Marketplace. Install the Claude extension.
+* After installation, you need to authorize the extension to use your Claude Enterprise account. You will not be able to choose an account during authorization; it will use the account with which you are signed in to Claude Web, regardless of whether it is an enterprise or personal account. Use the instructions in the Claude Web section above to verify that you are signed in with your WB account.
+* Then click `Claude.ai subscription` in the Claude window and follow the steps to authorize access.
+* Once completed, enter `/status` in the Claude chat window to verify that you are successfully authorized and connected to your WB Claude Enterprise account.
+
+
+# When to use Claude Enterprise?
+
+Why not always use Claude Enterprise?
+
+* That would be ideal, but the WB Claude Enterprise setup provides additional data privacy protections.
+  * _The good:_ It is approved for strictly confidential data
+  * _The bad:_ It is much more expensive than personal licenses, under which Anthropic subsidizes usage in exchange for saving and using our data.
+
+* Learning to use these tools in a token-efficient way is important. There is a separate session on that topic.
+
+* Switching between personal and enterprise licenses can be done, but would be cumbersome and might lead to false security.
+  * You are likely to lose track of which account is currently active, as the AI interfaces look the same.
+  * It is very hard, if not impossible, to manually control whether Claude shares certain data with Anthropic when using a personal license.
