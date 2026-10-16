@@ -1,0 +1,192 @@
+---
+format:
+  typst:
+    papersize: us-letter
+    margin:
+      x: 2.1cm
+      y: 2cm
+    font-paths: ["fonts"]
+    mainfont: "Lato"
+    fontsize: 10.5pt
+---
+
+```{=typst}
+// ---------- palette ----------
+#let purple-dark  = rgb("#530153")
+#let purple-base  = rgb("#800280")
+#let purple-light = rgb("#b974b9")
+#let purple-tint  = rgb("#f4eaf4")
+#let grey         = rgb("#6b6b6b")
+#let rule-c       = rgb("#e2e2e2")
+
+#set text(font: "Lato", size: 10.2pt, lang: "en", fill: rgb("#1a1a1a"))
+#set par(justify: true, leading: 0.58em, first-line-indent: 0pt)
+#set text(hyphenate: false)
+#show heading: set text(font: "Montserrat")
+
+#set page(
+  paper: "us-letter",
+  margin: (x: 2.1cm, y: 2cm),
+  footer: context [
+    #set text(font: "Montserrat", size: 8pt, fill: grey)
+    #line(length: 100%, stroke: 0.5pt + rule-c)
+    #v(4pt)
+    #grid(
+      columns: (1fr, 1fr),
+      align(left)[AI-Enabled Research Bootcamp — Results Brief],
+      align(right)[Page #counter(page).display()]
+    )
+  ]
+)
+
+// ---------- helper: stat tile ----------
+#let stat-tile(num, label) = rect(
+  width: 100%,
+  fill: purple-tint,
+  stroke: (top: 2.2pt + purple-base),
+  radius: 3pt,
+  inset: (x: 10pt, y: 10pt),
+)[
+  #set par(justify: false)
+  #text(font: "Montserrat", weight: 800, size: 20pt, fill: purple-dark)[#num]
+  #v(4pt)
+  #text(font: "Lato", size: 8.3pt, fill: grey)[#label]
+]
+
+// ---------- helper: pull quote ----------
+#let pull-quote(body, attribution: "Bootcamp participant") = block(
+  width: 100%,
+  breakable: false,
+  fill: rgb("#fbf8fb"),
+  stroke: (left: 2.6pt + purple-base),
+  inset: (left: 12pt, right: 12pt, top: 6pt, bottom: 6pt),
+  radius: (top-right: 4pt, bottom-right: 4pt),
+)[
+  #text(style: "italic", size: 9.2pt)[#body]
+  #v(4pt)
+  #text(font: "Montserrat", size: 7.8pt, fill: grey, weight: 600)[— #attribution]
+]
+
+#let section(title) = [
+  #v(4pt)
+  #block(
+    width: 100%,
+    stroke: (bottom: 2pt + purple-base),
+    inset: (bottom: 3pt),
+  )[#text(font: "Montserrat", weight: 700, size: 12.5pt, fill: purple-dark)[#title]]
+  #v(4pt)
+]
+
+// ============ PAGE 1 ============
+
+#grid(
+  columns: (auto, 1fr, auto),
+  align: horizon,
+  image("images/bootcamp-logo.png", height: 32pt),
+  [],
+  image("images/wb-dec-logo.png", height: 26pt),
+)
+
+#v(8pt)
+
+#block(width: 100%)[
+  #set par(justify: false)
+  #text(font: "Montserrat", weight: 800, size: 24pt, fill: purple-dark)[From Curious to Capable]
+  #v(3pt)
+  #text(font: "Montserrat", weight: 700, size: 11pt, fill: purple-base)[
+    The first AI-Enabled Research Bootcamp: 98 staff learn to work with AI agents
+  ]
+  #v(4pt)
+  #text(font: "Lato", size: 9pt, fill: grey)[
+    October 1–8, 2026 · Led by Impact Analytics (Development Impact) with the Development Data Group and ITS
+  ]
+]
+
+#v(8pt)
+
+#box(width: 100%, height: 92pt, clip: true, radius: 4pt)[
+  #image("images/group-photo.jpeg", width: 100%, height: 100%, fit: "cover")
+]
+
+#v(8pt)
+
+A set-up day plus four full days of hands-on, in-person training took staff from first accounts and tools to working agents, reusable skills, and AI-assisted research workflows. Nearly all plan to use it within six weeks.
+
+#v(6pt)
+
+#grid(
+  columns: (1fr, 1fr, 1fr, 1fr),
+  gutter: 10pt,
+  stat-tile[98][participants from 15 Vice-Presidential Units],
+  stat-tile[4.45/5][average course rating],
+  stat-tile[93.6%][rated the bootcamp above their expectations#super[1]],
+  stat-tile[97.9%][expect to use what they learned within six weeks],
+)
+
+#v(3pt)
+#text(size: 7.3pt, fill: grey)[
+  #super[1] Rated 4 or 5 on a 5-point scale (3 = met expectations); 51% gave a 5. Results are from the end-of-course survey: 48 of 98 participants responded (49%; 47–48 per question).
+]
+
+#v(7pt)
+
+#pull-quote[
+  This was one of (if not "the") most impactful trainings I have taken at the World Bank. [...] I am planning to apply 100% of what I have learned (within the limit of my token allowance :)). I have recommended the training to a lot of my colleagues.
+]
+
+#section[Who attended]
+
+More than half of participants (52%) came from outside DEC, across 14 other Vice-Presidential Units, and the Bootcamp drew staff at every level, from Consultants to Senior staff.
+
+#v(3pt)
+#align(center)[#image("images/chart-attendance.png", width: 70%)]
+
+#pagebreak()
+
+// ============ PAGE 2 ============
+
+#section[What participants gained]
+
+Participants expect to use about 70% of the content on the job, and most left more confident and better equipped to use AI responsibly. Top-rated sessions ("very useful") were Intro to AI Agents (95.8%), Day 0 Set-Up (94.3%), the Hackathon (90.5%), and AI for Literature Reviews and Working Papers (90.0%).
+
+#v(4pt)
+#text(font: "Montserrat", weight: 700, size: 9pt, fill: purple-dark)[Share of respondents who agree or strongly agree that, after the Bootcamp…]
+#v(2pt)
+#align(center)[#image("images/chart-gains.png", width: 78%)]
+
+#section[In participants' words]
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  pull-quote[It changed my way of seeing, understanding, and using AI. I enjoy the introduction of the VS code and the application of skills, and I will apply it to my work.],
+  pull-quote[AI is here to stay: the bootcamp was tremendously highly informative, empowering, and gives me renewed enthusiasm about our mission and how to scale up.],
+  pull-quote[I was already quite a heavy user of AI agents, but I still learned so much. [...] I always felt intimidated by skills so far, but now I feel like I will use and explore them much more. I already used the presentation skill for my work and it was impressively effective.],
+  pull-quote[The bootcamp model was very helpful for me because it presented an opportunity to work collaboratively on overcoming the classic frictions of adopting new technology and software (including those licensing issues!). And having a dedicated time to really practice repeatedly without forgetting things, and having people close by to troubleshoot with is hard to replicate in a series of one-off sessions.],
+)
+#v(2pt)
+#text(size: 7.3pt, fill: grey)[Quotes are from anonymous survey responses; [...] marks omitted text, and obvious typos were corrected.]
+
+#section[Next steps]
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 12pt,
+  block(width: 100%, fill: purple-tint, radius: 4pt, inset: (x: 11pt, y: 9pt))[
+    #set par(justify: false)
+    #text(font: "Montserrat", weight: 700, size: 9.5pt, fill: purple-dark)[The main constraint: tokens and cost]
+    #v(3pt)
+    #text(size: 9pt)[About 3 in 10 respondents (14 of 46) named token limits, credits, or cost as an obstacle to sustained adoption. Participants can now build agents and skills, but running them at scale depends on adequate token allowances.]
+  ],
+  block(width: 100%, fill: purple-tint, radius: 4pt, inset: (x: 11pt, y: 9pt))[
+    #set par(justify: false)
+    #text(font: "Montserrat", weight: 700, size: 9.5pt, fill: purple-dark)[Sustaining the momentum]
+    #v(3pt)
+    #text(size: 9pt)[
+      - Impact Analytics will run regular Office Hours for customized, hands-on support as participants apply what they learned.
+      - The full agenda, materials, and FAQs are public at #link("https://dime-worldbank.github.io/ai-research-training/bootcamp/")[the Bootcamp site].
+      - Participants asked for shorter follow-ups and deeper dives on specific tools, which we will consider for future editions.
+    ]
+  ],
+)
+```
