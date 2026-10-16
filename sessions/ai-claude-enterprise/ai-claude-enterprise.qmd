@@ -1,0 +1,152 @@
+---
+title: "Understand Claude Enterprise and other WB AI Tools"
+subtitle: "What makes these tools different and what is what in this jungle of often similar names"
+author: "Kristoffer Bjarkefur"
+institute: "DECDI, The World Bank"
+date: 22-10-2026
+format:
+  decdi-revealjs:
+    output-file: index.html
+    self-contained: true
+    slide-number: true
+    toc: false
+    logo: "_extensions/decdi/logos/COLOR_WB_DEC.png"
+---
+
+## Objective
+
+* Understand how the many AI interfaces differ between each other
+* Understand what that difference means in practice and for when you use which tool
+* Understand what is special With Claude Enterprise and why that diffrence has implications
+
+
+# Recap on how LLMs work {background-color="#002A4F"}
+
+## No matter which fancy AI tool, it comes down to this:
+
+* image of context window and neural network 
+
+* The LLMs is the technology behind all AI related to text generation and understanding.
+
+* Initially, you had to be really good at crafting prompts to get useful outputs from the AI
+
+* Users had a bad intuition for what was needed to get results
+
+* AI engineers had the idea, lets build an interface that helps users with this. They ended not building one interface, but hundreds of them
+
+## Why are there so many AI interfaces?
+
+* Different use cases and tasks require different needs - the AI interfaces are built to optimize for a specific need. 
+
+* Competing interfaces exists for the same use case, with slight differences in features
+
+* Different interfaces add data to your request in different ways. Many of them, especially all agents, adds data they have access to without your knowledge
+
+## There is an great number of models
+
+* AI interfaces are not LLMs themselves; but they make extensive use of them to provide functionality.
+
+* Some AI interfaces can only interact with some models, some AI interfaces can interact with most models.
+
+* Some AI interfaces and models are named similarly, if they are created by the same company.
+
+## What runs where?
+
+* You know where the AI interfaces run as it is where you interact with them
+   * In the browser (mAI, ChatGPT etc.) 
+   * A dedicated application on your computer (Claude Desktop or just Claude)
+   * Extensions in IDEs such as VS Code (GitHub Copilot or Claude Code)
+* What is not as obvious but has huge implications are where the models run.
+* When OIS approves an AI tool such as mAI, Claude or GitHub Copilot, this and almost only this, is what matters
+* Unless in what still today is advanced use cases, the location where the model runs is a server
+* The same AI interface can be configured to send your data to private servers where no external party has access, or can be configured to send it to server where third parties are allowed to see, save and use your data
+
+# What differs {background-color="#002A4F"}
+
+## Claude based chat bots
+
+* ChatBots are AI interfaces designed to interact with users through back and forth messages. 
+* All modern chatbots have access to tools such as calculators, calendars, and web searches. This allows them to do math, tell you what day it is, and find public information on the web.
+
+::: {.columns}
+
+::: {.column}
+
+### mAI
+
+* A ChatBot AI interface developed by WB
+* Have access to WB databases and can attach that information if needed to your prompts
+* Use a large variety of available commercial models
+* These models run on WB controlled servers in the cloud
+
+:::
+
+::: {.column}
+
+### ChatGPT
+
+* A ChatBot AI interface developed by OpenAI
+* Does not have access to any WB information that is not publicly available in a web search
+* Uses exclusively models developed by OpenAI
+* These models run on servers controlled by OpenAI
+
+:::
+:::
+
+## Productivity Agents
+
+* Productivity agents typically runs on your computer - they typically have access to your files and other resources on your computer
+* A common type of productivity agent is a code assistant. It has a lot of extra tools and capabilities needed when browsing your code, finding errors, and suggesting improvements.
+
+::: {.columns}
+
+::: {.column}
+
+### GitHub Copilot - WB License
+
+* A coding agent developed by GitHub
+* Typically runs as an extension in VS Code
+* Users provide tasks in a chat window - but GitHub Copilot can also suggest edits as you type
+* Uses models developed by AI giants such as OpenAI, Anthropic etc.
+* These models run on servers controlled by the respective AI providers - but WB use enterprise licenses that restricts most 3rd party access
+* Approved for up to _Business Use Only_ data only at the WB
+
+:::
+
+::: {.column}
+
+### Claude Enterprise License
+
+* A coding agent developed by Anthropic
+* Typically runs as an extension in VS Code
+* Users provide tasks in a chat window
+* Uses exclusively models developed by Anthropic
+* These models run on servers where WB has extensive enterprise agreement that no data, not even user behavior data, may be collected.
+* Approved for _Strictly Confidential_ data at the WB
+
+:::
+
+::: {.column}
+
+### Claude Personal License
+
+* A coding agent developed by Anthropic
+* Typically runs as an extension in VS Code
+* Users provide tasks in a chat window
+* Uses exclusively models developed by Anthropic
+* These models run on servers where Anthropic collects and processes user data, and depending on user settings, save payload data for future use.
+* Approved for _Public_ data only at the WB
+
+:::
+:::
+
+## Comparison Claude Enterprise vs Personal License
+
+* Image where the user has identical interface but data is being sent to different server
+
+
+
+
+
+
+
