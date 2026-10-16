@@ -16,5 +16,24 @@
 
 - id: skills-repository
   title: "Where can I find a repository of skills?"
-  coming_soon: true
-  answer: ""
+  answer: |
+    Impact Analytics has prepared a skills library at [https://github.com/dime-worldbank/coding-agents-hub](https://github.com/dime-worldbank/coding-agents-hub). It is public, and you are welcome to share the link to it.
+
+    Maintaining an exhaustive list of all the skills World Bankers might need would be difficult, and that is not the goal. Instead, the library is a starting point where people new to skills can find examples of what they can be used for. If you know of a skill that might be useful to include, email [Impact Analytics](mailto:dimeanalytics@worldbank.com). You can also open an issue in the repository if you know how.
+
+    The library is also not intended to be a list of skills everyone must have. No such list exists because the skills you need depend on your workflows and tasks.
+
+- id: skills-on-mai
+  title: "Can I upload any skill to mAI and use it there?"
+  answer: |
+    It depends on the skill. Even if you can upload it, it may not work as intended -- see explanation for why below.
+
+    **How to upload a skill**: In mAI, go to the skills section, click _Create skill_, then select `Import from Markdown` and upload the skill definition file, `Skill.md`. You can do this even if the skill includes additional resources, but consider the limitations below.
+
+    **How do I upload additional resources?**: mAI currently supports uploading only `Skill.md`, not any additional files the skill may require. You can still update the skill definition in mAI, but you cannot upload those extra files. This may affect how well the skill works, see below.
+
+    **Cases when uploading a skill to mAI is possible but might not work as intended**:
+
+    * _Skills with additional resources_: Some skills include resources such as templates and examples. These may improve the skill's performance without being essential, or they may be necessary for good-quality results. Whether they are needed depends on the skill and its creator's intended use. Read the skill definition and its resources to decide whether it can work without them, or upload it and test it yourself. But never assume it should work well without them.
+
+    * _Skills that need access to your file system_: Some coding agents, such as Claude Code and the GitHub Copilot extension, run in your development environment, so you can give them access to local files. mAI runs in the cloud and cannot access your file system. A skill that requires local file access therefore will not function correctly in mAI. It may still generate results, but they will likely be incomplete or incorrect as the AI will have to guess the content of your files.
