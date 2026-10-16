@@ -35,6 +35,8 @@ The site is built by GitHub Pages from `main`. It serves the files committed to 
 
 **Onboarding series (delivered):** Introduction to AI Coding Agents (May 18), Memory Files (Jun 22), Skills (Jul 2).
 
+**AI bootcamp**
+
 **AI for Research series:**
 
 | # | Session | Date |

@@ -17,6 +17,7 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
+  - netlify.toml
   - bootcamp/sessions/day-0/README.md
   - bootcamp/sessions/day-1/README.md
   - bootcamp/sessions/day-2/README.md

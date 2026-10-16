@@ -3,12 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
 
 // Brand palette
-$analytics-dark:  #530153;
-$analytics-base:  #800280;
-$analytics-light: #B974B9;
-$analytics-tint:  #F4EAF4;
-$analytics-grey:  #6B6B6B;
-$analytics-rule:  #E2E2E2;
+$analytics-dark:  #530153 !default;
+$analytics-base:  #800280 !default;
+$analytics-light: #B974B9 !default;
+$analytics-tint:  #F4EAF4 !default;
+$analytics-grey:  #6B6B6B !default;
+$analytics-rule:  #E2E2E2 !default;
 
 // Typography
 $font-family-sans-serif: "Lato", -apple-system, "Segoe UI", sans-serif !default;

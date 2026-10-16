@@ -1,0 +1,10 @@
+- id: follow-up-questions
+  title: "How can I reach out in the coming weeks if I have follow-up questions as I adapt the Bootcamp materials to my workflows?"
+  answer: |
+    Book a slot in our [office hours 🔒](https://bookings.cloud.microsoft/book/AIBootcampOfficeHours@worldbankgroup.org/?ismsaljsauthenabled). You can also write to [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org).
+
+- id: follow-on-trainings
+  title: "What follow-on trainings will you offer?"
+  coming_soon: true
+  answer: |
+    We will link the up-to-date training schedule here. In the meantime, see the [AI for Research Roadmap](../roadmap/) for upcoming sessions.

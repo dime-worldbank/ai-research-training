@@ -45,7 +45,7 @@ The site serves files committed to `main`; nothing is rendered automatically.
     - label: "Skills"
       url: "https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-3/writing_and_reviewing_workingpapers/materials/skills.zip"
     - label: "Companion deck"
-      url: "/sessions/ai-skills-slides/slides/"
+      url: "/bootcamp/sessions/day-3/ai-skills-slides/"
 ```
 
 - `link` and `materials` URLs can be full URLs or site paths starting with `/`; site paths get the site prefix automatically.

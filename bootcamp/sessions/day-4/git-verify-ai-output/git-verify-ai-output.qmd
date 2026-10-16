@@ -1,23 +1,20 @@
 ---
-title: "Your Presentation Title"
-subtitle: "Subtitle or one line description"
-author: "Author Name"
-institute: "Team or Unit"
-# Update to date for this session
-date: 6 Oct, 2026
+title: "Git workflows for verifying AI outputs"
+subtitle: "Day 4 · Intro to Agentic AI at the WBG"
+author: "Kristoffer Bjärkefur"
+institute: "Impact Analytics"
+date: 8 Oct, 2026
 date-format: "D MMMM YYYY"
 footer: "AI-Enabled Research Bootcamp"
-# Three horizontal logos on the title slide.
-# Leave commented out to keep the dashed placeholders.
 logos:
   - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
   - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
 
 format:
   bootcamp-revealjs:
-    fragments: true
     embed-resources: true
     output-file: index.html
+    fragments: true
 ---
 
 ```{r}
@@ -25,7 +22,7 @@ format:
 #| include: false
 
 # ../../../ matches the relative path from a qmd file saved
-# in the location: sessions/<day>/<topic>/presentation.qmd. 
+# in the location: sessions/<day>/<topic>/presentation.qmd.
 # Update the file path for presentations elsewhere
 source("../../../_extensions/bootcamp/setup_palettes.R")
 
@@ -34,80 +31,219 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ## Agenda
 
-- Context
-- Approach
-- Results
-- Next steps
+- Which workflow is this for?
+- Unleash the creativity of AI, but stay in control with Git
+- Use GitHub's built-in review tools
+- Give the agent its own parallel space (advanced)
 
-# Section {background-color="#530153"}
+# Which Workflow Is This For? {background-color="#530153"}
 
-## Content slide
+## Recap from human-in-the-loop
 
-Main idea
-
-- First point
-- Second point
-- Third point
-
-## Key message slide
-
-::: {.callout-note-custom}
-Use this box for the one thing you want to highlight.
-:::
-
-Space for more content
-
-
-
-## Image + text slide
-
-<!--
-HOW TO ADD AN IMAGE
-1. Put the file in the images/ folder next to this .qmd
-2. Use the line below, keeping the path relative
-3. Anything in [] before the path is the caption; leave [] empty for none
-
-Some image options:
-- `{.r-stretch}` fills the free height, best for one image on a slide
-- `{width="70%"}` sets width against the slide
-- `{height="420px"}` sets an exact height
-- `{fig-align="center"}` centres a narrow image
--->
+This session is about how Git and GitHub can help you verify what we refer to as Static Tools below.
 
 :::: {.columns}
+::: {.column style="border: 3px solid #D6BED8; border-radius: 8px; padding: 0.3em;"}
 
-::: {.column width="55%"}
-![](images/your-image.png){fig-alt="image-alt-text"}
+### Static Tools
+
+- Examples: reports, presentation decks, code, etc.
+- Created by team members, vendors, or AI tools
+- The product owner reviews the finalized output before the product is used or published. This is old-fashioned "human-in-the-loop" review.
+
 :::
 
-::: {.column width="45%"}
-- Content bullet
-- Content bullet
-- Content bullet
-:::
+::: {.column style="border: 3px solid #F2AA84; border-radius: 8px; padding: 0.3em;"}
 
+### Decision-Making Products
+
+- Examples: review bots and interactive bots such as chatbots
+- Set up by team members, vendors, or AI tools
+- Output is generated in real time. We can do a final review of the setup, but not of the output, unless we have a "human-in-the-loop" checkpoint.
+
+:::
 ::::
 
+# Unleash the Creativity of AI, but Stay in Control with Git {background-color="#530153"}
 
-## Slide with table
+## Let the agent finish, then review with Git
 
-Table description
+When an AI agent modifies files in a repository tracked by Git:
 
-```{r}
-knitr::kable(head(mtcars[, c("mpg", "cyl", "wt")], 5))
+1. **Let the agent work** until the task is complete -- no need to use tools in Git to review every edit before the task is done.
+2. **Review the final result with Git** -- use GitHub Desktop to review the edits before pushing them to your project repository.
+   - Other Git clients work too, but a GUI client (i.e., not Git on the command line) makes this much easier.
+3. **Commit only what you approve** -- stage and commit the edits you have reviewed.
+4. **Not happy?** -- ask the agent to fix it, or discard the changes.
+
+## Git shows you every AI edit -- no matter how small
+
+- Git gives you a complete, line-by-line record of what the agent did -- you review the outcome, not the process.
+- Ask the agent to explain any edit you do not understand or do not see the need for before committing it.
+
+![](./img/gh-desktop-review.png)
+
+## Commit piece by piece in understandable chunks
+
+- GUI Git clients let you select what to include in each commit. A commit does not have to include -- _and probably should not include_ -- all changes at once.
+- Committing in understandable chunks lets you document and preserve the understanding you gain during the review.
+- If another user did not commit in understandable chunks, use AI to summarize edits.
+
+![](./img/gh-desktop-selective-commit.png)
+
+## Discard what you do not need
+
+- Agents are verbose. Do not commit unnecessary verbosity to your repository, as it makes the repository hard for humans to follow.
+- Update the memory file with instructions that prevent the agent from repeating the same verbosity.
+
+![](./img/gh-desktop-discard.png)
+
+# Use GitHub's Built-in Review Tools {background-color="#530153"}
+
+## Quick recap
+
+:::: {.columns}
+::: {.column width="18%" }
+:::
+
+::: {.column width="64%" }
+![](./img/pr-cycle.png)
+:::
+
+::: {.column width="18%" }
+:::
+::::
+
+## Review your changes in a pull request
+
+- For each task you want to hand over to the agent, create a branch for that task and check out that branch in your clone.
+- Ask the agent to perform the task, using the steps described in the previous section.
+- Push the agent's branch to GitHub and open a **Pull Request (PR)** into `main`.
+- The PR shows the complete diff of all changes in one place.
+- Comment on specific lines or ask colleagues to review. Resolve all conversations before merging.
+- The PR keeps a permanent record of what was changed, why (all the conversations), and who approved it.
+
+For a full introduction to PRs and more detail on the review features, see the slides from the Impact Analytics PR training: [https://osf.io/e54gy/files/umqzn](https://osf.io/e54gy/files/umqzn)
+
+## GitHub Copilot as a PR reviewer
+
+:::: {.columns .v-center-container}
+::: {.column width="75%" }
+
+If you also have a GitHub Copilot license:
+
+- Request **Copilot** as a reviewer on your PR.
+- Copilot leaves review comments, often with suggested changes you can apply directly.
+- A second AI reviewing the first AI's work _can_ catch issues the authoring agent missed.
+- One agent reviewing another is no guarantee, but the task is different: Copilot does not follow your initial prompt; it only reviews whether the final set of commits makes sense.
+
+Copilot **assists** the review -- it does not replace it. You are still the product owner and are responsible for what gets merged.
+
+:::
+::: {.column width="25%" }
+
+![](./img/copilot-pr-review.png)
+
+:::
+::::
+
+## GitHub Copilot as a PR reviewer - Example
+
+:::: {.columns}
+::: {.column width="50%" }
+
+![](./img/copilot-review-example.png)
+
+:::
+::: {.column width="50%" }
+
+![](./img/copilot-review-fix-example.png)
+
+:::
+::::
+
+Examples from [https://github.com/dime-worldbank/ai-research-training/pull/13](https://github.com/dime-worldbank/ai-research-training/pull/13)
+
+# Give the Agent Its Own Parallel Space -- Advanced {background-color="#530153"}
+
+## Worktrees: parallel tasks without collisions
+
+- So far in this presentation, we have created a separate branch for each agent task.
+- But our clone still needs to have that branch checked out while the agent works on it.
+
+::: {.fragment}
+- This prevents us from going back to the branch where we want to do our own work until the agent's task is finished and its branch is merged.
+- It also prevents us from having agents work on different tasks in different branches simultaneously.
+- Is there a solution to this problem?
+:::
+
+::: {.fragment}
+- Yes, and it is called worktrees. A **worktree** is an extra working directory with its own branch in the same repository -- once the task is completed, it can be reviewed in a PR.
+- This more advanced workflow exists in both agents we have used, but WBG GitHub Copilot lacks one permission it needs to use worktrees.
+:::
+
+## Worktrees: what they are
+
+::: {.callout-warning}
+Disclaimer: Claude is new at the WBG and we have not yet been able to test this thoroughly.
+:::
+
+- Each worktree is like a separate branch saved in its own folder -- for Claude, it is `.claude/worktrees/<worktree-name>`.
+- An agent session in one worktree only sees that worktree's files, i.e., what is visible on that branch. Edits made in a worktree only appear in that worktree's branch.
+- Run several sessions in parallel -- a feature, a bugfix, new tests -- without them overwriting each other's edits.
+- All worktrees share the same Git history, but untracked files are **not** there initially. A common example is packages installed in virtual environments (`renv`, `venv`), which you may need to reinstall.
+
+## Worktrees: Diagram with example
+
+:::: {.columns}
+::: {.column width="18%" }
+:::
+
+::: {.column width="64%" }
+![](./img/worktree.png)
+:::
+
+::: {.column width="18%" }
+:::
+::::
+
+## Worktrees: how to use them
+
+::: {.callout-warning}
+Before doing anything, make sure that `.claude/worktrees/` or `**/worktrees/` is added to your `.gitignore`. Otherwise this folder will be committed as part of the branch checked out in your clone.
+:::
+
+:::: {.columns }
+::: {.column width="40%" }
+
+**With Claude Code on the command line:** start a session with `claude --worktree`. The Claude Desktop app can create a worktree for each new session automatically.
+
+:::
+::: {.column width="60%" }
+
+**With Git on the command line:** replace `<branchname>` with the name of the branch you want to create for the worktree. This only works for branch names that do not already exist.
+
+```bash
+git worktree add .claude/worktrees/<branchname> -b <branchname>
 ```
 
-## Slide with Code
+:::
+::::
 
-```r
-library(dplyr)
+Open that folder in a new VS Code workspace (*File → Open Folder*) and start the agent there.
 
-data |>
-  filter(year > 2020) |>
-  summarise(mean_value = mean(metric), .by = country)
-```
+Docs: [https://code.claude.com/docs/en/worktrees.md](https://code.claude.com/docs/en/worktrees.md)
 
-## Thank you {.closing}
+## Worktrees: pushing and opening a PR
 
-[your.name@example.org](mailto:your.name@example.org)
+A worktree branch is a regular branch in the same repository -- **no special steps are needed**. Push it and open a PR exactly as you would for any other branch.
+
+- Commit the agent's work **inside the worktree folder** -- uncommitted changes stay in that folder only.
+   - If you want the agent to commit its edits, instruct it to do so in the memory file or in the prompt for this task.
+- A branch can only be checked out in one place at a time, so you cannot switch to it in your main clone (e.g., in GitHub Desktop) while the worktree exists. Test and commit the new edits from within the worktree folder.
+   - Ask the agent to do this for you if you get stuck.
+- Once the PR is merged, remember to remove the worktree with `git worktree remove`.
+
+# Thank You! -- Questions? {background-color="#530153"}
+
 

@@ -1,0 +1,9 @@
+# Netlify build for the Jekyll site (alternative to GitHub Pages).
+# --baseurl "" serves the site from the root of the Netlify domain.
+[build]
+  command = "bundle exec jekyll build --baseurl \"\""
+  publish = "_site"
+
+[build.environment]
+  RUBY_VERSION = "3.3.0"
+  JEKYLL_ENV = "production"

@@ -78,7 +78,7 @@ Using a semi-truck for this will work -- but if this is your habit, it will not 
 ::: {.column width="35%" }
 
 ::: {.fragment}
-![](./img/truck-milk.png)
+![](./img/truck-milk.jpg)
 :::
 
 :::
@@ -120,7 +120,7 @@ Buying a whole store "_just in case_" and then throwing out what you did not use
 ::: {.column width="35%" }
 
 ::: {.fragment}
-![](./img/just-in-case-groceries.png)
+![](./img/just-in-case-groceries.jpg)
 :::
 
 :::
@@ -156,7 +156,7 @@ Even if you tell the agent to forget the previous part of the conversation, it w
 ::: {.column width="35%" }
 
 ::: {.fragment}
-![](./img/line-of-trailers.png)
+![](./img/line-of-trailers.jpg)
 :::
 
 :::
@@ -182,21 +182,21 @@ Even if you tell the agent to forget the previous part of the conversation, it w
 
 ::: {.column width="33%" }
 
-![](./img/truck-milk.png)
+![](./img/truck-milk.jpg)
 
 <span style="display: block; text-align: center; line-height: 1;">Use the smallest model sufficient for the task.</span>
 :::
 
 ::: {.column width="33%" }
 
-![](./img/just-in-case-groceries.png)
+![](./img/just-in-case-groceries.jpg)
 
 <span style="display: block; text-align: center; line-height: 1;">Use memory files so the agent starts with what always matters.</span>
 :::
 
 ::: {.column width="33%" }
 
-![](./img/line-of-trailers.png)
+![](./img/line-of-trailers.jpg)
 
 <span style="display: block; text-align: center; line-height: 1;">Start a new session for each new task.</span>
 :::

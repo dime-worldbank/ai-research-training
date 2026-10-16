@@ -67,6 +67,7 @@ format:
 .poll-count{flex:0 0 2.2em;font-size:.74em;color:var(--blue);font-weight:700}
 
 /* ============ click-panel (cases, tools, stages) ============ */
+.pick-group{font-size:.55em;font-weight:700;color:var(--blue);text-align:left;margin:.2em 0 .15em;text-transform:uppercase;letter-spacing:.04em}
 .picker{display:flex;gap:.35em;flex-wrap:wrap;margin-bottom:.5em}
 .pick-btn{flex:1 1 0;min-width:0;padding:.5em .35em;border:2px solid var(--blue);border-radius:6px;
   background:#fff;cursor:pointer;font-size:.6em;line-height:1.2;color:var(--navy);
@@ -127,6 +128,10 @@ format:
 .flag-mid{color:#8A5A00;font-weight:700}
 
 /* ============ cards and diagrams ============ */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6em;margin:.4em 0 .5em}
+.stat-card{border-left:5px solid var(--blue);background:#F8F4F8;padding:.5em .8em;text-align:left;font-size:.72em;line-height:1.4;border-radius:4px}
+.stat-wide{grid-column:1/-1;text-align:center;font-weight:700;color:var(--navy);font-size:.72em;margin-top:.2em}
+.stat-card .stat-num{display:block;color:var(--navy);font-size:2.2em;font-weight:900;line-height:1.1}
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5em;margin:.3em 0 .5em}
 .why-card{border-left:5px solid var(--blue);background:#F8F4F8;padding:.5em .75em;text-align:left;font-size:.72em;line-height:1.4;border-radius:4px}
 .why-card strong{display:block;color:var(--navy);font-size:1.1em;margin-bottom:.15em}
@@ -332,15 +337,16 @@ PICK.tool={
     '<tr><td class="k">Policy / settings</td><td><a href="https://openai.com/enterprise-privacy/">Enterprise privacy</a> &middot; Settings &rarr; Data Controls</td></tr>'+
     '</table>',
   t_cla:'<table>'+
-    '<tr><td class="k">Cleared for</td><td class="flag-bad">Public information only, and only under the Addendum&rsquo;s four conditions.</td></tr>'+
-    '<tr><td class="k">Trains on your chats?</td><td class="flag-bad">Yes, unless you turn it off. Consumer training became opt-out in September 2025.</td></tr>'+
-    '<tr><td class="k">Retention</td><td>Up to 5 years with training on; 30 days with it off. Safety-flagged content is handled separately.</td></tr>'+
-    '<tr><td class="k">Policy / settings</td><td><a href="https://www.anthropic.com/legal/privacy">Privacy policy</a> &middot; <a href="https://claude.ai/settings/data-privacy-controls">Turn training off</a></td></tr>'+
+    '<tr><td class="k">Cleared for</td><td class="flag-bad">Public information only, and only under the Addendum&rsquo;s four conditions. Same for Claude Code on a personal account.</td></tr>'+
+    '<tr><td class="k">Trains on your chats?</td><td class="flag-bad">Claude.ai: yes, unless you turn it off. Consumer training became opt-out in September 2025. Claude Code sessions: not by default.</td></tr>'+
+    '<tr><td class="k">Retention</td><td>Claude.ai: up to 5 years with training on; 30 days with it off. Safety-flagged content is handled separately.</td></tr>'+
+    '<tr><td class="k">Policy / settings</td><td><a href="https://www.anthropic.com/legal/privacy">Privacy policy</a> &middot; <a href="https://claude.ai/settings/data-privacy-controls">Turn training off</a> &middot; <a href="https://code.claude.com/docs/en/data-usage">Claude Code data usage</a></td></tr>'+
     '</table>',
-  t_ccode:'<table>'+
-    '<tr><td class="k">Cleared for</td><td class="flag-bad">Public information only, and only under the Addendum&rsquo;s four conditions &mdash; same clearance as Claude and Gemini, personal accounts.</td></tr>'+
-    '<tr><td class="k">Trains on your code?</td><td>Not on Claude Code sessions by default, unlike Claude.ai chats.</td></tr>'+
-    '<tr><td class="k">Policy</td><td><a href="https://code.claude.com/docs/en/data-usage">Claude Code data usage</a></td></tr>'+
+  t_ccwb:'<table>'+
+    '<tr><td class="k">Status</td><td>Approved for WBG staff &middot; license provided through IT.</td></tr>'+
+    '<tr><td class="k">Cleared for</td><td class="flag-ok">WBG Confidential data.</td></tr>'+
+    '<tr><td class="k">Cost</td><td>Pay as you use, charged by unit, with a monthly token limit.</td></tr>'+
+    '<tr><td class="k">Still applies</td><td>Tool approval is not data authorization.</td></tr>'+
     '</table>',
   t_gem:'<table>'+
     '<tr><td class="k">Cleared for</td><td class="flag-bad">Public information only, and only under the Addendum&rsquo;s four conditions.</td></tr>'+
@@ -568,10 +574,36 @@ window.addEventListener('load',function(){
 ## You're Not the Only One
 
 ::: {.quote-big}
-Whatever you raised your hand for, you weren't the only one. That's not a coincidence; the rules for AI are new, unevenly known, and nobody's really taught them yet. This hour is that teaching.
+Whatever you raised your hand for, you weren't the only one. That's not a coincidence; the rules for AI are new, unevenly known, and nobody's really taught them yet.
 :::
 
 # 1 &middot; Why It Matters {background-color="#530153"}
+
+## What we saw in this cohort
+
+```{=html}
+<div class="stat-grid">
+  <div class="stat-card"><span class="stat-num">64%</span>have had AI-assisted work included in reports, papers, presentations, or other outputs.</div>
+  <div class="stat-card"><span class="stat-num">32.4%</span>of those (n=34) included a clear disclosure of how AI contributed.</div>
+  <div class="stat-wide">When asked about using AI to clean data:</div>
+  <div class="stat-card"><span class="stat-num">40.7%</span>said mAI or Copilot, since they are cleared for Confidential files.</div>
+  <div class="stat-card"><span class="stat-num">40.7%</span>said they would use synthetic data; the rest were not sure..</div>
+</div>
+```
+
+::: {.quote-big}
+The numbers show two things: AI is already in our outputs, and we are not sure what to do. This hour is about closing that gap.
+:::
+
+::: {.notes}
+Say: these are the numbers from this cohort's pre-survey, not from a headline. Questions 1.6 and 1.7 asked whether AI-assisted work has been included in outputs, and whether the use was disclosed. Question 3.3 was a scenario about cleaning Bank-owned baseline survey data.
+
+Ask: if a reader cannot tell what AI did, can they judge whether to trust the result?
+
+Point to the bottom cards: the two groups are the same size. Roughly four in ten picked the workflow that follows the guidance (synthetic data, scripts run locally without AI), and roughly four in ten picked mAI or Copilot on the raw data, because those tools are cleared for Confidential files. Clearance is not the whole answer; we come back to this in part 3.
+
+Time: one minute.
+:::
 
 ## The question for today
 
@@ -713,15 +745,16 @@ Time: ninety seconds. This is reference material: say the line about the label a
 ## Which tools are cleared for which label?
 
 ```{=html}
-<div><div class="picker">
+<div><div class="pick-group">WBG tools</div><div class="picker">
 <button class="pick-btn active" onclick="pickShow('tool','t_mai',this)">mAI</button>
 <button class="pick-btn" onclick="pickShow('tool','t_cop',this)">M365 Copilot</button>
-<button class="pick-btn" onclick="pickShow('tool','t_gemc',this)">Gemini<small>enterprise</small></button>
 <button class="pick-btn" onclick="pickShow('tool','t_ghc',this)">GitHub Copilot</button>
-<button class="pick-btn" onclick="pickShow('tool','t_gpt',this)">ChatGPT<small>personal</small></button>
-<button class="pick-btn" onclick="pickShow('tool','t_cla',this)">Claude<small>personal</small></button>
-<button class="pick-btn" onclick="pickShow('tool','t_ccode',this)">Claude Code<small>personal</small></button>
-<button class="pick-btn" onclick="pickShow('tool','t_gem',this)">Gemini<small>personal</small></button>
+<button class="pick-btn" onclick="pickShow('tool','t_ccwb',this)">Claude Code</button>
+<button class="pick-btn" onclick="pickShow('tool','t_gemc',this)">Gemini<small>enterprise</small></button>
+</div><div class="pick-group">Personal tools</div><div class="picker">
+<button class="pick-btn" onclick="pickShow('tool','t_gpt',this)">ChatGPT</button>
+<button class="pick-btn" onclick="pickShow('tool','t_cla',this)">Claude / Claude Code</button>
+<button class="pick-btn" onclick="pickShow('tool','t_gem',this)">Gemini</button>
 </div><div class="pick-panel tall"></div></div>
 ```
 
@@ -730,7 +763,7 @@ Not on the approved list? Only under the four conditions of the [Acceptable Use 
 :::
 
 ::: {.notes}
-**[CHECK BEFORE DELIVERY]** Re-verify in the week of delivery: (i) the Bank's current position on AI agents; (ii) the training and retention terms in each personal-plan panel (Anthropic, OpenAI and Google all changed theirs within the last year); (iii) the mAI product-owner name and the "cleared for" rows, which come from internal guidance; (iv) GitHub Copilot's current licensed plan and whether Claude Code is separately approved or falls under the same personal-account rules as Claude.ai.
+**[CHECK BEFORE DELIVERY]** Re-verify in the week of delivery: (i) the Bank's current position on AI agents; (ii) the training and retention terms in each personal-plan panel (Anthropic, OpenAI and Google all changed theirs within the last year); (iii) the mAI product-owner name and the "cleared for" rows, which come from internal guidance; (iv) GitHub Copilot's current licensed plan and the WBG Claude Code panel (clearance, IT licence process, unit charging and monthly token limit).
 
 Say: do not click all eight. Click mAI, then GitHub Copilot to contrast Official Use Only against mAI's broader clearance, then one personal tool. The row that matters is "Cleared for". The rest is reference for the handout.
 
@@ -1311,9 +1344,6 @@ The stages overlap: transcription may occur during collection or processing. App
 | OIS | Unexpected AI behaviour or unauthorised data access |
 | ai@worldbankgroup.org | AI questions, use cases, and guidance |
 
-**This presentation was developed with AI assistance and reviewed by the author for accuracy.**
-
-
 ## Parting gift: three book recommendations
 
 ```{=html}
@@ -1352,6 +1382,8 @@ The stages overlap: transcription may occur during collection or processing. App
 </div>
 ```
 
+**This presentation was developed with AI assistance (Claude Sonnet 5.5 and Claude Opus 5.5, Anthropic) and reviewed by the author for accuracy.**
+
 
 ## References
 
@@ -1382,4 +1414,3 @@ The stages overlap: transcription may occur during collection or processing. App
 <li><strong>Provider terms</strong> &mdash; <a href="https://www.anthropic.com/legal/privacy">Anthropic privacy policy</a> &middot; <a href="https://code.claude.com/docs/en/data-usage">Claude Code data usage</a> &middot; <a href="https://openai.com/enterprise-privacy/">OpenAI enterprise privacy</a> &middot; <a href="https://support.google.com/gemini/answer/13594961">Gemini Apps privacy hub</a> &middot; <a href="https://knowledge.workspace.google.com/admin/gemini/gemini-for-google-workspace-faq">Workspace Gemini FAQ</a> &middot; <a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/">GitHub Copilot data usage update</a>. All accessed September 2026.</li>
 </ul>
 ```
-
