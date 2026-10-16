@@ -28,9 +28,19 @@ Usage:
 
 Defaults to the baseline survey CSV/do-file/XLSForm in ../data, ../code,
 and ../documentation, and writes to ../outputs.
+
+The responsive report uses two equal columns with fixed-size single-select
+canvases. Full-width charts grow vertically with their wrapped option labels;
+images retain their complete canvas so cropping cannot change their scale.
+Executive and module summaries are calculated from non-missing responses;
+multi-select percentages use the number answering the parent question.
+Questions with exactly Yes/No options use a single 100% stacked horizontal bar.
+Current AI use for work (1.1) also uses this format, combining both No options.
+These compact charts use half-height canvases and do not stretch their cards.
 """
 
 import base64
+from html import escape
 import io
 import re
 import sys
@@ -492,18 +502,32 @@ def continuous_stats_table(df: pd.DataFrame, columns: list, var_labels: dict) ->
 # are still distinguishable without leaving the site's blue theme.
 QUALITATIVE_PALETTE = ["#08306b", "#2171b5", "#4292c6", "#6baed6", "#9ecae1", "#c6dbef", "#deebf7", "#f7fbff"]
 
+CHART_DPI = 160
+SINGLE_CHART_SIZE = (6, 4.2)
+COMPACT_CHART_SIZE = (SINGLE_CHART_SIZE[0], SINGLE_CHART_SIZE[1] / 2)
+WIDE_CHART_WIDTH = 12
+
+
+def encode_chart(fig) -> str:
+    """Keep the full canvas so labels cannot change the displayed image scale."""
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", dpi=CHART_DPI, facecolor="white")
+    plt.close(fig)
+    return base64.b64encode(buf.getvalue()).decode("ascii")
+
 
 def render_bar_chart(label_counts: list, title: str, n_total: int, horizontal: bool = False) -> str:
     labels = [lc[0] for lc in label_counts]
     values = [lc[1] for lc in label_counts]
     pcts = [v / n_total * 100 if n_total else 0 for v in values]
-    max_pct = max(pcts) if pcts else 1
+    max_pct = max(max(pcts, default=0), 1)
     colors = [QUALITATIVE_PALETTE[i % len(QUALITATIVE_PALETTE)] for i in range(len(labels))]
 
     if horizontal:
-        fig_h = max(2.5, 0.5 * len(labels) + 1)
-        fig, ax = plt.subplots(figsize=(7, fig_h), dpi=130)
-        wrapped_labels = [wrapped(l, 32) for l in labels]
+        wrapped_labels = [wrapped(l, 44) for l in labels]
+        fig_h = max(3.0, 0.25 * sum(l.count("\n") + 1 for l in wrapped_labels)
+                    + 0.25 * len(labels) + 0.9)
+        fig, ax = plt.subplots(figsize=(WIDE_CHART_WIDTH, fig_h), dpi=CHART_DPI)
         ax.grid(axis="x", color="#e5e5e5", linewidth=0.7, zorder=0)
         bars = ax.barh(wrapped_labels, pcts, color=colors, edgecolor="none", zorder=3)
         ax.invert_yaxis()
@@ -515,17 +539,12 @@ def render_bar_chart(label_counts: list, title: str, n_total: int, horizontal: b
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
         ax.set_axisbelow(True)
-        ax.set_title(wrapped(title, 60), fontsize=10.5, fontweight="bold")
-        fig.subplots_adjust(left=0.42, right=0.95, top=0.85 if title.count("\n") < 2 else 0.8, bottom=0.12)
+        fig.subplots_adjust(left=0.34, right=0.95, top=0.96, bottom=0.6 / fig_h)
     else:
-        # Scale height to category count so a 2-option chart doesn't render
-        # as a mostly-empty tall rectangle next to denser ones in the grid.
-        fig_h = max(2.4, min(3.8, 0.5 * len(labels) + 1.8))
-        fig, ax = plt.subplots(figsize=(6, fig_h), dpi=130)
+        fig, ax = plt.subplots(figsize=SINGLE_CHART_SIZE, dpi=CHART_DPI)
         wrapped_labels = [wrapped(l, 18) for l in labels]
         ax.grid(axis="y", color="#e5e5e5", linewidth=0.7, zorder=0)
         bars = ax.bar(wrapped_labels, pcts, color=colors, edgecolor="none", zorder=3)
-        ax.set_title(wrapped(title, 55), fontsize=10.5, fontweight="bold")
         ax.set_ylabel("% of respondents")
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
@@ -535,13 +554,18 @@ def render_bar_chart(label_counts: list, title: str, n_total: int, horizontal: b
             ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + max_pct * 0.02,
                     f"{pct:.0f}%", ha="center", va="bottom", fontsize=8)
         plt.xticks(rotation=35, ha="right", fontsize=8)
-        fig.subplots_adjust(bottom=0.32, top=0.82, left=0.14, right=0.97)
+        fig.subplots_adjust(bottom=0.40, top=0.95, left=0.14, right=0.97)
 
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png", bbox_inches="tight", pad_inches=0.15)
-    plt.close(fig)
-    buf.seek(0)
-    return base64.b64encode(buf.read()).decode("ascii")
+    return encode_chart(fig)
+
+
+def is_compact_chart(col: str, series: pd.Series, value_map: dict | None) -> bool:
+    if strip_dedup_suffix(col).lower() == "q1_1":
+        return True
+    return bool(value_map and len(value_map) == 2
+                and set(value_map.values()) == {"Yes", "No"}
+                and all(str(int(code)) in value_map if float(code).is_integer()
+                        else str(code) in value_map for code in series.dropna().unique()))
 
 
 def chart_for_single_select(df: pd.DataFrame, col: str, var_labels: dict, value_labels: dict,
@@ -571,7 +595,22 @@ def chart_for_single_select(df: pd.DataFrame, col: str, var_labels: dict, value_
     n_total = int(series.notna().sum())
 
     title = get_var_label(col, var_labels) or col
-    img = render_bar_chart(label_counts, title, n_total, horizontal=False)
+    if strip_dedup_suffix(col).lower() == "q1_1":
+        pct_yes, count_yes, n_total = pct_of(series, 1)
+        proportions = {"Yes": pct_yes / 100,
+                       "No": (n_total - count_yes) / n_total if n_total else 0}
+        img = render_stacked_bar_chart(
+            [("", proportions, n_total)], ["Yes", "No"], title, compact=True
+        )
+    elif is_compact_chart(col, series, value_map):
+        counts_by_label = dict(label_counts)
+        proportions = {label: counts_by_label.get(label, 0) / n_total if n_total else 0
+                       for label in ["Yes", "No"]}
+        img = render_stacked_bar_chart(
+            [("", proportions, n_total)], ["Yes", "No"], title, compact=True
+        )
+    else:
+        img = render_bar_chart(label_counts, title, n_total, horizontal=False)
     return img, title
 
 
@@ -606,14 +645,18 @@ def text_color_for_bg(hex_color: str) -> str:
     return "#ffffff" if luminance < 140 else "#1a1a1a"
 
 
-def render_stacked_bar_chart(rows: list, category_labels: list, title: str) -> str:
+def render_stacked_bar_chart(rows: list, category_labels: list, title: str,
+                             compact: bool = False) -> str:
     """rows: [(item_label, {category_label: proportion}, n), ...]"""
-    fig_h = max(2.5, 0.55 * len(rows) + 1.0)
-    fig, ax = plt.subplots(figsize=(8, fig_h), dpi=130)
-
-    wrapped_labels = [wrapped(f"{label} (n={n})", 26) for label, _, n in rows]
+    wrapped_labels = [wrapped(f"{label} (n={n})", 44) for label, _, n in rows]
+    fig_h = max(3.0, 0.25 * sum(l.count("\n") + 1 for l in wrapped_labels)
+                + 0.25 * len(rows) + 1.3)
+    fig, ax = plt.subplots(
+        figsize=COMPACT_CHART_SIZE if compact else (WIDE_CHART_WIDTH, fig_h), dpi=CHART_DPI
+    )
     y_pos = range(len(rows))
-    colors = USEFULNESS_COLORS[: len(category_labels)]
+    colors = (["#08306b", "#9ecae1"] if compact
+              else USEFULNESS_COLORS[: len(category_labels)])
     text_colors = [text_color_for_bg(c) for c in colors]
 
     ax.grid(axis="x", color="#e5e5e5", linewidth=0.7, zorder=0)
@@ -627,24 +670,30 @@ def render_stacked_bar_chart(rows: list, category_labels: list, title: str) -> s
                 ax.text(bar.get_x() + bar.get_width() / 2, bar.get_y() + bar.get_height() / 2,
                         f"{w:.0f}%", ha="center", va="center", fontsize=7.5, color=text_colors[i])
 
-    ax.set_yticks(list(y_pos))
-    ax.set_yticklabels(wrapped_labels, fontsize=8.5)
+    ax.set_yticks([] if compact else list(y_pos))
+    if not compact:
+        ax.set_yticklabels(wrapped_labels, fontsize=8.5)
     ax.invert_yaxis()
+    if compact:
+        ax.set_ylim(-0.8, 0.8)
     ax.set_xlim(0, 100)
-    ax.set_xlabel("% of respondents who answered (no-response omitted)")
+    ax.set_xlabel("% of respondents" if compact
+                  else "% of respondents who answered (no-response omitted)")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
+    if compact:
+        ax.spines["left"].set_visible(False)
     ax.set_axisbelow(True)
-    ax.set_title(wrapped(title, 70), fontsize=10.5, fontweight="bold")
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=len(category_labels),
+    fig.legend(*ax.get_legend_handles_labels(), loc="lower center",
+               bbox_to_anchor=(0.5, 0.01) if compact else (0.64, 0.02),
+               ncol=min(2, len(category_labels)) or 1,
                fontsize=8, frameon=False)
-    fig.subplots_adjust(left=0.3, right=0.96, top=0.9, bottom=0.14)
+    if compact:
+        fig.subplots_adjust(left=0.08, right=0.95, top=0.95, bottom=0.44)
+    else:
+        fig.subplots_adjust(left=0.34, right=0.95, top=0.96, bottom=1.0 / fig_h)
 
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png", bbox_inches="tight", pad_inches=0.2)
-    plt.close(fig)
-    buf.seek(0)
-    return base64.b64encode(buf.read()).decode("ascii")
+    return encode_chart(fig)
 
 
 def chart_for_usefulness_group(df: pd.DataFrame, base: str, items: list, var_labels: dict, value_labels: dict,
@@ -705,12 +754,22 @@ def module_heading(module_key: str) -> str:
 
 def pct_of(series: pd.Series, value) -> tuple:
     """Return (pct, count, n_non_missing) of series == value, among non-missing."""
+    return pct_in(series, [value])
+
+
+def pct_in(series: pd.Series, values: list) -> tuple:
+    """Return (pct, count, n_non_missing) selecting any of the given values."""
     s = series.dropna()
     n = len(s)
     if n == 0:
         return 0.0, 0, 0
-    count = int((s == value).sum())
+    count = int(s.isin(values).sum())
     return count / n * 100, count, n
+
+
+def multiselect_pct(df: pd.DataFrame, parent: str, children: list, code: str) -> float:
+    child = dict((option, col) for col, option in children)[code]
+    return pct_of(df.loc[df[parent].notna(), child], 1)[0]
 
 
 def top_multiselect_items(df: pd.DataFrame, parent_col: str, children: list, var_labels: dict,
@@ -728,83 +787,133 @@ def top_multiselect_items(df: pd.DataFrame, parent_col: str, children: list, var
 
 def compute_key_messages(df: pd.DataFrame, var_labels: dict, multiselect_groups: dict,
                           question_to_list: dict, list_to_choices: dict) -> dict:
-    """Return {module_key: [bullet strings]}, computed live from the data."""
+    """Return executive and module bullet strings, computed live from the data."""
     messages = {}
 
+    def selected(parent, code):
+        return multiselect_pct(df, parent, multiselect_groups[parent], code)
+
     # --- Module 1: current use of generative AI ---
-    pct_use, _, n_use = pct_of(df["q1_1"], 1)
-    top_tasks, n_tasks = top_multiselect_items(df, "q1_5", multiselect_groups["q1_5"], var_labels,
+    pct_use, _, _ = pct_of(df["q1_1"], 1)
+    pct_hour, _, n_time = pct_in(df["q1_4"], [3, 4])
+    pct_coding = selected("q1_3", "5")
+    n_tools = int(df["q1_3"].notna().sum())
+    top_tasks, _ = top_multiselect_items(df, "q1_5", multiselect_groups["q1_5"], var_labels,
                                                 question_to_list, list_to_choices, n=3)
-    pct_included, _, n_included = pct_of(df["q1_6"], 1)
+    pct_included, _, _ = pct_of(df["q1_6"], 1)
     pct_clear, _, n_disclose = pct_of(df["q1_7"], 1)
+    pct_mention, _, _ = pct_of(df["q1_7"], 2)
+    pct_unsure_disclose, _, _ = pct_of(df["q1_7"], 3)
     messages["1"] = [
-        f"{pct_use:.0f}% of respondents ({n_use} answered) currently use generative AI for their job.",
-        "Most-used tasks: " + ", ".join(f"{label} ({pct:.0f}%)" for pct, label in top_tasks) + ".",
-        f"{pct_included:.0f}% have had AI-assisted work included in a report, paper, or other output.",
-        f"Of those, only {pct_clear:.0f}% gave a clear disclosure statement — most either omitted "
-        f"details or wanted to disclose but weren't sure how.",
+        f"AI use is already widespread and intensive: {pct_use:.0f}% use it for work; among the "
+        f"{n_time} answering the time-use question, {pct_hour:.0f}% report at least one hour per day.",
+        f"Chat and office tools dominate, while coding agents remain less common: among the "
+        f"{n_tools} tool-question respondents, {selected('q1_3', '1'):.0f}% have used mAI, "
+        f"{selected('q1_3', '3'):.0f}% MS Copilot, and {selected('q1_3', '2'):.0f}% third-party "
+        f"chat tools, compared with {pct_coding:.0f}% who have used a coding agent.",
+        "Writing and knowledge work lead recent use: "
+        + ", ".join(f"{label} ({pct:.0f}%)" for pct, label in top_tasks)
+        + f" are the most common tasks; {selected('q1_5', '7'):.0f}% also use AI for data analysis "
+        "and visualization.",
+        f"AI-assisted work reaches outputs, but detailed disclosure is uncommon: {pct_included:.0f}% "
+        f"have had such work included in an output. Among those {n_disclose} answering the disclosure "
+        f"question, {pct_clear:.0f}% gave detailed disclosure, {pct_mention:.0f}% mentioned AI without "
+        f"details, and {pct_unsure_disclose:.0f}% wanted to disclose but were unsure how.",
     ]
 
     # --- Module 2: AI workflows, impact & verification ---
     pct_memory_unknown, _, _ = pct_of(df["q2_1"], 3)
     pct_skills_unknown, _, _ = pct_of(df["q2_2"], 3)
-    top_impact, _ = top_multiselect_items(df, "q2_3", multiselect_groups["q2_3"], var_labels,
-                                           question_to_list, list_to_choices, n=1)
-    top_verify, _ = top_multiselect_items(df, "q2_5", multiselect_groups["q2_5"], var_labels,
-                                           question_to_list, list_to_choices, n=1)
+    pct_memory, _, _ = pct_of(df["q2_1"], 1)
+    pct_skills, _, _ = pct_of(df["q2_2"], 1)
+    pct_quality = selected("q2_3", "5")
+    pct_quantity = selected("q2_3", "4")
     pct_repro_same, _, _ = pct_of(df["q2_4"], 2)
     pct_repro_more, _, _ = pct_of(df["q2_4"], 1)
+    pct_repro_unsure, _, _ = pct_of(df["q2_4"], 4)
     messages["2"] = [
-        f"Half of respondents ({pct_memory_unknown:.0f}%) don't know what an AI memory file is, and a "
-        f"similar share ({pct_skills_unknown:.0f}%) don't know what a reusable AI skill is.",
-        f"{top_impact[0][1]} ({top_impact[0][0]:.0f}%) is the most widely reported effect of AI on "
-        f"analytical work.",
-        f"Nearly half ({pct_repro_same:.0f}%) see no change in reproducibility from using AI, and only "
-        f"{pct_repro_more:.0f}% report it's improved.",
-        f"{top_verify[0][1]} ({top_verify[0][0]:.0f}%) is the most common way respondents verify "
-        f"AI-generated output.",
+        f"Memory files and reusable skills are not yet mainstream: {pct_memory:.0f}% have created a "
+        f"memory file and {pct_skills:.0f}% have used someone else's reusable skill; "
+        f"{pct_memory_unknown:.0f}% and {pct_skills_unknown:.0f}%, respectively, do not know what these are.",
+        f"Respondents report both quality and productivity benefits: {pct_quality:.0f}% say AI helps "
+        f"them produce higher-quality outputs, {pct_quantity:.0f}% more output, and "
+        f"{selected('q2_3', '6'):.0f}% more in-depth work. These are self-reported benefits, not measured impacts.",
+        f"Reproducibility gains are less evident: only {pct_repro_more:.0f}% report improvement, "
+        f"while {pct_repro_same:.0f}% report no change and {pct_repro_unsure:.0f}% are unsure.",
+        f"Verification relies primarily on manual review: {selected('q2_5', '1'):.0f}% manually "
+        f"review all outputs, compared with {selected('q2_5', '5'):.0f}% using benchmarks and "
+        f"{selected('q2_5', '4'):.0f}% using automated tests or QA checks.",
     ]
 
     # --- Module 3: GitHub, Copilot & safe AI use ---
     pct_no_github, _, _ = pct_of(df["q3_1"], 4)
-    pct_active_copilot, cnt_active, n_copilot = pct_of(df["q3_2"], 1)
-    pct_exploring_copilot, cnt_exploring, _ = pct_of(df["q3_2"], 2)
-    pct_combined_copilot = (cnt_active + cnt_exploring) / n_copilot * 100 if n_copilot else 0.0
+    pct_github, _, _ = pct_of(df["q3_1"], 1)
+    pct_active_copilot, _, _ = pct_of(df["q3_2"], 1)
+    pct_exploring_copilot, _, _ = pct_of(df["q3_2"], 2)
+    pct_unused_copilot, _, _ = pct_in(df["q3_2"], [4, 5])
     pct_safeuse_2, _, _ = pct_of(df["q3_3"], 2)
     pct_safeuse_3, _, _ = pct_of(df["q3_3"], 3)
     pct_safeuse_unsure, _, _ = pct_of(df["q3_3"], 5)
     messages["3"] = [
-        f"{pct_no_github:.0f}% of respondents are not familiar with GitHub at all.",
-        f"Only {pct_combined_copilot:.0f}% have a WBG GitHub Copilot license (active or exploring); "
-        f"most have either never used it or never heard of it.",
-        f"On the safe-use knowledge check, responses split almost evenly between two approaches "
-        f"({pct_safeuse_2:.0f}% and {pct_safeuse_3:.0f}%), with {pct_safeuse_unsure:.0f}% unsure — "
-        f"no one chose the two most restrictive options.",
+        f"GitHub-based workflows are not yet widely adopted: {pct_github:.0f}% currently use GitHub "
+        f"for version control, while {pct_no_github:.0f}% are unfamiliar with it.",
+        f"Active WBG Copilot use is limited: {pct_active_copilot:.0f}% are active users and another "
+        f"{pct_exploring_copilot:.0f}% have a license and are exploring; {pct_unused_copilot:.0f}% "
+        "have heard of it but never used it, or do not know what it is.",
+        f"Safe-use responses are split: {pct_safeuse_2:.0f}% selected working with raw data in "
+        f"mAI/M365 Copilot, {pct_safeuse_3:.0f}% selected synthetic-data-assisted script development "
+        f"with local execution, and {pct_safeuse_unsure:.0f}% were unsure.",
     ]
 
     # --- Module 4: background & expectations ---
-    pct_5_9, _, _ = pct_of(df["q4_2"], 3)
-    pct_10_19, _, _ = pct_of(df["q4_2"], 4)
-    top_expect, _ = top_multiselect_items(df, "q4_3", multiselect_groups["q4_3"], var_labels,
-                                           question_to_list, list_to_choices, n=3)
+    pct_experienced, _, _ = pct_in(df["q4_2"], [3, 4])
     pct_no_course, _, _ = pct_of(df["q4_4"], 2)
-    pct_poor, cnt_poor, n_knowledge = pct_of(df["q4_5"], 1)
-    pct_very_poor, cnt_very_poor, _ = pct_of(df["q4_5"], 2)
-    pct_low_knowledge = (cnt_poor + cnt_very_poor) / n_knowledge * 100 if n_knowledge else 0.0
+    pct_low_knowledge, _, _ = pct_in(df["q4_5"], [1, 2])
+    pct_average, _, _ = pct_of(df["q4_5"], 3)
+    pct_high_knowledge, _, _ = pct_in(df["q4_5"], [4, 5])
+    pct_tools = selected("q4_3", "6")
+    pct_productivity = selected("q4_3", "2")
     messages["4"] = [
-        f"Tenure is concentrated in the middle: {pct_5_9:.0f}% have 5–9 years at the WBG and another "
-        f"{pct_10_19:.0f}% have 10–19 years.",
-        "Top expectations for the Bootcamp: " + ", ".join(f"{label} ({pct:.0f}%)" for pct, label in top_expect) + ".",
-        f"{pct_no_course:.0f}% have not taken an AI-for-research course before.",
-        f"{pct_low_knowledge:.0f}% rate their current AI-for-research knowledge as poor or very poor.",
+        f"Participants bring substantial WBG experience: {pct_experienced:.0f}% have worked at the "
+        "WBG for 5–19 years.",
+        f"Expectations are strongly practical: {pct_tools:.0f}% want tools they can apply to their "
+        f"jobs and {pct_productivity:.0f}% greater productivity; improving work quality "
+        f"({selected('q4_3', '1'):.0f}%) and technical skills ({selected('q4_3', '9'):.0f}%) are also priorities.",
+        f"Extensive AI use coexists with limited formal preparation and self-rated expertise: "
+        f"{pct_no_course:.0f}% have not taken an AI-for-research course; {pct_low_knowledge:.0f}% "
+        f"rate their knowledge poor/very poor, {pct_average:.0f}% average, and only "
+        f"{pct_high_knowledge:.0f}% good/excellent.",
     ]
 
+    messages["executive"] = [
+        f"AI is already part of everyday work: {pct_use:.0f}% use it for their job and "
+        f"{pct_hour:.0f}% of time-use respondents report at least one hour per day.",
+        f"Widespread use has not yet translated into broad adoption of advanced workflows: "
+        f"only {pct_coding:.0f}% have tried a coding agent, "
+        f"{pct_memory:.0f}% have created a memory file, and {pct_skills:.0f}% have used someone "
+        "else's reusable skill.",
+        f"AI is already helping respondents produce more and better work: {pct_quantity:.0f}% report "
+        f"producing more output, {pct_quality:.0f}% higher-quality outputs, and "
+        f"{selected('q2_3', '1'):.0f}% spending less time on analysis. These are self-reported "
+        "benefits, not measured productivity gains.",
+    ]
     return messages
 
 
 def build_html(df, single_charts, multiselect_groups, usefulness_groups, var_labels, value_labels,
                source_name, question_to_list=None, list_to_choices=None, key_messages=None) -> str:
     key_messages = key_messages or {}
+    executive_bullets = key_messages.get("executive", [])
+    executive_html = (
+        '<section class="executive-summary" aria-labelledby="executive-summary">'
+        '<h2 id="executive-summary">Executive summary</h2><ul>'
+        + "".join(f"<li>{escape(b)}</li>" for b in executive_bullets)
+        + '</ul><p class="summary-note">These are self-reported baseline findings from bootcamp '
+        'survey respondents, not measured impacts or a representative sample of WBG staff. '
+        'Percentages use non-missing answers to each question; multi-select percentages need '
+        'not sum to 100%. Tool use is ever-use for work; task use covers the last four weeks.</p></section>'
+        if executive_bullets else ""
+    )
 
     # Build (section, title_sort_key, html_snippet) for every chart so we can
     # group them under question-section headers in question order.
@@ -814,8 +923,11 @@ def build_html(df, single_charts, multiselect_groups, usefulness_groups, var_lab
         img_b64, title = chart_for_single_select(df, col, var_labels, value_labels, question_to_list, list_to_choices)
         n = int(df[col].notna().sum())
         missing = int(df[col].isna().sum())
+        value_map = get_display_choice_map(col, value_labels, question_to_list, list_to_choices)
+        card_class = "chart-card chart-card-compact" if is_compact_chart(col, df[col], value_map) else "chart-card"
         html = f"""
-        <div class="chart-card">
+        <div class="{card_class}">
+          <h3>{escape(title)}</h3>
           <img src="data:image/png;base64,{img_b64}" alt="Bar chart of {col}">
           <div class="chart-meta">{col} &middot; N = {n}, Missing = {missing}</div>
         </div>
@@ -826,6 +938,7 @@ def build_html(df, single_charts, multiselect_groups, usefulness_groups, var_lab
         img_b64, title, n = chart_for_multiselect(df, parent_col, children, var_labels, question_to_list, list_to_choices)
         html = f"""
         <div class="chart-card chart-card-wide">
+          <h3>{escape(title)}</h3>
           <img src="data:image/png;base64,{img_b64}" alt="Bar chart of {parent_col}">
           <div class="chart-meta">{parent_col} &middot; Select all that apply &middot; N = {n}</div>
         </div>
@@ -836,6 +949,7 @@ def build_html(df, single_charts, multiselect_groups, usefulness_groups, var_lab
         img_b64, title = chart_for_usefulness_group(df, base, items, var_labels, value_labels, question_to_list, list_to_choices)
         html = f"""
         <div class="chart-card chart-card-wide">
+          <h3>{escape(title)}</h3>
           <img src="data:image/png;base64,{img_b64}" alt="Stacked bar chart of {base} usefulness">
           <div class="chart-meta">{base}_use_* &middot; Usefulness rating per item, no-response omitted</div>
         </div>
@@ -860,7 +974,7 @@ def build_html(df, single_charts, multiselect_groups, usefulness_groups, var_lab
                 )
             bullets = key_messages.get(section)
             bullets_html = (
-                '<ul class="key-messages">' + "".join(f"<li>{b}</li>" for b in bullets) + "</ul>"
+                '<ul class="key-messages">' + "".join(f"<li>{escape(b)}</li>" for b in bullets) + "</ul>"
                 if bullets else ""
             )
             sections_html.append(f'<h2 id="module-{section}">{module_heading(section)}</h2>{bullets_html}')
@@ -874,17 +988,20 @@ def build_html(df, single_charts, multiselect_groups, usefulness_groups, var_lab
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Descriptive Statistics Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Adoption at the World Bank Group</title>
 <style>
   body {{
     font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 2rem 3rem 4rem;
+    max-width: 1200px;
+    margin-inline: auto;
     background: #fafafa;
     color: #1a1a1a;
   }}
   h1 {{ font-size: 1.6rem; margin-bottom: 0.1rem; }}
-  .subtitle {{ color: #666; margin-bottom: 1.25rem; font-size: 0.9rem; }}
+  .report-subtitle {{ color: #666; font-size: 1rem; margin: 0.4rem 0 1.5rem; }}
   nav.module-nav {{
     position: sticky;
     top: 0;
@@ -917,7 +1034,7 @@ def build_html(df, single_charts, multiselect_groups, usefulness_groups, var_lab
   }}
   .grid {{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
     margin-top: 0.75rem;
     align-items: stretch;
@@ -931,11 +1048,31 @@ def build_html(df, single_charts, multiselect_groups, usefulness_groups, var_lab
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    min-width: 0;
   }}
   .chart-card-wide {{ grid-column: 1 / -1; }}
-  .chart-card img {{ max-width: 100%; height: auto; }}
-  .chart-meta {{ font-size: 0.78rem; color: #777; margin-top: 0.3rem; }}
+  .chart-card-compact {{ align-self: start; }}
+  .chart-card h3 {{
+    font-size: 1rem;
+    line-height: 1.45;
+    text-align: left;
+    margin: 0.25rem 0.5rem 0.75rem;
+  }}
+  .chart-card img {{ display: block; width: 100%; height: auto; margin-top: auto; }}
+  .chart-meta {{
+    font-size: 0.78rem;
+    color: #777;
+    margin-top: 0.5rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid #eef0f3;
+  }}
+  @media (max-width: 760px) {{
+    body {{ padding: 1rem 1rem 2rem; }}
+    .grid {{ grid-template-columns: minmax(0, 1fr); gap: 1rem; }}
+    nav.module-nav {{ position: static; }}
+    .chart-card-wide {{ overflow-x: auto; }}
+    .chart-card-wide img {{ min-width: 680px; }}
+  }}
   .key-messages {{
     background: #eef3fa;
     border-left: 4px solid #4C72B0;
@@ -946,11 +1083,25 @@ def build_html(df, single_charts, multiselect_groups, usefulness_groups, var_lab
     line-height: 1.5;
   }}
   .key-messages li {{ margin-bottom: 0.3rem; }}
+  .executive-summary {{
+    background: #fff;
+    border: 1px solid #c9d8ec;
+    border-top: 4px solid #4C72B0;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }}
+  .executive-summary h2 {{ margin: 0; border: 0; }}
+  .executive-summary ul {{ padding-left: 1.25rem; }}
+  .executive-summary li {{ margin-bottom: 0.6rem; }}
+  .summary-note {{ font-size: 0.82rem; color: #666; margin-bottom: 0; }}
 </style>
 </head>
 <body>
-  <h1>AI Bootcamp Baseline Survey: Descriptive Statistics</h1>
-  <div class="subtitle">{len(df)} respondents &middot; {source_name} &middot; labels from import_ai_bootcamp_pre_survey.do and the XLSForm choices list</div>
+  <h1>AI Adoption at the World Bank Group</h1>
+  <p class="report-subtitle">Evidence from the AI-Enabled Research Bootcamp Baseline Survey</p>
+  {executive_html}
   <nav class="module-nav">{nav_html}</nav>
 
   {''.join(sections_html) if cards else "<p>No categorical variables were detected.</p>"}
