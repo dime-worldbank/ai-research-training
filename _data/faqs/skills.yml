@@ -26,7 +26,7 @@
 - id: skills-on-mai
   title: "Can I upload any skill to mAI and use it there?"
   answer: |
-    It depends on the skill. Even if you can upload it, it may not work as intended.
+    It depends on the skill. Even if you can upload it, it may not work as intended -- see explanation for why below.
 
     **How to upload a skill**: In mAI, go to the skills section, click _Create skill_, then select `Import from Markdown` and upload the skill definition file, `Skill.md`. You can do this even if the skill includes additional resources, but consider the limitations below.
 
