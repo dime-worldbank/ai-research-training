@@ -15,13 +15,14 @@ format:
     height: 700
 ---
 
+## Outline and objective
+
 ```{=html}
 <style>
 .why-card{border-left:5px solid var(--blue);background:#F5F8FA;padding:.5em .75em;text-align:left;font-size:.72em;line-height:1.4;border-radius:4px; margin-bottom:.5em}
 .why-card strong{display:block;color:var(--navy);font-size:1.1em;margin-bottom:.15em}
 </style>
 ```
-## Outline and objective
 
 * Understand how the many AI interfaces differ from one another
 * Understand what those differences mean in practice and when to use each tool
@@ -43,16 +44,16 @@ format:
 
 ## They built not one interface, but hundreds
 
-{{< ctx-diagram interfaces="ChatGPT; mAI; Claude; GitHub Copilot; DHLs|Customer Support;Etc..." models="LLM" >}}
+{{< ctx-diagram interfaces="ChatGPT; mAI; Claude; GitHub Copilot; Air France's|Customer Support;Etc..." models="LLM" >}}
 
 ## Why are there so many AI interfaces?
 
 * Different use cases and tasks have different requirements and the different AI interfaces are built to optimize for a specific need.
-* Different interfaces helps you different information to your context window depending on use case
+* Different interfaces add different information to your context window depending on the use case
 
 ::: {.list-table}
 
-- - AI-Interface
+- - AI interface
   - Purpose
 
 - - ChatGPT
@@ -65,22 +66,22 @@ format:
   - AI assistant for coding tasks - can add relevant context from your code files to your prompt, and have access to coding best practices
 
 - - Claude Agent
-  - AI assistant for various tasks, among them code assistance - can find files across your file system to add to your prompts
+  - AI assistant for various tasks, including code assistance - can find files across your file system to add to your prompts
 
-- - DHLs Customer Support
-  - Conversational AI for very DHL specific tasks - can add information about your package to your prompt (chat message)
+- - Air France's Customer Support
+  - Conversational AI for very Air France specific tasks - can add information about Air France's policies and your reservation to your prompt (chat message)
 :::
 
 ## There are a great many models
 
-{{< ctx-diagram interfaces="ChatGPT; mAI; Claude; GitHub Copilot; DHLs|Customer Support;Etc..." models="GPT 5.5; Claude Haiku; Claude Opus; Gemini Flash; Etc..." >}}
+{{< ctx-diagram interfaces="ChatGPT; mAI; Claude; GitHub Copilot; Air France's|Customer Support;Etc..." models="GPT 5.5; Claude Haiku; Claude Opus; Gemini Flash; Etc..." >}}
 
-* The AI interfaces you see and interact with are not themselves LLMs, they help you use them.
-* AI interfaces is a software, models are advanced math ( linear algebra matrices with secret weights).
+* The AI interfaces you see and interact with are not themselves LLMs; they help you use them.
+* AI interfaces are software; models are advanced mathematics (linear algebra matrices with secret weights).
 
 ## Some interfaces use most models
 
-{{< ctx-diagram interfaces="ChatGPT; mAI;  GitHub Copilot" models="GPT 5.5; Claude Haiku; Claude Opus; Gemini Flash; Etc..." >}}
+{{< ctx-diagram interfaces="ChatGPT; mAI;  GitHub Copilot" models="GPT 5.5;Claude Opus; Gemini Flash; Etc..." >}}
 
 ## Some interfaces use only specific models
 
@@ -97,7 +98,7 @@ format:
 
 ## What matters to OIS
 
-**Central to OIS approval of grading an AI-solution for non-public data is where the model runs and who has access to the data you provide to it.**
+**Central to OIS approval of an AI solution for non-public data are where the model runs and who has access to the data you provide to it.**
 
 ```{=html}
 <div class="why-grid">
@@ -105,7 +106,7 @@ format:
   Indirectly yes, as the interface determines which model-hosting server your data is being sent to
   </div>
   <div class="why-card"><strong>Does the model matter?</strong>
-  Not really, as the model is just math. It's like asking if OLS vs. IV, or addition vs. multiplication matters for data privacy
+  Not really, as the model is just math. It's like asking whether OLS vs. IV, or addition vs. multiplication, matters for data privacy
   </div>
   <div class="why-card"><strong>Does the license matter?</strong>
   Absolutely! The private model-hosting servers are much more expensive to use. It costs the same to run private servers, but non-private servers are subsidized as the AI companies want to save and use our data
@@ -131,45 +132,45 @@ Unless you've read up extensively on the AI interface and its configurations, yo
 
 ::: {.list-table}
 
-- - AI-Interface
+- - AI interface
   - Purpose
   - Models
-  - Data Classification
+  - Classification
 
 - - ChatGPT
   - General purpose LLM chatbot
   - Only OpenAI models
-  - Public Data
+  - Public
 
 - - mAI
   - General purpose LLM chatbot with WB knowledge
-  - OpenAI, Claude, Gemini models, and other models
-  - Strictly Confidential Data
+  - Claude, Gemini, OpenAI, etc.
+  - Strictly Confidential
 
 - - GitHub Copilot
   - AI assistant for coding tasks 
-  - OpenAI, Claude, and other models
-  - Business Use Data
+  - OpenAI, Claude, etc.
+  - Business Use
 
 - - Claude Code Enterprise
   - AI assistant for various tasks, including coding 
   - Only Claude models
-  - Strictly Confidential Data
+  - Strictly Confidential
 
 - - Claude Code Personal
   - AI assistant for various tasks, including coding 
   - Only Claude models
-  - Public Data
+  - Public
 
 - - Claude Cowork Enterprise
-  - AI assistant for automating reoccurring general tasks 
+  - AI assistant for automating recurring general tasks 
   - Only Claude models
-  - Strictly Confidential Data
+  - Strictly Confidential
 
 - - Microsoft 365 Copilot
-  - AI assistant specialized in Microsoft 365 applications (Word, Excel, PowerPoint, Outlook etc.)
+  - AI assistant specialized in Microsoft 365 (Word, Excel, PowerPoint, Outlook etc.)
   - OpenAI and Claude models
-  - Strictly Confidential Data
+  - Strictly Confidential
 
 :::
 
@@ -181,9 +182,9 @@ Unless you've read up extensively on the AI interface and its configurations, yo
 
 ## Comparison Claude Enterprise vs Personal License
 
-The same interface, Claude, with different license will behave and look very similarly, but where the model runs differs, that makes a significant difference in terms of data privacy and security.
+The same interface, Claude, with different licenses will behave and look very similarly, but where the model runs differs. That makes a significant difference in terms of data privacy and security.
 
-A cheaper personal license might have fewer features and access to to only smaller models.
+A cheaper personal license might have fewer features and access to only smaller models.
 
 
 ::: {.columns}
@@ -244,13 +245,13 @@ A cheaper personal license might have fewer features and access to to only small
 
 ::: {.column width="70%"}
 
-### First: 
+#### First: 
 
 * Expand the left sidebar and look at the very bottom of it.
 * Make sure you are signed in with your WB account - you should see the WB logo and your WB email address.
 * Here you can also find Settings, including the important usage page: [https://claude.ai/new#settings/usage](https://claude.ai/new#settings/usage)
 
-### When to use Claude Web:
+#### When to use Claude Web:
 
 * This is your web interface for interacting with Claude. 
 * Use it for AI-assisted tasks that do not require access to your files
@@ -270,8 +271,8 @@ A cheaper personal license might have fewer features and access to to only small
 ::: {.columns}
 ::: {.column width="60%"}
 
-* Download Claude Desktop from the Company Portal. Search for `Company Portal` in your Windows start menu.
-* Search for `Claude`/`Claude Desktop` within the Company Portal. - You will only be able to find it after you have been assigned a WB Enterprise license by ITS.
+* Download Claude Desktop from the Company Portal. Search for `Company Portal` in your Windows Start menu.
+* Search for `Claude`/`Claude Desktop` within the Company Portal. You will only be able to find it after you have been assigned a WB Enterprise license by ITS.
 * While downloading it, make sure you are signed in to Claude Web with your WB account. See the steps on the previous slides.
 * After installation, launch Claude Desktop and sign in with your WB account. Again, wait for "Sign in with SSO" to appear and complete the login process.
 
@@ -290,12 +291,12 @@ A cheaper personal license might have fewer features and access to to only small
 
 ::: {.column width="70%"}
 
-### First: 
+#### First: 
 
-* Claude Desktop has a very similar interface to Claude Web, but it runs on your computer and has access to your local files.
+* Claude Desktop has a very similar interface to Claude Web, but it runs on your computer and can access your local files.
 * Before doing anything, verify that you are logged in to Claude Desktop with your WB account. You should see the WB logo and your WB email address at the bottom of the left sidebar.
 
-### When to use Claude Desktop:
+#### When to use Claude Desktop:
 
 * Use Claude Desktop for AI-assisted tasks that require access to your local files.
 * Similar to when you use mAI, but Claude Desktop can interact with files on your computer.
@@ -332,15 +333,15 @@ A cheaper personal license might have fewer features and access to to only small
 ::: {.columns}
 ::: {.column width="60%"}
 
-### First: 
+#### First: 
 
 * Once completed, enter `/status` in the Claude chat window to verify that you are successfully authorized and connected to your WB Claude Enterprise account.
 
-### When to use Claude Code in VS Code:
+#### When to use Claude Code in VS Code:
 
 * Use Claude in VS Code for AI-assisted coding tasks and interactions with your local code files.
-* Claude code is very "context hungry" and will add a lot of your code base to the context window - Do not use `Auto` mode as it gives perimission for token expensive tasks, and it can give itself access well outside the VS Code workspace (which is a big issue if using a personal license).
-* Claude Code assumes you are a code developer - if it use technical jargon, tell it to repeat in simpler terms.
+* Claude Code is very "context hungry" and will add a lot of your codebase to the context window. Do not use `Auto` mode, as it gives permission for token-expensive tasks, and it can give itself access well outside the VS Code workspace (which is a big issue if using a personal license).
+* Claude Code assumes you are a developer. If it uses technical jargon, tell it to repeat the explanation in simpler terms.
 
 :::
 ::: {.column width="40%"}
@@ -360,16 +361,16 @@ A cheaper personal license might have fewer features and access to to only small
 
 * Learning to use these tools in a token-efficient way is important. There is a separate session on that topic.
 
-* Switching between personal and enterprise licenses can be done, but would be cumbersome and might lead to false security.
+* Switching between personal and enterprise licenses is possible, but it would be cumbersome and might create a false sense of security.
   * You are likely to lose track of which account is currently active, as the AI interfaces look the same.
   * It is very hard, if not impossible, to manually control whether Claude shares certain data with Anthropic when using a personal license.
 
 ## Claude Enterprise vs GitHub Copilot
 
 * Instead of switching between Claude Enterprise and personal licenses, you might consider using GitHub Copilot for tasks that primarily require coding assistance.
-* Since both GitHub Copilot and VS Code are developed by entities owned by Microsoft, GitHub Copilot is deeper integrated with VS Code features and capabilities:
-  * GitHub Copilot has a more limited view of the VS Code workspace (i.e., the files you have open in tabs or the project view). By managing what you have open, you can limit GitHub Copilot's access and set up an environment with no confidential data - this is not water tight, as you might have a script available to GitHub Copilot that when it runs access confidential data.
-  * GitHub Copilot has more interfaces that just a chat.Use GitHub Copilot's inline suggestions and next-edit suggestions for simpler tasks. Do not use an extensive context window in Claude for such tasks.
+* Since both GitHub Copilot and VS Code are developed by entities owned by Microsoft, GitHub Copilot is more deeply integrated with VS Code features and capabilities:
+  * VS Code workspace (i.e., the files you have open in tabs or the project view) is used to restrict GitHub Copilot's access. By managing what you have open, you can set up an environment with no confidential data. This is not watertight, as you might have a script available to GitHub Copilot that accesses confidential data when it runs.
+  * GitHub Copilot offers more than just chat. Use GitHub Copilot's inline suggestions and next-edit suggestions for simpler tasks. Do not use an extensive context window in Claude for such tasks.
 * Save Claude Code credits for tasks that require the advanced capabilities of the Claude suite or for tasks where you need to share confidential data for the AI to solve the task.
 
 
@@ -380,8 +381,8 @@ A cheaper personal license might have fewer features and access to to only small
 * However, if you do not feel like a power user of Claude yet, and still run out of credits, also ask yourself if there is a more efficient way to use your existing credits before requesting hundreds of dollars more in credit.
 
 * To request more Claude credits:
-  * Have a conversation with your manager as the unit's BB will be charged.
-  * Agree on a new spending limit - only actual usage will be charged to the BB.
+  * Have a conversation with your manager, as the unit's BB will be charged.
+  * Agree on a new spending limit. Only actual usage will be charged to the BB.
   * Submit this [eServices request](https://worldbankgroup.service-now.com/wbg/en/productivity-software-license-request?id=wbg_sc_catalog&sys_id=ebfd4d6693065210a2f6fd647aba10d7). 
   * The form includes the required manager approval workflow
   * Once approved, credits are available in all of your WB approved Claude products, including Claude Code.
