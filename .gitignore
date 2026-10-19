@@ -140,3 +140,5 @@ _site/
 password/
 passwords/
 .Rproj.user
+
+/.luarc.json
