@@ -63,6 +63,7 @@
 # LaTeX
 !/**/*.tex
 !/**/*.bib
+!/**/*.lua
 
 # Python
 !/**/*.py
