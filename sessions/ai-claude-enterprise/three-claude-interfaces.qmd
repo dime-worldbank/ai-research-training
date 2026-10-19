@@ -1,0 +1,3 @@
+* Claude Web: [https://claude.ai/](https://claude.ai/)
+* Claude Desktop: Download from the Company Portal
+* Claude VS Code Extension: Open the VS Code Extensions Marketplace and search for "Claude"
