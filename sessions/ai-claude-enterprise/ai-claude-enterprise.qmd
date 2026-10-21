@@ -110,12 +110,15 @@ format:
 
 {{< ctx-diagram interfaces="On your|computer;In the cloud" models="Private|Server; Non-Private|Server" model-icons="lock;spy" >}}
 
-* You can usually tell where the AI interfaces run: In the browser (mAI, ChatGPT, etc.), a dedicated application on your computer (Claude Desktop App), or as an extension in an IDE (GitHub Copilot or Claude Code)
+* You can usually tell where the AI interfaces run: In the browser (mAI, ChatGPT, etc.), application on your computer (Claude Desktop App), or IDE extension (GitHub Copilot or Claude Code)
+* It is often easy to tell the name of the model the interface uses (GPT-5.5, Claude Opus, etc.)
 * What is not as obvious to the user, **_but makes the whole data privacy difference_**, is where the models run.
 
-## What matters to OIS
+## What matters for data privacy and data ethics?
 
-**Central to OIS approval of an AI solution for non-public data are where the model runs and who has access to the data you provide to it.**
+**Central to ITS/OIS approval of an AI solution for non-public data are where the model runs and who has access to the data you provide to it.**
+
+_What matters for where the model runs?_
 
 ```{=html}
 <div class="why-grid">
@@ -201,9 +204,13 @@ Unless you've read up extensively on the AI interface and its configurations, yo
 
 ## Comparison Claude Enterprise vs Personal License
 
-The same interface, Claude, with different licenses will behave and look very similarly, but where the model runs differs. That makes a significant difference in terms of data privacy and security.
+The same interface, Claude, with different licenses will behave and look very similarly, but where the model runs differs. That makes a significant difference in terms of data privacy, security, and costs.
 
 A cheaper personal license might have fewer features and access to only smaller models.
+
+```{=html}
+<div style="height: 2em;"></div>
+```
 
 
 ::: {.columns}
@@ -230,6 +237,7 @@ A cheaper personal license might have fewer features and access to only smaller 
 * Instead, **personal licenses credits are artificially cheap** as Anthropic subsidizes the usage in return for getting access to your data
 * The more expensive personal subscription, the more you can switch off, but you can never fully opt out of all data collection unless you sign an enterprise license agreement
 * Personal license tiers such as **Max and Pro plans are not offered to enterprise users with extensive privacy agreements**, as Anthropic would lose too much money on that since they wont be benefitting from using our data
+* **$20 for a personal license will give you much more usage compared to what $20 with an enterprise license** - this is the premium we pay for privacy.
 
 # How to Use Claude Enterprise {background-color="#002A4F"}
 
@@ -378,7 +386,7 @@ A cheaper personal license might have fewer features and access to only smaller 
   * _The good:_ It is approved for strictly confidential data
   * _The bad:_ It is much more expensive than personal licenses, under which Anthropic subsidizes usage in exchange for saving and using our data
 
-* Learning to use these tools in a token-efficient way is important. There is a separate session on that topic.
+* Learning to use these tools in a token-efficient way is important and applicable regardless which AI interface you are using (GitHub Copilot, Claude, etc.). There is a separate session on that topic.
 
 * Switching between personal and enterprise licenses is possible, **but only with a deliberate routine**:
   * The interfaces look the same, so it is easy to lose track of which account is active
