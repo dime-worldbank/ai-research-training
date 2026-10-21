@@ -168,21 +168,6 @@ Unless you've read up extensively on the AI interface and its configurations, yo
   - Claude, Gemini, OpenAI, etc.
   - Strictly Confidential
 
-- - GitHub Copilot
-  - AI assistant for coding tasks 
-  - OpenAI, Claude, etc.
-  - Official Use
-
-- - Claude Code Enterprise
-  - AI assistant for various tasks, including coding 
-  - Only Claude models
-  - Strictly Confidential
-
-- - Claude Code Personal
-  - AI assistant for various tasks, including coding 
-  - Only Claude models
-  - Public
-
 - - Claude Cowork Enterprise
   - AI assistant for automating recurring general tasks 
   - Only Claude models
@@ -192,6 +177,23 @@ Unless you've read up extensively on the AI interface and its configurations, yo
   - AI assistant specialized in Microsoft 365 (Word, Excel, PowerPoint, Outlook etc.)
   - OpenAI and Claude models
   - Strictly Confidential
+
+- - _Coding Agents_
+
+- - Claude Code Enterprise
+  - AI assistant for various tasks, including coding 
+  - Only Claude models
+  - Strictly Confidential
+
+- - GitHub Copilot
+  - AI assistant for coding tasks 
+  - OpenAI, Claude, etc.
+  - Official Use
+
+- - Claude Code Personal
+  - AI assistant for various tasks, including coding 
+  - Only Claude models
+  - Public
 
 :::
 ::::
@@ -296,7 +298,7 @@ A cheaper personal license might have fewer features and access to only smaller 
 ## Claude Desktop
 
 ::: {.columns}
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 * Download Claude Desktop from the Company Portal. Search for `Company Portal` in your Windows Start menu.
 * Search for `Claude`/`Claude Desktop` within the Company Portal. You will only be able to find it after you have been assigned a WB Enterprise license by ITS.
@@ -304,7 +306,13 @@ A cheaper personal license might have fewer features and access to only smaller 
 * After installation, launch Claude Desktop and sign in with your WB account. Again, wait for "Sign in with SSO" to appear and complete the login process.
 
 :::
-::: {.column width="40%"}
+::: {.column width="20%"}
+
+![](img/claude-company-portal.png)
+
+:::
+
+::: {.column width="30%"}
 
 ![](img/claude-desktop-login.png)
 
