@@ -335,7 +335,7 @@ return {
       split(arg("interfaces", ""), ";"),
       split(arg("models", ""), ";"),
       arg("center", "Context|Window"),
-      color_arg("color", "#D5B84E"),
+      color_arg("color", "#8A741F"),
       color_arg("interface-color", "#2378A0"),
       color_arg("model-color", "#545454"),
       arg("height", "520px"),
