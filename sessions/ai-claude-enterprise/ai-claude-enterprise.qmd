@@ -424,8 +424,8 @@ Also a good use of Enterprise credits: **building a codebook and a synthetic dat
 
 ::: {.callout-note title="Note"}
 * **Not watertight:** approvals you click through without reading still get through.
-* **How to set this up:** see [Appendix 1: Personal license settings](#/appendix-1-personal-license-settings).
-* **Advanced: set up two profiles**, one for Enterprise and one for personal, each with its own login and settings. See [Appendix 2](#/appendix-2-why-set-up-two-profiles) and [Appendix 3](#/appendix-3-set-up-two-profiles-in-vs-code).
+* **How to set this up:** see [B1](#b1-personal-license-settings).
+* **Advanced: set up two profiles**, one for Enterprise and one for personal, each with its own login and settings. See [B2](#b2-why-set-up-two-profiles) and [B3](#b3-set-up-two-profiles-in-vs-code).
 :::
 
 ## How data slips through even when you're careful
@@ -692,7 +692,7 @@ The settings file belongs to your computer, not to an account. When you are sign
   * The strict personal-license settings also restrict your Enterprise work
 * With two profiles, each account gets **its own folder** with its own login and settings:
   * **Normal profile → Enterprise**, with normal settings. This is the safe default
-  * **Personal profile → personal account**, with the strict settings from [Appendix B1](#b1-strict-personal-license-settings)
+  * **Personal profile → personal account**, with the strict settings from [Appendix B1](#b1-personal-license-settings)
 * No logging in and out: which account you get depends on which profile you open
 * Officially supported: [Log in with multiple accounts](https://code.claude.com/docs/en/authentication)
 * Applies to Claude Code (terminal and VS Code). For Claude Web, use a separate browser profile for the personal account
@@ -702,7 +702,7 @@ The settings file belongs to your computer, not to an account. When you are sign
 ::: {.small-code}
 
 1. **Normal profile on Enterprise:** in the Claude panel, `/status` should show your WB email. If not, `/logout` and sign in with WB SSO
-2. **Create the personal settings folder:** `C:\Users\<you>\.claude-personal`, with a `settings.json` containing the  [Appendix B1](#b1-strict-personal-license-settings) settings
+2. **Create the personal settings folder:** `C:\Users\<you>\.claude-personal`, with a `settings.json` containing the  [Appendix B1](#b1-personal-license-settings) settings
 3. **Create a VS Code profile:** gear icon → Profiles → New Profile → name it `Claude Personal`, copied from your current profile
 4. **Point it to the personal folder:** in that profile, `Ctrl+Shift+P` → _Preferences: Open User Settings (JSON)_ and add:
 
