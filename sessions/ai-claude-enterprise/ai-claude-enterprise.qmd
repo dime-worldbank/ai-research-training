@@ -426,7 +426,7 @@ Also a good use of Enterprise credits: **building a codebook and a synthetic dat
 
 ::: {.callout-note title="Note"}
 * **Not watertight:** approvals you click through without reading still get through.
-* **How to set this up:** see [Appendix B: Personal license settings](#b1-personal-license-settings) for details.
+* **How to set this up:** see [Appendix B1](#b1-personal-license-settings) for details.
 * **Advanced: set up two profiles**, one for Enterprise and one for personal, each with its own login and settings. See [Appendix B2](#b2-why-set-up-two-profiles) and [Appendix B3](#b3-set-up-two-profiles-in-vs-code).
 :::
 
