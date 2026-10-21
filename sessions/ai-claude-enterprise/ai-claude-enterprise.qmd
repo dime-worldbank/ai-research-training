@@ -100,7 +100,7 @@ format:
 
 ## Some interfaces use most models
 
-{{< ctx-diagram interfaces="ChatGPT; mAI;  GitHub Copilot" models="GPT 5.5;Claude Opus; Gemini Flash; Etc..." >}}
+{{< ctx-diagram interfaces="mAI; GitHub Copilot" models="GPT 5.5;Claude Opus; Gemini Flash; Etc..." >}}
 
 ## Some interfaces use only specific models
 
