@@ -298,7 +298,7 @@ Microsoft owns both GitHub Copilot and VS Code, and therefore some neat integrat
   * The interfaces look the same, so it is easy to lose track of which account is active
   * Claude Code has support for settings that limits what it can access. This is not needed for enterprise licenses, but _we strongly recommend it for personal licenses_. **Important: While these settings reduce the risk, they do not remove it entirely**
 
-* The next slides give a recommended workflow for each situation and further details can be found in [Appendix B](#appendix-b-strict-personal-license-settings)
+* The next slides give a recommended workflow for each situation and further details can be found in [Appendix B](#appendix-b-workflow-details-using-enterprise-and-personal-license)
 
 ## Pick the tool by task and data
 
