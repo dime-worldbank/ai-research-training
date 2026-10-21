@@ -1326,7 +1326,7 @@ Kristoffer Bjarkefur
 <p>See <a href="#/appendix-a-how-to-use-claude-with-wb-enterprise-license">appendix A</a> for details how to access and use these interfaces using the WB enterprise license.</p>
 </section>
 <section id="comparison-claude-enterprise-vs-personal-license" class="slide level2">
-<h2>Compa]rison Claude Enterprise vs Personal License</h2>
+<h2>Comparison Claude Enterprise vs Personal License</h2>
 <p>The same Claude interfaces, with different licenses will behave and look very similarly, but where the model runs differs. That makes a significant difference in terms of data privacy, security, and costs.</p>
 <p>A cheaper personal license might have fewer features and access to only smaller models.</p>
 <div style="height: 2em;"></div>
@@ -1371,6 +1371,22 @@ Kristoffer Bjarkefur
 <li><strong>$20 for a personal license will give you much more usage compared to what $20 with an enterprise license does</strong> - this is the premium we pay for privacy.</li>
 </ul>
 </div>
+</section>
+<section id="claude-is-great-but-so-is-github-copilot" class="slide level2">
+<h2>Claude is great, but so is GitHub Copilot</h2>
+<p>GitHub Copilot’s credits are cheaper, use GitHub Copilot whenever appropriate.</p>
+<p>Microsoft owns both GitHub Copilot and VS Code, and therefore some neat integrations exists between the two.</p>
+<ul>
+<li><strong>Use inline suggestions and next-edit suggestions</strong> for simple edits. They are built into the editor and a very cheap way to do routine coding tasks.</li>
+<li><strong>Copilot sees the folder you open in VS Code</strong>, not just your open tabs. Keep confidential data <strong>outside</strong> that folder
+<ul>
+<li>Not a watertight protection as the <strong>agent mode can run commands or a project script</strong> that reach files anywhere on your computer - with all agents, read and try to understand what commands is ask for perimisson to run</li>
+</ul></li>
+<li>GitHub Copilot is optimized for coding tasks while Claude is better suited for general tasks or complex reasoning that may or may not include code.
+<ul>
+<li><strong>Move to Claude only when Copilot struggles with your task:</strong> with public work → Claude personal; with confidential data → Claude Enterprise</li>
+</ul></li>
+</ul>
 </section></section>
 <section>
 <section id="recommended-workflows" class="title-slide slide level1 center" data-background-color="#002A4F">
@@ -1389,9 +1405,9 @@ Kristoffer Bjarkefur
 <li><p>Switching between personal and enterprise licenses is possible, <strong>but only with a deliberate routine</strong>:</p>
 <ul>
 <li>The interfaces look the same, so it is easy to lose track of which account is active</li>
-<li>On a personal license, you cannot fully control what Claude reads and shares. <strong>Settings reduce the risk but do not remove it</strong></li>
+<li>Claude Code has support for settings that limits what it can access. This is not needed for enterprise licenses, but <em>we strongly recommend it for personal licenses</em>. <strong>Important: While these settings reduce the risk, they do not remove it entirely</strong></li>
 </ul></li>
-<li><p>The next slides give a recommended workflow for each situation.</p></li>
+<li><p>The next slides give a recommended workflow for each situation and further details can be found in <a href="#/appendix-b-strict-personal-license-settings">Appendix B</a></p></li>
 </ul>
 </section>
 <section id="pick-the-tool-by-task-and-data" class="slide level2">
@@ -1409,7 +1425,7 @@ Kristoffer Bjarkefur
 <td><strong>Claude Enterprise</strong></td>
 </tr>
 <tr class="even">
-<td>Writing or fixing code, with data replaced by a codebook or synthetic data</td>
+<td>Writing or fixing code. If using confidential data, replace it with a codebook or synthetic data</td>
 <td><strong>GitHub Copilot</strong> (default for coding)</td>
 </tr>
 <tr class="odd">
@@ -1456,17 +1472,6 @@ Kristoffer Bjarkefur
 <li><strong>De-identified does not mean safe for every tool.</strong> GitHub Copilot is classified as <em>Official Use</em>. Give it codebooks and synthetic data, not the de-identified data itself.</li>
 </ul>
 </section>
-<section id="make-github-copilot-last-longer" class="slide level2">
-<h2>Make GitHub Copilot last longer</h2>
-<ul>
-<li><strong>Use inline suggestions and next-edit suggestions</strong> for simple edits. They are built into the editor and are usually not limited like chat</li>
-<li><strong>Use the included base model in chat</strong> for routine questions. Save premium models for hard problems</li>
-<li><strong>Keep chats short and focused:</strong> one task per chat</li>
-<li><strong>Copilot sees the folder you open in VS Code</strong>, not just your open tabs. Keep confidential data <strong>outside</strong> that folder</li>
-<li><strong>Agent mode can run commands</strong> that reach files anywhere on your computer. Read every approval, the same as with Claude Code</li>
-<li><strong>Move to Claude only when Copilot struggles:</strong> with public work → Claude personal; with confidential data → Claude Enterprise</li>
-</ul>
-</section>
 <section id="workflow-c-when-is-a-personal-license-acceptable" class="slide level2">
 <h2>Workflow C: When is a personal license acceptable?</h2>
 <div class="columns">
@@ -1498,6 +1503,7 @@ Kristoffer Bjarkefur
 <ul>
 <li>Claude Code: <code>/status</code></li>
 <li>Claude Web or Desktop: look for the WB logo and your email at the bottom of the sidebar</li>
+<li>See <a href="#/appendix-a-how-to-use-claude-with-wb-enterprise-license">Appendix A</a> for more details</li>
 </ul></li>
 <li><strong>To switch:</strong> <code>/logout</code>, then <code>/login</code>
 <ul>
@@ -1554,8 +1560,8 @@ Kristoffer Bjarkefur
 <div class="callout-content">
 <ul>
 <li><strong>Not watertight:</strong> approvals you click through without reading still get through.</li>
-<li><strong>How to set this up:</strong> see <a href="#//appendix-1-personal-license-settings">Appendix 1: Personal license settings</a>.</li>
-<li><strong>Advanced: set up two profiles</strong>, one for Enterprise and one for personal, each with its own login and settings. See <a href="#//appendix-2-why-set-up-two-profiles">Appendix 2</a> and <a href="#//appendix-3-set-up-two-profiles-in-vs-code">Appendix 3</a>.</li>
+<li><strong>How to set this up:</strong> see <a href="#/appendix-b-workflow-details-using-enterprise-and-personal-license">Appendix B: Personal license settings</a> for details.</li>
+<li><strong>Advanced: set up two profiles</strong>, one for Enterprise and one for personal, each with its own login and settings. See <a href="#/b2-why-set-up-two-profiles">Appendix B2</a> and <a href="#/b3-set-up-two-profiles-in-vs-code">Appendix B3</a>.</li>
 </ul>
 </div>
 </div>
