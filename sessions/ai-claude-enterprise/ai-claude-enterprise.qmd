@@ -49,22 +49,24 @@ format:
 
 {{< ctx-diagram interfaces="AI Interface" models="LLM" >}}
 
-* An AI interface allows us to send a task to an LLM
-* The first interfaces did not help you write prompts - you had to be good at crafting prompts yourself to get good answers
+* An AI interface allows us to send a task to an LLM - think of the context window as your prompt, but in modern AI interfaces it is much more than that
+* The first interfaces did not help you write prompts - you had to be good at crafting prompts yourself to get good answer - this was when "prompt engineering" was the biggest buzz word
 
 ::: {.fragment}
 * Regular users had a bad intuition for what was needed to get really good results 
+:::
+::: {.fragment}
 * AI engineers had the idea: let's build an interface that helps users with this. 
 :::
 
-## They built not one interface, but hundreds
+## They built not one interface, but hundreds...
 
 {{< ctx-diagram interfaces="ChatGPT; mAI; Claude; GitHub Copilot; Air France's|Customer Support;Etc..." models="LLM" >}}
 
 ## Why are there so many AI interfaces?
 
 * Different use cases and tasks have different requirements and the different AI interfaces are built to optimize for a specific need.
-* Different interfaces add different information to your context window depending on the use case
+* Different interfaces add different information to your context window depending on the use case they are optimized for
 
 :::: {.small-table}
 ::: {.list-table}
@@ -89,12 +91,12 @@ format:
 :::
 ::::
 
-## There are a great many models
+## There are also a great many language models...
 
 {{< ctx-diagram interfaces="ChatGPT; mAI; Claude; GitHub Copilot; Air France's|Customer Support;Etc..." models="GPT 5.5; Claude Haiku; Claude Opus; Gemini Flash; Etc..." >}}
 
 * The AI interfaces you see and interact with are not themselves LLMs; they help you use them.
-* AI interfaces are software; models are advanced mathematics (linear algebra matrices with secret weights).
+* AI interfaces are software; models are advanced mathematics (linear algebra matrices with proprietary confidential weights).
 
 ## Some interfaces use most models
 
@@ -108,11 +110,15 @@ format:
 
 ## What runs where?
 
-{{< ctx-diagram interfaces="On your|computer;In the cloud" models="Private|Server; Non-Private|Server" model-icons="lock;spy" >}}
+{{< ctx-diagram interfaces="On your|computer;In the cloud" models="Private|Server; Non-Private|Server" model-icons="lock;spy" height="400px" >}}
 
 * You can usually tell where the AI interfaces run: In the browser (mAI, ChatGPT, etc.), application on your computer (Claude Desktop App), or IDE extension (GitHub Copilot or Claude Code)
 * It is often easy to tell the name of the model the interface uses (GPT-5.5, Claude Opus, etc.)
+
+::: {.fragment}
 * What is not as obvious to the user, **_but makes the whole data privacy difference_**, is where the models run.
+:::
+
 
 ## What matters for data privacy and data ethics?
 
@@ -168,6 +174,11 @@ Unless you've read up extensively on the AI interface and its configurations, yo
   - Claude, Gemini, OpenAI, etc.
   - Strictly Confidential
 
+- - mAI Factory
+  - API integration platform for various AI models
+  - Claude, Gemini, OpenAI, etc.
+  - Strictly Confidential
+
 - - Claude Cowork Enterprise
   - AI assistant for automating recurring general tasks 
   - Only Claude models
@@ -185,7 +196,7 @@ Unless you've read up extensively on the AI interface and its configurations, yo
   - Only Claude models
   - Strictly Confidential
 
-- - GitHub Copilot
+- - GitHub Copilot Enterprise
   - AI assistant for coding tasks 
   - OpenAI, Claude, etc.
   - Official Use
@@ -193,6 +204,11 @@ Unless you've read up extensively on the AI interface and its configurations, yo
 - - Claude Code Personal
   - AI assistant for various tasks, including coding 
   - Only Claude models
+  - Public
+
+- - GitHub Copilot Personal
+  - AI assistant for coding tasks 
+  - OpenAI, Claude, etc.
   - Public
 
 :::
@@ -204,9 +220,11 @@ Unless you've read up extensively on the AI interface and its configurations, yo
 
 {{< include ./three-claude-interfaces.qmd >}}
 
-## Comparison Claude Enterprise vs Personal License
+See [appendix A](#appendix-a-how-to-use-claude-with-wb-enterprise-license) for details how to access and use these interfaces using the WB enterprise license.
 
-The same interface, Claude, with different licenses will behave and look very similarly, but where the model runs differs. That makes a significant difference in terms of data privacy, security, and costs.
+## Compa]rison Claude Enterprise vs Personal License
+
+The same Claude interfaces, with different licenses will behave and look very similarly, but where the model runs differs. That makes a significant difference in terms of data privacy, security, and costs.
 
 A cheaper personal license might have fewer features and access to only smaller models.
 
@@ -234,157 +252,27 @@ A cheaper personal license might have fewer features and access to only smaller 
 
 ## Why this difference and what does it do to costs?
 
+
+::: {.fragment}
 * Running these models is expensive - **_very_ expensive**.
+:::
+::: {.fragment}
 * **It is not that enterprise credits are expensive** as they are priced for what it costs to run these models
+:::
+::: {.fragment}
 * Instead, **personal licenses credits are artificially cheap** as Anthropic subsidizes the usage in return for getting access to your data
+:::
+::: {.fragment}
 * The more expensive personal subscription, the more you can switch off, but you can never fully opt out of all data collection unless you sign an enterprise license agreement
+:::
+::: {.fragment}
 * Personal license tiers such as **Max and Pro plans are not offered to enterprise users with extensive privacy agreements**, as Anthropic would lose too much money on that since they wont be benefitting from using our data
-* **$20 for a personal license will give you much more usage compared to what $20 with an enterprise license** - this is the premium we pay for privacy.
-
-# How to Use Claude Enterprise {background-color="#002A4F"}
-
-## Three AI interfaces available with Claude Enterprise
-
-{{< include ./three-claude-interfaces.qmd >}}
-
-## Claude Web
-
-::: {.columns}
-
-::: {.column}
-
-* Once you have been assigned a WB Enterprise license, start by navigating to [Claude Web](https://claude.ai/).
-* On the sign-in page, enter your WB email and then wait until the "Sign in with SSO" option appears.
-  * If you do not see "Sign in with SSO," make sure you are using a WB email domain such as `@worldbankgroup.org` or `@worldbank.org`.
-* Select "Sign in with SSO" and complete the login process.
-
 :::
-
-::: {.column}
-
-![](img/claude-web-login.png)
-
-:::
-
-:::
-
-## Claude Web - Usage
-
-::: {.columns}
-
-::: {.column width="70%"}
-
-#### First: 
-
-* Expand the left sidebar and look at the very bottom of it.
-* Make sure you are signed in with your WB account - you should see the WB logo and your WB email address.
-* Here you can also find Settings, including the important usage page: [https://claude.ai/new#settings/usage](https://claude.ai/new#settings/usage)
-
-#### When to use Claude Web:
-
-* This is your web interface for interacting with Claude. 
-* Use it for AI-assisted tasks that do not require access to your files
-* Similar to when you use mAI, but Claude WB does not have WB knowledge
-
-:::
-::: {.column width="30%"}
-
-![](img/claude-verify-wb-access.png)
-
-:::
+::: {.fragment}
+* **$20 for a personal license will give you much more usage compared to what $20 with an enterprise license does** - this is the premium we pay for privacy.
 :::
 
 
-## Claude Desktop
-
-::: {.columns}
-::: {.column width="50%"}
-
-* Download Claude Desktop from the Company Portal. Search for `Company Portal` in your Windows Start menu.
-* Search for `Claude`/`Claude Desktop` within the Company Portal. You will only be able to find it after you have been assigned a WB Enterprise license by ITS.
-* While downloading it, make sure you are signed in to Claude Web with your WB account. See the steps on the previous slides.
-* After installation, launch Claude Desktop and sign in with your WB account. Again, wait for "Sign in with SSO" to appear and complete the login process.
-
-:::
-::: {.column width="20%"}
-
-![](img/claude-company-portal.png)
-
-:::
-
-::: {.column width="30%"}
-
-![](img/claude-desktop-login.png)
-
-:::
-:::
-
-## Claude Desktop - Usage
-
-
-::: {.columns}
-
-::: {.column width="70%"}
-
-#### First: 
-
-* Claude Desktop has a very similar interface to Claude Web, but it runs on your computer and can access your local files.
-* Before doing anything, verify that you are logged in to Claude Desktop with your WB account. You should see the WB logo and your WB email address at the bottom of the left sidebar.
-
-#### When to use Claude Desktop:
-
-* Use Claude Desktop for AI-assisted tasks that require access to your local files.
-* Similar to when you use mAI, but Claude Desktop can interact with files on your computer.
-* You also have (or will have) access to Claude Cowork where you can automate tasks and workflows involving your local files - although, Microsoft Copilot may offer a more cost-effective way to do so
-
-:::
-::: {.column width="30%"}
-
-![](img/claude-verify-wb-access.png)
-
-:::
-:::
-
-## Claude Code VS Code Extension
-
-::: {.columns}
-::: {.column width="70%"}
-
-* Open VS Code and go to the Extensions view in the sidebar, or press `Ctrl/Cmd+Shift+X`.
-* Search for "Claude" in the Extensions Marketplace. Install the Claude extension.
-* After installation, you need to authorize the extension to use your Claude Enterprise account. You will not be able to choose an account during authorization; it will use the account with which you are signed in to Claude Web, regardless of whether it is an enterprise or personal account. Use the instructions in the Claude Web section above to verify that you are signed in with your WB account.
-* Then click `Claude.ai subscription` in the Claude window and follow the steps to authorize access.
-
-:::
-::: {.column width="30%"}
-
-![](img/claude-vscode-login.png)
-
-:::
-:::
-
-## Claude VS Code - Usage
-
-::: {.columns}
-::: {.column width="60%"}
-
-#### First:
-
-* Once completed, enter `/status` in the Claude chat window to verify that you are successfully authorized and connected to your WB Claude Enterprise account.
-
-#### When to use Claude Code in VS Code:
-
-* Use Claude in VS Code for AI-assisted coding tasks and interactions with your local code files.
-* Claude Code is very "context hungry" and will add a lot of your codebase to the context window.
-* **Switch from `Auto` (the default) to `Manual` mode.** Auto approves costly tasks on its own and can read files outside the workspace.
-* Claude Code assumes you are a developer. If it uses jargon, ask it to explain more simply.
-:::
-::: {.column width="40%"}
-
-![](img/claude-status.png)
-
-:::
-:::
 
 # Recommended workflows {background-color="#002A4F"}
 
@@ -601,9 +489,160 @@ Also a good use of Enterprise credits: **building a codebook and a synthetic dat
   * The form includes the required manager approval workflow
   * Once approved, credits are available in all of your WB approved Claude products, including Claude Code.
 
-# Appendix {background-color="#002A4F"}
+# Thank you! Questions? {background-color="#002A4F"}
 
-## Appendix 1: Personal license settings
+Found a task where GitHub Copilot fell short and Claude succeeded, or the other way round? Please share it with us.
+
+# Appendices {background-color="#002A4F"}
+
+# Appendix A: How to Use Claude with WB Enterprise License {background-color="#002A4F"}
+
+## A1: Three AI interfaces available with Claude Enterprise
+
+{{< include ./three-claude-interfaces.qmd >}}
+
+## A2: Claude Web
+
+::: {.columns}
+
+::: {.column}
+
+* Once you have been assigned a WB Enterprise license, start by navigating to [Claude Web](https://claude.ai/).
+* On the sign-in page, enter your WB email and then wait until the "Sign in with SSO" option appears.
+  * If you do not see "Sign in with SSO," make sure you are using a WB email domain such as `@worldbankgroup.org` or `@worldbank.org`.
+* Select "Sign in with SSO" and complete the login process.
+
+:::
+
+::: {.column}
+
+![](img/claude-web-login.png)
+
+:::
+
+:::
+
+## A3: Claude Web - Usage
+
+::: {.columns}
+
+::: {.column width="70%"}
+
+#### First: 
+
+* Expand the left sidebar and look at the very bottom of it.
+* Make sure you are signed in with your WB account - you should see the WB logo and your WB email address.
+* Here you can also find Settings, including the important usage page: [https://claude.ai/new#settings/usage](https://claude.ai/new#settings/usage)
+
+#### When to use Claude Web:
+
+* This is your web interface for interacting with Claude. 
+* Use it for AI-assisted tasks that do not require access to your files
+* Similar to when you use mAI, but Claude WB does not have WB knowledge
+
+:::
+::: {.column width="30%"}
+
+![](img/claude-verify-wb-access.png)
+
+:::
+:::
+
+
+## A4: Claude Desktop
+
+::: {.columns}
+::: {.column width="50%"}
+
+* Download Claude Desktop from the Company Portal. Search for `Company Portal` in your Windows Start menu.
+* Search for `Claude`/`Claude Desktop` within the Company Portal. You will only be able to find it after you have been assigned a WB Enterprise license by ITS.
+* While downloading it, make sure you are signed in to Claude Web with your WB account. See the steps on the previous slides.
+* After installation, launch Claude Desktop and sign in with your WB account. Again, wait for "Sign in with SSO" to appear and complete the login process.
+
+:::
+::: {.column width="20%"}
+
+![](img/claude-company-portal.png)
+
+:::
+
+::: {.column width="30%"}
+
+![](img/claude-desktop-login.png)
+
+:::
+:::
+
+## A5: Claude Desktop - Usage
+
+
+::: {.columns}
+
+::: {.column width="70%"}
+
+#### First: 
+
+* Claude Desktop has a very similar interface to Claude Web, but it runs on your computer and can access your local files.
+* Before doing anything, verify that you are logged in to Claude Desktop with your WB account. You should see the WB logo and your WB email address at the bottom of the left sidebar.
+
+#### When to use Claude Desktop:
+
+* Use Claude Desktop for AI-assisted tasks that require access to your local files.
+* Similar to when you use mAI, but Claude Desktop can interact with files on your computer.
+* You also have (or will have) access to Claude Cowork where you can automate tasks and workflows involving your local files - although, Microsoft Copilot may offer a more cost-effective way to do so
+
+:::
+::: {.column width="30%"}
+
+![](img/claude-verify-wb-access.png)
+
+:::
+:::
+
+## A6: Claude Code VS Code Extension
+
+::: {.columns}
+::: {.column width="70%"}
+
+* Open VS Code and go to the Extensions view in the sidebar, or press `Ctrl/Cmd+Shift+X`.
+* Search for "Claude" in the Extensions Marketplace. Install the Claude extension.
+* After installation, you need to authorize the extension to use your Claude Enterprise account. You will not be able to choose an account during authorization; it will use the account with which you are signed in to Claude Web, regardless of whether it is an enterprise or personal account. Use the instructions in the Claude Web section above to verify that you are signed in with your WB account.
+* Then click `Claude.ai subscription` in the Claude window and follow the steps to authorize access.
+
+:::
+::: {.column width="30%"}
+
+![](img/claude-vscode-login.png)
+
+:::
+:::
+
+## A7: Claude VS Code - Usage
+
+::: {.columns}
+::: {.column width="60%"}
+
+#### First:
+
+* Once completed, enter `/status` in the Claude chat window to verify that you are successfully authorized and connected to your WB Claude Enterprise account.
+
+#### When to use Claude Code in VS Code:
+
+* Use Claude in VS Code for AI-assisted coding tasks and interactions with your local code files.
+* Claude Code is very "context hungry" and will add a lot of your codebase to the context window.
+* **Switch from `Auto` (the default) to `Manual` mode.** Auto approves costly tasks on its own and can read files outside the workspace.
+* Claude Code assumes you are a developer. If it uses jargon, ask it to explain more simply.
+:::
+::: {.column width="40%"}
+
+![](img/claude-status.png)
+
+:::
+:::
+
+# Appendix B: Workflow details using Enterprise and Personal license {background-color="#002A4F"}
+
+## B1: Personal license settings
 
 ::: {.columns}
 ::: {.column width="50%" .small-text}
@@ -646,24 +685,24 @@ The settings file belongs to your computer, not to an account. When you are sign
 :::
 :::
 
-## Appendix 2: Why set up two profiles?
+## B2: Why set up two profiles?
 
 * Normally Claude Code has **one** login and **one** settings file per computer
   * Switching accounts means `/logout` and `/login` each time, and it is easy to forget which one is active
   * The strict personal-license settings also restrict your Enterprise work
 * With two profiles, each account gets **its own folder** with its own login and settings:
   * **Normal profile → Enterprise**, with normal settings. This is the safe default
-  * **Personal profile → personal account**, with the strict settings from Appendix 1
+  * **Personal profile → personal account**, with the strict settings from [Appendix B1](#b1-strict-personal-license-settings)
 * No logging in and out: which account you get depends on which profile you open
 * Officially supported: [Log in with multiple accounts](https://code.claude.com/docs/en/authentication)
 * Applies to Claude Code (terminal and VS Code). For Claude Web, use a separate browser profile for the personal account
 
-## Appendix 3: Set up two profiles in VS Code
+## B3: Set up two profiles in VS Code
 
 ::: {.small-code}
 
 1. **Normal profile on Enterprise:** in the Claude panel, `/status` should show your WB email. If not, `/logout` and sign in with WB SSO
-2. **Create the personal settings folder:** `C:\Users\<you>\.claude-personal`, with a `settings.json` containing the Appendix 1 settings
+2. **Create the personal settings folder:** `C:\Users\<you>\.claude-personal`, with a `settings.json` containing the  [Appendix B1](#b1-strict-personal-license-settings) settings
 3. **Create a VS Code profile:** gear icon → Profiles → New Profile → name it `Claude Personal`, copied from your current profile
 4. **Point it to the personal folder:** in that profile, `Ctrl+Shift+P` → _Preferences: Open User Settings (JSON)_ and add:
 
@@ -679,6 +718,3 @@ The settings file belongs to your computer, not to an account. When you are sign
 
 :::
 
-# Thank you! Questions? {background-color="#002A4F"}
-
-Found a task where GitHub Copilot fell short and Claude succeeded, or the other way round? Please share it with us.
