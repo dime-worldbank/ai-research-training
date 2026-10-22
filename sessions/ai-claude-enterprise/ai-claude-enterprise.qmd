@@ -158,13 +158,13 @@ Unless you've read up extensively on the AI interface and its configurations, yo
 
 ## The same interface can be configured differently
 
-{{< ctx-diagram interfaces="Enterprise|License" models="GPT-5.5; Claude Opus" model-icons="lock" height="275px" >}}
+{{< ctx-diagram interfaces="AI-XYZ|Enterprise|License" models="GPT-5.5; Claude Opus" model-icons="lock" height="275px" >}}
 
 ```{=html}
 <div style="height: 2em;"></div>
 ```
 
-{{< ctx-diagram interfaces="Personal|License" models="GPT-5.5; Claude Opus" model-icons="spy" height="275px" >}}
+{{< ctx-diagram interfaces="AI-XYZ|Personal|License" models="GPT-5.5; Claude Opus" model-icons="spy" height="275px" >}}
 
 # Overview of tools {background-color="#002A4F"}
 
