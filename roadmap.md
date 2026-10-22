@@ -25,6 +25,7 @@ A series of stand-alone sessions on using AI tools across the research lifecycle
 | 8 | AI for Transcribing Data | Nov 12 | Upcoming |
 | 9 | AI for Data Quality Checks | Nov 19 | Upcoming |
 | 10 | Creating Custom Coding Agents | Dec 3 | Upcoming |
+| 11 | Claude Enterprise at the World Bank | Oct 22| **Available** &middot; [Slides →]({{ '/sessions/ai-claude-enterprise/' | relative_url }}) |
 
 ## Onboarding series (delivered)
 
