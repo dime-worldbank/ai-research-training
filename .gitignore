@@ -63,6 +63,7 @@
 # LaTeX
 !/**/*.tex
 !/**/*.bib
+!/**/*.lua
 
 # Python
 !/**/*.py
@@ -140,3 +141,5 @@ _site/
 password/
 passwords/
 .Rproj.user
+
+/.luarc.json

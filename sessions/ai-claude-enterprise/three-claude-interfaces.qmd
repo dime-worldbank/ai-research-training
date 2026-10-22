@@ -1,0 +1,9 @@
+* **Claude Web**: 
+  * Available at [https://claude.ai/](https://claude.ai/). 
+  * General purpose.
+* **Claude Desktop**: 
+  * Software application running on your computer where you can schedule tasks and have the agent read and modify your files.
+  * General purpose.
+* **Claude VS Code Extension**: 
+  * Extensions in VS Code that gives the coding agent access to read and modify your files.
+  * Optimized for coding.
