@@ -222,7 +222,7 @@ Unless you've read up extensively on the AI interface and its configurations, yo
 
 See [appendix A](#appendix-a-how-to-use-claude-with-wb-enterprise-license) for details how to access and use these interfaces using the WB enterprise license.
 
-## Comparison Claude Enterprise vs Personal License
+## Compa]rison Claude Enterprise vs Personal License
 
 The same Claude interfaces, with different licenses will behave and look very similarly, but where the model runs differs. That makes a significant difference in terms of data privacy, security, and costs.
 
@@ -272,17 +272,7 @@ A cheaper personal license might have fewer features and access to only smaller 
 * **$20 for a personal license will give you much more usage compared to what $20 with an enterprise license does** - this is the premium we pay for privacy.
 :::
 
-## Claude is great, but so is GitHub Copilot
 
-GitHub Copilot's credits are cheaper, use GitHub Copilot whenever appropriate. 
-
-Microsoft owns both GitHub Copilot and VS Code, and therefore some neat integrations exists between the two.
-
-* **Use inline suggestions and next-edit suggestions** for simple edits. They are built into the editor and a very cheap way to do routine coding tasks.
-* **Copilot sees the folder you open in VS Code**, not just your open tabs. Keep confidential data **outside** that folder
-  * Not a watertight protection as the **agent mode can run commands or a project script** that reach files anywhere on your computer - with all agents, read and try to understand what commands is ask for perimisson to run
-* GitHub Copilot is optimized for coding tasks while Claude is better suited for general tasks or complex reasoning that may or may not include code.
-  * **Move to Claude only when Copilot struggles with your task:** with public work → Claude personal; with confidential data → Claude Enterprise
 
 # Recommended workflows {background-color="#002A4F"}
 
@@ -296,9 +286,9 @@ Microsoft owns both GitHub Copilot and VS Code, and therefore some neat integrat
 
 * Switching between personal and enterprise licenses is possible, **but only with a deliberate routine**:
   * The interfaces look the same, so it is easy to lose track of which account is active
-  * Claude Code has support for settings that limits what it can access. This is not needed for enterprise licenses, but _we strongly recommend it for personal licenses_. **Important: While these settings reduce the risk, they do not remove it entirely**
+  * On a personal license, you cannot fully control what Claude reads and shares. **Settings reduce the risk but do not remove it**
 
-* The next slides give a recommended workflow for each situation and further details can be found in [Appendix B](#appendix-b-workflow-details-using-enterprise-and-personal-license)
+* The next slides give a recommended workflow for each situation.
 
 ## Pick the tool by task and data
 
@@ -310,7 +300,7 @@ Microsoft owns both GitHub Copilot and VS Code, and therefore some neat integrat
 - - Identified or confidential data: PII scans, cleaning raw survey data, matching records on names
   - **Claude Enterprise**
 
-- - Writing or fixing code. If using confidential data, replace it with a codebook or synthetic data
+- - Writing or fixing code, with data replaced by a codebook or synthetic data
   - **GitHub Copilot** (default for coding)
 
 - - Public data, generic code, learning, drafting from public sources
@@ -358,6 +348,15 @@ Also a good use of Enterprise credits: **building a codebook and a synthetic dat
 * **A codebook can leak too.** Strip value labels, minimum and maximum values, and category lists that name places or people.
 * **De-identified does not mean safe for every tool.** GitHub Copilot is classified as _Official Use_. Give it codebooks and synthetic data, not the de-identified data itself.
 
+## Make GitHub Copilot last longer
+
+* **Use inline suggestions and next-edit suggestions** for simple edits. They are built into the editor and are usually not limited like chat
+* **Use the included base model in chat** for routine questions. Save premium models for hard problems
+* **Keep chats short and focused:** one task per chat
+* **Copilot sees the folder you open in VS Code**, not just your open tabs. Keep confidential data **outside** that folder
+* **Agent mode can run commands** that reach files anywhere on your computer. Read every approval, the same as with Claude Code
+* **Move to Claude only when Copilot struggles:** with public work → Claude personal; with confidential data → Claude Enterprise
+
 ## Workflow C: When is a personal license acceptable?
 
 ::: {.columns}
@@ -392,7 +391,6 @@ Also a good use of Enterprise credits: **building a codebook and a synthetic dat
 * **Before starting a project:** check which account is active
   * Claude Code: `/status`
   * Claude Web or Desktop: look for the WB logo and your email at the bottom of the sidebar
-  * See [Appendix A](#appendix-a-how-to-use-claude-with-wb-enterprise-license) for more details
 * **To switch:** `/logout`, then `/login`
   * The VS Code extension follows whichever account Claude Web is signed into, so switch there first
 * **After switching:** start a new session. Never continue a conversation that began under the other account
@@ -426,8 +424,8 @@ Also a good use of Enterprise credits: **building a codebook and a synthetic dat
 
 ::: {.callout-note title="Note"}
 * **Not watertight:** approvals you click through without reading still get through.
-* **How to set this up:** see [Appendix B1](#b1-personal-license-settings) for details.
-* **Advanced: set up two profiles**, one for Enterprise and one for personal, each with its own login and settings. See [Appendix B2](#b2-why-set-up-two-profiles) and [Appendix B3](#b3-set-up-two-profiles-in-vs-code).
+* **How to set this up:** see [B1](#b1-personal-license-settings).
+* **Advanced: set up two profiles**, one for Enterprise and one for personal, each with its own login and settings. See [B2](#b2-why-set-up-two-profiles) and [B3](#b3-set-up-two-profiles-in-vs-code).
 :::
 
 ## How data slips through even when you're careful
