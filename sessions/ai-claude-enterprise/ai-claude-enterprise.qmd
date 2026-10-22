@@ -36,6 +36,20 @@ format:
 .small-table table{font-size:.72em}
 .small-table td,.small-table th{padding:.3em .5em !important}
 </style>
+<script>
+// Reveal table rows one click at a time inside a `row-fragments` div
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.row-fragments tbody tr').forEach(function (tr) { tr.classList.add('fragment'); });
+  // Renumber all fragments on these slides in page order, so rows come before any text below the table
+  document.querySelectorAll('section').forEach(function (slide) {
+    if (!slide.querySelector('.row-fragments')) return;
+    slide.querySelectorAll('.fragment').forEach(function (el, i) { el.setAttribute('data-fragment-index', i); });
+  });
+  if (window.Reveal) {
+    if (Reveal.isReady()) { Reveal.sync(); } else { Reveal.on('ready', function () { Reveal.sync(); }); }
+  }
+});
+</script>
 ```
 
 * Understand how the many AI interfaces differ from one another
@@ -288,20 +302,30 @@ Microsoft owns both GitHub Copilot and VS Code, and therefore some neat integrat
 
 ## Why not always use Claude Enterprise?
 
+::: {.fragment}
 * That would be ideal, but the extra protections come at a cost:
   * _The good:_ It is approved for strictly confidential data
-  * _The bad:_ It is much more expensive than personal licenses, under which Anthropic subsidizes usage in exchange for saving and using our data
+  * _The bad:_ It is much more expensive than personal licenses, where Anthropic subsidizes usage in exchange for saving and using our data
+:::
 
-* Learning to use these tools in a token-efficient way is important and applicable regardless which AI interface you are using (GitHub Copilot, Claude, etc.). There is a separate session on that topic.
+::: {.fragment}
+* Using tokens efficiently matters in every AI tool (GitHub Copilot, Claude, etc.). There is a separate session on that topic
+:::
 
+::: {.fragment}
 * Switching between personal and enterprise licenses is possible, **but only with a deliberate routine**:
   * The interfaces look the same, so it is easy to lose track of which account is active
-  * Claude Code has support for settings that limits what it can access. This is not needed for enterprise licenses, but _we strongly recommend it for personal licenses_. **Important: While these settings reduce the risk, they do not remove it entirely**
+  * Claude Code has settings that limit what it can access. They are not needed for Enterprise, but _we strongly recommend them for personal licenses_
+  * **Important:** these settings reduce the risk, but they do not remove it entirely
+:::
 
-* The next slides give a recommended workflow for each situation and further details can be found in [Appendix B](#appendix-b-workflow-details-using-enterprise-and-personal-license)
+::: {.fragment}
+* The next slides give a recommended workflow for each situation. More details are in [Appendix B](#appendix-b-workflow-details-using-enterprise-and-personal-license)
+:::
 
 ## Pick the tool by task and data
 
+:::: {.row-fragments}
 ::: {.list-table}
 
 - - Your task involves...
@@ -317,8 +341,11 @@ Microsoft owns both GitHub Copilot and VS Code, and therefore some neat integrat
   - **Personal license** is acceptable, with the setup on the following slides
 
 :::
+::::
 
+::: {.fragment}
 **When in doubt, use Enterprise.**
+:::
 
 ## Workflow A: Confidential data goes to Enterprise
 
@@ -330,7 +357,9 @@ Examples:
 * **Record linkage**: matching records across datasets on names or IDs
 * Reviewing or summarizing **documents classified as Confidential or Strictly Confidential**
 
-Also a good use of Enterprise credits: **building a codebook and a synthetic dataset once** (Workflow B), so the rest of the project can use cheaper tools.
+::: {.callout-note title="Codebooks and synthetic data"}
+For now, Claude Enterprise can also help you build a codebook and a small synthetic dataset (Workflow B), so the rest of the project can use cheaper tools. We are developing a dedicated tool for this. Once it's available, Enterprise is better used to review that tool's output.
+:::
 
 ## Workflow B: De-identify first, then code
 
@@ -450,7 +479,7 @@ Also a good use of Enterprise credits: **building a codebook and a synthetic dat
 
 ## Where to go when a tool runs out
 
-:::: {.small-table}
+:::: {.small-table .row-fragments}
 ::: {.list-table}
 
 - - Your work involves...
@@ -476,20 +505,20 @@ Also a good use of Enterprise credits: **building a codebook and a synthetic dat
 :::
 ::::
 
+::: {.fragment}
 **Running out of credits is never a reason to move confidential data to a personal license or to GitHub Copilot.**
+:::
 
 ## Ask for more credits
 
-* If you run out of Claude Code credits, you can request additional credits from your WB administrator.
-* It is unlikely that what you initially was allocated will be sufficient when you are a power user of Claude - so we expect many of you to do so.
-* However, if you do not feel like a power user of Claude yet, and still run out of credits, also ask yourself if there is a more efficient way to use your existing credits before requesting hundreds of dollars more in credit.
-
-* To request more Claude credits:
-  * Have a conversation with your manager, as the unit's BB will be charged.
-  * Agree on a new spending limit. Only actual usage will be charged to the BB.
-  * Submit this [eServices request](https://worldbankgroup.service-now.com/wbg/en/productivity-software-license-request?id=wbg_sc_catalog&sys_id=ebfd4d6693065210a2f6fd647aba10d7). 
-  * The form includes the required manager approval workflow
-  * Once approved, credits are available in all of your WB approved Claude products, including Claude Code.
+* If you run out of Claude Code credits, you can request more
+* **Power users will likely need more** than the initial allocation, and we expect many of you to ask
+* **Not a power user yet, but already out of credits?** Before requesting hundreds of dollars more, check whether there is a more efficient way to use what you have
+* **To request more Claude credits:**
+  1. Talk to your manager, since your unit's BB will be charged
+  2. Agree on a new spending limit. Only actual usage is charged to the BB
+  3. Submit the [eServices request](https://worldbankgroup.service-now.com/wbg/en/productivity-software-license-request?id=wbg_sc_catalog&sys_id=ebfd4d6693065210a2f6fd647aba10d7). The form includes the manager approval step
+  4. Once approved, the credits are available in all your WB-approved Claude products, including Claude Code
 
 # Thank you! Questions? {background-color="#002A4F"}
 
@@ -654,12 +683,12 @@ Add to `C:\Users\<you>\.claude\settings.json` (create it if it doesn't exist):
 * `defaultMode`, `disableAutoMode`: start in Manual mode and remove Auto
 * `blockReadsOutsideWorkingDirectories`: no reading outside the project folder
 * `Read(...)`: block confidential folders and data files
-* `Bash(...)`: block running Python, R and Stata
+* `Bash(...)`: blocks common ways of running Python, R and Stata (see note)
 * VS Code: also set `claudeCode.initialPermissionMode` to `default`
 * Check with `/permissions`
 
 ::: {.callout-warning title="Caveat: this applies to both accounts"}
-The settings file belongs to your computer, not to an account. When you are signed in to Enterprise, Claude is restricted too: it cannot read your data files or run your scripts. To avoid this, set up two profiles (Appendices 2–3), or remove the rules when working on Enterprise.
+The settings file belongs to your computer, not to an account. When you are signed in to Enterprise, Claude is restricted too: it cannot read your data files or run your scripts. To avoid this, set up two profiles (B2–B3), or remove the rules when working on Enterprise.
 :::
 
 :::
@@ -683,6 +712,10 @@ The settings file belongs to your computer, not to an account. When you are sign
   }
 }
 ```
+
+::: {.callout-note title="Note on Bash(...)" .small-text}
+**This list is a starting point, not exhaustive.** Other commands (e.g. `py`, `python3`, `R`) and commands run through PowerShell on Windows may not be covered. Manual mode, where Claude asks before running anything, is the main safeguard. **We will update this template as we learn more.**
+:::
 
 :::
 :::

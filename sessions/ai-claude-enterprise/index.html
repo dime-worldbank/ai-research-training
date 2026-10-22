@@ -1091,6 +1091,20 @@ Kristoffer Bjarkefur
 .small-table table{font-size:.72em}
 .small-table td,.small-table th{padding:.3em .5em !important}
 </style>
+<script>
+// Reveal table rows one click at a time inside a `row-fragments` div
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.row-fragments tbody tr').forEach(function (tr) { tr.classList.add('fragment'); });
+  // Renumber all fragments on these slides in page order, so rows come before any text below the table
+  document.querySelectorAll('section').forEach(function (slide) {
+    if (!slide.querySelector('.row-fragments')) return;
+    slide.querySelectorAll('.fragment').forEach(function (el, i) { el.setAttribute('data-fragment-index', i); });
+  });
+  if (window.Reveal) {
+    if (Reveal.isReady()) { Reveal.sync(); } else { Reveal.on('ready', function () { Reveal.sync(); }); }
+  }
+});
+</script>
 <ul>
 <li>Understand how the many AI interfaces differ from one another</li>
 <li>Understand what those differences mean in practice and when to use each tool</li>
@@ -1395,23 +1409,39 @@ Kristoffer Bjarkefur
 </section>
 <section id="why-not-always-use-claude-enterprise" class="slide level2">
 <h2>Why not always use Claude Enterprise?</h2>
+<div class="fragment">
 <ul>
-<li><p>That would be ideal, but the extra protections come at a cost:</p>
+<li>That would be ideal, but the extra protections come at a cost:
 <ul>
 <li><em>The good:</em> It is approved for strictly confidential data</li>
-<li><em>The bad:</em> It is much more expensive than personal licenses, under which Anthropic subsidizes usage in exchange for saving and using our data</li>
+<li><em>The bad:</em> It is much more expensive than personal licenses, where Anthropic subsidizes usage in exchange for saving and using our data</li>
 </ul></li>
-<li><p>Learning to use these tools in a token-efficient way is important and applicable regardless which AI interface you are using (GitHub Copilot, Claude, etc.). There is a separate session on that topic.</p></li>
-<li><p>Switching between personal and enterprise licenses is possible, <strong>but only with a deliberate routine</strong>:</p>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Using tokens efficiently matters in every AI tool (GitHub Copilot, Claude, etc.). There is a separate session on that topic</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Switching between personal and enterprise licenses is possible, <strong>but only with a deliberate routine</strong>:
 <ul>
 <li>The interfaces look the same, so it is easy to lose track of which account is active</li>
-<li>Claude Code has support for settings that limits what it can access. This is not needed for enterprise licenses, but <em>we strongly recommend it for personal licenses</em>. <strong>Important: While these settings reduce the risk, they do not remove it entirely</strong></li>
+<li>Claude Code has settings that limit what it can access. They are not needed for Enterprise, but <em>we strongly recommend them for personal licenses</em></li>
+<li><strong>Important:</strong> these settings reduce the risk, but they do not remove it entirely</li>
 </ul></li>
-<li><p>The next slides give a recommended workflow for each situation and further details can be found in <a href="#/appendix-b-workflow-details-using-enterprise-and-personal-license">Appendix B</a></p></li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li>The next slides give a recommended workflow for each situation. More details are in <a href="#/appendix-b-workflow-details-using-enterprise-and-personal-license">Appendix B</a></li>
+</ul>
+</div>
 </section>
 <section id="pick-the-tool-by-task-and-data" class="slide level2">
 <h2>Pick the tool by task and data</h2>
+<div class="row-fragments">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1434,7 +1464,10 @@ Kristoffer Bjarkefur
 </tr>
 </tbody>
 </table>
+</div>
+<div class="fragment">
 <p><strong>When in doubt, use Enterprise.</strong></p>
+</div>
 </section>
 <section id="workflow-a-confidential-data-goes-to-enterprise" class="slide level2">
 <h2>Workflow A: Confidential data goes to Enterprise</h2>
@@ -1445,7 +1478,21 @@ Kristoffer Bjarkefur
 <li><strong>Record linkage</strong>: matching records across datasets on names or IDs</li>
 <li>Reviewing or summarizing <strong>documents classified as Confidential or Strictly Confidential</strong></li>
 </ul>
-<p>Also a good use of Enterprise credits: <strong>building a codebook and a synthetic dataset once</strong> (Workflow B), so the rest of the project can use cheaper tools.</p>
+<div title="Codebooks and synthetic data">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Codebooks and synthetic data</strong></p>
+</div>
+<div class="callout-content">
+<p>For now, Claude Enterprise can also help you build a codebook and a small synthetic dataset (Workflow B), so the rest of the project can use cheaper tools. We are developing a dedicated tool for this. Once it’s available, Enterprise is better used to review that tool’s output.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="workflow-b-de-identify-first-then-code" class="slide level2">
 <h2>Workflow B: De-identify first, then code</h2>
@@ -1585,7 +1632,7 @@ Kristoffer Bjarkefur
 </section>
 <section id="where-to-go-when-a-tool-runs-out" class="slide level2">
 <h2>Where to go when a tool runs out</h2>
-<div class="small-table">
+<div class="small-table row-fragments">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1618,22 +1665,23 @@ Kristoffer Bjarkefur
 </tbody>
 </table>
 </div>
+<div class="fragment">
 <p><strong>Running out of credits is never a reason to move confidential data to a personal license or to GitHub Copilot.</strong></p>
+</div>
 </section>
 <section id="ask-for-more-credits" class="slide level2">
 <h2>Ask for more credits</h2>
 <ul>
-<li><p>If you run out of Claude Code credits, you can request additional credits from your WB administrator.</p></li>
-<li><p>It is unlikely that what you initially was allocated will be sufficient when you are a power user of Claude - so we expect many of you to do so.</p></li>
-<li><p>However, if you do not feel like a power user of Claude yet, and still run out of credits, also ask yourself if there is a more efficient way to use your existing credits before requesting hundreds of dollars more in credit.</p></li>
-<li><p>To request more Claude credits:</p>
-<ul>
-<li>Have a conversation with your manager, as the unit’s BB will be charged.</li>
-<li>Agree on a new spending limit. Only actual usage will be charged to the BB.</li>
-<li>Submit this <a href="https://worldbankgroup.service-now.com/wbg/en/productivity-software-license-request?id=wbg_sc_catalog&amp;sys_id=ebfd4d6693065210a2f6fd647aba10d7">eServices request</a>.</li>
-<li>The form includes the required manager approval workflow</li>
-<li>Once approved, credits are available in all of your WB approved Claude products, including Claude Code.</li>
-</ul></li>
+<li>If you run out of Claude Code credits, you can request more</li>
+<li><strong>Power users will likely need more</strong> than the initial allocation, and we expect many of you to ask</li>
+<li><strong>Not a power user yet, but already out of credits?</strong> Before requesting hundreds of dollars more, check whether there is a more efficient way to use what you have</li>
+<li><strong>To request more Claude credits:</strong>
+<ol type="1">
+<li>Talk to your manager, since your unit’s BB will be charged</li>
+<li>Agree on a new spending limit. Only actual usage is charged to the BB</li>
+<li>Submit the <a href="https://worldbankgroup.service-now.com/wbg/en/productivity-software-license-request?id=wbg_sc_catalog&amp;sys_id=ebfd4d6693065210a2f6fd647aba10d7">eServices request</a>. The form includes the manager approval step</li>
+<li>Once approved, the credits are available in all your WB-approved Claude products, including Claude Code</li>
+</ol></li>
 </ul>
 </section></section>
 <section id="thank-you-questions" class="title-slide slide level1 center" data-background-color="#002A4F">
@@ -1789,7 +1837,7 @@ Kristoffer Bjarkefur
 <li><code>defaultMode</code>, <code>disableAutoMode</code>: start in Manual mode and remove Auto</li>
 <li><code>blockReadsOutsideWorkingDirectories</code>: no reading outside the project folder</li>
 <li><code>Read(...)</code>: block confidential folders and data files</li>
-<li><code>Bash(...)</code>: block running Python, R and Stata</li>
+<li><code>Bash(...)</code>: blocks common ways of running Python, R and Stata (see note)</li>
 <li>VS Code: also set <code>claudeCode.initialPermissionMode</code> to <code>default</code></li>
 <li>Check with <code>/permissions</code></li>
 </ul>
@@ -1803,7 +1851,7 @@ Kristoffer Bjarkefur
 <p><strong>Caveat: this applies to both accounts</strong></p>
 </div>
 <div class="callout-content">
-<p>The settings file belongs to your computer, not to an account. When you are signed in to Enterprise, Claude is restricted too: it cannot read your data files or run your scripts. To avoid this, set up two profiles (Appendices 2–3), or remove the rules when working on Enterprise.</p>
+<p>The settings file belongs to your computer, not to an account. When you are signed in to Enterprise, Claude is restricted too: it cannot read your data files or run your scripts. To avoid this, set up two profiles (B2–B3), or remove the rules when working on Enterprise.</p>
 </div>
 </div>
 </div>
@@ -1825,6 +1873,21 @@ Kristoffer Bjarkefur
 <span id="cb1-14"><a href></a>    <span class="ot">]</span></span>
 <span id="cb1-15"><a href></a>  <span class="fu">}</span></span>
 <span id="cb1-16"><a href></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="small-text" title="Note on Bash(...)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note on Bash(…)</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>This list is a starting point, not exhaustive.</strong> Other commands (e.g. <code>py</code>, <code>python3</code>, <code>R</code>) and commands run through PowerShell on Windows may not be covered. Manual mode, where Claude asks before running anything, is the main safeguard. <strong>We will update this template as we learn more.</strong></p>
+</div>
+</div>
+</div>
+</div>
 </div></div>
 </section>
 <section id="b2-why-set-up-two-profiles" class="slide level2">
