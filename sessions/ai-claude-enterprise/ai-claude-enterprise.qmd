@@ -1,9 +1,9 @@
 ---
 title: "Understand Claude Enterprise and Other WB AI Tools"
 subtitle: "What makes these tools different, and what's what in this jungle of often similar names"
-author: "Kristoffer Bjarkefur"
+author: "Kristoffer Bjarkefur & Ankriti Singh"
 institute: "DECDI, The World Bank"
-date: 22-10-2026
+date: 10-22-2026
 format:
   decdi-revealjs:
     output-file: index.html
@@ -294,7 +294,7 @@ Microsoft owns both GitHub Copilot and VS Code, and therefore some neat integrat
 
 * **Use inline suggestions and next-edit suggestions** for simple edits. They are built into the editor and a very cheap way to do routine coding tasks.
 * **Copilot sees the folder you open in VS Code**, not just your open tabs. Keep confidential data **outside** that folder
-  * Not a watertight protection as the **agent mode can run commands or a project script** that reach files anywhere on your computer - with all agents, read and try to understand what commands is ask for perimisson to run
+  * Not a watertight protection as the **agent mode can run commands or a project script** that reach files anywhere on your computer - with all agents, read and try to understand what commands is ask for permission to run
 * GitHub Copilot is optimized for coding tasks while Claude is better suited for general tasks or complex reasoning that may or may not include code.
   * **Move to Claude only when Copilot struggles with your task:** with public work → Claude personal; with confidential data → Claude Enterprise
 
@@ -309,7 +309,7 @@ Microsoft owns both GitHub Copilot and VS Code, and therefore some neat integrat
 :::
 
 ::: {.fragment}
-* Using tokens efficiently matters in every AI tool (GitHub Copilot, Claude, etc.). There is a separate session on that topic
+* Using tokens efficiently matters in every AI tool (GitHub Copilot, Claude, etc.). There is a separate session on that topic. [See 2026 AI-Enabled Research Bootcamp session on this topic.](https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-1/cost-effective-ai/#/title-slide)
 :::
 
 ::: {.fragment}
