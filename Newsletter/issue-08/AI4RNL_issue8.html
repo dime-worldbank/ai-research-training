@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>AI for Research: Code Review</title>
+<!--
+  Internal newsletter - DECDI / Impact Analytics. Issue 8. DRAFT written before the November 9 session;
+  recap follows the Bootcamp version, bootcamp/sessions/day-2/ai-review-code (Ankriti Singh).
+  Coming Up leads with December 2 and 3, then the December 10-11 Project Sprint.
+-->
+<style>
+  @media only screen and (max-width: 640px) {
+    .container { width: 100% !important; }
+    .px { padding-left: 24px !important; padding-right: 24px !important; }
+    .bignum { font-size: 52px !important; }
+  }
+  a { color: #0071BC; }
+</style>
+</head>
+<body style="margin:0; padding:0; background-color:#EFF2F5; -webkit-text-size-adjust:100%;">
+
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
+    A model that reviewed its own answers got worse, not better. A recap of the code-review skill, the builder-and-critic habit, and what is on in December.
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFF2F5;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+
+        <table role="presentation" class="container" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px; max-width:640px;">
+
+          <!-- ===== Masthead ===== -->
+          <tr>
+            <td style="background-color:#002244; padding:0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:28px 40px 6px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#8AC6E6; text-transform:uppercase;">
+                      DECDI &nbsp;&middot;&nbsp; Impact Analytics &nbsp;&middot;&nbsp; Internal
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px" style="padding:0 40px 24px 40px;">
+                    <span style="font-family:Georgia, 'Times New Roman', serif; font-size:34px; line-height:40px; color:#FFFFFF; font-weight:bold;">
+                      AI for Research: Code Review
+                    </span>
+                    <br>
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#B8CCDD;">
+                      Issue 8 &nbsp;&middot;&nbsp; November 18, 2026 &nbsp;&middot;&nbsp; A 5-minute read
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height:4px; background-color:#0071BC; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== The Big Number ===== -->
+          <tr>
+            <td style="background-color:#FFFFFF;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:36px 40px 0 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      The Big Number
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px" align="center" style="padding:12px 40px 0 40px;">
+                    <span class="bignum" style="font-family:Georgia, 'Times New Roman', serif; font-size:64px; line-height:72px; color:#002244; font-weight:bold;">95.5% &rarr; 89.0%</span>
+                    <br>
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:22px; color:#54595F;">
+                      GPT-4&rsquo;s score on a maths benchmark,<br>before and after reviewing its own answers
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px" style="padding:20px 40px 32px 40px;">
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:0;">
+                      Ask a model to answer, then ask it to check its answer and fix any mistakes. In 2023 several papers reported that this made models better. Huang and coauthors looked closer and found that those papers had, one way or another, told the model when it was wrong. Take that away, so the model has to judge its own work unaided, and the gains vanish. GPT-4 scored 95.5% on grade-school maths problems at the first attempt. After one round of self-review it scored 91.5%. After two, 89.0%. It changed right answers to wrong ones more often than the reverse.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
+                      The lesson for code is plain. The agent that wrote your cleaning script is the worst-placed reader of it, for the same reason you are the worst-placed reader of your own do-file. Impact Analytics&rsquo; November 9 training on AI code review was about a second reader with a checklist. This issue is about making that a habit.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:12px 0 0 0;">
+                      Source: <a href="https://arxiv.org/abs/2310.01798" style="color:#0071BC;">Huang et al., &ldquo;Large Language Models Cannot Self-Correct Reasoning Yet&rdquo;, ICLR 2024</a>. The task is reasoning, not code; Field Notes covers the code-review studies.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== In Case You Missed It ===== -->
+          <tr>
+            <td style="background-color:#F5F8FA; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      In Case You Missed It
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:22px; line-height:28px; color:#002244; margin:10px 0 14px 0;">
+                      AI Skills for Code Review
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
+                      A quick recap of Impact Analytics&rsquo; November 9 training on AI skills for code review, a repeat of a session from the October AI-Enabled Research Bootcamp, for everyone who missed it. DEC used to pair people up for peer code review against a checklist. The skill turns that checklist into something you can run on your own code, at any stage, without waiting for a colleague.
+                    </p>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; <b>Your name is on code you didn&rsquo;t write.</b> RAs and consultants write most of it, and now agents write more of it, faster. The TTL signs the paper. Reading every line by hand is not feasible. Not reading it is not acceptable either.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; <b>Research code fails quietly.</b> A merge that doubles rows. Duplicates dropped by whichever came first. A random draw with no seed. A &minus;99 that enters a mean. A path that only works on one laptop. None of these crash. The number changes. And a package that reproduces perfectly can still be wrong: our reproducibility check asks whether it runs, not whether the merge kept the right rows.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; <b>The checklist is the point.</b> &ldquo;Review my code&rdquo; gets a different review every time, at a different depth. The skill carries sixty-odd flags from DEC&rsquo;s peer review checklists and the reproducibility team&rsquo;s failure list, each with a severity set by consequence, from Critical to Low. Same checks every time, so reviews can be compared across projects and people.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; <b>Two phases, with you in the middle.</b> Before it lists a single file, the agent asks you to confirm there is no confidential or identifying data in the folder (&ldquo;probably fine&rdquo; counts as no). Phase 1 reads code and documentation only: no running, no opening data, no edits. You get a table: flag, severity, file and line, and whether the agent can fix it. Phase 2 happens only on a Git branch, and only for what you approve.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0;">
+                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; <b>Three kinds of finding.</b> <i>Yes</i>: the fix is clear, approve it. <i>Conditional</i>: it needs a value first, like the seed. <i>No</i>: a research decision only you can make, like which observations to drop, so you decide, document, and then ask the agent to implement your choice. &ldquo;Do the straightforward ones&rdquo; means the Yes rows. <code>defer</code> leaves an item open without changing anything.
+                      </td></tr>
+                    </table>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:16px 0 0 0;">
+                      Materials: <a href="https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-2/ai-review-code/" style="color:#0071BC;">slides</a> &nbsp;&middot;&nbsp; <a href="https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip" style="color:#0071BC;">skill zip</a> &nbsp;&middot;&nbsp; <a href="https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-2/ai-review-code/materials" style="color:#0071BC;">demo project</a> &nbsp;&middot;&nbsp; questions: <a href="mailto:dimeanalytics@worldbank.org" style="color:#0071BC;">dimeanalytics@worldbank.org</a>
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:10px 0 0 0;">
+                      Also on November 12: AI for Survey Instrument Design (DECDI only). Materials will go up on the Trainings page.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Try This Today ===== -->
+          <tr>
+            <td style="background-color:#FFFFFF; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      Try This Today &nbsp;&middot;&nbsp; 10 minutes
+                    </span>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
+                      Run the read-only review on one script you finished this month. Don&rsquo;t let it change anything yet.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
+                      <b>1. Install the skill.</b> Download <a href="https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip" style="color:#0071BC;">research-code-review.zip</a>, unzip it, and put the whole <code>research-code-review/</code> folder under <code>.agents/skills/</code> at the project root. The whole folder, not just <code>SKILL.md</code>; the checklist lives next to it.<br><br>
+                      <b>2. Clear the folder of data.</b> Move any data files out, or practise on the <a href="https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-2/ai-review-code/materials" style="color:#0071BC;">demo project</a>, where everything is synthetic.<br><br>
+                      <b>3. Open a new session and ask for a selected-files review:</b><br>
+                      <code>Read .agents/skills/research-code-review/SKILL.md and review only:<br>- code/&lt;your script&gt;<br>Treat this as a selected-files review.</code><br>
+                      Answer the privacy question honestly. A hedge counts as no, and the agent will offer a code-only review instead.<br><br>
+                      <b>4. Read the High and Critical rows against the code.</b> Open the file at the line it cites. Real, unclear, or a false alarm? Then pick one Conditional row and answer it (<code>STAB-001: provide: seed = 20261118</code>). Reply <code>defer</code> to the rest. When it offers Phase 2, stop there.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0 0;">
+                      <tr>
+                        <td style="background-color:#EAF4FB; border-left:4px solid #0071BC; padding:16px 20px;">
+                          <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:21px; color:#333333;">
+                            <b>Have more than 10 minutes?</b> Let it implement the one item you approved, on a new Git branch, and read the diff line by line. Then open another fresh session and run the review again on the changed file. If the second review is short, the fix held. The Deep Dive is about making that loop a habit.
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Deep Dive ===== -->
+          <tr>
+            <td style="background-color:#F5F8FA; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      Deep Dive &nbsp;&middot;&nbsp; Track C, Part 3
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
+                      Builder and critic
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
+                      If an agent wrote the code, have a different agent review it. What &ldquo;different&rdquo; has to mean (a fresh session, a checklist it didn&rsquo;t write, read-only), a worked example on the demo project from the training, what to do when the critic is wrong, and three places a critic pass fits into a normal week. About 12 minutes.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="background-color:#0071BC; border-radius:2px;">
+                          <!-- DEEP_DIVE_URL -->
+                          <a href="https://github.com/dime-worldbank/ai-research-training/blob/nlissue6-8/Newsletter/issue-08/deep-dive-builder-and-critic.md" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; padding:11px 22px;">
+                            Read the Deep Dive &rarr;
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Field Notes ===== -->
+          <tr>
+            <td style="background-color:#FFFFFF; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      Field Notes &nbsp;&middot;&nbsp; beyond the trainings
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
+                      The second reader
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 12px 0;">
+                      The Big Number is what self-review does. Field Notes is about the evidence for the alternative, and the parts of it that should make you careful.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
+                      A separate AI critic&rsquo;s review of ChatGPT&rsquo;s code was preferred over an experienced human&rsquo;s 63% of the time, and a human working with the critic did better still. The critic also invented problems more often. In a year-long deployment at a software firm, developers acted on three in four AI review comments, and pull requests took two hours longer to close. Field Notes puts the three studies together and says what they mean for Stata and R.
+                    </p>
+                    <!-- FIELD_NOTES_URL -->
+                    <a href="https://github.com/dime-worldbank/ai-research-training/blob/nlissue6-8/Newsletter/issue-08/field-notes-second-reader.md" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#0071BC; text-decoration:none;">
+                      Read the Field Notes &rarr;
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Coming Up ===== -->
+          <tr>
+            <td style="background-color:#002244;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 32px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#8AC6E6; text-transform:uppercase; font-weight:bold;">
+                      Coming Up
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:22px; line-height:28px; color:#FFFFFF; margin:10px 0 8px 0;">
+                      AI Skills for Reproducible Research
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0 0 6px 0;">
+                      <b style="color:#FFFFFF;">Wednesday, December 2</b> &nbsp;&middot;&nbsp; Room G 4-001 and Teams &nbsp;&middot;&nbsp; open to all (Reproducibility Initiative)
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0;">
+                      Most packages need real changes before they pass verification. This hands-on session uses the reproducibility skill on a demo or on your own project: the agent audits, flags, and builds a package you then review and keep improving. You need VS Code with Copilot or Claude Code.
+                    </p>
+                    <a href="https://teams.microsoft.com/meet/213554750869999?p=uCRbfR3fGXT1QPEkBI" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; margin:10px 0 0 0;">
+                      Join on Teams &middot; December 2 &rarr;
+                    </a>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:24px 0 0 0; padding-top:20px; border-top:1px solid #1F4468;">
+                      <b style="color:#FFFFFF;">Making Your Workflows AI-Enabled</b> &nbsp;&middot;&nbsp; Thursday, December 3 &nbsp;&middot;&nbsp; Room G 4-001 and Teams<br>
+                      Turn one task you do over and over into a skill the agent can follow, with checkpoints where it waits for you. Bring the task and any templates or notes you already use for it.
+                    </p>
+                    <a href="https://teams.microsoft.com/meet/274623719618809?p=l3qtVMZbME0f5JC7w6" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; margin:10px 0 0 0;">
+                      Join on Teams &middot; December 3 &rarr;
+                    </a>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:24px 0 0 0; padding-top:20px; border-top:1px solid #1F4468;">
+                      <b style="color:#FFFFFF;">Then: AI-Enabled Research in Practice, a project sprint</b> &nbsp;&middot;&nbsp; December 10&ndash;11, two half-days<br>
+                      Selected DECDI teams build AI into one real step of their own project, with instructors at the table. Teams apply with a short description of the project. Details and the application form to follow.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#B8CCDD; margin:16px 0 0 0;">
+                      No session on November 26 (Thanksgiving).
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Footer ===== -->
+          <tr>
+            <td style="background-color:#EFF2F5;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" align="center" style="padding:24px 40px 8px 40px;">
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#8A8F94; margin:0;">
+                      AI for Research is the companion newsletter to the DECDI AI training series,<br>
+                      produced by the Impact Analytics team. Internal distribution only.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding:4px 40px 28px 40px;">
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#8A8F94; margin:0;">
+                      Did the review flag something real, or something silly? Reply to this email. We&rsquo;ll use internal examples first in future issues.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
