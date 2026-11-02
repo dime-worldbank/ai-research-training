@@ -45,11 +45,11 @@ format:
 
 # General Token Efficiency Strategies {background-color="#530153"}
 
-{{< include ./three-strategies.qmd >}}
+{{< include ./token-strategies.qmd >}}
 
 # Explore these Strategies in VS Code {background-color="#530153"}
 
-{{< include ./three-strategies-vscode.qmd >}}
+{{< include ./token-strategies-vscode.qmd >}}
 
 # Best-practices and Examples {background-color="#530153"}
 
