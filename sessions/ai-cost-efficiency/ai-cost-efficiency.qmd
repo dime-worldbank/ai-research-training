@@ -43,7 +43,7 @@ format:
 - The AI giants' revenue models count on us to get comfortable in our Cadillacs before they hike the prices.
 :::
 
-# General Prompting Tips {background-color="#530153"}
+# General Token Efficiency Strategies {background-color="#530153"}
 
 {{< include ./three-strategies.qmd >}}
 
