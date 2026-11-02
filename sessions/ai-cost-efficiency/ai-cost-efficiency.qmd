@@ -1,0 +1,59 @@
+---
+title: "Using AI Agents Cost Effectively"
+subtitle: "Best practices and examples for cost efficiency"
+author: "Kristoffer Bjarkefur & Maria Reyes Retana Torre"
+institute: "Impact Analytics, DECDI, The World Bank"
+date: 11-5-2026
+format:
+  decdi-revealjs:
+    output-file: index.html
+    footer: "Understand WB AI Tools"
+    self-contained: true
+    slide-number: true
+    toc: false
+    logo: "_extensions/decdi/logos/COLOR_WB_DEC.png"
+    width: 1245
+    height: 700
+---
+
+## Objective
+
+- Understand the cost and efficiency trade-offs of using AI agents.
+- Learn strategies to minimize token usage without compromising AI performance.
+- Learn where in VS Code you can implement these strategies.
+
+## Do I Really Need to Worry About Token Efficiency?
+
+::: {.fragment}
+- Maybe not now, but eventually. AI tokens will never again be as subsidized by the AI giants as they are today. And setups with data privacy are not subsidized.
+:::
+::: {.fragment}
+- We live in the AI-token equivalent of a pre-1973 oil crisis - the era of cheap and abundant tokens.
+:::
+::: {.fragment}
+- It will never again be as cheap to experiment and learn with tokens as it is now.
+:::
+::: {.fragment}
+- Those of us who have been using the WBG's GitHub Copilot licenses for six months have already experienced a mini oil crisis.
+:::
+::: {.fragment}
+- We can afford to drive a V8 Cadillac Eldorado today, but need to learn how to drive a hybrid Toyota Prius tomorrow.
+:::
+::: {.fragment}
+- The AI giants' revenue models count on us to get comfortable in our Cadillacs before they hike the prices.
+:::
+
+# General Prompting Tips {background-color="#530153"}
+
+{{< include ./three-strategies.qmd >}}
+
+# Explore these Strategies in VS Code {background-color="#530153"}
+
+{{< include ./three-strategies-vscode.qmd >}}
+
+# Best-practices and Examples {background-color="#530153"}
+
+{{< include ./examples.qmd >}}
+
+# Thank You! - Questions? {background-color="#530153"}
+
