@@ -1,8 +1,9 @@
-## 3 strategies to avoid common token inefficiencies
+## 4 strategies to avoid common token inefficiencies
 
 1. Use an appropriate model for each task.
 2. Use memory files to indicate what is important for most tasks.
 3. Start a new session if the current session has context that is not relevant to the task.
+4. Convert input to machine readable formats
 
 # Use Appropriate Models {background-color="#530153"}
 
@@ -119,30 +120,126 @@ Even if you tell the agent to forget the previous part of the conversation, it w
 - If you use the same chat session for, let's say, 10 tasks, then when the agent is generating a response for the second task, you are paying again for the tokens used for the first task. For the third task, you are paying again for the first and second tasks, and so on. For the tenth task, you are paying for all nine previous tasks when generating the tenth response.
 :::
 
+
+
+# Use Machine Readable Inputs {background-color="#530153"}
+
+## Why Do I Need to Convert Files? My AI agent can read Word and PDF files
+
+:::: {.columns .v-center-container}
+::: {.column width="65%" }
+
+* **Question:** My team uses Word and PDF files, and my AI agent can read them. Why convert to plain text?
+
+::: {.fragment}
+* Asking AI to re-convert a Word or PDF file for each prompt is like reprinting a book every time you want to look up a page.
+
+Yes, your AI _can_ read them, but doing so has a high token cost. Converting them to machine-readable formats means you pay this cost only once.
+:::
+
+:::
+::: {.column width="35%" }
+
+::: {.fragment}
+![](./img/reprint-books.jpg)
+:::
+
+:::
+::::
+
+## What are machine-readable formats?
+
+Only plain text can be sent to a language model, so _plain-text_ formats can be sent as is, but _binary files_ must be converted first.
+
+Plain-text formats can hold much of the same content, but typically support less formatting than binary formats. Binary formats support richer formatting, but accessing that content requires additional computation.
+
+::: {.list-table}
+
+- - File Type
+  - _Plain Text Formats_
+  - _Binary Formats_
+
+- - Documents
+  - `.txt`, `.md`, `.tex`, `.qmd`
+  - `.doc`, `.docx`, `.pdf`
+
+- - Presentations
+  - `.tex` (beamer), `.qmd`
+  - `.ppt`, `.pptx`, Google Slides
+
+- - Spreadsheets
+  - `.csv` (albeit limited)
+  - `.xls`, `.xlsx`
+  
+:::
+
+## Three strategies to work with machine-readable formats
+
+::: {.list-table}
+
+- - Category
+  - _Convert with AI_
+  - _Write a script with AI_
+  - _Plain text first_
+
+- - Description
+  - Prompt the AI to convert the file and save it in a plain-text format, then use that file
+  - Prompt the AI to write a reusable script to convert the file
+  - Use plain text in the first place, and only convert to binary for dissemination to humans
+
+- - Use Cases
+  - You have a single document to convert
+  - You have many similar documents to convert
+  - Your project is to produce these files, and you use AI to generate or review them
+
+- - Review Need
+  - You need to review the conversion ad hoc for this one file
+  - You need to test the script on several files before trusting it generally
+  - No conversion is needed - many plain-text formats can be reliably converted to binary formats
+
+:::
+
+## Advice for conversion scripts
+
+- For spreadsheets, there are very reliable libraries to convert between CSV and Excel formats. For example, Python's `pandas` can convert the data between Excel formats and `.csv` in both directions. However, while data can be converted easily, formatting is often lost as csv simply does not support it.
+
+- For Word and PDF files, libraries exist to extract text. Again, formatting may be lost, but what might matter more is that diagram, tables, and images may not be captured accurately or at all. 
+
+- If your document only is text based, then you will have no problem writing a reliable script. If the information in your document is not just text based, then you will need to review your script much more carefully before you can reliably trust it widely.
+
+- Personal computers made us use Excel and Word instead of pen and paper or type writers. The internet made us use email instead of sending letters. Will AI make us use machine-readable formats for work-in-progress and use Word/Excel/PDF only for human dissemination?
+
 # Repetition {background-color="#530153"}
 
 ## Cost-Effective AI Practices - Remember This Slide Visually
 
 :::: {.columns style="align-items: flex-start;"}
 
-::: {.column width="33%" }
+::: {.column width="25%" }
 
 ![](./img/truck-milk.jpg)
 
 <span style="display: block; text-align: center; line-height: 1;">Use the smallest model sufficient for the task.</span>
 :::
 
-::: {.column width="33%" }
+::: {.column width="25%" }
 
 ![](./img/just-in-case-groceries.jpg)
 
 <span style="display: block; text-align: center; line-height: 1;">Use memory files so the agent starts with what always matters.</span>
 :::
 
-::: {.column width="33%" }
+::: {.column width="25%" }
 
 ![](./img/line-of-trailers.jpg)
 
 <span style="display: block; text-align: center; line-height: 1;">Start a new session for each new task.</span>
+:::
+
+::: {.column width="25%" }
+
+![](./img/reprint-books.jpg)
+
+<span style="display: block; text-align: center; line-height: 1;">Convert to machine-readable once.</span>
 :::
 ::::
