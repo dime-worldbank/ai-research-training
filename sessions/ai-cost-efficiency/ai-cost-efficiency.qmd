@@ -43,7 +43,25 @@ format:
 - The AI giants' revenue models count on us to get comfortable in our Cadillacs before they hike the prices.
 :::
 
-# General Token Efficiency Strategies {background-color="#530153"}
+## Enterprise Tokens are NOT overly expensive
+
+::: {.fragment}
+* Running large language models (LLMs) is expensive: **_very_** expensive.
+:::
+::: {.fragment}
+* Therefore, **enterprise credits _are not overpriced_**: they are priced to reflect the cost of running these models.
+:::
+::: {.fragment}
+* Instead, **personal license credits _are artificially cheap_**: Anthropic, OpenAI, and others subsidize usage in exchange for access to your data and to compete for market share.
+:::
+::: {.fragment}
+* With a higher-tier personal subscription, you can opt out of a greater amount of data collection -- but it requires that **you regularly review new privacy settings**, and **you can never opt out of all data collection** unless you sign an enterprise license agreement.
+:::
+::: {.fragment}
+* **A $20 personal license will give you much more usage than a $20 enterprise license**: this is the premium we pay for privacy.
+:::
+
+# Token Efficiency Strategies {background-color="#530153"}
 
 {{< include ./token-strategies.qmd >}}
 
