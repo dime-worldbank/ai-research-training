@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>AI for Research: Spending Tokens Well</title>
+<!--
+  Internal newsletter - DECDI / Impact Analytics. Issue 7. DRAFT written before the November 5 session;
+  check the recap against what was actually covered. Recap follows the Bootcamp session
+  bootcamp/sessions/day-1/cost-effective-ai (Kristoffer Bjarkefur). Coming Up leads with November 9 (code review).
+-->
+<style>
+  @media only screen and (max-width: 640px) {
+    .container { width: 100% !important; }
+    .px { padding-left: 24px !important; padding-right: 24px !important; }
+    .bignum { font-size: 52px !important; }
+  }
+  a { color: #0071BC; }
+</style>
+</head>
+<body style="margin:0; padding:0; background-color:#EFF2F5; -webkit-text-size-adjust:100%;">
+
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
+    The largest and smallest Claude models differ in price by a factor of 100. What that means for Enterprise credits, a recap of Impact Analytics&rsquo; training on cost-effective AI agents, and the code-review training on Monday.
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EFF2F5;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+
+        <table role="presentation" class="container" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px; max-width:640px;">
+
+          <!-- ===== Masthead ===== -->
+          <tr>
+            <td style="background-color:#002244; padding:0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:28px 40px 6px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#8AC6E6; text-transform:uppercase;">
+                      DECDI &nbsp;&middot;&nbsp; Impact Analytics &nbsp;&middot;&nbsp; Internal
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px" style="padding:0 40px 24px 40px;">
+                    <span style="font-family:Georgia, 'Times New Roman', serif; font-size:34px; line-height:40px; color:#FFFFFF; font-weight:bold;">
+                      AI for Research: Spending Tokens Well
+                    </span>
+                    <br>
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#B8CCDD;">
+                      Issue 7 &nbsp;&middot;&nbsp; November 6, 2026 &nbsp;&middot;&nbsp; A 5-minute read
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height:4px; background-color:#0071BC; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== The Big Number ===== -->
+          <tr>
+            <td style="background-color:#FFFFFF;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:36px 40px 0 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      The Big Number
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px" align="center" style="padding:12px 40px 0 40px;">
+                    <span class="bignum" style="font-family:Georgia, 'Times New Roman', serif; font-size:64px; line-height:72px; color:#002244; font-weight:bold;">100&times;</span>
+                    <br>
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:22px; color:#54595F;">
+                      price gap per token between the largest<br>and smallest Claude model this week
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px" style="padding:20px 40px 32px 40px;">
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:0;">
+                      On Anthropic&rsquo;s price list this week, the largest model (Fable 5.1) costs $10 per million tokens you send it and $50 per million it writes back. The smallest (Haiku 5.5) costs $0.10 and $0.50. A hundredfold gap, in both directions. Opus and Sonnet sit in between at $4 and $2. Enterprise usage is billed at these rates, so the model you pick in the dropdown is the biggest single lever on what your unit pays.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
+                      A hundredfold price gap does not mean the small model is a hundred times worse. For proofreading a paragraph or explaining a Stata option, it is usually not worse at all. Impact Analytics&rsquo; November 5 training was about matching the model to the job, and two other habits that cut the bill without touching the quality of the work.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:12px 0 0 0;">
+                      Source: <a href="https://claude.com/pricing" style="color:#0071BC;">claude.com/pricing</a>, checked October 27, 2026. Prices change often; check before you quote them.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== In Case You Missed It ===== -->
+          <tr>
+            <td style="background-color:#F5F8FA; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      In Case You Missed It
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:22px; line-height:28px; color:#002244; margin:10px 0 14px 0;">
+                      Using AI Agents Cost Effectively
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
+                      A quick recap of Impact Analytics&rsquo; November 5 training on using AI agents cost effectively. Token limits are already a real constraint at the Bank, and Enterprise credits come out of a budget. The training was about three habits that cut the bill, and why the habits matter more than the current prices do.
+                    </p>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; <b>Cheap tokens won&rsquo;t last.</b> Today&rsquo;s personal-plan prices are subsidised by companies that want us to get used to big models for everything. Setups with real privacy guarantees are not subsidised at all. Those of us on Copilot licences for six months have already had a small taste of running out. The training&rsquo;s image: we can afford the V8 today, so now is the time to learn to drive the hybrid.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; <b>Use the smallest model that does the job.</b> If the semi-truck is your most capable vehicle, you still don&rsquo;t take it to buy milk. A small model proofreads a paragraph as well as a large one. There is no fixed cutoff, and small models keep getting better, so try the smaller one first and move up when it falls short.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; <b>A memory file is a shopping list.</b> Without one, the agent buys the whole store on every request: it re-reads your project to learn what language you use and where the code lives. Write that down once, in <code>AGENTS.md</code> or <code>CLAUDE.md</code>, and it is loaded every time. A good memory file also makes a smaller model good enough, because the agent is not wasting its attention on discovery.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
+                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; <b>Start a new session for each task.</b> Models don&rsquo;t remember. On every request the whole conversation so far is sent again and processed again, for every word of the answer. Ten tasks in one chat means the tenth task pays for the previous nine, and the agent&rsquo;s attention is split across all of them. Use the plus button. If you want to reuse a good prompt, copy it into a fresh session.
+                      </td></tr>
+                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0;">
+                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; <b>Read the meter.</b> Copilot&rsquo;s chat panel shows how full the context window is. At the end of a task, under 5% suggests you used a bigger model than you needed; over 95% suggests a model too small for the job, and details were probably lost. In Claude Code, <code>/cost</code> shows what the session has spent and <code>/context</code> shows what is filling the window.
+                      </td></tr>
+                    </table>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:16px 0 0 0;">
+                      Materials: <a href="https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-1/cost-effective-ai/" style="color:#0071BC;">slides</a> (version from the October AI-Enabled Research Bootcamp) &nbsp;&middot;&nbsp; recording in the training&rsquo;s Teams channel &nbsp;&middot;&nbsp; questions: <a href="mailto:dimeanalytics@worldbank.org" style="color:#0071BC;">dimeanalytics@worldbank.org</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Try This Today ===== -->
+          <tr>
+            <td style="background-color:#FFFFFF; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      Try This Today &nbsp;&middot;&nbsp; 10 minutes
+                    </span>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
+                      Make one routine task cheaper, and find out whether it got worse.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
+                      <b>1. Write down your numbers.</b> Claude: Settings, then <a href="https://claude.ai/new#settings/usage" style="color:#0071BC;">Usage</a>. Copilot: the premium requests left this month. Put them in a text file with today&rsquo;s date. One line. You will want the trend later.<br><br>
+                      <b>2. Look at what you are carrying.</b> In the chat session you have open right now, check Copilot&rsquo;s context meter, or type <code>/context</code> in Claude Code. If most of it is tool output from tasks you finished an hour ago, that is what you have been paying to resend on every request since.<br><br>
+                      <b>3. Start a fresh session and pick a small model.</b> Choose a routine task: proofread a paragraph, rename variables to match a convention, explain an error message. Switch the model picker to the smallest model on offer before you send it.<br><br>
+                      <b>4. Judge the answer as strictly as you would the big model&rsquo;s.</b> Did it get anything wrong that the larger model would have got right? If not, that task has a new default. Add that to the text file too.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0 0;">
+                      <tr>
+                        <td style="background-color:#EAF4FB; border-left:4px solid #0071BC; padding:16px 20px;">
+                          <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:21px; color:#333333;">
+                            <b>Have more than 10 minutes?</b> Open the memory file of the project you spent most on this month. Add the three things the agent had to ask you, or got wrong, this week. Then read the Deep Dive: a half-hour routine for doing this once a month, with the numbers your tools already give you.
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Deep Dive ===== -->
+          <tr>
+            <td style="background-color:#F5F8FA; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      Deep Dive &nbsp;&middot;&nbsp; Track C, Part 2
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
+                      The monthly token review
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
+                      Three habits cut the waste. A monthly look at your own numbers tells you whether they are working. Where the numbers are (the usage page, <code>/cost</code>, <code>/context</code>, Copilot&rsquo;s meter), a five-step routine that takes half an hour, what a good month looks like, and how to turn the file into a credit request that gets approved. About 12 minutes.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="background-color:#0071BC; border-radius:2px;">
+                          <!-- DEEP_DIVE_URL -->
+                          <a href="https://github.com/dime-worldbank/ai-research-training/blob/nlissue6-8/Newsletter/issue-07/deep-dive-monthly-token-review.md" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; padding:11px 22px;">
+                            Read the Deep Dive &rarr;
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Field Notes ===== -->
+          <tr>
+            <td style="background-color:#FFFFFF; border-top:1px solid #DDE4EA;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 28px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#0071BC; text-transform:uppercase; font-weight:bold;">
+                      Field Notes &nbsp;&middot;&nbsp; beyond the trainings
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:20px; line-height:26px; color:#002244; margin:10px 0 10px 0;">
+                      Same model name, different answer
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 12px 0;">
+                      Switching to a smaller or newer model is the fastest way to cut the bill. If the model produced a variable in your analysis, it is also a change to your instrument.
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
+                      Three political scientists re-ran the same text-coding tasks on the same models every month for most of 2024. The AI beat crowdworkers on accuracy and lost on stability. Fixing the temperature did not help, one model stopped existing mid-project, and the re-estimated coefficients came out a third the size. Field Notes covers what moved, and which tasks to pin a model for.
+                    </p>
+                    <!-- FIELD_NOTES_URL -->
+                    <a href="https://github.com/dime-worldbank/ai-research-training/blob/nlissue6-8/Newsletter/issue-07/field-notes-same-model-different-answer.md" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#0071BC; text-decoration:none;">
+                      Read the Field Notes &rarr;
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Coming Up ===== -->
+          <tr>
+            <td style="background-color:#002244;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" style="padding:32px 40px 32px 40px;">
+                    <span style="font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; color:#8AC6E6; text-transform:uppercase; font-weight:bold;">
+                      Coming Up
+                    </span>
+                    <h2 style="font-family:Georgia, 'Times New Roman', serif; font-size:22px; line-height:28px; color:#FFFFFF; margin:10px 0 8px 0;">
+                      AI Skills for Code Review
+                    </h2>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0 0 6px 0;">
+                      <b style="color:#FFFFFF;">Monday, November 9</b> &nbsp;&middot;&nbsp; Room G 4-001 and Teams &nbsp;&middot;&nbsp; open to all (repeat from the Bootcamp)
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0;">
+                      A review skill built from DEC&rsquo;s peer code review checklists. It reads your code, reports flags with a severity and a line number, and changes nothing until you approve. Bring code from an ongoing project, with no confidential data in the folder. You need VS Code with GitHub Copilot or Claude Code.
+                    </p>
+                    <a href="https://teams.microsoft.com/meet/267672866844073?p=K4KB6UkfoJLiOEA8AJ" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; margin:10px 0 0 0;">
+                      Join on Teams &middot; November 9 &rarr;
+                    </a>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:24px 0 0 0; padding-top:20px; border-top:1px solid #1F4468;">
+                      <b style="color:#FFFFFF;">Then:</b> AI for Survey Instrument Design (Thursday, November 12, DECDI only) &nbsp;&middot;&nbsp; no session on November 26 (Thanksgiving) &nbsp;&middot;&nbsp; AI Skills for Reproducible Research (December 2) &nbsp;&middot;&nbsp; Making Your Workflows AI-Enabled (December 3)
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== Footer ===== -->
+          <tr>
+            <td style="background-color:#EFF2F5;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="px" align="center" style="padding:24px 40px 8px 40px;">
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#8A8F94; margin:0;">
+                      AI for Research is the companion newsletter to the DECDI AI training series,<br>
+                      produced by the Impact Analytics team. Internal distribution only.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding:4px 40px 28px 40px;">
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:18px; color:#8A8F94; margin:0;">
+                      Found a task where the small model was good enough, or one where it clearly wasn&rsquo;t? Reply to this email. We&rsquo;ll use internal examples first in future issues.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
