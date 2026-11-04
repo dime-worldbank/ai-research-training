@@ -1,13 +1,13 @@
-## 4 strategies to avoid common token inefficiencies
+## 4 Strategies to Avoid Common Token Inefficiencies
 
 1. Use an appropriate model for each task.
 2. Use memory files to indicate what is important for most tasks.
 3. Start a new session if the current session has context that is not relevant to the task.
-4. Convert input to machine readable formats
+4. Convert input to machine-readable formats.
 
 # Use Appropriate Models {background-color="#530153"}
 
-## What Makes Different Models Different? How To Choose?
+## What Makes Different Models Different? How Do You Choose?
 
 :::: {.columns .v-center-container}
 ::: {.column width="65%" }
@@ -15,9 +15,9 @@
 * **Question:** If the biggest model is the most advanced model, why should I not always use it?
 
 ::: {.fragment}
-* It is like asking: if my 18-wheel semi-truck is my most capable vehicle, why should I not use it when driving to the convenience store for a gallon of milk?
+* It is like asking: if my 18-wheel semi-truck is my most capable vehicle, why should I not use it to drive to the convenience store for a gallon of milk?
 
-Using a semi-truck for this will work -- but if this is your habit, it will not mainly be the current gas prices' fault if you max out your household's fuel budget.
+Using a semi-truck for this will work -- but if this is your habit, maxing out your household's fuel budget will not be mainly the fault of current gas prices.
 :::
 
 :::
@@ -30,36 +30,36 @@ Using a semi-truck for this will work -- but if this is your habit, it will not 
 :::
 ::::
 
-## What Makes Different Models Different? And When to Use Them
+## Models: What Differs and How to Choose?
 
-- A bigger model can hold more detail, which is better if token cost was not a factor, but that extra capacity may be unnecessary for simple tasks.
+- A bigger model can hold more detail, which would always be better if token cost and the environmental impact of data centers were not factors. However, that extra capacity is excessive for simple tasks.
 
 ::: {.fragment}
-- While bigger models tend to be "_better_", they are not always the best choice when a task does not need that level of detail, as we then would be paying for unused capacity.
-:::
-::: {.fragment}
-- As models improve, smaller models can handle more complex tasks, so there is no definitive cutoff for when to use a smaller or a larger model.
+- While bigger models tend to be "_better_", they are not always the best choice when a task does not need that level of detail, because we would be paying for unused capacity.
 :::
 ::: {.fragment}
 - Example: a small model can be just as effective for proofreading a short paragraph. Using a larger model for this task is like taking a semi-truck to the convenience store.
 :::
 ::: {.fragment}
-- AI giants want us to develop the habit of using big models for every task, regardless of size, since this will make their shareholders richer the day token subsidies end.
+- Choosing the right model is an art, not a science. Models constantly evolve, and smaller models today are more capable than large models were a year ago -- so it is impossible to give you a definitive list of tasks for each model.
+
+A later slide in this presentation will show tools that can help you develop this skill by evaluating your model choice at the end of a task.
 :::
 
 # Use Memory Files {background-color="#530153"}
 
-## Why Use Memory Files? My agent works great without them
+## Why Memory Files? My Agent Works Without Them
 
 :::: {.columns .v-center-container}
 ::: {.column width="65%" }
 
-* **Question:** Why do I need a memory file? My agent is really good at fetching all information in the project folder to find all relevant information on its own.
+* **Question:** Why do I need a memory file? My agent is really good at fetching all information in the project folder to find relevant information on its own.
 
 ::: {.fragment}
-* It is like going to the grocery store and buying everything in the store "_just in case_", instead of using a shopping list and getting only what you need.
+* It is like going to the grocery store and "_buying all items in the store just in case_", instead of using a shopping list and getting only what you need.
 
-Buying a whole store "_just in case_" and then throwing out what you did not use for dinner is wasteful and inefficient. If you do that, it is not the current grocery prices' fault if you max out your household's grocery budget.
+Buying "_all items in the grocery store_" each time you go there, and then throwing out what you did not use for dinner is wasteful and inefficient -- if you do that, it is not the current grocery prices' fault if you max out your household's grocery budget.
+
 :::
 
 :::
@@ -72,20 +72,23 @@ Buying a whole store "_just in case_" and then throwing out what you did not use
 :::
 ::::
 
-## Why Use Memory Files? My agent works great without them
+## My Agent Performs Well Without a Memory File
 
-- Yes, your agent will perform well without a memory file, but you will have paid for processing a lot of irrelevant information unnecessarily.
+- Yes, your agent is likely to perform well without a memory file, but for each request, you will pay for rediscovering basic project-facts and while doing so consuming many tokens to parse through irrelevant information -- the AI companies will gladly take your money in return for doing this over and over again.
 
 ::: {.fragment}
-- The memory file provides the high-level information. Don't waste tokens on every single request by making the agent search through the project folder for information that takes you 5 seconds to write in the memory file. For example, what programming languages are used or where the code folder is located.
+- The memory file helps the agent find information efficiently. Don't make the agent waste tokens on extensive searches on each request when guidance for how to find it takes you a minute to write in the memory file. For example:
+  - Where in the project folder is the code folder located?
+  - Is data available in the project folder or what to do if it is not?
+  - What programming languages are used for what tasks? (Scopes file formats to search for)
 :::
 ::: {.fragment}
-- With a memory file, the agent will, when needed, still search for and find additional context relevant to your request. But it does not start from nothing, and with a folder structure in the memory file, it can do a targeted search and does not need to buy the full grocery store.
+- With a memory file, the agent will, when needed, still search for and find additional context relevant to your request. But it does not start from nothing, will not buy all items in the grocery store when additional information is needed.
 :::
 
 # Start New Sessions {background-color="#530153"}
 
-## Why Start New Sessions? It is easier to keep using the same chat
+## Why Start New Sessions? It Is Easier to Keep Using the Same Chat
 
 :::: {.columns .v-center-container}
 ::: {.column width="65%" }
@@ -93,7 +96,7 @@ Buying a whole store "_just in case_" and then throwing out what you did not use
 * **Question:** Why can't I keep using the same chat for multiple tasks? It is faster and easier than constantly starting new chat sessions.
 
 ::: {.fragment}
-* It is like going to the hardware store in an appropriate vehicle, but with several trailers, each carrying everything you bought on previous trips to that store.
+* It is like going to the hardware store in an appropriate vehicle, but for each visit bring what you purchased in previous trips and pay for it again, and then add the new items in a new trailer to be paid for again and again. 
 
 Even if you tell the agent to forget the previous part of the conversation, it will still have to process the full conversation regardless of whether that part is relevant or not.
 :::
@@ -108,19 +111,20 @@ Even if you tell the agent to forget the previous part of the conversation, it w
 :::
 ::::
 
-## Why Start New Sessions? It is easier to keep using the same chat
+## But it is Easier to Keep Using the Same Chat
 
-
-- Models are stateless. This means that each time you or the agent sends a request to a language model, the full history (including whatever the agent has added to the context window) is reprocessed. Besides being cost-**_in_**efficient, this also risks diluting the model's attention with irrelevant information.
+- Models are stateless. This means that for each request, the full history of your session is sent to and processed by the language model -- including whatever the agent has added to the context window without your knowledge.
+  - (_besides being cost-**_in_**efficient, long context windows risk diluting the model's attention with irrelevant information._)
 
 ::: {.fragment}
 - This is repeated for each word generated by the model. **Yes. Each word!** (_Optimizations like caching exist, but fundamentally this is how it works, and caching still takes resources._)
 :::
 ::: {.fragment}
-- If you use the same chat session for, let's say, 10 tasks, then when the agent is generating a response for the second task, you are paying again for the tokens used for the first task. For the third task, you are paying again for the first and second tasks, and so on. For the tenth task, you are paying for all nine previous tasks when generating the tenth response.
+- If you use the same chat session for, let's say, 10 tasks:
+  - When the agent is generating a response for the second task, _you are paying again for the tokens used for the **first** task_. 
+  - For the third task, _you are paying again for the **first** and **second** tasks_, and so on. 
+  - For the tenth task, _you are paying for **all nine** previous tasks_ when generating the tenth response.
 :::
-
-
 
 # Use Machine Readable Inputs {background-color="#530153"}
 
@@ -132,9 +136,9 @@ Even if you tell the agent to forget the previous part of the conversation, it w
 * **Question:** My team uses Word and PDF files, and my AI agent can read them. Why convert to plain text?
 
 ::: {.fragment}
-* Asking AI to re-convert a Word or PDF file for each prompt is like reprinting a book every time you want to look up a page.
+* Asking a code assistant to re-convert a Word or PDF file for each prompt is like reprinting a book every time you want to look up a page.
 
-Yes, your AI _can_ read them, but doing so has a high token cost. Converting them to machine-readable formats means you pay this cost only once.
+Yes, your AI _can_ read all common formats, but agents that are not optimized for a particular file format will do so at a high token cost. Converting input files to machine-readable formats means you pay this cost only once.
 :::
 
 :::
@@ -149,9 +153,9 @@ Yes, your AI _can_ read them, but doing so has a high token cost. Converting the
 
 ## What are machine-readable formats?
 
-Only plain text can be sent to a language model, so _plain-text_ formats can be sent as is, but _binary files_ must be converted first.
+Only plain text can be sent to a language model, so _plain-text_ formats can be sent as-is, but _binary files_ must be converted first.
 
-Plain-text formats can hold much of the same content, but typically support less formatting than binary formats. Binary formats support richer formatting, but accessing that content requires additional computation.
+Plain-text formats support the same text content with less formatting; binary formats support richer formatting but require computation to parse.
 
 ::: {.list-table}
 
@@ -173,6 +177,15 @@ Plain-text formats can hold much of the same content, but typically support less
   
 :::
 
+::: {.callout-note}
+
+* While Microsoft Copilot is optimized for Microsoft formats like Word and Excel, it still needs to convert content to plain text before sending your data to the LLM -- but it is already optimized for this process.
+* If your task only involves formatting or modifying Microsoft file formats, use Microsoft Copilot.
+* The strategy on this slide is most relevant when you use Claude Code or GitHub Copilot for code tasks where binary formats are repeatedly used as inputs -- Microsoft Copilot is not optimized for writing code and does not do so well.
+
+:::
+
+
 ## Three strategies to work with machine-readable formats
 
 ::: {.list-table}
@@ -183,9 +196,9 @@ Plain-text formats can hold much of the same content, but typically support less
   - _Plain text first_
 
 - - Description
-  - Prompt the AI to convert the file and save it in a plain-text format, then use that file
-  - Prompt the AI to write a reusable script to convert the file
-  - Use plain text in the first place, and only convert to binary for dissemination to humans
+  - Prompt the AI to convert the file and save it in a plain-text format, then use that file.
+  - Prompt the AI to write a reusable script to convert the file.
+  - Use plain text in the first place, and only convert to binary for dissemination to humans.
 
 - - Use Cases
   - You have a single document to convert
@@ -193,21 +206,28 @@ Plain-text formats can hold much of the same content, but typically support less
   - Your project is to produce these files, and you use AI to generate or review them
 
 - - Review Need
-  - You need to review the conversion ad hoc for this one file
-  - You need to test the script on several files before trusting it generally
-  - No conversion is needed - many plain-text formats can be reliably converted to binary formats
+  - You need to review the conversion ad hoc for this one file.
+  - You need to test the script on several files before trusting it generally.
+  - No conversion is needed -- many plain-text formats can be reliably converted to binary formats.
 
 :::
 
 ## Advice for conversion scripts
 
-- For spreadsheets, there are very reliable libraries to convert between CSV and Excel formats. For example, Python's `pandas` can convert the data between Excel formats and `.csv` in both directions. However, while data can be converted easily, formatting is often lost as csv simply does not support it.
+- If the relevant content of your files consists only of text or data, the AI should have no problem writing a script that converts the files reliably.
+- If formatting carries information, font color has meaning, or diagrams and images are used, you are likely to have to spend more time on that script.
 
-- For Word and PDF files, libraries exist to extract text. Again, formatting may be lost, but what might matter more is that diagram, tables, and images may not be captured accurately or at all. 
+::: {.fragment}
+- For spreadsheets, there are very reliable libraries to convert between CSV and Excel formats. For example, Python's `pandas` can convert data between Excel formats and `.csv` in both directions. However, CSV has no support for formatting such as merged cells, so that information is lost.
+- For Word and PDF files, libraries exist to extract text. Text is reliably converted, but information from images, diagrams, tables, page references, and so on might be lost or incorrectly converted.
+:::
 
-- If your document only is text based, then you will have no problem writing a reliable script. If the information in your document is not just text based, then you will need to review your script much more carefully before you can reliably trust it widely.
-
-- Personal computers made us use Excel and Word instead of pen and paper or type writers. The internet made us use email instead of sending letters. Will AI make us use machine-readable formats for work-in-progress and use Word/Excel/PDF only for human dissemination?
+::: {.fragment}
+- AI will change how we work, perhaps even what our default file formats are:
+  - Personal computers made us use Excel and Word instead of pen and paper or typewriters.
+  - The internet made us use email instead of sending letters. 
+  - Will AI make us use machine-readable formats for work-in-progress and use Word/Excel/PDF only for human dissemination?
+:::
 
 # Repetition {background-color="#530153"}
 

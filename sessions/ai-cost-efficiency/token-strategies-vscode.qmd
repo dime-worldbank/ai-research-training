@@ -1,12 +1,14 @@
 
-## Use Appropriate Models
+## The Art of Choosing Model
 
 :::: {.columns .v-center-container}
 ::: {.column width="65%" }
 
 - This is an art and not a science. Experiment with models to find the smallest one sufficient for a type of task.
 - A good memory file makes it possible to use a smaller model, as the "just-in-case groceries" will not take up space.
-- Using `auto` gives you a small discount - but when token subsidies end, you will save much more money by knowing how to use models appropriate for the task.
+- Using `auto` gives you a small discount on the model used, but might not use the most cost-efficient model. 
+- Using `auto` mode to choose model saves time, which is also money, but start practice getting a feeling for what is an appropriate model for a given task.
+- That will make you ready for the day the token subsidies end.
 
 :::
 ::: {.column width="35%" }
@@ -20,10 +22,10 @@
 ::: {.column width="75%" }
 
 - You can see how full your current context window is in GitHub Copilot's extension in VS Code.
-- This can help you determine whether you used an appropriately sized model at the end of a session:
+- This can help you determine whether you used an appropriately sized model after finishing a task:
   - `< 5%` could suggest you used a too big model - cost inefficient
   - `> 95%` could suggest you used a too small model - details were probably lost
-- But this also shows you how much payload you would submit again if you reused the session for a new task.
+- This also shows you how much payload you would submit again if you reused the session for a new task -- "paying for your previous purchases over and over again"
 - Use the plus button at the top of the chat window to start a new session for each new task.
 :::
 ::: {.column width="25%" }

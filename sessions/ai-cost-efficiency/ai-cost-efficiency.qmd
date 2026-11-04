@@ -16,31 +16,25 @@ format:
     height: 700
 ---
 
-## Objective
-
-- Understand the cost and efficiency trade-offs of using AI agents.
-- Learn strategies to minimize token usage without compromising AI performance.
-- Learn where in VS Code you can implement these strategies.
-
 ## Do I Really Need to Worry About Token Efficiency?
 
 ::: {.fragment}
 - Maybe not now, but eventually. AI tokens will never again be as subsidized by the AI giants as they are today. And setups with data privacy are not subsidized.
 :::
 ::: {.fragment}
-- We live in the AI-token equivalent of a pre-1973 oil crisis - the era of cheap and abundant tokens.
+- We live in the AI-token equivalent of a pre-1973 oil crisis - the era of cheap and abundant tokens. 
 :::
 ::: {.fragment}
-- It will never again be as cheap to experiment and learn with tokens as it is now.
+- Enjoy it will it last -- **it will never again be as cheap to experiment and learn with tokens as it is now**.
 :::
 ::: {.fragment}
-- Those of us who have been using the WBG's GitHub Copilot licenses for six months have already experienced a mini oil crisis.
+- Those who started to use WBG's GitHub Copilot licenses last spring or have recently gone from personal Claude licenses to use WB Claude Enterprise have already experienced some "_oil-crises_".
 :::
 ::: {.fragment}
 - We can afford to drive a V8 Cadillac Eldorado today, but need to learn how to drive a hybrid Toyota Prius tomorrow.
 :::
 ::: {.fragment}
-- The AI giants' revenue models count on us to get comfortable in our Cadillacs before they hike the prices.
+- The AI companies' gigantic company valuations depends on us getting too comfortable in our Cadillacs before they hike the prices.
 :::
 
 ## Enterprise Tokens are NOT overly expensive
@@ -74,4 +68,3 @@ format:
 {{< include ./examples.qmd >}}
 
 # Thank You! - Questions? {background-color="#530153"}
-
