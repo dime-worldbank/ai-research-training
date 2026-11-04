@@ -13,18 +13,18 @@ And keep the habit from earlier: a new session for each new task.
 
 ## What Counts as a New Task?
 
-**Ask yourself:** does my next request need anything from *this conversation* -- beyond what is already in my files or memory file?
+**Ask yourself:** does my next request need anything from *this conversation* (beyond what is already in my files or memory file?)
 
-- **No → new session.** The earlier discussion would just be trailers.
+- **No → new session.** The earlier discussion would just make your chat more expensive without adding anything. 
 - **Yes → stay.** The agent needs what you just worked out together.
 
 ::: {.fragment}
 | Example | Same task or new? |
 |---|---|
-| Draft slide 5, then fix a typo on slide 5 | **Same** -- builds directly on the draft |
+| Draft slide 5, then fix a typo on slide 5 | **Same** -- builds directly on the same slide |
 | Draft slide 5, then draft slide 9 on a different topic | **New** -- only the style carries over, and that belongs in a memory file or skill |
-| Debug a regression, then write the README | **New** |
-| Batch 1 of a review, then batch 2 with the same instructions | **New** -- reuse the prompt, not the chat |
+| Debug a regression, then write the README | **New** -- Even if it's for the same project, there is no need for context beyond the files and memory file 
+| Summarize the Kenya country report, then the Uganda report with the same instructions | **New** -- reuse the prompt, not the chat |
 :::
 
 ## Step 1: Which Tool?
@@ -32,7 +32,7 @@ And keep the habit from earlier: a new session for each new task.
 | Tool | Use it for | Data you may share |
 |---|---|---|
 | **GitHub Copilot** | Code in VS Code: writing, debugging, refactoring | WBG work, up to official use only |
-| **Claude Enterprise** | Documents, reports, long analyses, Claude Code | WBG work, up to confidential |
+| **Claude Enterprise** | Same with more level of security + Documents, reports, long analyses, Claude Code | WBG work, up to confidential |
 | **mAI** | Everyday writing, summaries, quick questions | WBG work, up to strictly confidential |
 | **M365 Copilot** | Word drafts, PowerPoint slides, email and meeting summaries | WBG work, up to strictly confidential |
 | **Personal Claude / ChatGPT** | Learning with public material | **Public information only** |
@@ -58,7 +58,7 @@ And keep the habit from earlier: a new session for each new task.
 
 ## The Setup
 
-A research assistant on a (fictional) impact evaluation: cash transfers plus nutrition coaching in rural Kenya, 60 villages, 1,200 households.
+A (fictional) impact evaluation: cash transfers plus nutrition coaching in rural Kenya, 60 villages, 1,200 households.
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -119,7 +119,7 @@ Cluster RCT of cash transfers + nutrition coaching in rural Kenya.
 - Baseline: `hh_size`, `head_female`, `head_educ_yrs`, `consumption_pc`, ...
 ```
 
-Five minutes to write with a lot of impact (you will see).
+Five minutes to write with a lot of impact (you will see). (You can also us an Agent to write it, Haiku model would be enough.)
 
 ## The Case Study, Live {#live-demo}
 
@@ -186,7 +186,7 @@ The scripts to rerun this case study are in `case-study/` next to these slides.
 
 Open your chat history in Visual Studio/Claude Code and look at your **last 10 chats**. Count how many had:
 
-- [ ] **A very long thread**: several tasks, or batch after batch, in one chat (the trailers)
+- [ ] **A very long thread**: several tasks, or the same job repeated on file after file, in one chat (the trailers)
 - [ ] **Three or more corrections**, such as "no, I meant...", before you got what you wanted
 - [ ] **A large paste or attachment** when only one section mattered
 - [ ] **A vague first prompt** that the agent had to explore or ask about

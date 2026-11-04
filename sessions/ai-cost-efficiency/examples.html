@@ -103,9 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="what-counts-as-a-new-task" class="level2">
 <h2 class="anchored" data-anchor-id="what-counts-as-a-new-task">What Counts as a New Task?</h2>
-<p><strong>Ask yourself:</strong> does my next request need anything from <em>this conversation</em> – beyond what is already in my files or memory file?</p>
+<p><strong>Ask yourself:</strong> does my next request need anything from <em>this conversation</em> (beyond what is already in my files or memory file?)</p>
 <ul>
-<li><strong>No → new session.</strong> The earlier discussion would just be trailers.</li>
+<li><strong>No → new session.</strong> The earlier discussion would just make your chat more expensive without adding anything.</li>
 <li><strong>Yes → stay.</strong> The agent needs what you just worked out together.</li>
 </ul>
 <div class="fragment">
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>Draft slide 5, then fix a typo on slide 5</td>
-<td><strong>Same</strong> – builds directly on the draft</td>
+<td><strong>Same</strong> – builds directly on the same slide</td>
 </tr>
 <tr class="even">
 <td>Draft slide 5, then draft slide 9 on a different topic</td>
@@ -131,10 +131,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>Debug a regression, then write the README</td>
-<td><strong>New</strong></td>
+<td><strong>New</strong> – Even if it’s for the same project, there is no need for context beyond the files and memory file</td>
 </tr>
 <tr class="even">
-<td>Batch 1 of a review, then batch 2 with the same instructions</td>
+<td>Summarize the Kenya country report, then the Uganda report with the same instructions</td>
 <td><strong>New</strong> – reuse the prompt, not the chat</td>
 </tr>
 </tbody>
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><strong>Claude Enterprise</strong></td>
-<td>Documents, reports, long analyses, Claude Code</td>
+<td>Same with more level of security + Documents, reports, long analyses, Claude Code</td>
 <td>WBG work, up to confidential</td>
 </tr>
 <tr class="odd">
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 data-background-color="#530153">Case Study: An Afternoon on the Cash Plus RCT</h1>
 <section id="the-setup" class="level2">
 <h2 class="anchored" data-anchor-id="the-setup">The Setup</h2>
-<p>A research assistant on a (fictional) impact evaluation: cash transfers plus nutrition coaching in rural Kenya, 60 villages, 1,200 households.</p>
+<p>A (fictional) impact evaluation: cash transfers plus nutrition coaching in rural Kenya, 60 villages, 1,200 households.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>The project folder</strong></p>
@@ -250,11 +250,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </div>
 </div>
-<div class="fragment">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li>We ran the same three tasks three ways in Claude Code and recorded every token.</li>
 <li>We ran it using claude personal and enterprise and the results are the same, with some differences on specific tokens as that will always vary from run to run. The reported results are using Claude Enterprise.</li>
 </ul>
+</div>
 </div>
 </section>
 <section id="three-workflows-three-costs" class="level2">
@@ -324,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key variable names</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Treatment: <span class="in">`treatment`</span> (0/1). Cluster: <span class="in">`village_id`</span>. ID: <span class="in">`hhid`</span>.</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Baseline: <span class="in">`hh_size`</span>, <span class="in">`head_female`</span>, <span class="in">`head_educ_yrs`</span>, <span class="in">`consumption_pc`</span>, ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Five minutes to write with a lot of impact (you will see).</p>
+<p>Five minutes to write with a lot of impact (you will see). (You can also us an Agent to write it, Haiku model would be enough.)</p>
 </section>
 <section id="live-demo" class="level2">
 <h2 class="anchored" data-anchor-id="live-demo">The Case Study, Live</h2>
@@ -391,9 +401,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Did it work?</strong> All three fixed the balance table. A and C fixed all 8 typos; B only listed them. All three wrote a README, but only C’s says where the data come from and how to access them, because the memory file asks for it.</li>
 </ul>
 </div>
-<div style="font-size: 0.6em;">
-<p>Cost as estimated by Claude Code at Anthropic API list prices; the Bank’s enterprise rates may differ. PENDING</p>
-</div>
 </section>
 <section id="what-drove-the-difference" class="level2">
 <h2 class="anchored" data-anchor-id="what-drove-the-difference">What Drove the Difference</h2>
@@ -436,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="step-1-self-audit-5-minutes-no-ai-needed">Step 1: Self-Audit (5 Minutes, No AI Needed)</h2>
 <p>Open your chat history in Visual Studio/Claude Code and look at your <strong>last 10 chats</strong>. Count how many had:</p>
 <ul class="task-list">
-<li><label><input type="checkbox"><strong>A very long thread</strong>: several tasks, or batch after batch, in one chat (the trailers)</label></li>
+<li><label><input type="checkbox"><strong>A very long thread</strong>: several tasks, or the same job repeated on file after file, in one chat (the trailers)</label></li>
 <li><label><input type="checkbox"><strong>Three or more corrections</strong>, such as “no, I meant…”, before you got what you wanted</label></li>
 <li><label><input type="checkbox"><strong>A large paste or attachment</strong> when only one section mattered</label></li>
 <li><label><input type="checkbox"><strong>A vague first prompt</strong> that the agent had to explore or ask about</label></li>
