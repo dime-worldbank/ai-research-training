@@ -25,7 +25,7 @@ format:
 - We live in the AI-token equivalent of a pre-1973 oil crisis - the era of cheap and abundant tokens. 
 :::
 ::: {.fragment}
-- Enjoy it will it last -- **it will never again be as cheap to experiment and learn with tokens as it is now**.
+- Enjoy it while it lasts -- **it will never again be as cheap to experiment and learn with tokens as it is now**.
 :::
 ::: {.fragment}
 - Those who started to use WBG's GitHub Copilot licenses last spring or have recently gone from personal Claude licenses to use WB Claude Enterprise have already experienced some "_oil-crises_".
