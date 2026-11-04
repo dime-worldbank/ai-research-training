@@ -26,6 +26,7 @@ A series of stand-alone sessions on using AI tools across the research lifecycle
 | 9 | AI for Data Quality Checks | Nov 19 | Upcoming |
 | 10 | Creating Custom Coding Agents | Dec 3 | Upcoming |
 | 11 | Claude Enterprise at the World Bank | Oct 22| **Available** &middot; [Slides →]({{ '/sessions/ai-claude-enterprise/' | relative_url }}) |
+| 12 | Using AI Agents Cost Effectively | Nov 5 | **Available** &middot; [Slides →]({{ '/sessions/ai-cost-efficiency/' | relative_url }}) |
 
 ## Onboarding series (delivered)
 
