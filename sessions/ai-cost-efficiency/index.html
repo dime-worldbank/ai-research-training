@@ -1553,7 +1553,7 @@ Kristoffer Bjarkefur &amp; Maria Reyes Retana Torre
 </table>
 <div class="fragment">
 <ul>
-<li>mAI and M365 Copilot have no per-user limit – great for writing, but “no limit for you” is not “free for the Bank” so also have cost-effectiveness practices in mind.</li>
+<li>M365 Copilot have no per-user limit – great for writing, but “no limit for you” is not “free for the Bank” so also have cost-effectiveness practices in mind. mAI just implemented cap (35 USD) for advanced models (Sonnet/Opus/Sol).</li>
 </ul>
 </div>
 </section>
@@ -1619,8 +1619,21 @@ Kristoffer Bjarkefur &amp; Maria Reyes Retana Torre
 <li>Write a README</li>
 </ol>
 </div></div>
-<div class="fragment">
-<p>We ran the same three tasks three ways in Claude Code and recorded every token.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>We ran the same three tasks three ways in Claude Code and recorded every token.</li>
+<li>We ran it using claude personal and enterprise and the results are the same, with some differences on specific tokens as that will always vary from run to run. The reported results are using Claude Enterprise.</li>
+</ul>
+</div>
+</div>
 </div>
 </section>
 <section id="three-workflows-three-costs" class="slide level2">
@@ -1708,7 +1721,7 @@ Kristoffer Bjarkefur &amp; Maria Reyes Retana Torre
 </section>
 <section id="the-results" class="slide level2">
 <h2>The Results</h2>
-<p>Input tokens processed per task, from our run (including tokens resent from earlier in the conversation):</p>
+<p>Input tokens processed per task, from our run on Claude Enterprise (including tokens resent from earlier in the conversation):</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1721,39 +1734,39 @@ Kristoffer Bjarkefur &amp; Maria Reyes Retana Torre
 <tbody>
 <tr class="odd">
 <td>Fix the balance table</td>
-<td style="text-align: right;">282k</td>
-<td style="text-align: right;">242k</td>
-<td style="text-align: right;">90k</td>
+<td style="text-align: right;">145k</td>
+<td style="text-align: right;">127k</td>
+<td style="text-align: right;">56k</td>
 </tr>
 <tr class="even">
 <td>Proofread the abstract</td>
-<td style="text-align: right;">421k</td>
-<td style="text-align: right;">85k</td>
-<td style="text-align: right;">91k</td>
+<td style="text-align: right;">229k</td>
+<td style="text-align: right;">48k</td>
+<td style="text-align: right;">58k</td>
 </tr>
 <tr class="odd">
 <td>Write a README</td>
-<td style="text-align: right;">574k</td>
-<td style="text-align: right;">378k</td>
-<td style="text-align: right;">91k</td>
+<td style="text-align: right;">300k</td>
+<td style="text-align: right;">158k</td>
+<td style="text-align: right;">78k</td>
 </tr>
 <tr class="even">
 <td><strong>Total</strong></td>
-<td style="text-align: right;"><strong>1.28M</strong></td>
-<td style="text-align: right;"><strong>706k</strong></td>
-<td style="text-align: right;"><strong>271k</strong></td>
+<td style="text-align: right;"><strong>675k</strong></td>
+<td style="text-align: right;"><strong>333k</strong></td>
+<td style="text-align: right;"><strong>191k</strong></td>
 </tr>
 <tr class="odd">
 <td><strong>Cost</strong></td>
-<td style="text-align: right;"><strong>$0.82</strong></td>
 <td style="text-align: right;"><strong>$0.65</strong></td>
-<td style="text-align: right;"><strong>$0.06</strong></td>
+<td style="text-align: right;"><strong>$0.43</strong></td>
+<td style="text-align: right;"><strong>$0.05</strong></td>
 </tr>
 </tbody>
 </table>
 <div class="fragment">
 <ul>
-<li><strong>C used a fifth of A’s tokens and cost 13x less</strong>, because it also ran on smaller models.</li>
+<li><strong>C used just over a quarter of A’s tokens and cost 12x less</strong>, because it also ran on smaller models.</li>
 <li><strong>Did it work?</strong> All three fixed the balance table. A and C fixed all 8 typos; B only listed them. All three wrote a README, but only C’s says where the data come from and how to access them, because the memory file asks for it.</li>
 </ul>
 </div>
@@ -1765,12 +1778,12 @@ Kristoffer Bjarkefur &amp; Maria Reyes Retana Torre
 <h2>What Drove the Difference</h2>
 <div class="fragment">
 <ul>
-<li><strong>New task.</strong> The <em>same prompt</em>, “Can you proofread the abstract?”, cost 421k tokens as the second task in a long chat and 85k in a fresh one: almost 5x, only from carrying task 1 along.</li>
+<li><strong>New task.</strong> The <em>same prompt</em>, “Can you proofread the abstract?”, cost 229k tokens as the second task in a long chat and 48k in a fresh one: almost 5x, only from carrying task 1 along.</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li><strong>Setting.</strong> Without a memory file, the agents in A and B read the pre-analysis plan and the field notes, which none of the tasks needed. With it, the agent in C opened 3 files plus the header row of the data.</li>
+<li><strong>Setting.</strong> Without a memory file, the agents in A and B read the pre-analysis plan and the field notes, which none of the tasks needed. With it, the agent in C opened 4 small files plus the header row of the data.</li>
 </ul>
 </div>
 <div class="fragment">
@@ -1787,8 +1800,8 @@ Kristoffer Bjarkefur &amp; Maria Reyes Retana Torre
 <section id="read-the-numbers" class="slide level2">
 <h2>Read the Numbers</h2>
 <ul>
-<li><strong>One run per workflow.</strong> Runs vary: tasks A1 and B1 had identical setups and still differed by 16% (282k vs 242k).</li>
-<li><strong>Claude Code has a floor.</strong> Every request sends a large set of built-in instructions, so even proofreading cost ~90k tokens here. Chat tools start lower, but the patterns are the same.</li>
+<li><strong>One run per workflow.</strong> Runs vary: tasks A1 and B1 had identical setups and still differed by 14% (145k vs 127k).</li>
+<li><strong>Claude Code has a floor.</strong> Every request sends a large set of built-in instructions, so even the shortest task cost ~50k tokens here. Chat tools start lower, but the patterns are the same.</li>
 <li><strong>The project is fictional and small.</strong> This grows with every task you add to a chat, so on a real project with longer chats the gap tends to widen.</li>
 </ul>
 <div class="fragment">

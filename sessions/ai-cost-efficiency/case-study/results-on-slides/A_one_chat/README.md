@@ -1,9 +1,39 @@
 # Cash Plus RCT
 
-Replication code for a cluster-randomized evaluation of a cash plus program in rural Kenya.
-The program combines unconditional cash transfers with nutrition coaching for households with
-children under five. Treatment was assigned at the village level: 60 villages, 1,200 households
-(601 treatment, 599 control).
+Replication code for a cluster-randomized evaluation of a cash plus program in rural Kenya. The
+program combines unconditional cash transfers with nutrition coaching for households with
+children under five. Villages are the unit of randomization: 1,200 households in 60 villages.
+
+## Repository structure
+
+```
+code/
+  00_main.R        Runs the full pipeline in order
+  01_clean.R       Merges baseline and endline, builds derived variables
+  02_balance.R     Baseline balance table by treatment arm
+  03_analysis.R    Main ITT estimates, SEs clustered by village
+data/
+  raw/             Baseline and endline household surveys (CSV)
+  clean/           Created by 01_clean.R
+output/            Created by the pipeline (tables)
+docs/
+  pre_analysis_plan.md   Registered pre-analysis plan (AEA RCT Registry, v3)
+  field_notes_2025.md    Daily notes from 2025 data collection
+  old_drafts/            Earlier paper drafts
+paper/
+  abstract.md
+```
+
+## Requirements
+
+R with the packages `here`, `dplyr`, and `fixest`:
+
+```r
+install.packages(c("here", "dplyr", "fixest"))
+```
+
+The empty `.here` file marks the project root, so the scripts find their files from any
+working directory.
 
 ## Running the pipeline
 
@@ -13,34 +43,25 @@ From the project root:
 Rscript code/00_main.R
 ```
 
-This runs the three scripts below in order. Paths are resolved with `here::here()`, which finds
-the project root through the `.here` file, so leave that file in place.
+Or run the scripts one at a time, in order. Each one reads the output of the one before it.
 
-**Requirements:** R with the `here`, `dplyr` and `fixest` packages.
-
-```r
-install.packages(c("here", "dplyr", "fixest"))
-```
-
-## Scripts
-
-| Script | What it does | Writes |
+| Script | Reads | Writes |
 |---|---|---|
-| `code/01_clean.R` | Merges baseline and endline on `hhid`; adds `log_cons` (log baseline consumption per capita) and `large_hh` (household size ≥ 7) | `data/clean/hh_panel.rds` |
-| `code/02_balance.R` | Compares baseline means by arm, with t-test p-values | `output/balance_table.csv` |
-| `code/03_analysis.R` | Estimates ITT effects on consumption, food insecurity and child height-for-age, with SEs clustered by village | `output/itt_table.tex` |
-
-`data/clean/` and `output/` are created when the scripts run.
+| `01_clean.R` | `data/raw/baseline_hh.csv`, `data/raw/endline_hh.csv` | `data/clean/hh_panel.rds` |
+| `02_balance.R` | `data/clean/hh_panel.rds` | `output/balance_table.csv` |
+| `03_analysis.R` | `data/clean/hh_panel.rds` | `output/itt_table.tex` |
 
 ## Data
 
-`data/raw/baseline_hh.csv` has one row per household:
+Both raw files have one row per household, keyed by `hhid`.
+
+**`baseline_hh.csv`**
 
 | Variable | Description |
 |---|---|
 | `hhid` | Household ID |
-| `village_id` | Village (unit of randomization) |
-| `treatment` | 1 = cash plus arm, 0 = control |
+| `village_id` | Village ID (cluster) |
+| `treatment` | 1 = cash plus, 0 = control |
 | `hh_size` | Household size |
 | `head_female` | Female household head (0/1) |
 | `head_age` | Age of household head |
@@ -48,24 +69,26 @@ install.packages(c("here", "dplyr", "fixest"))
 | `consumption_pc` | Consumption per capita |
 | `food_insecure` | Food insecure (0/1) |
 | `n_children_u5` | Number of children under five |
-| `livestock_tlu` | Livestock holdings, tropical livestock units |
-| `dist_market_km` | Distance to nearest market, km |
+| `livestock_tlu` | Livestock holdings (tropical livestock units) |
+| `dist_market_km` | Distance to nearest market (km) |
 
-`data/raw/endline_hh.csv` has one row per household, keyed on `hhid`. It holds
-`consumption_pc_el`, `food_insecure_el` and `child_haz_el` (child height-for-age z-score).
+**`endline_hh.csv`**
 
-## Documents
+| Variable | Description |
+|---|---|
+| `hhid` | Household ID |
+| `consumption_pc_el` | Consumption per capita, endline |
+| `food_insecure_el` | Food insecure (0/1), endline |
+| `child_haz_el` | Child height-for-age z-score, endline |
 
-- `docs/pre_analysis_plan.md`: pre-analysis plan registered with the AEA RCT Registry (version 3)
-- `docs/field_notes_2025.md`: daily notes from the 2025 data collection
-- `docs/old_drafts/`: earlier paper drafts
-- `paper/abstract.md`: current abstract
+`01_clean.R` adds `log_cons` (log baseline consumption per capita) and `large_hh` (household
+size of 7 or more).
 
-## Where the code differs from the pre-analysis plan
+## Known gaps relative to the pre-analysis plan
 
-- The plan covers 10 outcome families. `03_analysis.R` estimates 3 of them.
-- The plan includes strata fixed effects in the primary specification. The data has no strata
-  variable, and the regressions leave them out.
-- The plan calls for sharpened q-values within each outcome family, heterogeneity analysis,
-  and attrition tests with Lee bounds. None of these are in the code yet.
-- The balance table uses plain t-tests, which don't cluster by village.
+- The balance table uses household-level t-tests. These are not clustered by village.
+- The pre-analysis plan's primary specification includes strata fixed effects. The data has no
+  strata variable, and `03_analysis.R` leaves them out.
+- The plan lists ten outcome families. The code covers three so far (consumption, food
+  insecurity, child height-for-age), with no multiple-testing adjustment, heterogeneity, or
+  attrition analysis yet.

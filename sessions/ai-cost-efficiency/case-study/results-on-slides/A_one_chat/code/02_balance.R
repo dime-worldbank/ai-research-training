@@ -10,8 +10,8 @@ balance_vars <- c("hh_size", "head_female", "head_age", "head_educ_yrs",
 balance <- lapply(balance_vars, function(v) {
   t <- t.test(hh[[v]] ~ hh$treatment)
   data.frame(variable = v,
-             control = mean(hh[[v]][hh$treatment == 0]),
-             treatment = mean(hh[[v]][hh$treatment == 1]),
+             control = mean(hh[[v]][hh$treatment == 0], na.rm = TRUE),
+             treatment = mean(hh[[v]][hh$treatment == 1], na.rm = TRUE),
              p_value = t$p.value)
 })
 balance <- do.call(rbind, balance)

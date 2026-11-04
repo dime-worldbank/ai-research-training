@@ -38,7 +38,7 @@ And keep the habit from earlier: a new session for each new task.
 | **Personal Claude / ChatGPT** | Learning with public material | **Public information only** |
 
 ::: {.fragment}
-- mAI and M365 Copilot have no per-user limit -- great for writing, but "no limit for you" is not "free for the Bank" so also have cost-effectiveness practices in mind.
+- M365 Copilot have no per-user limit -- great for writing, but "no limit for you" is not "free for the Bank" so also have cost-effectiveness practices in mind. mAI just implemented cap (35 USD) for advanced models (Sonnet/Opus/Sol).
 :::
 
 ## Step 2: Which Model? -- Cheat Sheet
@@ -78,8 +78,10 @@ A research assistant on a (fictional) impact evaluation: cash transfers plus nut
 :::
 ::::
 
-::: {.fragment}
-We ran the same three tasks three ways in Claude Code and recorded every token.
+::: {.callout-note}
+- We ran the same three tasks three ways in Claude Code and recorded every token.
+- We ran it using claude personal and enterprise and the results are the same, with some differences on specific tokens 
+as that will always vary from run to run. The reported results are using Claude Enterprise. 
 :::
 
 ## Three Workflows, Three Costs
@@ -138,18 +140,18 @@ Your numbers will not match ours exactly: the agent takes a slightly different p
 
 ## The Results
 
-Input tokens processed per task, from our run (including tokens resent from earlier in the conversation):
+Input tokens processed per task, from our run on Claude Enterprise (including tokens resent from earlier in the conversation):
 
 | Task | **A: One chat** | **B: New sessions** | **C: All habits** |
 |---|---:|---:|---:|
-| Fix the balance table | 282k | 242k | 90k |
-| Proofread the abstract | 421k | 85k | 91k |
-| Write a README | 574k | 378k | 91k |
-| **Total** | **1.28M** | **706k** | **271k** |
-| **Cost** | **$0.82** | **$0.65** | **$0.06** | 
+| Fix the balance table | 145k | 127k | 56k |
+| Proofread the abstract | 229k | 48k | 58k |
+| Write a README | 300k | 158k | 78k |
+| **Total** | **675k** | **333k** | **191k** |
+| **Cost** | **$0.65** | **$0.43** | **$0.05** | 
 
 ::: {.fragment}
-- **C used a fifth of A's tokens and cost 13x less**, because it also ran on smaller models.
+- **C used just over a quarter of A's tokens and cost 12x less**, because it also ran on smaller models.
 - **Did it work?** All three fixed the balance table. A and C fixed all 8 typos; B only listed them. All three wrote a README, but only C's says where the data come from and how to access them, because the memory file asks for it.
 :::
 
@@ -160,10 +162,10 @@ Cost as estimated by Claude Code at Anthropic API list prices; the Bank's enterp
 ## What Drove the Difference
 
 ::: {.fragment}
-- **New task.** The *same prompt*, "Can you proofread the abstract?", cost 421k tokens as the second task in a long chat and 85k in a fresh one: almost 5x, only from carrying task 1 along.
+- **New task.** The *same prompt*, "Can you proofread the abstract?", cost 229k tokens as the second task in a long chat and 48k in a fresh one: almost 5x, only from carrying task 1 along.
 :::
 ::: {.fragment}
-- **Setting.** Without a memory file, the agents in A and B read the pre-analysis plan and the field notes, which none of the tasks needed. With it, the agent in C opened 3 files plus the header row of the data.
+- **Setting.** Without a memory file, the agents in A and B read the pre-analysis plan and the field notes, which none of the tasks needed. With it, the agent in C opened 4 small files plus the header row of the data.
 :::
 ::: {.fragment}
 - **Model.** Haiku proofread the abstract and wrote the README without problems. Neither task needed Opus.
@@ -174,8 +176,8 @@ Cost as estimated by Claude Code at Anthropic API list prices; the Bank's enterp
 
 ## Read the Numbers 
 
-- **One run per workflow.** Runs vary: tasks A1 and B1 had identical setups and still differed by 16% (282k vs 242k).
-- **Claude Code has a floor.** Every request sends a large set of built-in instructions, so even proofreading cost ~90k tokens here. Chat tools start lower, but the patterns are the same.
+- **One run per workflow.** Runs vary: tasks A1 and B1 had identical setups and still differed by 14% (145k vs 127k).
+- **Claude Code has a floor.** Every request sends a large set of built-in instructions, so even the shortest task cost ~50k tokens here. Chat tools start lower, but the patterns are the same.
 - **The project is fictional and small.** This grows with every task you add to a chat, so on a real project with longer chats the gap tends to widen.
 
 ::: {.fragment}

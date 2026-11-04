@@ -20,5 +20,7 @@ Cluster RCT of cash transfers + nutrition coaching in rural Kenya. 60 villages (
 - Created in 01_clean.R: `log_cons`, `large_hh`
 - Endline: `consumption_pc_el`, `food_insecure_el`, `child_haz_el`
 
-## Data 
-Data 
+## Data
+- Source: Cash Plus household surveys, baseline (2024) and endline (2025), collected by the project's field team. The data are fictional, generated for a training exercise.
+- Access: `data/raw/` holds de-identified household data and can be shared publicly. No personally identifiable information is stored in this project.
+- Every README must include a data availability statement: source, years, unit (household), and how to access the data.
