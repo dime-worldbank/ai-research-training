@@ -186,7 +186,7 @@ Plain-text formats support the same text content with less formatting; binary fo
 :::
 
 
-## Three strategies to work with machine-readable formats
+## 3 strategies for machine-readable formats
 
 ::: {.list-table}
 
@@ -196,13 +196,13 @@ Plain-text formats support the same text content with less formatting; binary fo
   - _Plain text first_
 
 - - Description
-  - Prompt the AI to convert the file and save it in a plain-text format, then use that file.
+  - Prompt the AI to convert the file and save it in a plain-text format, then tell AI to use that file.
   - Prompt the AI to write a reusable script to convert the file.
   - Use plain text in the first place, and only convert to binary for dissemination to humans.
 
 - - Use Cases
-  - You have a single document to convert
-  - You have many similar documents to convert
+  - You have a single document that is never updated to convert 
+  - You have many similar documents to convert, or a single document that changes often
   - Your project is to produce these files, and you use AI to generate or review them
 
 - - Review Need

@@ -33,9 +33,7 @@ format:
 ::: {.fragment}
 - We can afford to drive a V8 Cadillac Eldorado today, but need to learn how to drive a hybrid Toyota Prius tomorrow.
 :::
-::: {.fragment}
-- The AI companies' gigantic company valuations depends on us getting too comfortable in our Cadillacs before they hike the prices.
-:::
+
 
 ## Enterprise Tokens are NOT overly expensive
 
