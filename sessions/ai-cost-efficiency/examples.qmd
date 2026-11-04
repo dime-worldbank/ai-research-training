@@ -155,10 +155,6 @@ Input tokens processed per task, from our run on Claude Enterprise (including to
 - **Did it work?** All three fixed the balance table. A and C fixed all 8 typos; B only listed them. All three wrote a README, but only C's says where the data come from and how to access them, because the memory file asks for it.
 :::
 
-::: {style="font-size: 0.6em;"}
-Cost as estimated by Claude Code at Anthropic API list prices; the Bank's enterprise rates may differ. PENDING
-:::
-
 ## What Drove the Difference
 
 ::: {.fragment}
