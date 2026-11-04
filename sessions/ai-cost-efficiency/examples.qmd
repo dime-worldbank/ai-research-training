@@ -1,0 +1,220 @@
+## Three Questions Before Every Task
+
+1. **Which tool?** Decide by data sensitivity first, convenience second.
+2. **Which model?** Decide by task size: start medium, go down if the task is mechanical, go up only when the smaller model fails.
+3. **Which setting?** Decide how much context the agent needs from you:
+   - **A good prompt** is enough for a one-off task: name the file, the goal and what not to touch.
+   - **A memory file** for work you keep doing in the same project: language, folders, key variable names.
+   - **A skill** for instructions you reuse across projects, or have pasted three times.
+
+::: {.fragment}
+And keep the habit from earlier: a new session for each new task.
+:::
+
+## What Counts as a New Task?
+
+**Ask yourself:** does my next request need anything from *this conversation* (beyond what is already in my files or memory file?)
+
+- **No → new session.** The earlier discussion would just make your chat more expensive without adding anything. 
+- **Yes → stay.** The agent needs what you just worked out together.
+
+::: {.fragment}
+| Example | Same task or new? |
+|---|---|
+| Draft slide 5, then fix a typo on slide 5 | **Same** -- builds directly on the same slide |
+| Draft slide 5, then draft slide 9 on a different topic | **New** -- only the style carries over, and that belongs in a memory file or skill |
+| Debug a regression, then write the README | **New** -- Even if it's for the same project, there is no need for context beyond the files and memory file 
+| Summarize the Kenya country report, then the Uganda report with the same instructions | **New** -- reuse the prompt, not the chat |
+:::
+
+## Step 1: Which Tool?
+
+| Tool | Use it for | Data you may share |
+|---|---|---|
+| **GitHub Copilot** | Code in VS Code: writing, debugging, refactoring | WBG work, up to official use only |
+| **Claude Enterprise** | Same with more level of security + Documents, reports, long analyses, Claude Code | WBG work, up to confidential |
+| **mAI** | Everyday writing, summaries, quick questions | WBG work, up to strictly confidential |
+| **M365 Copilot** | Word drafts, PowerPoint slides, email and meeting summaries | WBG work, up to strictly confidential |
+| **Personal Claude / ChatGPT** | Learning with public material | **Public information only** |
+
+::: {.fragment}
+- M365 Copilot have no per-user limit -- great for writing, but "no limit for you" is not "free for the Bank" so also have cost-effectiveness practices in mind. mAI just implemented cap (35 USD) for advanced models (Sonnet/Opus/Sol).
+:::
+
+## Step 2: Which Model? -- Cheat Sheet
+
+| Tier | Use it for | Research economist examples |
+|---|---|---|
+| **Small**<br>Haiku, GPT Luna | Mechanical, well-specified tasks | Proofread an abstract, rename variables, reformat a table |
+| **Medium** -- *default*<br>Sonnet, GPT Terra | Most everyday work | Translate Stata to R, debug a regression script, compare two documents |
+| **Large**<br>Opus, GPT Sol | Many files, or ambiguous problems | Review a full reproducibility package, critique an identification strategy |
+
+::: {.fragment}
+**Escalate, don't default.** If the small model gets it right, keep using it.
+:::
+
+
+# Case Study: An Afternoon on the Cash Plus RCT {background-color="#530153"}
+
+## The Setup
+
+A (fictional) impact evaluation: cash transfers plus nutrition coaching in rural Kenya, 60 villages, 1,200 households.
+
+:::: {.columns}
+::: {.column width="50%"}
+**The project folder**
+
+- R scripts: clean, balance table, ITT regressions
+- Baseline and endline survey data
+- Pre-analysis plan, field notes, two old paper drafts
+- The current abstract
+:::
+::: {.column width="50%"}
+**Three everyday tasks**
+
+1. Fix the balance table script (it crashes on wrong variable names)
+2. Proofread the abstract
+3. Write a README
+:::
+::::
+
+::: {.callout-note}
+- We ran the same three tasks three ways in Claude Code and recorded every token.
+- We ran it using claude personal and enterprise and the results are the same, with some differences on specific tokens 
+as that will always vary from run to run. The reported results are using Claude Enterprise. 
+:::
+
+## Three Workflows, Three Costs
+
+| | **A: One chat** | **B: New session per task** | **C: All three habits** |
+|---|---|---|---|
+| Sessions | 1 for all tasks | 1 per task | 1 per task |
+| Memory file | No | No | Yes |
+| Prompts | Vague: "The balance table isn't working. Can you fix it?" | Same vague prompts | Specific: names the file, the error and what not to touch |
+| Model | Opus for everything | Opus for everything | Sonnet to debug, Haiku to proofread and write the README |
+
+## The Memory File We Used for C {#memory-file-c}
+
+<style>#memory-file-c pre code { font-size: 19px !important; line-height: 1.3 !important; }</style>
+
+```markdown
+# Cash Plus RCT
+Cluster RCT of cash transfers + nutrition coaching in rural Kenya.
+60 villages (30 treated), 1,200 households. Randomized at village level.
+
+## Language and packages
+- R only: dplyr, fixest, here. Paths built with `here::here()`.
+
+## Folder structure
+- `code/00_main.R`: runs everything in order (01_clean → 02_balance → 03_analysis)
+- `data/raw/`: `baseline_hh.csv`, `endline_hh.csv` (merge on `hhid`)
+- `docs/`: pre-analysis plan, field notes, old drafts. Don't read unless asked.
+
+## Data
+- Source: household surveys, baseline (2024) and endline (2025). De-identified; can be shared.
+- Every README must include a data availability statement.
+
+## Key variable names
+- Treatment: `treatment` (0/1). Cluster: `village_id`. ID: `hhid`.
+- Baseline: `hh_size`, `head_female`, `head_educ_yrs`, `consumption_pc`, ...
+```
+
+Five minutes to write with a lot of impact (you will see). (You can also us an Agent to write it, Haiku model would be enough.)
+
+## The Case Study, Live {#live-demo}
+
+<style>#live-demo pre code { font-size: 28px !important; line-height: 1.4 !important; }</style>
+
+```bash
+cd case-study
+python3 run_case.py
+```
+
+- Everything is in the `case-study/` folder next to these slides: the project, the memory file and the script. You can run it yourself.
+- Each workflow gets a fresh copy of `cashplus-project/`, with the broken balance table, the typos and the empty README.
+- I'll run it now (about 4 minutes). Then we'll open what each workflow produced: the fixed code, the proofread abstract and the README.
+
+::: {.fragment}
+Your numbers will not match ours exactly: the agent takes a slightly different path every time. A is always the most expensive.
+:::
+
+## The Results
+
+Input tokens processed per task, from our run on Claude Enterprise (including tokens resent from earlier in the conversation):
+
+| Task | **A: One chat** | **B: New sessions** | **C: All habits** |
+|---|---:|---:|---:|
+| Fix the balance table | 145k | 127k | 56k |
+| Proofread the abstract | 229k | 48k | 58k |
+| Write a README | 300k | 158k | 78k |
+| **Total** | **675k** | **333k** | **191k** |
+| **Cost** | **$0.65** | **$0.43** | **$0.05** | 
+
+::: {.fragment}
+- **C used just over a quarter of A's tokens and cost 12x less**, because it also ran on smaller models.
+- **Did it work?** All three fixed the balance table. A and C fixed all 8 typos; B only listed them. All three wrote a README, but only C's says where the data come from and how to access them, because the memory file asks for it.
+:::
+
+## What Drove the Difference
+
+::: {.fragment}
+- **New task.** The *same prompt*, "Can you proofread the abstract?", cost 229k tokens as the second task in a long chat and 48k in a fresh one: almost 5x, only from carrying task 1 along.
+:::
+::: {.fragment}
+- **Setting.** Without a memory file, the agents in A and B read the pre-analysis plan and the field notes, which none of the tasks needed. With it, the agent in C opened 4 small files plus the header row of the data.
+:::
+::: {.fragment}
+- **Model.** Haiku proofread the abstract and wrote the README without problems. Neither task needed Opus.
+:::
+::: {.fragment}
+- **Vague prompts are a coin toss.** Asked only to "proofread", A fixed the typos but B just listed them, so a real user would need one more turn. The specific prompt said "edit the file", and C did.
+:::
+
+## Read the Numbers 
+
+- **One run per workflow.** Runs vary: tasks A1 and B1 had identical setups and still differed by 14% (145k vs 127k).
+- **Claude Code has a floor.** Every request sends a large set of built-in instructions, so even the shortest task cost ~50k tokens here. Chat tools start lower, but the patterns are the same.
+- **The project is fictional and small.** This grows with every task you add to a chat, so on a real project with longer chats the gap tends to widen.
+
+::: {.fragment}
+The scripts to rerun this case study are in `case-study/` next to these slides.
+:::
+
+# 5-Minute Homework: Where Am I Wasting Tokens? {background-color="#530153"}
+
+## Step 1: Self-Audit (5 Minutes, No AI Needed)
+
+Open your chat history in Visual Studio/Claude Code and look at your **last 10 chats**. Count how many had:
+
+- [ ] **A very long thread**: several tasks, or the same job repeated on file after file, in one chat (the trailers)
+- [ ] **Three or more corrections**, such as "no, I meant...", before you got what you wanted
+- [ ] **A large paste or attachment** when only one section mattered
+- [ ] **A vague first prompt** that the agent had to explore or ask about
+- [ ] **A large model** for a small task, such as proofreading or reformatting
+- [ ] **The same prompt** that you have typed or pasted before
+
+## Step 2: Ask the AI (Optional)
+
+In **Claude/Claude Enterprise** or **GitHub Copilot**, start a **new chat** with a **small model** (Haiku) or **medium** (Sonnet), and paste:
+
+> Review my recent chats and identify the ones that likely used the most tokens, and why: for example, long threads covering several tasks, repeated corrections, large pastes or attachments, vague first prompts, or a large model used for a simple task. For each one, suggest one specific change that would make it more efficient, such as starting a new chat, writing a clearer first prompt, using a smaller model, or turning a repeated prompt into a project or skill. Skip chats that were already short and focused. Return a table with the columns **Chat**, **Why it was expensive**, and **Suggested change**.
+
+
+## Step 3: Think About It
+
+- What was your most common waste pattern?
+- Which one change would save you the most?
+- Did anything show up repeatedly that should become a **project, skill, or script**?
+
+::: {.fragment}
+**Rule of thumb:** a prompt you have pasted three times is a skill waiting to be written.
+:::
+
+## Resources
+
+Skills and materials from earlier sessions -- each one saves you from re-explaining the same thing in every chat:
+
+- **Memory files and skills:** [session page](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-and-memory-files/) and [exercises](https://github.com/dime-worldbank/coding-agent-exercise)
+- **Reproducibility package skill:** [session page](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-reproducibility/)
+- **Prepare-slides skill:** [session page](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-slides/)
+- **Claude Code -- manage costs:** [code.claude.com/docs/en/costs](https://code.claude.com/docs/en/costs)
