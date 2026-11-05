@@ -32,7 +32,7 @@ And keep the habit from earlier: a new session for each new task.
 | Tool | Use it for | Data you may share |
 |---|---|---|
 | **GitHub Copilot** | Code in VS Code: writing, debugging, refactoring | WBG work, up to official use only |
-| **Claude Enterprise** | Same with more level of security + Documents, reports, long analyses, Claude Code | WBG work, up to confidential |
+| **Claude Enterprise** | Same with more level of security + Documents, reports, long analyses, Claude Code | WBG work, up to strictly confidential |
 | **mAI** | Everyday writing, summaries, quick questions | WBG work, up to strictly confidential |
 | **M365 Copilot** | Word drafts, PowerPoint slides, email and meeting summaries | WBG work, up to strictly confidential |
 | **Personal Claude / ChatGPT** | Learning with public material | **Public information only** |
@@ -130,7 +130,7 @@ cd case-study
 python3 run_case.py
 ```
 
-- Everything is in the `case-study/` folder next to these slides: the project, the memory file and the script. You can run it yourself.
+- Everything is in the `case-study/` folder next to these slides [here](https://github.com/dime-worldbank/ai-research-training/tree/main/sessions/ai-cost-efficiency/case-study): the project, the memory file and the script. You can run it yourself.
 - Each workflow gets a fresh copy of `cashplus-project/`, with the broken balance table, the typos and the empty README.
 - I'll run it now (about 4 minutes). Then we'll open what each workflow produced: the fixed code, the proofread abstract and the README.
 
