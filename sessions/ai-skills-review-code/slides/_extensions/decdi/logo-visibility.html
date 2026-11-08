@@ -1,0 +1,36 @@
+<script>
+// Show the DECDI logo only on the title slide and the last slide (the
+// "Thank you" closing slide), matching the Beamer template's title/thank-you
+// -only placement. Quarto's `logo:` YAML key has no built-in per-slide
+// toggle -- it shows the logo on every slide via a persistent `.slide-logo`
+// element outside the slide DOM, so this has to be done with a few lines of
+// JS keyed to Reveal's own slide-index API rather than pure CSS.
+(function () {
+  function whenRevealReady(callback) {
+    if (window.Reveal && typeof Reveal.isReady === "function" && Reveal.isReady()) {
+      callback();
+    } else if (window.Reveal) {
+      Reveal.on("ready", callback);
+    } else {
+      setTimeout(function () { whenRevealReady(callback); }, 50);
+    }
+  }
+
+  whenRevealReady(function () {
+    var revealEl = document.querySelector(".reveal");
+
+    function updateLogoVisibility() {
+      // Use isFirstSlide()/isLastSlide() rather than comparing
+      // getIndices().h against getTotalSlides() -- h is the horizontal
+      // *section* index, not a flat slide count, so it doesn't line up
+      // with getTotalSlides() once any section has nested vertical
+      // sub-slides (as ours do: `# Section` + `## sub-slides`).
+      var isTitleOrThankYou = Reveal.isFirstSlide() || Reveal.isLastSlide();
+      revealEl.classList.toggle("decdi-show-logo", isTitleOrThankYou);
+    }
+
+    Reveal.on("slidechanged", updateLogoVisibility);
+    updateLogoVisibility();
+  });
+})();
+</script>
