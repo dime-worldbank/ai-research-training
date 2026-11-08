@@ -1,0 +1,68 @@
+---
+title: "Using AI Agents Cost Effectively"
+subtitle: "Best practices and examples for cost efficiency"
+author: "Kristoffer Bjarkefur & Maria Reyes Retana Torre"
+institute: "Impact Analytics, DECDI, The World Bank"
+date: 11-5-2026
+format:
+  decdi-revealjs:
+    output-file: index.html
+    footer: "Understand WB AI Tools"
+    self-contained: true
+    slide-number: true
+    toc: false
+    logo: "_extensions/decdi/logos/COLOR_WB_DEC.png"
+    width: 1245
+    height: 700
+---
+
+## Do I Really Need to Worry About Token Efficiency?
+
+::: {.fragment}
+- Maybe not now, but eventually. AI tokens will never again be as subsidized by the AI giants as they are today. And setups with data privacy are not subsidized.
+:::
+::: {.fragment}
+- We live in the AI-token equivalent of a pre-1973 oil crisis - the era of cheap and abundant tokens. 
+:::
+::: {.fragment}
+- Enjoy it while it lasts -- **it will never again be as cheap to experiment and learn with tokens as it is now**.
+:::
+::: {.fragment}
+- Those who started to use WBG's GitHub Copilot licenses last spring or have recently gone from personal Claude licenses to use WB Claude Enterprise have already experienced some "_oil-crises_".
+:::
+::: {.fragment}
+- We can afford to drive a V8 Cadillac Eldorado today, but need to learn how to drive a hybrid Toyota Prius tomorrow.
+:::
+
+
+## Enterprise Tokens are NOT overly expensive
+
+::: {.fragment}
+* Running large language models (LLMs) is expensive: **_very_** expensive.
+:::
+::: {.fragment}
+* Therefore, **enterprise credits _are not overpriced_**: they are priced to reflect the cost of running these models.
+:::
+::: {.fragment}
+* Instead, **personal license credits _are artificially cheap_**: Anthropic, OpenAI, and others subsidize usage in exchange for access to your data and to compete for market share.
+:::
+::: {.fragment}
+* With a higher-tier personal subscription, you can opt out of a greater amount of data collection -- but it requires that **you regularly review new privacy settings**, and **you can never opt out of all data collection** unless you sign an enterprise license agreement.
+:::
+::: {.fragment}
+* **A $20 personal license will give you much more usage than a $20 enterprise license**: this is the premium we pay for privacy.
+:::
+
+# Token Efficiency Strategies {background-color="#530153"}
+
+{{< include ./token-strategies.qmd >}}
+
+# Explore these Strategies in VS Code {background-color="#530153"}
+
+{{< include ./token-strategies-vscode.qmd >}}
+
+# Best-practices and Examples {background-color="#530153"}
+
+{{< include ./examples.qmd >}}
+
+# Thank You! - Questions? {background-color="#530153"}
