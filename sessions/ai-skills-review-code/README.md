@@ -18,7 +18,7 @@ This is a **hands-on** session. We use an AI skill to review research code for c
 
 ## In this folder
 
-- [`slides/`](./slides/): **[view the slide deck](./slides/)**
+- [`slides/`](./slides/): **[view the slide deck](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-review-code/slides/)**
 - [`materials/water-pilot.zip`](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-review-code/materials/water-pilot.zip): the demo project, a synthetic impact evaluation with realistic mistakes in the code ([details and prompts](./materials/README.md))
 - this README: session overview and setup
 
@@ -39,7 +39,9 @@ You need **one** of these, signed in inside VS Code:
 
 Either one works. Quick test: open the chat panel in VS Code and confirm it responds.
 
-> New to GitHub Copilot, or hitting setup issues? Follow the [coding agent setup slides](https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-0/setup-coding-agent/) from the AI bootcamp. The World Bank OSPO's [Copilot getting-started, best-practices, and troubleshooting guides](https://github.com/worldbank/ospo) (Internal only) are a good first stop.
+> New to VS Code, or hitting setup issues? Follow the [coding agent setup slides](https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-0/setup-coding-agent/) from the AI bootcamp.
+
+>  New to GitHub Copilot?Follow the [coding agent setup slides](https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-0/setup-coding-agent/) from the AI bootcamp. The World Bank OSPO's [Copilot getting-started, best-practices, and troubleshooting guides](https://github.com/worldbank/ospo) (Internal only) are a good first stop.
 
 ### 3. The skill
 
