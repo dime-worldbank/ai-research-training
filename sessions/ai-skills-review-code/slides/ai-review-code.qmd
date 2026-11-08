@@ -1,49 +1,41 @@
 ---
-title: "AI Skills to Review and Improve Research Code"
-subtitle: "Day 2 · AI tools for data acquisition and analysis"
+title: "AI Skills for Code Review"
+subtitle: "A hands-on session on reviewing and improving research code with AI"
 author: "Ankriti Singh"
-institute: "Impact Analytics"
-date: 6 Oct, 2026
+institute: "DECDI, The World Bank"
+date: 2026-11-09
 date-format: "D MMMM YYYY"
-footer: "AI-Enabled Research Bootcamp"
-logos:
-  - ../../../assets/images/logos/LOGO_BLACK_WB_DEC_01.png
-  - ../../../assets/images/logos/AI BOOTCAMP - Branding (13).png
-
 format:
-  bootcamp-revealjs:
-    embed-resources: true
+  decdi-revealjs:
     output-file: index.html
+    self-contained: true
+    slide-number: true
+    toc: false
+    logo: "_extensions/decdi/logos/COLOR_WB_DEC.png"
+    footer: "AI for Research"
+    transition: none
+    background-transition: none
     code-overflow: wrap
-    fragments: true
     code-copy: true
 ---
-
-```{r}
-#| label: setup
-#| include: false
-source("../../../_extensions/bootcamp/setup_palettes.R")
-
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-```
 
 ## Objective
 
 ```{=html}
 <style>
 /* Styles used across this deck. Kept here, inside the first slide, so they do not create an empty slide. */
-.flow { display: flex; align-items: stretch; gap: 0.5em; margin: 0.4em 0 0.8em; font-size: 0.62em; }
+.flow { display: flex; align-items: stretch; gap: 0.5em; margin: 1.4em 0 1.4em; font-size: 0.62em; }
 .flow-phase { flex: 1; border-radius: 10px; padding: 0.5em 0.6em 0.7em; }
-.flow-phase.p1 { background: #F4EAF4; }
-.flow-phase.p2 { background: #FAF7FA; border: 2px dashed #B974B9; }
-.flow-label { font-family: "Montserrat", sans-serif; font-weight: 700; color: #530153; font-size: 0.85em; margin-bottom: 0.5em; }
+.flow-phase.p1 { background: #E8F0F7; }
+.flow-phase.p2 { background: #F5F8FB; border: 2px dashed #7FB8DE; }
+.flow-label { font-family: "Montserrat", sans-serif; font-weight: 700; color: #002A4F; font-size: 0.85em; margin-bottom: 0.5em; }
 .flow-steps { display: flex; align-items: center; gap: 0.35em; }
-.flow-step { flex: 1; background: #FFFFFF; border: 2px solid #800280; border-radius: 8px; padding: 0.45em 0.3em; text-align: center; line-height: 1.25; color: #1A1A1A; }
-.flow-step.gate { border-color: #530153; background: #530153; color: #FFFFFF; }
-.flow-arrow { align-self: center; color: #800280; font-weight: 700; }
-.flow-decide { align-self: center; background: #800280; color: #FFFFFF; border-radius: 50%; width: 5.2em; height: 5.2em; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700; line-height: 1.2; flex-shrink: 0; }
+.flow-step { flex: 1; background: #FFFFFF; border: 2px solid #2599CD; border-radius: 8px; padding: 0.45em 0.3em; text-align: center; line-height: 1.25; color: #1A1A1A; }
+.flow-step.gate { border-color: #002A4F; background: #002A4F; color: #FFFFFF; }
+.flow-arrow { align-self: center; color: #2599CD; font-weight: 700; }
+.flow-decide { align-self: center; background: #2599CD; color: #FFFFFF; border-radius: 50%; width: 5.2em; height: 5.2em; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700; line-height: 1.2; flex-shrink: 0; }
 .flow-icon { display: block; font-size: 1.1em; margin-bottom: 0.15em; }
-.agent-quote { border-left: 4px solid #800280; background: #FAF7FA; padding: 0.5em 0.9em; font-size: 0.72em; line-height: 1.4; }
+.agent-quote { border-left: 4px solid #2599CD; background: #F5F8FB; padding: 0.5em 0.9em; font-size: 0.72em; line-height: 1.4; }
 .agent-quote p { margin: 0.3em 0; }
 .reveal .ba-columns.columns { align-items: flex-start; }
 .reveal .ba-columns pre, .reveal .ba-columns div.sourceCode { overflow: hidden; }
@@ -53,6 +45,27 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 .reveal .slides a { text-decoration: underline; text-underline-offset: 0.15em; }
 .reveal div.sourceCode, .reveal pre.sourceCode { overflow: hidden !important; }
 .reveal pre.sourceCode.markdown code { font-size: 1.35em !important; line-height: 1.5 !important; }
+.callout-note-custom { border-left: 4px solid #2599CD; background: #F5F8FB; padding: 0.6em 0.9em; margin: 0.6em 0; }
+.reveal .small-table table { font-size: 0.6em; }
+.reveal .slides section.closing { display: flex !important; flex-direction: column; justify-content: center; height: 100%; }
+.reveal .slides section.closing h2 { border-bottom: 4px solid #2599CD; padding-bottom: 0.25em; margin-bottom: 0.6em; }
+.reveal .evidence-note { font-size: 0.72em; line-height: 1.35; }
+.reveal .takeaway { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #002A4F; font-size: 1.05em; border-left: 6px solid #2599CD; padding: 0.15em 0 0.15em 0.6em; margin-top: 0.8em; }
+.reveal .stat-row { display: flex; gap: 1em; margin: 0.3em 0 0.6em; }
+.reveal .stat-card { flex: 1; background: #F5F8FB; border-top: 6px solid #002A4F; border-radius: 8px; padding: 0.4em 0.7em; }
+.reveal .stat-num { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #002A4F; font-size: 1.7em; line-height: 1.1; }
+.reveal .stat-label { font-size: 0.62em; line-height: 1.3; }
+.reveal .stat-sub { font-size: 0.85em; color: #555555; font-style: italic; }
+.reveal .check-cols ul { list-style: none; padding-left: 0; margin-left: 0; font-size: 0.85em; }
+.reveal .sum-row { display: flex; align-items: stretch; gap: 0.5em; margin: 0.5em 0 1.3em; font-size: 0.68em; }
+.reveal .sum-box { flex: 1; background: #F5F8FB; border: 2px solid #2599CD; border-radius: 10px; padding: 0.5em 0.7em; text-align: center; line-height: 1.3; }
+.reveal .sum-box.skill { background: #002A4F; border-color: #002A4F; color: #FFFFFF; }
+.reveal .sum-box.skill code { color: #FFFFFF; background: transparent; }
+.reveal .sum-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1em; margin-bottom: 0.3em; }
+.reveal .sum-op { align-self: center; font-family: 'Montserrat', sans-serif; font-weight: 700; color: #2599CD; font-size: 1.6em; }
+.reveal .sum-box.final { background: #002A4F; border-color: #002A4F; color: #FFFFFF; }
+.reveal .checks-table table { font-size: 0.85em; }
+.reveal .checks-table td, .reveal .checks-table th { white-space: nowrap; padding-top: 0.3em; padding-bottom: 0.3em; }
 </style>
 ```
 
@@ -62,33 +75,63 @@ By the end of this session, you will have:
 - Triaged the findings: decided which proposed changes to accept as they are, which to modify or discuss further, and which to set aside for now
 - Let the agent implement a few approved fixes and checked the diff
 
-## Agenda
+**We'll cover:** why review code with AI → how the skill works → what it looks like in practice → hands-on
 
-- Why review research code with an AI skill
-- How the code review skill works
-- What it looks like in practice
-- Hands-on: review and improve your own code, or the demo project
+## Before we begin: prerequisites
 
-# Why review code with AI? {background-color="#530153"}
+- Access the [training slides](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-review-code/slides/)
+- **Visual Studio Code** installed from the Software Center
+- One AI assistant signed in within VS Code:
+  - GitHub Copilot with the Copilot Chat extension and a Claude model
+  - Claude Code extension linked to a personal or team account
+- Use your own code, or download the [demo project](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-review-code/materials/water-pilot.zip)
+- Download the AI skill: [research-code-review](https://github.com/dime-worldbank/coding-agents-hub/releases/download/research-code-review-latest/research-code-review.zip)
+
+::: {.notes}
+Participants can follow the demonstration if they cannot complete the setup.
+:::
+
+# Why review code with AI? {background-color="#002A4F"}
 
 ## Your name is on code you didn't write
 
-- Most TTLs don't write all their own code: research assistants and consultants write much of it
-- The final product carries the TTL's name, so they need to know the code is right and free of issues
-- Reviewing every line by hand takes time, and is often not feasible
-- AI makes this harder: coding agents write more code, faster, and no one has read all of it closely
+```{=html}
+<div class="sum-row">
+  <div class="sum-box fragment" data-fragment-index="1"><div class="sum-title">RAs and consultants</div>write much of the code</div>
+  <div class="sum-op fragment" data-fragment-index="2">→</div>
+  <div class="sum-box fragment" data-fragment-index="2"><div class="sum-title">AI agents</div>write more code, faster, and no one has read all of it closely</div>
+  <div class="sum-op fragment" data-fragment-index="3">→</div>
+  <div class="sum-box final fragment" data-fragment-index="3"><div class="sum-title">Your name</div>is on the final product, so you need to know the code is right</div>
+</div>
+```
+
+::: {.fragment fragment-index=4}
+Reviewing every line by hand takes time, and is often not feasible.
+:::
+
+::: {.fragment .takeaway fragment-index=5}
+AI can be part of the solution too!
+:::
 
 ## Research code fails quietly
 
-Most errors in research code do not crash. They change results.
+::: {.takeaway}
+Most errors don't crash. They change results.
+:::
 
-- Combining two datasets can quietly create extra copies of rows *(many-to-many merges)*
-- Removing duplicates can keep the wrong record *(no rule for which copy to keep)*
-- A random draw can come out differently every time the code runs *(no seed set)*
-- Codes for "refused" or "don't know" get treated as real numbers *(e.g., −99, −88)*
-- Code only runs on the author's computer *(hard-coded paths)*
+::: {.incremental}
+- Extra copies of rows *(many-to-many merge)*
+- The wrong record is kept *(no rule for which duplicate to keep)*
+- A different random draw every run *(no seed set)*
+- "Refused" or "don't know" counted as a number *(−99 / −88 not set to missing)*
+- Runs only on the author's computer *(hard-coded paths)*
+:::
 
-## Mistakes are found late, and late is expensive
+::: {.callout-note-custom .evidence-note .fragment}
+**A recent test of AI agents:** letting agents run and revise their own econometric code raised the share of correct results from 79% to 97%, but every remaining failure was silent: the code ran and returned wrong numbers ([Galiani, López and Sosa 2026](https://cepr.org/voxeu/columns/letting-ai-agents-write-econometric-code)).
+:::
+
+## The later a mistake is found, the more it costs
 
 ```{=html}
 <table class="cost-table">
@@ -104,36 +147,55 @@ Most errors in research code do not crash. They change results.
 </table>
 ```
 
-::: {.fragment}
+::: {.fragment .takeaway}
 Most review happens in the last two rows.
 :::
 
 ## Reproducible is not the same as correct
 
-::: {.callout-note-custom}
-Only **1 in 5** packages we receive reproduce as-is.
-:::
+```{=html}
+<div class="stat-row">
+  <div class="stat-card fragment" data-fragment-index="1">
+    <div class="stat-num">1 in 5</div>
+    <div class="stat-label">packages we receive reproduce as-is</div>
+  </div>
+  <div class="stat-card fragment" data-fragment-index="2">
+    <div class="stat-num">26 of 110</div>
+    <div class="stat-label">published economics and political science papers had substantive coding errors<br><span class="stat-sub">yet 85% of the 110 were computationally reproducible</span></div>
+  </div>
+</div>
+```
 
-:::: {.columns .ba-columns}
+:::: {.columns .check-cols .fragment fragment-index=3}
 
 ::: {.column width="50%"}
-**What our check asks**
+**What a reproducibility check asks**
 
-- Does the code run from start to finish?
-- Does it produce the same tables and figures?
+- ✓ Does the code run from start to finish?
+- ✓ Does it produce the same tables and figures?
 :::
 
 ::: {.column width="50%"}
 **What it doesn't ask**
 
-- Does the merge keep the right rows?
-- Are "don't know" codes treated as missing?
-- Are dropped observations documented?
+- ✗ Does the merge keep the right rows?
+- ✗ Are "don't know" codes treated as missing?
+- ✗ Are dropped observations documented?
 :::
 
 ::::
 
-Code can reproduce perfectly and still be wrong. The code review looks for both kinds of problem, before the code goes public.
+::: {.fragment .takeaway fragment-index=4}
+Code can reproduce perfectly and still be wrong.
+:::
+
+::: {.visual-note .fragment fragment-index=1}
+Sources: DECDI reproducibility checks; [Brodeur et al. 2026, *Nature*](https://doi.org/10.1038/s41586-026-10251-x).
+:::
+
+::: {.notes}
+The code review looks for both kinds of problem, before the code goes public.
+:::
 
 ## From peer code review to an AI skill
 
@@ -144,26 +206,47 @@ Now that AI writes more of our code, we've turned those checklists into a skill:
 - Review your code at any stage, whenever you want
 - No need to share unfinished code with a colleague
 
+## What is an AI skill?
+
+```{=html}
+<div class="sum-row">
+  <div class="sum-box fragment" data-fragment-index="1"><div class="sum-title">AI agent</div>General abilities: reads, writes, and edits code</div>
+  <div class="sum-op fragment" data-fragment-index="2">+</div>
+  <div class="sum-box skill fragment" data-fragment-index="2"><div class="sum-title">Skill</div>A folder: <code>SKILL.md</code> (the workflow), <code>references/</code>, <code>assets/</code></div>
+  <div class="sum-op fragment" data-fragment-index="3">=</div>
+  <div class="sum-box fragment" data-fragment-index="3"><div class="sum-title">A specialized task</div>done the same way, every time</div>
+</div>
+```
+
+::: {.fragment fragment-index=4}
+The skill adds a task-specific workflow and resources to the agent's general abilities.
+:::
+
+::: {.fragment fragment-index=5}
+It is triggered when:
+
+- The agent recognizes that the task matches the skill description
+- You explicitly tell the agent to read and follow `SKILL.md`
+:::
+
 ## Why a skill, not just a prompt?
 
+::: {.fragment}
 Asking an agent to "review my code" works, but it checks different things each time, at a different depth, and may start opening data or editing files right away.
+:::
 
+::: {.fragment}
 The skill gives every review the same foundation:
 
 - A curated list of checks built from DEC's peer code review checklists
 - The same checks and severity levels every time, so reviews can be compared across projects and team members
 - Built-in guardrails: it reads your code but never runs it or opens your data, checks privacy first, and changes nothing until you approve
 - A standard report you can act on
+:::
 
-## Three complementary skills for improving research code
-
-| Skill | When to use it | Session |
-|---|---|---|
-| **Code review** | After you finish a coding task or stage, or to review an entire research-code project | This session |
-| **Automate outputs** | During analysis, to automate the production of outputs such as tables and figures | Next session |
-| **Reproducibility** | To prepare and validate a complete reproducibility package | Day 3 |
-
-: {tbl-colwidths="[22,58,20]"}
+::: {.callout-note-custom .evidence-note .fragment}
+**Note:** The skill makes every review follow the same steps, but it cannot make every model give the same answers. A different model or tool may find more or fewer issues, or rate the same issue differently. Treat the report as a starting point and check each finding yourself.
+:::
 
 ## What is in the skill
 
@@ -180,7 +263,7 @@ research-code-review/
 
 The flags draw on the checklists developed for peer review of code within DEC, and on the reproducibility failures we see most often in the packages we review.
 
-# How the skill works {background-color="#530153"}
+# How the skill works {background-color="#002A4F"}
 
 ## Two phases, with you in control
 
@@ -215,13 +298,22 @@ The flags draw on the checklists developed for peer review of code within DEC, a
 
 ## Guardrails built in
 
-- **Privacy gate:** the agent asks you to confirm the folder has no private, confidential, or personally identifying data *before* it lists a single file. "Probably fine" counts as no.
-- **Doesn't run your code:** Phase 1 only reads code and documentation, even if the data are public.
-- **No edits without Git:** before changing anything, the agent asks whether the project is under version control and offers a new branch, so every change shows up as a diff you can review (example later).
-    - No Git? Ask the agent to copy the original files to a backup folder first, and to keep a change log of every edit.
-- **Research choices stay with you:** the agent won't decide which observations to drop, how to fill in missing values, how to treat outliers, or which model to run. It flags these as **No** findings for you to decide.
+- **Privacy gate:** you confirm there's no private data *before* it lists a single file
+- **Read-only review:** Phase 1 never runs your code
+- **No edits without Git:** it offers a new branch, so every change is a diff
+- **Research choices stay with you:** dropping observations, missing values, outliers, and models become **No** findings
+
+::: {.takeaway}
+The agent proposes; you decide.
+:::
 
 ::: {.notes}
+Privacy gate: the agent asks you to confirm the folder has no private, confidential, or personally identifying data before it lists a single file. "Probably fine" counts as no.
+
+Read-only: Phase 1 only reads code and documentation, even if the data are public.
+
+No Git? Ask the agent to copy the original files to a backup folder first, and to keep a change log of every edit.
+
 The privacy gate is the skill's own check. It is separate from Claude Code's permission prompts, which ask before running commands or editing files.
 
 Git is what makes coding agents safe to use: every change is visible, reviewable line by line, and reversible.
@@ -229,6 +321,7 @@ Git is what makes coding agents safe to use: every change is visible, reviewable
 
 ## What it checks
 
+::: {.checks-table}
 | Area | Examples |
 |---|---|
 | Privacy and secrets | Credentials in code, identifiers in shared outputs |
@@ -241,7 +334,8 @@ Git is what makes coding agents safe to use: every change is visible, reviewable
 | Analysis and outputs | Hard-coded choices, manual copying of tables |
 | High-frequency checks | Survey tracking, durations, enumerator summaries |
 
-: {tbl-colwidths="[32,68]"}
+: {tbl-colwidths="[30,70]"}
+:::
 
 ## Severity reflects consequences
 
@@ -300,7 +394,7 @@ Or answer briefly: `DATA-003: approve`, `CLEAN-003: defer`.
 
 A blank or unclear answer leaves the item unresolved.
 
-# What it looks like in practice {background-color="#530153"}
+# What it looks like in practice {background-color="#002A4F"}
 
 ## The privacy gate in action
 
@@ -341,7 +435,7 @@ After making the changes, the agent reports:
 - **Still open:** deferred items (DATA-007, CLEAN-006) and researcher decisions (CONST-001, DATA-005, ANALYSIS-004)
 - **Not changed:** anything you did not approve
 
-::: {.callout-note-custom}
+::: {.takeaway}
 Nothing is committed until you have reviewed the diff.
 :::
 
@@ -394,11 +488,11 @@ The comment now matches the method the code uses (RAND-001); the seed, version, 
 - That your data are clean: no data were opened
 - That your research design is right: methodological findings are questions, not verdicts
 
-::: {.callout-note-custom}
+::: {.takeaway}
 Treat the report as a well-prepared peer reviewer's notes. You still own every decision and every line that changes.
 :::
 
-# Hands-on {background-color="#530153"}
+# Hands-on {background-color="#002A4F"}
 
 ## Your code, or the demo project
 
@@ -418,10 +512,10 @@ The demo project has no `set seed`. We ran the same code on the same data twice:
 | | Run 1 | Run 2 |
 |---|---|---|
 | Treated districts, North / South / East | 1 / 3 / 2 | 2 / 1 / 3 |
-| Treatment effect, unadjusted | +1.90 (SE 1.69) | **−3.73 (SE 1.30)** |
-| Treatment effect, adjusted | +2.17 (SE 1.77) | **−4.27 (SE 1.18)** |
+| Effect on change in productivity (no controls) | +1.90 (SE 1.69) | **−3.73 (SE 1.30)** |
+| Effect on endline productivity (controlling for baseline and zone) | +2.17 (SE 1.77) | **−4.27 (SE 1.18)** |
 
-::: {.callout-note-custom}
+::: {.takeaway}
 No error, no warning. Just the opposite conclusion. Will the review catch it?
 :::
 
@@ -461,17 +555,36 @@ your-project/
 :::: {.columns}
 
 ::: {.column width="55%"}
-1. Download the skill: [research-code-review.zip](https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip)
+1. Download the skill: [research-code-review.zip](https://github.com/dime-worldbank/coding-agents-hub/releases/download/research-code-review-latest/research-code-review.zip)
 2. Open your project in VS Code
 3. In the project's top folder, create `.agents`, and inside it, `skills`
 4. Unzip the skill into `skills`, keeping the whole `research-code-review` folder
 5. Move any non-public data out of the project folder
 
-Using the demo? Download [water-pilot.zip](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/bootcamp/sessions/day-2/ai-review-code/materials/water-pilot.zip), unzip it, open the `water-pilot` folder, and follow steps 2–4.
+Using the demo? Download [water-pilot.zip](https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-review-code/materials/water-pilot.zip), unzip it, open the `water-pilot` folder, and follow steps 2–4.
 :::
 
 ::: {.column width="45%"}
 ![What it should look like in VS Code](images/file-tree-expand.png){fig-alt="VS Code Explorer showing the water-pilot folder with .agents/skills/research-code-review expanded to assets, references and SKILL.md, followed by the code, data and outputs folders."}
+:::
+
+::::
+
+## Open the project in VS Code and check the settings
+
+:::: {.columns}
+
+::: {.column width="52%"}
+1. Select **File → Open Folder**
+2. Open your project folder (or the `water-pilot` folder), not an individual file
+3. Open the Copilot Chat or Claude Code panel
+4. If using Claude Code, install the **Claude Code extension** and sign in
+
+If you see a Claude CLI error when using Copilot Chat, start a new chat and confirm that **Local** is selected.
+:::
+
+::: {.column width="46%"}
+![](images/agent_setup.png){width="100%" fig-alt="VS Code chat panel showing where to choose the agent and confirm that Local is selected."}
 :::
 
 ::::
