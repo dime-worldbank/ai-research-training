@@ -98,7 +98,7 @@ Credits run out. When they do, the question is where to go next, and the answer 
 | Codebook or synthetic data only | GitHub Copilot | Personal Claude, with the settings above |
 | Public data, generic code, learning | Personal Claude or Copilot | Switch between them |
 
-Running out of credits is never a reason to move confidential data to a personal account or to Copilot. If you need more Enterprise credits, talk to your manager (your unit's BB is charged), agree on a spending limit, and submit the [eServices request](https://worldbankgroup.service-now.com/wbg/en/productivity-software-license-request?id=wbg_sc_catalog&sys_id=ebfd4d6693065210a2f6fd647aba10d7). Only actual usage is charged. Before you ask for hundreds of dollars more, though, check whether you are spending what you have well. Impact Analytics' November 5 training on using AI agents cost effectively is about exactly that.
+Running out of credits is never a reason to move confidential data to a personal account or to Copilot. If you need more Enterprise credits, talk to your manager (your unit's BB is charged), agree on a spending limit, and submit the [eServices request](https://worldbankgroup.service-now.com/wbg/en/productivity-software-license-request?id=wbg_sc_catalog&sys_id=ebfd4d6693065210a2f6fd647aba10d7). Only actual usage is charged. Before you ask for hundreds of dollars more, though, check whether you are spending what you have well. Impact Analytics' November 5 training on using AI agents cost effectively was about exactly that; the [slides](https://dime-worldbank.github.io/ai-research-training/sessions/ai-cost-efficiency/) are online, and the next issue covers it.
 
 ## What this article doesn't cover
 
