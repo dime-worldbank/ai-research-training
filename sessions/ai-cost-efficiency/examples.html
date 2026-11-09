@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>examples</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="examples_files/libs/clipboard/clipboard.min.js"></script>
+<script src="examples_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="examples_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="examples_files/libs/quarto-html/popper.min.js"></script>
+<script src="examples_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="examples_files/libs/quarto-html/anchor.min.js"></script>
+<link href="examples_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="examples_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="examples_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="examples_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="examples_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="three-questions-before-every-task" class="level2">
+<h2 class="anchored" data-anchor-id="three-questions-before-every-task">Three Questions Before Every Task</h2>
+<ol type="1">
+<li><strong>Which tool?</strong> Decide by data sensitivity first, convenience second.</li>
+<li><strong>Which model?</strong> Decide by task size: start medium, go down if the task is mechanical, go up only when the smaller model fails.</li>
+<li><strong>Which setting?</strong> Decide how much context the agent needs from you:
+<ul>
+<li><strong>A good prompt</strong> is enough for a one-off task: name the file, the goal and what not to touch.</li>
+<li><strong>A memory file</strong> for work you keep doing in the same project: language, folders, key variable names.</li>
+<li><strong>A skill</strong> for instructions you reuse across projects, or have pasted three times.</li>
+</ul></li>
+</ol>
+<div class="fragment">
+<p>And keep the habit from earlier: a new session for each new task.</p>
+</div>
+</section>
+<section id="what-counts-as-a-new-task" class="level2">
+<h2 class="anchored" data-anchor-id="what-counts-as-a-new-task">What Counts as a New Task?</h2>
+<p><strong>Ask yourself:</strong> does my next request need anything from <em>this conversation</em> (beyond what is already in my files or memory file?)</p>
+<ul>
+<li><strong>No → new session.</strong> The earlier discussion would just make your chat more expensive without adding anything.</li>
+<li><strong>Yes → stay.</strong> The agent needs what you just worked out together.</li>
+</ul>
+<div class="fragment">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Example</th>
+<th>Same task or new?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Draft slide 5, then fix a typo on slide 5</td>
+<td><strong>Same</strong> – builds directly on the same slide</td>
+</tr>
+<tr class="even">
+<td>Draft slide 5, then draft slide 9 on a different topic</td>
+<td><strong>New</strong> – only the style carries over, and that belongs in a memory file or skill</td>
+</tr>
+<tr class="odd">
+<td>Debug a regression, then write the README</td>
+<td><strong>New</strong> – Even if it’s for the same project, there is no need for context beyond the files and memory file</td>
+</tr>
+<tr class="even">
+<td>Summarize the Kenya country report, then the Uganda report with the same instructions</td>
+<td><strong>New</strong> – reuse the prompt, not the chat</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="step-1-which-tool" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-which-tool">Step 1: Which Tool?</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Use it for</th>
+<th>Data you may share</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>GitHub Copilot</strong></td>
+<td>Code in VS Code: writing, debugging, refactoring</td>
+<td>WBG work, up to official use only</td>
+</tr>
+<tr class="even">
+<td><strong>Claude Enterprise</strong></td>
+<td>Same with more level of security + Documents, reports, long analyses, Claude Code</td>
+<td>WBG work, up to strictly confidential</td>
+</tr>
+<tr class="odd">
+<td><strong>mAI</strong></td>
+<td>Everyday writing, summaries, quick questions</td>
+<td>WBG work, up to strictly confidential</td>
+</tr>
+<tr class="even">
+<td><strong>M365 Copilot</strong></td>
+<td>Word drafts, PowerPoint slides, email and meeting summaries</td>
+<td>WBG work, up to strictly confidential</td>
+</tr>
+<tr class="odd">
+<td><strong>Personal Claude / ChatGPT</strong></td>
+<td>Learning with public material</td>
+<td><strong>Public information only</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<ul>
+<li>M365 Copilot have no per-user limit – great for writing, but “no limit for you” is not “free for the Bank” so also have cost-effectiveness practices in mind. mAI just implemented cap (35 USD) for advanced models (Sonnet/Opus/Sol).</li>
+</ul>
+</div>
+</section>
+<section id="step-2-which-model-cheat-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-which-model-cheat-sheet">Step 2: Which Model? – Cheat Sheet</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tier</th>
+<th>Use it for</th>
+<th>Research economist examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Small</strong><br>Haiku, GPT Luna</td>
+<td>Mechanical, well-specified tasks</td>
+<td>Proofread an abstract, rename variables, reformat a table</td>
+</tr>
+<tr class="even">
+<td><strong>Medium</strong> – <em>default</em><br>Sonnet, GPT Terra</td>
+<td>Most everyday work</td>
+<td>Translate Stata to R, debug a regression script, compare two documents</td>
+</tr>
+<tr class="odd">
+<td><strong>Large</strong><br>Opus, GPT Sol</td>
+<td>Many files, or ambiguous problems</td>
+<td>Review a full reproducibility package, critique an identification strategy</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><strong>Escalate, don’t default.</strong> If the small model gets it right, keep using it.</p>
+</div>
+</section>
+<section id="case-study-an-afternoon-on-the-cash-plus-rct" class="level1" data-background-color="#530153">
+<h1 data-background-color="#530153">Case Study: An Afternoon on the Cash Plus RCT</h1>
+<section id="the-setup" class="level2">
+<h2 class="anchored" data-anchor-id="the-setup">The Setup</h2>
+<p>A (fictional) impact evaluation: cash transfers plus nutrition coaching in rural Kenya, 60 villages, 1,200 households.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>The project folder</strong></p>
+<ul>
+<li>R scripts: clean, balance table, ITT regressions</li>
+<li>Baseline and endline survey data</li>
+<li>Pre-analysis plan, field notes, two old paper drafts</li>
+<li>The current abstract</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Three everyday tasks</strong></p>
+<ol type="1">
+<li>Fix the balance table script (it crashes on wrong variable names)</li>
+<li>Proofread the abstract</li>
+<li>Write a README</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>We ran the same three tasks three ways in Claude Code and recorded every token.</li>
+<li>We ran it using claude personal and enterprise and the results are the same, with some differences on specific tokens as that will always vary from run to run. The reported results are using Claude Enterprise.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="three-workflows-three-costs" class="level2">
+<h2 class="anchored" data-anchor-id="three-workflows-three-costs">Three Workflows, Three Costs</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>A: One chat</strong></th>
+<th><strong>B: New session per task</strong></th>
+<th><strong>C: All three habits</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sessions</td>
+<td>1 for all tasks</td>
+<td>1 per task</td>
+<td>1 per task</td>
+</tr>
+<tr class="even">
+<td>Memory file</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>Prompts</td>
+<td>Vague: “The balance table isn’t working. Can you fix it?”</td>
+<td>Same vague prompts</td>
+<td>Specific: names the file, the error and what not to touch</td>
+</tr>
+<tr class="even">
+<td>Model</td>
+<td>Opus for everything</td>
+<td>Opus for everything</td>
+<td>Sonnet to debug, Haiku to proofread and write the README</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="memory-file-c" class="level2">
+<h2 class="anchored" data-anchor-id="memory-file-c">The Memory File We Used for C</h2>
+<style>#memory-file-c pre code { font-size: 19px !important; line-height: 1.3 !important; }</style>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cash Plus RCT</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Cluster RCT of cash transfers + nutrition coaching in rural Kenya.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>60 villages (30 treated), 1,200 households. Randomized at village level.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Language and packages</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R only: dplyr, fixest, here. Paths built with <span class="in">`here::here()`</span>.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Folder structure</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`code/00_main.R`</span>: runs everything in order (01_clean → 02_balance → 03_analysis)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/raw/`</span>: <span class="in">`baseline_hh.csv`</span>, <span class="in">`endline_hh.csv`</span> (merge on <span class="in">`hhid`</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`docs/`</span>: pre-analysis plan, field notes, old drafts. Don't read unless asked.</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Source: household surveys, baseline (2024) and endline (2025). De-identified; can be shared.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Every README must include a data availability statement.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key variable names</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Treatment: <span class="in">`treatment`</span> (0/1). Cluster: <span class="in">`village_id`</span>. ID: <span class="in">`hhid`</span>.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Baseline: <span class="in">`hh_size`</span>, <span class="in">`head_female`</span>, <span class="in">`head_educ_yrs`</span>, <span class="in">`consumption_pc`</span>, ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Five minutes to write with a lot of impact (you will see). (You can also us an Agent to write it, Haiku model would be enough.)</p>
+</section>
+<section id="live-demo" class="level2">
+<h2 class="anchored" data-anchor-id="live-demo">The Case Study, Live</h2>
+<style>#live-demo pre code { font-size: 28px !important; line-height: 1.4 !important; }</style>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> case-study</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> run_case.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Everything is in the <code>case-study/</code> folder next to these slides <a href="https://github.com/dime-worldbank/ai-research-training/tree/main/sessions/ai-cost-efficiency/case-study">here</a>: the project, the memory file and the script. You can run it yourself.</li>
+<li>Each workflow gets a fresh copy of <code>cashplus-project/</code>, with the broken balance table, the typos and the empty README.</li>
+<li>I’ll run it now (about 4 minutes). Then we’ll open what each workflow produced: the fixed code, the proofread abstract and the README.</li>
+</ul>
+<div class="fragment">
+<p>Your numbers will not match ours exactly: the agent takes a slightly different path every time. A is always the most expensive.</p>
+</div>
+</section>
+<section id="the-results" class="level2">
+<h2 class="anchored" data-anchor-id="the-results">The Results</h2>
+<p>Input tokens processed per task, from our run on Claude Enterprise (including tokens resent from earlier in the conversation):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Task</th>
+<th style="text-align: right;"><strong>A: One chat</strong></th>
+<th style="text-align: right;"><strong>B: New sessions</strong></th>
+<th style="text-align: right;"><strong>C: All habits</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fix the balance table</td>
+<td style="text-align: right;">145k</td>
+<td style="text-align: right;">127k</td>
+<td style="text-align: right;">56k</td>
+</tr>
+<tr class="even">
+<td>Proofread the abstract</td>
+<td style="text-align: right;">229k</td>
+<td style="text-align: right;">48k</td>
+<td style="text-align: right;">58k</td>
+</tr>
+<tr class="odd">
+<td>Write a README</td>
+<td style="text-align: right;">300k</td>
+<td style="text-align: right;">158k</td>
+<td style="text-align: right;">78k</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>675k</strong></td>
+<td style="text-align: right;"><strong>333k</strong></td>
+<td style="text-align: right;"><strong>191k</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Cost</strong></td>
+<td style="text-align: right;"><strong>$0.65</strong></td>
+<td style="text-align: right;"><strong>$0.43</strong></td>
+<td style="text-align: right;"><strong>$0.05</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<ul>
+<li><strong>C used just over a quarter of A’s tokens and cost 12x less</strong>, because it also ran on smaller models.</li>
+<li><strong>Did it work?</strong> All three fixed the balance table. A and C fixed all 8 typos; B only listed them. All three wrote a README, but only C’s says where the data come from and how to access them, because the memory file asks for it.</li>
+</ul>
+</div>
+</section>
+<section id="what-drove-the-difference" class="level2">
+<h2 class="anchored" data-anchor-id="what-drove-the-difference">What Drove the Difference</h2>
+<div class="fragment">
+<ul>
+<li><strong>New task.</strong> The <em>same prompt</em>, “Can you proofread the abstract?”, cost 229k tokens as the second task in a long chat and 48k in a fresh one: almost 5x, only from carrying task 1 along.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>Setting.</strong> Without a memory file, the agents in A and B read the pre-analysis plan and the field notes, which none of the tasks needed. With it, the agent in C opened 4 small files plus the header row of the data.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>Model.</strong> Haiku proofread the abstract and wrote the README without problems. Neither task needed Opus.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>Vague prompts are a coin toss.</strong> Asked only to “proofread”, A fixed the typos but B just listed them, so a real user would need one more turn. The specific prompt said “edit the file”, and C did.</li>
+</ul>
+</div>
+</section>
+<section id="read-the-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="read-the-numbers">Read the Numbers</h2>
+<ul>
+<li><strong>One run per workflow.</strong> Runs vary: tasks A1 and B1 had identical setups and still differed by 14% (145k vs 127k).</li>
+<li><strong>Claude Code has a floor.</strong> Every request sends a large set of built-in instructions, so even the shortest task cost ~50k tokens here. Chat tools start lower, but the patterns are the same.</li>
+<li><strong>The project is fictional and small.</strong> This grows with every task you add to a chat, so on a real project with longer chats the gap tends to widen.</li>
+</ul>
+<div class="fragment">
+<p>The scripts to rerun this case study are in <code>case-study/</code> next to these slides.</p>
+</div>
+</section>
+</section>
+<section id="minute-homework-where-am-i-wasting-tokens" class="level1" data-background-color="#530153">
+<h1 data-background-color="#530153">5-Minute Homework: Where Am I Wasting Tokens?</h1>
+<section id="step-1-self-audit-5-minutes-no-ai-needed" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-self-audit-5-minutes-no-ai-needed">Step 1: Self-Audit (5 Minutes, No AI Needed)</h2>
+<p>Open your chat history in Visual Studio/Claude Code and look at your <strong>last 10 chats</strong>. Count how many had:</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>A very long thread</strong>: several tasks, or the same job repeated on file after file, in one chat (the trailers)</label></li>
+<li><label><input type="checkbox"><strong>Three or more corrections</strong>, such as “no, I meant…”, before you got what you wanted</label></li>
+<li><label><input type="checkbox"><strong>A large paste or attachment</strong> when only one section mattered</label></li>
+<li><label><input type="checkbox"><strong>A vague first prompt</strong> that the agent had to explore or ask about</label></li>
+<li><label><input type="checkbox"><strong>A large model</strong> for a small task, such as proofreading or reformatting</label></li>
+<li><label><input type="checkbox"><strong>The same prompt</strong> that you have typed or pasted before</label></li>
+</ul>
+</section>
+<section id="step-2-ask-the-ai-optional" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-ask-the-ai-optional">Step 2: Ask the AI (Optional)</h2>
+<p>In <strong>Claude/Claude Enterprise</strong> or <strong>GitHub Copilot</strong>, start a <strong>new chat</strong> with a <strong>small model</strong> (Haiku) or <strong>medium</strong> (Sonnet), and paste:</p>
+<blockquote class="blockquote">
+<p>Review my recent chats and identify the ones that likely used the most tokens, and why: for example, long threads covering several tasks, repeated corrections, large pastes or attachments, vague first prompts, or a large model used for a simple task. For each one, suggest one specific change that would make it more efficient, such as starting a new chat, writing a clearer first prompt, using a smaller model, or turning a repeated prompt into a project or skill. Skip chats that were already short and focused. Return a table with the columns <strong>Chat</strong>, <strong>Why it was expensive</strong>, and <strong>Suggested change</strong>.</p>
+</blockquote>
+</section>
+<section id="step-3-think-about-it" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-think-about-it">Step 3: Think About It</h2>
+<ul>
+<li>What was your most common waste pattern?</li>
+<li>Which one change would save you the most?</li>
+<li>Did anything show up repeatedly that should become a <strong>project, skill, or script</strong>?</li>
+</ul>
+<div class="fragment">
+<p><strong>Rule of thumb:</strong> a prompt you have pasted three times is a skill waiting to be written.</p>
+</div>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p>Skills and materials from earlier sessions – each one saves you from re-explaining the same thing in every chat:</p>
+<ul>
+<li><strong>Memory files and skills:</strong> <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-and-memory-files/">session page</a> and <a href="https://github.com/dime-worldbank/coding-agent-exercise">exercises</a></li>
+<li><strong>Reproducibility package skill:</strong> <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-reproducibility/">session page</a></li>
+<li><strong>Prepare-slides skill:</strong> <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-slides/">session page</a></li>
+<li><strong>Claude Code – manage costs:</strong> <a href="https://code.claude.com/docs/en/costs">code.claude.com/docs/en/costs</a></li>
+</ul>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

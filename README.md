@@ -43,13 +43,11 @@ The site is built by GitHub Pages from `main`. It serves the files committed to 
 |---|---------|------|
 | 1 | AI Skills to Facilitate Reproducible Research | Jul 16 |
 | 2 | Using AI to Automate Research Outputs | Jul 30 |
-| 3 | Using AI to Review Code and Verify Research Reproducibility | Sep 8 |
-| 4 | AI Ethics, Governance, and Safe Use at the World Bank | Sep 17 |
-| 5 | Using AI for Feedback on Your Research | Oct 1 |
-| 6 | Using the World Bank AI API in MEGA | Oct 15 |
-| 7 | AI for Survey Instrument Design | Oct 29 |
-| 8 | AI for Transcribing Data | Nov 12 |
-| 9 | AI for Data Quality Checks | Nov 19 |
-| 10 | Creating Custom Coding Agents | Dec 3 |
+| 3 | AI Ethics, Governance, and Safe Use at the World Bank | Sep 17 |
+| 4 | Claude Enterprise at the World Bank | Oct 22 |
+| 5 | Using AI Agents Cost Effectively: Best Practices and Case Studies | Nov 5 |
+| 6 | AI Skills for Code Review | Nov 9 |
+| 7 | AI Skills for Reproducible Research | Dec 2 |
+| 8 | Making Your Workflows AI-Enabled | Dec 3 |
 
 Questions: reproducibility@worldbank.org
