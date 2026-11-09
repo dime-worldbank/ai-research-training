@@ -10,7 +10,7 @@ This issue's Big Number is what happens when a model grades its own homework: ac
 
 The authors looked at a popular idea from 2023: ask a model to answer, then ask it to review its answer and fix any mistakes. Earlier papers had reported big gains from this. Huang and coauthors noticed that those papers had, in one way or another, let the model know when it was wrong, usually by stopping the loop once the answer matched the key. Take that away, so the model has to decide on its own whether to change its answer, and the gains disappear.
 
-On grade-school maths problems, GPT-4 scored 95.5% on the first attempt. After one round of self-review it was at 91.5%. After two, 89.0%. On a common-sense reasoning benchmark, GPT-3.5 fell from 75.8% to 38.1%. The model changed right answers to wrong ones more often than the reverse.
+On grade-school math problems, GPT-4 scored 95.5% on the first attempt. After one round of self-review it was at 91.5%. After two, 89.0%. On a common-sense reasoning benchmark, GPT-3.5 fell from 75.8% to 38.1%. The model changed right answers to wrong ones more often than the reverse.
 
 The finding is about reasoning tasks, not code review. But the mechanism carries over. A model has no privileged access to its own mistakes. If it could see the bug, it would not have written it.
 
@@ -38,7 +38,7 @@ Research code is a harder case than the code in these studies in one way and an 
 
 Harder, because research bugs rarely crash. A many-to-many merge that doubles rows, a missing-value code of -99 that enters a mean, a random draw with no seed. The script runs, the table comes out, and the number is wrong. A critic that only looks for things that break will miss all of these.
 
-Easier, because we know what the common failures are. DEC's peer code review checklists and the reproducibility team's list of why packages fail are, between them, a fairly complete catalogue. That is why the code-review skill from Impact Analytics' November 9 training is built on a fixed list of flags rather than on "review this code". A critic with a checklist is looking for known failure patterns. A critic without one is guessing, and the CriticGPT paper tells you what guessing looks like: more invented problems.
+Easier, because we know what the common failures are. DEC's peer code review checklists and the reproducibility team's list of why packages fail are, between them, a fairly complete catalog. That is why the code-review skill from Impact Analytics' November 9 training is built on a fixed list of flags rather than on "review this code". A critic with a checklist is looking for known failure patterns. A critic without one is guessing, and the CriticGPT paper tells you what guessing looks like: more invented problems.
 
 Put the three studies together and the advice is the same from each angle:
 
@@ -49,7 +49,7 @@ Put the three studies together and the advice is the same from each angle:
 
 ## 5. What the evidence does not cover
 
-Nobody has yet run a controlled study showing that AI code review reduces the rate of wrong results in published research. The studies above are about software teams, reasoning benchmarks and a company's own model. The closest thing to research-specific evidence is the one-in-five reproduction rate from the reproducibility team's own checks, which tells you how much there is to find, not how much a critic finds. We will report our own numbers when we have them. If you ran the skill on your own project and it found something, or missed something, tell us. That is the evidence we are short of.
+Nobody has yet run a controlled study showing that AI code review reduces the rate of wrong results in published research. The studies above are about software teams, reasoning benchmarks and a company's own model. What we do have is evidence on how much there is to find. About one in five packages the reproducibility team receives reproduces as submitted. In a recent audit in [Nature](https://www.nature.com/articles/s41586-026-10251-x), 26 of 110 published papers had substantive coding errors, even though 85% were computationally reproducible. And in a test of agents writing econometric code, letting them run and revise their own work raised the share of correct results from 79% to 97%, but every remaining failure was silent: the code ran and returned the wrong number ([Galiani, López and Sosa, 2026](https://cepr.org/voxeu/columns/letting-ai-agents-write-econometric-code)). All three are discussed in the Development Impact post by Ankriti Singh, María Reyes Retana and Maria Jones, [AI is writing more research code: who is reviewing it?](https://blogs.worldbank.org/en/impactevaluations/ai-is-writing-more-research-code---who-is-reviewing-it--), which also describes a first test of the skill on a synthetic package with three planted errors. It flagged all three. If you ran the skill on your own project and it found something, or missed something, tell us. That is the evidence we are short of.
 
 ## One number
 

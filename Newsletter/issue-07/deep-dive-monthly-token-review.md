@@ -2,7 +2,7 @@
 
 *Background article for AI for Research, Issue 7. Reading time: about 12 minutes.*
 
-*Based on Impact Analytics' November 5 training, "Using AI Agents Cost Effectively", and the session of the same name at the October AI-Enabled Research Bootcamp. Prices and limits change; check the current ones before you quote them.*
+*Based on Impact Analytics' November 5 training, "Using AI Agents Cost Effectively" ([slides](https://dime-worldbank.github.io/ai-research-training/sessions/ai-cost-efficiency/)). Prices and limits change; check the current ones before you quote them.*
 
 The training gave three habits: use the smallest model that does the job, keep a memory file so the agent does not re-discover your project on every request, and start a new session for every new task. Those habits cover most of the waste. What they do not do is tell you whether they are working. For that you need to look at your own usage now and then, the way you would look at a field budget. This article is a routine for doing that once a month, in about half an hour, with the numbers your tools already give you.
 
@@ -22,15 +22,15 @@ You do not need a spreadsheet of every request. Three places give you enough.
 
 **Claude usage page.** On claude.ai, Settings, then Usage ([direct link](https://claude.ai/new#settings/usage)). This shows how much of your allocation is gone and when it resets. It covers Claude Web, Desktop and the VS Code extension on the same account.
 
-**Claude Code `/cost` and `/context`.** Inside a Claude Code session, `/cost` reports what the current session has spent so far, and `/context` shows what is filling the context window: your files, the memory file, tool results, conversation. If most of it is tool results from three tasks ago, that is the trailer full of old groceries from the training slides.
+**Claude Code `/cost` and `/context`.** Inside a Claude Code session, `/cost` reports what the current session has spent so far, and `/context` shows what is filling the context window: your files, the memory file, tool results, conversation. If most of it is tool results from three tasks ago, you are paying to resend all of it on every request.
 
-**The Copilot context meter.** GitHub Copilot's chat panel in VS Code shows how full the current context window is. The Bootcamp version of the training suggested a reading of it at the end of a task: under 5% full and you probably used a bigger model than you needed; over 95% and details were probably lost along the way.
+**The GitHub Copilot context meter.** GitHub Copilot's chat panel in VS Code shows how full the current context window is. The training suggested a reading of it at the end of a task: under 5% full and you probably used a bigger model than you needed; over 95% and details were probably lost along the way.
 
 ## 3. The half-hour review
 
 Do this at the end of each month, on a day you are not in a hurry.
 
-**Step 1. Write down three numbers (5 minutes).** Credits used this month, credits left, and the date of the reset. If you have Copilot premium requests as well, note how many are left. Keep the numbers in a plain text file in your home folder, one line per month. After three months you will have a trend, which is the only thing that makes any single month's number meaningful.
+**Step 1. Write down three numbers (5 minutes).** Credits used this month, credits left, and the date of the reset. If you have GitHub Copilot premium requests as well, note how many are left. Keep the numbers in a plain text file in your home folder, one line per month. After three months you will have a trend, which is the only thing that makes any single month's number meaningful.
 
 **Step 2. Name your five most common tasks (5 minutes).** Not "coding". Things like: fix a Stata error, write a cleaning script from a codebook, draft a results memo, proofread a Quarto slide, explain a package's syntax. Be honest about which of them you did most.
 
@@ -38,7 +38,7 @@ Do this at the end of each month, on a day you are not in a hurry.
 
 **Step 4. Check the memory file (5 minutes).** Open the project `AGENTS.md` or `CLAUDE.md` for the project you spent the most tokens on. Is the stack listed? The folder layout? The thing the agent always gets wrong? If the agent has had to rediscover any of this in the last month, add it now. Ask yourself the opposite question too: is there anything in the memory file the agent no longer needs, because that part of the project is finished? Every line is loaded on every request.
 
-**Step 5. Count your sessions (5 minutes).** Scroll your Claude Code or Copilot history. How many sessions did you start this month, and how many tasks did you do? If the second number is a lot bigger than the first, you have been reusing sessions. The training slides put it plainly: on the tenth task in one session, you pay again for the previous nine. Resolve to use the plus button.
+**Step 5. Count your sessions (5 minutes).** Scroll your Claude Code or GitHub Copilot history. How many sessions did you start this month, and how many tasks did you do? If the second number is a lot bigger than the first, you have been reusing sessions. The training slides put it plainly: on the tenth task in one session, you pay again for the previous nine. The training's case study measured it: the same proofreading prompt cost 229k tokens as the second task in a long chat and 48k in a new one. Start a new chat for each new task.
 
 That is the review. The output is a dated text file with three numbers, five tasks, one experiment for next month, and a memory file that is a bit more accurate than it was.
 

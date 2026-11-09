@@ -8,9 +8,9 @@ Impact Analytics' October 22 training on Claude Enterprise ended with a simple r
 
 ## 1. Why three accounts, and not just Enterprise
 
-Claude Enterprise is approved for Strictly Confidential files. It is also the most expensive way to run Claude. That is not because the Bank is being overcharged. Enterprise credits are priced at roughly what it costs to run the model. Personal subscriptions are cheap because Anthropic subsidises them in return for access to your conversations. Twenty dollars on a personal plan buys a lot more usage than twenty dollars of Enterprise credits. The difference is the price of privacy.
+Claude Enterprise is approved for Strictly Confidential files, and it is the only coding agent at the Bank with that level of approval. It is also the most expensive way to run Claude. Enterprise is billed per use, and running AI models is expensive. Consumer plans are flat-rate, with usage caps and different data terms, so the same twenty dollars goes much further there. Part of what the Enterprise price buys is the data protection.
 
-GitHub Copilot sits in between. Its credits are cheaper than Enterprise, it is classified as Official Use, and it is well integrated with VS Code. For routine coding it is the right default. mAI costs you nothing and is approved for Strictly Confidential work, but it cannot open your files or run your code.
+GitHub Copilot sits in between. Its credits are cheaper than Enterprise, it is classified as Official Use, and it is well integrated with VS Code. For routine coding it is the right default. mAI is free to you (with a monthly cap on the most advanced models) and is approved for Strictly Confidential work, but it cannot open your files or run your code.
 
 So the three accounts are not interchangeable. Each one is the cheapest tool that is still allowed for some part of your work. The job is to send each step of the project to the right one.
 
@@ -102,4 +102,4 @@ Running out of credits is never a reason to move confidential data to a personal
 
 ## What this article doesn't cover
 
-It doesn't cover which tools ITS has approved for which classification, or how to get a licence. Those come from Bank policy and from [AI@WBG](https://ai.worldbankgroup.org/). It covers one thing: how to keep a project moving across three accounts without the confidential parts drifting into the cheap one.
+It doesn't cover which tools ITS has approved for which classification, or how to get a license. Those come from Bank policy and from [AI@WBG](https://ai.worldbankgroup.org/). It covers one thing: how to keep a project moving across three accounts without the confidential parts drifting into the cheap one.

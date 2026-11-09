@@ -2,7 +2,7 @@
 
 *Background article for AI for Research, Issue 8. Reading time: about 12 minutes.*
 
-*Based on Impact Analytics' November 9 training, "AI Skills for Code Review", and the `research-code-review` skill. Checked against the skill as released for the October AI-Enabled Research Bootcamp.*
+*Based on Impact Analytics' November 9 training, "AI Skills for Code Review", and the `research-code-review` skill. Checked against the skill as released on November 9, 2026.*
 
 Impact Analytics' November 9 training showed a skill that reviews research code the way DEC's peer code review used to: against a fixed checklist, with severity levels, and with nothing changed until you say so. This article is about one way to use it that the training only touched on. If an agent wrote the code, have a different agent review it. Builder and critic, kept apart.
 
@@ -16,7 +16,7 @@ In human terms, this is why the author of a do-file is the worst person to find 
 
 ## 2. What "a different agent" means in practice
 
-You do not need a second licence. You need a second conversation, with a different brief, that has not seen the first one.
+You do not need a second license. You need a second conversation, with a different brief, that has not seen the first one.
 
 The builder is whatever wrote the code: Copilot in agent mode, Claude Code, or you. The critic is a new session, pointed at the code, with the review skill loaded and a prompt that says nothing about how the code came to exist.
 
@@ -73,4 +73,4 @@ If your team already has conventions the skill does not know, do not edit the sk
 
 ## What this article doesn't cover
 
-It does not cover setting up the skill (the [session materials](https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-2/ai-review-code/) do that), or the reproducibility audit, which is a different skill for a different question. It covers one habit: never let the agent that wrote the code be the only agent that read it.
+It does not cover setting up the skill (the [session materials](https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-review-code/) do that), or the reproducibility audit, which is a different skill for a different question. It covers one habit: never let the agent that wrote the code be the only agent that read it.

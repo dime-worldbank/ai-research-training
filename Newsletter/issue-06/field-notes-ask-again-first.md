@@ -17,7 +17,7 @@ Then they did the thing most of us do when the first answer is wrong. They asked
 - **Self-regeneration.** The model is told to try again, with no new information from a person.
 - **Human-assisted regeneration.** A person reads the output, points out what is wrong, and the model tries again with that feedback.
 
-They modelled the results with a two-stage model and a clustered bootstrap, and checked that the pattern held for papers published after the model's training cut-off, so it is not just the model remembering code it had seen.
+They modeled the results with a two-stage model and a clustered bootstrap, and checked that the pattern held for papers published after the model's training cut-off, so it is not just the model remembering code it had seen.
 
 ## What they found
 

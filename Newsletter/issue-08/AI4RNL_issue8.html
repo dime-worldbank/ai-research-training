@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AI for Research: Code Review</title>
 <!--
-  Internal newsletter - DECDI / Impact Analytics. Issue 8. DRAFT written before the November 9 session;
-  recap follows the Bootcamp version, bootcamp/sessions/day-2/ai-review-code (Ankriti Singh).
+  Internal newsletter - DECDI / Impact Analytics. Issue 8. Recap follows sessions/ai-skills-review-code (Ankriti Singh, November 9)
+  and the Development Impact blog post of November 3.
   Coming Up leads with December 2 and 3, then the December 10-11 Project Sprint.
 -->
 <style>
@@ -76,17 +76,17 @@
                     <span class="bignum" style="font-family:Georgia, 'Times New Roman', serif; font-size:64px; line-height:72px; color:#002244; font-weight:bold;">95.5% &rarr; 89.0%</span>
                     <br>
                     <span style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:22px; color:#54595F;">
-                      GPT-4&rsquo;s score on a maths benchmark,<br>before and after reviewing its own answers
+                      GPT-4&rsquo;s score on a math benchmark,<br>before and after reviewing its own answers
                     </span>
                   </td>
                 </tr>
                 <tr>
                   <td class="px" style="padding:20px 40px 32px 40px;">
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:0;">
-                      Ask a model to answer, then ask it to check its answer and fix any mistakes. In 2023 several papers reported that this made models better. Huang and coauthors looked closer and found that those papers had, one way or another, told the model when it was wrong. Take that away, so the model has to judge its own work unaided, and the gains vanish. GPT-4 scored 95.5% on grade-school maths problems at the first attempt. After one round of self-review it scored 91.5%. After two, 89.0%. It changed right answers to wrong ones more often than the reverse.
+                      AI models are bad at correcting their own mistakes. Huang and coauthors asked GPT-4 a set of grade-school math problems, then asked it to review its own answers and fix any errors, with no hint about which ones were wrong. It scored 95.5% at the first attempt, 91.5% after one round of self-review, and 89.0% after two. It changed right answers to wrong ones more often than the reverse. Earlier studies that found self-review helpful had, one way or another, told the model when it was wrong.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
-                      The lesson for code is plain. The agent that wrote your cleaning script is the worst-placed reader of it, for the same reason you are the worst-placed reader of your own do-file. Impact Analytics&rsquo; November 9 training on AI code review was about a second reader with a checklist. This issue is about making that a habit.
+                      The lesson for code is plain. The agent that wrote your cleaning script is the worst-placed reader of it, for the same reason you are the worst-placed reader of your own do-file. As agents write more of our research code, someone else has to read it. Impact Analytics&rsquo; November 9 training on AI code review was about a second reader with a checklist. This issue is about making that a habit.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:12px 0 0 0;">
                       Source: <a href="https://arxiv.org/abs/2310.01798" style="color:#0071BC;">Huang et al., &ldquo;Large Language Models Cannot Self-Correct Reasoning Yet&rdquo;, ICLR 2024</a>. The task is reasoning, not code; Field Notes covers the code-review studies.
@@ -110,30 +110,30 @@
                       AI Skills for Code Review
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
-                      A quick recap of Impact Analytics&rsquo; November 9 training on AI skills for code review, a repeat of a session from the October AI-Enabled Research Bootcamp, for everyone who missed it. DEC used to pair people up for peer code review against a checklist. The skill turns that checklist into something you can run on your own code, at any stage, without waiting for a colleague.
+                      A quick recap of Impact Analytics&rsquo; November 9 training on AI skills for code review (<a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-review-code/slides/" style="color:#0071BC;">slides here</a>). DECDI used to pair people up each quarter to review each other&rsquo;s code against a checklist. It was useful, but time and coordination limited who could take part. The skill turns those checklists into a review you can run on your own code whenever it is ready. Ankriti Singh, Mar&iacute;a Reyes Retana and Maria Jones tell the full story on the Development Impact blog: <a href="https://blogs.worldbank.org/en/impactevaluations/ai-is-writing-more-research-code---who-is-reviewing-it--" style="color:#0071BC;">AI is writing more research code: who is reviewing it?</a>
                     </p>
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; <b>Your name is on code you didn&rsquo;t write.</b> RAs and consultants write most of it, and now agents write more of it, faster. The TTL signs the paper. Reading every line by hand is not feasible. Not reading it is not acceptable either.
+                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; <b>You sign off on code you didn&rsquo;t write.</b> Research assistants and consultants write much of a project&rsquo;s code, and AI agents now write more of it, faster. The paper still carries your name, so you need to know the code is right, and reading every line by hand is rarely feasible. Code behind Policy Research Working Papers is also expected to be public in the Reproducible Research Repository, which is one more reason to clean it up first. An agent can help with the reading.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; <b>Research code fails quietly.</b> A merge that doubles rows. Duplicates dropped by whichever came first. A random draw with no seed. A &minus;99 that enters a mean. A path that only works on one laptop. None of these crash. The number changes. And a package that reproduces perfectly can still be wrong: our reproducibility check asks whether it runs, not whether the merge kept the right rows.
+                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; <b>Research code fails quietly.</b> There is a difference between code that runs and code that is accurate and error-free. A merge that doubles rows. Duplicates dropped by whichever came first. A random draw with no seed. A &minus;99 that enters a mean. A path that only works on one laptop. None of these crash. The number changes. And a package that reproduces perfectly can still be wrong: in one recent audit, 26 of 110 published papers had substantive coding errors, even though 85% of them reproduced.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; <b>The checklist is the point.</b> &ldquo;Review my code&rdquo; gets a different review every time, at a different depth. The skill carries sixty-odd flags from DEC&rsquo;s peer review checklists and the reproducibility team&rsquo;s failure list, each with a severity set by consequence, from Critical to Low. Same checks every time, so reviews can be compared across projects and people.
+                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; <b>A skill gives the same review every time.</b> Ask an agent to &ldquo;review my code&rdquo; and you get different checks at a different depth on each run. The skill carries more than 60 checks from DECDI&rsquo;s peer review checklists and from the failures the reproducibility team sees most. Each finding gets a severity based on what it could do to your results, from Critical to Low, not on how hard it is to fix.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; <b>Two phases, with you in the middle.</b> Before it lists a single file, the agent asks you to confirm there is no confidential or identifying data in the folder (&ldquo;probably fine&rdquo; counts as no). Phase 1 reads code and documentation only: no running, no opening data, no edits. You get a table: flag, severity, file and line, and whether the agent can fix it. Phase 2 happens only on a Git branch, and only for what you approve.
+                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; <b>It keeps your data out of the review.</b> Before it lists a single file, the agent asks you to confirm that the folder holds no confidential or identifying data. Then it reads code and documentation only. It does not open data, run scripts or edit files.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0;">
-                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; <b>Three kinds of finding.</b> <i>Yes</i>: the fix is clear, approve it. <i>Conditional</i>: it needs a value first, like the seed. <i>No</i>: a research decision only you can make, like which observations to drop, so you decide, document, and then ask the agent to implement your choice. &ldquo;Do the straightforward ones&rdquo; means the Yes rows. <code>defer</code> leaves an item open without changing anything.
+                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; <b>Feedback first, changes only on your say.</b> The review ends with a report, not with edits. Each finding says whether the agent could fix it: <i>Yes</i> (a mechanical fix), <i>Conditional</i> (it needs a value from you, like the seed) or <i>No</i> (a research decision, like which observations to drop). You choose what gets fixed. The agent makes those changes on a Git branch so you can read every line and undo any of it. Analytical choices stay with you.
                       </td></tr>
                     </table>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:16px 0 0 0;">
-                      Materials: <a href="https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-2/ai-review-code/" style="color:#0071BC;">slides</a> &nbsp;&middot;&nbsp; <a href="https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip" style="color:#0071BC;">skill zip</a> &nbsp;&middot;&nbsp; <a href="https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-2/ai-review-code/materials" style="color:#0071BC;">demo project</a> &nbsp;&middot;&nbsp; questions: <a href="mailto:dimeanalytics@worldbank.org" style="color:#0071BC;">dimeanalytics@worldbank.org</a>
+                      Materials: <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-review-code/" style="color:#0071BC;">training page</a> with setup steps &nbsp;&middot;&nbsp; <a href="https://github.com/dime-worldbank/coding-agents-hub/releases/download/research-code-review-latest/research-code-review.zip" style="color:#0071BC;">skill</a> &nbsp;&middot;&nbsp; <a href="https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-review-code/materials/water-pilot.zip" style="color:#0071BC;">demo project</a> &nbsp;&middot;&nbsp; all Impact Analytics trainings: <a href="https://dime-worldbank.github.io/ai-research-training/" style="color:#0071BC;">materials page</a> &nbsp;&middot;&nbsp; questions: <a href="mailto:dimeanalytics@worldbank.org" style="color:#0071BC;">dimeanalytics@worldbank.org</a>
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:10px 0 0 0;">
-                      Also on November 12: AI for Survey Instrument Design (DECDI only). Materials will go up on the Trainings page.
+                      The audit figure is from <a href="https://www.nature.com/articles/s41586-026-10251-x" style="color:#0071BC;">Nature (2026)</a>, as cited in the blog post. Also on November 12: AI for Survey Instrument Design (DECDI only).
                     </p>
                   </td>
                 </tr>
@@ -154,8 +154,8 @@
                       Run the read-only review on one script you finished this month. Don&rsquo;t let it change anything yet.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
-                      <b>1. Install the skill.</b> Download <a href="https://github.com/dime-worldbank/ai-research-training/releases/download/research-code-review-latest/research-code-review.zip" style="color:#0071BC;">research-code-review.zip</a>, unzip it, and put the whole <code>research-code-review/</code> folder under <code>.agents/skills/</code> at the project root. The whole folder, not just <code>SKILL.md</code>; the checklist lives next to it.<br><br>
-                      <b>2. Clear the folder of data.</b> Move any data files out, or practise on the <a href="https://github.com/dime-worldbank/ai-research-training/tree/main/bootcamp/sessions/day-2/ai-review-code/materials" style="color:#0071BC;">demo project</a>, where everything is synthetic.<br><br>
+                      <b>1. Install the skill.</b> Download <a href="https://github.com/dime-worldbank/coding-agents-hub/releases/download/research-code-review-latest/research-code-review.zip" style="color:#0071BC;">research-code-review.zip</a>, unzip it, and put the whole <code>research-code-review/</code> folder under <code>.agents/skills/</code> at the project root. The whole folder, not just <code>SKILL.md</code>; the checklist lives next to it.<br><br>
+                      <b>2. Clear the folder of non-public data.</b> Move any confidential or identifying data out of the project folder, unless you are running the review with Claude Enterprise, which is approved for it. Or practice on the <a href="https://github.com/dime-worldbank/ai-research-training/raw/refs/heads/main/sessions/ai-skills-review-code/materials/water-pilot.zip" style="color:#0071BC;">demo project</a>, where everything is synthetic.<br><br>
                       <b>3. Open a new session and ask for a selected-files review:</b><br>
                       <code>Read .agents/skills/research-code-review/SKILL.md and review only:<br>- code/&lt;your script&gt;<br>Treat this as a selected-files review.</code><br>
                       Answer the privacy question honestly. A hedge counts as no, and the agent will offer a code-only review instead.<br><br>
@@ -189,7 +189,7 @@
                       Builder and critic
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
-                      If an agent wrote the code, have a different agent review it. What &ldquo;different&rdquo; has to mean (a fresh session, a checklist it didn&rsquo;t write, read-only), a worked example on the demo project from the training, what to do when the critic is wrong, and three places a critic pass fits into a normal week. About 12 minutes.
+                      If an agent wrote the code, have a different agent review it. What &ldquo;different&rdquo; has to mean (a fresh session, a checklist it didn&rsquo;t write, read-only), a worked example on the training&rsquo;s demo project, what to do when the critic is wrong, and three places a critic pass fits into a normal week. About 12 minutes.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
@@ -253,6 +253,7 @@
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0;">
                       Most packages need real changes before they pass verification. This hands-on session uses the reproducibility skill on a demo or on your own project: the agent audits, flags, and builds a package you then review and keep improving. You need VS Code with Copilot or Claude Code.
                     </p>
+                    <!-- TODO before sending: replace with the OLC registration link for December 2 (review comment, mariaruth) -->
                     <a href="https://teams.microsoft.com/meet/213554750869999?p=uCRbfR3fGXT1QPEkBI" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; margin:10px 0 0 0;">
                       Join on Teams &middot; December 2 &rarr;
                     </a>

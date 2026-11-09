@@ -6,9 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AI for Research: Spending Tokens Well</title>
 <!--
-  Internal newsletter - DECDI / Impact Analytics. Issue 7. DRAFT written before the November 5 session;
-  check the recap against what was actually covered. Recap follows the Bootcamp session
-  bootcamp/sessions/day-1/cost-effective-ai (Kristoffer Bjarkefur). Coming Up leads with November 9 (code review).
+  Internal newsletter - DECDI / Impact Analytics. Issue 7. Recap follows sessions/ai-cost-efficiency
+  (Kristoffer Bjarkefur & Maria Reyes Retana Torre, November 5), including its Cash Plus case study. Coming Up leads with November 9 (code review).
 -->
 <style>
   @media only screen and (max-width: 640px) {
@@ -110,27 +109,67 @@
                       Using AI Agents Cost Effectively
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 14px 0;">
-                      A quick recap of Impact Analytics&rsquo; November 5 training on using AI agents cost effectively. Token limits are already a real constraint at the Bank, and Enterprise credits come out of a budget. The training was about three habits that cut the bill, and why the habits matter more than the current prices do.
+                      Token limits are already a real constraint at the Bank, and use of Claude Enterprise comes out of business unit budgets. Enterprise licenses are not subsidized the way personal ones are, so it matters even more to use them well. Impact Analytics&rsquo; November 5 training on using AI agents cost effectively (<a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-cost-efficiency/" style="color:#0071BC;">slides here</a>) emphasized three habits that cut the bill, and why the habits matter more than the current prices do.
                     </p>
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; <b>Cheap tokens won&rsquo;t last.</b> Today&rsquo;s personal-plan prices are subsidised by companies that want us to get used to big models for everything. Setups with real privacy guarantees are not subsidised at all. Those of us on Copilot licences for six months have already had a small taste of running out. The training&rsquo;s image: we can afford the V8 today, so now is the time to learn to drive the hybrid.
+                        <span style="color:#0071BC; font-weight:bold;">1.</span>&nbsp; <b>Start small on the model.</b> You do not need the most capable model for most tasks. A small model proofreads an abstract, renames variables or reformats a table as well as a large one. A medium model handles most everyday work, like translating Stata to R or debugging a regression script. Keep the large model for work that spans many files or is genuinely ambiguous. Move up only when the smaller model falls short.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; <b>Use the smallest model that does the job.</b> If the semi-truck is your most capable vehicle, you still don&rsquo;t take it to buy milk. A small model proofreads a paragraph as well as a large one. There is no fixed cutoff, and small models keep getting better, so try the smaller one first and move up when it falls short.
-                      </td></tr>
-                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; <b>A memory file is a shopping list.</b> Without one, the agent buys the whole store on every request: it re-reads your project to learn what language you use and where the code lives. Write that down once, in <code>AGENTS.md</code> or <code>CLAUDE.md</code>, and it is loaded every time. A good memory file also makes a smaller model good enough, because the agent is not wasting its attention on discovery.
-                      </td></tr>
-                      <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0 0 8px 0;">
-                        <span style="color:#0071BC; font-weight:bold;">4.</span>&nbsp; <b>Start a new session for each task.</b> Models don&rsquo;t remember. On every request the whole conversation so far is sent again and processed again, for every word of the answer. Ten tasks in one chat means the tenth task pays for the previous nine, and the agent&rsquo;s attention is split across all of them. Use the plus button. If you want to reuse a good prompt, copy it into a fresh session.
+                        <span style="color:#0071BC; font-weight:bold;">2.</span>&nbsp; <b>Write a memory file.</b> Without one, the agent spends tokens on every request rediscovering basic facts about your project: which language you use, where the code folder is, whether the data is in the folder. A memory file (<code>AGENTS.md</code> or <code>CLAUDE.md</code>) tells it once. It takes about five minutes to write, and it also makes a smaller model good enough, because the agent is no longer spending its effort on discovery.
                       </td></tr>
                       <tr><td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:23px; color:#333333; padding:0;">
-                        <span style="color:#0071BC; font-weight:bold;">5.</span>&nbsp; <b>Read the meter.</b> Copilot&rsquo;s chat panel shows how full the context window is. At the end of a task, under 5% suggests you used a bigger model than you needed; over 95% suggests a model too small for the job, and details were probably lost. In Claude Code, <code>/cost</code> shows what the session has spent and <code>/context</code> shows what is filling the window.
+                        <span style="color:#0071BC; font-weight:bold;">3.</span>&nbsp; <b>Start a new chat for each new task.</b> Models keep no memory between requests. Every time you send a message, the whole conversation so far is sent and processed again. Ten tasks in one chat means the tenth pays for the previous nine. The test: does my next request need anything from this conversation, beyond what is already in my files? If not, open a new chat. To reuse a good prompt, paste it into the new chat.
                       </td></tr>
                     </table>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:14px 0 0 0;">
+                      A fourth point from the training, for projects that keep feeding the agent Word, Excel or PDF files: convert them to plain text once, so you do not pay for the conversion on every request.
+                    </p>
+
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:12px; letter-spacing:1px; color:#002244; text-transform:uppercase; font-weight:bold; margin:26px 0 10px 0;">
+                      What the habits add up to
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 12px 0;">
+                      In the training&rsquo;s case study, an agent did the same three everyday tasks on a small, fictional RCT project three ways: fix a broken balance-table script, proofread an abstract, and write a README.
+                    </p>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                      <tr>
+                        <td style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; font-weight:bold; padding:6px 8px 6px 0; border-bottom:2px solid #002244;">Workflow</td>
+                        <td align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; font-weight:bold; padding:6px 8px; border-bottom:2px solid #002244;">Habits</td>
+                        <td align="right" style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; font-weight:bold; padding:6px 8px; border-bottom:2px solid #002244;">Tokens</td>
+                        <td align="right" style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; font-weight:bold; padding:6px 0 6px 8px; border-bottom:2px solid #002244;">Cost</td>
+                      </tr>
+                      <tr>
+                        <td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px 8px 8px 0; border-bottom:1px solid #DDE4EA;">One long chat, largest model</td>
+                        <td align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px; border-bottom:1px solid #DDE4EA;">none</td>
+                        <td align="right" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px; border-bottom:1px solid #DDE4EA;">675k</td>
+                        <td align="right" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px 0 8px 8px; border-bottom:1px solid #DDE4EA;">$0.65</td>
+                      </tr>
+                      <tr>
+                        <td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px 8px 8px 0; border-bottom:1px solid #DDE4EA;">New chat per task</td>
+                        <td align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px; border-bottom:1px solid #DDE4EA;">3</td>
+                        <td align="right" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px; border-bottom:1px solid #DDE4EA;">333k</td>
+                        <td align="right" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px 0 8px 8px; border-bottom:1px solid #DDE4EA;">$0.43</td>
+                      </tr>
+                      <tr>
+                        <td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px 8px 8px 0; border-bottom:1px solid #DDE4EA;"><b>New chat, memory file, model picked for the task</b></td>
+                        <td align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px; border-bottom:1px solid #DDE4EA;"><b>1, 2 and 3</b></td>
+                        <td align="right" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px; border-bottom:1px solid #DDE4EA;"><b>191k</b></td>
+                        <td align="right" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; padding:8px 0 8px 8px; border-bottom:1px solid #DDE4EA;"><b>$0.05</b></td>
+                      </tr>
+                    </table>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:12px 0 0 0;">
+                      Using all three habits cut the cost by about <b>12 times</b>, and the work was just as good. One detail: the same prompt, &ldquo;Can you proofread the abstract?&rdquo;, cost 229k tokens as the second task in a long chat and 48k in a new one. These are single runs on a small project, so treat the exact numbers as an illustration. You can <a href="https://github.com/dime-worldbank/ai-research-training/tree/main/sessions/ai-cost-efficiency/case-study" style="color:#0071BC;">rerun the case study yourself</a>.
+                    </p>
+
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:12px; letter-spacing:1px; color:#002244; text-transform:uppercase; font-weight:bold; margin:26px 0 10px 0;">
+                      How do you know how much you are spending?
+                    </p>
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0;">
+                      Watch your own usage for a couple of weeks and you will learn which of your tasks are token-hungry. GitHub Copilot&rsquo;s chat panel in VS Code shows how full the context window is. At the end of a task, under 5% suggests a larger model than you needed; over 95% suggests one too small, where details were probably lost. In Claude Code, <code>/cost</code> shows what the current chat has spent and <code>/context</code> shows what is filling the window. Claude&rsquo;s <a href="https://claude.ai/new#settings/usage" style="color:#0071BC;">usage page</a> shows how much of your allocation is left.
+                    </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:20px; color:#8A8F94; margin:16px 0 0 0;">
-                      Materials: <a href="https://dime-worldbank.github.io/ai-research-training/bootcamp/sessions/day-1/cost-effective-ai/" style="color:#0071BC;">slides</a> (version from the October AI-Enabled Research Bootcamp) &nbsp;&middot;&nbsp; recording in the training&rsquo;s Teams channel &nbsp;&middot;&nbsp; questions: <a href="mailto:dimeanalytics@worldbank.org" style="color:#0071BC;">dimeanalytics@worldbank.org</a>
+                      All Impact Analytics trainings: <a href="https://dime-worldbank.github.io/ai-research-training/" style="color:#0071BC;">materials page</a> &nbsp;&middot;&nbsp; questions: <a href="mailto:dimeanalytics@worldbank.org" style="color:#0071BC;">dimeanalytics@worldbank.org</a>
                     </p>
                   </td>
                 </tr>
@@ -151,16 +190,16 @@
                       Make one routine task cheaper, and find out whether it got worse.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#333333; margin:12px 0 0 0;">
-                      <b>1. Write down your numbers.</b> Claude: Settings, then <a href="https://claude.ai/new#settings/usage" style="color:#0071BC;">Usage</a>. Copilot: the premium requests left this month. Put them in a text file with today&rsquo;s date. One line. You will want the trend later.<br><br>
-                      <b>2. Look at what you are carrying.</b> In the chat session you have open right now, check Copilot&rsquo;s context meter, or type <code>/context</code> in Claude Code. If most of it is tool output from tasks you finished an hour ago, that is what you have been paying to resend on every request since.<br><br>
-                      <b>3. Start a fresh session and pick a small model.</b> Choose a routine task: proofread a paragraph, rename variables to match a convention, explain an error message. Switch the model picker to the smallest model on offer before you send it.<br><br>
+                      <b>1. Write down your numbers.</b> Claude: Settings, then <a href="https://claude.ai/new#settings/usage" style="color:#0071BC;">Usage</a>. GitHub Copilot: the premium requests left this month. Put them in a text file with today&rsquo;s date. One line. You will want the trend later.<br><br>
+                      <b>2. Look at what you are carrying.</b> In the chat session you have open right now, check GitHub Copilot&rsquo;s context meter, or type <code>/context</code> in Claude Code. If most of it is tool output from tasks you finished an hour ago, that is what you have been paying to resend on every request since.<br><br>
+                      <b>3. Start a new chat and pick a small model.</b> Choose a routine task: proofread a paragraph, rename variables to match a convention, explain an error message. Switch the model picker to the smallest model on offer before you send it.<br><br>
                       <b>4. Judge the answer as strictly as you would the big model&rsquo;s.</b> Did it get anything wrong that the larger model would have got right? If not, that task has a new default. Add that to the text file too.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0 0;">
                       <tr>
                         <td style="background-color:#EAF4FB; border-left:4px solid #0071BC; padding:16px 20px;">
                           <span style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:21px; color:#333333;">
-                            <b>Have more than 10 minutes?</b> Open the memory file of the project you spent most on this month. Add the three things the agent had to ask you, or got wrong, this week. Then read the Deep Dive: a half-hour routine for doing this once a month, with the numbers your tools already give you.
+                            <b>Have more than 10 minutes?</b> Open the memory file of the project you spent most on this month. Add the three things the agent had to ask you, or got wrong, this week. Or do the training&rsquo;s five-minute self-audit: look at your last ten chats and count the long threads, the repeated corrections and the large models used for small jobs. Then read the Deep Dive: a half-hour routine for doing this once a month, with the numbers your tools already give you.
                           </span>
                         </td>
                       </tr>
@@ -184,7 +223,7 @@
                       The monthly token review
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
-                      Three habits cut the waste. A monthly look at your own numbers tells you whether they are working. Where the numbers are (the usage page, <code>/cost</code>, <code>/context</code>, Copilot&rsquo;s meter), a five-step routine that takes half an hour, what a good month looks like, and how to turn the file into a credit request that gets approved. About 12 minutes.
+                      Three habits cut the waste. A monthly look at your own numbers tells you whether they are working. Where the numbers are (the usage page, <code>/cost</code>, <code>/context</code>, GitHub Copilot&rsquo;s meter), a five-step routine that takes half an hour, what a good month looks like, and how to turn the file into a credit request that gets approved. About 12 minutes.
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
@@ -215,7 +254,7 @@
                       Same model name, different answer
                     </h2>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 12px 0;">
-                      Switching to a smaller or newer model is the fastest way to cut the bill. If the model produced a variable in your analysis, it is also a change to your instrument.
+                      Switching to a smaller or newer model is the fastest way to cut the bill. For drafting and debugging, that is all it is. But if you used a model to code survey answers or classify documents, a different model can hand you different data.
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#333333; margin:0 0 18px 0;">
                       Three political scientists re-ran the same text-coding tasks on the same models every month for most of 2024. The AI beat crowdworkers on accuracy and lost on stability. Fixing the temperature did not help, one model stopped existing mid-project, and the re-estimated coefficients came out a third the size. Field Notes covers what moved, and which tasks to pin a model for.
@@ -246,7 +285,7 @@
                       <b style="color:#FFFFFF;">Monday, November 9</b> &nbsp;&middot;&nbsp; Room G 4-001 and Teams &nbsp;&middot;&nbsp; open to all (repeat from the Bootcamp)
                     </p>
                     <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:#B8CCDD; margin:0;">
-                      A review skill built from DEC&rsquo;s peer code review checklists. It reads your code, reports flags with a severity and a line number, and changes nothing until you approve. Bring code from an ongoing project, with no confidential data in the folder. You need VS Code with GitHub Copilot or Claude Code.
+                      A review skill built from DEC&rsquo;s peer code review checklists. It reads your code, reports flags with a severity and a line number, and changes nothing until you approve. Bring code from an ongoing project, with no confidential data in the folder. You need VS Code with GitHub Copilot or Claude Code. Setup steps are on the <a href="https://dime-worldbank.github.io/ai-research-training/sessions/ai-skills-review-code/" style="color:#8AC6E6;">training page</a>.
                     </p>
                     <a href="https://teams.microsoft.com/meet/267672866844073?p=K4KB6UkfoJLiOEA8AJ" style="display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; text-decoration:none; margin:10px 0 0 0;">
                       Join on Teams &middot; November 9 &rarr;
