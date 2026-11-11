@@ -20,7 +20,7 @@ A series of stand-alone sessions on using AI tools across the research lifecycle
 | 3 | [AI Ethics, Governance, and Safe Use at the World Bank]({{ '/sessions/ai-ethics-governance/' | relative_url }}) | Sep 17 | **Available** &middot; [Slides →]({{ '/sessions/ai-ethics-governance/' | relative_url }}) |
 | 4 | Claude Enterprise at the World Bank | Oct 22 | **Available** &middot; [Slides →]({{ '/sessions/ai-claude-enterprise/' | relative_url }}) |
 | 5 | Using AI Agents Cost Effectively: Best Practices and Case Studies | Nov 5 | **Available** &middot; [Slides →]({{ '/sessions/ai-cost-efficiency/' | relative_url }}) |
-| 6 | [AI Skills for Code Review]({{ '/sessions/ai-skills-review-code/' | relative_url }}) | Nov 9 | **Available** &middot; [Slides →]({{ '/sessions/ai-skills-review-code/' | relative_url }}) |
+| 6 | [AI Skills for Code Review]({{ '/sessions/ai-skills-review-code/' | relative_url }}) | Nov 9 | **Available** &middot; [Slides →]({{ '/sessions/ai-skills-review-code/slides/' | relative_url }}) |
 | 7 | AI Skills for Reproducible Research | Dec 2 | Upcoming |
 | 8 | Making Your Workflows AI-Enabled | Dec 3 | Upcoming |
 
