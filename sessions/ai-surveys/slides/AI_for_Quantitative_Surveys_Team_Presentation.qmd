@@ -1,0 +1,734 @@
+---
+title: "AI for Quantitative Surveys"
+subtitle: "Skills and tools across the survey lifecycle"
+author:
+  - "[Roshni Khincha], [Impact Analytics]"
+date: "[Date]"
+format:
+  revealjs:
+    width: 1280
+    height: 720
+    margin: 0.04
+    center: false
+    transition: none
+    slide-number: true
+    footer: "AI for Quantitative Surveys"
+    embed-resources: true
+    title-slide-attributes:
+      data-background-image: logo_dec.png
+      data-background-size: 230px
+      data-background-position: 51px 36px
+      data-background-repeat: no-repeat
+    include-in-header:
+      text: |
+        <style>
+        :root {
+          --purple: #530153; --purple-mid: #800280; --tint: #F4EAF4; --border: #E2E2E2;
+          --ink: #1A1A1A; --muted: #6B6B6B; --amber: #A6640C; --green: #1E8F5B;
+          --red: #C0392B; --lilac: #B974B9;
+        }
+        .reveal { font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 19px; color: var(--ink); }
+        .reveal .slides { text-align: left; }
+        .reveal .slides section { padding: 0; }
+        .reveal h1, .reveal h2 {
+          font-family: Cambria, Caladea, Georgia, serif; font-weight: 700; color: var(--purple);
+          text-transform: none; letter-spacing: 0; line-height: 1.15; margin: 0 0 4px 0;
+        }
+        .reveal h2 { font-size: 43px; }
+        .reveal p { margin: 0 0 8px 0; line-height: 1.3; }
+        .reveal ul, .reveal ol { margin: 0 0 0 24px; display: block; }
+        .reveal li { margin-bottom: 8px; line-height: 1.3; }
+        .reveal a { color: var(--purple-mid); }
+        .reveal .footer, .reveal .footer p { font-size: 13px; color: var(--muted); }
+        .reveal .slide-number { font-size: 13px; color: var(--muted); background: none; }
+
+        /* Title slide */
+        .reveal .title-slide { text-align: left; }
+        .reveal .title-slide h1.title { font-size: 60px; margin-top: 190px; }
+        .reveal .title-slide .subtitle { font-size: 28px; font-style: italic; color: var(--muted); margin-bottom: 70px; }
+        .reveal .title-slide .author, .reveal .title-slide .date { font-size: 19px; color: var(--ink); }
+
+        /* Dividers and dark slides */
+        .reveal section.divider h1 { color: #fff; font-size: 52px; margin-top: 250px; }
+        .reveal .kicker { display: block; font-family: Calibri, Carlito, Arial, sans-serif; font-size: 15px;
+          font-weight: 700; letter-spacing: 4px; color: var(--lilac); margin-bottom: 14px; }
+        .reveal section.dark h2 { color: #fff; font-size: 48px; margin-top: 20px; }
+        .reveal section.dark .kicker { margin-top: 20px; }
+
+        /* Shared components */
+        .reveal .sub p { font-size: 21px; font-style: italic; color: var(--muted); margin: 0 0 16px 0; }
+        .reveal .stagelabel { display: block; font-family: Calibri, Carlito, Arial, sans-serif; font-size: 13px;
+          letter-spacing: 2px; color: var(--purple-mid); font-weight: 700; margin-bottom: 2px; }
+        .reveal .card { background: var(--tint); border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; }
+        .reveal .caveat { background: var(--tint); border: 1px solid var(--border); border-radius: 10px;
+          padding: 12px 22px; margin-top: 16px; }
+        .reveal .caveat p { margin: 0; }
+        .reveal .caveat strong { color: var(--red); letter-spacing: 0.5px; margin-right: 6px; }
+        .reveal .caveat.purple strong { color: var(--purple); }
+        .reveal .colhead p { margin: 0 0 12px 0; font-size: 21px; font-weight: 700; letter-spacing: 1px; }
+        .reveal .colhead.green p { color: var(--green); }
+        .reveal .colhead.purple p { color: var(--purple); }
+        .reveal .pill { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 1px; line-height: 1;
+          padding: 5px 14px; border-radius: 14px; color: #fff; white-space: nowrap; }
+        .reveal .pill.avail { background: var(--green); }
+        .reveal .pill.works { background: var(--amber); }
+        .reveal .pill.next { background: #6B6B6B; }
+        .reveal .pill.partner { background: var(--purple-mid); }
+        .reveal .pill.draft { background: #fff; color: var(--purple); border: 1.5px solid var(--purple); padding: 3.5px 12.5px; }
+        .reveal .letter { display: inline-flex; width: 38px; height: 38px; border-radius: 50%; background: var(--purple);
+          color: #fff; font: 700 18px Cambria, Caladea, Georgia, serif; align-items: center; justify-content: center;
+          margin-right: 12px; vertical-align: middle; }
+        .reveal .cardhead { display: flex; align-items: center; margin-bottom: 8px; }
+        .reveal .cardhead p { margin: 0; display: flex; align-items: center; font-weight: 700; color: var(--purple);
+          font-size: 19px; letter-spacing: 1px; }
+        .reveal .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .reveal .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .reveal .grid3 .card p, .reveal .grid2 .card p { margin: 0 0 8px 0; }
+
+        /* Stage slides */
+        .reveal .cols { display: flex; gap: 24px; align-items: stretch; }
+        .reveal .support { flex: 0 0 46%; background: var(--tint); border: 1px solid var(--border); border-radius: 10px;
+          padding: 18px 24px; min-height: 410px; }
+        .reveal .resources { flex: 1; }
+        .reveal .res { background: var(--tint); border: 1px solid var(--border); border-radius: 8px; padding: 10px 18px; margin-bottom: 9px; }
+        .reveal .res p:first-child { display: flex; justify-content: space-between; align-items: center; margin: 0 0 4px 0; }
+        .reveal .res p:last-child { margin: 0; font-size: 16px; color: var(--muted); line-height: 1.25; }
+        .reveal .res-name { font-weight: 700; color: var(--purple); font-size: 19px; }
+
+        /* Overview */
+        .reveal .stages { display: flex; gap: 16px; }
+        .reveal .stage-card { flex: 1; background: var(--tint); border: 1px solid var(--border); border-radius: 10px;
+          padding: 16px 10px; text-align: center; display: flex; flex-direction: column; align-items: center; min-height: 392px; }
+        .reveal .stage-card p { margin: 0 0 10px 0; }
+        .reveal .stage-card .title { font-weight: 700; color: var(--purple); font-size: 19px; min-height: 52px; display: block; }
+        .reveal .stage-card .acts { font-size: 16px; line-height: 1.5; }
+        .reveal .stage-card .pills { margin-top: auto; }
+        .reveal .stage-card .pills p { display: flex; flex-direction: column; gap: 6px; align-items: center; margin: 0; }
+        .reveal .num { display: inline-flex; width: 46px; height: 46px; border-radius: 50%; background: var(--purple); color: #fff;
+          font: 700 20px Cambria, Caladea, Georgia, serif; align-items: center; justify-content: center; }
+        .reveal .legend p { font-size: 15px; color: var(--muted); margin: 12px 0 0 0; }
+        .reveal .legend strong { color: var(--purple); }
+
+        /* Matrix */
+        .reveal .matrix table { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 8px; font-size: 16px; margin: 0; border: none; }
+        .reveal .matrix th { color: #fff; font-size: 12px; letter-spacing: 1px; text-align: center !important; padding: 6px 4px;
+          border-radius: 14px; border: none; }
+        .reveal .matrix th:nth-child(1) { background: none; }
+        .reveal .matrix th:nth-child(2) { background: var(--green); }
+        .reveal .matrix th:nth-child(3) { background: #fff; color: var(--purple); border: 1.5px solid var(--purple); }
+        .reveal .matrix th:nth-child(4) { background: var(--amber); }
+        .reveal .matrix th:nth-child(5) { background: #6B6B6B; }
+        .reveal .matrix td { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px;
+          vertical-align: middle; line-height: 1.3; height: 66px; }
+        .reveal .matrix td:nth-child(1) { background: var(--tint); font-weight: 700; color: var(--purple); width: 20%; }
+        .reveal .matrix td:not(:empty):not(:first-child) { background: var(--tint); }
+
+        /* Demo steps */
+        .reveal .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+        .reveal .step { background: var(--purple-mid); border-radius: 10px; padding: 22px 26px; color: #fff; min-height: 210px; }
+        .reveal .step p { margin: 0 0 10px 0; color: #fff; }
+        .reveal .step .n { font: 700 36px Cambria, Caladea, Georgia, serif; }
+        .reveal .step strong { font-size: 24px; }
+        .reveal .step p:last-child { color: var(--tint); font-size: 19px; }
+        .reveal .darknote p { font-style: italic; color: var(--tint); margin-top: 30px; }
+
+        /* Reading */
+        .reveal .refs ol { margin: 0; padding: 0; list-style-position: inside; }
+        .reveal .refs li { background: var(--tint); border: 1px solid var(--border); border-radius: 8px;
+          padding: 9px 16px; margin-bottom: 10px; font-size: 15px; line-height: 1.3; }
+
+        /* Closing */
+        .reveal section.closing h2 { font-size: 52px; margin-top: 240px; color: #fff; }
+        .reveal section.closing p { color: var(--tint); font-size: 19px; }
+        </style>
+---
+
+# [SECTION 01]{.kicker}Why it matters {.divider background-color="#530153"}
+
+## Surveys are intensive. AI can help, but value is not automatic.
+
+::: {.sub}
+The question is not where AI can be inserted. It is where AI creates the most useful and equitable return.
+:::
+
+::: {.grid3}
+::: {.card}
+::: {.cardhead}
+[T]{.letter} TIME
+:::
+
+Repeated drafting, programming, translation, testing, supervision and cleaning consume scarce staff time.
+:::
+
+::: {.card}
+::: {.cardhead}
+[Q]{.letter} QUALITY
+:::
+
+Errors can propagate across the workflow and may only become visible after fieldwork begins.
+:::
+
+::: {.card}
+::: {.cardhead}
+[C]{.letter} COST
+:::
+
+AI can reduce some tasks, but brings tool, review, infrastructure, privacy and skills costs.
+:::
+:::
+
+::: {.caveat .purple}
+**TEAM DECISION** Prioritize the use cases with the highest time or quality value-add, then assess whether benefits and costs are distributed equitably.
+:::
+
+::: {.notes}
+Invite the team to name one bottleneck that absorbs significant time, and one group that might be disadvantaged by the proposed AI use.
+:::
+
+# [SECTION 02]{.kicker}AI through the survey lifecycle {.divider background-color="#530153"}
+
+## Where AI can support the survey lifecycle
+
+::: {.sub}
+A practical process view for teams already familiar with survey implementation.
+:::
+
+::: {.stages}
+::: {.stage-card}
+[1]{.num}
+
+[Design, piloting and translation]{.title}
+
+::: {.acts}
+Literature\
+Question database\
+Pilot scenarios\
+Cognitive burden\
+Translation
+:::
+
+::: {.pills}
+[AVAILABLE]{.pill .avail} [IN THE WORKS]{.pill .works}
+:::
+:::
+
+::: {.stage-card}
+[2]{.num}
+
+[Programming and testing]{.title}
+
+::: {.acts}
+Paper to XLSForm\
+Coding\
+Logic and pathways\
+Synthetic testing
+:::
+
+::: {.pills}
+[AVAILABLE]{.pill .avail} [DRAFT]{.pill .draft} [IN THE WORKS]{.pill .works}
+:::
+:::
+
+::: {.stage-card}
+[3]{.num}
+
+[Response collection and field work]{.title}
+
+::: {.acts}
+ToRs and manuals\
+IVR / chatbots\
+Fieldwork management
+:::
+
+::: {.pills}
+[DRAFT]{.pill .draft} [PARTNERS]{.pill .partner}
+:::
+:::
+
+::: {.stage-card}
+[4]{.num}
+
+[Data quality checks]{.title}
+
+::: {.acts}
+Audio audits\
+High-frequency checks\
+Irregularities
+:::
+
+::: {.pills}
+[AVAILABLE]{.pill .avail} [DRAFT]{.pill .draft} [PARTNERS]{.pill .partner}
+:::
+:::
+
+::: {.stage-card}
+[5]{.num}
+
+[Cleaning and publication]{.title}
+
+::: {.acts}
+Open text\
+Scripts\
+Documentation\
+Disclosure checks
+:::
+
+::: {.pills}
+[UPCOMING]{.pill .next}
+:::
+:::
+:::
+
+::: {.legend}
+**Resource status.** Available = exists today. Draft = early version to test and give feedback on. In the works = under development. Partners = led by another team. Upcoming = planned.
+:::
+
+::: {.caveat .purple}
+**YOUR INPUT** Teams are already trying things on their own. Tell us what you use at each stage, or what would be useful to have.
+:::
+
+::: {.notes}
+Introduce the five stages, then go stage by stage. The colored tags show what resources exist at each stage.
+:::
+
+## [STAGE 1 OF 5 | DESIGN, PILOTING AND TRANSLATION]{.stagelabel}Design, piloting, and translation
+
+::: {.sub}
+Use AI to accelerate the first draft, not to declare the instrument finished.
+:::
+
+:::: {.cols}
+::: {.support}
+::: {.colhead .green}
+HOW AI CAN SUPPORT
+:::
+
+- Synthesize literature and locate outcomes and measurement frameworks
+- Find tested questions in standard questionnaires and the DIME questionnaire database
+- Review question wording for common measurement errors and propose unbiased alternatives
+- Expand desk testing: generate test scenarios and assess cognitive burden across respondent profiles
+- Translate into common languages with available AI models, for expert review
+:::
+
+::: {.resources}
+::: {.colhead .purple}
+RESOURCES
+:::
+
+::: {.res}
+[AI translation]{.res-name}[AVAILABLE]{.pill .avail}
+
+Available AI models handle common languages well. Local languages remain the open question.
+:::
+
+::: {.res}
+[Question database]{.res-name}[IN THE WORKS]{.pill .works}
+
+App built on standard questionnaires and the DIME questionnaire database.
+:::
+:::
+::::
+
+::: {.caveat}
+**CAVEAT** Check every question and translation thoroughly before field use. Value comparability and existing best practices.
+:::
+
+::: {.notes}
+Emphasize that AI accelerates iteration. It does not remove the need for subject-matter or language expertise. The original piloting content had no tool in progress, so piloting appears here as AI support only; synthetic testing sits under programming and testing.
+:::
+
+## [STAGE 2 OF 5 | PROGRAMMING AND TESTING]{.stagelabel}Programming and testing
+
+::: {.sub}
+From paper to a working, tested form faster.
+:::
+
+:::: {.cols}
+::: {.support}
+::: {.colhead .green}
+HOW AI CAN SUPPORT
+:::
+
+- Convert paper questionnaires to XLSForm. AI tools like Claude do this well
+- Accelerate survey coding with agents and reusable skills
+- Enumerate pathways and flag rare questions, loops and inconsistent constraints
+- Generate synthetic response combinations to test skip logic before fieldwork
+:::
+
+::: {.resources}
+::: {.colhead .purple}
+RESOURCES
+:::
+
+::: {.res}
+[SurveyCTO skill]{.res-name}[AVAILABLE]{.pill .avail}
+
+SurveyCTO's AI agent skill for designing and debugging forms. [Link](https://www.surveycto.com/?p=47097)
+:::
+
+::: {.res}
+[Paper-to-XLSForm converter]{.res-name}[DRAFT]{.pill .draft}
+
+Draft skill that turns a paper questionnaire into an XLSForm.
+:::
+
+::: {.res}
+[XLSForm consolidator]{.res-name}[DRAFT]{.pill .draft}
+
+Draft skill. [Describe what it consolidates]
+:::
+
+::: {.res}
+[Synthetic testing]{.res-name}[IN THE WORKS]{.pill .works}
+
+Synthetic respondents run through the programmed SurveyCTO form.
+:::
+:::
+::::
+
+::: {.caveat}
+**CAVEAT** Check every programmed constraint before field use. Synthetic respondents complement, rather than replace, field pilots.
+:::
+
+::: {.notes}
+Hand over to the demo section for the XLSForm part. Feedback on the draft skills is very helpful as the team tests them.
+:::
+
+## [STAGE 3 OF 5 | RESPONSE COLLECTION AND FIELD WORK MANAGEMENT]{.stagelabel}Response collection and field work management
+
+::: {.sub}
+AI can support both the interview channel and the management layer.
+:::
+
+:::: {.cols}
+::: {.support}
+::: {.colhead .green}
+HOW AI CAN SUPPORT
+:::
+
+- Draft terms of reference for survey firms
+- Generate enumerator manuals tailored to the instrument
+- AI-powered adaptive training and simulation for enumerator preparation
+- AI-agent data collection through IVR or chatbots
+- Synthesize GPS and completion rates to help field managers target follow-up
+:::
+
+::: {.resources}
+::: {.colhead .purple}
+RESOURCES
+:::
+
+::: {.res}
+[ToR generator]{.res-name}[DRAFT]{.pill .draft}
+
+Draft skill for terms of reference.
+:::
+
+::: {.res}
+[Enumerator manual generator]{.res-name}[DRAFT]{.pill .draft}
+
+Draft skill for enumerator manuals.
+:::
+
+::: {.res}
+[IVR and chatbots]{.res-name}[PARTNERS]{.pill .partner}
+
+LSMS pilots on the Resonance platform in Nepal and Bangladesh.
+:::
+:::
+::::
+
+::: {.caveat}
+**CAVEAT** Mode effects, accessibility, consent and respondent trust must be assessed before deployment.
+:::
+
+::: {.notes}
+Feedback on the draft skills is very helpful as the team tests them.
+:::
+
+## [STAGE 4 OF 5 | DATA QUALITY CHECKS]{.stagelabel}Data quality checks during fieldwork
+
+::: {.sub}
+Move from delayed review of a sample toward faster, targeted quality signals.
+:::
+
+:::: {.cols}
+::: {.support}
+::: {.colhead .green}
+HOW AI CAN SUPPORT
+:::
+
+- Transcribe and review recorded interviews
+- Set up back check instruments
+- Detect irregular patterns, protocol deviations and faulty responses
+- Prioritize interviews for supervisor review
+- Generate concise, actionable quality summaries
+:::
+
+::: {.resources}
+::: {.colhead .purple}
+RESOURCES
+:::
+
+::: {.res}
+[iehfc]{.res-name}[AVAILABLE]{.pill .avail}
+
+High-frequency checks tools developed by the DECDI team.
+:::
+
+::: {.res}
+[Skill from DJ]{.res-name}[DRAFT]{.pill .draft}
+
+[Describe what it does and confirm status]
+:::
+
+::: {.res}
+[Audio audits]{.res-name}[PARTNERS]{.pill .partner}
+
+Automated transcription pipeline trialed by LSMS in several countries.
+:::
+:::
+::::
+
+::: {.caveat}
+**CAVEAT** AI flags are signals for review, not proof of fraud or poor performance.
+:::
+
+::: {.notes}
+Show how iehfc, the skill from DJ and the LSMS audio audit work fit together rather than overlap.
+:::
+
+## [STAGE 5 OF 5 | DATA CLEANING AND PUBLICATION]{.stagelabel}Data cleaning and publication
+
+::: {.sub}
+Codify recurring workflows so teams spend less time rebuilding routine steps.
+:::
+
+:::: {.cols}
+::: {.support}
+::: {.colhead .green}
+HOW AI CAN SUPPORT
+:::
+
+- Clean up scripts, create codebooks, and provide descriptions
+- Classify and summarize open-ended responses
+- Create reusable skills for standard checks and outputs
+- Support documentation and disclosure risk checks
+:::
+
+::: {.resources}
+::: {.colhead .purple}
+RESOURCES
+:::
+
+::: {.res}
+[Cleaning & reporting]{.res-name}[UPCOMING]{.pill .next}
+
+Cleaning scripts and reproducible reports. DECDI starting point.
+:::
+
+::: {.res}
+[Disclosure checks]{.res-name}[UPCOMING]{.pill .next}
+
+De-identification review before release. [Partner: MDL, to confirm]
+:::
+
+::: {.res}
+[Catalog checklist]{.res-name}[UPCOMING]{.pill .next}
+
+Step-by-step support for Microdata Catalog submission.
+:::
+:::
+::::
+
+::: {.caveat}
+**CAVEAT** Keep code, prompts, model versions and human decisions auditable and reproducible.
+:::
+
+::: {.notes}
+Nothing is built yet at this stage. These are the next skills on the workplan.
+:::
+
+## Our resources by stage
+
+::: {.sub}
+What exists, what is in draft, and what is coming.
+:::
+
+::: {.matrix}
+| Stage | AVAILABLE | DRAFT | IN THE WORKS | UPCOMING AND PARTNERS |
+|:--------|:--------|:--------|:--------|:--------|
+| Design, piloting and translation | AI translation (common languages) | | Question database | |
+| Programming and testing | SurveyCTO skill | Paper-to-XLSForm converter<br>XLSForm consolidator | Synthetic testing | |
+| Response collection and field work | | ToR generator<br>Enumerator manual generator | | IVR and chatbots (LSMS) |
+| Data quality checks | iehfc | Skill from DJ | | Audio audits (LSMS) |
+| Cleaning and publication | | | | Cleaning & reporting skills<br>Disclosure checks<br>Catalog checklist |
+:::
+
+::: {.legend}
+**Feedback on draft skills is very helpful as you test them.** Next step: evaluate the skills jointly with LSMS.
+:::
+
+::: {.notes}
+Close the lifecycle section with this summary. Mention the joint evaluation with LSMS only as the next step for the skills.
+:::
+
+# [SECTION 03]{.kicker}Demo: paper to XLSForm {.divider background-color="#530153"}
+
+## [LIVE DEMO]{.kicker}From paper questionnaire to XLSForm {.dark background-color="#530153"}
+
+::: {.steps}
+::: {.step}
+[1]{.n}
+
+**Start from paper**
+
+[Name of the questionnaire used in the demo]
+:::
+
+::: {.step}
+[2]{.n}
+
+**Convert with Claude**
+
+Paper-to-XLSForm converter (draft skill) and the SurveyCTO skill
+:::
+
+::: {.step}
+[3]{.n}
+
+**Check the form**
+
+Review the XLSForm, fix errors, and test it in SurveyCTO
+:::
+:::
+
+::: {.darknote}
+Draft skills improve with testing. Tell us what works and what breaks.
+:::
+
+::: {.notes}
+Run the demo on a real or anonymized paper questionnaire. Have a backup recording in case of connection problems.
+:::
+
+# [SECTION 04]{.kicker}Choosing where to start {.divider background-color="#530153"}
+
+## How to choose where to start
+
+::: {.sub}
+Prioritize a workflow problem, not an AI tool.
+:::
+
+::: {.grid2}
+::: {.card}
+::: {.cardhead}
+[V]{.letter} VALUE
+:::
+
+How much staff time, delay or quality loss does the current problem create?
+:::
+
+::: {.card}
+::: {.cardhead}
+[F]{.letter} FEASIBILITY
+:::
+
+Are the data, infrastructure, language coverage and staff skills available?
+:::
+
+::: {.card}
+::: {.cardhead}
+[E]{.letter} EQUITY
+:::
+
+Who benefits, who may be excluded, and who bears additional review or participation costs?
+:::
+
+::: {.card}
+::: {.cardhead}
+[R]{.letter} RISK
+:::
+
+What happens if the output is wrong, biased, insecure or misunderstood?
+:::
+:::
+
+# [SECTION 05]{.kicker}Safeguards and closing {.divider background-color="#530153"}
+
+## Caveats when embedding AI in survey workflows
+
+::: {.sub}
+Build safeguards into the workflow rather than adding them after deployment.
+:::
+
+::: {.grid3}
+::: {.card}
+::: {.cardhead}
+[H]{.letter} HUMAN ACCOUNTABILITY
+:::
+
+Assign a named reviewer and define decisions that cannot be automated.
+:::
+
+::: {.card}
+::: {.cardhead}
+[V]{.letter} VALIDATION
+:::
+
+Benchmark outputs against expert review and field evidence in the intended context.
+:::
+
+::: {.card}
+::: {.cardhead}
+[E]{.letter} EQUITY & LANGUAGE
+:::
+
+Test performance across languages, modes, locations and respondent groups.
+:::
+
+::: {.card}
+::: {.cardhead}
+[P]{.letter} PRIVACY & CONSENT
+:::
+
+Minimize sensitive data, explain AI use and secure audio, text and location data.
+:::
+
+::: {.card}
+::: {.cardhead}
+[R]{.letter} REPRODUCIBILITY
+:::
+
+Record prompts, versions, code, inputs, changes and human overrides.
+:::
+
+::: {.card}
+::: {.cardhead}
+[T]{.letter} TOTAL COST
+:::
+
+Include licenses, compute, connectivity, integration, review, training and maintenance.
+:::
+:::
+
+::: {.caveat .purple}
+**DEFAULT POSTURE** Pilot narrowly, review visibly, monitor continuously and retain a non-AI fallback.
+:::
+
+::: {.notes}
+Full reproducibility is not easy to achieve in the end.
+:::
+
+## Reading materials
+
+::: {.refs}
+1. Blanchard, S. J., Duani, N., Garvey, A., Netzer, O., & Oh, T. T. (2025). New Tools, New Rules: A Practical Guide to Effective and Responsible GenAI Use for Surveys and Experiments Research. Georgetown McDonough School of Business Research Paper No. 5258789. ssrn.com/abstract=5258789
+2. Park, J. S., Zou, C. Q., Shaw, A., Hill, B. M., Cai, C. J., Morris, M. R., Willer, R., Liang, P., & Bernstein, M. S. Simulating Human Behavior with AI Agents. hai.stanford.edu/policy/simulating-human-behavior-with-ai-agents
+3. Rothschild, D., Marlar, J., Amaya, A., et al. (2026). Responsible AI Integration in Survey Research. AAPOR. aapor.org/wp-content/uploads/2026/05/Responsible-AI-Integration-In-Survey-Research.pdf
+4. Rothschild, D. M., Brand, J., Schroeder, H., & Wang, J. Opportunities and risks of LLMs in survey research. papers.ssrn.com/sol3/Delivery.cfm?abstractid=5001645
+5. Rothschild, D. M. Keynote: Surveys and AI: State of the evidence, opportunities and pitfalls. thedocs.worldbank.org/en/doc/6416c4eeaa591a56a771ba097e18270f-0050012025/related/Rothschild-keynote-presentation.pdf
+:::
+
+## Start with the bottleneck, not the technology. {.closing background-color="#530153"}
+
+
